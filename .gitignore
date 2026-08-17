@@ -20,7 +20,7 @@ node_modules/
 # logs
 npm-debug.log*
 yarn-debug.log*
-pnpm-debug.log*
+npm-debug.log*
 
 # tooling
 *.tsbuildinfo

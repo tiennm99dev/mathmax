@@ -3,7 +3,6 @@
   "version": "0.0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.1.1",
   "description": "MathMax — Toán tương tác cho học sinh THCS lớp 6-9. Static site.",
   "scripts": {
     "dev": "vite dev",
@@ -32,5 +31,8 @@
     "prettier-plugin-svelte": "^4.1.1",
     "svelte-check": "^4.7.3",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "cookie": "0.7.2"
   }
 }
