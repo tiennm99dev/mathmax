@@ -31,9 +31,9 @@ npm run preview   # Serve build/
 
 ## Deploy
 
-Auto-deploy lên GitHub Pages từ `main` qua `actions/deploy-pages@v4`. Xem `RUNBOOK.md` để rollback / chuyển domain.
+Auto-deploy lên GitHub Pages từ `main`. Cấu hình và phiên bản action nằm trong `.github/workflows/deploy.yml`; xem `RUNBOOK.md` để rollback / chuyển domain.
 
-Live URL: https://tiennm99.github.io/mathmax/
+Live URL: https://tiennm99dev.github.io/mathmax/
 
 ## Architecture
 
