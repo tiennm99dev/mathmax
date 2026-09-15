@@ -2,6 +2,7 @@ import { vi as gcdCopy } from './uoc-chung-lon-nhat/copy.vi.js';
 import { vi as sieveCopy } from './sang-eratosthenes/copy.vi.js';
 import { vi as diffSquaresCopy } from './hieu-hai-binh-phuong/copy.vi.js';
 import { vi as linearCopy } from './duong-thang/copy.vi.js';
+import { vi as systemCopy } from './he-phuong-trinh-bac-nhat/copy.vi.js';
 import { vi as pythagorasCopy } from './dinh-ly-pythagoras/copy.vi.js';
 import { vi as sssCopy } from './tam-giac-bang-nhau/copy.vi.js';
 import { vi as similarityCopy } from './tam-giac-dong-dang/copy.vi.js';
@@ -19,6 +20,7 @@ export const lessons = [
   sieveCopy,
   diffSquaresCopy,
   linearCopy,
+  systemCopy,
   pythagorasCopy,
   sssCopy,
   similarityCopy,
