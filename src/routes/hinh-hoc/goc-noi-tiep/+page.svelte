@@ -2,7 +2,14 @@
   import { base } from '$app/paths';
   import { t } from '$lib/i18n/index.js';
   import { vi as m } from '$lib/lessons/goc-noi-tiep/copy.vi.js';
-  import { circle, pointOnCircle, projectToCircle, angleAtVertex } from '$lib/geom-engine/circle.js';
+  import {
+    circle,
+    pointOnCircle,
+    projectToCircle,
+    angleAtVertex,
+    subtendedArc,
+  } from '$lib/geom-engine/circle.js';
+  import { dist, EPSILON_LEN } from '$lib/geom-engine/vec.js';
   import { draggable } from '$lib/actions/draggable.svelte.js';
 
   const copy = t();
@@ -16,7 +23,16 @@
   let M = $state(pointOnCircle(C, 270));
 
   const inscribed = $derived(angleAtVertex(A, M, B));
-  const central = $derived(angleAtVertex(A, C.center, B));
+
+  // The arc AB that M does NOT sit on — the arc ∠AMB actually subtends. It is
+  // the major arc (> 180°) whenever M is on the minor arc, which is why the
+  // fixed central angle ∠AOB alone does not describe the relationship.
+  const arc = $derived(subtendedArc(C, A, B, M));
+
+  // ∠AMB degenerates when M reaches either endpoint of the chord.
+  const atEndpoint = $derived(
+    dist(M, A) < EPSILON_LEN || dist(M, B) < EPSILON_LEN
+  );
 
   /** @param {{x: number, y: number}} p */
   const projector = (p) => projectToCircle(p, C);
@@ -52,9 +68,18 @@
       <p class="text-slate-700 leading-relaxed">{m.intro}</p>
     </header>
 
-    <section class="mb-2 flex items-baseline justify-between gap-3 text-sm tabular-nums" aria-live="polite">
-      <span><strong style="color:#D7263D">{m.inscribedLabel}:</strong> {inscribed.toFixed(1)}°</span>
-      <span><strong style="color:#1B998B">{m.centralLabel}:</strong> {central.toFixed(1)}°</span>
+    <section class="mb-2 text-sm tabular-nums" aria-live="polite">
+      {#if atEndpoint}
+        <p class="text-slate-500">{m.undefinedLabel}</p>
+      {:else}
+        <div class="flex items-baseline justify-between gap-3">
+          <span><strong style="color:#D7263D">{m.inscribedLabel}:</strong> {inscribed.toFixed(1)}°</span>
+          <span><strong style="color:#1B998B">{m.arcLabel}:</strong> {arc.toFixed(1)}°</span>
+        </div>
+        <p class="mt-1 text-slate-600">
+          {m.relationOk}: {inscribed.toFixed(1)}° = {arc.toFixed(1)}° / 2
+        </p>
+      {/if}
     </section>
 
     <section class="mb-6">
