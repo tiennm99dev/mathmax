@@ -51,6 +51,14 @@ export function createGridState(buildAnnouncement) {
     markedPrimes = [...markedPrimes, n];
     const multiples = multiplesOf(n, 100);
 
+    // Every prime above 50 has no multiple left on a 100-cell grid. There is
+    // nothing to stagger, and entering ripple mode would lock the grid for
+    // good, because only the final timeout clears the flag.
+    if (multiples.length === 0) {
+      announcement = buildAnnouncement(n, multiples);
+      return;
+    }
+
     if (reducedMotion) {
       const next = new Map(crossings);
       for (const cell of multiples) {
