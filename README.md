@@ -4,7 +4,7 @@ Toán tương tác cho học sinh THCS Việt Nam (lớp 6-9). Số học, Đạ
 
 ## Status
 
-8 bài đã ra mắt — số học, đại số, hình học đều có ít nhất hai bài.
+9 bài đã ra mắt — số học, đại số, hình học đều có ít nhất hai bài.
 
 - Lớp 6 — Ước chung lớn nhất (Euclid): `/so-hoc/uoc-chung-lon-nhat/`
 - Lớp 6 — Sàng Eratosthenes: `/so-hoc/sang-eratosthenes/`
@@ -13,6 +13,7 @@ Toán tương tác cho học sinh THCS Việt Nam (lớp 6-9). Số học, Đạ
 - Lớp 7 — Định lý Pythagoras: `/hinh-hoc/dinh-ly-pythagoras/`
 - Lớp 7 — Tam giác bằng nhau (SSS): `/hinh-hoc/tam-giac-bang-nhau/`
 - Lớp 8 — Tam giác đồng dạng: `/hinh-hoc/tam-giac-dong-dang/`
+- Lớp 9 — Hệ phương trình bậc nhất hai ẩn: `/dai-so/he-phuong-trinh-bac-nhat/`
 - Lớp 9 — Góc nội tiếp: `/hinh-hoc/goc-noi-tiep/`
 
 ## Develop
@@ -37,9 +38,9 @@ Live URL: https://tiennm99.github.io/mathmax/
 ## Architecture
 
 - **Static**: SvelteKit + `@sveltejs/adapter-static`, `paths.base = '/mathmax'`, output `build/`.
-- **Styling**: Tailwind 3 (PostCSS) + Be Vietnam Pro (woff2 qua `@fontsource`). Tick palette `colors.pair.{1,2,3,4}` được khai báo trong `tailwind.config.js`.
+- **Styling**: Tailwind 4 (PostCSS qua `@tailwindcss/postcss`) + Be Vietnam Pro (woff2 qua `@fontsource`). `src/app.css` nạp Tailwind bằng `@import 'tailwindcss/index.css'`; tick palette `colors.pair.{1,2,3,4}` vẫn khai báo trong `tailwind.config.js` và được nạp qua `@config`.
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
-- **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.
+- **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear, system). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.
 - **Math typography**: `src/lib/components/tex.svelte` — wrapper KaTeX duy nhất. SSR qua `renderToString`, không cần JS phía client để hiển thị.
 - **Lessons**: mỗi bài là một `+page.svelte`; copy tiếng Việt colocate trong `src/lib/lessons/<slug>/copy.vi.js`.
 - **Drag**: Svelte action `use:draggable` (`src/lib/actions/draggable.svelte.js`) — Pointer Events + bàn phím mũi tên cho a11y.
