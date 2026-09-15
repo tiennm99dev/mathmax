@@ -8,15 +8,19 @@
   import { cubicOut } from 'svelte/easing';
   import {
     squareA, squareB, squareC, altitudeFoot,
-    shearATarget, shearBTarget, lerpPoly, polyPoints,
+    shearATarget, shearBTarget, morphSquareA, morphSquareB, polyPoints,
   } from '$lib/lessons/dinh-ly-pythagoras/geom-helpers.js';
 
   const copy = t();
-  const VIEW = 400;
-  // Layout: apex fixed at y=100, foot fixed at x=320; right-angle vertex R is draggable.
-  // Min leg 40px prevents degenerate triangles and keeps squares visible.
-  const APEX_Y = 100, FOOT_X = 320;
-  const INIT = { x: 160, y: 280 };
+  // The viewBox has to hold the square on the hypotenuse too, which reaches
+  // FOOT_X + a to the right and APEX_Y - b above. With both legs capped at
+  // LEG_MAX the drawing stays inside [0, VIEW] for every reachable R.
+  const VIEW = 520;
+  // Layout: apex fixed at y=200, foot fixed at x=320; right-angle vertex R is draggable.
+  const APEX_Y = 200, FOOT_X = 320;
+  // Min leg keeps the triangle non-degenerate; max keeps every square on canvas.
+  const LEG_MIN = 40, LEG_MAX = 150;
+  const INIT = { x: 200, y: 320 };
 
   const reducedMotion = typeof window !== 'undefined'
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,15 +48,15 @@
   // Phase A: shear-a moves in first half of tween; phase B: shear-b in second half
   const tA = $derived(Math.min(1, $tp * 2));
   const tB = $derived(Math.max(0, $tp * 2 - 1));
-  const shearA = $derived(lerpPoly(sqA, tgtA, tA));
-  const shearB = $derived(lerpPoly(sqB, tgtB, tB));
+  const shearA = $derived(morphSquareA(A, R, H, a, b, tA));
+  const shearB = $derived(morphSquareB(R, H, a, b, tB));
   const texSides = $derived(`a=${a.toFixed(1)},\\;b=${b.toFixed(1)},\\;c=${c.toFixed(1)}`);
   const texNums  = $derived(`${(a*a).toFixed(1)}+${(b*b).toFixed(1)}=${(c*c).toFixed(1)}`);
 
   /** @param {{ x: number; y: number }} p */
   const clampR = (p) => ({
-    x: Math.max(60, Math.min(FOOT_X - 40, p.x)),
-    y: Math.max(APEX_Y + 40, Math.min(VIEW - 60, p.y)),
+    x: Math.max(FOOT_X - LEG_MAX, Math.min(FOOT_X - LEG_MIN, p.x)),
+    y: Math.max(APEX_Y + LEG_MIN, Math.min(APEX_Y + LEG_MAX, p.y)),
   });
   const dragOpts = $derived({
     point: R, svg: () => svgEl ?? null,
@@ -79,9 +83,22 @@
   }
 
   if (import.meta.env.DEV) {
+    /** Shoelace area of a closed polygon. */
+    const polyArea = (/** @type {{x:number,y:number}[]} */ pts) => {
+      let sum = 0;
+      for (let i = 0; i < pts.length; i++) {
+        const q = pts[(i + 1) % pts.length];
+        sum += pts[i].x * q.y - q.x * pts[i].y;
+      }
+      return Math.abs(sum) / 2;
+    };
     $effect(() => {
-      if (phase === 'proven' && Math.abs(a*a + b*b - c*c) > 0.01)
-        console.error(`[pythagoras] area mismatch: a²+b²=${a*a+b*b} c²=${c*c}`);
+      // The morph is built from shears and rotations, so each polygon must
+      // keep its area at every frame. This is what silently broke before.
+      if (Math.abs(polyArea(shearA) - a * a) > 0.01)
+        console.error(`[pythagoras] square-a area drifted: ${polyArea(shearA)} vs ${a * a}`);
+      if (Math.abs(polyArea(shearB) - b * b) > 0.01)
+        console.error(`[pythagoras] square-b area drifted: ${polyArea(shearB)} vs ${b * b}`);
     });
   }
 </script>

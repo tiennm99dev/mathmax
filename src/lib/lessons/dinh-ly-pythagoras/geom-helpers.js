@@ -1,6 +1,14 @@
+import {
+  compose,
+  translate,
+  rotate,
+  shear,
+  applyToPolygon,
+} from '$lib/geom-engine/transforms.js';
+
 /**
  * Geometry helpers for the Pythagoras dissection-shear lesson.
- * All coordinates are in SVG viewBox units (0 0 400 400).
+ * All coordinates are in SVG viewBox units.
  *
  * Triangle layout (legs axis-aligned):
  *   A  — top apex,    x = R.x,  y = fixed top
@@ -39,9 +47,10 @@ export function squareB(R, H) {
  * @returns {Poly}
  */
 export function squareC(A, H, a, b, c) {
-  // Outward normal unit vector (rotated 90° clockwise from AH direction):
-  // AH direction = (b/c, a/c)  →  normal = (a/c, -b/c)
-  const nx = a; // not yet divided by c; we scale by c below so net offset = (a, -b)
+  // Offset to the far side of the square: the AH direction (b, a) turned a
+  // quarter turn, giving (a, -b). Its length is hypot(a, b) = c, so the far
+  // edge sits exactly one side-length away.
+  const nx = a;
   const ny = -b;
   return [
     A,
@@ -99,16 +108,78 @@ export function shearBTarget(F, H, a, b, c) {
 }
 
 /**
- * Linearly interpolate between two polygons of equal length.
- * Returns a new polygon with each vertex lerped.
- * @param {Poly} from @param {Poly} to @param {number} t — 0..1
+ * Progress of stage `i` (0-based) when the whole morph runs over t ∈ [0,1].
+ * @param {number} t @param {number} i @returns {number}
+ */
+function stage(t, i) {
+  return Math.max(0, Math.min(1, t * 3 - i));
+}
+
+/**
+ * Shear parallel to the hypotenuse-square normal, holding the line through
+ * `origin` in that direction fixed. Points move by `lambda` times their
+ * offset along AH, which is what slides a vertex onto the altitude foot.
+ * @param {Pt} origin @param {number} a @param {number} b @param {number} lambda
+ * @returns {import('$lib/geom-engine/transforms.js').Mat3}
+ */
+function shearAlongNormal(origin, a, b, lambda) {
+  const alpha = Math.atan2(a, b); // direction of AH
+  return compose(
+    translate(-origin.x, -origin.y),
+    rotate(-alpha),
+    shear(0, -lambda),
+    rotate(alpha),
+    translate(origin.x, origin.y)
+  );
+}
+
+/**
+ * Area-preserving morph of the square on leg `a` onto the rectangle it equals
+ * inside the hypotenuse square. Runs in three stages, each of determinant 1,
+ * so the area is exactly a² at every `t`:
+ *
+ *   1. shear parallel to AH's horizontal leg, sliding R onto H
+ *   2. quarter turn about A
+ *   3. shear parallel to the hypotenuse-square normal, sliding a vertex onto F
+ *
+ * @param {Pt} A @param {Pt} R @param {Pt} H
+ * @param {number} a @param {number} b @param {number} t 0..1
  * @returns {Poly}
  */
-export function lerpPoly(from, to, t) {
-  return from.map((p, i) => ({
-    x: p.x + (to[i].x - p.x) * t,
-    y: p.y + (to[i].y - p.y) * t,
-  }));
+export function morphSquareA(A, R, H, a, b, t) {
+  const m = compose(
+    // stage 1 — horizontal shear about the line y = A.y
+    translate(0, -A.y),
+    shear((b * stage(t, 0)) / a, 0),
+    translate(0, A.y),
+    // stage 2 — quarter turn about A
+    rotate((-Math.PI / 2) * stage(t, 1), A),
+    // stage 3 — shear onto the altitude foot
+    shearAlongNormal(A, a, b, (b / a) * stage(t, 2))
+  );
+  return applyToPolygon(m, squareA(A, R));
+}
+
+/**
+ * Area-preserving morph of the square on leg `b` onto its rectangle, mirroring
+ * `morphSquareA` about the hypotenuse. Area is exactly b² at every `t`.
+ *
+ * @param {Pt} R @param {Pt} H
+ * @param {number} a @param {number} b @param {number} t 0..1
+ * @returns {Poly}
+ */
+export function morphSquareB(R, H, a, b, t) {
+  const m = compose(
+    // stage 1 — vertical shear about the line x = H.x
+    translate(-H.x, 0),
+    shear(0, (a * stage(t, 0)) / b),
+    translate(H.x, 0),
+    // stage 2 — quarter turn about H, the other way round
+    rotate((Math.PI / 2) * stage(t, 1), H),
+    // stage 3 — shear onto the altitude foot
+    shearAlongNormal(H, a, b, (-a / b) * stage(t, 2))
+  );
+  return applyToPolygon(m, squareB(R, H));
 }
 
 /**
