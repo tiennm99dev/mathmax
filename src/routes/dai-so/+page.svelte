@@ -54,6 +54,6 @@
 <footer class="border-t border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-slate-500">
     © {new Date().getFullYear()} ·
-    <a href="https://github.com/tiennm99/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
+    <a href="https://github.com/tiennm99dev/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
   </div>
 </footer>

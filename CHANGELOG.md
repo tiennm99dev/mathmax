@@ -6,6 +6,7 @@ All notable changes to **MathMax** are documented here. Format: [Keep a Changelo
 
 ### Fixed
 
+- Liên kết repo (chân trang) và workflow deploy còn trỏ về chủ sở hữu cũ `tiennm99`; nay trỏ về org `tiennm99dev`, đồng thời bỏ biến `SITE_URL` không được dùng ở đâu.
 - Tailwind không sinh ra CSS: dự án cài Tailwind 4 nhưng `src/app.css` vẫn dùng chỉ thị `@tailwind` của v3, nên trang xuất bản gần như không có style. Nay nạp bằng `@import 'tailwindcss/index.css'` + `@config`.
 - Sàng Eratosthenes: bấm vào số nguyên tố lớn hơn 50 làm khoá lưới vĩnh viễn (cờ `rippling` không bao giờ được gỡ khi không còn bội số nào để xoá).
 - Định lý Pythagoras: hoạt ảnh nội suy thẳng từng đỉnh nên không bảo toàn diện tích (co còn ~11% ở giữa chừng), và hình vuông trên cạnh huyền nằm tràn ra ngoài khung vẽ. Nay morph bằng chuỗi phép trượt + phép quay (định thức 1) dựa trên `geom-engine/transforms.js`, và khung vẽ mở rộng để mọi hình luôn nằm trong tầm nhìn.

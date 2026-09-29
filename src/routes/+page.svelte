@@ -81,8 +81,8 @@
     <span>© {new Date().getFullYear()}</span>
     <a href="https://github.com/tiennm99" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">tiennm99</a>
     <span aria-hidden="true">·</span>
-    <a href="https://github.com/tiennm99/mathmax/blob/main/LICENSE" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Apache-2.0</a>
+    <a href="https://github.com/tiennm99dev/mathmax/blob/main/LICENSE" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Apache-2.0</a>
     <span aria-hidden="true">·</span>
-    <a href="https://github.com/tiennm99/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
+    <a href="https://github.com/tiennm99dev/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
   </div>
 </footer>

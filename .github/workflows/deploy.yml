@@ -33,7 +33,6 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          SITE_URL: https://tiennm99.github.io
           SITE_BASE: /mathmax
 
       - name: Upload Pages artifact
