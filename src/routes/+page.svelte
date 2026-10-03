@@ -1,6 +1,6 @@
 <script>
-  import { base } from '$app/paths';
-  import { t } from '$lib/i18n/index.js';
+  import { resolve } from '$app/paths';
+  import { t } from '#lib/i18n/index.js';
 
   const copy = t();
   /** @type {Array<keyof typeof copy.topics>} */
@@ -45,7 +45,7 @@
         <li>
           {#if isLive}
             <a
-              href={base + topic.href}
+              href={resolve(/** @type {import('$app/types').Path} */ (topic.href))}
               class="block bg-white rounded-2xl border border-slate-200 p-6 transition hover:border-indigo-400 hover:shadow-sm h-full"
             >
               <div class="flex items-center justify-between mb-3">

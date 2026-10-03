@@ -4,7 +4,7 @@ import {
   rotate,
   shear,
   applyToPolygon,
-} from '$lib/geom-engine/transforms.js';
+} from '#lib/geom-engine/transforms.js';
 
 /**
  * Geometry helpers for the Pythagoras dissection-shear lesson.
@@ -120,7 +120,7 @@ function stage(t, i) {
  * `origin` in that direction fixed. Points move by `lambda` times their
  * offset along AH, which is what slides a vertex onto the altitude foot.
  * @param {Pt} origin @param {number} a @param {number} b @param {number} lambda
- * @returns {import('$lib/geom-engine/transforms.js').Mat3}
+ * @returns {import('#lib/geom-engine/transforms.js').Mat3}
  */
 function shearAlongNormal(origin, a, b, lambda) {
   const alpha = Math.atan2(a, b); // direction of AH

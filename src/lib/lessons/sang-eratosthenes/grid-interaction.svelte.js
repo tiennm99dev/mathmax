@@ -4,7 +4,7 @@
  * whose properties are live $state reads (Svelte 5 runes).
  */
 
-import { multiplesOf, isPrime } from '$lib/numtheory-engine/sieve.js';
+import { multiplesOf, isPrime } from '#lib/numtheory-engine/sieve.js';
 
 const STAGGER_MS = 30;
 

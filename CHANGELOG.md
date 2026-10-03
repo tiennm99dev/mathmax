@@ -4,6 +4,10 @@ All notable changes to **MathMax** are documented here. Format: [Keep a Changelo
 
 ## [Unreleased]
 
+### Changed
+
+- Nâng cấp lên SvelteKit 3 (adapter-static 4), Vitest 5 và KaTeX 0.19. Cấu hình SvelteKit chuyển từ `svelte.config.js` sang plugin `sveltekit()` trong `vite.config.js`; alias `$lib` thay bằng subpath import `#lib/*` trong `package.json`; liên kết nội bộ dùng `resolve()` của `$app/paths` thay cho `base` (đã bị gỡ).
+
 ### Fixed
 
 - Liên kết repo (chân trang) và workflow deploy còn trỏ về chủ sở hữu cũ `tiennm99`; nay trỏ về org `tiennm99dev`, đồng thời bỏ biến `SITE_URL` không được dùng ở đâu.

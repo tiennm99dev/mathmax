@@ -1,9 +1,9 @@
 <script>
-  import { draggable } from '$lib/actions/draggable.svelte.js';
+  import { draggable } from '#lib/actions/draggable.svelte.js';
 
   /**
    * @typedef {{x: number, y: number}} MutablePoint
-   * @typedef {import('$lib/algebra-engine/linear.js').Line} Line
+   * @typedef {import('#lib/algebra-engine/linear.js').Line} Line
    */
 
   /** @type {{
@@ -19,8 +19,8 @@
    *   p2: MutablePoint,
    *   anchor1MathY: number,
    *   anchor2MathY: number,
-   *   drag1Opts: import('$lib/actions/draggable.svelte.js').DraggableParams,
-   *   drag2Opts: import('$lib/actions/draggable.svelte.js').DraggableParams,
+   *   drag1Opts: import('#lib/actions/draggable.svelte.js').DraggableParams,
+   *   drag2Opts: import('#lib/actions/draggable.svelte.js').DraggableParams,
    *   showTriangle: boolean,
    *   anchor1X: number,
    *   anchor2X: number,

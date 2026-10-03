@@ -1,8 +1,8 @@
 <script>
-  import { base } from '$app/paths';
-  import { t } from '$lib/i18n/index.js';
-  import { vi as m } from '$lib/lessons/sang-eratosthenes/copy.vi.js';
-  import { createGridState } from '$lib/lessons/sang-eratosthenes/grid-interaction.svelte.js';
+  import { resolve } from '$app/paths';
+  import { t } from '#lib/i18n/index.js';
+  import { vi as m } from '#lib/lessons/sang-eratosthenes/copy.vi.js';
+  import { createGridState } from '#lib/lessons/sang-eratosthenes/grid-interaction.svelte.js';
 
   const copy = t();
 
@@ -31,14 +31,14 @@
 
 <header class="border-b border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-4">
-    <a href={base + '/'} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
+    <a href={resolve('/')} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
   </div>
 </header>
 
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={base + '/so-hoc/'} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('so-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
     </nav>
 
     <header class="mb-6">

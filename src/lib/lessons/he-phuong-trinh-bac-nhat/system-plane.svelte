@@ -1,9 +1,9 @@
 <script>
-  import { draggable } from '$lib/actions/draggable.svelte.js';
+  import { draggable } from '#lib/actions/draggable.svelte.js';
 
   /**
    * @typedef {{x: number, y: number}} MutablePoint
-   * @typedef {import('$lib/geom-engine/vec.js').Vec2} Vec2
+   * @typedef {import('#lib/geom-engine/vec.js').Vec2} Vec2
    */
 
   /** @type {{
@@ -17,8 +17,8 @@
    *   seg2: [Vec2, Vec2] | null,
    *   handle1: MutablePoint,
    *   handle2: MutablePoint,
-   *   drag1Opts: import('$lib/actions/draggable.svelte.js').DraggableParams,
-   *   drag2Opts: import('$lib/actions/draggable.svelte.js').DraggableParams,
+   *   drag1Opts: import('#lib/actions/draggable.svelte.js').DraggableParams,
+   *   drag2Opts: import('#lib/actions/draggable.svelte.js').DraggableParams,
    *   solutionPoint: Vec2 | null,
    *   solutionMarkerLabel: string,
    *   coincident: boolean,

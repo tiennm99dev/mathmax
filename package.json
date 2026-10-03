@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@fontsource/be-vietnam-pro": "^5.2.0",
-    "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/kit": "^2.69.3",
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "@tailwindcss/postcss": "^4.3.3",
     "autoprefixer": "^10.5.4",
-    "katex": "^0.17.0",
+    "katex": "^0.19.0",
     "postcss": "^8.5.19",
-    "svelte": "^5.56.6",
+    "svelte": "^5.57.1",
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5"
   },
@@ -30,9 +30,9 @@
     "prettier": "^3.9.5",
     "prettier-plugin-svelte": "^4.1.1",
     "svelte-check": "^4.7.3",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.3"
   },
-  "overrides": {
-    "cookie": "0.7.2"
+  "imports": {
+    "#lib/*": "./src/lib/*"
   }
 }

@@ -1,4 +1,4 @@
-import { vec } from '$lib/geom-engine/vec.js';
+import { vec } from '#lib/geom-engine/vec.js';
 
 /**
  * Convert client (mouse/touch) coordinates to the SVG's viewBox space.
@@ -7,7 +7,7 @@ import { vec } from '$lib/geom-engine/vec.js';
  * @param {number} clientY
  * @param {number} viewW
  * @param {number} viewH
- * @returns {import('$lib/geom-engine/vec.js').Vec2}
+ * @returns {import('#lib/geom-engine/vec.js').Vec2}
  */
 export function clientToSvg(svg, clientX, clientY, viewW, viewH) {
   const r = svg.getBoundingClientRect();
@@ -16,9 +16,9 @@ export function clientToSvg(svg, clientX, clientY, viewW, viewH) {
 
 /**
  * Clamp a point inside the viewBox with optional padding from edges.
- * @param {import('$lib/geom-engine/vec.js').Vec2} v
+ * @param {import('#lib/geom-engine/vec.js').Vec2} v
  * @param {number} viewW @param {number} viewH @param {number} [pad]
- * @returns {import('$lib/geom-engine/vec.js').Vec2}
+ * @returns {import('#lib/geom-engine/vec.js').Vec2}
  */
 export function clampToViewBox(v, viewW, viewH, pad = 16) {
   return vec(

@@ -40,8 +40,8 @@ When the trigger fires:
 1. Register the domain (VN registration: passport scan + address proof + MIC filing, 7–14 days)
 2. Add `CNAME` file at repo root with the new domain (e.g. `mathmax.vn`)
 3. Configure custom domain in GitHub Pages settings (Settings → Pages → Custom domain)
-4. Update `svelte.config.js`: change `paths.base` from `/mathmax` to `/`, update any hardcoded references. Or update the workflow `env:` block.
-5. Update OpenGraph + canonical URLs (handled automatically once `svelte.config.js` reflects the new domain)
+4. Update `vite.config.js`: change the SvelteKit `paths.base` default from `/mathmax` to `/`, update any hardcoded references. Or update the workflow `env:` block.
+5. Update OpenGraph + canonical URLs (handled automatically once `vite.config.js` reflects the new domain)
 6. Wait 24h, then update sitemap submission in Google Search Console
 7. Set up 301 redirects (GitHub Pages handles this automatically once the custom domain is the primary)
 
@@ -49,7 +49,7 @@ When the trigger fires:
 
 - Never `git push --force` to `main`.
 - Never edit `VERSION` or `package.json.version` independently — they must agree.
-- Never change `svelte.config.js` `paths.base` without simultaneously updating the deploy workflow `env:` and any hardcoded internal links.
+- Never change the `paths.base` default in `vite.config.js` without simultaneously updating the deploy workflow `env:` and any hardcoded internal links.
 - Never run `npm install` in CI without committing the resulting `package-lock.json` locally first.
 
 ## Initial CI note

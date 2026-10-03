@@ -1,4 +1,4 @@
-import { clientToSvg, clampToViewBox } from '$lib/utils/svg.js';
+import { clientToSvg, clampToViewBox } from '#lib/utils/svg.js';
 
 /**
  * @typedef {{x: number, y: number}} MutablePoint
@@ -6,7 +6,7 @@ import { clientToSvg, clampToViewBox } from '$lib/utils/svg.js';
  *   point: MutablePoint;
  *   svg: SVGSVGElement | (() => SVGSVGElement | null);
  *   viewBox: { w: number; h: number };
- *   projector?: (p: import('$lib/geom-engine/vec.js').Vec2) => import('$lib/geom-engine/vec.js').Vec2;
+ *   projector?: (p: import('#lib/geom-engine/vec.js').Vec2) => import('#lib/geom-engine/vec.js').Vec2;
  *   pad?: number;
  *   keyStep?: number;
  *   keyShiftStep?: number;

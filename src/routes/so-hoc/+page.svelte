@@ -1,7 +1,7 @@
 <script>
-  import { base } from '$app/paths';
-  import { t } from '$lib/i18n/index.js';
-  import { lessonsByTopic } from '$lib/lessons/registry.js';
+  import { resolve } from '$app/paths';
+  import { t } from '#lib/i18n/index.js';
+  import { lessonsByTopic } from '#lib/lessons/registry.js';
 
   const copy = t();
   const topic = copy.topics['so-hoc'];
@@ -15,7 +15,7 @@
 
 <header class="border-b border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href={base + '/'} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
+    <a href={resolve('/')} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
     <nav aria-label="Điều hướng chính"></nav>
   </div>
 </header>
@@ -23,7 +23,7 @@
 <main class="bg-slate-50 min-h-screen">
   <section class="max-w-4xl mx-auto px-4 py-12">
     <nav class="mb-6 text-sm">
-      <a href={base + '/'} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToHub}</a>
+      <a href={resolve('/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToHub}</a>
     </nav>
 
     <header class="mb-8">
@@ -35,7 +35,7 @@
       {#each lessons as lesson (lesson.slug)}
         <li>
           <a
-            href={base + `/so-hoc/${lesson.slug}/`}
+            href={resolve(/** @type {import('$app/types').Path} */ (`so-hoc/${lesson.slug}/`))}
             class="block bg-white rounded-2xl border border-slate-200 p-5 transition hover:border-indigo-400 hover:shadow-sm"
           >
             <div class="flex items-baseline justify-between gap-3 mb-2">

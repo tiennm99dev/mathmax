@@ -1,10 +1,10 @@
 <script>
-  import { base } from '$app/paths';
-  import { t } from '$lib/i18n/index.js';
-  import { vi as m } from '$lib/lessons/tam-giac-bang-nhau/copy.vi.js';
-  import { triangle, sides, congruentSSS } from '$lib/geom-engine/triangle.js';
-  import { tickPositions } from '$lib/geom-engine/ticks.js';
-  import { draggable } from '$lib/actions/draggable.svelte.js';
+  import { resolve } from '$app/paths';
+  import { t } from '#lib/i18n/index.js';
+  import { vi as m } from '#lib/lessons/tam-giac-bang-nhau/copy.vi.js';
+  import { triangle, sides, congruentSSS } from '#lib/geom-engine/triangle.js';
+  import { tickPositions } from '#lib/geom-engine/ticks.js';
+  import { draggable } from '#lib/actions/draggable.svelte.js';
 
   const copy = t();
   const VIEW_W = 400;
@@ -48,14 +48,14 @@
 
 <header class="border-b border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href={base + '/'} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
+    <a href={resolve('/')} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
   </div>
 </header>
 
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={base + '/hinh-hoc/'} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('hinh-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
     </nav>
 
     <header class="mb-6">

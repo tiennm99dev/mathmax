@@ -1,5 +1,5 @@
 <script>
-  import Tex from '$lib/components/tex.svelte';
+  import Tex from '#lib/components/tex.svelte';
 
   /** @type {{
    *   a: number,

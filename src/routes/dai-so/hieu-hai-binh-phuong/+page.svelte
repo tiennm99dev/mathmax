@@ -1,8 +1,8 @@
 <script>
-  import { base } from '$app/paths';
-  import { t } from '$lib/i18n/index.js';
-  import { vi as m } from '$lib/lessons/hieu-hai-binh-phuong/copy.vi.js';
-  import Tex from '$lib/components/tex.svelte';
+  import { resolve } from '$app/paths';
+  import { t } from '#lib/i18n/index.js';
+  import { vi as m } from '#lib/lessons/hieu-hai-binh-phuong/copy.vi.js';
+  import Tex from '#lib/components/tex.svelte';
 
   const copy = t();
   const U = 18; // px per math unit
@@ -55,14 +55,14 @@
 
 <header class="border-b border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href={base + '/'} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
+    <a href={resolve('/')} class="text-xl font-bold text-indigo-600 tracking-tight">MathMax</a>
   </div>
 </header>
 
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={base + '/dai-so/'} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('dai-so/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
     </nav>
 
     <header class="mb-6">

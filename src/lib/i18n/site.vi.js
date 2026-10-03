@@ -27,19 +27,19 @@ export const topics = {
     title: 'Số học',
     blurb: 'Phép tính, ước-bội, phân số, số nguyên. Trực quan hoá thuật toán và quy luật.',
     status: 'live',
-    href: '/so-hoc/',
+    href: 'so-hoc/',
   },
   'dai-so': {
     title: 'Đại số',
     blurb: 'Biểu thức, phương trình, hàm số. Thao tác kéo-thả các đối tượng đại số.',
     status: 'live',
-    href: '/dai-so/',
+    href: 'dai-so/',
   },
   'hinh-hoc': {
     title: 'Hình học',
     blurb: 'Tam giác, tứ giác, đường tròn. Kéo điểm, định lý sống động.',
     status: 'live',
-    href: '/hinh-hoc/',
+    href: 'hinh-hoc/',
   },
 };
 
