@@ -109,7 +109,7 @@ describe('chapter skills', () => {
     expect(new Set(set.map((q) => q.prompt)).size).toBe(12);
   });
 
-  it('builds the end-of-chapter test with two questions per lesson', () => {
+  it('builds the end-of-chapter test with three questions per lesson', () => {
     const set = buildSet(CHAPTER_SKILLS, 3, 1);
     expect(set).toHaveLength(12);
     expect(new Set(set.map((q) => q.prompt)).size).toBe(12);

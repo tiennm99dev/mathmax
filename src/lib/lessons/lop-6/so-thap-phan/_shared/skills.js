@@ -267,7 +267,7 @@ const PERCENTS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 60, 75, 80];
 /** @type {Skill} */
 export const tiSoPhanTram = {
   id: 'ti-so-phan-tram',
-  label: 'Bài 31. Tỉ số và tỉ số phần trăm',
+  label: 'Bài 31. Một số bài toán về tỉ số và tỉ số phần trăm',
   make(rand) {
     const v = int(rand, 0, 4);
     if (v === 0) {

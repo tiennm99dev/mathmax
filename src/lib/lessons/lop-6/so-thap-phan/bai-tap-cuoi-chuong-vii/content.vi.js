@@ -31,7 +31,7 @@ export default {
               'Xét chữ số ngay bên phải hàng làm tròn: nhỏ hơn $5$ thì giữ nguyên, từ $5$ trở lên thì cộng thêm $1$ vào chữ số hàng làm tròn; bỏ các chữ số ở phần thập phân phía sau, thay các chữ số ở phần số nguyên phía sau bằng $0$. Số âm: làm tròn số đối rồi thêm dấu "$-$". Ước lượng: làm tròn các số rồi tính nhẩm.',
             ],
             [
-              'Bài 31. Tỉ số và tỉ số phần trăm',
+              'Bài 31. Một số bài toán về tỉ số và tỉ số phần trăm',
               'Tỉ số của $a$ và $b$ ($b \\ne 0$) là $a : b$; tỉ số phần trăm là $\\frac{a}{b} \\cdot 100\\%$ (hai đại lượng phải cùng đơn vị đo). $m\\%$ của $b$ là $b \\cdot \\frac{m}{100}$. Số có $m\\%$ bằng $a$ là $a : \\frac{m}{100}$.',
             ],
           ],
