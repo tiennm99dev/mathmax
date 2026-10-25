@@ -45,6 +45,16 @@ describe('every chapter skill', () => {
   }
 });
 
+describe('Bài 13 counting steps', () => {
+  it('list each integer between the bounds once', () => {
+    for (const q of sample(tapHopSoNguyen)) {
+      if (!q.prompt.startsWith('Có bao nhiêu')) continue;
+      const listed = ints(q.steps[0]);
+      expect(new Set(listed).size, q.steps[0]).toBe(listed.length);
+    }
+  });
+});
+
 describe('stored answers match a recomputation', () => {
   it('Bài 13: counting, neighbours, largest and smallest', () => {
     for (const q of sample(tapHopSoNguyen)) {

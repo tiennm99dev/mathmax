@@ -32,9 +32,11 @@
     ].filter((h) => h.from !== h.to),
   );
   const status = $derived(
-    finished
-      ? `Còn lại ${Math.abs(board.result)} hạt ${board.result >= 0 ? 'dương' : 'âm'}: ${expression} = ${intText(board.result)}.`
-      : `Đã triệt tiêu ${cancelled}/${board.pairs} cặp.`,
+    finished && board.result === 0
+      ? `Không còn hạt nào: ${expression} = 0.`
+      : finished
+        ? `Còn lại ${Math.abs(board.result)} hạt ${board.result >= 0 ? 'dương' : 'âm'}: ${expression} = ${intText(board.result)}.`
+        : `Đã triệt tiêu ${cancelled}/${board.pairs} cặp.`,
   );
 
   // New numbers or a new operation put every chip back on the board.

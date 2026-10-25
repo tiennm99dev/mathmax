@@ -180,7 +180,7 @@ export default {
   ],
   takeaways: [
     'Trên trục số: số âm $< 0 <$ số dương; điểm bên trái biểu diễn số nhỏ hơn.',
-    'Cộng cùng dấu: cộng phần số tự nhiên, giữ dấu. Khác dấu: trừ phần số tự nhiên, lấy dấu của số "lớn hơn".',
+    'Cộng cùng dấu: cộng phần số tự nhiên, giữ dấu. Khác dấu: trừ phần số tự nhiên, lấy dấu của số có phần số tự nhiên lớn hơn.',
     '$a - b = a + (-b)$.',
     'Trước ngoặc là "$-$" thì đổi dấu mọi số hạng khi bỏ ngoặc; gom số đối để tính nhanh.',
   ],

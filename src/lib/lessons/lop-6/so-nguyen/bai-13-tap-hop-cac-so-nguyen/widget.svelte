@@ -3,7 +3,7 @@
   import { clamp, linear } from '#lib/core/visuals/svg-math.js';
   import { button } from '#lib/core/ui.js';
   import { intText, kindOf } from '../_shared/integers.js';
-  import { CHALLENGES, compare, relationSentence, temperatureSentence } from './engine.js';
+  import { CHALLENGES, START, compare, relationSentence, temperatureSentence } from './engine.js';
 
   // Thermometer: a vertical number line, positive direction upwards.
   const TW = 150;
@@ -24,8 +24,8 @@
   const ticks = Array.from({ length: 2 * MAX + 1 }, (_, i) => i - MAX);
 
   let temp = $state(-5);
-  let a = $state(-6);
-  let b = $state(3);
+  let a = $state(START.a);
+  let b = $state(START.b);
   let challenge = $state(0);
 
   /** @type {SVGSVGElement | undefined} */

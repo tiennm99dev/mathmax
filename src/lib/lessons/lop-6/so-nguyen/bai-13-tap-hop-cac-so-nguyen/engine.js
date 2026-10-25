@@ -37,6 +37,9 @@ export function temperatureSentence(t) {
   return '0 °C: nhiệt độ nước đá đang tan.';
 }
 
+/** Where a and b start: no challenge is met yet, so each one needs a move. */
+export const START = { a: 2, b: -4 };
+
 /**
  * Placement tasks on the line from −10 to 10. `check` receives the two points.
  * @type {Array<{ text: string, check: (a: number, b: number) => boolean }>}

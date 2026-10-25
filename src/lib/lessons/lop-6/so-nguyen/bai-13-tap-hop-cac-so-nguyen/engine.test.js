@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CHALLENGES, compare, relationSentence, temperatureSentence } from './engine.js';
+import { CHALLENGES, START, compare, relationSentence, temperatureSentence } from './engine.js';
 
 describe('compare', () => {
   it('orders integers as positions on the line', () => {
@@ -29,6 +29,10 @@ describe('temperatureSentence', () => {
 });
 
 describe('CHALLENGES', () => {
+  it('none is met by the starting points', () => {
+    for (const c of CHALLENGES) expect(c.check(START.a, START.b)).toBe(false);
+  });
+
   it('each challenge has a solution on the line from −10 to 10', () => {
     for (const c of CHALLENGES) {
       let found = false;

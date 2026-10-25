@@ -40,7 +40,11 @@ export const tapHopSoNguyen = {
           `Số nhỏ nhất là ${intText(lo + 1)}, số lớn nhất là ${intText(hi - 1)}.`,
         ],
         steps: [
-          `Các số nguyên x là ${intText(lo + 1)}; ${intText(lo + 2)}; …; ${intText(hi - 1)}.`,
+          `Các số nguyên x là ${
+            count <= 4
+              ? Array.from({ length: count }, (_, i) => intText(lo + 1 + i)).join('; ')
+              : `${intText(lo + 1)}; ${intText(lo + 2)}; …; ${intText(hi - 1)}`
+          }.`,
           `Đếm: từ ${intText(lo + 1)} đến ${intText(hi - 1)} có ${intText(hi - 1)} − ${operand(lo + 1)} + 1 = ${count} số.`,
         ],
       };

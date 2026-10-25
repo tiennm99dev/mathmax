@@ -31,7 +31,8 @@
       ArrowRight: [0, 1],
     });
     const m = moves[e.key];
-    if (!m) return;
+    // A key pressed on a focused cell bubbles up to the grid: move only once.
+    if (!m || e.defaultPrevented) return;
     e.preventDefault();
     a = Math.max(-RANGE, Math.min(RANGE, a + m[0]));
     b = Math.max(-RANGE, Math.min(RANGE, b + m[1]));
