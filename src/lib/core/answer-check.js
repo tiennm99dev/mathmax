@@ -46,10 +46,13 @@ export function normalizeUnit(unit) {
 }
 
 /**
- * Reads the digits part of a number. A single `.` or `,` is the decimal mark
- * (`3,5` and `3.5` are both 3.5). Repeated marks of one kind group thousands
- * (`1.000.000`), and with both kinds the last one is the decimal mark
- * (`1.234,5` or `1,234.5`). Spaces may group thousands (`1 000 000`).
+ * Reads the digits part of a number the Vietnamese way: `,` is the decimal
+ * mark and `.` or a space groups thousands, so `3,5` is 3.5 and `70.000` or
+ * `2.100` is a whole number. A single `.` is read as a decimal mark only where
+ * it cannot be a thousands group (`3.5`, `0.125`, `12.34`, `1234.5`).
+ * Repeated marks of one kind group thousands (`1.000.000`), and with both kinds
+ * the last one is the decimal mark (`1.234,5` or `1,234.5`). Spaces may group
+ * thousands (`1 000 000`).
  * @param {string} digits
  * @returns {number | null}
  */
@@ -75,6 +78,8 @@ function readDigits(digits) {
     if (s.indexOf(decimal) !== at) return null;
     intPart = s.slice(0, at);
     frac = s.slice(at + 1);
+  } else if (dots === 1 && !commas && /^[1-9]\d{0,2}\.\d{3}$/.test(s)) {
+    group = '.';
   } else if (dots + commas === 1) {
     const at = Math.max(s.indexOf('.'), s.indexOf(','));
     intPart = s.slice(0, at) || '0';

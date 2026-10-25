@@ -37,6 +37,14 @@ describe('parseNumber', () => {
     ['1,234.5', 1234.5],
     ['12 345,75', 12345.75],
     ['0', 0],
+    ['70.000', 70000],
+    ['2.100', 2100],
+    ['999.999', 999999],
+    ['0.125', 0.125],
+    ['12.34', 12.34],
+    ['1234.5', 1234.5],
+    ['3.5000', 3.5],
+    ['2,100', 2.1],
   ])('reads %j as %d', (input, value) => {
     expect(parseNumber(input)).toEqual({ value, unit: '' });
   });
@@ -180,6 +188,20 @@ describe('checkAnswer: number', () => {
     expect(reason(neg, '12')).toBe('wrong');
     expect(reason(big, '1 500 000 đồng')).toBe('correct');
     expect(reason(big, '1.500.000')).toBe('correct');
+  });
+
+  it('reads one dot before three digits as Vietnamese thousands grouping', () => {
+    /** @type {Exercise} */
+    const price = { ...base, type: 'number', answer: 70000, unit: 'đồng' };
+    /** @type {Exercise} */
+    const count = { ...base, type: 'number', answer: 2100 };
+    /** @type {Exercise} */
+    const decimal = { ...base, type: 'number', answer: 2.1 };
+    expect(reason(price, '70.000')).toBe('correct');
+    expect(reason(price, '70.000 đồng')).toBe('correct');
+    expect(reason(count, '2.100')).toBe('correct');
+    expect(reason(decimal, '2,100')).toBe('correct');
+    expect(reason(decimal, '2.100')).toBe('wrong');
   });
 });
 
