@@ -234,3 +234,178 @@ export const quyTacDauNgoac = {
     };
   },
 };
+
+/** @type {Skill} */
+export const nhanSoNguyen = {
+  id: 'nhan-so-nguyen',
+  label: 'Bài 16. Phép nhân số nguyên',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const a = nonZero(rand, -25, 25);
+      const b = a > 0 ? nonZero(rand, -25, -1) : nonZero(rand, -25, 25);
+      const p = a * b;
+      const same = a < 0 === b < 0;
+      return {
+        prompt: `Tính: ${operand(a)} · ${operand(b)}.`,
+        answer: p,
+        hints: [
+          same
+            ? 'Hai số cùng dấu: nhân hai phần số tự nhiên, tích dương.'
+            : 'Hai số khác dấu: nhân hai phần số tự nhiên rồi đặt dấu "−" trước kết quả.',
+          `Phần số tự nhiên của tích là ${Math.abs(a)} · ${Math.abs(b)}.`,
+        ],
+        steps: [
+          `${operand(a)} · ${operand(b)} = ${same ? `${Math.abs(a)} · ${Math.abs(b)}` : `−(${Math.abs(a)} · ${Math.abs(b)})`} = ${intText(p)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const f = [nonZero(rand, -9, 9), nonZero(rand, -9, 9), nonZero(rand, -9, 9)];
+      const p = f[0] * f[1] * f[2];
+      const negatives = f.filter((x) => x < 0).length;
+      return {
+        prompt: `Tính: ${f.map(operand).join(' · ')}.`,
+        answer: p,
+        hints: [
+          'Đếm số thừa số âm để biết dấu của tích.',
+          `Có ${negatives} thừa số âm, là số ${negatives % 2 === 0 ? 'chẵn' : 'lẻ'}, nên tích mang dấu "${p > 0 ? '+' : '−'}".`,
+        ],
+        steps: [
+          `${operand(f[0])} · ${operand(f[1])} = ${intText(f[0] * f[1])}.`,
+          `${operand(f[0] * f[1])} · ${operand(f[2])} = ${intText(p)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const a = nonZero(rand, -60, 60);
+      const total = pick(rand, [100, -100, 10, -10]);
+      let b = 0;
+      let c = 0;
+      while (b === 0 || c === 0) {
+        b = int(rand, Math.min(total, 0) - 40, Math.max(total, 0) + 40);
+        c = total - b;
+      }
+      const p = a * total;
+      return {
+        prompt: `Tính nhanh: ${operand(a)} · ${operand(b)} + ${operand(a)} · ${operand(c)}.`,
+        answer: p,
+        hints: [
+          `Đặt thừa số chung ${operand(a)} ra ngoài: a · b + a · c = a · (b + c).`,
+          `${operand(b)} + ${operand(c)} = ${intText(total)}.`,
+        ],
+        steps: [
+          `${operand(a)} · ${operand(b)} + ${operand(a)} · ${operand(c)} = ${operand(a)} · [${operand(b)} + ${operand(c)}].`,
+          `= ${operand(a)} · ${operand(total)} = ${intText(p)}.`,
+        ],
+      };
+    }
+    const t0 = int(rand, -5, 10);
+    const hours = int(rand, 2, 6);
+    const drop = int(rand, 2, 5);
+    const t1 = t0 + hours * -drop;
+    return {
+      prompt: `Lúc 18 giờ nhiệt độ là ${intText(t0)} °C. Từ đó, mỗi giờ nhiệt độ giảm ${drop} °C. Sau ${hours} giờ, nhiệt độ là bao nhiêu độ C?`,
+      answer: t1,
+      hints: [
+        `Mỗi giờ nhiệt độ thay đổi ${intText(-drop)} °C.`,
+        `Tính ${operand(t0)} + ${hours} · ${operand(-drop)}.`,
+      ],
+      steps: [
+        `${operand(t0)} + ${hours} · ${operand(-drop)} = ${operand(t0)} + ${operand(-hours * drop)} = ${intText(t1)}. Nhiệt độ là ${intText(t1)} °C.`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const chiaHetSoNguyen = {
+  id: 'chia-het-so-nguyen',
+  label: 'Bài 17. Phép chia hết. Ước và bội của một số nguyên',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const b = pick(rand, [-12, -9, -8, -7, -6, -5, -4, -3, -2, 2, 3, 4, 5, 6, 7, 8, 9, 12]);
+      const q = nonZero(rand, -15, 15);
+      const a = b * q;
+      const same = a < 0 === b < 0;
+      return {
+        prompt: `Tính: ${operand(a)} : ${operand(b)}.`,
+        answer: q,
+        hints: [
+          same
+            ? 'Hai số cùng dấu: chia hai phần số tự nhiên, thương dương.'
+            : 'Hai số khác dấu: chia hai phần số tự nhiên rồi đặt dấu "−" trước kết quả.',
+          `Phần số tự nhiên của thương là ${Math.abs(a)} : ${Math.abs(b)}.`,
+        ],
+        steps: [
+          a > 0 && b > 0
+            ? `${a} : ${b} = ${q}.`
+            : `${operand(a)} : ${operand(b)} = ${same ? `${Math.abs(a)} : ${Math.abs(b)}` : `−(${Math.abs(a)} : ${Math.abs(b)})`} = ${intText(q)}.`,
+          `Thử lại: ${operand(b)} · ${operand(q)} = ${intText(a)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const n = pick(rand, [6, 8, 10, 12, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36]);
+      const a = rand() < 0.5 ? -n : n;
+      const pos = [];
+      for (let d = 1; d <= n; d++) if (n % d === 0) pos.push(d);
+      return {
+        prompt: `Số ${intText(a)} có tất cả bao nhiêu ước nguyên?`,
+        answer: 2 * pos.length,
+        hints: [
+          `Tìm các ước dương của ${intText(a)} trước: chúng là các ước của ${n}.`,
+          'Mỗi ước dương có số đối cũng là một ước.',
+        ],
+        steps: [
+          `Các ước dương: ${pos.join('; ')} (${pos.length} ước).`,
+          `Thêm các số đối của chúng: có ${pos.length} · 2 = ${2 * pos.length} ước nguyên.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const b = nonZero(rand, -12, 12);
+      const x = nonZero(rand, -20, 20);
+      const p = b * x;
+      return {
+        prompt: `Tìm số nguyên x, biết ${operand(b)} · x = ${intText(p)}.`,
+        answer: x,
+        hints: [
+          'Muốn tìm thừa số chưa biết, lấy tích chia cho thừa số đã biết.',
+          `x = ${intText(p)} : ${operand(b)}.`,
+        ],
+        steps: [
+          `x = ${intText(p)} : ${operand(b)} = ${intText(x)}.`,
+          `Thử lại: ${operand(b)} · ${operand(x)} = ${intText(p)}.`,
+        ],
+      };
+    }
+    const b = pick(rand, [-9, -8, -7, -6, -5, -4, -3, 3, 4, 5, 6, 7, 8, 9]);
+    const limit = Math.abs(b) * int(rand, 2, 5) + int(rand, 0, Math.abs(b) - 1);
+    const k = Math.floor((limit - 1) / Math.abs(b));
+    const count = 2 * k + 1;
+    const m = Math.abs(b);
+    return {
+      prompt: `Có bao nhiêu bội của ${intText(b)} lớn hơn ${intText(-limit)} và nhỏ hơn ${intText(limit)}?`,
+      answer: count,
+      hints: [
+        `Các bội của ${intText(b)} có dạng ${operand(b)} · k: 0; ${m}; ${intText(-m)}; ${2 * m}; ${intText(-2 * m)}; …`,
+        'Các bội nằm đối xứng qua 0; nhớ đếm cả số 0.',
+      ],
+      steps: [
+        `Các bội dương nhỏ hơn ${limit}: ${Array.from({ length: k }, (_, i) => (i + 1) * m).join('; ')} (${k} số).`,
+        `Có ${k} bội âm tương ứng và số 0, nên có ${k} + ${k} + 1 = ${count} bội.`,
+      ],
+    };
+  },
+};
+
+/** One skill per lesson of the chapter, in book order. */
+export const CHAPTER_SKILLS = [
+  tapHopSoNguyen,
+  congTruSoNguyen,
+  quyTacDauNgoac,
+  nhanSoNguyen,
+  chiaHetSoNguyen,
+];

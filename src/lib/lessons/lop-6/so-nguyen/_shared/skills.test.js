@@ -1,8 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { congTruSoNguyen, quyTacDauNgoac, tapHopSoNguyen } from './skills.js';
+import {
+  CHAPTER_SKILLS,
+  chiaHetSoNguyen,
+  congTruSoNguyen,
+  nhanSoNguyen,
+  quyTacDauNgoac,
+  tapHopSoNguyen,
+} from './skills.js';
 
-const SKILLS = [tapHopSoNguyen, congTruSoNguyen, quyTacDauNgoac];
+const SKILLS = CHAPTER_SKILLS;
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 400) {
@@ -26,7 +33,7 @@ const ints = (text) =>
  */
 function evalSum(expr) {
   const js = expr.replace(/(\d)\u202f(?=\d{3}\b)/g, '$1').replace(/−/g, '-');
-  expect(js).toMatch(/^[-+\d\s()]+$/);
+  expect(js).toMatch(/^[-+*\d\s()]+$/);
   return Function(`"use strict"; return (${js});`)();
 }
 
@@ -94,6 +101,41 @@ describe('stored answers match a recomputation', () => {
     for (const q of sample(quyTacDauNgoac)) {
       const expr = q.prompt.slice(q.prompt.indexOf(': ') + 2, -1);
       expect(q.answer, q.prompt).toBe(evalSum(expr));
+    }
+  });
+
+  it('Bài 16: products, quick sums and temperatures', () => {
+    for (const q of sample(nhanSoNguyen)) {
+      if (q.prompt.startsWith('Lúc')) {
+        const [, t0, drop, hours] = ints(q.prompt);
+        expect(q.answer, q.prompt).toBe(t0 - hours * drop);
+      } else {
+        const expr = q.prompt.slice(q.prompt.indexOf(': ') + 2, -1);
+        expect(q.answer, q.prompt).toBe(evalSum(expr.replace(/·/g, '*')));
+      }
+    }
+  });
+
+  it('Bài 17: quotients, divisor counts, unknown factors and multiples', () => {
+    for (const q of sample(chiaHetSoNguyen)) {
+      const v = ints(q.prompt);
+      if (q.prompt.startsWith('Tính')) {
+        const [a, b] = v;
+        expect(b * q.answer, q.prompt).toBe(a);
+      } else if (q.prompt.includes('ước nguyên')) {
+        const n = Math.abs(v[0]);
+        let count = 0;
+        for (let d = -n; d <= n; d++) if (d !== 0 && n % d === 0) count++;
+        expect(q.answer, q.prompt).toBe(count);
+      } else if (q.prompt.startsWith('Tìm số nguyên x')) {
+        const [b, p] = v;
+        expect(b * q.answer, q.prompt).toBe(p);
+      } else {
+        const [b, lo, hi] = v;
+        let count = 0;
+        for (let x = lo + 1; x < hi; x++) if (x % b === 0) count++;
+        expect(q.answer, q.prompt).toBe(count);
+      }
     }
   });
 });
