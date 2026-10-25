@@ -2,7 +2,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
-  import { fmt, formatFixed, texNumber } from '#lib/core/number-format.js';
+  import { GROUP, fmt, formatFixed, texNumber } from '#lib/core/number-format.js';
   import {
     CHECKPOINTS,
     EVENTS,
@@ -46,11 +46,19 @@
   const path = $derived(points.map(([k, r], j) => `${j ? 'L' : 'M'} ${x(k)} ${y(r)}`).join(' '));
   const xTicks = $derived([0, 0.25, 0.5, 0.75, 1].map((t) => Math.round(t * xMax)));
 
-  const dec = (/** @type {number} */ r) => formatFixed(r, 2);
+  /**
+   * A ratio to two decimals, halves rounded up as in the book (0,145 → 0,15);
+   * the nudge undoes binary error such as 145 / 1000 * 100 = 14.4999….
+   */
+  const dec = (/** @type {number} */ r) => formatFixed(Math.round(r * 100 + 1e-9) / 100, 2);
+  /** A natural number grouped by threes in TeX: 1000 → 1\,000. */
+  const texNat = (/** @type {number} */ k) => fmt(k).replaceAll(GROUP, '\\,');
   const tex = $derived(
     n === 0
       ? '\\dfrac{n(A)}{n}'
-      : `\\dfrac{n(A)}{n} = \\dfrac{${hits}}{${n}} \\approx ${texNumber(dec(ratio))}`,
+      : `\\dfrac{n(A)}{n} = \\dfrac{${texNat(hits)}}{${texNat(n)}} ${
+          (hits * 100) % n === 0 ? '=' : '\\approx'
+        } ${texNumber(dec(ratio))}`,
   );
 
   /** @param {number} count */

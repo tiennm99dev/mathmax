@@ -1,7 +1,7 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import { EXPERIMENTS, explain, grade, trial } from './engine.js';
+  import { EXPERIMENTS, explain, grade, outcomeInText, trial } from './engine.js';
 
   const BALL = ['#2563EB', '#DC2626', '#EAB308', '#F8FAFC'];
   /** Pip positions of a die face on a 0-100 square, by number of dots. */
@@ -170,8 +170,8 @@
   {#if outcome !== null}
     <div class="rounded-lg border border-indigo-200 bg-indigo-50/50 p-3">
       <p class="text-sm font-semibold text-indigo-950">
-        Lần thử thứ {trials}: kết quả là {exp.outcomes[outcome].toLowerCase()}. Mỗi sự kiện dưới đây
-        xảy ra hay không xảy ra?
+        Lần thử thứ {trials}: kết quả là {outcomeInText(exp, outcome)}. Mỗi sự kiện dưới đây xảy ra
+        hay không xảy ra?
       </p>
       <ul class="mt-2 space-y-2">
         {#each exp.events as ev, e (ev.text)}

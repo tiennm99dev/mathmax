@@ -84,6 +84,17 @@ export function favourable(exp, event) {
 }
 
 /**
+ * An outcome's name inside a sentence: only the first letter is lowered, so
+ * the symbols S and N keep their capitals ("mặt ngửa (N)").
+ * @param {Experiment} exp
+ * @param {number} index
+ */
+export function outcomeInText(exp, index) {
+  const name = exp.outcomes[index];
+  return name.charAt(0).toLowerCase() + name.slice(1);
+}
+
+/**
  * Why an event did or did not happen for the outcome obtained, in words.
  * @param {Experiment} exp
  * @param {number} event
@@ -91,8 +102,12 @@ export function favourable(exp, event) {
  */
 export function explain(exp, event, index) {
   const yes = occurs(exp, event, index);
-  const list = favourable(exp, event).join(', ');
-  const got = exp.outcomes[index].toLowerCase();
+  const list = exp.outcomes
+    .map((_, i) => i)
+    .filter((i) => occurs(exp, event, i))
+    .map((i) => outcomeInText(exp, i))
+    .join(', ');
+  const got = outcomeInText(exp, index);
   return yes
     ? `"${exp.events[event].text}" xảy ra: kết quả ${got} nằm trong các kết quả ${list}.`
     : `"${exp.events[event].text}" không xảy ra: sự kiện chỉ xảy ra với ${list}, còn kết quả là ${got}.`;

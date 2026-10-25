@@ -30,6 +30,10 @@ describe('possible outcomes and events', () => {
     expect(occurs(die, 1, 3)).toBe(false); // 4 is not prime
     expect(explain(die, 1, 3)).toContain('không xảy ra');
     expect(explain(die, 2, 5)).toContain('xảy ra: kết quả 6 chấm');
+    expect(explain(coin, 0, 1)).toContain(
+      'kết quả mặt ngửa (N) nằm trong các kết quả mặt ngửa (N)',
+    );
+    expect(explain(box, 0, 0)).toContain('chỉ xảy ra với bóng đỏ, còn kết quả là bóng xanh');
   });
 
   it('grades the marks event by event', () => {

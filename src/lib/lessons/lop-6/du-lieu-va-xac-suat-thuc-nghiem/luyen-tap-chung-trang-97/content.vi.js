@@ -173,7 +173,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Tung một đồng xu $1\\,000$ lần. Giá trị nào có thể là xác suất thực nghiệm của sự kiện "Xuất hiện mặt ngửa" mà em thường gặp nhất?',
+        'Tung một đồng xu $1\\,000$ lần. Kết quả nào sau đây hợp lí nhất cho xác suất thực nghiệm của sự kiện "Xuất hiện mặt ngửa"?',
       options: ['$0{,}1$', '$0{,}49$', '$0{,}9$', '$1{,}2$'],
       answer: 1,
       hints: [
