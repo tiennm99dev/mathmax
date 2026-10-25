@@ -46,7 +46,7 @@ Live URL: https://tiennm99dev.github.io/mathmax/
 - **Math typography**: `src/lib/components/tex.svelte` — wrapper KaTeX duy nhất. SSR qua `renderToString`, không cần JS phía client để hiển thị.
 - **Lessons**: các route động trong `src/routes/` sinh mọi trang từ `src/lib/curriculum/lop-N.json` qua `entries()`; nội dung bài nằm ở `src/lib/lessons/lop-N/<chương>/<bài>/content.vi.js`, TeX được render sẵn trong `+page.server.js`.
 - **Drag**: Svelte action `use:draggable` (`src/lib/actions/draggable.svelte.js`) — Pointer Events + bàn phím mũi tên cho a11y; `onEnd` để thả/hút điểm, `onKeyMove` cho điều khiển đi theo bước (góc, số đếm). Mỗi tay kéo có vùng chạm vô hình tối thiểu 44 px.
-- **Luyện tập**: `src/lib/core/drill-board.svelte` + `drill.js` — bộ đề sinh ngẫu nhiên theo kĩ năng, có thang gợi ý và lần thử thứ hai trước khi hiện lời giải.
+- **Luyện tập**: `src/lib/core/drill-board.svelte` + `drill.js` — bộ đề sinh ngẫu nhiên theo kĩ năng, có thang gợi ý và lần thử thứ hai trước khi hiện lời giải. `src/lib/core/card-sorter.svelte` — xếp thẻ vào nhóm, kiểm tra từng lần đặt.
 - **i18n**: Hiện chỉ có tiếng Việt. Site chrome ở `src/lib/i18n/site.vi.js`. English thêm sau bằng cách tạo `*.en.js` song song.
 
 ## Adding a lesson

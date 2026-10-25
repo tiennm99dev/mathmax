@@ -236,6 +236,11 @@ Other shared pieces:
   answer away) and a second try; only a second miss shows the full solution.
   The skill map scores first attempts. `read`, `format` and `invalidText`
   props adapt it to answers other than natural numbers.
+- `#lib/core/card-sorter.svelte` with `#lib/core/card-sorter.js`: sort cards
+  (`{ id, label, bin, why }`) into bins by tap, keyboard or drag, checked per
+  move, with take-back and "Gỡ thẻ sai". `shuffled(cards, seed)` mixes the deck
+  the same way for every visitor; a `face` snippet draws picture cards;
+  `hintOnWrong` shows `why` as a hint after a wrong move.
 - `#lib/components/tex.svelte`: live KaTeX. Import it only when the TeX changes
   with interaction; static TeX belongs in `content.vi.js`, which is prerendered.
   Vietnamese letters in TeX are allowed (`\text{số dư}`); any other strict-mode
