@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { lesson } from '#lib/curriculum/index.js';
 import { checkMinimums, validateLesson } from './content-schema.js';
 import { renderLesson } from './render-content.server.js';
@@ -63,9 +63,20 @@ describe('lesson content', () => {
       expect(missing, missing.join('\n')).toEqual([]);
       // KaTeX renders a parse error as red source text instead of throwing, so
       // look for its error markup in the prerendered lesson.
-      const broken = [
-        ...JSON.stringify(renderLesson(content)).matchAll(/katex-error[^>]*title=\\"([^"\\]*)/g),
-      ].map((m) => m[1]);
+      // KaTeX reports LaTeX-incompatible input through console.warn; any such
+      // warning (Vietnamese letters are already allowed) fails the lesson.
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      /** @type {string[]} */
+      let strict;
+      let rendered;
+      try {
+        rendered = JSON.stringify(renderLesson(content));
+        strict = warn.mock.calls.map((args) => args.join(' '));
+      } finally {
+        warn.mockRestore();
+      }
+      expect(strict, 'TeX that KaTeX strict mode warns about').toEqual([]);
+      const broken = [...rendered.matchAll(/katex-error[^>]*title=\\"([^"\\]*)/g)].map((m) => m[1]);
       expect(broken, 'TeX that KaTeX cannot parse').toEqual([]);
     });
   }

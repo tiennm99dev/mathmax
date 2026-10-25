@@ -6,6 +6,7 @@
 
 import katex from 'katex';
 import { findClose } from './content-schema.js';
+import { texOptions } from './katex-options.js';
 
 /** @typedef {import('./content-schema.js').LessonContent} LessonContent */
 /** @typedef {import('./content-schema.js').RenderedLesson} RenderedLesson */
@@ -22,17 +23,13 @@ export function escapeHtml(s) {
 }
 
 /**
- * KaTeX escapes its input and runs with `trust: false`, so the markup is safe
- * to inject. Output keeps MathML for screen readers.
+ * Renders TeX with the shared options (see `katex-options.js`), so the markup
+ * is safe to inject and keeps MathML for screen readers.
  * @param {string} tex
  * @param {boolean} display
  */
 export function renderTex(tex, display) {
-  return katex.renderToString(tex, {
-    displayMode: display,
-    throwOnError: false,
-    output: 'htmlAndMathml',
-  });
+  return katex.renderToString(tex, texOptions(display));
 }
 
 /**
