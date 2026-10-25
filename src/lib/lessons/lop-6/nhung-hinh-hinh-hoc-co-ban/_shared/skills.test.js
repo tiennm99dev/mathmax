@@ -1,6 +1,17 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
-import { PAGE_57_SKILLS, diemDuongThang, doanThang, tia, trungDiem } from './skills.js';
+import { clockAngle, kindOf } from './angle.js';
+import {
+  CHAPTER_SKILLS,
+  PAGE_57_SKILLS,
+  PAGE_65_SKILLS,
+  diemDuongThang,
+  doanThang,
+  goc,
+  soDoGoc,
+  tia,
+  trungDiem,
+} from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -20,6 +31,15 @@ const pairs = (n) => (n * (n - 1)) / 2;
  */
 function recompute(prompt) {
   const ns = numbers(prompt);
+  if (prompt.includes('giờ đúng')) return clockAngle(ns[0]);
+  if (prompt.includes('hàng số')) return ns[1] - ns[0];
+  if (prompt.startsWith('Cho sáu góc')) {
+    const kind = prompt.includes('góc nhọn trong') ? 'nhon' : 'tu';
+    return ns.slice(0, 6).filter((d) => kindOf(d) === kind).length;
+  }
+  if (prompt.includes('kể cả góc bẹt')) return pairs(ns[0] + 2);
+  if (prompt.includes('một cạnh là tia Ox')) return ns[0] - 1;
+  if (prompt.includes('tia chung gốc O phân biệt')) return pairs(ns[0]);
   if (prompt.includes('có đúng')) return pairs(ns[0]) - pairs(ns[1]) + 1;
   if (prompt.includes('không có ba điểm nào thẳng hàng')) return pairs(ns[0]);
   if (prompt.includes('giao điểm')) return pairs(ns[0]);
@@ -42,7 +62,7 @@ function recompute(prompt) {
 }
 
 describe('chapter skills', () => {
-  for (const skill of [diemDuongThang, tia, doanThang, trungDiem]) {
+  for (const skill of [diemDuongThang, tia, doanThang, trungDiem, goc, soDoGoc]) {
     it(`${skill.id} gives natural-number answers that match the prompt`, () => {
       for (const q of sample(skill)) {
         expect(Number.isInteger(q.answer), q.prompt).toBe(true);
@@ -63,6 +83,17 @@ describe('chapter skills', () => {
       }
     });
   }
+
+  it('builds the angle drill and the chapter test without repeated prompts', () => {
+    for (const [skills, per] of /** @type {const} */ ([
+      [PAGE_65_SKILLS, 5],
+      [CHAPTER_SKILLS, 2],
+    ])) {
+      const set = buildSet([...skills], per, 1);
+      expect(set).toHaveLength(skills.length * per);
+      expect(new Set(set.map((q) => q.prompt)).size).toBe(set.length);
+    }
+  });
 
   it('builds a set without repeated prompts', () => {
     const set = buildSet(PAGE_57_SKILLS, 3, 1);

@@ -1,10 +1,12 @@
 /**
  * Question generators for the chapter "Những hình hình học cơ bản", one skill
- * per lesson. Every answer is a natural number (a count or a length in whole
- * centimetres), so the drill board reads and writes it with its defaults.
+ * per lesson. Every answer is a natural number (a count, a length in whole
+ * centimetres or a measure in whole degrees), so the drill board reads and
+ * writes it with its defaults.
  */
 
 import { int, pick } from '#lib/core/drill.js';
+import { KIND_NAME, clockAngle, kindOf } from './angle.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -237,5 +239,135 @@ export const trungDiem = {
   },
 };
 
+const RAYS = ['a', 'b', 'c', 'd', 'm', 'n', 't', 'z'];
+
+/** @type {Skill} */
+export const goc = {
+  id: 'goc',
+  label: 'Bài 36. Góc',
+  make(rand) {
+    const v = int(rand, 0, 2);
+    if (v === 0) {
+      const n = int(rand, 3, 8);
+      return {
+        prompt: `Vẽ ${n} tia chung gốc O phân biệt. Có bao nhiêu góc có đỉnh O và hai cạnh là hai trong ${n} tia đó?`,
+        answer: pairs(n),
+        hints: [
+          'Mỗi góc ứng với một cặp tia chung gốc.',
+          `Mỗi tia ghép được với ${n - 1} tia còn lại, nhưng mỗi góc bị đếm hai lần.`,
+        ],
+        steps: [
+          `Mỗi tia ghép với ${n - 1} tia còn lại: ${n} · ${n - 1} = ${n * (n - 1)} lần ghép.`,
+          `Mỗi góc được đếm hai lần, nên có ${n * (n - 1)} : 2 = ${pairs(n)} góc.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const k = int(rand, 1, 5);
+      const names = RAYS.slice(0, k).map((r) => 'O' + r);
+      const n = k + 2;
+      return {
+        prompt: `Điểm O nằm trên đường thẳng xy. Vẽ thêm ${k} tia ${names.join(', ')} phân biệt, không nằm trên xy. Có bao nhiêu góc đỉnh O (kể cả góc bẹt) có hai cạnh là hai trong các tia Ox, Oy, ${names.join(', ')}?`,
+        answer: pairs(n),
+        hints: [
+          `Có tất cả ${n} tia chung gốc O; mỗi cặp tia cho một góc.`,
+          'Hai tia đối nhau Ox, Oy cũng tạo thành một góc: góc bẹt xOy.',
+        ],
+        steps: [
+          `Có ${k} + 2 = ${n} tia chung gốc O.`,
+          `Số cặp tia: ${n} · ${n - 1} : 2 = ${pairs(n)}, nên có ${pairs(n)} góc (trong đó có góc bẹt xOy).`,
+        ],
+      };
+    }
+    const n = int(rand, 3, 9);
+    return {
+      prompt: `Vẽ ${n} tia chung gốc O phân biệt, trong đó có tia Ox. Có bao nhiêu góc có một cạnh là tia Ox và cạnh kia là một trong các tia còn lại?`,
+      answer: n - 1,
+      hints: ['Tia Ox ghép với mỗi tia còn lại cho đúng một góc.'],
+      steps: [
+        `Ngoài Ox còn ${n} − 1 = ${n - 1} tia.`,
+        `Mỗi tia đó cùng Ox tạo một góc, nên có ${n - 1} góc.`,
+      ],
+    };
+  },
+};
+
+/** Vietnamese name of an angle kind, by its measure. @param {number} m */
+const kindName = (m) => KIND_NAME[kindOf(m)];
+
+/** @type {Skill} */
+export const soDoGoc = {
+  id: 'so-do-goc',
+  label: 'Bài 37. Số đo góc',
+  make(rand) {
+    const v = int(rand, 0, 2);
+    if (v === 0) {
+      const h = int(rand, 1, 11);
+      const gaps = Math.min(h, 12 - h);
+      const answer = clockAngle(h);
+      return {
+        prompt: `Lúc ${h} giờ đúng, kim giờ và kim phút tạo thành góc có số đo bao nhiêu độ?`,
+        answer,
+        hints: [
+          'Mười hai số chia mặt đồng hồ thành 12 khoảng bằng nhau; mỗi khoảng ứng với 360° : 12.',
+          `Đếm số khoảng giờ ít nhất giữa số ${h} và số 12.`,
+        ],
+        steps: [
+          'Lúc đúng giờ, kim phút chỉ số 12; mỗi khoảng giờ ứng với 30°.',
+          `Giữa số ${h} và số 12 có ít nhất ${gaps} khoảng, nên góc bằng ${gaps} · 30° = ${answer}° (${kindName(answer)}).`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const lo = 10 * int(rand, 1, 8);
+      const m = int(rand, 15, 180 - lo);
+      const hi = lo + m;
+      return {
+        prompt: `Đặt thước đo góc có tâm trùng đỉnh O. Cạnh Ox đi qua vạch ${lo}, cạnh Oy đi qua vạch ${hi} của cùng một hàng số. Góc xOy có số đo bao nhiêu độ?`,
+        answer: m,
+        hints: [
+          'Cạnh Ox không nằm ở vạch 0, nên không đọc thẳng số ở cạnh Oy.',
+          'Số đo bằng hiệu hai số đọc được trên cùng hàng số.',
+        ],
+        steps: [
+          'Số đo góc bằng hiệu hai số đọc được ở hai cạnh trên cùng một hàng số.',
+          `Góc xOy = ${hi}° − ${lo}° = ${m}°.`,
+        ],
+      };
+    }
+    const kinds = /** @type {const} */ (['nhon', 'tu']);
+    const want = pick(rand, [...kinds]);
+    /** @type {number[]} */
+    let list = [];
+    let answer = 0;
+    // Keep at least one angle of the asked kind and one of another kind.
+    while (answer === 0 || answer === 6) {
+      list = [];
+      while (list.length < 6) {
+        const d = 5 * int(rand, 1, 36);
+        if (!list.includes(d)) list.push(d);
+      }
+      answer = list.filter((d) => kindOf(d) === want).length;
+    }
+    const name = KIND_NAME[want];
+    return {
+      prompt: `Cho sáu góc có số đo ${list.map((d) => d + '°').join('; ')}. Có bao nhiêu ${name} trong sáu góc đó?`,
+      answer,
+      hints: [
+        want === 'nhon'
+          ? 'Góc nhọn có số đo lớn hơn 0° và nhỏ hơn 90°; góc 90° là góc vuông.'
+          : 'Góc tù có số đo lớn hơn 90° và nhỏ hơn 180°; góc 180° là góc bẹt.',
+      ],
+      steps: [...list.map((d) => `${d}°: ${kindName(d)}.`), `Có ${answer} ${name}.`],
+    };
+  },
+};
+
 /** The drill of "Luyện tập chung" page 57: the four lessons before it. */
 export const PAGE_57_SKILLS = [diemDuongThang, tia, doanThang, trungDiem];
+
+/** The drill of "Luyện tập chung" page 65: the lessons on angles. */
+export const PAGE_65_SKILLS = [goc, soDoGoc];
+
+/** The end-of-chapter test: every lesson of the chapter. */
+export const CHAPTER_SKILLS = [diemDuongThang, tia, doanThang, trungDiem, goc, soDoGoc];
