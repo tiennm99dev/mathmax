@@ -109,7 +109,7 @@ export default {
         'Kiểm tra bằng tích chéo: $\\frac{a}{b} = \\frac{c}{d}$ khi $a \\cdot d = b \\cdot c$.',
       ],
       solution:
-        '$(-3) \\cdot (-8) = 24 = 4 \\cdot 6$, nên $\\frac{6}{-8} = \\frac{-3}{4}$. Hai phân số $\\frac{6}{8}$ và $\\frac{-6}{-8}$ dương; $\\frac{3}{-8} = \\frac{-3}{8}$ có mẫu khác.',
+        '$(-3) \\cdot (-8) = 24 = 4 \\cdot 6$, nên $\\frac{6}{-8} = \\frac{-3}{4}$. Hai phân số $\\frac{6}{8}$ và $\\frac{-6}{-8}$ dương; $\\frac{3}{-8} = \\frac{-3}{8} \\ne \\frac{-3}{4}$ vì $(-3) \\cdot 4 \\ne 8 \\cdot (-3)$.',
     },
     {
       type: 'fraction',
