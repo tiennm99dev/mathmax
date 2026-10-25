@@ -37,10 +37,11 @@ Live URL: https://tiennm99dev.github.io/mathmax/
 - **CSP**: chế độ `hash` — mỗi trang prerender có thẻ meta CSP với hash của script inline; `style-src` cho phép `'unsafe-inline'` vì Svelte và KaTeX ghi style inline.
 - **Styling**: Tailwind 4 (PostCSS qua `@tailwindcss/postcss`) + Be Vietnam Pro (woff2 qua `@fontsource`). `src/app.css` nạp Tailwind bằng `@import 'tailwindcss/index.css'`; tick palette `colors.pair.{1,2,3,4}` vẫn khai báo trong `tailwind.config.js` và được nạp qua `@config`.
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
-- **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear, system). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.
+- **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear, system), `src/lib/fraction-engine/` (phân số, hỗn số), `src/lib/stats-engine/` (số đặc trưng, tần số, xác suất, chia trục), `src/lib/units-engine/` (đổi đơn vị, tiền VND, đồng hồ, định dạng số kiểu Việt). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.
+- **Visuals**: `src/lib/core/visuals/` — hình SVG dùng chung cho bài học (mặt phẳng toạ độ, bảng hình học, tia số, băng phân số, lưới diện tích, biểu đồ cột / quạt tròn / đoạn thẳng, bảng thống kê, vòng quay xác suất, đổi đơn vị, đồng hồ, khối cơ số 10, khay đếm). Props được mô tả bằng JSDoc ở đầu mỗi file. Hình cho bé (trái cây, con vật, tiền, khối) nằm ở `src/lib/core/kid/pictures/`. Trang ẩn `/_gallery/` (noindex) hiển thị mọi hình để rà soát.
 - **Math typography**: `src/lib/components/tex.svelte` — wrapper KaTeX duy nhất. SSR qua `renderToString`, không cần JS phía client để hiển thị.
 - **Lessons**: các route động trong `src/routes/` sinh mọi trang từ `src/lib/curriculum/lop-N.json` qua `entries()`; nội dung bài nằm ở `src/lib/lessons/lop-N/<chương>/<bài>/content.vi.js`, TeX được render sẵn trong `+page.server.js`.
-- **Drag**: Svelte action `use:draggable` (`src/lib/actions/draggable.svelte.js`) — Pointer Events + bàn phím mũi tên cho a11y.
+- **Drag**: Svelte action `use:draggable` (`src/lib/actions/draggable.svelte.js`) — Pointer Events + bàn phím mũi tên cho a11y; `onEnd` để thả/hút điểm, `onKeyMove` cho điều khiển đi theo bước (góc, số đếm).
 - **i18n**: Hiện chỉ có tiếng Việt. Site chrome ở `src/lib/i18n/site.vi.js`. English thêm sau bằng cách tạo `*.en.js` song song.
 
 ## License

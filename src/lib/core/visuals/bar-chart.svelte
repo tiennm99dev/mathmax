@@ -1,0 +1,173 @@
+<script>
+  import { untrack } from 'svelte';
+  import { draggable } from '#lib/actions/draggable.svelte.js';
+  import { niceAxis } from '#lib/stats-engine/ticks.js';
+  import { formatNumber } from '#lib/units-engine/format.js';
+  import { clamp, colorAt, linear, snap } from './svg-math.js';
+
+  /**
+   * A vertical bar chart (biểu đồ cột) with a value axis and gridlines. With
+   * `interactive`, each bar top is a slider: drag it or use the arrow keys to
+   * change the value in steps of `step`, e.g. to build a chart from a table.
+   *
+   * - `data` (bindable): `{ label, value, color? }` per bar. Bind it to read
+   *   edits; the component replaces the array on each change.
+   * - `max`: top of the value axis. By default it is a round number above the
+   *   largest value; for an interactive chart it is fixed when it first renders,
+   *   so the axis does not move while dragging.
+   * - `step`: snap for edits (1). `unit`: axis title such as 'Số học sinh'.
+   * - `showValues`: print each value above its bar.
+   *
+   * @type {{
+   *   data?: Array<{ label: string, value: number, color?: string }>;
+   *   max?: number;
+   *   step?: number;
+   *   interactive?: boolean;
+   *   unit?: string;
+   *   title?: string;
+   *   showValues?: boolean;
+   *   width?: number;
+   *   height?: number;
+   *   onchange?: (data: Array<{ label: string, value: number }>) => void;
+   * }}
+   */
+  let {
+    data = $bindable([]),
+    max,
+    step = 1,
+    interactive = false,
+    unit = '',
+    title = 'Biểu đồ cột',
+    showValues = true,
+    width = 480,
+    height = 300,
+    onchange,
+  } = $props();
+
+  const LEFT = 48;
+  const RIGHT = 14;
+  const TOP = 28;
+  const BOTTOM = 40;
+
+  const peak = (/** @type {Array<{ value: number }>} */ d) =>
+    Math.max(step * 5, ...d.map((b) => b.value));
+  // Captured once for an interactive chart, so dragging a bar does not rescale.
+  const frozenPeak = untrack(() => peak(data) * 1.25);
+  const axis = $derived(niceAxis(0, max ?? (interactive ? frozenPeak : peak(data)), 5));
+  const y = $derived(linear(0, axis.max, height - BOTTOM, TOP));
+  const slot = $derived((width - LEFT - RIGHT) / Math.max(1, data.length));
+  const barW = $derived(Math.min(64, slot * 0.6));
+  const cx = (/** @type {number} */ i) => LEFT + slot * (i + 0.5);
+
+  /** @type {SVGSVGElement | undefined} */
+  let svgEl = $state();
+  const scratch = { x: 0, y: 0 };
+
+  /** @param {number} i @param {number} v */
+  function setValue(i, v) {
+    const next = clamp(snap(v, step), 0, axis.max);
+    if (next === data[i].value) return;
+    data = data.map((b, j) => (j === i ? { ...b, value: next } : b));
+    onchange?.(data);
+  }
+
+  /** @param {number} i */
+  const dragFor = (i) => ({
+    point: scratch,
+    svg: () => svgEl ?? null,
+    viewBox: { w: width, h: height },
+    pad: 0,
+    onChange: () => setValue(i, y.invert(scratch.y)),
+    /** @param {number} dx @param {number} dy @param {boolean} big */
+    onKeyMove: (dx, dy, big) => setValue(i, data[i].value + (dx - dy) * step * (big ? 5 : 1)),
+  });
+
+  const fmt = (/** @type {number} */ v) => formatNumber(v, 2);
+</script>
+
+<svg
+  bind:this={svgEl}
+  viewBox="0 0 {width} {height}"
+  class="mx-auto block w-full max-w-xl select-none"
+  style:aspect-ratio="{width} / {height}"
+  style:touch-action={interactive ? 'none' : null}
+  role={interactive ? 'group' : 'img'}
+  aria-label="{title}: {data.map((b) => `${b.label} ${fmt(b.value)}`).join(', ')}"
+>
+  {#each axis.ticks as t (t)}
+    <line
+      x1={LEFT}
+      y1={y.map(t)}
+      x2={width - RIGHT}
+      y2={y.map(t)}
+      stroke="#e2e8f0"
+      stroke-width="1"
+    />
+    <text x={LEFT - 6} y={y.map(t) + 4} text-anchor="end" font-size="12" fill="#64748b"
+      >{fmt(t)}</text
+    >
+  {/each}
+  {#if unit}
+    <text
+      x={LEFT - 6}
+      y={TOP - 12}
+      text-anchor="start"
+      font-size="12"
+      font-weight="600"
+      fill="#334155">{unit}</text
+    >
+  {/if}
+  <line x1={LEFT} y1={TOP - 4} x2={LEFT} y2={height - BOTTOM} stroke="#334155" stroke-width="1.5" />
+  <line
+    x1={LEFT}
+    y1={height - BOTTOM}
+    x2={width - RIGHT}
+    y2={height - BOTTOM}
+    stroke="#334155"
+    stroke-width="1.5"
+  />
+
+  {#each data as bar, i (i)}
+    {@const top = y.map(bar.value)}
+    {@const color = bar.color ?? colorAt(i)}
+    <rect
+      x={cx(i) - barW / 2}
+      y={top}
+      width={barW}
+      height={height - BOTTOM - top}
+      fill={color}
+      rx="2"
+    />
+    <text x={cx(i)} y={height - BOTTOM + 20} text-anchor="middle" font-size="13" fill="#334155"
+      >{bar.label}</text
+    >
+    {#if showValues}
+      <text
+        x={cx(i)}
+        y={top - (interactive ? 14 : 6)}
+        text-anchor="middle"
+        font-size="13"
+        font-weight="700"
+        fill="#1e293b">{fmt(bar.value)}</text
+      >
+    {/if}
+    {#if interactive}
+      <g
+        class="drag-handle"
+        role="slider"
+        tabindex="0"
+        aria-label="Cột {bar.label}"
+        aria-valuemin={0}
+        aria-valuemax={axis.max}
+        aria-valuenow={bar.value}
+        aria-valuetext="{bar.label}: {fmt(bar.value)}"
+        aria-orientation="vertical"
+        style="cursor:ns-resize; outline:none"
+        use:draggable={dragFor(i)}
+      >
+        <rect x={cx(i) - barW / 2} y={top - 12} width={barW} height="24" fill="transparent" />
+        <rect x={cx(i) - barW / 2} y={top - 4} width={barW} height="8" rx="4" fill="#0f172a" />
+      </g>
+    {/if}
+  {/each}
+</svg>

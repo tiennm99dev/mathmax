@@ -8,9 +8,9 @@
  * HTML at prerender time.
  */
 
-import { isPictureName } from './kid/pictures.js';
+import { isPictureName } from './kid/pictures/index.js';
 
-/** @typedef {import('./kid/pictures.js').PictureName} PictureName */
+/** @typedef {import('./kid/pictures/index.js').PictureName} PictureName */
 /** @typedef {import('#lib/curriculum/index.js').LessonKind} LessonKind */
 
 /** @typedef {'definition' | 'theorem' | 'note' | 'warning'} CalloutTone */

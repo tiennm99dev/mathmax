@@ -4,7 +4,7 @@
   import OrderInput from './order-input.svelte';
   import MatchInput from './match-input.svelte';
   import Picture from './kid/picture.svelte';
-  import { pictures } from './kid/pictures.js';
+  import { pictures } from './kid/pictures/index.js';
   import { checkAnswer } from './answer-check.js';
   import { scrambledOrder } from './practice-state.js';
   import { practice as copy } from './copy.vi.js';
