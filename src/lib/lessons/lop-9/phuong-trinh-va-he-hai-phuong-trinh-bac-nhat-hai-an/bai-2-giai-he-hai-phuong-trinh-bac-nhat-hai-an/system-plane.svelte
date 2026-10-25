@@ -1,5 +1,6 @@
 <script>
   import { draggable } from '#lib/actions/draggable.svelte.js';
+  import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
 
   /**
    * @typedef {{x: number, y: number}} MutablePoint
@@ -8,11 +9,7 @@
 
   /** @type {{
    *   svgEl: SVGSVGElement | undefined,
-   *   view: number,
-   *   pad: number,
-   *   mx: (x: number) => number,
-   *   my: (y: number) => number,
-   *   gridLines: number[],
+   *   plane: import('#lib/core/visuals/svg-math.js').PlaneScale,
    *   seg1: [Vec2, Vec2] | null,
    *   seg2: [Vec2, Vec2] | null,
    *   handle1: MutablePoint,
@@ -28,11 +25,7 @@
    * }} */
   let {
     svgEl = $bindable(),
-    view,
-    pad,
-    mx,
-    my,
-    gridLines,
+    plane,
     seg1,
     seg2,
     handle1,
@@ -50,36 +43,10 @@
   const LINE_1 = '#1B998B';
   const LINE_2 = '#5E60CE';
   const SOLUTION = '#D7263D';
+  const { mx, my } = $derived(plane);
 </script>
 
-<svg
-  bind:this={svgEl}
-  viewBox="0 0 {view} {view}"
-  preserveAspectRatio="xMidYMid meet"
-  class="block w-full max-w-md mx-auto bg-white rounded-lg border border-slate-200"
-  style="touch-action:none; aspect-ratio:1/1"
-  role="img"
-  aria-label={plotLabel}
->
-  <!-- Grid lines -->
-  {#each gridLines as v (v)}
-    <line x1={mx(v)} y1={pad} x2={mx(v)} y2={view - pad} stroke="#e2e8f0" stroke-width="0.5" />
-    <line x1={pad} y1={my(v)} x2={view - pad} y2={my(v)} stroke="#e2e8f0" stroke-width="0.5" />
-  {/each}
-
-  <!-- Axes -->
-  <line x1={mx(0)} y1={pad} x2={mx(0)} y2={view - pad} stroke="#334155" stroke-width="1.5" />
-  <line x1={pad} y1={my(0)} x2={view - pad} y2={my(0)} stroke="#334155" stroke-width="1.5" />
-
-  <!-- Integer axis labels every 2 units -->
-  {#each gridLines as v (v)}
-    {#if v !== 0 && v % 2 === 0}
-      <text x={mx(v)} y={my(0) + 14} text-anchor="middle" font-size="9" fill="#64748b">{v}</text>
-      <text x={mx(0) - 5} y={my(v) + 3} text-anchor="end" font-size="9" fill="#64748b">{v}</text>
-    {/if}
-  {/each}
-  <text x={mx(0) - 5} y={my(0) + 14} text-anchor="end" font-size="9" fill="#64748b">0</text>
-
+<CoordinatePlane bind:svgEl {plane} label={plotLabel}>
   <!-- Line (1): solid. When the lines coincide it is drawn thicker so the
        overlap stays visible under the dashed line (2). -->
   {#if seg1}
@@ -182,4 +149,4 @@
       style="pointer-events:none">2</text
     >
   {/if}
-</svg>
+</CoordinatePlane>

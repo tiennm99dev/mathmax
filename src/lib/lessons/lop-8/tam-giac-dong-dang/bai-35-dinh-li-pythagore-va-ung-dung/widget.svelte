@@ -1,7 +1,8 @@
 <script>
   import { button } from '#lib/core/ui.js';
   import Tex from '#lib/components/tex.svelte';
-  import { draggable } from '#lib/actions/draggable.svelte.js';
+  import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
+  import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import { tweened } from 'svelte/motion';
   import { cubicOut } from 'svelte/easing';
   import { squareA, squareB, squareC, morphSquareA, morphSquareB, polyPoints } from './engine.js';
@@ -107,14 +108,13 @@
   <div aria-live="polite" aria-atomic="true" class="sr-only">{announcement}</div>
 
   <div>
-    <svg
-      bind:this={svgEl}
-      viewBox="0 0 {VIEW} {VIEW}"
-      preserveAspectRatio="xMidYMid meet"
-      class="block w-full max-w-md mx-auto bg-white rounded-lg border border-slate-200"
-      style="touch-action:none; aspect-ratio:1/1"
-      role="img"
-      aria-label="Ba hình vuông dựng trên ba cạnh của tam giác vuông"
+    <GeometryBoard
+      bind:svgEl
+      width={VIEW}
+      height={VIEW}
+      interactive
+      maxWidth="max-w-md"
+      label="Ba hình vuông dựng trên ba cạnh của tam giác vuông"
     >
       <!-- Square-c (orange/hypotenuse) behind everything -->
       <polygon
@@ -196,18 +196,11 @@
       <text x={H.x + 6} y={H.y + 4} font-size="13" fill="#475569">H</text>
 
       <!-- Draggable right-angle vertex -->
-      <circle
-        cx={R.x}
-        cy={R.y}
-        r="14"
-        fill="#D7263D"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh góc vuông R — kéo hoặc dùng phím mũi tên để thay đổi tam giác"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts}
+      <DragPoint
+        drag={dragOpts}
+        r={14}
+        color="#D7263D"
+        label="Đỉnh góc vuông R — kéo hoặc dùng phím mũi tên để thay đổi tam giác"
       />
       <text
         x={R.x - 5}
@@ -217,7 +210,7 @@
         fill="#fff"
         pointer-events="none">R</text
       >
-    </svg>
+    </GeometryBoard>
     <p class="mt-2 text-center text-sm text-slate-600">
       Kéo điểm R (góc vuông, màu đỏ) hoặc dùng phím mũi tên. Nhấn "Chứng minh" để xem hoạt hình cắt
       ghép.

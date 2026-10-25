@@ -7,7 +7,8 @@
     subtendedArc,
   } from '#lib/geom-engine/circle.js';
   import { dist, EPSILON_LEN } from '#lib/geom-engine/vec.js';
-  import { draggable } from '#lib/actions/draggable.svelte.js';
+  import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
+  import DragPoint from '#lib/core/visuals/drag-point.svelte';
 
   const VIEW = 400;
   const C = circle(VIEW / 2, VIEW / 2, 150);
@@ -58,14 +59,13 @@
   </div>
 
   <div>
-    <svg
-      bind:this={svgEl}
-      viewBox="0 0 {VIEW} {VIEW}"
-      preserveAspectRatio="xMidYMid meet"
-      class="block w-full max-w-md mx-auto bg-white rounded-lg border border-slate-200"
-      style="touch-action:none; aspect-ratio:1/1"
-      role="img"
-      aria-label="Kéo điểm M (đỏ) quanh đường tròn hoặc dùng phím mũi tên"
+    <GeometryBoard
+      bind:svgEl
+      width={VIEW}
+      height={VIEW}
+      interactive
+      maxWidth="max-w-md"
+      label="Kéo điểm M (đỏ) quanh đường tròn hoặc dùng phím mũi tên"
     >
       <circle
         cx={C.center.x}
@@ -107,21 +107,16 @@
       <circle cx={B.x} cy={B.y} r="6" fill="#1B998B" />
       <text x={B.x + 10} y={B.y + 18} font-size="14" font-weight="700" fill="#1B998B">B</text>
 
-      <circle
-        cx={M.x}
-        cy={M.y}
-        r="14"
-        fill="#D7263D"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Điểm M trên đường tròn — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts}
+      <DragPoint
+        drag={dragOpts}
+        r={14}
+        color="#D7263D"
+        name="M"
+        nameDy={-8}
+        nameColor="#D7263D"
+        label="Điểm M trên đường tròn — kéo hoặc dùng phím mũi tên"
       />
-      <text x={M.x + 12} y={M.y - 8} font-size="14" font-weight="700" fill="#D7263D">M</text>
-    </svg>
+    </GeometryBoard>
     <p class="mt-2 text-center text-sm text-slate-500">
       Kéo điểm M (đỏ) quanh đường tròn hoặc dùng phím mũi tên
     </p>

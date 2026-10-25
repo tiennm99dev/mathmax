@@ -3,19 +3,13 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
   import { yAt, lineFromPoints, linePoints } from '#lib/algebra-engine/linear.js';
-  import CartesianPlane from './cartesian-plane.svelte';
+  import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
+  import DragPoint from '#lib/core/visuals/drag-point.svelte';
+  import { planeScale } from '#lib/core/visuals/svg-math.js';
 
-  // SVG layout: 20 math units span -10..10.
-  const VIEW = 420;
-  const PAD = 30;
-  const U = (VIEW - PAD * 2) / 20;
-
-  /** Math x → SVG x */
-  const mx = (/** @type {number} */ x) => PAD + (x + 10) * U;
-  /** Math y → SVG y (the SVG y-axis points down) */
-  const my = (/** @type {number} */ y) => PAD + (10 - y) * U;
-  /** SVG y → math y */
-  const svgYtoMath = (/** @type {number} */ sy) => 10 - (sy - PAD) / U;
+  // 20 math units span -10..10 on both axes.
+  const plane = planeScale();
+  const { mx, my, toY: svgYtoMath, unit: U } = plane;
 
   const CLAMP_Y = 10;
   const EPSILON = 0.01;
@@ -69,7 +63,7 @@
   const dragOpts = (point, x) => ({
     point,
     svg: () => svgEl ?? null,
-    viewBox: { w: VIEW, h: VIEW },
+    viewBox: { w: plane.width, h: plane.height },
     projector: project(x),
     pad: 0,
     keyStep: U,
@@ -105,8 +99,6 @@
     a = INIT_A;
     b = INIT_B;
   }
-
-  const gridLines = Array.from({ length: 21 }, (_, i) => i - 10);
 </script>
 
 <div class="space-y-4">
@@ -116,28 +108,61 @@
   </div>
 
   <p class="text-sm text-slate-600">Hoặc kéo trực tiếp hai điểm đỏ trên đường thẳng.</p>
-  <CartesianPlane
-    bind:svgEl
-    view={VIEW}
-    pad={PAD}
-    {mx}
-    {my}
-    {gridLines}
-    {pts}
-    {p1}
-    {p2}
-    {anchor1MathY}
-    {anchor2MathY}
-    {drag1Opts}
-    {drag2Opts}
-    {showTriangle}
-    anchor1X={ANCHOR1_X}
-    anchor2X={ANCHOR2_X}
-    {deltaY}
-    texMath={plainMath}
-    anchor1Label="Điểm neo 1 tại x = −5"
-    anchor2Label="Điểm neo 2 tại x = 5"
-  />
+  <CoordinatePlane bind:svgEl {plane} label="Đồ thị hàm số {plainMath}">
+    {#if showTriangle}
+      {@const tx1 = mx(ANCHOR1_X)}
+      {@const ty1 = my(anchor1MathY)}
+      {@const tx2 = mx(ANCHOR2_X)}
+      {@const ty2 = my(anchor2MathY)}
+      <!-- Rise/run triangle: the right angle sits below anchor 2, level with anchor 1. -->
+      <polygon
+        points="{tx1},{ty1} {tx2},{ty1} {tx2},{ty2}"
+        fill="#D7263D"
+        fill-opacity="0.12"
+        stroke="#D7263D"
+        stroke-width="1.5"
+        stroke-dasharray="5 3"
+      />
+      <text
+        x={(tx1 + tx2) / 2}
+        y={ty1 + 14}
+        text-anchor="middle"
+        font-size="11"
+        fill="#D7263D"
+        font-weight="600">Δx = 10</text
+      >
+      <text
+        x={tx2 + 6}
+        y={(ty1 + ty2) / 2}
+        text-anchor="start"
+        dominant-baseline="middle"
+        font-size="11"
+        fill="#D7263D"
+        font-weight="600">Δy = {deltaY.toFixed(1)}</text
+      >
+    {/if}
+
+    <line
+      x1={mx(pts[0].x)}
+      y1={my(pts[0].y)}
+      x2={mx(pts[1].x)}
+      y2={my(pts[1].y)}
+      stroke="#1B998B"
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+
+    <DragPoint
+      drag={drag1Opts}
+      color="#D7263D"
+      label="Điểm neo 1 tại x = −5, y = {anchor1MathY.toFixed(1)} — kéo hoặc dùng phím mũi tên"
+    />
+    <DragPoint
+      drag={drag2Opts}
+      color="#D7263D"
+      label="Điểm neo 2 tại x = 5, y = {anchor2MathY.toFixed(1)} — kéo hoặc dùng phím mũi tên"
+    />
+  </CoordinatePlane>
 
   <div class="overflow-x-auto text-center">
     <Tex display math={texMath} ariaLabel="Hàm số {plainMath}" />

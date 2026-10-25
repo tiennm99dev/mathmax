@@ -1,7 +1,8 @@
 <script>
   import { triangle, sides, congruentSSS } from '#lib/geom-engine/triangle.js';
-  import { tickPositions } from '#lib/geom-engine/ticks.js';
-  import { draggable } from '#lib/actions/draggable.svelte.js';
+  import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
+  import DragPoint from '#lib/core/visuals/drag-point.svelte';
+  import TickMarks from '#lib/core/visuals/tick-marks.svelte';
 
   const VIEW_W = 400;
   const VIEW_H = 300;
@@ -25,12 +26,19 @@
   const s2 = $derived(sides(t2));
   const isCongruent = $derived(congruentSSS(t1, t2));
 
-  const ticksAB = $derived(tickPositions(a, b, 1));
-  const ticksBC = $derived(tickPositions(b, c, 2));
-  const ticksCA = $derived(tickPositions(c, a, 3));
-  const ticksApBp = $derived(tickPositions(ap, bp, 1));
-  const ticksBpCp = $derived(tickPositions(bp, cp, 2));
-  const ticksCpAp = $derived(tickPositions(cp, ap, 3));
+  /** Both triangles: vertices, visible names and how each name sits off its vertex. */
+  const shapes = $derived([
+    { pts: [a, b, c], names: ['A', 'B', 'C'] },
+    { pts: [ap, bp, cp], names: ['A′', 'B′', 'C′'] },
+  ]);
+  const NAME_OFFSETS = [
+    { dx: -16, dy: -14 },
+    { dx: 12, dy: -14 },
+    { dx: -4, dy: 24 },
+  ];
+  /** Side i joins vertex i to vertex i + 1 and carries i + 1 ticks in colour PAIRS[i]. */
+  const PAIRS = [PAIR1, PAIR2, PAIR3];
+  const SIDE_TICKS = /** @type {const} */ ([1, 2, 3]);
 
   const getSvg = () => svgEl ?? null;
   /** @param {{x: number, y: number}} point */
@@ -49,180 +57,33 @@
       {/if}
     </div>
 
-    <svg
-      bind:this={svgEl}
-      viewBox="0 0 {VIEW_W} {VIEW_H}"
-      preserveAspectRatio="xMidYMid meet"
-      class="block w-full bg-white rounded-lg border border-slate-200"
-      style="touch-action:none"
-      role="img"
-      aria-label="Kéo bất kỳ đỉnh nào của hai tam giác hoặc dùng phím mũi tên"
+    <GeometryBoard
+      bind:svgEl
+      width={VIEW_W}
+      height={VIEW_H}
+      interactive
+      label="Kéo bất kỳ đỉnh nào của hai tam giác hoặc dùng phím mũi tên"
     >
-      <!-- Triangle 1 -->
-      <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#444" stroke-width="2" />
-      <line x1={b.x} y1={b.y} x2={c.x} y2={c.y} stroke="#444" stroke-width="2" />
-      <line x1={c.x} y1={c.y} x2={a.x} y2={a.y} stroke="#444" stroke-width="2" />
-
-      {#each ticksAB as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR1}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-      {/each}
-      {#each ticksBC as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR2}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-      {/each}
-      {#each ticksCA as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR3}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
+      {#each shapes as shape, si (si)}
+        {#each shape.pts as p, i (i)}
+          {@const q = shape.pts[(i + 1) % 3]}
+          <line x1={p.x} y1={p.y} x2={q.x} y2={q.y} stroke="#444" stroke-width="2" />
+          <TickMarks from={p} to={q} count={SIDE_TICKS[i]} color={PAIRS[i]} />
+        {/each}
       {/each}
 
-      <!-- Triangle 2 -->
-      <line x1={ap.x} y1={ap.y} x2={bp.x} y2={bp.y} stroke="#444" stroke-width="2" />
-      <line x1={bp.x} y1={bp.y} x2={cp.x} y2={cp.y} stroke="#444" stroke-width="2" />
-      <line x1={cp.x} y1={cp.y} x2={ap.x} y2={ap.y} stroke="#444" stroke-width="2" />
-
-      {#each ticksApBp as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR1}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
+      {#each shapes as shape, si (si)}
+        {#each shape.pts as p, i (i)}
+          <DragPoint
+            drag={dragOpts(p)}
+            name={shape.names[i]}
+            nameDx={NAME_OFFSETS[i].dx}
+            nameDy={NAME_OFFSETS[i].dy}
+            label="Đỉnh {shape.names[i].replace('′', "'")} — kéo hoặc dùng phím mũi tên"
+          />
+        {/each}
       {/each}
-      {#each ticksBpCp as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR2}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-      {/each}
-      {#each ticksCpAp as t (t.x1 + ',' + t.y1)}
-        <line
-          x1={t.x1}
-          y1={t.y1}
-          x2={t.x2}
-          y2={t.y2}
-          stroke={PAIR3}
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-      {/each}
-
-      <!-- Vertices -->
-      <circle
-        cx={a.x}
-        cy={a.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh A — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(a)}
-      />
-      <text x={a.x - 16} y={a.y - 14} font-size="14" font-weight="700" fill="#1F2937">A</text>
-      <circle
-        cx={b.x}
-        cy={b.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh B — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(b)}
-      />
-      <text x={b.x + 12} y={b.y - 14} font-size="14" font-weight="700" fill="#1F2937">B</text>
-      <circle
-        cx={c.x}
-        cy={c.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh C — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(c)}
-      />
-      <text x={c.x - 4} y={c.y + 24} font-size="14" font-weight="700" fill="#1F2937">C</text>
-
-      <circle
-        cx={ap.x}
-        cy={ap.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh A' — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(ap)}
-      />
-      <text x={ap.x - 16} y={ap.y - 14} font-size="14" font-weight="700" fill="#1F2937">A′</text>
-      <circle
-        cx={bp.x}
-        cy={bp.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh B' — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(bp)}
-      />
-      <text x={bp.x + 12} y={bp.y - 14} font-size="14" font-weight="700" fill="#1F2937">B′</text>
-      <circle
-        cx={cp.x}
-        cy={cp.y}
-        r="12"
-        fill="#4F46E5"
-        stroke="#fff"
-        stroke-width="2"
-        role="button"
-        tabindex="0"
-        aria-label="Đỉnh C' — kéo hoặc dùng phím mũi tên"
-        style="cursor:grab; outline:none"
-        use:draggable={dragOpts(cp)}
-      />
-      <text x={cp.x - 4} y={cp.y + 24} font-size="14" font-weight="700" fill="#1F2937">C′</text>
-    </svg>
+    </GeometryBoard>
     <p class="mt-2 text-center text-sm text-slate-500">
       Kéo bất kỳ đỉnh nào của hai tam giác hoặc dùng phím mũi tên
     </p>

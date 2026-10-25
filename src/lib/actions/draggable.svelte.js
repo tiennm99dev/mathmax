@@ -11,6 +11,8 @@ import { clientToSvg, clampToViewBox } from '#lib/utils/svg.js';
  *   keyStep?: number;
  *   keyShiftStep?: number;
  *   onChange?: () => void;
+ *   onEnd?: () => void;
+ *   onKeyMove?: (dx: -1 | 0 | 1, dy: -1 | 0 | 1, big: boolean) => void;
  * }} DraggableParams
  */
 
@@ -18,6 +20,11 @@ import { clientToSvg, clampToViewBox } from '#lib/utils/svg.js';
  * Svelte action: makes the host element draggable inside an SVG viewBox.
  * Mutates `params.point.x/y` so reactivity propagates through `$state`.
  * Also wires arrow-key movement for accessibility.
+ *
+ * - `onEnd` runs when a pointer drag finishes, for snapping or drop logic.
+ * - `onKeyMove` replaces the default arrow-key nudge. It receives the arrow's
+ *   direction and whether Shift was held, for controls whose value moves in
+ *   steps rather than pixels (an angle, a snapped count).
  *
  * @param {SVGGraphicsElement} node
  * @param {DraggableParams} params
@@ -56,30 +63,37 @@ export function draggable(node, params) {
     if (active !== e.pointerId) return;
     if (node.hasPointerCapture(e.pointerId)) node.releasePointerCapture(e.pointerId);
     active = -1;
+    current.onEnd?.();
   };
 
   const onKeyDown = (/** @type {KeyboardEvent} */ e) => {
-    const step = e.shiftKey ? (current.keyShiftStep ?? 10) : (current.keyStep ?? 2);
+    /** @type {-1 | 0 | 1} */
     let dx = 0;
+    /** @type {-1 | 0 | 1} */
     let dy = 0;
     switch (e.key) {
       case 'ArrowLeft':
-        dx = -step;
+        dx = -1;
         break;
       case 'ArrowRight':
-        dx = step;
+        dx = 1;
         break;
       case 'ArrowUp':
-        dy = -step;
+        dy = -1;
         break;
       case 'ArrowDown':
-        dy = step;
+        dy = 1;
         break;
       default:
         return;
     }
     e.preventDefault();
-    apply({ x: current.point.x + dx, y: current.point.y + dy });
+    if (current.onKeyMove) {
+      current.onKeyMove(dx, dy, e.shiftKey);
+      return;
+    }
+    const step = e.shiftKey ? (current.keyShiftStep ?? 10) : (current.keyStep ?? 2);
+    apply({ x: current.point.x + dx * step, y: current.point.y + dy * step });
   };
 
   node.addEventListener('pointerdown', onPointerDown);

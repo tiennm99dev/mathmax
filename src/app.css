@@ -26,4 +26,10 @@
     stroke: #4f46e5;
     stroke-width: 3;
   }
+
+  /* Drag handles are filled with their own colour, so the ring is dark. */
+  svg .drag-handle:focus-visible {
+    stroke: #0f172a;
+    stroke-width: 4;
+  }
 }

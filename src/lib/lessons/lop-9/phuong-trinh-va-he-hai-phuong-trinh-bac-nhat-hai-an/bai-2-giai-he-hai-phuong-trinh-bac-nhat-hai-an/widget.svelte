@@ -7,22 +7,13 @@
     constantThrough,
     isDegenerate,
   } from '#lib/algebra-engine/system.js';
+  import { planeScale } from '#lib/core/visuals/svg-math.js';
   import SystemPlane from './system-plane.svelte';
 
-  // SVG layout constants — same 20-unit square as the other plane lessons.
-  const VIEW = 420;
-  const PAD = 30;
+  // Same 20-unit square as the other plane lessons.
   const SPAN = 10; // math units from origin to each edge
-  const U = (VIEW - PAD * 2) / (SPAN * 2); // px per math unit
-
-  /** Convert math x → SVG x */
-  const mx = (/** @type {number} */ x) => PAD + (x + SPAN) * U;
-  /** Convert math y → SVG y (Y-axis flipped in SVG) */
-  const my = (/** @type {number} */ y) => PAD + (SPAN - y) * U;
-  /** Convert SVG x → math x */
-  const svgXtoMath = (/** @type {number} */ sx) => (sx - PAD) / U - SPAN;
-  /** Convert SVG y → math y */
-  const svgYtoMath = (/** @type {number} */ sy) => SPAN - (sy - PAD) / U;
+  const plane = planeScale({ xMin: -SPAN, xMax: SPAN, yMin: -SPAN, yMax: SPAN });
+  const { mx, my, toX: svgXtoMath, toY: svgYtoMath, unit: U } = plane;
 
   const COEF_MAX = 5; // slider bound for a and b
   const CONST_MAX = 20; // slider bound for c
@@ -92,7 +83,7 @@
   const drag1Opts = $derived({
     point: handle1,
     svg: () => svgEl ?? null,
-    viewBox: { w: VIEW, h: VIEW },
+    viewBox: { w: plane.width, h: plane.height },
     projector: clampPx,
     pad: 0,
     keyStep: U,
@@ -101,7 +92,7 @@
   const drag2Opts = $derived({
     point: handle2,
     svg: () => svgEl ?? null,
-    viewBox: { w: VIEW, h: VIEW },
+    viewBox: { w: plane.width, h: plane.height },
     projector: clampPx,
     pad: 0,
     keyStep: U,
@@ -197,8 +188,6 @@
   function reset() {
     applyPreset(INIT_1, INIT_2);
   }
-
-  const gridLines = Array.from({ length: SPAN * 2 + 1 }, (_, i) => i - SPAN);
 </script>
 
 <div class="space-y-4">
@@ -240,11 +229,7 @@
     </p>
     <SystemPlane
       bind:svgEl
-      view={VIEW}
-      pad={PAD}
-      {mx}
-      {my}
-      {gridLines}
+      {plane}
       {seg1}
       {seg2}
       {handle1}

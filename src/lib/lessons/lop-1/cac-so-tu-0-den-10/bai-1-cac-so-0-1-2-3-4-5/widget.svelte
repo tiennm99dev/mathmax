@@ -1,6 +1,6 @@
 <script>
   import Picture from '#lib/core/kid/picture.svelte';
-  import { pictures } from '#lib/core/kid/pictures.js';
+  import { pictures } from '#lib/core/kid/pictures/index.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import {
@@ -13,7 +13,7 @@
     trayMessage,
   } from './engine.js';
 
-  /** @type {import('#lib/core/kid/pictures.js').PictureName[]} */
+  /** @type {import('#lib/core/kid/pictures/index.js').PictureName[]} */
   const THEMES = ['apple', 'star', 'fish', 'flower'];
 
   /** `fill`: put objects in the tray to match a number. `count`: count the tray, pick a card. */
