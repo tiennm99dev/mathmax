@@ -4,14 +4,14 @@
  * solution; the review lessons draw their generated sets from these.
  */
 
-import { int, pick } from './drill.js';
-import { fmt, powText, sup } from './format.js';
+import { int, pick } from '#lib/core/drill.js';
+import { fmt, powText, sup } from '#lib/core/number-format.js';
 import { romanParts, romanValue, toRoman } from '../bai-2-cach-ghi-so-tu-nhien/engine.js';
 import { expansion, power } from '../bai-6-luy-thua-voi-so-mu-tu-nhien/engine.js';
 import { solve } from '../bai-7-thu-tu-thuc-hien-cac-phep-tinh/engine.js';
 
-/** @typedef {import('./drill.js').Skill} Skill */
-/** @typedef {Omit<import('./drill.js').Question, 'skill'>} Draft */
+/** @typedef {import('#lib/core/drill.js').Skill} Skill */
+/** @typedef {Omit<import('#lib/core/drill.js').Question, 'skill'>} Draft */
 
 const PLACES = ['đơn vị', 'chục', 'trăm', 'nghìn', 'chục nghìn', 'trăm nghìn', 'triệu'];
 

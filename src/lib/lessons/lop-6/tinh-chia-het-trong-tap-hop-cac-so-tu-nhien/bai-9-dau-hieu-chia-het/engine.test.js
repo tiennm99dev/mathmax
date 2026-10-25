@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rng } from '../_shared/drill.js';
+import { rng } from '#lib/core/drill.js';
 import { basketsOf, judge, nextNumber } from './engine.js';
 
 describe('nextNumber', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rng } from './drill.js';
+import { rng } from '#lib/core/drill.js';
 import {
   CHAPTER_SKILLS,
   boiChung,
@@ -10,7 +10,7 @@ import {
   uocChung,
 } from './skills.js';
 
-/** @param {import('./drill.js').Skill} skill */
+/** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 400) {
   const r = rng(2025);
   return Array.from({ length: count }, () => skill.make(r));

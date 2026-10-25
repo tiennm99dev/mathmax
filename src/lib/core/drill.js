@@ -1,8 +1,12 @@
 /**
- * Generated practice sets for the review lessons of this chapter: a seeded
- * random source, a shuffled set of questions drawn from several skills, and
- * a per-skill summary that colours the skill map.
+ * Generated practice drills for practice and review lessons: a seeded random
+ * source, a shuffled set of questions drawn from several skills, a per-skill
+ * summary that colours the skill map, and the two-try flow of
+ * `drill-board.svelte` (a wrong first answer opens the hint ladder and a
+ * second try; only a second miss shows the full solution).
  */
+
+import { GROUP } from './number-format.js';
 
 /**
  * @typedef {object} Question
@@ -10,6 +14,8 @@
  * @property {string} prompt plain text
  * @property {number} answer a natural number
  * @property {string[]} steps the worked solution, one step per line
+ * @property {string[]} [hints] plain-text hint ladder, mildest first; when
+ *   left out, `hintsFor` derives it from the steps
  */
 
 /**
@@ -131,4 +137,60 @@ export function skillMap(skills, questions, results) {
     }
     return { id, label, right, answered, total, status };
   });
+}
+
+/**
+ * @typedef {'ask' | 'invalid' | 'retry' | 'retry-invalid' | 'right' | 'fixed' | 'wrong'} DrillPhase
+ * - `ask`, `invalid`: first try (the last input could not be read).
+ * - `retry`, `retry-invalid`: second try after a wrong first answer.
+ * - `right`: right first time; `fixed`: right on the second try;
+ *   `wrong`: missed twice, so the full solution shows.
+ */
+
+/**
+ * Whether the question is settled and the board moves on next.
+ * @param {DrillPhase} phase
+ */
+export function isDone(phase) {
+  return phase === 'right' || phase === 'fixed' || phase === 'wrong';
+}
+
+/**
+ * Whether the current input belongs to the second try.
+ * @param {DrillPhase} phase
+ */
+export function isRetry(phase) {
+  return phase === 'retry' || phase === 'retry-invalid';
+}
+
+/**
+ * The next phase after checking an answer: `ok` is null for unreadable input,
+ * which never uses up a try.
+ * @param {DrillPhase} phase
+ * @param {boolean | null} ok
+ * @returns {DrillPhase}
+ */
+export function nextPhase(phase, ok) {
+  if (isDone(phase)) return phase;
+  if (isRetry(phase)) {
+    if (ok === null) return 'retry-invalid';
+    return ok ? 'fixed' : 'wrong';
+  }
+  if (ok === null) return 'invalid';
+  return ok ? 'right' : 'retry';
+}
+
+/**
+ * The hint ladder for a question: its own `hints`, or else the solution steps
+ * before the last one, leaving out any step that already states the answer.
+ * @param {Question} question
+ * @returns {string[]}
+ */
+export function hintsFor(question) {
+  if (question.hints) return question.hints;
+  const answer = new RegExp(`(?<!\\d)${question.answer}(?!\\d)`);
+  // Digits grouped by a space, narrow space or dot (1 024, 1.024) read as one.
+  const ungroup = (/** @type {string} */ step) =>
+    step.replace(new RegExp(`(\\d)[ .${GROUP}](?=\\d{3}(?!\\d))`, 'g'), '$1');
+  return question.steps.slice(0, -1).filter((step) => !answer.test(ungroup(step)));
 }

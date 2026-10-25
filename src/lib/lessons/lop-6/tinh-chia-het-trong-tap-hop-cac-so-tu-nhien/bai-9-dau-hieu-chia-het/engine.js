@@ -4,7 +4,7 @@
  * learner's choice is judged with a reason taken from the digits.
  */
 
-import { int, pick } from '../_shared/drill.js';
+import { int, pick } from '#lib/core/drill.js';
 import { TESTED, digitTestReason, passesDigitTest } from '../_shared/divisibility.js';
 
 /** @typedef {2 | 3 | 5 | 9} Basket */

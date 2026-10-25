@@ -5,7 +5,7 @@
  * quotient models show why aᵐ · aⁿ = aᵐ⁺ⁿ and aᵐ : aⁿ = aᵐ⁻ⁿ.
  */
 
-import { fmt, powText } from '../_shared/format.js';
+import { fmt, powText } from '#lib/core/number-format.js';
 
 /**
  * @param {number} n

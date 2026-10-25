@@ -4,7 +4,7 @@
  * prime factorisations written the way the book writes them (2² · 3 · 7).
  */
 
-import { sup } from './format.js';
+import { sup } from '#lib/core/number-format.js';
 
 /**
  * Every divisor of n in increasing order (Ư(n)); n must be at least 1.

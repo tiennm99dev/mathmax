@@ -3,7 +3,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
   import { colorAt } from '#lib/core/visuals/svg-math.js';
-  import { fmt, powText } from '../_shared/format.js';
+  import { fmt, powText } from '#lib/core/number-format.js';
   import { blockCopies, power, powerLine, productModel, quotientModel } from './engine.js';
 
   const MODES = [

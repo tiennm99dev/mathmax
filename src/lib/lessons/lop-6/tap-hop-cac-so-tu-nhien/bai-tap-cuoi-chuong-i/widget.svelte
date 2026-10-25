@@ -1,5 +1,5 @@
 <script>
-  import DrillBoard from '../_shared/drill-board.svelte';
+  import DrillBoard from '#lib/core/drill-board.svelte';
   import { CHAPTER_SKILLS } from '../_shared/skills.js';
 </script>
 

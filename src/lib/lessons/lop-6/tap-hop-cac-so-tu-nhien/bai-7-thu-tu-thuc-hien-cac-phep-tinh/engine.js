@@ -10,7 +10,7 @@
  * dropped. Exponents are always plain numbers in this grade.
  */
 
-import { fmt, sup } from '../_shared/format.js';
+import { fmt, sup } from '#lib/core/number-format.js';
 
 /**
  * @typedef {'+' | '-' | '*' | ':' | '^'} Op

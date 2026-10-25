@@ -6,11 +6,11 @@
  */
 
 import { gcd, isPrime, lcm } from '#lib/numtheory-engine/index.js';
-import { int, pick } from './drill.js';
+import { int, pick } from '#lib/core/drill.js';
 import { divisorsOf, factorText, factorize, gcdFactors, lcmFactors } from './divisibility.js';
-import { fmt } from './format.js';
+import { fmt } from '#lib/core/number-format.js';
 
-/** @typedef {import('./drill.js').Skill} Skill */
+/** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
 /**
  * A set written the book's way: {1; 2; 3}.

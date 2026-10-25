@@ -3,8 +3,8 @@
   import { SvelteSet } from 'svelte/reactivity';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { rng } from '../_shared/drill.js';
-  import { fmt } from '../_shared/format.js';
+  import { rng } from '#lib/core/drill.js';
+  import { fmt } from '#lib/core/number-format.js';
   import { ROUND, judge, nextNumber } from './engine.js';
 
   /** @typedef {import('./engine.js').Basket} Basket */

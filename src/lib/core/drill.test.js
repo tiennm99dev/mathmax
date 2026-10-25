@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { buildSet, int, rng, shuffle, skillMap } from './drill.js';
+import { buildSet, hintsFor, int, isDone, nextPhase, rng, shuffle, skillMap } from './drill.js';
+import { GROUP } from './number-format.js';
 
 /** @type {import('./drill.js').Skill[]} */
 const SKILLS = [
@@ -57,5 +58,48 @@ describe('skillMap', () => {
       answered: 2,
       total: 2,
     });
+  });
+});
+
+describe('nextPhase', () => {
+  it('gives a second try after a wrong first answer', () => {
+    expect(nextPhase('ask', true)).toBe('right');
+    expect(nextPhase('ask', false)).toBe('retry');
+    expect(nextPhase('retry', true)).toBe('fixed');
+    expect(nextPhase('retry', false)).toBe('wrong');
+  });
+
+  it('never spends a try on unreadable input', () => {
+    expect(nextPhase('ask', null)).toBe('invalid');
+    expect(nextPhase('invalid', false)).toBe('retry');
+    expect(nextPhase('retry', null)).toBe('retry-invalid');
+    expect(nextPhase('retry-invalid', false)).toBe('wrong');
+  });
+
+  it('settles after a right answer or two misses', () => {
+    expect(isDone('right')).toBe(true);
+    expect(isDone('fixed')).toBe(true);
+    expect(isDone('wrong')).toBe(true);
+    expect(isDone('retry')).toBe(false);
+    expect(nextPhase('wrong', true)).toBe('wrong');
+  });
+});
+
+describe('hintsFor', () => {
+  const q = (/** @type {Partial<import('./drill.js').Question>} */ over) => ({
+    skill: 'a',
+    prompt: 'p',
+    answer: 1024,
+    steps: ['Viết 2¹⁰ = 2 · 2 · … · 2.', `2¹⁰ = 1${GROUP}024.`, 'Vậy đáp số là 1024.'],
+    ...over,
+  });
+
+  it('uses the steps before the last one that do not state the answer', () => {
+    expect(hintsFor(q({}))).toEqual(['Viết 2¹⁰ = 2 · 2 · … · 2.']);
+    expect(hintsFor(q({ answer: 5, steps: ['a = 15', 'b = 5', 'c'] }))).toEqual(['a = 15']);
+  });
+
+  it('prefers the hints a question carries', () => {
+    expect(hintsFor(q({ hints: ['Đếm số thừa số.'] }))).toEqual(['Đếm số thừa số.']);
   });
 });

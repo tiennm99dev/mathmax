@@ -51,6 +51,35 @@ export const hints = {
   solutionTitle: 'Lời giải',
 };
 
+export const drill = {
+  skillMap: 'Bản đồ kĩ năng',
+  status: {
+    todo: 'chưa làm',
+    good: 'vững',
+    mixed: 'cần luyện thêm',
+    weak: 'cần ôn lại',
+  },
+  /** @param {number} at @param {number} total @param {number} score */
+  progress: (at, total, score) => `Câu ${at}/${total} · đúng ngay lần đầu: ${score}`,
+  check: 'Kiểm tra',
+  next: 'Câu tiếp theo',
+  results: 'Xem kết quả',
+  invalid: 'Hãy nhập một số tự nhiên, ví dụ 1024 hoặc 1 024.',
+  /** @param {string} answer */
+  right: (answer) => `Đúng rồi! Đáp số: ${answer}.`,
+  retry: 'Chưa đúng. Em xem gợi ý rồi thử lại lần nữa nhé.',
+  /** @param {string} answer */
+  fixed: (answer) => `Đúng rồi ở lần thử thứ hai! Đáp số: ${answer}.`,
+  /** @param {string} answer */
+  wrong: (answer) => `Chưa đúng. Đáp số là ${answer}. Lời giải:`,
+  /** @param {number} score @param {number} total */
+  summary: (score, total) => `Em làm đúng ngay lần đầu ${score}/${total} câu.`,
+  allGood: 'Mọi kĩ năng đều vững. Thử một bộ đề mới để chắc chắn hơn nhé!',
+  /** @param {string[]} labels */
+  review: (labels) => `Nên ôn lại: ${labels.join('; ')}.`,
+  restart: 'Làm bộ đề mới',
+};
+
 export const practice = {
   check: 'Kiểm tra',
   retry: 'Làm lại',
