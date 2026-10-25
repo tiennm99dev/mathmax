@@ -253,14 +253,7 @@ export default {
     {
       type: 'text',
       prompt: 'Hình tròn có bao nhiêu trục đối xứng? (Viết bằng chữ)',
-      accept: [
-        'vô số',
-        'vô số trục',
-        'vô số trục đối xứng',
-        'vô hạn',
-        'rất nhiều',
-        'vô số trục đối xứng.',
-      ],
+      accept: ['vô số', 'vô số trục', 'vô số trục đối xứng', 'vô hạn', 'vô số trục đối xứng.'],
       hints: [
         'Gấp hình tròn theo một đường thẳng đi qua tâm: hai nửa có chồng khít không?',
         'Có bao nhiêu đường thẳng đi qua tâm?',

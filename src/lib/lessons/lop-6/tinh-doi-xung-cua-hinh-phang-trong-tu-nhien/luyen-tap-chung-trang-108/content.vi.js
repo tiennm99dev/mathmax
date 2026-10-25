@@ -218,6 +218,6 @@ export default {
     'Kiểm tra trục đối xứng bằng cách gấp hình; kiểm tra tâm đối xứng bằng cách quay hình nửa vòng.',
     'Hình vuông, hình chữ nhật, hình thoi, lục giác đều, hình tròn có cả trục và tâm đối xứng.',
     'Tam giác đều, hình thang cân chỉ có trục; hình bình hành (không phải chữ nhật, thoi) chỉ có tâm.',
-    'Tâm đối xứng của tứ giác là trung điểm của mỗi đường chéo.',
+    'Tâm đối xứng của hình bình hành, hình chữ nhật, hình thoi, hình vuông là giao điểm hai đường chéo, cũng là trung điểm của mỗi đường chéo.',
   ],
 };

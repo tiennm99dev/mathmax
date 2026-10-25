@@ -3,7 +3,7 @@
   import { formatNumber } from '#lib/core/number-format.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { SHAPES, clip, isAxis, lineKey, reflect } from '../_shared/symmetry.js';
+  import { SHAPES, inSentence, clip, isAxis, lineKey, reflect } from '../_shared/symmetry.js';
   import { SIZE, svgPoints, toScreen, toSnappedUnits } from '../_shared/board.js';
 
   const IDS = [
@@ -119,7 +119,7 @@
       : total === 0
         ? `${shape.name} không có trục đối xứng nào: gấp theo đường nào hai phần cũng không chồng khít.`
         : found.length === total
-          ? `Đã tìm đủ ${total} / ${total} trục đối xứng của ${shape.name.toLowerCase()}.`
+          ? `Đã tìm đủ ${total} / ${total} trục đối xứng của ${inSentence(shape.name)}.`
           : `Đã tìm được ${found.length} / ${total} trục đối xứng.`,
   );
 
@@ -127,7 +127,7 @@
     !cuts
       ? 'Đường thẳng chưa chia hình thành hai phần. Kéo điểm trên đường thẳng vào trong hình.'
       : axis
-        ? `Trùng khít! Gấp theo đường thẳng này, hai phần của ${shape.name.toLowerCase()} chồng khít lên nhau: đây là một trục đối xứng.`
+        ? `Trùng khít! Gấp theo đường thẳng này, hai phần của ${inSentence(shape.name)} chồng khít lên nhau: đây là một trục đối xứng.`
         : 'Hai phần chưa chồng khít lên nhau, nên đường thẳng này không phải trục đối xứng.',
   );
 
@@ -203,9 +203,9 @@
       />
       <polygon
         points={svgPoints(left)}
-        fill="#2E86AB"
+        fill={axis ? '#1B998B' : '#2E86AB'}
         fill-opacity="0.35"
-        stroke="#2E86AB"
+        stroke={axis ? '#1B998B' : '#2E86AB'}
         stroke-width="2"
         stroke-linejoin="round"
       />

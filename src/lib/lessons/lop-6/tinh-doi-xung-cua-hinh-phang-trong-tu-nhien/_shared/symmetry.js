@@ -192,6 +192,13 @@ export const SHAPES = /** @type {Record<string, Shape>} */ ({
 });
 
 /**
+ * A shape's name inside a sentence: only the first letter is lowered, so
+ * "Hình vuông" reads "hình vuông" and "Chữ T" keeps its capital letter.
+ * @param {string} name
+ */
+export const inSentence = (name) => name[0].toLowerCase() + name.slice(1);
+
+/**
  * A line through `p` at `deg` degrees to the x axis.
  * @typedef {{ p: Pt, deg: number }} Line
  */

@@ -5,7 +5,7 @@
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
-  import { SHAPES, halfTurn, isCenter, rotate } from '../_shared/symmetry.js';
+  import { SHAPES, inSentence, halfTurn, isCenter, rotate } from '../_shared/symmetry.js';
   import { SIZE, svgPoints, toScreen, toSnappedUnits } from '../_shared/board.js';
 
   const IDS = [
@@ -138,7 +138,7 @@
         ? `Chọn điểm O rồi bấm "Quay nửa vòng". Hình màu cam là hình sau khi quay quanh O.`
         : `Đã quay ${formatNumber(angle)}° quanh ${oText}. Quay đủ nửa vòng (180°) rồi so sánh.`
       : ok
-        ? `Chồng khít! Quay nửa vòng quanh O, ${shape.name.toLowerCase()} trùng với chính nó ở vị trí ban đầu: O là tâm đối xứng.`
+        ? `Chồng khít! Quay nửa vòng quanh O, ${inSentence(shape.name)} trùng với chính nó ở vị trí ban đầu: O là tâm đối xứng.`
         : `Sau khi quay nửa vòng quanh ${oText}, hình mới không chồng khít với hình ban đầu: O không phải tâm đối xứng.`,
   );
   const verdict = $derived(

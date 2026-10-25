@@ -3,6 +3,7 @@ import {
   SHAPES,
   clip,
   halfTurn,
+  inSentence,
   isAxis,
   isCenter,
   lineKey,
@@ -99,5 +100,12 @@ describe('cutting a shape along a line', () => {
     const tri = SHAPES['tam-giac-deu'].points;
     expect(clip(tri, { p: { x: 0, y: 4 }, deg: 0 }, -1)).toHaveLength(3);
     expect(clip(tri, { p: { x: 0, y: 4 }, deg: 0 }, 1)).toHaveLength(0);
+  });
+});
+
+describe('shape names inside a sentence', () => {
+  it('lowers only the first letter, so letter names keep their capital', () => {
+    expect(inSentence('Hình vuông')).toBe('hình vuông');
+    expect(inSentence('Chữ T')).toBe('chữ T');
   });
 });
