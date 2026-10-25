@@ -3,15 +3,17 @@
   "version": "0.0.1.0",
   "private": true,
   "type": "module",
-  "description": "MathMax — Toán tương tác cho học sinh THCS lớp 6-9. Static site.",
+  "description": "MathMax — Toán tương tác cho học sinh lớp 1-12. Static site.",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./jsconfig.json",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --fail-on-warnings",
     "test": "vitest run",
     "test:watch": "vitest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@fontsource/be-vietnam-pro": "^5.2.0",
@@ -27,6 +29,10 @@
     "vite": "^8.1.5"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "eslint-plugin-svelte": "^3.23.1",
+    "globals": "^17.13.0",
     "prettier": "^3.9.5",
     "prettier-plugin-svelte": "^4.1.1",
     "svelte-check": "^4.7.3",
@@ -34,5 +40,8 @@
   },
   "imports": {
     "#lib/*": "./src/lib/*"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

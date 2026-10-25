@@ -1,6 +1,6 @@
 # MathMax
 
-Toán tương tác cho học sinh THCS Việt Nam (lớp 6-9). Số học, Đại số, Hình học qua kéo-thả và minh hoạ trực quan.
+Toán tương tác cho học sinh Việt Nam lớp 1-12, theo chương trình Kết nối tri thức với cuộc sống (KNTT). Số học, Đại số, Hình học qua kéo-thả và minh hoạ trực quan.
 
 ## Status
 
@@ -22,22 +22,25 @@ Yêu cầu: Node 24+, npm.
 
 ```sh
 npm install
-npm run dev       # http://localhost:5173/mathmax/
-npm test          # Vitest (geom-engine unit tests)
-npm run check     # svelte-check + JSDoc strict
-npm run build     # Static output → build/
-npm run preview   # Serve build/
+npm run dev           # http://localhost:5173/mathmax/
+npm run lint          # ESLint (eslint-plugin-svelte)
+npm run format:check  # Prettier --check
+npm run check         # svelte-kit sync + svelte-check --fail-on-warnings (JSDoc strict)
+npm test              # Vitest
+npm run build         # Static output → build/
+npm run preview       # Serve build/
 ```
 
 ## Deploy
 
-Auto-deploy lên GitHub Pages từ `main`. Cấu hình và phiên bản action nằm trong `.github/workflows/deploy.yml`; xem `RUNBOOK.md` để rollback / chuyển domain.
+CI (`.github/workflows/ci.yml`) chạy lint, format:check, check, test và build cho mỗi push/PR; deploy chạy lại toàn bộ các bước đó trước khi lên GitHub Pages từ `main`. Cấu hình và phiên bản action nằm trong `.github/workflows/deploy.yml`; xem `RUNBOOK.md` để rollback / chuyển domain.
 
 Live URL: https://tiennm99dev.github.io/mathmax/
 
 ## Architecture
 
-- **Static**: SvelteKit + `@sveltejs/adapter-static`, `paths.base = '/mathmax'`, output `build/`.
+- **Static**: SvelteKit + `@sveltejs/adapter-static`, cấu hình trong `vite.config.js`: `paths.base = '/mathmax'` (đổi bằng `SITE_BASE`), output `build/`, `static/404.html` cho GitHub Pages.
+- **CSP**: chế độ `hash` — mỗi trang prerender có thẻ meta CSP với hash của script inline; `style-src` cho phép `'unsafe-inline'` vì Svelte và KaTeX ghi style inline.
 - **Styling**: Tailwind 4 (PostCSS qua `@tailwindcss/postcss`) + Be Vietnam Pro (woff2 qua `@fontsource`). `src/app.css` nạp Tailwind bằng `@import 'tailwindcss/index.css'`; tick palette `colors.pair.{1,2,3,4}` vẫn khai báo trong `tailwind.config.js` và được nạp qua `@config`.
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
 - **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear, system). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.

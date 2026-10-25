@@ -2,7 +2,8 @@
   "extends": "$app/tsconfig",
   "compilerOptions": {
     "checkJs": true,
-    "allowJs": true
+    "allowJs": true,
+    "strict": true
   },
   "include": ["src"]
 }
