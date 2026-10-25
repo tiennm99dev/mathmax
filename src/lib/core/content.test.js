@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { lesson } from '#lib/curriculum/index.js';
 import { checkMinimums, validateLesson } from './content-schema.js';
+import { renderLesson } from './render-content.server.js';
 
 /**
  * Every written lesson, validated against the content schema and the per-kind
@@ -60,6 +61,12 @@ describe('lesson content', () => {
         extraWidgets: e.extraWidgets,
       });
       expect(missing, missing.join('\n')).toEqual([]);
+      // KaTeX renders a parse error as red source text instead of throwing, so
+      // look for its error markup in the prerendered lesson.
+      const broken = [
+        ...JSON.stringify(renderLesson(content)).matchAll(/katex-error[^>]*title=\\"([^"\\]*)/g),
+      ].map((m) => m[1]);
+      expect(broken, 'TeX that KaTeX cannot parse').toEqual([]);
     });
   }
 });
