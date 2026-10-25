@@ -261,5 +261,105 @@ export const lamTron = {
   },
 };
 
+/** Multiples of 5 per cent: m% of a multiple of 20 is a whole number. */
+const PERCENTS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 60, 75, 80];
+
+/** @type {Skill} */
+export const tiSoPhanTram = {
+  id: 'ti-so-phan-tram',
+  label: 'Bài 31. Tỉ số và tỉ số phần trăm',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      // m% of b; b is a multiple of 20, so b · m / 100 is whole.
+      const m = pick(rand, PERCENTS);
+      const b = pick(rand, [2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 15, 18, 24, 35, 45]) * 20;
+      const r = (b * m) / 100;
+      return {
+        prompt: `Tìm ${m}% của ${decStr(b, 0)}.`,
+        answer: r,
+        hints: ['Muốn tìm m% của số b, ta nhân b với m rồi chia cho 100.'],
+        steps: [
+          `${m}% của ${decStr(b, 0)} là ${decStr(b, 0)} · ${m}/100.`,
+          `${decStr(b, 0)} · ${m} = ${decStr(b * m, 0)}; ${decStr(b * m, 0)} : 100 = ${decStr(r, 0)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      // A number whose m% is a; the number is a multiple of 20.
+      const m = pick(rand, PERCENTS);
+      const x = pick(rand, [3, 4, 6, 7, 8, 9, 11, 12, 14, 16, 18, 25, 30]) * 20;
+      const a = (x * m) / 100;
+      return {
+        prompt: `Tìm một số, biết ${m}% của nó bằng ${decStr(a, 0)}.`,
+        answer: x,
+        hints: [
+          'Đây là bài toán tìm một số khi biết giá trị phần trăm của nó.',
+          'Lấy giá trị đã biết chia cho m/100, tức là nhân với 100 rồi chia cho m.',
+        ],
+        steps: [
+          `Số cần tìm là ${decStr(a, 0)} : ${m}/100 = ${decStr(a, 0)} · 100 : ${m}.`,
+          `${decStr(a * 100, 0)} : ${m} = ${decStr(x, 0)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      // The percentage a : b · 100% for a b that divides a · 100.
+      const b = pick(rand, [20, 25, 40, 50, 80, 125, 200, 250, 400]);
+      let a;
+      do a = int(rand, 1, 2 * b);
+      while ((a * 100) % b !== 0 || a === b);
+      const q = (a * 100) / b;
+      return {
+        prompt: `Tính tỉ số phần trăm của ${decStr(a, 0)} và ${decStr(b, 0)} (nhập số phần trăm, có thể kèm dấu %).`,
+        answer: q,
+        hints: [
+          'Tỉ số phần trăm của a và b là a/b · 100%.',
+          'Nhân số thứ nhất với 100 rồi chia cho số thứ hai.',
+        ],
+        steps: [
+          `Tỉ số phần trăm là ${decStr(a, 0)}/${decStr(b, 0)} · 100% = (${decStr(a * 100, 0)} : ${decStr(b, 0)})%.`,
+          `${decStr(a * 100, 0)} : ${decStr(b, 0)} = ${decStr(q, 0)}, nên tỉ số phần trăm là ${decStr(q, 0)}%.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      // A price cut by m%: the new price is (100 − m)% of the old one.
+      const m = pick(rand, [10, 15, 20, 25, 30, 40, 50]);
+      const price = int(rand, 12, 99) * 10000;
+      const cut = (price * m) / 100;
+      const r = price - cut;
+      return {
+        prompt: `Một món hàng giá ${decStr(price, 0)} đồng, nay được giảm giá ${m}%. Giá mới của món hàng là bao nhiêu đồng?`,
+        answer: r,
+        hints: [
+          'Tính số tiền được giảm trước: đó là m% của giá cũ.',
+          'Giá mới bằng giá cũ trừ số tiền được giảm (hoặc bằng (100 − m)% của giá cũ).',
+        ],
+        steps: [
+          `Số tiền được giảm: ${decStr(price, 0)} · ${m}/100 = ${decStr(cut, 0)} (đồng).`,
+          `Giá mới: ${decStr(price, 0)} − ${decStr(cut, 0)} = ${decStr(r, 0)} (đồng).`,
+        ],
+      };
+    }
+    // Yearly interest on a deposit of whole millions; the rate has one decimal.
+    const rate = pick(rand, [45, 48, 50, 55, 56, 60, 65, 68, 70, 72]);
+    const deposit = int(rand, 5, 200) * 1000000;
+    const interest = (deposit * rate) / 1000;
+    return {
+      prompt: `Gửi tiết kiệm ${decStr(deposit, 0)} đồng với lãi suất ${decStr(rate, 1)}% một năm. Sau một năm, tiền lãi là bao nhiêu đồng?`,
+      answer: interest,
+      hints: ['Tiền lãi một năm bằng lãi suất (tính theo phần trăm) của số tiền gửi.'],
+      steps: [
+        `Tiền lãi bằng ${decStr(rate, 1)}% của ${decStr(deposit, 0)}: ${decStr(deposit, 0)} · ${decStr(rate, 1)}/100.`,
+        `${decStr(deposit / 100, 0)} · ${decStr(rate, 1)} = ${decStr(interest, 0)} (đồng).`,
+      ],
+    };
+  },
+};
+
 /** The drill of "Luyện tập chung" after Bài 30. */
 export const PAGE_41_SKILLS = [soThapPhan, tinhToan, lamTron];
+
+/** The end-of-chapter test: one skill per theory lesson of the chapter. */
+export const CHAPTER_SKILLS = [soThapPhan, tinhToan, lamTron, tiSoPhanTram];

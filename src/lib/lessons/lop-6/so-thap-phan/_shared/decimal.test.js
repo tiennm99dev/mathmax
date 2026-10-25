@@ -4,6 +4,7 @@ import {
   decValue,
   decimalFraction,
   decimalsOf,
+  readAnswer,
   readDecimal,
   valueText,
 } from './decimal.js';
@@ -50,5 +51,13 @@ describe('reading and values', () => {
     expect(decimalsOf(1250, 3)).toBe(2);
     expect(decimalFraction(1250, 3)).toEqual({ num: 125, den: 100 });
     expect(decimalFraction(-3000, 3)).toEqual({ num: -3, den: 1 });
+  });
+
+  it('reads an answer with a per cent sign or the word đồng', () => {
+    expect(readAnswer('45%')).toBe(45);
+    expect(readAnswer('1 300 000 đồng')).toBe(1300000);
+    expect(readAnswer('−3,5')).toBe(-3.5);
+    expect(readAnswer('2 cm')).toBeNull();
+    expect(readAnswer('abc')).toBeNull();
   });
 });

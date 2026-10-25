@@ -1,8 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { readDecimal, valueText } from './decimal.js';
-import { PAGE_41_SKILLS, lamTron, soThapPhan, tinhToan } from './skills.js';
+import { readAnswer, readDecimal, valueText } from './decimal.js';
+import {
+  CHAPTER_SKILLS,
+  PAGE_41_SKILLS,
+  lamTron,
+  soThapPhan,
+  tiSoPhanTram,
+  tinhToan,
+} from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -39,6 +46,11 @@ function roundBook(x, d) {
  */
 function recompute(prompt) {
   const ns = numbers(prompt);
+  if (/^Tìm \S+% của /.test(prompt)) return (ns[0] * ns[1]) / 100;
+  if (prompt.startsWith('Tìm một số, biết')) return (ns[1] * 100) / ns[0];
+  if (prompt.startsWith('Tính tỉ số phần trăm')) return (ns[0] * 100) / ns[1];
+  if (prompt.startsWith('Một món hàng giá')) return (ns[0] * (100 - ns[1])) / 100;
+  if (prompt.startsWith('Gửi tiết kiệm')) return (ns[0] * ns[1]) / 100;
   if (prompt.startsWith('Viết phân số thập phân')) return ns[0] / ns[1];
   if (prompt.startsWith('Viết số')) return Math.round(ns[0] * ns[1]);
   if (prompt.startsWith('Tìm số lớn nhất')) return Math.max(...ns);
@@ -69,7 +81,7 @@ function recompute(prompt) {
 }
 
 describe('chapter skills', () => {
-  for (const skill of [soThapPhan, tinhToan, lamTron]) {
+  for (const skill of [soThapPhan, tinhToan, lamTron, tiSoPhanTram]) {
     it(`${skill.id}: every answer matches its prompt`, () => {
       for (const q of sample(skill)) {
         expect(close(recompute(q.prompt), q.answer), q.prompt).toBe(true);
@@ -79,6 +91,7 @@ describe('chapter skills', () => {
     it(`${skill.id}: the answer survives being typed back`, () => {
       for (const q of sample(skill)) {
         expect(readDecimal(valueText(q.answer)), q.prompt).toBe(q.answer);
+        expect(readAnswer(valueText(q.answer)), q.prompt).toBe(q.answer);
         expect(q.steps.length).toBeGreaterThan(1);
         expect(q.hints?.length).toBeGreaterThan(0);
         // No hint states the answer, unless it is a one-digit number.
@@ -94,5 +107,15 @@ describe('chapter skills', () => {
     const set = buildSet(PAGE_41_SKILLS, 4, 1);
     expect(set).toHaveLength(12);
     expect(new Set(set.map((q) => q.prompt)).size).toBe(12);
+  });
+
+  it('builds the end-of-chapter test with two questions per lesson', () => {
+    const set = buildSet(CHAPTER_SKILLS, 3, 1);
+    expect(set).toHaveLength(12);
+    expect(new Set(set.map((q) => q.prompt)).size).toBe(12);
+  });
+
+  it('percentage answers are whole numbers', () => {
+    for (const q of sample(tiSoPhanTram)) expect(Number.isInteger(q.answer), q.prompt).toBe(true);
   });
 });
