@@ -15,6 +15,16 @@ export default defineConfig({
       preprocess: vitePreprocess(),
       adapter: adapter(),
       paths: { base },
+      prerender: {
+        // A site with no old URLs has an empty legacy redirect table, so its
+        // redirect route renders nothing. Any other unseen route is a bug.
+        handleUnseenRoutes: ({ routes }) => {
+          const unexpected = routes.filter((r) => r !== '/[strand=strand]/[slug]');
+          if (unexpected.length > 0) {
+            throw new Error(`Prerenderable routes never reached: ${unexpected.join(', ')}`);
+          }
+        },
+      },
       // Hash mode puts a CSP meta tag with script hashes on every prerendered page.
       // Inline styles stay allowed because Svelte writes style attributes at runtime
       // and KaTeX markup carries inline styles.
