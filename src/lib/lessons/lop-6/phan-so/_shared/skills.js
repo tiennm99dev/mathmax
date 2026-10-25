@@ -183,11 +183,11 @@ export const soSanhHonSo = {
         ],
       };
     }
-    const qa = int(rand, 2, 12);
-    let qb = int(rand, 2, 12);
-    while (qb === qa) qb = int(rand, 2, 12);
-    const pa = nonZero(rand, -9, 9);
-    const pb = nonZero(rand, -9, 9);
+    // Both fractions in lowest terms, so the least common denominator is
+    // the BCNN of the denominators as written.
+    const { p: pa, q: qa } = simplestFrac(rand, 9, 12);
+    let { p: pb, q: qb } = simplestFrac(rand, 9, 12);
+    while (qb === qa) ({ p: pb, q: qb } = simplestFrac(rand, 9, 12));
     const sb = rand() < 0.5 ? { n: -pb, d: -qb } : { n: pb, d: qb };
     const m = lcm(qa, qb);
     return {

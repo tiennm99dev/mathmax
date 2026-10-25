@@ -80,12 +80,20 @@
   />
 
   <div class="grid gap-3 sm:grid-cols-2">
-    <div class="space-y-2 rounded-xl border border-indigo-200 p-3">
+    <div
+      class="space-y-2 rounded-xl border border-indigo-200 p-3"
+      role="group"
+      aria-label="Phân số thứ nhất (tô theo cột)"
+    >
       <p class="text-sm font-semibold text-indigo-700">Phân số thứ nhất (tô theo cột)</p>
       <Stepper label="Tử" bind:value={a} min={0} max={b} onchange={changed} />
       <Stepper label="Mẫu" bind:value={b} min={2} max={6} onchange={setB} />
     </div>
-    <div class="space-y-2 rounded-xl border border-orange-200 p-3">
+    <div
+      class="space-y-2 rounded-xl border border-orange-200 p-3"
+      role="group"
+      aria-label="Phân số thứ hai (tô theo hàng)"
+    >
       <p class="text-sm font-semibold text-orange-700">Phân số thứ hai (tô theo hàng)</p>
       <Stepper label="Tử" bind:value={c} min={0} max={d} onchange={changed} />
       <Stepper label="Mẫu" bind:value={d} min={2} max={6} onchange={setD} />

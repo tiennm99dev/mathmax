@@ -132,9 +132,10 @@ export default {
       solution: '$47 = 6 \\cdot 7 + 5$, nên $\\frac{47}{6} = 7\\frac{5}{6}$.',
     },
     {
-      type: 'fraction',
-      prompt: 'Viết hỗn số $4\\frac{2}{7}$ dưới dạng phân số.',
-      answer: [30, 7],
+      type: 'number',
+      prompt:
+        'Viết hỗn số $4\\frac{2}{7}$ dưới dạng phân số có mẫu $7$. Tử số của phân số đó bằng bao nhiêu?',
+      answer: 30,
       hints: ['$4\\frac{2}{7} = \\frac{4 \\cdot 7 + 2}{7}$.'],
       solution: '$4\\frac{2}{7} = \\frac{4 \\cdot 7 + 2}{7} = \\frac{30}{7}$.',
     },

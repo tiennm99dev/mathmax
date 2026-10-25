@@ -190,9 +190,10 @@ export default {
       solution: '$24 = 7 \\cdot 3 + 3$, nên $\\frac{24}{7} = 3\\frac{3}{7}$.',
     },
     {
-      type: 'fraction',
-      prompt: 'Viết hỗn số $2\\frac{3}{5}$ dưới dạng phân số.',
-      answer: [13, 5],
+      type: 'number',
+      prompt:
+        'Viết hỗn số $2\\frac{3}{5}$ dưới dạng phân số có mẫu $5$. Tử số của phân số đó bằng bao nhiêu?',
+      answer: 13,
       hints: ['$a\\frac{b}{c} = \\frac{a \\cdot c + b}{c}$.'],
       solution: '$2\\frac{3}{5} = \\frac{2 \\cdot 5 + 3}{5} = \\frac{13}{5}$.',
     },

@@ -44,9 +44,11 @@
     const last = pieces.find((t) => t.part < 1);
     // The part of one more copy that still fits: quotient minus the full copies.
     const extra = fracText(quot.simple.n - full * quot.simple.d, quot.simple.d);
-    const count = last
-      ? `${full} đoạn ${fracText(r, s)} và thêm ${extra} đoạn nữa`
-      : `vừa đúng ${full} đoạn ${fracText(r, s)}`;
+    const count = !last
+      ? `vừa đúng ${full} đoạn ${fracText(r, s)}`
+      : full === 0
+        ? `${extra} đoạn ${fracText(r, s)} (chưa đủ một đoạn)`
+        : `${full} đoạn ${fracText(r, s)} và thêm ${extra} đoạn nữa`;
     return `${fracText(p, q)} chứa ${count}. Vậy ${fracText(p, q)} : ${fracText(r, s)} = ${fracText(p, q)} · ${fracText(s, r)} = ${fracText(quot.raw.n, quot.raw.d)}${
       quot.simple.d !== quot.raw.d || quot.simple.n !== quot.raw.n
         ? ` = ${fracText(quot.simple.n, quot.simple.d)}`
@@ -76,7 +78,11 @@
 
   {#if mode === 'mul'}
     <div class="grid gap-3 sm:grid-cols-2">
-      <div class="space-y-2 rounded-xl border border-indigo-200 p-3">
+      <div
+        class="space-y-2 rounded-xl border border-indigo-200 p-3"
+        role="group"
+        aria-label="Chiều ngang (cột)"
+      >
         <p class="text-sm font-semibold text-indigo-700">Chiều ngang (cột)</p>
         <Stepper label="Tử" bind:value={a} min={0} max={b} />
         <Stepper
@@ -87,7 +93,11 @@
           onchange={(v) => (a = Math.min(a, v))}
         />
       </div>
-      <div class="space-y-2 rounded-xl border border-orange-200 p-3">
+      <div
+        class="space-y-2 rounded-xl border border-orange-200 p-3"
+        role="group"
+        aria-label="Chiều dọc (hàng)"
+      >
         <p class="text-sm font-semibold text-orange-700">Chiều dọc (hàng)</p>
         <Stepper label="Tử" bind:value={c} min={0} max={d} />
         <Stepper
@@ -155,12 +165,20 @@
     <p class="text-sm text-slate-600">Chạm vào một ô để tô đến cột và hàng của ô đó.</p>
   {:else}
     <div class="grid gap-3 sm:grid-cols-2">
-      <div class="space-y-2 rounded-xl border border-indigo-200 p-3">
+      <div
+        class="space-y-2 rounded-xl border border-indigo-200 p-3"
+        role="group"
+        aria-label="Số bị chia"
+      >
         <p class="text-sm font-semibold text-indigo-700">Số bị chia</p>
         <Stepper label="Tử" bind:value={p} min={1} max={2 * q} />
         <Stepper label="Mẫu" bind:value={q} min={1} max={6} onchange={setQ} />
       </div>
-      <div class="space-y-2 rounded-xl border border-orange-200 p-3">
+      <div
+        class="space-y-2 rounded-xl border border-orange-200 p-3"
+        role="group"
+        aria-label="Số chia"
+      >
         <p class="text-sm font-semibold text-orange-700">Số chia</p>
         <Stepper label="Tử" bind:value={r} min={1} max={s} />
         <Stepper label="Mẫu" bind:value={s} min={1} max={8} onchange={setS} />

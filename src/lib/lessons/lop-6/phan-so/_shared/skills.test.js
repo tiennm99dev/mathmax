@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { lcm } from '#lib/numtheory-engine/index.js';
-import { CHAPTER_SKILLS } from './skills.js';
+import { gcd, lcm } from '#lib/numtheory-engine/index.js';
+import { CHAPTER_SKILLS, soSanhHonSo } from './skills.js';
 import { readFraction, valueText } from './fractions.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
@@ -93,4 +93,16 @@ describe('every chapter skill', () => {
       }
     });
   }
+});
+
+describe('common denominator questions', () => {
+  it('show both fractions in lowest terms, so the least common denominator is unambiguous', () => {
+    const prompts = sample(soSanhHonSo, 2000)
+      .map((q) => q.prompt)
+      .filter((p) => p.startsWith('Quy đồng'));
+    expect(prompts.length).toBeGreaterThan(0);
+    for (const p of prompts) {
+      for (const f of fracs(p).slice(0, 2)) expect(gcd(f.n, f.d), p).toBe(1);
+    }
+  });
 });
