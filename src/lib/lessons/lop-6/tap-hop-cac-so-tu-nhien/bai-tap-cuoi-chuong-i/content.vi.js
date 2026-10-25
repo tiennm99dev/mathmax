@@ -82,7 +82,7 @@ export default {
     },
     {
       problem:
-        'Một rạp hát có $18$ dãy ghế, mỗi dãy $24$ ghế. Một buổi diễn bán hết vé, chỉ còn $15$ ghế trống; mỗi vé giá $50\\,000$ đồng. Rạp thu được bao nhiêu tiền?',
+        'Một rạp hát có $18$ dãy ghế, mỗi dãy $24$ ghế. Trong một buổi diễn, chỉ còn $15$ ghế trống, mọi ghế khác đều đã bán vé; mỗi vé giá $50\\,000$ đồng. Rạp thu được bao nhiêu tiền từ buổi diễn đó?',
       steps: [
         'Số ghế của rạp: $18 \\cdot 24 = 432$ (ghế).',
         'Số vé đã bán: $432 - 15 = 417$ (vé).',

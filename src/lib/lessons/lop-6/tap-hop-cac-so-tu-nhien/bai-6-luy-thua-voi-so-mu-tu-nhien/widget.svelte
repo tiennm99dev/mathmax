@@ -166,7 +166,7 @@
       {/each}
     </div>
     <p class="text-sm text-slate-700">
-      Chia cho {powText(a, Math.min(n2, m2))} là bỏ đi {Math.min(n2, m2)} thừa số {a} (gạch chéo), còn
+      Chia cho {powText(a, Math.min(n2, m2))} là bỏ đi {Math.min(n2, m2)} thừa số {a} (bị gạch đi), còn
       lại
       {quotient.exponent} thừa số.{quotient.exponent === 0
         ? ` Không còn thừa số nào: ${powText(a, 0)} = 1.`

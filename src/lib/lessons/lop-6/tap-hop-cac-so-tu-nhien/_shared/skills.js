@@ -5,7 +5,7 @@
  */
 
 import { int, pick } from './drill.js';
-import { fmt, powText } from './format.js';
+import { fmt, powText, sup } from './format.js';
 import { romanParts, romanValue, toRoman } from '../bai-2-cach-ghi-so-tu-nhien/engine.js';
 import { expansion, power } from '../bai-6-luy-thua-voi-so-mu-tu-nhien/engine.js';
 import { solve } from '../bai-7-thu-tu-thuc-hien-cac-phep-tinh/engine.js';
@@ -111,7 +111,7 @@ export const cachGhiSo = {
 /** @type {Skill} */
 export const thuTu = {
   id: 'thu-tu',
-  label: 'Bài 3. Thứ tự trong tập hợp số tự nhiên',
+  label: 'Bài 3. Thứ tự trong tập hợp các số tự nhiên',
   make(rand) {
     const v = int(rand, 0, 2);
     if (v === 0) {
@@ -287,7 +287,7 @@ export const luyThua = {
         answer: m + n,
         steps: [
           'Nhân hai lũy thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.',
-          `${powText(a, m)} · ${powText(a, n)} = ${a}^(${m} + ${n}) = ${powText(a, m + n)}.`,
+          `${powText(a, m)} · ${powText(a, n)} = ${a}${sup(m)}⁺${sup(n)} = ${powText(a, m + n)}.`,
         ],
       };
     }
@@ -300,7 +300,7 @@ export const luyThua = {
         answer: m - n,
         steps: [
           'Chia hai lũy thừa cùng cơ số: giữ nguyên cơ số, trừ các số mũ.',
-          `${powText(a, m)} : ${powText(a, n)} = ${a}^(${m} − ${n}) = ${powText(a, m - n)}.`,
+          `${powText(a, m)} : ${powText(a, n)} = ${a}${sup(m)}⁻${sup(n)} = ${powText(a, m - n)}.`,
         ],
       };
     }
