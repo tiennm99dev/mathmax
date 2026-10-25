@@ -196,7 +196,7 @@
           Chọn nhầm: {score.wrong.join('; ')} ({n} không chia hết cho các số này).
         {/if}
         {#if score.missed.length}
-          Còn thiếu: {score.missed.join('; ')}.
+          {` Còn thiếu: ${score.missed.join('; ')}.`}
         {/if}
       </p>
     {/if}
@@ -209,13 +209,21 @@
           — dư {info.r} ≠ 0, nên {selected} không chia hết cho {n}.
         {/if}
       </p>
-      <p class="text-slate-900">
-        {#if info.isDivisor}
-          {n} = {selected} · {info.cofactor}, nên {n} ⋮ {selected}: {selected} là ước của {n}.
-        {:else if mode === 'xem' || checked}
-          {n} không chia hết cho {selected}, nên {selected} không là ước của {n}.
-        {/if}
-      </p>
+      {#if showDivisors}
+        <p class="text-slate-900">
+          {#if info.isDivisor}
+            {n} = {selected} · {info.cofactor}, nên {n} ⋮ {selected}: {selected} là ước của {n}.
+          {:else}
+            {n} không chia hết cho {selected}, nên {selected} không là ước của {n}.
+          {/if}
+        </p>
+      {:else}
+        <p class="text-sm text-slate-600">
+          Ô {selected}
+          {guesses.has(selected) ? 'đã được chọn' : 'chưa được chọn'}. Bấm "Kiểm tra" khi em chọn
+          xong.
+        </p>
+      {/if}
     {:else}
       <p class="text-slate-600">Chạm vào một ô để xem phép chia của số đó cho {n}.</p>
     {/if}
