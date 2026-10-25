@@ -172,3 +172,28 @@ export function polygonArea(pts) {
   }
   return Math.abs(s) / 2;
 }
+
+/**
+ * Whether two convex polygons overlap with positive area (touching along an
+ * edge or at a corner does not count), by the separating axis test.
+ * @param {Array<{ x: number, y: number }>} p
+ * @param {Array<{ x: number, y: number }>} q
+ */
+export function convexOverlap(p, q) {
+  for (const poly of [p, q]) {
+    for (let i = 0; i < poly.length; i++) {
+      const a = poly[i];
+      const b = poly[(i + 1) % poly.length];
+      const nx = b.y - a.y;
+      const ny = a.x - b.x;
+      const range = (/** @type {Array<{ x: number, y: number }>} */ pts) => {
+        const v = pts.map((t) => t.x * nx + t.y * ny);
+        return [Math.min(...v), Math.max(...v)];
+      };
+      const [p0, p1] = range(p);
+      const [q0, q1] = range(q);
+      if (p1 <= q0 + 1e-9 || q1 <= p0 + 1e-9) return false;
+    }
+  }
+  return true;
+}

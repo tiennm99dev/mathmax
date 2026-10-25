@@ -297,9 +297,19 @@ export function evaluate(tokens, ans = null) {
  * @param {number} v
  */
 export function formatResult(v) {
-  if (Number.isInteger(v)) return v < 0 ? `−${-v}` : String(v);
-  const fixed = Math.abs(v).toFixed(9).replace(/0+$/, '').replace('.', ',');
-  return v < 0 ? `−${fixed}` : fixed;
+  const sign = v < 0 ? '−' : '';
+  const abs = Math.abs(v);
+  if (abs !== 0 && (abs >= 1e10 || abs < 1e-9)) {
+    const [mantissa, exp] = abs.toExponential(9).split('e');
+    const m = mantissa.replace(/\.?0+$/, '').replace('.', ',');
+    return `${sign}${m} × 10^${Number(exp)}`;
+  }
+  if (Number.isInteger(v)) return `${sign}${abs}`;
+  const fixed = abs
+    .toFixed(9)
+    .replace(/\.?0+$/, '')
+    .replace('.', ',');
+  return `${sign}${fixed}`;
 }
 
 const PLAIN = /** @type {Record<string, Token>} */ ({
@@ -352,7 +362,13 @@ export function press(s, key) {
         note: 'Phím °′″ dùng cho độ, phút, giây; bài này chỉ dùng FACT (SHIFT rồi phím này).',
       };
     }
-    if (!s.evaluated || s.ans === null || !Number.isInteger(s.ans) || s.ans < 2) {
+    if (
+      !s.evaluated ||
+      s.screen.endsWith('ERROR') ||
+      s.ans === null ||
+      !Number.isInteger(s.ans) ||
+      s.ans < 2
+    ) {
       return {
         ...base,
         note: 'FACT phân tích kết quả vừa tính: nhập số, bấm = rồi mới bấm SHIFT FACT.',

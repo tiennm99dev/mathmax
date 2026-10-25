@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   CARD_SHAPES,
+  convexOverlap,
   placeInHalf,
   placedOutlines,
   polygonArea,
@@ -60,5 +61,17 @@ describe('card designer', () => {
     const { left, right } = placedOutlines(CARD_SHAPES['binh-hanh'], 1, 2, 8);
     expect(right[0]).toEqual({ x: 14, y: 2 });
     expect(polygonArea(right)).toBeCloseTo(polygonArea(left), 9);
+  });
+
+  it('tells overlapping shapes from shapes that only touch', () => {
+    const square = (/** @type {number} */ x, /** @type {number} */ y) =>
+      placedOutlines(CARD_SHAPES.vuong, x, y, 8).left;
+    expect(convexOverlap(square(0, 0), square(1, 1))).toBe(true);
+    expect(convexOverlap(square(0, 0), square(2, 0))).toBe(false);
+    expect(convexOverlap(square(0, 0), square(2, 2))).toBe(false);
+    // a rhombus beside a square, their boxes overlap but the shapes do not
+    const rhombus = placedOutlines(CARD_SHAPES.thoi, 1.5, 0, 8).left;
+    expect(convexOverlap(rhombus, square(0, 3))).toBe(false);
+    expect(convexOverlap(rhombus, square(1, 1))).toBe(true);
   });
 });

@@ -163,15 +163,29 @@
   </fieldset>
   <fieldset class="grid gap-3 sm:grid-cols-3">
     <legend class="mb-1 text-sm font-semibold text-slate-700">Cửa ra vào</legend>
-    <SliderField label="Số cửa" bind:value={doors} min={1} max={2} />
-    <SliderField label="Rộng" bind:value={doorW} min={0.8} max={2} step={0.1} unit="m" />
-    <SliderField label="Cao" bind:value={doorH} min={2} max={2.6} step={0.1} unit="m" />
+    <SliderField label="Số cửa ra vào" bind:value={doors} min={1} max={2} />
+    <SliderField
+      label="Rộng mỗi cửa ra vào"
+      bind:value={doorW}
+      min={0.8}
+      max={2}
+      step={0.1}
+      unit="m"
+    />
+    <SliderField
+      label="Cao mỗi cửa ra vào"
+      bind:value={doorH}
+      min={2}
+      max={2.6}
+      step={0.1}
+      unit="m"
+    />
   </fieldset>
   <fieldset class="grid gap-3 sm:grid-cols-3">
     <legend class="mb-1 text-sm font-semibold text-slate-700">Cửa sổ</legend>
     <SliderField label="Số cửa sổ" bind:value={windows} min={0} max={8} />
-    <SliderField label="Rộng" bind:value={winW} min={0.6} max={2} step={0.1} unit="m" />
-    <SliderField label="Cao" bind:value={winH} min={0.6} max={2} step={0.1} unit="m" />
+    <SliderField label="Rộng mỗi cửa sổ" bind:value={winW} min={0.6} max={2} step={0.1} unit="m" />
+    <SliderField label="Cao mỗi cửa sổ" bind:value={winH} min={0.6} max={2} step={0.1} unit="m" />
   </fieldset>
 
   <div class="space-y-2 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800">
@@ -189,7 +203,7 @@
       aria-label="Chỉ số ánh sáng A"
       aria-valuemin="0"
       aria-valuemax={meterMax}
-      aria-valuenow={Math.round(report.index * 100) / 100}
+      aria-valuenow={Math.min(Math.round(report.index * 100) / 100, meterMax)}
       aria-valuetext="A xấp xỉ {m(report.index)}"
     >
       <div

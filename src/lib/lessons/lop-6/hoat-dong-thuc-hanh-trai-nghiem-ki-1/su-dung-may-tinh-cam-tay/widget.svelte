@@ -39,7 +39,9 @@
 
   /** @param {string} id */
   function tap(id) {
-    if (guided && !finished) {
+    // Once a guided task is done, the keypad works freely until "Làm lại".
+    const following = guided && !finished;
+    if (following) {
       if (id !== nextKey) {
         feedback = `Chưa đúng phím. Phím cần bấm tiếp theo là ${keyName(task.keys[progress], progress)}.`;
         return;
@@ -47,7 +49,7 @@
       progress += 1;
     }
     calc = press(calc, id);
-    feedback = guided
+    feedback = following
       ? progress >= task.keys.length
         ? `Màn hình hiện ${calc.screen}. ${task.explain}`
         : `Đúng. Phím tiếp theo: ${keyName(task.keys[progress], progress)}.`
@@ -158,8 +160,10 @@
     aria-live="polite"
   >
     {feedback ||
-      (guided
-        ? `Bấm lần lượt các phím trong dãy trên. Phím sáng viền xanh là phím cần bấm: ${keyName(task.keys[0], 0)}.`
-        : 'Bấm phím để nhập biểu thức rồi bấm =. SHIFT và ALPHA mở chức năng in phía trên phím.')}
+      (finished
+        ? 'Đã làm xong phép tính này; máy vẫn bấm tự do được. Bấm "Làm lại" để làm lại từ đầu hoặc chọn phép tính khác.'
+        : guided
+          ? `Bấm lần lượt các phím trong dãy trên. Phím sáng viền xanh là phím cần bấm: ${keyName(task.keys[0], 0)}.`
+          : 'Bấm phím để nhập biểu thức rồi bấm =. SHIFT và ALPHA mở chức năng in phía trên phím.')}
   </p>
 </div>

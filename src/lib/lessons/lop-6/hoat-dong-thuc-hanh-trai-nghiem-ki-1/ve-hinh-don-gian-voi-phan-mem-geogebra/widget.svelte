@@ -253,7 +253,10 @@
       {:else}
         <p class="text-slate-600">Dựng xong hình để đo độ dài các cạnh và số đo các góc.</p>
       {/if}
-      <p class="mt-2 text-xs text-slate-500">Mỗi ô lưới dài 1 đơn vị.</p>
+      <p class="mt-2 text-xs text-slate-500">
+        Mỗi ô lưới dài 1 đơn vị. Đoạn AB dài từ 1 đến 2,5 đơn vị để cả hình nằm gọn trong vùng làm
+        việc.
+      </p>
     </div>
   </div>
 

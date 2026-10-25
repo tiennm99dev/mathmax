@@ -3,7 +3,7 @@
   import { formatNumber } from '#lib/core/number-format.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { CARD_SHAPES, placeInHalf, placedOutlines } from './engine.js';
+  import { CARD_SHAPES, convexOverlap, placeInHalf, placedOutlines } from './engine.js';
 
   /** Card size in cm; the fold line is the vertical line through the middle. */
   const CARD_W = 16;
@@ -99,13 +99,21 @@
   }
 
   const half = $derived(placed.reduce((s, p) => s + CARD_SHAPES[p.kind].area, 0));
+  /** Whether two shapes of the left half lie on top of each other. */
+  const overlapping = $derived.by(() => {
+    const outlines = placed.map((p) => placedOutlines(CARD_SHAPES[p.kind], p.x, p.y, AXIS).left);
+    return outlines.some((o, i) => outlines.slice(i + 1).some((q) => convexOverlap(o, q)));
+  });
   const total = $derived(mirror ? 2 * half : half);
   const cardArea = CARD_W * CARD_H;
   const summary = $derived(
     `Nửa trái có ${placed.length} hình, diện tích ${formatNumber(half)} cm². ` +
       (mirror
         ? `Cả hai nửa đối xứng nhau qua nếp gấp nên phần trang trí rộng 2 · ${formatNumber(half)} = ${formatNumber(total)} cm², bằng ${formatNumber((total / cardArea) * 100, 1)}% diện tích mặt thiệp ${cardArea} cm².`
-        : `Bật "Vẽ đối xứng" để nửa phải lặp lại nửa trái qua nếp gấp.`),
+        : `Bật "Vẽ đối xứng" để nửa phải lặp lại nửa trái qua nếp gấp.`) +
+      (overlapping
+        ? ' Lưu ý: có hình đang chồng lên hình khác, nên tổng trên lớn hơn phần mặt thiệp thật sự được phủ. Kéo các hình tách rời nhau để con số đúng.'
+        : ''),
   );
 </script>
 

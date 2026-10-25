@@ -54,6 +54,13 @@ describe('evaluate', () => {
     expect(run(keys('7 div 4 eq')).screen).toBe('1,75');
     expect(formatResult(-2.5)).toBe('−2,5');
   });
+
+  it('switches to powers of ten for very large or very small results', () => {
+    expect(run(keys('2 pow 4 0 eq')).screen).toBe('1,099511628 × 10^12');
+    expect(formatResult(2 ** 100)).toBe('1,2676506 × 10^30');
+    expect(formatResult(1e-12)).toBe('1 × 10^-12');
+    expect(formatResult(9999999999)).toBe('9999999999');
+  });
 });
 
 describe('number theory keys', () => {
@@ -76,6 +83,12 @@ describe('number theory keys', () => {
   it('asks for = before FACT', () => {
     const s = run(keys('8 4 7 shift fact'));
     expect(s.screen).toBe('');
+    expect(s.note).toMatch(/=/);
+  });
+
+  it('does not factorise an earlier answer after an error', () => {
+    const s = run(keys('8 4 7 eq 5 div 0 eq shift fact'));
+    expect(s.screen).toBe('Math ERROR');
     expect(s.note).toMatch(/=/);
   });
 });
