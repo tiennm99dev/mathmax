@@ -161,7 +161,7 @@
       <text
         x={l.outer.x}
         y={l.outer.y + 4}
-        font-size="11"
+        font-size="12"
         text-anchor="middle"
         fill={side === 'trai' ? '#B91C1C' : '#64748B'}
         font-weight={side === 'trai' ? 700 : 400}>{180 - l.d}</text
@@ -169,7 +169,7 @@
       <text
         x={l.inner.x}
         y={l.inner.y + 4}
-        font-size="10"
+        font-size="11"
         text-anchor="middle"
         fill={side === 'phai' ? '#B91C1C' : '#64748B'}
         font-weight={side === 'phai' ? 700 : 400}>{l.d}</text
