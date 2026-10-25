@@ -16,6 +16,92 @@ import { clientToSvg, clampToViewBox } from '#lib/utils/svg.js';
  * }} DraggableParams
  */
 
+/** Smallest touch target, in CSS pixels, that every drag handle answers to. */
+export const MIN_HIT = 44;
+
+/**
+ * Whether a pointer at client (`x`, `y`) lands in a handle's invisible hit
+ * area: the handle's on-screen box grown, around its centre, to at least `min`
+ * CSS pixels each way. Returns the distance to the centre (for picking the
+ * nearest of overlapping handles), or -1 for a miss.
+ * @param {{ left: number, top: number, width: number, height: number }} box
+ * @param {number} x
+ * @param {number} y
+ * @param {number} [min]
+ */
+export function hitDistance(box, x, y, min = MIN_HIT) {
+  const cx = box.left + box.width / 2;
+  const cy = box.top + box.height / 2;
+  const dx = Math.abs(x - cx);
+  const dy = Math.abs(y - cy);
+  if (dx > Math.max(box.width, min) / 2 || dy > Math.max(box.height, min) / 2) return -1;
+  return Math.hypot(dx, dy);
+}
+
+/** @type {WeakMap<SVGSVGElement, SVGGraphicsElement[]>} */
+const handlesBySvg = new WeakMap();
+
+/**
+ * One listener per SVG: a press that misses every control but lands within a
+ * handle's MIN_HIT box is replayed on the nearest such handle, so handles
+ * drawn small (a 24 px dot on a 390 px phone) are still 44 px touch targets.
+ * @param {PointerEvent} e
+ */
+function onSvgPointerDown(e) {
+  const svg = /** @type {SVGSVGElement} */ (e.currentTarget);
+  const target = /** @type {Element} */ (e.target);
+  const control = target.closest('[tabindex], a, button');
+  if (control && control !== svg && svg.contains(control)) return;
+  let best = null;
+  let bestDistance = Infinity;
+  for (const handle of handlesBySvg.get(svg) ?? []) {
+    const d = hitDistance(handle.getBoundingClientRect(), e.clientX, e.clientY);
+    if (d >= 0 && d < bestDistance) {
+      best = handle;
+      bestDistance = d;
+    }
+  }
+  if (!best) return;
+  e.preventDefault();
+  best.dispatchEvent(
+    new PointerEvent('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+      pointerId: e.pointerId,
+      pointerType: e.pointerType,
+      isPrimary: e.isPrimary,
+      clientX: e.clientX,
+      clientY: e.clientY,
+      button: e.button,
+      buttons: e.buttons,
+    }),
+  );
+}
+
+/**
+ * @param {SVGGraphicsElement} node
+ * @returns {() => void} unregisters the handle
+ */
+function registerHitArea(node) {
+  const svg = node.ownerSVGElement;
+  if (!svg) return () => {};
+  let handles = handlesBySvg.get(svg);
+  if (!handles) {
+    handles = [];
+    handlesBySvg.set(svg, handles);
+    svg.addEventListener('pointerdown', onSvgPointerDown);
+  }
+  handles.push(node);
+  return () => {
+    const at = handles.indexOf(node);
+    if (at !== -1) handles.splice(at, 1);
+    if (handles.length === 0) {
+      svg.removeEventListener('pointerdown', onSvgPointerDown);
+      handlesBySvg.delete(svg);
+    }
+  };
+}
+
 /**
  * Svelte action: makes the host element draggable inside an SVG viewBox.
  * Mutates `params.point.x/y` so reactivity propagates through `$state`.
@@ -25,6 +111,10 @@ import { clientToSvg, clampToViewBox } from '#lib/utils/svg.js';
  * - `onKeyMove` replaces the default arrow-key nudge. It receives the arrow's
  *   direction and whether Shift was held, for controls whose value moves in
  *   steps rather than pixels (an angle, a snapped count).
+ *
+ * Every handle also gets an invisible hit area of at least MIN_HIT (44) CSS
+ * pixels around its on-screen box, whatever the SVG's scale, so a small knob
+ * needs no extra transparent shape to be a comfortable touch target.
  *
  * @param {SVGGraphicsElement} node
  * @param {DraggableParams} params
@@ -101,6 +191,7 @@ export function draggable(node, params) {
   node.addEventListener('pointerup', onPointerEnd);
   node.addEventListener('pointercancel', onPointerEnd);
   node.addEventListener('keydown', onKeyDown);
+  const unregister = registerHitArea(node);
 
   return {
     /** @param {DraggableParams} next */
@@ -113,6 +204,7 @@ export function draggable(node, params) {
       node.removeEventListener('pointerup', onPointerEnd);
       node.removeEventListener('pointercancel', onPointerEnd);
       node.removeEventListener('keydown', onKeyDown);
+      unregister();
     },
   };
 }

@@ -17,14 +17,25 @@
     font-family: 'Be Vietnam Pro', system-ui, sans-serif;
   }
 
-  /* Visible focus ring for keyboard users on draggable SVG vertices. */
-  svg [role='slider']:focus-visible {
+  /* Focus rings for keyboard users on SVG controls. The ring goes on the
+     visible handle shape only: a handle that is itself a shape takes it, and a
+     <g> handle passes it to its `.drag-knob` child, or without one to its
+     painted shapes. Stroking the <g> would leak into hit-area rects and text. */
+  svg [role='slider']:not(g):focus-visible,
+  svg g[role='slider']:focus-visible > .drag-knob,
+  svg
+    g[role='slider']:focus-visible:not(:has(> .drag-knob))
+    > :is(circle, ellipse, rect, path, polygon, line):not([fill='transparent'], .drag-hit) {
     stroke: #4f46e5;
     stroke-width: 3;
   }
 
   /* Drag handles are filled with their own colour, so the ring is dark. */
-  svg .drag-handle:focus-visible {
+  svg .drag-handle:not(g):focus-visible,
+  svg g.drag-handle:focus-visible > .drag-knob,
+  svg
+    g.drag-handle:focus-visible:not(:has(> .drag-knob))
+    > :is(circle, ellipse, rect, path, polygon, line):not([fill='transparent'], .drag-hit) {
     stroke: #0f172a;
     stroke-width: 4;
   }

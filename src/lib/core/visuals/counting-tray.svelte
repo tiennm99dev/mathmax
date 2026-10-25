@@ -211,6 +211,7 @@
           onkeydown={(e) => onKey(e, it)}
         >
           <rect
+            class="drag-knob"
             x={it.x - 4}
             y={it.y - 4}
             width={PIC + 8}

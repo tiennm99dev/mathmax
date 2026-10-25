@@ -187,8 +187,16 @@
         use:draggable={drag}
       >
         <!-- A wide invisible hit area keeps the marker easy to grab on touch. -->
-        <rect x={mx - 18} y={baseY - 26} width="36" height="40" fill="transparent" />
+        <rect
+          class="drag-hit"
+          x={mx - 18}
+          y={baseY - 26}
+          width="36"
+          height="40"
+          fill="transparent"
+        />
         <path
+          class="drag-knob"
           d="M {mx} {baseY - 2} l -10 -16 h 20 z"
           fill="#D7263D"
           stroke="#fff"

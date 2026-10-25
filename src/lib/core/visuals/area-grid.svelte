@@ -147,8 +147,16 @@
         style="cursor:nwse-resize; outline:none"
         use:draggable={drag}
       >
-        <circle cx={corner.x} cy={corner.y} r="20" fill="transparent" />
-        <circle cx={corner.x} cy={corner.y} r="11" fill={color} stroke="#fff" stroke-width="2" />
+        <circle class="drag-hit" cx={corner.x} cy={corner.y} r="20" fill="transparent" />
+        <circle
+          class="drag-knob"
+          cx={corner.x}
+          cy={corner.y}
+          r="11"
+          fill={color}
+          stroke="#fff"
+          stroke-width="2"
+        />
       </g>
     {/if}
   </svg>

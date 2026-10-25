@@ -105,6 +105,7 @@
       use:draggable={dragA}
     >
       <rect
+        class="drag-hit"
         x={x.map(a) - 16}
         y={BASE - 46}
         width="32"
@@ -113,6 +114,7 @@
         stroke="none"
       />
       <path
+        class="drag-knob"
         d="M {x.map(a)} {BASE - 3} l -10 -16 h 20 z"
         fill="#D7263D"
         stroke="#fff"
@@ -141,8 +143,17 @@
       style="cursor:grab; outline:none"
       use:draggable={dragB}
     >
-      <rect x={x.map(b) - 16} y={BASE} width="32" height="34" fill="transparent" stroke="none" />
+      <rect
+        class="drag-hit"
+        x={x.map(b) - 16}
+        y={BASE}
+        width="32"
+        height="34"
+        fill="transparent"
+        stroke="none"
+      />
       <path
+        class="drag-knob"
         d="M {x.map(b)} {BASE + 3} l -10 16 h 20 z"
         fill="#1B6CA8"
         stroke="#fff"

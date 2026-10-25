@@ -188,8 +188,16 @@
             style="cursor:ns-resize; outline:none"
             use:draggable={dragFor(si, i)}
           >
-            <circle cx={px(i)} cy={y.map(v)} r="16" fill="transparent" />
-            <circle cx={px(i)} cy={y.map(v)} r="7" fill={color} stroke="#fff" stroke-width="2" />
+            <circle class="drag-hit" cx={px(i)} cy={y.map(v)} r="16" fill="transparent" />
+            <circle
+              class="drag-knob"
+              cx={px(i)}
+              cy={y.map(v)}
+              r="7"
+              fill={color}
+              stroke="#fff"
+              stroke-width="2"
+            />
           </g>
         {:else}
           <circle cx={px(i)} cy={y.map(v)} r="4.5" fill={color} />

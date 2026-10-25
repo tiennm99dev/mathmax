@@ -233,6 +233,7 @@
           }}
         >
           <rect
+            class="drag-knob"
             x={k * boxW + 3}
             y="38"
             width={boxW - 6}

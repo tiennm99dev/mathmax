@@ -125,8 +125,23 @@
         style="cursor:ew-resize; outline:none"
         use:draggable={dragFor(i)}
       >
-        <rect x={hx - 12} y={y - 6} width="24" height={ROW + 12} fill="transparent" />
-        <rect x={hx - 3} y={y - 6} width="6" height={ROW + 12} rx="3" fill="#0f172a" />
+        <rect
+          class="drag-hit"
+          x={hx - 12}
+          y={y - 6}
+          width="24"
+          height={ROW + 12}
+          fill="transparent"
+        />
+        <rect
+          class="drag-knob"
+          x={hx - 3}
+          y={y - 6}
+          width="6"
+          height={ROW + 12}
+          rx="3"
+          fill="#0f172a"
+        />
       </g>
     {/if}
   {/each}

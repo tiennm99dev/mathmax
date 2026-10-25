@@ -149,8 +149,16 @@
           style="cursor:grab; outline:none"
           use:draggable={dragFor(i)}
         >
-          <circle cx={h.x} cy={h.y} r="18" fill="transparent" />
-          <circle cx={h.x} cy={h.y} r="9" fill="#0f172a" stroke="#fff" stroke-width="2" />
+          <circle class="drag-hit" cx={h.x} cy={h.y} r="18" fill="transparent" />
+          <circle
+            class="drag-knob"
+            cx={h.x}
+            cy={h.y}
+            r="9"
+            fill="#0f172a"
+            stroke="#fff"
+            stroke-width="2"
+          />
         </g>
       {/each}
     {/if}
