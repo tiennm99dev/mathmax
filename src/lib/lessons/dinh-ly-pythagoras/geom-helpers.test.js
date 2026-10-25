@@ -85,21 +85,21 @@ describe('morphSquareA / morphSquareB — area is preserved', () => {
 
   it('starts on the leg squares and ends on the hypotenuse rectangles', () => {
     for (const R of CORNERS) {
-      const { A, H, a, b, c, F } = figure(R);
+      const { A, H, a, b, F } = figure(R);
 
       expect(sameVertices(morphSquareA(A, R, H, a, b, 0), squareA(A, R))).toBe(true);
       expect(sameVertices(morphSquareB(R, H, a, b, 0), squareB(R, H))).toBe(true);
 
-      expect(sameVertices(morphSquareA(A, R, H, a, b, 1), shearATarget(A, F, a, b, c))).toBe(true);
-      expect(sameVertices(morphSquareB(R, H, a, b, 1), shearBTarget(F, H, a, b, c))).toBe(true);
+      expect(sameVertices(morphSquareA(A, R, H, a, b, 1), shearATarget(A, F, a, b))).toBe(true);
+      expect(sameVertices(morphSquareB(R, H, a, b, 1), shearBTarget(F, H, a, b))).toBe(true);
     }
   });
 
   it('the two rectangles together fill the square on the hypotenuse', () => {
     for (const R of CORNERS) {
-      const { A, H, a, b, c, F } = figure(R);
-      const total = area(shearATarget(A, F, a, b, c)) + area(shearBTarget(F, H, a, b, c));
-      expect(total).toBeCloseTo(area(squareC(A, H, a, b, c)), 6);
+      const { A, H, a, b, F } = figure(R);
+      const total = area(shearATarget(A, F, a, b)) + area(shearBTarget(F, H, a, b));
+      expect(total).toBeCloseTo(area(squareC(A, H, a, b)), 6);
       expect(total).toBeCloseTo(a * a + b * b, 6);
     }
   });
@@ -108,13 +108,13 @@ describe('morphSquareA / morphSquareB — area is preserved', () => {
 describe('layout stays on canvas', () => {
   it('every polygon fits the viewBox for any reachable R, throughout the morph', () => {
     for (const R of CORNERS) {
-      const { A, H, a, b, c, F } = figure(R);
+      const { A, H, a, b, F } = figure(R);
       const polys = [
         squareA(A, R),
         squareB(R, H),
-        squareC(A, H, a, b, c),
-        shearATarget(A, F, a, b, c),
-        shearBTarget(F, H, a, b, c),
+        squareC(A, H, a, b),
+        shearATarget(A, F, a, b),
+        shearBTarget(F, H, a, b),
       ];
       for (let t = 0; t <= 1.00001; t += 0.05) {
         polys.push(morphSquareA(A, R, H, a, b, t), morphSquareB(R, H, a, b, t));

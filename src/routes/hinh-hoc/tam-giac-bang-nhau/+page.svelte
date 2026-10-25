@@ -55,7 +55,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('hinh-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('hinh-hoc/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -67,7 +69,9 @@
     <section class="mb-6">
       <div class="flex items-center justify-end mb-2 min-h-[28px]">
         {#if isCongruent}
-          <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold border border-emerald-200">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold border border-emerald-200"
+          >
             ✓ {m.congruentBadge}
           </span>
         {/if}
@@ -88,13 +92,37 @@
         <line x1={c.x} y1={c.y} x2={a.x} y2={a.y} stroke="#444" stroke-width="2" />
 
         {#each ticksAB as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR1} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR1}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
         {#each ticksBC as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR2} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR2}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
         {#each ticksCA as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR3} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR3}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
 
         <!-- Triangle 2 -->
@@ -103,28 +131,124 @@
         <line x1={cp.x} y1={cp.y} x2={ap.x} y2={ap.y} stroke="#444" stroke-width="2" />
 
         {#each ticksApBp as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR1} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR1}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
         {#each ticksBpCp as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR2} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR2}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
         {#each ticksCpAp as t (t.x1 + ',' + t.y1)}
-          <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} stroke={PAIR3} stroke-width="2.5" stroke-linecap="round" />
+          <line
+            x1={t.x1}
+            y1={t.y1}
+            x2={t.x2}
+            y2={t.y2}
+            stroke={PAIR3}
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         {/each}
 
         <!-- Vertices -->
-        <circle cx={a.x} cy={a.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh A — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(a)} />
+        <circle
+          cx={a.x}
+          cy={a.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh A — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(a)}
+        />
         <text x={a.x - 16} y={a.y - 14} font-size="14" font-weight="700" fill="#1F2937">A</text>
-        <circle cx={b.x} cy={b.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh B — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(b)} />
+        <circle
+          cx={b.x}
+          cy={b.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh B — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(b)}
+        />
         <text x={b.x + 12} y={b.y - 14} font-size="14" font-weight="700" fill="#1F2937">B</text>
-        <circle cx={c.x} cy={c.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh C — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(c)} />
+        <circle
+          cx={c.x}
+          cy={c.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh C — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(c)}
+        />
         <text x={c.x - 4} y={c.y + 24} font-size="14" font-weight="700" fill="#1F2937">C</text>
 
-        <circle cx={ap.x} cy={ap.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh A' — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(ap)} />
+        <circle
+          cx={ap.x}
+          cy={ap.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh A' — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(ap)}
+        />
         <text x={ap.x - 16} y={ap.y - 14} font-size="14" font-weight="700" fill="#1F2937">A′</text>
-        <circle cx={bp.x} cy={bp.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh B' — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(bp)} />
+        <circle
+          cx={bp.x}
+          cy={bp.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh B' — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(bp)}
+        />
         <text x={bp.x + 12} y={bp.y - 14} font-size="14" font-weight="700" fill="#1F2937">B′</text>
-        <circle cx={cp.x} cy={cp.y} r="12" fill="#4F46E5" stroke="#fff" stroke-width="2" role="button" tabindex="0" aria-label="Đỉnh C' — kéo hoặc dùng phím mũi tên" style="cursor:grab; outline:none" use:draggable={dragOpts(cp)} />
+        <circle
+          cx={cp.x}
+          cy={cp.y}
+          r="12"
+          fill="#4F46E5"
+          stroke="#fff"
+          stroke-width="2"
+          role="button"
+          tabindex="0"
+          aria-label="Đỉnh C' — kéo hoặc dùng phím mũi tên"
+          style="cursor:grab; outline:none"
+          use:draggable={dragOpts(cp)}
+        />
         <text x={cp.x - 4} y={cp.y + 24} font-size="14" font-weight="700" fill="#1F2937">C′</text>
       </svg>
       <p class="mt-2 text-center text-sm text-slate-500">{m.instruction}</p>

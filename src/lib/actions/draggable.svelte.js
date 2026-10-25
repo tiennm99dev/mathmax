@@ -30,7 +30,10 @@ export function draggable(node, params) {
 
   const apply = (/** @type {{x:number,y:number}} */ raw) => {
     const projected = current.projector ? current.projector(raw) : raw;
-    const clamped = current.pad === 0 ? projected : clampToViewBox(projected, current.viewBox.w, current.viewBox.h, current.pad);
+    const clamped =
+      current.pad === 0
+        ? projected
+        : clampToViewBox(projected, current.viewBox.w, current.viewBox.h, current.pad);
     current.point.x = clamped.x;
     current.point.y = clamped.y;
     current.onChange?.();
@@ -60,11 +63,20 @@ export function draggable(node, params) {
     let dx = 0;
     let dy = 0;
     switch (e.key) {
-      case 'ArrowLeft': dx = -step; break;
-      case 'ArrowRight': dx = step; break;
-      case 'ArrowUp': dy = -step; break;
-      case 'ArrowDown': dy = step; break;
-      default: return;
+      case 'ArrowLeft':
+        dx = -step;
+        break;
+      case 'ArrowRight':
+        dx = step;
+        break;
+      case 'ArrowUp':
+        dy = -step;
+        break;
+      case 'ArrowDown':
+        dy = step;
+        break;
+      default:
+        return;
     }
     e.preventDefault();
     apply({ x: current.point.x + dx, y: current.point.y + dy });

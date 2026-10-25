@@ -20,10 +20,10 @@
   /** Convert SVG y → math y */
   const svgYtoMath = (/** @type {number} */ sy) => 10 - (sy - PAD) / U;
 
-  const CLAMP_Y = 10;  // math-space clamp for anchor y
+  const CLAMP_Y = 10; // math-space clamp for anchor y
   const EPSILON = 0.01;
   const ANCHOR1_X = -5; // fixed math x for anchor 1
-  const ANCHOR2_X = 5;  // fixed math x for anchor 2
+  const ANCHOR2_X = 5; // fixed math x for anchor 2
 
   // Locked defaults: a=1, b=0 (used for both init and reset)
   const INIT_A = 1;
@@ -34,8 +34,7 @@
   let b = $state(INIT_B);
 
   // Clamp a pixel y to the viewport's vertical range (math y ∈ [-CLAMP_Y, CLAMP_Y]).
-  const clampPx = (/** @type {number} */ py) =>
-    Math.max(my(CLAMP_Y), Math.min(my(-CLAMP_Y), py));
+  const clampPx = (/** @type {number} */ py) => Math.max(my(CLAMP_Y), Math.min(my(-CLAMP_Y), py));
 
   // Anchor pixel state — mutated either by Direction 1 (sliders) or by the
   // draggable action. Always clamped to viewport so anchors never leave the box.
@@ -55,7 +54,7 @@
   function handleDragChange() {
     const newLine = lineFromPoints(
       { x: ANCHOR1_X, y: svgYtoMath(p1.y) },
-      { x: ANCHOR2_X, y: svgYtoMath(p2.y) }
+      { x: ANCHOR2_X, y: svgYtoMath(p2.y) },
     );
     if (!newLine) return;
     const newA = Math.round(newLine.a * 10) / 10;
@@ -112,10 +111,15 @@
   $effect(() => {
     const msg = texMath;
     clearTimeout(announceTimer);
-    announceTimer = setTimeout(() => { ariaAnnounce = msg; }, 300);
+    announceTimer = setTimeout(() => {
+      ariaAnnounce = msg;
+    }, 300);
   });
 
-  function reset() { a = INIT_A; b = INIT_B; }
+  function reset() {
+    a = INIT_A;
+    b = INIT_B;
+  }
 
   const gridLines = Array.from({ length: 21 }, (_, i) => i - 10); // -10..10
 </script>
@@ -134,7 +138,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('dai-so/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('dai-so/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -152,7 +158,10 @@
             {m.sliderALabel}: <span class="tabular-nums text-indigo-700">{a.toFixed(1)}</span>
           </span>
           <input
-            type="range" min="-5" max="5" step="0.1"
+            type="range"
+            min="-5"
+            max="5"
+            step="0.1"
             bind:value={a}
             aria-label="{m.sliderALabel} — hiện tại {a.toFixed(1)}"
             class="mt-1 w-full accent-indigo-600"
@@ -163,7 +172,10 @@
             {m.sliderBLabel}: <span class="tabular-nums text-indigo-700">{b.toFixed(1)}</span>
           </span>
           <input
-            type="range" min="-10" max="10" step="0.1"
+            type="range"
+            min="-10"
+            max="10"
+            step="0.1"
             bind:value={b}
             aria-label="{m.sliderBLabel} — hiện tại {b.toFixed(1)}"
             class="mt-1 w-full accent-indigo-600"
@@ -179,13 +191,16 @@
         bind:svgEl
         view={VIEW}
         pad={PAD}
-        u={U}
-        {mx} {my}
+        {mx}
+        {my}
         {gridLines}
         {pts}
-        {p1} {p2}
-        {anchor1MathY} {anchor2MathY}
-        {drag1Opts} {drag2Opts}
+        {p1}
+        {p2}
+        {anchor1MathY}
+        {anchor2MathY}
+        {drag1Opts}
+        {drag2Opts}
         {showTriangle}
         anchor1X={ANCHOR1_X}
         anchor2X={ANCHOR2_X}

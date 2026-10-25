@@ -27,7 +27,11 @@ export function rotate(theta, center) {
   const s = Math.sin(theta);
   if (!center) return [c, -s, 0, s, c, 0, 0, 0, 1];
   // Apply order: translate(-c) → rotate-origin → translate(+c).
-  return compose(translate(-center.x, -center.y), [c, -s, 0, s, c, 0, 0, 0, 1], translate(center.x, center.y));
+  return compose(
+    translate(-center.x, -center.y),
+    [c, -s, 0, s, c, 0, 0, 0, 1],
+    translate(center.x, center.y),
+  );
 }
 
 /**

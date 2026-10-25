@@ -15,12 +15,15 @@
       displayMode: display,
       throwOnError: false,
       output: 'htmlAndMathml',
-    })
+    }),
   );
 </script>
 
+<!-- KaTeX escapes its input and runs with `trust: false`, so its markup is safe to inject. -->
 {#if ariaLabel}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   <span aria-label={ariaLabel}>{@html html}</span>
 {:else}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html html}
 {/if}

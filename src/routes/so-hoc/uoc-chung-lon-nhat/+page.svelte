@@ -23,22 +23,27 @@
 
   // Reset trace whenever inputs change.
   $effect(() => {
-    aSafe; bSafe;
+    aSafe;
+    bSafe;
     stepIdx = 0;
   });
 
   const lcmTex = $derived(
     lcmValue !== null && result !== null
       ? `\\text{BCNN}(${aSafe}, ${bSafe}) = \\frac{${aSafe} \\cdot ${bSafe}}{${result}} = ${lcmValue}`
-      : ''
+      : '',
   );
-  const gcdTex = $derived(
-    result !== null ? `\\text{ƯCLN}(${aSafe}, ${bSafe}) = ${result}` : ''
-  );
+  const gcdTex = $derived(result !== null ? `\\text{ƯCLN}(${aSafe}, ${bSafe}) = ${result}` : '');
 
-  function stepOnce() { if (stepIdx < steps.length) stepIdx += 1; }
-  function autoFinish() { stepIdx = steps.length; }
-  function reset() { stepIdx = 0; }
+  function stepOnce() {
+    if (stepIdx < steps.length) stepIdx += 1;
+  }
+  function autoFinish() {
+    stepIdx = steps.length;
+  }
+  function reset() {
+    stepIdx = 0;
+  }
 </script>
 
 <svelte:head>
@@ -55,7 +60,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('so-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('so-hoc/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -70,7 +77,10 @@
         <label class="block">
           <span class="text-sm font-semibold text-slate-700">{m.inputALabel}</span>
           <input
-            type="number" min="1" max="999" step="1"
+            type="number"
+            min="1"
+            max="999"
+            step="1"
             bind:value={a}
             class="mt-1 w-full border border-slate-300 rounded-md px-3 py-2 text-lg tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
@@ -78,7 +88,10 @@
         <label class="block">
           <span class="text-sm font-semibold text-slate-700">{m.inputBLabel}</span>
           <input
-            type="number" min="1" max="999" step="1"
+            type="number"
+            min="1"
+            max="999"
+            step="1"
             bind:value={b}
             class="mt-1 w-full border border-slate-300 rounded-md px-3 py-2 text-lg tabular-nums focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
@@ -90,18 +103,21 @@
           onclick={stepOnce}
           disabled={finished}
           class="px-4 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-slate-300 disabled:cursor-not-allowed"
-        >{m.stepBtn}</button>
+          >{m.stepBtn}</button
+        >
         <button
           type="button"
           onclick={autoFinish}
           disabled={finished}
           class="px-4 py-2 rounded-md bg-white border border-indigo-600 text-indigo-700 font-semibold hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >{m.autoBtn}</button>
+          >{m.autoBtn}</button
+        >
         <button
           type="button"
           onclick={reset}
           class="px-4 py-2 rounded-md bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400"
-        >{m.resetBtn}</button>
+          >{m.resetBtn}</button
+        >
       </div>
     </section>
 
@@ -113,7 +129,8 @@
             <tr class="border-b-2 border-slate-300 text-slate-600">
               <th class="text-left py-2 px-3 font-semibold">#</th>
               <th class="text-right py-2 px-3 font-semibold">{m.tableHeaderA}</th>
-              <th class="text-right py-2 px-3 font-semibold">{m.tableHeaderQ} · {m.tableHeaderB}</th>
+              <th class="text-right py-2 px-3 font-semibold">{m.tableHeaderQ} · {m.tableHeaderB}</th
+              >
               <th class="text-right py-2 px-3 font-semibold">+ {m.tableHeaderR}</th>
             </tr>
           </thead>
@@ -127,7 +144,11 @@
               </tr>
             {/each}
             {#if visibleSteps.length === 0}
-              <tr><td colspan="4" class="py-4 px-3 text-center text-slate-400 italic">Nhấn "{m.stepBtn}" để bắt đầu</td></tr>
+              <tr
+                ><td colspan="4" class="py-4 px-3 text-center text-slate-400 italic"
+                  >Nhấn "{m.stepBtn}" để bắt đầu</td
+                ></tr
+              >
             {/if}
           </tbody>
         </table>
@@ -135,9 +156,13 @@
     </section>
 
     {#if result !== null}
-      <section class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-5" aria-live="polite">
+      <section
+        class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-5"
+        aria-live="polite"
+      >
         <div class="text-emerald-800 font-semibold text-lg mb-2">
-          ✓ {m.resultLabel}(<span class="tabular-nums">{aSafe}</span>, <span class="tabular-nums">{bSafe}</span>) = <span class="tabular-nums">{result}</span>
+          ✓ {m.resultLabel}(<span class="tabular-nums">{aSafe}</span>,
+          <span class="tabular-nums">{bSafe}</span>) = <span class="tabular-nums">{result}</span>
         </div>
         <div class="text-slate-800 mb-3">
           <Tex display math={gcdTex} />

@@ -86,7 +86,7 @@ export function clipToBox(line, xMin, xMax, yMin, yMax) {
     if (p.x < xMin - EPSILON_BOX || p.x > xMax + EPSILON_BOX) return;
     if (p.y < yMin - EPSILON_BOX || p.y > yMax + EPSILON_BOX) return;
     const dup = hits.some(
-      (q) => Math.abs(q.x - p.x) < EPSILON_BOX && Math.abs(q.y - p.y) < EPSILON_BOX
+      (q) => Math.abs(q.x - p.x) < EPSILON_BOX && Math.abs(q.y - p.y) < EPSILON_BOX,
     );
     if (!dup) hits.push(p);
   };

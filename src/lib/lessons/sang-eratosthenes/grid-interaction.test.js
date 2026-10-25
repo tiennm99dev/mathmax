@@ -2,8 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { createGridState } from './grid-interaction.svelte.js';
 
 /** Minimal announcement builder; the tests only care that it was called. */
-const build = (/** @type {number} */ p, /** @type {number[]} */ mults) =>
-  `${p}: ${mults.length}`;
+const build = (/** @type {number} */ p, /** @type {number[]} */ mults) => `${p}: ${mults.length}`;
 
 describe('createGridState — marking primes', () => {
   it('a prime with no multiple left on the grid does not lock it', () => {

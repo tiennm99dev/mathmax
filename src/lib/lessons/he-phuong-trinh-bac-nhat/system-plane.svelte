@@ -62,7 +62,7 @@
   aria-label={plotLabel}
 >
   <!-- Grid lines -->
-  {#each gridLines as v}
+  {#each gridLines as v (v)}
     <line x1={mx(v)} y1={pad} x2={mx(v)} y2={view - pad} stroke="#e2e8f0" stroke-width="0.5" />
     <line x1={pad} y1={my(v)} x2={view - pad} y2={my(v)} stroke="#e2e8f0" stroke-width="0.5" />
   {/each}
@@ -72,7 +72,7 @@
   <line x1={pad} y1={my(0)} x2={view - pad} y2={my(0)} stroke="#334155" stroke-width="1.5" />
 
   <!-- Integer axis labels every 2 units -->
-  {#each gridLines as v}
+  {#each gridLines as v (v)}
     {#if v !== 0 && v % 2 === 0}
       <text x={mx(v)} y={my(0) + 14} text-anchor="middle" font-size="9" fill="#64748b">{v}</text>
       <text x={mx(0) - 5} y={my(v) + 3} text-anchor="end" font-size="9" fill="#64748b">{v}</text>
@@ -84,56 +84,102 @@
        overlap stays visible under the dashed line (2). -->
   {#if seg1}
     <line
-      x1={mx(seg1[0].x)} y1={my(seg1[0].y)}
-      x2={mx(seg1[1].x)} y2={my(seg1[1].y)}
-      stroke={LINE_1} stroke-width={coincident ? 6 : 2.5} stroke-linecap="round"
+      x1={mx(seg1[0].x)}
+      y1={my(seg1[0].y)}
+      x2={mx(seg1[1].x)}
+      y2={my(seg1[1].y)}
+      stroke={LINE_1}
+      stroke-width={coincident ? 6 : 2.5}
+      stroke-linecap="round"
     />
   {/if}
 
   <!-- Line (2): dashed, so the two lines differ by more than color alone. -->
   {#if seg2}
     <line
-      x1={mx(seg2[0].x)} y1={my(seg2[0].y)}
-      x2={mx(seg2[1].x)} y2={my(seg2[1].y)}
-      stroke={LINE_2} stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 5"
+      x1={mx(seg2[0].x)}
+      y1={my(seg2[0].y)}
+      x2={mx(seg2[1].x)}
+      y2={my(seg2[1].y)}
+      stroke={LINE_2}
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-dasharray="8 5"
     />
   {/if}
 
   <!-- Intersection point: the solution of the system -->
   {#if solutionPoint}
-    <circle cx={mx(solutionPoint.x)} cy={my(solutionPoint.y)} r="6" fill={SOLUTION} stroke="#fff" stroke-width="2" />
+    <circle
+      cx={mx(solutionPoint.x)}
+      cy={my(solutionPoint.y)}
+      r="6"
+      fill={SOLUTION}
+      stroke="#fff"
+      stroke-width="2"
+    />
     <text
       x={mx(solutionPoint.x) + 10}
       y={my(solutionPoint.y) - 8}
-      font-size="11" font-weight="600" fill={SOLUTION}
-    >{solutionMarkerLabel}</text>
+      font-size="11"
+      font-weight="600"
+      fill={SOLUTION}>{solutionMarkerLabel}</text
+    >
   {/if}
 
   <!-- Drag handle for line (1): square marker -->
   {#if seg1}
     <rect
-      x={handle1.x - 9} y={handle1.y - 9} width="18" height="18" rx="3"
-      fill={LINE_1} stroke="#fff" stroke-width="2"
+      x={handle1.x - 9}
+      y={handle1.y - 9}
+      width="18"
+      height="18"
+      rx="3"
+      fill={LINE_1}
+      stroke="#fff"
+      stroke-width="2"
       role="button"
       tabindex="0"
       aria-label={handle1Label}
       style="cursor:grab; outline:none"
       use:draggable={drag1Opts}
     />
-    <text x={handle1.x} y={handle1.y + 4} text-anchor="middle" font-size="11" font-weight="700" fill="#fff" style="pointer-events:none">1</text>
+    <text
+      x={handle1.x}
+      y={handle1.y + 4}
+      text-anchor="middle"
+      font-size="11"
+      font-weight="700"
+      fill="#fff"
+      style="pointer-events:none">1</text
+    >
   {/if}
 
   <!-- Drag handle for line (2): square marker -->
   {#if seg2}
     <rect
-      x={handle2.x - 9} y={handle2.y - 9} width="18" height="18" rx="3"
-      fill={LINE_2} stroke="#fff" stroke-width="2"
+      x={handle2.x - 9}
+      y={handle2.y - 9}
+      width="18"
+      height="18"
+      rx="3"
+      fill={LINE_2}
+      stroke="#fff"
+      stroke-width="2"
       role="button"
       tabindex="0"
       aria-label={handle2Label}
       style="cursor:grab; outline:none"
       use:draggable={drag2Opts}
     />
-    <text x={handle2.x} y={handle2.y + 4} text-anchor="middle" font-size="11" font-weight="700" fill="#fff" style="pointer-events:none">2</text>
+    <text
+      x={handle2.x}
+      y={handle2.y + 4}
+      text-anchor="middle"
+      font-size="11"
+      font-weight="700"
+      fill="#fff"
+      style="pointer-events:none">2</text
+    >
   {/if}
 </svg>

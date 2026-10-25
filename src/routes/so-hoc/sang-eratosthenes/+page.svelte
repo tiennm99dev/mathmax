@@ -38,7 +38,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('so-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('so-hoc/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -48,7 +50,9 @@
     </header>
 
     <section class="mb-4">
-      <p class="text-sm text-slate-600 bg-white border border-slate-200 rounded-lg px-4 py-3">{m.instruction}</p>
+      <p class="text-sm text-slate-600 bg-white border border-slate-200 rounded-lg px-4 py-3">
+        {m.instruction}
+      </p>
     </section>
 
     <!-- Legend -->
@@ -56,8 +60,14 @@
       <div class="flex flex-wrap gap-3">
         {#each TARGET_PRIMES as p (p)}
           <span class="inline-flex items-center gap-1.5 text-sm">
-            <span class="inline-block w-3.5 h-3.5 rounded-sm flex-shrink-0" style="background:{PRIME_COLORS.get(p)}" aria-hidden="true"></span>
-            <span style="color:{PRIME_COLORS.get(p)}" class="font-medium">{m.legendLabels[/** @type {keyof typeof m.legendLabels} */ (p)]}</span>
+            <span
+              class="inline-block w-3.5 h-3.5 rounded-sm flex-shrink-0"
+              style="background:{PRIME_COLORS.get(p)}"
+              aria-hidden="true"
+            ></span>
+            <span style="color:{PRIME_COLORS.get(p)}" class="font-medium"
+              >{m.legendLabels[/** @type {keyof typeof m.legendLabels} */ (p)]}</span
+            >
           </span>
         {/each}
       </div>
@@ -71,7 +81,7 @@
         aria-readonly={grid.rippling ? 'true' : 'false'}
         class="inline-grid grid-cols-10 gap-px bg-slate-200 border border-slate-200 rounded-lg overflow-hidden w-full max-w-lg mx-auto select-none"
       >
-        {#each { length: 100 } as _, idx}
+        {#each { length: 100 } as _, idx (idx)}
           {@const n = idx + 1}
           {@const dotPrimes = grid.crossings.get(n) ?? []}
           {@const isCrossed = dotPrimes.length > 0}
@@ -83,19 +93,29 @@
               bind:this={grid.cellRefs[idx]}
               onclick={() => grid.handleCellActivate(n)}
               onkeydown={(e) => grid.handleKeydown(e, idx)}
-              aria-label="{n}{isCrossed ? ` — bội của ${dotPrimes.join(' và ')}` : ''}${color ? ' — số nguyên tố đã chọn' : ''}"
+              aria-label="{n}{isCrossed ? ` — bội của ${dotPrimes.join(' và ')}` : ''}${color
+                ? ' — số nguyên tố đã chọn'
+                : ''}"
               aria-disabled={n === 1 ? 'true' : undefined}
               class="relative flex flex-col items-center justify-center bg-white w-full aspect-square text-xs font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500
                 {n === 1 ? 'text-slate-300 cursor-default' : ''}
                 {isCrossed ? 'opacity-50' : ''}
                 {grid.shakeIndex === idx ? 'animate-[shake_0.35s_ease]' : ''}"
-              style="{color ? `box-shadow:inset 0 0 0 2px ${color};` : ''}{isCrossed ? 'text-decoration:line-through;' : ''}"
+              style="{color ? `box-shadow:inset 0 0 0 2px ${color};` : ''}{isCrossed
+                ? 'text-decoration:line-through;'
+                : ''}"
             >
               <span>{n}</span>
               {#if dotPrimes.length > 0}
-                <span class="absolute bottom-0.5 left-0 right-0 flex justify-center gap-0.5" aria-hidden="true">
+                <span
+                  class="absolute bottom-0.5 left-0 right-0 flex justify-center gap-0.5"
+                  aria-hidden="true"
+                >
                   {#each dotPrimes as dp (dp)}
-                    <span class="w-1 h-1 rounded-full flex-shrink-0" style="background:{PRIME_COLORS.get(dp)}"></span>
+                    <span
+                      class="w-1 h-1 rounded-full flex-shrink-0"
+                      style="background:{PRIME_COLORS.get(dp)}"
+                    ></span>
                   {/each}
                 </span>
               {/if}
@@ -110,7 +130,8 @@
       <button
         onclick={grid.handleReset}
         class="px-5 py-2 rounded-lg bg-slate-700 text-white text-sm font-medium hover:bg-slate-600 transition-colors focus-visible:ring-2 focus-visible:ring-slate-700 focus-visible:ring-offset-2"
-      >{m.resetLabel}</button>
+        >{m.resetLabel}</button
+      >
     </section>
 
     <section class="mb-8">
@@ -131,8 +152,17 @@
 
 <style>
   @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    20%,60%  { transform: translateX(-3px); }
-    40%,80%  { transform: translateX(3px); }
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-3px);
+    }
+    40%,
+    80% {
+      transform: translateX(3px);
+    }
   }
 </style>

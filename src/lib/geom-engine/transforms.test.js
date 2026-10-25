@@ -77,12 +77,19 @@ describe('compose', () => {
 
 describe('applyToPolygon', () => {
   it('preserves point count', () => {
-    const pts = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }];
+    const pts = [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+    ];
     expect(applyToPolygon(translate(5, 5), pts)).toHaveLength(3);
   });
 
   it('does not mutate input array', () => {
-    const pts = [{ x: 0, y: 0 }, { x: 1, y: 1 }];
+    const pts = [
+      { x: 0, y: 0 },
+      { x: 1, y: 1 },
+    ];
     const snapshot = JSON.stringify(pts);
     applyToPolygon(translate(10, 10), pts);
     expect(JSON.stringify(pts)).toBe(snapshot);

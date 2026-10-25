@@ -48,7 +48,7 @@
       Math.abs(solution.point.x) <= SPAN &&
       Math.abs(solution.point.y) <= SPAN
       ? solution.point
-      : null
+      : null,
   );
 
   // ── Drag handles: one per line, parked at the midpoint of its visible part ──
@@ -149,26 +149,24 @@
         ? m.caseParallel
         : solution.kind === 'coincident'
           ? m.caseCoincident
-          : m.caseDegenerate
+          : m.caseDegenerate,
   );
 
   const offscreen = $derived(
-    (seg1 === null && !isDegenerate(eq1)) || (seg2 === null && !isDegenerate(eq2))
+    (seg1 === null && !isDegenerate(eq1)) || (seg2 === null && !isDegenerate(eq2)),
   );
 
   const solutionMarkerLabel = $derived(
-    solutionPoint ? `(${fmt(solutionPoint.x)}; ${fmt(solutionPoint.y)})` : ''
+    solutionPoint ? `(${fmt(solutionPoint.x)}; ${fmt(solutionPoint.y)})` : '',
   );
 
   const solutionText = $derived(
     solution.kind === 'unique'
       ? `(x; y) = (${fmt(solution.point.x)}; ${fmt(solution.point.y)})`
-      : m.noSolutionLabel
+      : m.noSolutionLabel,
   );
 
-  const plotLabel = $derived(
-    `Đồ thị của hệ ${eq1Tex} và ${eq2Tex}. ${caseText}.`
-  );
+  const plotLabel = $derived(`Đồ thị của hệ ${eq1Tex} và ${eq2Tex}. ${caseText}.`);
 
   // Debounced aria-live announcement (300 ms) so dragging does not flood
   // screen readers with intermediate states.
@@ -221,7 +219,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('dai-so/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('dai-so/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -270,11 +270,15 @@
         bind:svgEl
         view={VIEW}
         pad={PAD}
-        {mx} {my}
+        {mx}
+        {my}
         {gridLines}
-        {seg1} {seg2}
-        {handle1} {handle2}
-        {drag1Opts} {drag2Opts}
+        {seg1}
+        {seg2}
+        {handle1}
+        {handle2}
+        {drag1Opts}
+        {drag2Opts}
         {solutionPoint}
         {solutionMarkerLabel}
         coincident={solution.kind === 'coincident'}
@@ -285,14 +289,18 @@
     </section>
 
     {#if offscreen}
-      <p class="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm text-amber-900">
+      <p
+        class="mb-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm text-amber-900"
+      >
         {m.offscreenNote}
       </p>
     {/if}
 
     <!-- Case readout -->
     <section class="mb-6 rounded-lg border border-slate-200 bg-white p-5">
-      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-2">{m.caseTitle}</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-2">
+        {m.caseTitle}
+      </h2>
       <p class="text-slate-900 font-medium mb-1">{caseText}</p>
       <p class="text-slate-700">
         <span class="text-sm text-slate-500">{m.solutionLabel}:</span>

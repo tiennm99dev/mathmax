@@ -21,8 +21,5 @@ export function clientToSvg(svg, clientX, clientY, viewW, viewH) {
  * @returns {import('#lib/geom-engine/vec.js').Vec2}
  */
 export function clampToViewBox(v, viewW, viewH, pad = 16) {
-  return vec(
-    Math.max(pad, Math.min(viewW - pad, v.x)),
-    Math.max(pad, Math.min(viewH - pad, v.y)),
-  );
+  return vec(Math.max(pad, Math.min(viewW - pad, v.x)), Math.max(pad, Math.min(viewH - pad, v.y)));
 }

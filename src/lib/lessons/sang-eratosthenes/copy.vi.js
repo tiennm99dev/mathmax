@@ -15,8 +15,7 @@ export const vi = {
     5: 'Bội của 5',
     7: 'Bội của 7',
   },
-  primeTooltip:
-    'Số nguyên tố là số tự nhiên lớn hơn 1, chỉ chia hết cho 1 và chính nó.',
+  primeTooltip: 'Số nguyên tố là số tự nhiên lớn hơn 1, chỉ chia hết cho 1 và chính nó.',
   specialOne: 'Số 1 không phải số nguyên tố và không phải hợp số.',
   resetLabel: 'Đặt lại',
   theoremTitle: 'Sàng Eratosthenes là gì?',

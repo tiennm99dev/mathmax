@@ -28,10 +28,16 @@
     </p>
 
     <div class="flex flex-col items-center gap-3">
-      <span class="text-sm font-semibold text-slate-500 uppercase tracking-wide">{copy.hub.scopeLabel}</span>
+      <span class="text-sm font-semibold text-slate-500 uppercase tracking-wide"
+        >{copy.hub.scopeLabel}</span
+      >
       <ul class="flex flex-wrap justify-center gap-2" aria-label="Các lớp học được hỗ trợ">
-        {#each Object.values(copy.grades) as label}
-          <li><span class="px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium">{label}</span></li>
+        {#each Object.values(copy.grades) as label (label)}
+          <li>
+            <span class="px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium"
+              >{label}</span
+            >
+          </li>
         {/each}
       </ul>
     </div>
@@ -50,7 +56,9 @@
             >
               <div class="flex items-center justify-between mb-3">
                 <h3 class="text-lg font-bold text-slate-900">{topic.title}</h3>
-                <span class="text-xs font-semibold uppercase tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
+                <span
+                  class="text-xs font-semibold uppercase tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5"
+                >
                   {copy.status[/** @type {keyof typeof copy.status} */ (topic.status)]}
                 </span>
               </div>
@@ -63,7 +71,9 @@
             >
               <div class="flex items-center justify-between">
                 <h3 class="text-lg font-bold text-slate-900">{topic.title}</h3>
-                <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-0.5">
+                <span
+                  class="text-xs font-semibold uppercase tracking-wide text-amber-600 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-0.5"
+                >
                   {copy.status[/** @type {keyof typeof copy.status} */ (topic.status)]}
                 </span>
               </div>
@@ -77,12 +87,29 @@
 </main>
 
 <footer class="border-t border-slate-200 bg-white">
-  <div class="max-w-4xl mx-auto px-4 py-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-500">
+  <div
+    class="max-w-4xl mx-auto px-4 py-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-500"
+  >
     <span>© {new Date().getFullYear()}</span>
-    <a href="https://github.com/tiennm99" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">tiennm99</a>
+    <a
+      href="https://github.com/tiennm99"
+      class="text-indigo-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer">tiennm99</a
+    >
     <span aria-hidden="true">·</span>
-    <a href="https://github.com/tiennm99dev/mathmax/blob/main/LICENSE" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Apache-2.0</a>
+    <a
+      href="https://github.com/tiennm99dev/mathmax/blob/main/LICENSE"
+      class="text-indigo-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer">Apache-2.0</a
+    >
     <span aria-hidden="true">·</span>
-    <a href="https://github.com/tiennm99dev/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
+    <a
+      href="https://github.com/tiennm99dev/mathmax"
+      class="text-indigo-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer">Mã nguồn</a
+    >
   </div>
 </footer>

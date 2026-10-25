@@ -23,8 +23,11 @@ function detectReducedMotion() {
 export function createGridState(buildAnnouncement) {
   /** @type {number[]} */
   let markedPrimes = $state([]);
+  // Every update assigns a fresh map to $state.raw; no map is mutated after
+  // it is assigned, so a plain Map is enough.
   /** @type {Map<number, number[]>} */
-  let crossings = $state(new Map());
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity
+  let crossings = $state.raw(new Map());
   let rippling = $state(false);
   /** @type {number[]} */
   let pendingTimeouts = $state([]);
@@ -44,7 +47,9 @@ export function createGridState(buildAnnouncement) {
 
     if (!isPrime(n)) {
       shakeIndex = n - 1;
-      setTimeout(() => { shakeIndex = null; }, 400);
+      setTimeout(() => {
+        shakeIndex = null;
+      }, 400);
       return;
     }
 
@@ -60,6 +65,7 @@ export function createGridState(buildAnnouncement) {
     }
 
     if (reducedMotion) {
+      // eslint-disable-next-line svelte/prefer-svelte-reactivity
       const next = new Map(crossings);
       for (const cell of multiples) {
         next.set(cell, [...(next.get(cell) ?? []), n]);
@@ -76,15 +82,18 @@ export function createGridState(buildAnnouncement) {
     for (let i = 0; i < multiples.length; i++) {
       const cell = multiples[i];
       const isLast = i === multiples.length - 1;
-      const tid = /** @type {number} */ (setTimeout(() => {
-        const next = new Map(crossings);
-        next.set(cell, [...(next.get(cell) ?? []), n]);
-        crossings = next;
-        if (isLast) {
-          rippling = false;
-          announcement = buildAnnouncement(n, multiples);
-        }
-      }, i * STAGGER_MS));
+      const tid = /** @type {number} */ (
+        setTimeout(() => {
+          // eslint-disable-next-line svelte/prefer-svelte-reactivity
+          const next = new Map(crossings);
+          next.set(cell, [...(next.get(cell) ?? []), n]);
+          crossings = next;
+          if (isLast) {
+            rippling = false;
+            announcement = buildAnnouncement(n, multiples);
+          }
+        }, i * STAGGER_MS)
+      );
       newTids.push(tid);
     }
 
@@ -95,6 +104,7 @@ export function createGridState(buildAnnouncement) {
     for (const tid of pendingTimeouts) clearTimeout(tid);
     pendingTimeouts = [];
     markedPrimes = [];
+    // eslint-disable-next-line svelte/prefer-svelte-reactivity
     crossings = new Map();
     rippling = false;
     announcement = '';
@@ -108,16 +118,30 @@ export function createGridState(buildAnnouncement) {
   function handleKeydown(e, idx) {
     const row = Math.floor(idx / 10);
     const col = idx % 10;
-    let next = idx;
+    /** @type {number} */
+    let next;
 
     switch (e.key) {
-      case 'ArrowRight': next = row * 10 + Math.min(col + 1, 9); break;
-      case 'ArrowLeft':  next = row * 10 + Math.max(col - 1, 0); break;
-      case 'ArrowDown':  next = Math.min((row + 1) * 10 + col, 99); break;
-      case 'ArrowUp':    next = Math.max((row - 1) * 10 + col, 0); break;
-      case 'Home':       next = row * 10; break;
-      case 'End':        next = row * 10 + 9; break;
-      default: return;
+      case 'ArrowRight':
+        next = row * 10 + Math.min(col + 1, 9);
+        break;
+      case 'ArrowLeft':
+        next = row * 10 + Math.max(col - 1, 0);
+        break;
+      case 'ArrowDown':
+        next = Math.min((row + 1) * 10 + col, 99);
+        break;
+      case 'ArrowUp':
+        next = Math.max((row - 1) * 10 + col, 0);
+        break;
+      case 'Home':
+        next = row * 10;
+        break;
+      case 'End':
+        next = row * 10 + 9;
+        break;
+      default:
+        return;
     }
 
     if (next !== idx) {
@@ -130,12 +154,24 @@ export function createGridState(buildAnnouncement) {
   // Return a reactive proxy so template reads stay live.
   // Svelte 5 tracks $state access through object property reads.
   return {
-    get markedPrimes() { return markedPrimes; },
-    get crossings() { return crossings; },
-    get rippling() { return rippling; },
-    get announcement() { return announcement; },
-    get focusIndex() { return focusIndex; },
-    get shakeIndex() { return shakeIndex; },
+    get markedPrimes() {
+      return markedPrimes;
+    },
+    get crossings() {
+      return crossings;
+    },
+    get rippling() {
+      return rippling;
+    },
+    get announcement() {
+      return announcement;
+    },
+    get focusIndex() {
+      return focusIndex;
+    },
+    get shakeIndex() {
+      return shakeIndex;
+    },
     cellRefs,
     handleCellActivate,
     handleReset,

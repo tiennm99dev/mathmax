@@ -23,7 +23,9 @@
 <main class="bg-slate-50 min-h-screen">
   <section class="max-w-4xl mx-auto px-4 py-12">
     <nav class="mb-6 text-sm">
-      <a href={resolve('/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToHub}</a>
+      <a href={resolve('/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToHub}</a
+      >
     </nav>
 
     <header class="mb-8">
@@ -39,7 +41,9 @@
             class="block bg-white rounded-2xl border border-slate-200 p-5 transition hover:border-indigo-400 hover:shadow-sm"
           >
             <div class="flex items-baseline justify-between gap-3 mb-2">
-              <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">{lesson.gradeLabel}</span>
+              <span class="text-xs font-semibold uppercase tracking-wide text-slate-500"
+                >{lesson.gradeLabel}</span
+              >
               <span class="text-xs text-emerald-700">{copy.status.live}</span>
             </div>
             <h2 class="text-lg font-bold text-slate-900 mb-1">{lesson.title}</h2>
@@ -54,6 +58,11 @@
 <footer class="border-t border-slate-200 bg-white">
   <div class="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-slate-500">
     © {new Date().getFullYear()} ·
-    <a href="https://github.com/tiennm99dev/mathmax" class="text-indigo-600 hover:underline" target="_blank" rel="noopener noreferrer">Mã nguồn</a>
+    <a
+      href="https://github.com/tiennm99dev/mathmax"
+      class="text-indigo-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer">Mã nguồn</a
+    >
   </div>
 </footer>

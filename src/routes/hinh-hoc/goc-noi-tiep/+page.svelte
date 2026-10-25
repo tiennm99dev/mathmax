@@ -30,9 +30,7 @@
   const arc = $derived(subtendedArc(C, A, B, M));
 
   // ∠AMB degenerates when M reaches either endpoint of the chord.
-  const atEndpoint = $derived(
-    dist(M, A) < EPSILON_LEN || dist(M, B) < EPSILON_LEN
-  );
+  const atEndpoint = $derived(dist(M, A) < EPSILON_LEN || dist(M, B) < EPSILON_LEN);
 
   /** @param {{x: number, y: number}} p */
   const projector = (p) => projectToCircle(p, C);
@@ -59,7 +57,9 @@
 <main class="bg-slate-50 min-h-screen">
   <article class="max-w-3xl mx-auto px-4 py-8">
     <nav class="mb-4 text-sm">
-      <a href={resolve('hinh-hoc/')} class="text-indigo-600 hover:underline">{copy.lessonChrome.backToTopic}</a>
+      <a href={resolve('hinh-hoc/')} class="text-indigo-600 hover:underline"
+        >{copy.lessonChrome.backToTopic}</a
+      >
     </nav>
 
     <header class="mb-6">
@@ -73,7 +73,10 @@
         <p class="text-slate-500">{m.undefinedLabel}</p>
       {:else}
         <div class="flex items-baseline justify-between gap-3">
-          <span><strong style="color:#D7263D">{m.inscribedLabel}:</strong> {inscribed.toFixed(1)}°</span>
+          <span
+            ><strong style="color:#D7263D">{m.inscribedLabel}:</strong>
+            {inscribed.toFixed(1)}°</span
+          >
           <span><strong style="color:#1B998B">{m.arcLabel}:</strong> {arc.toFixed(1)}°</span>
         </div>
         <p class="mt-1 text-slate-600">
@@ -92,10 +95,33 @@
         role="img"
         aria-label={m.instruction}
       >
-        <circle cx={C.center.x} cy={C.center.y} r={C.radius} fill="none" stroke="#999" stroke-width="2" />
+        <circle
+          cx={C.center.x}
+          cy={C.center.y}
+          r={C.radius}
+          fill="none"
+          stroke="#999"
+          stroke-width="2"
+        />
 
-        <line x1={C.center.x} y1={C.center.y} x2={A.x} y2={A.y} stroke="#D0D0D0" stroke-width="1" stroke-dasharray="4 4" />
-        <line x1={C.center.x} y1={C.center.y} x2={B.x} y2={B.y} stroke="#D0D0D0" stroke-width="1" stroke-dasharray="4 4" />
+        <line
+          x1={C.center.x}
+          y1={C.center.y}
+          x2={A.x}
+          y2={A.y}
+          stroke="#D0D0D0"
+          stroke-width="1"
+          stroke-dasharray="4 4"
+        />
+        <line
+          x1={C.center.x}
+          y1={C.center.y}
+          x2={B.x}
+          y2={B.y}
+          stroke="#D0D0D0"
+          stroke-width="1"
+          stroke-dasharray="4 4"
+        />
 
         <line x1={A.x} y1={A.y} x2={M.x} y2={M.y} stroke="#444" stroke-width="2" />
         <line x1={B.x} y1={B.y} x2={M.x} y2={M.y} stroke="#444" stroke-width="2" />

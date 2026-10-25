@@ -29,8 +29,6 @@ export function congruentSSS(t1, t2, eps = EPSILON_LEN) {
   const s1 = sides(t1);
   const s2 = sides(t2);
   return (
-    Math.abs(s1.ab - s2.ab) < eps &&
-    Math.abs(s1.bc - s2.bc) < eps &&
-    Math.abs(s1.ca - s2.ca) < eps
+    Math.abs(s1.ab - s2.ab) < eps && Math.abs(s1.bc - s2.bc) < eps && Math.abs(s1.ca - s2.ca) < eps
   );
 }

@@ -41,7 +41,10 @@
       {coefALabel}: <span class="tabular-nums font-semibold">{a}</span>
     </span>
     <input
-      type="range" min={-coefMax} max={coefMax} step="1"
+      type="range"
+      min={-coefMax}
+      max={coefMax}
+      step="1"
       bind:value={a}
       aria-label="{title} — {coefALabel}, hiện tại {a}"
       class="mt-1 w-full accent-indigo-600"
@@ -53,7 +56,10 @@
       {coefBLabel}: <span class="tabular-nums font-semibold">{b}</span>
     </span>
     <input
-      type="range" min={-coefMax} max={coefMax} step="1"
+      type="range"
+      min={-coefMax}
+      max={coefMax}
+      step="1"
       bind:value={b}
       aria-label="{title} — {coefBLabel}, hiện tại {b}"
       class="mt-1 w-full accent-indigo-600"
@@ -65,7 +71,10 @@
       {coefCLabel}: <span class="tabular-nums font-semibold">{c}</span>
     </span>
     <input
-      type="range" min={-constMax} max={constMax} step="1"
+      type="range"
+      min={-constMax}
+      max={constMax}
+      step="1"
       bind:value={c}
       aria-label="{title} — {coefCLabel}, hiện tại {c}"
       class="mt-1 w-full accent-indigo-600"

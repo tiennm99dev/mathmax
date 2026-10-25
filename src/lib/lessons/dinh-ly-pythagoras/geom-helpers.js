@@ -1,10 +1,4 @@
-import {
-  compose,
-  translate,
-  rotate,
-  shear,
-  applyToPolygon,
-} from '#lib/geom-engine/transforms.js';
+import { compose, translate, rotate, shear, applyToPolygon } from '#lib/geom-engine/transforms.js';
 
 /**
  * Geometry helpers for the Pythagoras dissection-shear lesson.
@@ -43,21 +37,16 @@ export function squareB(R, H) {
  * Build square-c polygon (on hypotenuse AH, extends AWAY from triangle).
  * The outward normal direction from AH (away from R) is (a/c, -b/c) scaled by c.
  * Vertices: A, H, H+normal, A+normal.
- * @param {Pt} A @param {Pt} H @param {number} a @param {number} b @param {number} c
+ * @param {Pt} A @param {Pt} H @param {number} a @param {number} b
  * @returns {Poly}
  */
-export function squareC(A, H, a, b, c) {
+export function squareC(A, H, a, b) {
   // Offset to the far side of the square: the AH direction (b, a) turned a
   // quarter turn, giving (a, -b). Its length is hypot(a, b) = c, so the far
   // edge sits exactly one side-length away.
   const nx = a;
   const ny = -b;
-  return [
-    A,
-    H,
-    { x: H.x + nx, y: H.y + ny },
-    { x: A.x + nx, y: A.y + ny },
-  ];
+  return [A, H, { x: H.x + nx, y: H.y + ny }, { x: A.x + nx, y: A.y + ny }];
 }
 
 /**
@@ -76,35 +65,25 @@ export function altitudeFoot(A, H, a, c) {
  * Target polygon for shear-a animation: the "a-rectangle" portion of square-c.
  * This is the rectangle bounded by A, F (altitude foot), and the corresponding
  * two points on the far edge of square-c. Area = a² = a-side × AF.
- * @param {Pt} A @param {Pt} F @param {number} a @param {number} b @param {number} c
+ * @param {Pt} A @param {Pt} F @param {number} a @param {number} b
  * @returns {Poly}
  */
-export function shearATarget(A, F, a, b, c) {
+export function shearATarget(A, F, a, b) {
   const nx = a;
   const ny = -b;
-  return [
-    A,
-    F,
-    { x: F.x + nx, y: F.y + ny },
-    { x: A.x + nx, y: A.y + ny },
-  ];
+  return [A, F, { x: F.x + nx, y: F.y + ny }, { x: A.x + nx, y: A.y + ny }];
 }
 
 /**
  * Target polygon for shear-b animation: the "b-rectangle" portion of square-c.
  * Bounded by F, H, and the far edge of square-c. Area = b².
- * @param {Pt} F @param {Pt} H @param {number} a @param {number} b @param {number} c
+ * @param {Pt} F @param {Pt} H @param {number} a @param {number} b
  * @returns {Poly}
  */
-export function shearBTarget(F, H, a, b, c) {
+export function shearBTarget(F, H, a, b) {
   const nx = a;
   const ny = -b;
-  return [
-    F,
-    H,
-    { x: H.x + nx, y: H.y + ny },
-    { x: F.x + nx, y: F.y + ny },
-  ];
+  return [F, H, { x: H.x + nx, y: H.y + ny }, { x: F.x + nx, y: F.y + ny }];
 }
 
 /**
@@ -129,7 +108,7 @@ function shearAlongNormal(origin, a, b, lambda) {
     rotate(-alpha),
     shear(0, -lambda),
     rotate(alpha),
-    translate(origin.x, origin.y)
+    translate(origin.x, origin.y),
   );
 }
 
@@ -155,7 +134,7 @@ export function morphSquareA(A, R, H, a, b, t) {
     // stage 2 — quarter turn about A
     rotate((-Math.PI / 2) * stage(t, 1), A),
     // stage 3 — shear onto the altitude foot
-    shearAlongNormal(A, a, b, (b / a) * stage(t, 2))
+    shearAlongNormal(A, a, b, (b / a) * stage(t, 2)),
   );
   return applyToPolygon(m, squareA(A, R));
 }
@@ -177,7 +156,7 @@ export function morphSquareB(R, H, a, b, t) {
     // stage 2 — quarter turn about H, the other way round
     rotate((Math.PI / 2) * stage(t, 1), H),
     // stage 3 — shear onto the altitude foot
-    shearAlongNormal(H, a, b, (-a / b) * stage(t, 2))
+    shearAlongNormal(H, a, b, (-a / b) * stage(t, 2)),
   );
   return applyToPolygon(m, squareB(R, H));
 }
