@@ -122,7 +122,9 @@ export const tuGiac = {
     if (v === 3) {
       const b = int(rand, 3, 12);
       const a = b + int(rand, 2, 10);
-      const c = int(rand, 3, 12);
+      // A leg must be longer than half the difference of the bases, or no
+      // isosceles trapezoid has these sides.
+      const c = int(rand, Math.floor((a - b) / 2) + 1, 12);
       return {
         prompt: `Hình thang cân ABCD có hai đáy AB = ${a} cm, CD = ${b} cm và cạnh bên AD = ${c} cm. Tính chu vi (đơn vị cm).`,
         answer: a + b + 2 * c,

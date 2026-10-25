@@ -111,8 +111,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Hình nào có hai đường chéo vừa bằng nhau vừa vuông góc với nhau?',
-      options: ['Hình vuông', 'Hình chữ nhật', 'Hình thoi', 'Hình thang cân'],
-      answer: 0,
+      options: ['Hình chữ nhật', 'Hình thoi', 'Hình thang cân', 'Hình vuông'],
+      answer: 3,
       hints: [
         'Đường chéo bằng nhau: hình chữ nhật. Đường chéo vuông góc: hình thoi. Hình nào có cả hai?',
       ],
@@ -219,12 +219,12 @@ export default {
       prompt:
         'Một hình chữ nhật và một hình bình hành có cùng cạnh đáy $6$ cm và cùng chiều cao $4$ cm. So sánh diện tích của chúng.',
       options: [
-        'Bằng nhau',
         'Hình chữ nhật lớn hơn',
         'Hình bình hành lớn hơn',
+        'Bằng nhau',
         'Không so sánh được',
       ],
-      answer: 0,
+      answer: 2,
       hints: ['Hình bình hành cắt ghép được thành hình chữ nhật có cùng đáy và chiều cao.'],
       solution: 'Cả hai đều có diện tích $6 \\cdot 4 = 24$ ($\\text{cm}^2$), nên bằng nhau.',
     },

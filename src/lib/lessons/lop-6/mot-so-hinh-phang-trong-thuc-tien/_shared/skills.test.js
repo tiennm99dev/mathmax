@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { CHAPTER_SKILLS, LESSON_SKILLS, chuViDienTich, vanDungThucTe } from './skills.js';
+import { CHAPTER_SKILLS, LESSON_SKILLS, chuViDienTich, tuGiac, vanDungThucTe } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 500) {
@@ -45,6 +45,15 @@ describe('answers recomputed from the prompt', () => {
         expect(q.answer).toBe(((n[0] + n[1]) * n[2]) / 2);
       if (q.prompt.startsWith('Tính chu vi hình chữ nhật'))
         expect(q.answer).toBe(2 * (n[0] + n[1]));
+    }
+  });
+
+  it('isosceles trapezoids have legs long enough to exist', () => {
+    for (const q of sample(tuGiac)) {
+      if (!q.prompt.startsWith('Hình thang cân')) continue;
+      const [a, b, c] = nums(q.prompt);
+      expect(2 * c, q.prompt).toBeGreaterThan(a - b);
+      expect(q.answer).toBe(a + b + 2 * c);
     }
   });
 

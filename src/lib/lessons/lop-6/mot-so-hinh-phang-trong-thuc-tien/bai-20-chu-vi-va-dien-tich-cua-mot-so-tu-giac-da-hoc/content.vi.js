@@ -156,8 +156,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Hình thoi có hai đường chéo $m$ và $n$. Diện tích hình thoi là:',
-      options: ['$S = \\frac{1}{2} m \\cdot n$', '$S = m \\cdot n$', '$S = 2(m + n)$', '$S = 4m$'],
-      answer: 0,
+      options: ['$S = m \\cdot n$', '$S = \\frac{1}{2} m \\cdot n$', '$S = 2(m + n)$', '$S = 4m$'],
+      answer: 1,
       hints: ['Trong widget, hình thoi ghép lại thành hình chữ nhật $m$ nhân mấy?'],
       solution:
         'Hình thoi cắt ghép thành hình chữ nhật $m \\times \\frac{n}{2}$, nên $S = \\frac{1}{2} m \\cdot n$. Còn $m \\cdot n$ là diện tích hình chữ nhật bao quanh, gấp đôi hình thoi.',

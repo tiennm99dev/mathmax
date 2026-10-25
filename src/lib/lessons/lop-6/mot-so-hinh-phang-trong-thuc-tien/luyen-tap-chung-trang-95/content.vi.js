@@ -102,8 +102,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Hình nào có sáu cạnh bằng nhau và ba đường chéo chính bằng nhau?',
-      options: ['Hình lục giác đều', 'Hình vuông', 'Hình thoi', 'Hình tam giác đều'],
-      answer: 0,
+      options: ['Hình vuông', 'Hình thoi', 'Hình tam giác đều', 'Hình lục giác đều'],
+      answer: 3,
       hints: ['Đếm số cạnh: hình nào có sáu cạnh?'],
       solution:
         'Hình lục giác đều có sáu cạnh bằng nhau, sáu góc bằng nhau, ba đường chéo chính bằng nhau.',

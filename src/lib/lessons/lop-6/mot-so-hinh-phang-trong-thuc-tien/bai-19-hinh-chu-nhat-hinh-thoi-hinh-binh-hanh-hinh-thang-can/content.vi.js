@@ -249,8 +249,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Hình nào dưới đây luôn có hai đường chéo vuông góc với nhau?',
-      options: ['Hình thoi', 'Hình chữ nhật', 'Hình bình hành', 'Hình thang cân'],
-      answer: 0,
+      options: ['Hình chữ nhật', 'Hình bình hành', 'Hình thoi', 'Hình thang cân'],
+      answer: 2,
       hints: ['Trong widget, kéo các đỉnh và xem dấu ✓ ở dòng "Hai đường chéo vuông góc".'],
       solution:
         'Hình thoi luôn có hai đường chéo vuông góc. Hình chữ nhật, hình bình hành, hình thang cân chỉ có khi đặc biệt.',
@@ -294,11 +294,11 @@ export default {
       prompt:
         'Bạn An nói: "Tứ giác có hai đường chéo bằng nhau thì chắc chắn là hình chữ nhật." Bạn An đúng hay sai?',
       options: [
-        'Sai, vì hình thang cân cũng có hai đường chéo bằng nhau',
         'Đúng, chỉ hình chữ nhật có hai đường chéo bằng nhau',
+        'Sai, vì hình thang cân cũng có hai đường chéo bằng nhau',
         'Đúng, vì hình thoi cũng là hình chữ nhật',
       ],
-      answer: 0,
+      answer: 1,
       hints: ['Xem lại bảng so sánh: dòng "Hai đường chéo bằng nhau".'],
       solution:
         'Bạn An sai: hình thang cân (và hình vuông) cũng có hai đường chéo bằng nhau, mà hình thang cân không phải hình chữ nhật.',
