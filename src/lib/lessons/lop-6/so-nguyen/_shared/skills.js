@@ -295,7 +295,7 @@ export const nhanSoNguyen = {
           `${operand(b)} + ${operand(c)} = ${intText(total)}.`,
         ],
         steps: [
-          `${operand(a)} · ${operand(b)} + ${operand(a)} · ${operand(c)} = ${operand(a)} · [${operand(b)} + ${operand(c)}].`,
+          `${operand(a)} · ${operand(b)} + ${operand(a)} · ${operand(c)} = ${operand(a)} · ${b < 0 || c < 0 ? `[${operand(b)} + ${operand(c)}]` : `(${b} + ${c})`}.`,
           `= ${operand(a)} · ${operand(total)} = ${intText(p)}.`,
         ],
       };

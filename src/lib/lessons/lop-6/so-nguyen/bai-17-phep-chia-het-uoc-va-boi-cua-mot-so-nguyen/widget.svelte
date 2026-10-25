@@ -119,6 +119,7 @@
     <button
       type="button"
       aria-label={cellLabel(0)}
+      aria-pressed={found.has(0)}
       class="min-h-11 min-w-16 rounded-lg border-2 px-3 text-lg font-bold tabular-nums {cellClass(
         0,
       )} {focusRing}"
