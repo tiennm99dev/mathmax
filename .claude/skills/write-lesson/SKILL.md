@@ -35,9 +35,11 @@ src/lib/lessons/lop-N/<chuong-slug>/
 Never edit anything else: not `src/lib/core/`, `src/lib/curriculum/`,
 `src/lib/domain/`, `src/routes/`, `src/params/`, `scripts/`, configs,
 `package.json`, workflows or another chapter. No registry, route or hub needs an
-edit: a lesson goes live when its `content.vi.js` exists. If you need a helper
-that core lacks, build it in `_shared/` and mention it in your final report so a
-core pass can promote it. Never add dependencies.
+edit: a lesson goes live when its `content.vi.js` exists. Before writing a
+helper, check core (section 6): number writing, seeded random sets and practice
+drills already live there, so never copy them into `_shared/`. If you need a
+helper that core lacks, build it in `_shared/` and mention it in your final
+report so a core pass can promote it. Never add dependencies.
 
 ## 2. Before writing
 
@@ -209,15 +211,41 @@ Other shared pieces:
 
 - `#lib/core/segmented-control.svelte` (radio-group switch), `#lib/core/slider-field.svelte`
   (labelled range input), `#lib/core/ui.js` (`button`, `focusRing`, `textInput`, `card` classes).
-- `#lib/actions/draggable.svelte.js`: `use:draggable` for SVG drag with arrow-key support.
+- `#lib/actions/draggable.svelte.js`: `use:draggable` for SVG drag with arrow-key
+  support. Every handle it is put on answers to presses within an invisible
+  hit area of at least 44 CSS px (`MIN_HIT`) around it, whatever the SVG's
+  scale at 390 px, so draw the knob the size that looks right and add no
+  transparent hit shape just for touch. Put `class="drag-handle"` on the
+  focusable element; when that is a `<g>`, give its visible shape
+  `class="drag-knob"` (and any transparent hit shape `class="drag-hit"`), so
+  the keyboard focus ring strokes only the knob, never hit areas or labels.
+- `#lib/core/number-format.js`: Vietnamese number writing for every number a
+  widget shows, in text, `aria-label`s and live TeX. Never print a raw number
+  with a decimal point or call `toFixed`: `formatNumber(52.94, 1)` gives
+  `52,9`, `formatFixed(5, 1)` gives `5,0` (decimals kept), `texNumber(text)`
+  braces the comma for TeX (`3{,}5`). For natural numbers the way the book
+  prints them: `fmt(2345)` gives `2 345` (narrow space), `sup`, `powText`
+  (`2⁵`) and `readNatural` for typed input.
+- `#lib/core/drill-board.svelte` with `#lib/core/drill.js`: a generated
+  practice drill for `practice` and `review` lessons. Write one `Skill`
+  (`{ id, label, make(rand) }`, `make` returns `{ prompt, answer, steps,
+  hints? }`) per lesson in `_shared/skills.js` using `int`, `pick` and
+  `shuffle` from `drill.js`, then render
+  `<DrillBoard skills={[...]} perSkill={2} />`. A wrong first answer shows a
+  hint ladder (the question's `hints`, else its steps that do not give the
+  answer away) and a second try; only a second miss shows the full solution.
+  The skill map scores first attempts. `read`, `format` and `invalidText`
+  props adapt it to answers other than natural numbers.
 - `#lib/components/tex.svelte`: live KaTeX. Import it only when the TeX changes
   with interaction; static TeX belongs in `content.vi.js`, which is prerendered.
+  Vietnamese letters in TeX are allowed (`\text{số dư}`); any other strict-mode
+  warning fails `content.test.js`.
 - `#lib/core/kid/picture.svelte` and `#lib/core/kid/pictures/index.js`
   (`pictures`, `pictureGroups`).
 - Engines, pure and tested: `#lib/geom-engine/index.js`, `#lib/algebra-engine/index.js`,
   `#lib/numtheory-engine/index.js`, `#lib/fraction-engine/index.js`,
-  `#lib/stats-engine/index.js`, `#lib/units-engine/index.js` (includes
-  `formatNumber` for Vietnamese decimals).
+  `#lib/stats-engine/index.js`, `#lib/units-engine/index.js` (re-exports
+  `formatNumber`).
 - Domain components for the site's subject: `src/lib/domain/` (empty on
   MathMax). PhysMax has `vector-field`, `force-diagram`, `motion-plot`,
   `circuit-board`, `ray-optics-bench`, `wave-plot`, `thermometer`; ChemMax has
