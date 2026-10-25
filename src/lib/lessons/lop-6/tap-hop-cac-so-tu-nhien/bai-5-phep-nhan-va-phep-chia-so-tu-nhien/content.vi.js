@@ -3,7 +3,7 @@ export default {
   summary:
     'Phép nhân và phép chia số tự nhiên: tính chất giao hoán, kết hợp, nhân với 1, tính chất phân phối, phép chia hết và phép chia có dư a = b.q + r.',
   intro:
-    'Lớp em có $38$ bạn đi dã ngoại, mỗi xe điện chở được $8$ bạn. Cần mấy xe, và xe cuối chở mấy bạn? Phép chia có dư trả lời ngay: $38 = 8 \\cdot 4 + 6$. Bài này ôn lại phép nhân, phép chia và các tính chất giúp em tính nhanh.',
+    'Lớp em có $38$ bạn đi dã ngoại, mỗi xe điện chở được $8$ bạn. Cần mấy xe, và xe cuối chở mấy bạn? Phép chia có dư trả lời ngay: $38 = 8 \\cdot 4 + 6$, nên $4$ xe chở đủ $32$ bạn, cần thêm một xe nữa cho $6$ bạn còn lại, tất cả $5$ xe. Bài này ôn lại phép nhân, phép chia và các tính chất giúp em tính nhanh.',
   objectives: [
     'Thực hiện phép nhân, gọi đúng tên thừa số, tích; dùng đúng các cách viết dấu nhân.',
     'Vận dụng tính chất giao hoán, kết hợp, phân phối để tính nhẩm, tính hợp lí.',

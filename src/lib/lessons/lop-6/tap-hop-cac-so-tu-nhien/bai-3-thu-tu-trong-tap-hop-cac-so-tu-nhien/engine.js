@@ -45,7 +45,7 @@ export function successor(n) {
  * @type {Array<{ text: string, check: (a: number, b: number) => boolean }>}
  */
 export const CHALLENGES = [
-  { text: 'Đặt hai điểm sao cho a < b.', check: (a, b) => a < b },
+  { text: 'Đặt hai điểm sao cho a > b.', check: (a, b) => a > b },
   { text: 'Đặt b là số liền sau của a.', check: (a, b) => b === a + 1 },
   { text: 'Đặt a là số liền trước của 10.', check: (a) => a === 9 },
   { text: 'Đặt a, b sao cho a ≤ b và b ≤ a.', check: (a, b) => a === b },

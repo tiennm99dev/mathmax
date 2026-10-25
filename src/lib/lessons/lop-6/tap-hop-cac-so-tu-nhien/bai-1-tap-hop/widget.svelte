@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import { SvelteSet } from 'svelte/reactivity';
   import { button } from '#lib/core/ui.js';
   import { CHALLENGES, listForm, membership, propertyForm, sameSet } from './engine.js';
@@ -32,6 +33,8 @@
 
   /** @type {HTMLElement | undefined} */
   let ringEl = $state();
+  /** @type {HTMLElement | undefined} */
+  let rootEl = $state();
 
   // Pointer drag: the chip follows the pointer and lands in the ring or the
   // tray, whichever holds the point where it is released. A press without
@@ -77,6 +80,12 @@
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       place(n, !inA.has(n));
+      // The chip is re-created in the other container, so hand focus to it.
+      tick().then(() =>
+        /** @type {HTMLElement | null | undefined} */ (
+          rootEl?.querySelector(`[data-chip="${n}"]`)
+        )?.focus(),
+      );
     }
   }
 
@@ -99,6 +108,7 @@
 {#snippet chip(/** @type {number} */ n)}
   <button
     type="button"
+    data-chip={n}
     class="{chipClass} {inA.has(n)
       ? 'border-indigo-600 bg-indigo-50 text-indigo-800'
       : 'border-slate-300 bg-white text-slate-700'}"
@@ -112,7 +122,7 @@
   >
 {/snippet}
 
-<div class="space-y-4">
+<div class="space-y-4" bind:this={rootEl}>
   <div
     bind:this={ringEl}
     class="relative mx-auto min-h-36 max-w-md rounded-[50%] border-4 border-indigo-500 bg-indigo-50/40 px-8 py-8"
@@ -146,7 +156,7 @@
       {elements.length ? listing : 'A chưa có phần tử nào'}
     </p>
     <p class="text-sm font-semibold text-slate-600">Cách 2. Chỉ ra tính chất đặc trưng</p>
-    <p class="font-mono text-lg text-slate-900">
+    <p class={property ? 'font-mono text-lg text-slate-900' : 'text-slate-700'}>
       {property ??
         (elements.length < 2
           ? 'Cần ít nhất hai phần tử để tìm tính chất chung.'

@@ -104,7 +104,14 @@
       style="cursor:grab; outline:none"
       use:draggable={dragA}
     >
-      <rect x={x.map(a) - 16} y={BASE - 46} width="32" height="46" fill="transparent" />
+      <rect
+        x={x.map(a) - 16}
+        y={BASE - 46}
+        width="32"
+        height="46"
+        fill="transparent"
+        stroke="none"
+      />
       <path
         d="M {x.map(a)} {BASE - 3} l -10 -16 h 20 z"
         fill="#D7263D"
@@ -117,6 +124,7 @@
         text-anchor="middle"
         font-size="20"
         font-weight="700"
+        stroke="none"
         fill="#D7263D">a = {a}</text
       >
     </g>
@@ -133,7 +141,7 @@
       style="cursor:grab; outline:none"
       use:draggable={dragB}
     >
-      <rect x={x.map(b) - 16} y={BASE} width="32" height="34" fill="transparent" />
+      <rect x={x.map(b) - 16} y={BASE} width="32" height="34" fill="transparent" stroke="none" />
       <path
         d="M {x.map(b)} {BASE + 3} l -10 16 h 20 z"
         fill="#1B6CA8"
@@ -146,6 +154,7 @@
         text-anchor="middle"
         font-size="20"
         font-weight="700"
+        stroke="none"
         fill="#1B6CA8">b = {b}</text
       >
     </g>
