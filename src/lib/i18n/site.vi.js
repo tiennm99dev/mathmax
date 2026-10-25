@@ -1,20 +1,24 @@
 export const site = {
   title: 'MathMax',
   repo: 'https://github.com/tiennm99dev/mathmax',
-  tagline: 'Toán tương tác cho học sinh THCS',
+  tagline: 'Toán tương tác cho học sinh lớp 1-12',
   description:
-    'MathMax giúp học sinh THCS lớp 6-9 học toán qua tương tác — Số học, Đại số, Hình học bằng cách kéo, thử nghiệm, và minh hoạ trực quan.',
+    'MathMax giúp học sinh lớp 1-12 học toán theo sách Kết nối tri thức với cuộc sống qua tương tác: kéo, thử nghiệm và minh hoạ trực quan.',
 };
 
-export const hub = {
-  scopeLabel: 'Phạm vi',
-  topicsTitle: 'Chủ đề',
+export const home = {
+  gradesTitle: 'Chọn lớp',
+  strandsTitle: 'Học theo mạch kiến thức',
+  /** @param {number} chapters @param {number} lessons */
+  gradeSummary: (chapters, lessons) => `${chapters} chương · ${lessons} bài`,
 };
 
-export const status = {
-  comingSoon: 'Sắp ra mắt',
-  live: 'Khám phá',
-};
+/** School levels on the home page, each with its grade range. */
+export const levels = [
+  { title: 'Tiểu học', from: 1, to: 5 },
+  { title: 'Trung học cơ sở', from: 6, to: 9 },
+  { title: 'Trung học phổ thông', from: 10, to: 12 },
+];
 
 /** @type {Record<string, string>} */
 export const grades = Object.fromEntries(
@@ -57,33 +61,4 @@ export const strands = {
     title: 'Hoạt động trải nghiệm',
     blurb: 'Hoạt động thực hành và trải nghiệm toán học.',
   },
-};
-
-export const topics = {
-  'so-hoc': {
-    title: 'Số học',
-    blurb: 'Phép tính, ước-bội, phân số, số nguyên. Trực quan hoá thuật toán và quy luật.',
-    status: 'live',
-    href: 'so-hoc/',
-  },
-  'dai-so': {
-    title: 'Đại số',
-    blurb: 'Biểu thức, phương trình, hàm số. Thao tác kéo-thả các đối tượng đại số.',
-    status: 'live',
-    href: 'dai-so/',
-  },
-  'hinh-hoc': {
-    title: 'Hình học',
-    blurb: 'Tam giác, tứ giác, đường tròn. Kéo điểm, định lý sống động.',
-    status: 'live',
-    href: 'hinh-hoc/',
-  },
-};
-
-export const lessonChrome = {
-  backToTopic: '← Về danh sách bài',
-  backToHub: '← Về trang chủ',
-  theoremTitle: 'Định lý',
-  exampleTitle: 'Ví dụ',
-  instructionAria: 'Dùng phím mũi tên hoặc kéo điểm bằng chuột/cảm ứng',
 };

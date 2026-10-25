@@ -4,17 +4,11 @@ Toán tương tác cho học sinh Việt Nam lớp 1-12, theo chương trình K�
 
 ## Status
 
-9 bài đã ra mắt — số học, đại số, hình học đều có ít nhất hai bài.
+Mọi bài trong sách KNTT lớp 1-12 đều có trang; bài chưa soạn hiện dạng "Sắp ra mắt" (noindex).
 
-- Lớp 6 — Ước chung lớn nhất (Euclid): `/so-hoc/uoc-chung-lon-nhat/`
-- Lớp 6 — Sàng Eratosthenes: `/so-hoc/sang-eratosthenes/`
-- Lớp 7 — Hiệu hai bình phương: `/dai-so/hieu-hai-binh-phuong/`
-- Lớp 7 — Đồ thị y = ax + b: `/dai-so/duong-thang/`
-- Lớp 7 — Định lý Pythagoras: `/hinh-hoc/dinh-ly-pythagoras/`
-- Lớp 7 — Tam giác bằng nhau (SSS): `/hinh-hoc/tam-giac-bang-nhau/`
-- Lớp 8 — Tam giác đồng dạng: `/hinh-hoc/tam-giac-dong-dang/`
-- Lớp 9 — Hệ phương trình bậc nhất hai ẩn: `/dai-so/he-phuong-trinh-bac-nhat/`
-- Lớp 9 — Góc nội tiếp: `/hinh-hoc/goc-noi-tiep/`
+- `/` chọn lớp; `/lop-N/` các chương theo tập; `/lop-N/<chương>/` các bài; `/lop-N/<chương>/<bài>/` bài học.
+- `/so-hoc/`, `/dai-so/`, `/hinh-hoc/`, ... gom chương của một mạch kiến thức qua mọi lớp.
+- Chín URL bài cũ (`/so-hoc/uoc-chung-lon-nhat/`, ...) chuyển hướng bằng meta refresh tới bài mới; bảng ở `src/lib/curriculum/legacy-redirects.js`.
 
 ## Develop
 
@@ -45,7 +39,7 @@ Live URL: https://tiennm99dev.github.io/mathmax/
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
 - **Math engines**: `src/lib/geom-engine/` (vec, triangle, circle, ticks, transforms), `src/lib/numtheory-engine/` (gcd, lcm, gcdSteps, sieve), `src/lib/algebra-engine/` (linear, system). Module thuần, không phụ thuộc DOM. Vitest unit tests đi kèm.
 - **Math typography**: `src/lib/components/tex.svelte` — wrapper KaTeX duy nhất. SSR qua `renderToString`, không cần JS phía client để hiển thị.
-- **Lessons**: mỗi bài là một `+page.svelte`; copy tiếng Việt colocate trong `src/lib/lessons/<slug>/copy.vi.js`.
+- **Lessons**: các route động trong `src/routes/` sinh mọi trang từ `src/lib/curriculum/lop-N.json` qua `entries()`; nội dung bài nằm ở `src/lib/lessons/lop-N/<chương>/<bài>/content.vi.js`, TeX được render sẵn trong `+page.server.js`.
 - **Drag**: Svelte action `use:draggable` (`src/lib/actions/draggable.svelte.js`) — Pointer Events + bàn phím mũi tên cho a11y.
 - **i18n**: Hiện chỉ có tiếng Việt. Site chrome ở `src/lib/i18n/site.vi.js`. English thêm sau bằng cách tạo `*.en.js` song song.
 

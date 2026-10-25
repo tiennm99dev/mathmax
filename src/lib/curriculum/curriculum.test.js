@@ -11,6 +11,7 @@ import {
   prevNext,
   strands,
 } from './index.js';
+import { findRedirect, legacyRedirects } from './legacy-redirects.js';
 import { grade as matchGrade } from '../../params/grade.js';
 import { strand as matchStrand } from '../../params/strand.js';
 
@@ -190,5 +191,37 @@ describe('accessors', () => {
     expect(lessonStatus(6, 'missing', 'missing')).toBe('stub');
     if (!firstChapter || !firstLesson) throw new Error('lop-6 has no lessons');
     expect(['live', 'stub']).toContain(lessonStatus('lop-6', firstChapter.slug, firstLesson.slug));
+  });
+});
+
+describe('legacy redirects', () => {
+  it('covers the nine old lesson URLs once each', () => {
+    expect(legacyRedirects).toHaveLength(9);
+    const from = legacyRedirects.map((r) => `/${r.strand}/${r.slug}/`);
+    expect(new Set(from).size).toBe(from.length);
+  });
+
+  it('keeps every old path under a known strand', () => {
+    for (const r of legacyRedirects) {
+      expect(matchStrand(r.strand), r.strand).toBe(r.strand);
+      expect(r.slug).toMatch(SLUG_RE);
+    }
+  });
+
+  it('points every old path at a lesson that exists in the curriculum', () => {
+    for (const r of legacyRedirects) {
+      const m = /^\/(lop-\d+)\/([^/]+)\/([^/]+)\/$/.exec(r.to);
+      expect(m, r.to).not.toBeNull();
+      const [, g, c, b] = /** @type {RegExpExecArray} */ (m);
+      expect(lesson(g, c, b), r.to).toBeDefined();
+      expect(lessonPath(g, c, b)).toBe(r.to);
+    }
+  });
+
+  it('finds a redirect by strand and slug only', () => {
+    const first = legacyRedirects[0];
+    expect(findRedirect(first.strand, first.slug)).toBe(first);
+    expect(findRedirect('dai-so', first.slug)).toBeUndefined();
+    expect(findRedirect(first.strand, 'missing')).toBeUndefined();
   });
 });

@@ -104,3 +104,9 @@ export const hub = {
   stubNote: 'Bài này đang được soạn. Em có thể xem các bài khác trong chương.',
   backToChapter: 'Về chương',
 };
+
+export const moved = {
+  title: 'Bài học đã chuyển',
+  body: 'Bài này nay nằm trong chương trình theo lớp. Nếu trang không tự chuyển, hãy bấm vào liên kết dưới đây.',
+  link: 'Đến bài học',
+};
