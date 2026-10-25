@@ -98,6 +98,8 @@ export const hub = {
   comingSoon: 'Sắp ra mắt',
   live: 'Đã có',
   /** @param {number} live @param {number} total */
+  partial: (live, total) => `${live}/${total} bài`,
+  /** @param {number} live @param {number} total */
   lessonCount: (live, total) => `${live}/${total} bài đã có`,
   chapters: 'Các chương',
   lessons: 'Các bài',

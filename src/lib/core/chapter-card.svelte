@@ -3,12 +3,14 @@
   import { t } from '#lib/i18n/index.js';
   import { gradeSlug, lessonStatus } from '#lib/curriculum/index.js';
   import StatusBadge from './status-badge.svelte';
+  import { chapterStatus } from './chapter-status.js';
   import { hub as copy } from './copy.vi.js';
   import { focusRing } from './ui.js';
 
   /**
-   * A chapter link with its live lesson count. Chapters with no lesson yet are
-   * dimmed but stay clickable.
+   * A chapter link with its live lesson count. The badge says `Đã có` only when
+   * every lesson is live and `k/n bài` when some are. Chapters with no lesson
+   * yet are dimmed but stay clickable.
    * @type {{
    *   grade: import('#lib/curriculum/index.js').Grade;
    *   chapter: import('#lib/curriculum/index.js').Chapter;
@@ -22,6 +24,8 @@
     chapter.lessons.filter((l) => lessonStatus(grade.grade, chapter.slug, l.slug) === 'live')
       .length,
   );
+  const total = $derived(chapter.lessons.length);
+  const status = $derived(chapterStatus(live, total));
   const path = $derived(`/${gradeSlug(grade.grade)}/${chapter.slug}/`);
 </script>
 
@@ -36,8 +40,8 @@
       {#if showGrade}{site.grades[gradeSlug(grade.grade)]} ·
       {/if}{chapter.label}
     </span>
-    <StatusBadge status={live ? 'live' : 'stub'} />
+    <StatusBadge {status} {live} {total} />
   </div>
   <h3 class="font-bold leading-snug text-slate-900">{chapter.title}</h3>
-  <p class="mt-auto text-sm text-slate-500">{copy.lessonCount(live, chapter.lessons.length)}</p>
+  <p class="mt-auto text-sm text-slate-500">{copy.lessonCount(live, total)}</p>
 </a>
