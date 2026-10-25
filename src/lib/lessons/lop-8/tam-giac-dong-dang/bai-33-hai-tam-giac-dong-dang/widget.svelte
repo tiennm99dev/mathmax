@@ -1,4 +1,5 @@
 <script>
+  import { formatFixed } from '#lib/core/number-format.js';
   import { triangle, sides } from '#lib/geom-engine/triangle.js';
   import { add, scale, sub, vec } from '#lib/geom-engine/vec.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
@@ -66,7 +67,7 @@
   <div>
     <label class="block">
       <span class="text-sm font-semibold text-slate-700"
-        >Hệ số phóng k: <span class="tabular-nums">{k.toFixed(2)}</span></span
+        >Hệ số phóng k: <span class="tabular-nums">{formatFixed(k, 2)}</span></span
       >
       <input
         type="range"
@@ -84,17 +85,35 @@
   <div>
     <h3 class="mb-3 font-bold text-slate-900">Cạnh tương ứng</h3>
     <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm tabular-nums" aria-live="polite">
-      <div><span style="color:{PAIR1}" class="font-semibold">AB:</span> {s1.ab.toFixed(1)}</div>
-      <div><span style="color:{PAIR1}" class="font-semibold">A′B′:</span> {s2.ab.toFixed(1)}</div>
-      <div><span style="color:{PAIR2}" class="font-semibold">BC:</span> {s1.bc.toFixed(1)}</div>
-      <div><span style="color:{PAIR2}" class="font-semibold">B′C′:</span> {s2.bc.toFixed(1)}</div>
-      <div><span style="color:{PAIR3}" class="font-semibold">CA:</span> {s1.ca.toFixed(1)}</div>
-      <div><span style="color:{PAIR3}" class="font-semibold">C′A′:</span> {s2.ca.toFixed(1)}</div>
+      <div>
+        <span style="color:{PAIR1}" class="font-semibold">AB:</span>
+        {formatFixed(s1.ab, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR1}" class="font-semibold">A′B′:</span>
+        {formatFixed(s2.ab, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR2}" class="font-semibold">BC:</span>
+        {formatFixed(s1.bc, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR2}" class="font-semibold">B′C′:</span>
+        {formatFixed(s2.bc, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR3}" class="font-semibold">CA:</span>
+        {formatFixed(s1.ca, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR3}" class="font-semibold">C′A′:</span>
+        {formatFixed(s2.ca, 1)}
+      </div>
     </div>
     <p
       class="mt-3 rounded-lg bg-indigo-50 border border-indigo-200 p-3 text-sm text-indigo-900 tabular-nums"
     >
-      Tỉ số A′B′/AB = B′C′/BC = C′A′/CA = <strong>{k.toFixed(2)}</strong>
+      Tỉ số A′B′/AB = B′C′/BC = C′A′/CA = <strong>{formatFixed(k, 2)}</strong>
     </p>
   </div>
 </div>

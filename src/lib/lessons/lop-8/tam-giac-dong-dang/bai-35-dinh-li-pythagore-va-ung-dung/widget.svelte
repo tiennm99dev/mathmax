@@ -1,5 +1,6 @@
 <script>
   import { button } from '#lib/core/ui.js';
+  import { formatFixed, texNumber } from '#lib/core/number-format.js';
   import Tex from '#lib/components/tex.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
@@ -44,8 +45,12 @@
   const tB = $derived(Math.max(0, $tp * 2 - 1));
   const shearA = $derived(morphSquareA(A, R, H, a, b, tA));
   const shearB = $derived(morphSquareB(R, H, a, b, tB));
-  const texSides = $derived(`a=${a.toFixed(1)},\\;b=${b.toFixed(1)},\\;c=${c.toFixed(1)}`);
-  const texNums = $derived(`${(a * a).toFixed(1)}+${(b * b).toFixed(1)}=${(c * c).toFixed(1)}`);
+  /** @param {number} v */
+  const one = (v) => formatFixed(v, 1);
+  /** @param {number} v */
+  const texOne = (v) => texNumber(one(v));
+  const texSides = $derived(`a=${texOne(a)},\\;b=${texOne(b)},\\;c=${texOne(c)}`);
+  const texNums = $derived(`${texOne(a * a)}+${texOne(b * b)}=${texOne(c * c)}`);
 
   /** @param {{ x: number; y: number }} p */
   const clampR = (p) => ({
@@ -63,7 +68,7 @@
     onChange: () => {
       if (debounceId) clearTimeout(debounceId);
       debounceId = setTimeout(() => {
-        announcement = `Cạnh a=${a.toFixed(1)}, b=${b.toFixed(1)}, huyền c=${c.toFixed(1)}`;
+        announcement = `Cạnh a=${one(a)}, b=${one(b)}, huyền c=${one(c)}`;
       }, 300);
     },
   });
@@ -220,14 +225,11 @@
   <!-- Live KaTeX panel -->
   <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
     <div class="mb-2 text-sm text-slate-700">
-      <Tex math={texSides} ariaLabel="a={a.toFixed(1)}, b={b.toFixed(1)}, c={c.toFixed(1)}" />
+      <Tex math={texSides} ariaLabel="a={one(a)}, b={one(b)}, c={one(c)}" />
     </div>
     <Tex display math="a^2 + b^2 = c^2" />
     <div class="mt-1 text-sm text-slate-600 tabular-nums">
-      <Tex
-        math={texNums}
-        ariaLabel="{(a * a).toFixed(1)} + {(b * b).toFixed(1)} = {(c * c).toFixed(1)}"
-      />
+      <Tex math={texNums} ariaLabel="{one(a * a)} + {one(b * b)} = {one(c * c)}" />
     </div>
   </div>
 

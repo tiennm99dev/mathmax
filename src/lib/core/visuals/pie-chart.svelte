@@ -1,7 +1,7 @@
 <script>
   import { draggable } from '#lib/actions/draggable.svelte.js';
   import { percentages, pieSlices } from '#lib/stats-engine/frequency.js';
-  import { formatNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
   import { angleOf, clamp, colorAt, polar, sectorPath, snap } from './svg-math.js';
 
   /**

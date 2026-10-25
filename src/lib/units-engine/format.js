@@ -1,18 +1,7 @@
-/**
- * Vietnamese number formatting: '.' groups thousands and ',' marks decimals,
- * so 12345.5 reads '12.345,5'. Written by hand rather than with Intl so the
- * output never depends on the ICU data a runtime ships.
- * @param {number} value
- * @param {number} [maxDecimals]
- */
-export function formatNumber(value, maxDecimals = 6) {
-  const fixed = Math.abs(value).toFixed(maxDecimals);
-  const [int, frac = ''] = fixed.split('.');
-  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  const decimals = frac.replace(/0+$/, '');
-  const sign = value < 0 && Number(fixed) !== 0 ? '−' : '';
-  return decimals ? `${sign}${grouped},${decimals}` : `${sign}${grouped}`;
-}
+// Vietnamese number writing is owned by core; this engine re-exports it.
+import { formatNumber } from '#lib/core/number-format.js';
+
+export { formatNumber };
 
 /**
  * @param {number} amount whole đồng

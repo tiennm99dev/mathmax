@@ -2,7 +2,7 @@
   import { untrack } from 'svelte';
   import { draggable } from '#lib/actions/draggable.svelte.js';
   import { niceAxis } from '#lib/stats-engine/ticks.js';
-  import { formatNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
   import { clamp, colorAt, linear, snap } from './svg-math.js';
 
   /**

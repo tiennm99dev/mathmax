@@ -1,4 +1,5 @@
 <script>
+  import { formatFixed, formatNumber } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
   import EquationCard from './equation-card.svelte';
   import {
@@ -124,7 +125,8 @@
   }
 
   /** Integers stay integers; fractional solutions get two decimals. */
-  const fmt = (/** @type {number} */ n) => (Number.isInteger(n) ? String(n) : n.toFixed(2));
+  const fmt = (/** @type {number} */ n) =>
+    Number.isInteger(n) ? formatNumber(n) : formatFixed(n, 2);
 
   const eq1Tex = $derived(eqTex(eq1));
   const eq2Tex = $derived(eqTex(eq2));

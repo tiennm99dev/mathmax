@@ -1,4 +1,5 @@
 <script>
+  import { formatFixed } from '#lib/core/number-format.js';
   import Tex from '#lib/components/tex.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
@@ -73,7 +74,7 @@
   const drag2Opts = $derived(dragOpts(p2, ANCHOR2_X));
 
   /** One decimal, with the Vietnamese decimal comma. */
-  const fmt = (/** @type {number} */ v) => v.toFixed(1).replace('.', ',');
+  const fmt = (/** @type {number} */ v) => formatFixed(v, 1);
 
   const line = $derived({ a, b });
   const pts = $derived(linePoints(line, -10, 10));
@@ -138,7 +139,7 @@
         dominant-baseline="middle"
         font-size="11"
         fill="#D7263D"
-        font-weight="600">Δy = {deltaY.toFixed(1)}</text
+        font-weight="600">Δy = {formatFixed(deltaY, 1)}</text
       >
     {/if}
 
@@ -155,12 +156,12 @@
     <DragPoint
       drag={drag1Opts}
       color="#D7263D"
-      label="Điểm neo 1 tại x = −5, y = {anchor1MathY.toFixed(1)} — kéo hoặc dùng phím mũi tên"
+      label="Điểm neo 1 tại x = −5, y = {formatFixed(anchor1MathY, 1)} — kéo hoặc dùng phím mũi tên"
     />
     <DragPoint
       drag={drag2Opts}
       color="#D7263D"
-      label="Điểm neo 2 tại x = 5, y = {anchor2MathY.toFixed(1)} — kéo hoặc dùng phím mũi tên"
+      label="Điểm neo 2 tại x = 5, y = {formatFixed(anchor2MathY, 1)} — kéo hoặc dùng phím mũi tên"
     />
   </CoordinatePlane>
 

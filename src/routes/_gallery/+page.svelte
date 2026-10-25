@@ -22,7 +22,7 @@
   import CountingTray from '#lib/core/visuals/counting-tray.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
   import { formatTime, toMinutes } from '#lib/units-engine/clock.js';
-  import { formatNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
 
   // A sister site's subject components each ship a `<name>.gallery.svelte` demo
   // in src/lib/domain/, exporting its section `title` from a module script, so

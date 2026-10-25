@@ -4,7 +4,7 @@
   import { fraction, format as formatFraction, simplify } from '#lib/fraction-engine/fraction.js';
   import { pickWeighted, experimentalProbability } from '#lib/stats-engine/probability.js';
   import { pieSlices } from '#lib/stats-engine/frequency.js';
-  import { formatNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
   import { button } from '../ui.js';
   import { colorAt, polar, sectorPath } from './svg-math.js';
 

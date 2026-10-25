@@ -1,6 +1,6 @@
 <script>
   import { draggable } from '#lib/actions/draggable.svelte.js';
-  import { formatNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
   import { clamp, hopPath, linear, snap } from './svg-math.js';
 
   /**

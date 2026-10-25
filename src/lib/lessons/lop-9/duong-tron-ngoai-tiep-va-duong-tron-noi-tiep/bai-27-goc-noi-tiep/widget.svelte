@@ -1,4 +1,5 @@
 <script>
+  import { formatFixed } from '#lib/core/number-format.js';
   import {
     circle,
     pointOnCircle,
@@ -48,12 +49,12 @@
       <div class="flex items-baseline justify-between gap-3">
         <span
           ><strong style="color:#D7263D">Góc nội tiếp ∠AMB:</strong>
-          {inscribed.toFixed(1)}°</span
+          {formatFixed(inscribed, 1)}°</span
         >
-        <span><strong style="color:#1B998B">Cung bị chắn AB:</strong> {arc.toFixed(1)}°</span>
+        <span><strong style="color:#1B998B">Cung bị chắn AB:</strong> {formatFixed(arc, 1)}°</span>
       </div>
       <p class="mt-1 text-slate-600">
-        Góc nội tiếp = nửa cung bị chắn: {inscribed.toFixed(1)}° = {arc.toFixed(1)}° / 2
+        Góc nội tiếp = nửa cung bị chắn: {formatFixed(inscribed, 1)}° = {formatFixed(arc, 1)}° / 2
       </p>
     {/if}
   </div>

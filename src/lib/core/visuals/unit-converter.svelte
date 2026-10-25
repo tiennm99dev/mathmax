@@ -2,7 +2,8 @@
   import { untrack } from 'svelte';
   import { UNITS, convert, ratio, splitMixed } from '#lib/units-engine/units.js';
   import { breakdown } from '#lib/units-engine/money.js';
-  import { formatNumber, parseNumber } from '#lib/units-engine/format.js';
+  import { formatNumber } from '#lib/core/number-format.js';
+  import { parseNumber } from '#lib/units-engine/format.js';
   import SegmentedControl from '../segmented-control.svelte';
   import { focusRing, textInput } from '../ui.js';
 

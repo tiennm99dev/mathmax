@@ -1,4 +1,5 @@
 <script>
+  import { formatFixed } from '#lib/core/number-format.js';
   import { triangle, sides, congruentSSS } from '#lib/geom-engine/triangle.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
@@ -92,12 +93,30 @@
   <div>
     <h3 class="mb-3 font-bold text-slate-900">Độ dài cạnh</h3>
     <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm tabular-nums" aria-live="polite">
-      <div><span style="color:{PAIR1}" class="font-semibold">AB:</span> {s1.ab.toFixed(1)}</div>
-      <div><span style="color:{PAIR1}" class="font-semibold">A′B′:</span> {s2.ab.toFixed(1)}</div>
-      <div><span style="color:{PAIR2}" class="font-semibold">BC:</span> {s1.bc.toFixed(1)}</div>
-      <div><span style="color:{PAIR2}" class="font-semibold">B′C′:</span> {s2.bc.toFixed(1)}</div>
-      <div><span style="color:{PAIR3}" class="font-semibold">CA:</span> {s1.ca.toFixed(1)}</div>
-      <div><span style="color:{PAIR3}" class="font-semibold">C′A′:</span> {s2.ca.toFixed(1)}</div>
+      <div>
+        <span style="color:{PAIR1}" class="font-semibold">AB:</span>
+        {formatFixed(s1.ab, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR1}" class="font-semibold">A′B′:</span>
+        {formatFixed(s2.ab, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR2}" class="font-semibold">BC:</span>
+        {formatFixed(s1.bc, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR2}" class="font-semibold">B′C′:</span>
+        {formatFixed(s2.bc, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR3}" class="font-semibold">CA:</span>
+        {formatFixed(s1.ca, 1)}
+      </div>
+      <div>
+        <span style="color:{PAIR3}" class="font-semibold">C′A′:</span>
+        {formatFixed(s2.ca, 1)}
+      </div>
     </div>
   </div>
 </div>

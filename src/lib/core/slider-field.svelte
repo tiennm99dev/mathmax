@@ -1,5 +1,6 @@
 <script>
   import { focusRing } from './ui.js';
+  import { formatNumber } from './number-format.js';
 
   /**
    * A labelled range input that shows its current value. `format` turns the
@@ -22,7 +23,7 @@
     max,
     step = 1,
     unit = '',
-    format = (v) => String(v).replace('.', ','),
+    format = (v) => formatNumber(v),
     oninput,
   } = $props();
 
