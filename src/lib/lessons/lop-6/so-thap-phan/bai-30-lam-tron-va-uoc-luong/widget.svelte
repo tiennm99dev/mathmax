@@ -66,7 +66,9 @@
         ? tie
           ? `Đúng! Số nằm đúng giữa hai mốc; chữ số bên phải là 5 nên ta tăng chữ số ${place.name}: ${decStr(v, 3)} ≈ ${e.result}.`
           : `Đúng! ${decStr(v, 3)} gần ${e.result} hơn, nên ${decStr(v, 3)} ≈ ${e.result}.`
-        : `Chưa đúng: ${decStr(v, 3)} gần mốc ${e.result} hơn (xem điểm tím nhảy tới mốc đó).`,
+        : tie
+          ? `Chưa đúng: số nằm đúng giữa hai mốc; chữ số bên phải là 5 nên ta tăng chữ số ${place.name}: ${decStr(v, 3)} ≈ ${e.result} (xem điểm tím nhảy tới mốc đó).`
+          : `Chưa đúng: ${decStr(v, 3)} gần mốc ${e.result} hơn (xem điểm tím nhảy tới mốc đó).`,
   );
 </script>
 

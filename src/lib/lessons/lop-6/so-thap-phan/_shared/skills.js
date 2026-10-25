@@ -120,7 +120,7 @@ export const tinhToan = {
     if (v === 0) {
       // x ± y with two decimals, at least one negative number.
       const x = sign(rand) * noTrailingZero(rand, 11, 999);
-      const y = -noTrailingZero(rand, 11, 999) * (rand() < 0.5 ? 1 : -1);
+      const y = (x > 0 || rand() < 0.5 ? -1 : 1) * noTrailingZero(rand, 11, 999);
       const plus = rand() < 0.5;
       const ny = plus ? y : -y;
       const r = x + ny;
