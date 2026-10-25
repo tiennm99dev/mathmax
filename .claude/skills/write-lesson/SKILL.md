@@ -224,7 +224,8 @@ Other shared pieces:
   `periodic-table`, `atom-model`, `molecule-viewer`, `equation-balancer`,
   `ph-scale`, `lab-glassware`; BioMax has `diagram-hotspots`, `punnett-square`,
   `pedigree-chart`, `food-web`, `dna-codon-translator`, `population-chart`. Use
-  what `ls src/lib/domain/` actually shows.
+  what `ls src/lib/domain/` actually shows; each has a `<name>.gallery.svelte`
+  demo that `/_gallery/` lists.
 
 Widget rules: every control works by pointer and by keyboard, has a Vietnamese
 `aria-label` or visible label, and announces results in an `aria-live` region

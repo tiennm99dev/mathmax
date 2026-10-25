@@ -69,7 +69,7 @@ src/lib/lessons/lop-N/<chương>/
 
 - Slug chương và bài lấy nguyên từ `lop-N.json`; mỗi bài trong JSON có `kind`, `keyIdeas` và `interactiveIdea` để định hướng nội dung.
 - Không sửa `src/lib/core/`, `src/lib/curriculum/`, `src/routes/`, `src/params/`, script hay config. Helper cần cho nhiều chương được viết ở `_shared/` trước, rồi đưa lên core trong một lượt riêng.
-- Ở các site anh em, thành phần riêng của môn nằm ở `src/lib/domain/`; mỗi file mô tả props bằng JSDoc ở đầu.
+- Ở các site anh em, thành phần riêng của môn nằm ở `src/lib/domain/`; mỗi file mô tả props bằng JSDoc ở đầu. Mỗi thành phần có một bản demo `<tên>.gallery.svelte` cùng thư mục (xuất `title` trong `<script module>`), được `/_gallery/` tự liệt kê.
 
 ### Nội dung (`content.vi.js`)
 

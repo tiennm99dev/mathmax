@@ -24,6 +24,20 @@
   import { formatTime, toMinutes } from '#lib/units-engine/clock.js';
   import { formatNumber } from '#lib/units-engine/format.js';
 
+  // A sister site's subject components each ship a `<name>.gallery.svelte` demo
+  // in src/lib/domain/, exporting its section `title` from a module script, so
+  // the gallery lists them without an edit to this synced page.
+  const domainModules =
+    /** @type {Record<string, { default: import('svelte').Component, title?: string }>} */ (
+      import.meta.glob('/src/lib/domain/*.gallery.svelte', { eager: true })
+    );
+  const domainDemos = Object.entries(domainModules)
+    .map(([file, mod]) => {
+      const name = file.replace(/^.*\//, '').replace(/\.gallery\.svelte$/, '');
+      return { id: name, name, title: mod.title ?? name, Demo: mod.default };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   // Coordinate plane: one draggable point that snaps to whole coordinates.
   const plane = planeScale({ xMin: -6, xMax: 6, yMin: -4, yMax: 4, width: 420 });
   /** @type {SVGSVGElement | undefined} */
@@ -95,6 +109,7 @@
   let trayCount = $state(2);
 
   const sections = [
+    ...domainDemos.map((d) => [d.id, d.title]),
     ['coordinate-plane', 'Mặt phẳng toạ độ'],
     ['geometry-board', 'Bảng hình học'],
     ['number-line', 'Tia số'],
@@ -124,8 +139,10 @@
   <header class="mb-6 space-y-2">
     <h1 class="text-3xl font-bold text-slate-900">Thư viện hình minh hoạ</h1>
     <p class="text-slate-600">
-      Trang nội bộ để rà soát mọi hình trong <code>src/lib/core/visuals/</code>: kéo bằng chuột hoặc
-      ngón tay, và thử bằng bàn phím (Tab rồi phím mũi tên). Trang này không được lập chỉ mục.
+      Trang nội bộ để rà soát mọi hình trong <code>src/lib/core/visuals/</code>
+      {#if domainDemos.length}và thành phần riêng của môn trong <code>src/lib/domain/</code>{/if}:
+      kéo bằng chuột hoặc ngón tay, và thử bằng bàn phím (Tab rồi phím mũi tên). Trang này không
+      được lập chỉ mục.
     </p>
     <nav aria-label="Các hình">
       <ul class="flex flex-wrap gap-2 text-sm">
@@ -137,6 +154,13 @@
   </header>
 
   <div class="space-y-6">
+    {#each domainDemos as d (d.id)}
+      <section id={d.id} class={box}>
+        <h2 class="text-xl font-bold">{d.title} <code class="text-sm">{d.name}</code></h2>
+        <d.Demo />
+      </section>
+    {/each}
+
     <section id="coordinate-plane" class={box}>
       <h2 class="text-xl font-bold">
         Mặt phẳng toạ độ <code class="text-sm">coordinate-plane</code>
