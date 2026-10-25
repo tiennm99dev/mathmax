@@ -44,7 +44,10 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          SITE_BASE: /mathmax
+          SITE_BASE: /${{ github.event.repository.name }}
+
+      - name: Lesson chunk sizes
+        run: npm run size-report
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

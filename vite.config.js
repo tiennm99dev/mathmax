@@ -1,9 +1,13 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vite';
 
-const base = process.env.SITE_BASE ?? '/mathmax';
+// Every site serves from /<package name> unless SITE_BASE says otherwise, so this
+// config is identical across the sites that share it.
+const { name } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
+const base = process.env.SITE_BASE ?? `/${name}`;
 
 export default defineConfig({
   plugins: [

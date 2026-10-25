@@ -66,14 +66,13 @@ describe('hub loads', () => {
   it('resolves a grade and its chapters, and 404s on unknown slugs', () => {
     const g = grades()[0];
     const c = g.chapters[0];
-    expect(run(gradeRoute.load, { grade: 'lop-1' })).toEqual({ grade: g });
-    expect(run(chapterRoute.load, { grade: 'lop-1', chapter: c.slug })).toEqual({
+    const slug = `lop-${g.grade}`;
+    expect(run(gradeRoute.load, { grade: slug })).toEqual({ grade: g });
+    expect(run(chapterRoute.load, { grade: slug, chapter: c.slug })).toEqual({
       grade: g,
       chapter: c,
     });
-    expect(statusOf(() => run(chapterRoute.load, { grade: 'lop-1', chapter: 'missing' }))).toBe(
-      404,
-    );
+    expect(statusOf(() => run(chapterRoute.load, { grade: slug, chapter: 'missing' }))).toBe(404);
   });
 
   it('resolves every strand', () => {
@@ -113,6 +112,8 @@ describe('legacy redirects', () => {
     for (const r of legacyRedirects) {
       expect(run(legacyRoute.load, { strand: r.strand, slug: r.slug })).toEqual({ to: r.to });
     }
-    expect(statusOf(() => run(legacyRoute.load, { strand: 'so-hoc', slug: 'missing' }))).toBe(404);
+    expect(
+      statusOf(() => run(legacyRoute.load, { strand: strands()[0].slug, slug: 'missing' })),
+    ).toBe(404);
   });
 });

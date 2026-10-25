@@ -13,7 +13,10 @@
     "test:watch": "vitest",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "stubs": "node scripts/stub-report.js",
+    "size-report": "node scripts/size-report.js",
+    "sync-core": "scripts/sync-core.sh"
   },
   "dependencies": {
     "@fontsource/be-vietnam-pro": "^5.2.0",

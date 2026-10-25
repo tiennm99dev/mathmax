@@ -45,3 +45,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Lesson chunk sizes
+        run: npm run size-report

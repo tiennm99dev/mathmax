@@ -1,4 +1,5 @@
 <script>
+  import { t } from '#lib/i18n/index.js';
   import SiteShell from '#lib/core/site-shell.svelte';
   import { card } from '#lib/core/ui.js';
   import Picture from '#lib/core/kid/picture.svelte';
@@ -115,7 +116,7 @@
 </script>
 
 <svelte:head>
-  <title>Thư viện hình minh hoạ — MathMax</title>
+  <title>Thư viện hình minh hoạ — {t().site.title}</title>
   <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
