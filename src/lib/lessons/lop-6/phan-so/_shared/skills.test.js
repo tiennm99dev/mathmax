@@ -58,6 +58,9 @@ function recompute(prompt) {
   if (prompt.startsWith('Quy đồng')) return lcm(Math.abs(f[0].d), Math.abs(f[1].d));
   if (prompt.startsWith('Tìm số đối')) return -val(f[0]);
   if (prompt.startsWith('Tìm phân số nghịch đảo')) return 1 / val(f[0]);
+  if (prompt.startsWith('Tìm một số, biết')) return f[1].n / val(f[0]);
+  if (/^Tìm \d+% của/.test(prompt)) return (f[0].n * f[1].n) / 100;
+  if (/^Tìm \d+\/\d+ của/.test(prompt)) return val(f[0]) * f[1].n;
   if (prompt.startsWith('Tính')) {
     const [a, b] = f;
     if (body.includes(' + ')) return val(a) + val(b);

@@ -292,8 +292,70 @@ export const nhanChiaPhanSo = {
   },
 };
 
+/** Percentages whose share of a multiple of 20 is always a whole number. */
+const PERCENTS = [10, 15, 20, 25, 30, 40, 45, 50, 60, 75, 80, 90];
+
+/** @type {Skill} */
+export const haiBaiToanPhanSo = {
+  id: 'hai-bai-toan-phan-so',
+  label: 'Bài 27. Hai bài toán về phân số',
+  make(rand) {
+    const v = int(rand, 0, 2);
+    if (v === 2) {
+      const p = PERCENTS[int(rand, 0, PERCENTS.length - 1)];
+      const a = 20 * int(rand, 1, 15);
+      const ans = (a * p) / 100;
+      return {
+        prompt: `Tìm ${p}% của ${a}.`,
+        answer: ans,
+        hints: [`${p}% = ${p}/100.`, `Tính ${a} · ${p}/100.`],
+        steps: [`${p}% của ${a} là ${a} · ${p}/100 = ${a * p}/100 = ${ans}.`],
+      };
+    }
+    const n = int(rand, 2, 9);
+    let m = int(rand, 1, n - 1);
+    while (gcd(m, n) !== 1) m = int(rand, 1, n - 1);
+    const k = int(rand, 2, 15);
+    const whole = n * k;
+    const part = m * k;
+    if (v === 0) {
+      return {
+        prompt: `Tìm ${m}/${n} của ${whole}.`,
+        answer: part,
+        hints: [
+          'Muốn tìm m/n của số a, ta tính a · m/n.',
+          `Mỗi phần bằng ${whole} : ${n}; lấy ${m} phần như thế.`,
+        ],
+        steps: [`${whole} · ${m}/${n} = (${whole} · ${m})/${n} = ${whole * m}/${n} = ${part}.`],
+      };
+    }
+    return {
+      prompt: `Tìm một số, biết ${m}/${n} của nó bằng ${part}.`,
+      answer: whole,
+      hints: [
+        'Muốn tìm một số biết m/n của nó bằng b, ta tính b : m/n.',
+        `${m} phần bằng nhau ứng với ${part}; tìm một phần rồi lấy đủ ${n} phần.`,
+      ],
+      steps: [
+        m === 1
+          ? `${part} : 1/${n} = ${part} · ${n} = ${whole}.`
+          : `${part} : ${m}/${n} = ${part} · ${n}/${m} = ${part * n}/${m} = ${whole}.`,
+      ],
+    };
+  },
+};
+
 /** Skills of the lessons before "Luyện tập chung trang 13". */
 export const PAGE_13_SKILLS = [phanSoBangNhau, soSanhHonSo];
 
-/** Every skill of the chapter written so far, in book order. */
-export const CHAPTER_SKILLS = [phanSoBangNhau, soSanhHonSo, congTruPhanSo, nhanChiaPhanSo];
+/** Skills of the lessons before "Luyện tập chung trang 25". */
+export const PAGE_25_SKILLS = [congTruPhanSo, nhanChiaPhanSo, haiBaiToanPhanSo];
+
+/** Every skill of the chapter, in book order. */
+export const CHAPTER_SKILLS = [
+  phanSoBangNhau,
+  soSanhHonSo,
+  congTruPhanSo,
+  nhanChiaPhanSo,
+  haiBaiToanPhanSo,
+];
