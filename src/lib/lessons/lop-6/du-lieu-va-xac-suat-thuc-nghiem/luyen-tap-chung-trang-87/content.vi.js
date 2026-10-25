@@ -61,7 +61,7 @@ export default {
   examples: [
     {
       problem:
-        'Kết quả bình chọn món ăn sáng yêu thích của lớp 6A ($32$ học sinh, mỗi bạn chọn một món) được ghi trong bảng: Phở $10$; Bánh mì $8$; Xôi $6$; Bún chả $12$. Bảng có hợp lí không? Nếu có một ô bị ghi sai thừa thì sai thừa bao nhiêu?',
+        'Kết quả bình chọn món ăn sáng yêu thích của lớp 6A ($32$ học sinh, mỗi bạn chọn một món) được ghi trong bảng: Phở $10$; Bánh mì $8$; Xôi $6$; Bún chả $12$. Bảng có hợp lí không? Nếu bảng ghi thừa thì thừa bao nhiêu bạn?',
       steps: [
         'Tổng số bạn trong bảng: $10 + 8 + 6 + 12 = 36$.',
         'Lớp chỉ có $32$ học sinh và mỗi bạn chọn một món, nên tổng phải là $32$.',
