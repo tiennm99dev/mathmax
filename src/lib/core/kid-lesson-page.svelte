@@ -27,6 +27,22 @@
   const widgets = $derived(props.widgets ?? {});
   const path = $derived(lessonPath(grade.grade, chapter.slug, lesson.slug));
   const storageKey = $derived(resolve(/** @type {import('$app/types').Path} */ (path)));
+
+  /** Blocks a card reads aloud; widgets, display TeX and tables are not spoken. */
+  const SILENT = ['widget', 'tex', 'table'];
+
+  /**
+   * Read-aloud name for one block card: the section label, plus its place among
+   * the section's spoken cards when there are several, so every button differs.
+   * @param {import('./content-schema.js').RenderedSection} section
+   * @param {number} b block index
+   */
+  function cardName(section, b) {
+    const spoken = section.blocks.flatMap((block, i) => (SILENT.includes(block.type) ? [] : [i]));
+    return spoken.length > 1
+      ? readAloud.part(section.label, spoken.indexOf(b) + 1, spoken.length)
+      : section.label;
+  }
 </script>
 
 <SiteShell>
@@ -73,10 +89,8 @@
       <RichText as="h2" html={section.heading} class="pt-2 text-2xl font-bold text-slate-900" />
       {#each section.blocks as block, b (b)}
         <KidCard
-          what={section.blocks.length > 1
-            ? readAloud.part(section.label, b + 1, section.blocks.length)
-            : section.label}
-          speak={block.type !== 'widget' && block.type !== 'tex' && block.type !== 'table'}
+          what={cardName(section, b)}
+          speak={!SILENT.includes(block.type)}
           tone={section.project ? 'accent' : 'plain'}
         >
           {#if section.project && b === 0}
