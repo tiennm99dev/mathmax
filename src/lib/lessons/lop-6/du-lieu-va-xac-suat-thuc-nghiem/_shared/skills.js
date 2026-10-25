@@ -1,11 +1,14 @@
 /**
  * Question generators for the chapter "Dữ liệu và xác suất thực nghiệm", one
  * skill per lesson. Every answer is a natural number (a count, a number of
- * pictograph symbols or a value read off a chart), so the drill board reads
- * and writes it with its defaults.
+ * pictograph symbols, a value read off a chart, a number of outcomes or an
+ * experimental probability written as a whole percentage), so the drill board
+ * writes it with its defaults; `readPercentOrNatural` also accepts a typed
+ * percent sign.
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
+import { readNatural } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -243,3 +246,210 @@ export const bieuDoCotKep = {
 
 /** Skills of "Luyện tập chung" on page 87: Bài 38 to Bài 41. */
 export const PAGE_87_SKILLS = [duLieu, bieuDoTranh, bieuDoCot, bieuDoCotKep];
+
+/**
+ * Die events by the faces that make them happen.
+ * @type {ReadonlyArray<readonly [string, readonly number[]]>}
+ */
+const DIE_EVENTS = [
+  ['Số chấm xuất hiện là số chẵn', [2, 4, 6]],
+  ['Số chấm xuất hiện là số lẻ', [1, 3, 5]],
+  ['Số chấm xuất hiện là số nguyên tố', [2, 3, 5]],
+  ['Số chấm xuất hiện là hợp số', [4, 6]],
+  ['Số chấm xuất hiện chia hết cho 3', [3, 6]],
+  ['Số chấm xuất hiện lớn hơn 4', [5, 6]],
+  ['Số chấm xuất hiện nhỏ hơn 3', [1, 2]],
+];
+
+const COLOURS = ['xanh', 'đỏ', 'vàng', 'trắng', 'tím'];
+
+/** @type {Skill} */
+export const ketQuaSuKien = {
+  id: 'ket-qua-su-kien',
+  label: 'Bài 42. Kết quả có thể và sự kiện',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const n = int(rand, 10, 20);
+      const d = int(rand, 2, 5);
+      const hits = Array.from({ length: Math.floor(n / d) }, (_, k) => d * (k + 1));
+      return {
+        prompt: `Một hộp có ${n} tấm thẻ được đánh số từ 1 đến ${n}. Rút ngẫu nhiên một tấm thẻ. Có bao nhiêu kết quả có thể làm cho sự kiện "Số ghi trên thẻ chia hết cho ${d}" xảy ra?`,
+        answer: hits.length,
+        hints: [
+          `Liệt kê các số từ 1 đến ${n} chia hết cho ${d}.`,
+          `Đó là các bội của ${d}: ${d}; ${2 * d}; … không vượt quá ${n}.`,
+        ],
+        steps: [
+          `Các số từ 1 đến ${n} chia hết cho ${d}: ${hits.join('; ')}.`,
+          `Có ${hits.length} kết quả làm sự kiện xảy ra.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const [text, faces] = pick(rand, DIE_EVENTS);
+      return {
+        prompt: `Gieo một con xúc xắc. Có bao nhiêu kết quả có thể làm cho sự kiện "${text}" xảy ra?`,
+        answer: faces.length,
+        hints: [
+          'Các kết quả có thể là 1; 2; 3; 4; 5; 6 chấm.',
+          'Kiểm tra từng kết quả xem sự kiện có xảy ra không.',
+        ],
+        steps: [
+          `Các kết quả làm sự kiện xảy ra: ${faces.join('; ')} chấm.`,
+          `Có ${faces.length} kết quả.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const k = int(rand, 3, 5);
+      const colours = COLOURS.slice(0, k);
+      const pairs = colours.flatMap((a, i) => colours.slice(i + 1).map((b) => `(${a}, ${b})`));
+      return {
+        prompt: `Một hộp có ${k} quả bóng màu ${colours.join(', ')}. Lấy ra cùng lúc hai quả bóng. Có bao nhiêu kết quả có thể?`,
+        answer: pairs.length,
+        hints: [
+          'Mỗi kết quả là một cặp hai màu khác nhau, không kể thứ tự.',
+          `Ghép bóng ${colours[0]} với từng màu còn lại, rồi ghép bóng ${colours[1]} với các màu chưa ghép, …`,
+        ],
+        steps: [`Các kết quả có thể: ${pairs.join(', ')}.`, `Có ${pairs.length} kết quả.`],
+      };
+    }
+    const a = int(rand, 1, 6);
+    const b = int(rand, 1, 6);
+    const s = a + b;
+    const p = a * b;
+    const events = [
+      ['Tổng số chấm là số chẵn', s % 2 === 0, `${a} + ${b} = ${s} là số ${s % 2 ? 'lẻ' : 'chẵn'}`],
+      ['Tổng số chấm lớn hơn 6', s > 6, `${s} ${s > 6 ? '>' : '≤'} 6`],
+      ['Hai con xúc xắc có số chấm bằng nhau', a === b, a === b ? `${a} = ${b}` : `${a} ≠ ${b}`],
+      [
+        'Tích số chấm chia hết cho 3',
+        p % 3 === 0,
+        `${a} · ${b} = ${p} ${p % 3 ? 'không chia hết' : 'chia hết'} cho 3`,
+      ],
+    ];
+    const yes = events.filter((e) => e[1]).length;
+    return {
+      prompt: `Gieo đồng thời hai con xúc xắc, được một con ${a} chấm và một con ${b} chấm. Trong bốn sự kiện "${events.map((e) => e[0]).join('", "')}", có bao nhiêu sự kiện xảy ra?`,
+      answer: yes,
+      hints: ['Tính tổng và tích số chấm, rồi xét từng sự kiện với kết quả đã có.'],
+      steps: [
+        ...events.map((e) => `"${e[0]}": ${e[2]}, nên ${e[1] ? 'xảy ra' : 'không xảy ra'}.`),
+        `Có ${yes} sự kiện xảy ra.`,
+      ],
+    };
+  },
+};
+
+/**
+ * Five counts from lo to hi and a sixth that makes the total n, the sixth
+ * kept from min to max.
+ * @param {() => number} rand
+ * @param {number} n
+ */
+function dieTable(rand, n) {
+  const lo = Math.floor(n / 6) - 3;
+  const hi = Math.floor(n / 6) + 3;
+  for (;;) {
+    const five = Array.from({ length: 5 }, () => int(rand, lo, hi));
+    const last = n - total(five);
+    if (last >= lo && last <= hi) return [...five, last];
+  }
+}
+
+/** @type {Skill} */
+export const xacSuatThucNghiem = {
+  id: 'xac-suat-thuc-nghiem',
+  label: 'Bài 43. Xác suất thực nghiệm',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const n = pick(rand, [10, 20, 25, 50]);
+      const heads = int(rand, Math.round(n * 0.3), Math.round(n * 0.7));
+      const askHeads = rand() < 0.5;
+      const k = askHeads ? heads : n - heads;
+      const answer = (k * 100) / n;
+      return {
+        prompt: `Tung một đồng xu ${n} lần, có ${heads} lần xuất hiện mặt ngửa. Xác suất thực nghiệm của sự kiện "Xuất hiện mặt ${askHeads ? 'ngửa' : 'sấp'}" bằng bao nhiêu phần trăm?`,
+        answer,
+        hints: askHeads
+          ? [`Lập tỉ số ${heads}/${n} rồi đổi ra tỉ số phần trăm.`]
+          : ['Mỗi lần tung chỉ được mặt sấp hoặc mặt ngửa.', `Số lần mặt sấp là ${n} − ${heads}.`],
+        steps: [
+          askHeads
+            ? `n(A) = ${heads}, n = ${n}.`
+            : `Số lần mặt sấp: n(A) = ${n} − ${heads} = ${k}.`,
+          `Xác suất thực nghiệm: ${k}/${n} = ${answer}/100 = ${answer}%.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const n = pick(rand, [20, 50, 100]);
+      const k = int(rand, 2, Math.floor(n / 3));
+      const pct = (k * 100) / n;
+      return {
+        prompt: `Gieo một con xúc xắc ${n} lần, xác suất thực nghiệm của sự kiện "Xuất hiện mặt 6 chấm" là ${pct}%. Mặt 6 chấm đã xuất hiện bao nhiêu lần?`,
+        answer: k,
+        hints: [`n(A)/${n} = ${pct}/100, nên n(A) = ${n} · ${pct} : 100.`],
+        steps: [`n(A) = ${n} · ${pct} : 100 = ${k}.`, `Mặt 6 chấm xuất hiện ${k} lần.`],
+      };
+    }
+    if (v === 2) {
+      const n = pick(rand, [20, 25, 50, 100]);
+      const colours = shuffle(rand, ['xanh', 'đỏ', 'vàng']);
+      const a = int(rand, Math.ceil(n / 5), Math.floor(n / 2));
+      const b = int(rand, Math.ceil(n / 5), n - a - Math.ceil(n / 5));
+      const counts = [a, b, n - a - b];
+      const j = int(rand, 0, 2);
+      const k = n - counts[j];
+      const answer = (k * 100) / n;
+      const listing = colours.map((c, i) => `${c} ${counts[i]} lần`).join(', ');
+      return {
+        prompt: `Lấy một quả bóng từ hộp, xem màu rồi trả lại; lặp lại ${n} lần thì được: ${listing}. Xác suất thực nghiệm của sự kiện "Không lấy được bóng ${colours[j]}" bằng bao nhiêu phần trăm?`,
+        answer,
+        hints: [
+          `Sự kiện xảy ra mỗi lần lấy được bóng không phải màu ${colours[j]}.`,
+          `n(A) = ${n} − ${counts[j]}.`,
+        ],
+        steps: [
+          `n(A) = ${n} − ${counts[j]} = ${k}.`,
+          `Xác suất thực nghiệm: ${k}/${n} = ${answer}/100 = ${answer}%.`,
+        ],
+      };
+    }
+    const n = pick(rand, [50, 100]);
+    const counts = dieTable(rand, n);
+    const [text, faces] = pick(rand, DIE_EVENTS);
+    const k = total(faces.map((f) => counts[f - 1]));
+    const answer = (k * 100) / n;
+    return {
+      prompt: `Gieo một con xúc xắc ${n} lần, số lần xuất hiện các mặt 1, 2, 3, 4, 5, 6 chấm lần lượt là ${counts.join('; ')}. Xác suất thực nghiệm của sự kiện "${text}" bằng bao nhiêu phần trăm?`,
+      answer,
+      hints: [
+        `Tìm các mặt làm sự kiện xảy ra, rồi cộng số lần xuất hiện của chúng.`,
+        `Chia tổng đó cho ${n} rồi đổi ra tỉ số phần trăm.`,
+      ],
+      steps: [
+        `Sự kiện xảy ra khi được ${faces.join('; ')} chấm.`,
+        `n(A) = ${plus(faces.map((f) => counts[f - 1]))} = ${k}.`,
+        `Xác suất thực nghiệm: ${k}/${n} = ${answer}/100 = ${answer}%.`,
+      ],
+    };
+  },
+};
+
+/** Skills of "Luyện tập chung" on page 97: Bài 42 and Bài 43. */
+export const PAGE_97_SKILLS = [ketQuaSuKien, xacSuatThucNghiem];
+
+/** Every lesson of the chapter, for the end-of-chapter test. */
+export const CHAPTER_SKILLS = [...PAGE_87_SKILLS, ...PAGE_97_SKILLS];
+
+/**
+ * Reads a natural-number answer typed with or without a final percent sign,
+ * so "65" and "65%" both answer a percentage question.
+ * @param {string} text
+ */
+export function readPercentOrNatural(text) {
+  return readNatural(text.trim().replace(/\s*%$/, ''));
+}
