@@ -183,7 +183,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Cho ba điểm $A$, $B$, $M$ với $AM = 2$ cm, $MB = 3$ cm, $AB = 6$ cm. Kết luận nào đúng?',
+        'Cho ba điểm $A$, $B$, $M$ với $AM = 2$ cm, $MB = 5$ cm, $AB = 6$ cm. Kết luận nào đúng?',
       options: [
         'Điểm $M$ nằm giữa $A$ và $B$',
         'Điểm $M$ không nằm giữa $A$ và $B$',
@@ -192,7 +192,7 @@ export default {
       answer: 1,
       hints: ['Nếu $M$ nằm giữa $A$ và $B$ thì $AM + MB$ phải bằng bao nhiêu?'],
       solution:
-        '$AM + MB = 2 + 3 = 5 \\ne 6 = AB$, nên $M$ không nằm giữa $A$ và $B$. $M$ cũng không trùng $A$ vì $AM = 2$ cm $> 0$.',
+        '$AM + MB = 2 + 5 = 7 \\ne 6 = AB$, nên $M$ không nằm giữa $A$ và $B$. $M$ cũng không trùng $A$ vì $AM = 2$ cm $> 0$.',
     },
     {
       type: 'number',

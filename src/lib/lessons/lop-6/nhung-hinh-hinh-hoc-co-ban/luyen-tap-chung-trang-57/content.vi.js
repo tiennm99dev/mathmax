@@ -203,7 +203,7 @@ export default {
     },
   ],
   takeaways: [
-    'Đếm đường thẳng (hay đoạn thẳng) qua từng cặp trong $n$ điểm không có ba điểm thẳng hàng: $n \\cdot (n - 1) : 2$.',
+    'Từ $n$ điểm có $n \\cdot (n - 1) : 2$ đoạn thẳng nối từng cặp điểm; nếu không có ba điểm nào thẳng hàng thì cũng có ngần ấy đường thẳng.',
     'Điểm nằm giữa quyết định tia đối nhau và phép cộng độ dài: $O$ nằm giữa $A$, $B$ thì $OA$, $OB$ đối nhau và $AO + OB = AB$.',
     'Trung điểm chia đôi đoạn thẳng: $MA = MB = \\dfrac{AB}{2}$.',
   ],
