@@ -1,0 +1,829 @@
+{
+  "grade": 2,
+  "volumes": ["Tập 1", "Tập 2"],
+  "chapters": [
+    {
+      "no": 1,
+      "label": "Chủ đề 1",
+      "title": "Ôn tập và bổ sung",
+      "slug": "on-tap-va-bo-sung",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Ôn tập các số đến 100",
+          "slug": "bai-1-on-tap-cac-so-den-100",
+          "kind": "review",
+          "keyIdeas": ["đọc, viết, so sánh số đến 100", "cấu tạo chục và đơn vị"],
+          "interactiveIdea": "Bảng 100 ô có ô ẩn số để học sinh điền và kiểm tra."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Tia số. Số liền trước, số liền sau",
+          "slug": "bai-2-tia-so-so-lien-truoc-so-lien-sau",
+          "kind": "theory",
+          "keyIdeas": ["tia số", "số liền trước, số liền sau"],
+          "interactiveIdea": "Tia số kéo được: nhảy ếch tiến lùi một bước để tìm số liền kề."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Các thành phần của phép cộng, phép trừ",
+          "slug": "bai-3-cac-thanh-phan-cua-phep-cong-phep-tru",
+          "kind": "theory",
+          "keyIdeas": ["số hạng, tổng", "số bị trừ, số trừ, hiệu"],
+          "interactiveIdea": "Phép tính có nhãn: chạm vào từng số để hiện tên thành phần."
+        },
+        {
+          "no": 4,
+          "title": "Bài 4. Hơn, kém nhau bao nhiêu",
+          "slug": "bai-4-hon-kem-nhau-bao-nhieu",
+          "kind": "theory",
+          "keyIdeas": ["so sánh hiệu hai số", "tìm phần hơn kém"],
+          "interactiveIdea": "Hai thanh khối xếp cạnh nhau, phần chênh lệch được tô màu và đếm."
+        },
+        {
+          "no": 5,
+          "title": "Bài 5. Ôn tập phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+          "slug": "bai-5-on-tap-phep-cong-phep-tru-khong-nho-trong-pham-vi-100",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại phép cộng, phép trừ (không nhớ) trong phạm vi 100",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về phép cộng, phép trừ (không nhớ) trong phạm vi 100, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 6,
+          "title": "Bài 6. Luyện tập chung",
+          "slug": "bai-6-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề ôn tập và bổ sung",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Ôn tập và bổ sung\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "label": "Chủ đề 2",
+      "title": "Phép cộng, phép trừ trong phạm vi 20",
+      "slug": "phep-cong-phep-tru-trong-pham-vi-20",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 7,
+          "title": "Bài 7. Phép cộng (qua 10) trong phạm vi 20",
+          "slug": "bai-7-phep-cong-qua-10-trong-pham-vi-20",
+          "kind": "theory",
+          "keyIdeas": ["tách số để làm tròn 10", "cộng qua 10"],
+          "interactiveIdea": "Hai khung mười ô: kéo chấm sang để lấp đầy 10 rồi đọc tổng."
+        },
+        {
+          "no": 8,
+          "title": "Bài 8. Bảng cộng (qua 10)",
+          "slug": "bai-8-bang-cong-qua-10",
+          "kind": "theory",
+          "keyIdeas": ["bảng cộng qua 10", "ghi nhớ kết quả"],
+          "interactiveIdea": "Thẻ ghi nhớ lật nhanh luyện bảng cộng có đếm giờ."
+        },
+        {
+          "no": 9,
+          "title": "Bài 9. Bài toán về thêm, bớt một số đơn vị",
+          "slug": "bai-9-bai-toan-ve-them-bot-mot-so-don-vi",
+          "kind": "theory",
+          "keyIdeas": ["nhận dạng bài toán thêm, bớt", "trình bày lời giải"],
+          "interactiveIdea": "Câu chuyện tranh: kéo thêm hoặc bớt đồ vật rồi chọn phép tính."
+        },
+        {
+          "no": 10,
+          "title": "Bài 10. Luyện tập chung",
+          "slug": "bai-10-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép cộng, phép trừ trong phạm vi 20",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép cộng, phép trừ trong phạm vi 20\" với gợi ý từng bước và phản hồi tức thì."
+        },
+        {
+          "no": 11,
+          "title": "Bài 11. Phép trừ (qua 10) trong phạm vi 20",
+          "slug": "bai-11-phep-tru-qua-10-trong-pham-vi-20",
+          "kind": "theory",
+          "keyIdeas": ["trừ để về 10 rồi trừ tiếp", "trừ qua 10"],
+          "interactiveIdea": "Khung mười ô: bớt chấm từng bước qua mốc 10."
+        },
+        {
+          "no": 12,
+          "title": "Bài 12. Bảng trừ (qua 10)",
+          "slug": "bai-12-bang-tru-qua-10",
+          "kind": "theory",
+          "keyIdeas": ["bảng trừ qua 10", "liên hệ với bảng cộng"],
+          "interactiveIdea": "Bảng trừ tương tác tô sáng phép cộng ngược tương ứng."
+        },
+        {
+          "no": 13,
+          "title": "Bài 13. Bài toán về nhiều hơn, ít hơn một số đơn vị",
+          "slug": "bai-13-bai-toan-ve-nhieu-hon-it-hon-mot-so-don-vi",
+          "kind": "theory",
+          "keyIdeas": ["bài toán nhiều hơn", "bài toán ít hơn", "sơ đồ đoạn thẳng"],
+          "interactiveIdea": "Sơ đồ đoạn thẳng kéo dài, rút ngắn để mô hình hóa bài toán."
+        },
+        {
+          "no": 14,
+          "title": "Bài 14. Luyện tập chung",
+          "slug": "bai-14-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép cộng, phép trừ trong phạm vi 20",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép cộng, phép trừ trong phạm vi 20\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "label": "Chủ đề 3",
+      "title": "Làm quen với khối lượng, dung tích",
+      "slug": "lam-quen-voi-khoi-luong-dung-tich",
+      "strand": "do-luong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 15,
+          "title": "Bài 15. Ki-lô-gam",
+          "slug": "bai-15-ki-lo-gam",
+          "kind": "theory",
+          "keyIdeas": ["nặng hơn, nhẹ hơn", "đơn vị ki-lô-gam", "cân đĩa"],
+          "interactiveIdea": "Cân đĩa ảo: đặt quả cân và đồ vật để cân bằng."
+        },
+        {
+          "no": 16,
+          "title": "Bài 16. Lít",
+          "slug": "bai-16-lit",
+          "kind": "theory",
+          "keyIdeas": ["nhiều hơn, ít hơn về sức chứa", "đơn vị lít"],
+          "interactiveIdea": "Rót nước ảo từ bình sang các ca 1 lít để đếm số lít."
+        },
+        {
+          "no": 17,
+          "title": "Bài 17. Thực hành và trải nghiệm với các đơn vị ki-lô-gam, lít",
+          "slug": "bai-17-thuc-hanh-va-trai-nghiem-voi-cac-don-vi-ki-lo-gam-lit",
+          "kind": "activity",
+          "keyIdeas": ["ước lượng khối lượng, dung tích", "cân, đong thực tế"],
+          "interactiveIdea": "Trò chơi ước lượng rồi cân hoặc đong ảo để kiểm tra."
+        },
+        {
+          "no": 18,
+          "title": "Bài 18. Luyện tập chung",
+          "slug": "bai-18-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề làm quen với khối lượng, dung tích",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Làm quen với khối lượng, dung tích\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "label": "Chủ đề 4",
+      "title": "Phép cộng, phép trừ (có nhớ) trong phạm vi 100",
+      "slug": "phep-cong-phep-tru-co-nho-trong-pham-vi-100",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 19,
+          "title": "Bài 19. Phép cộng (có nhớ) số có hai chữ số với số có một chữ số",
+          "slug": "bai-19-phep-cong-co-nho-so-co-hai-chu-so-voi-so-co-mot-chu",
+          "kind": "theory",
+          "keyIdeas": ["cộng có nhớ", "đổi 10 đơn vị thành 1 chục"],
+          "interactiveIdea": "Bảng chục - đơn vị: đủ 10 que lẻ tự bó thành một chục."
+        },
+        {
+          "no": 20,
+          "title": "Bài 20. Phép cộng (có nhớ) số có hai chữ số với số có hai chữ số",
+          "slug": "bai-20-phep-cong-co-nho-so-co-hai-chu-so-voi-so-co-hai-chu",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính dọc", "nhớ sang hàng chục"],
+          "interactiveIdea": "Phép cộng dọc từng bước có hiện số nhớ nhỏ."
+        },
+        {
+          "no": 21,
+          "title": "Bài 21. Luyện tập chung",
+          "slug": "bai-21-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép cộng, phép trừ (có nhớ) trong phạm vi 100",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép cộng, phép trừ (có nhớ) trong phạm vi 100\" với gợi ý từng bước và phản hồi tức thì."
+        },
+        {
+          "no": 22,
+          "title": "Bài 22. Phép trừ (có nhớ) số có hai chữ số cho số có một chữ số",
+          "slug": "bai-22-phep-tru-co-nho-so-co-hai-chu-so-cho-so-co-mot-chu-so",
+          "kind": "theory",
+          "keyIdeas": ["trừ có nhớ", "đổi 1 chục thành 10 đơn vị"],
+          "interactiveIdea": "Tháo bó chục thành 10 que lẻ để trừ được."
+        },
+        {
+          "no": 23,
+          "title": "Bài 23. Phép trừ (có nhớ) số có hai chữ số cho số có hai chữ số",
+          "slug": "bai-23-phep-tru-co-nho-so-co-hai-chu-so-cho-so-co-hai-chu-so",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính dọc", "mượn từ hàng chục"],
+          "interactiveIdea": "Phép trừ dọc từng bước có hoạt cảnh mượn chục."
+        },
+        {
+          "no": 24,
+          "title": "Bài 24. Luyện tập chung",
+          "slug": "bai-24-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép cộng, phép trừ (có nhớ) trong phạm vi 100",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép cộng, phép trừ (có nhớ) trong phạm vi 100\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "label": "Chủ đề 5",
+      "title": "Làm quen với hình phẳng",
+      "slug": "lam-quen-voi-hinh-phang",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 25,
+          "title": "Bài 25. Điểm, đoạn thẳng, đường thẳng, đường cong, ba điểm thẳng hàng",
+          "slug": "bai-25-diem-doan-thang-duong-thang-duong-cong-ba-diem-thang",
+          "kind": "theory",
+          "keyIdeas": ["điểm và đoạn thẳng", "đường thẳng, đường cong", "ba điểm thẳng hàng"],
+          "interactiveIdea": "Bảng chấm: kéo điểm và kiểm tra ba điểm có thẳng hàng không."
+        },
+        {
+          "no": 26,
+          "title": "Bài 26. Đường gấp khúc. Hình tứ giác",
+          "slug": "bai-26-duong-gap-khuc-hinh-tu-giac",
+          "kind": "theory",
+          "keyIdeas": ["đường gấp khúc và độ dài", "nhận biết hình tứ giác"],
+          "interactiveIdea": "Vẽ đường gấp khúc trên lưới, độ dài từng đoạn tự cộng lại."
+        },
+        {
+          "no": 27,
+          "title": "Bài 27. Thực hành gấp, cắt, ghép, xếp hình, vẽ đoạn thẳng",
+          "slug": "bai-27-thuc-hanh-gap-cat-ghep-xep-hinh-ve-doan-thang",
+          "kind": "activity",
+          "keyIdeas": ["gấp, cắt, ghép hình", "vẽ đoạn thẳng có độ dài cho trước"],
+          "interactiveIdea": "Thước ảo vẽ đoạn thẳng đúng số xăng-ti-mét yêu cầu."
+        },
+        {
+          "no": 28,
+          "title": "Bài 28. Luyện tập chung",
+          "slug": "bai-28-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề làm quen với hình phẳng",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Làm quen với hình phẳng\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "label": "Chủ đề 6",
+      "title": "Ngày - giờ, giờ - phút, ngày - tháng",
+      "slug": "ngay-gio-gio-phut-ngay-thang",
+      "strand": "do-luong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 29,
+          "title": "Bài 29. Ngày - giờ, giờ - phút",
+          "slug": "bai-29-ngay-gio-gio-phut",
+          "kind": "theory",
+          "keyIdeas": ["một ngày có 24 giờ", "một giờ có 60 phút", "xem giờ rưỡi, giờ kém"],
+          "interactiveIdea": "Đồng hồ kéo kim với chế độ hiện giờ dạng 13 giờ, 1 giờ chiều."
+        },
+        {
+          "no": 30,
+          "title": "Bài 30. Ngày - tháng",
+          "slug": "bai-30-ngay-thang",
+          "kind": "theory",
+          "keyIdeas": ["đọc tờ lịch tháng", "số ngày trong tháng"],
+          "interactiveIdea": "Lịch tháng tương tác: tìm thứ của một ngày bất kì."
+        },
+        {
+          "no": 31,
+          "title": "Bài 31. Thực hành và trải nghiệm xem đồng hồ, xem lịch",
+          "slug": "bai-31-thuc-hanh-va-trai-nghiem-xem-dong-ho-xem-lich",
+          "kind": "activity",
+          "keyIdeas": ["xem giờ thực tế", "tra lịch tìm ngày"],
+          "interactiveIdea": "Thử thách lập lịch sinh hoạt tuần trên lịch và đồng hồ ảo."
+        },
+        {
+          "no": 32,
+          "title": "Bài 32. Luyện tập chung",
+          "slug": "bai-32-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề ngày - giờ, giờ - phút, ngày - tháng",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Ngày - giờ, giờ - phút, ngày - tháng\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "label": "Chủ đề 7",
+      "title": "Ôn tập học kì 1",
+      "slug": "on-tap-hoc-ki-1",
+      "strand": "on-tap",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 33,
+          "title": "Bài 33. Ôn tập phép cộng, phép trừ trong phạm vi 20, 100",
+          "slug": "bai-33-on-tap-phep-cong-phep-tru-trong-pham-vi-20-100",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại phép cộng, phép trừ trong phạm vi 20, 100",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về phép cộng, phép trừ trong phạm vi 20, 100, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 34,
+          "title": "Bài 34. Ôn tập hình phẳng",
+          "slug": "bai-34-on-tap-hinh-phang",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại hình phẳng",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về hình phẳng, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 35,
+          "title": "Bài 35. Ôn tập đo lường",
+          "slug": "bai-35-on-tap-do-luong",
+          "kind": "review",
+          "keyIdeas": ["hệ thống lại đo lường", "luyện tập tổng hợp", "tự đánh giá mức độ nắm bài"],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về đo lường, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 36,
+          "title": "Bài 36. Ôn tập chung",
+          "slug": "bai-36-on-tap-chung",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại toàn bộ kiến thức đã học",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về toàn bộ kiến thức đã học, tự chọn câu theo phần còn yếu."
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "label": "Chủ đề 8",
+      "title": "Phép nhân, phép chia",
+      "slug": "phep-nhan-phep-chia",
+      "strand": "so-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 37,
+          "title": "Bài 37. Phép nhân",
+          "slug": "bai-37-phep-nhan",
+          "kind": "theory",
+          "keyIdeas": ["phép nhân là tổng các số hạng bằng nhau", "dấu nhân"],
+          "interactiveIdea": "Xếp đồ vật thành các nhóm bằng nhau, phép cộng lặp đổi thành phép nhân."
+        },
+        {
+          "no": 38,
+          "title": "Bài 38. Thừa số, tích",
+          "slug": "bai-38-thua-so-tich",
+          "kind": "theory",
+          "keyIdeas": ["thừa số", "tích"],
+          "interactiveIdea": "Lưới chấm hàng × cột với nhãn thừa số, tích."
+        },
+        {
+          "no": 39,
+          "title": "Bài 39. Bảng nhân 2",
+          "slug": "bai-39-bang-nhan-2",
+          "kind": "theory",
+          "keyIdeas": ["lập bảng nhân 2", "đếm thêm 2"],
+          "interactiveIdea": "Bước nhảy 2 trên tia số tạo dần bảng nhân 2."
+        },
+        {
+          "no": 40,
+          "title": "Bài 40. Bảng nhân 5",
+          "slug": "bai-40-bang-nhan-5",
+          "kind": "theory",
+          "keyIdeas": ["lập bảng nhân 5", "đếm thêm 5"],
+          "interactiveIdea": "Bàn tay 5 ngón xếp thêm dần để lập bảng nhân 5."
+        },
+        {
+          "no": 41,
+          "title": "Bài 41. Phép chia",
+          "slug": "bai-41-phep-chia",
+          "kind": "theory",
+          "keyIdeas": ["chia đều thành các phần", "chia theo nhóm", "dấu chia"],
+          "interactiveIdea": "Chia kẹo đều cho các bạn bằng kéo thả."
+        },
+        {
+          "no": 42,
+          "title": "Bài 42. Số bị chia, số chia, thương",
+          "slug": "bai-42-so-bi-chia-so-chia-thuong",
+          "kind": "theory",
+          "keyIdeas": ["số bị chia, số chia, thương", "liên hệ nhân và chia"],
+          "interactiveIdea": "Phép chia có nhãn thành phần và phép nhân ngược đi kèm."
+        },
+        {
+          "no": 43,
+          "title": "Bài 43. Bảng chia 2",
+          "slug": "bai-43-bang-chia-2",
+          "kind": "theory",
+          "keyIdeas": ["lập bảng chia 2 từ bảng nhân 2"],
+          "interactiveIdea": "Lật thẻ bảng nhân 2 để thấy phép chia tương ứng."
+        },
+        {
+          "no": 44,
+          "title": "Bài 44. Bảng chia 5",
+          "slug": "bai-44-bang-chia-5",
+          "kind": "theory",
+          "keyIdeas": ["lập bảng chia 5 từ bảng nhân 5"],
+          "interactiveIdea": "Lưới chấm 5 cột: chọn tổng số chấm để đọc thương."
+        },
+        {
+          "no": 45,
+          "title": "Bài 45. Luyện tập chung",
+          "slug": "bai-45-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép nhân, phép chia",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép nhân, phép chia\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "label": "Chủ đề 9",
+      "title": "Làm quen với hình khối",
+      "slug": "lam-quen-voi-hinh-khoi",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 46,
+          "title": "Bài 46. Khối trụ, khối cầu",
+          "slug": "bai-46-khoi-tru-khoi-cau",
+          "kind": "theory",
+          "keyIdeas": ["nhận dạng khối trụ", "nhận dạng khối cầu"],
+          "interactiveIdea": "Mô hình 3D xoay được và trò chơi tìm đồ vật dạng khối trụ, khối cầu."
+        },
+        {
+          "no": 47,
+          "title": "Bài 47. Luyện tập chung",
+          "slug": "bai-47-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề làm quen với hình khối",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Làm quen với hình khối\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "label": "Chủ đề 10",
+      "title": "Các số trong phạm vi 1000",
+      "slug": "cac-so-trong-pham-vi-1000",
+      "strand": "so-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 48,
+          "title": "Bài 48. Đơn vị, chục, trăm, nghìn",
+          "slug": "bai-48-don-vi-chuc-tram-nghin",
+          "kind": "theory",
+          "keyIdeas": ["quan hệ đơn vị, chục, trăm, nghìn"],
+          "interactiveIdea": "Khối đơn vị, thanh chục, tấm trăm, khối nghìn ghép được."
+        },
+        {
+          "no": 49,
+          "title": "Bài 49. Các số tròn trăm, tròn chục",
+          "slug": "bai-49-cac-so-tron-tram-tron-chuc",
+          "kind": "theory",
+          "keyIdeas": ["số tròn chục", "số tròn trăm"],
+          "interactiveIdea": "Tia số phóng to thu nhỏ hiển thị các mốc tròn chục, tròn trăm."
+        },
+        {
+          "no": 50,
+          "title": "Bài 50. So sánh các số tròn trăm, tròn chục",
+          "slug": "bai-50-so-sanh-cac-so-tron-tram-tron-chuc",
+          "kind": "theory",
+          "keyIdeas": ["so sánh số tròn trăm", "so sánh số tròn chục"],
+          "interactiveIdea": "Hai cột tấm trăm và thanh chục đặt cạnh nhau để so sánh."
+        },
+        {
+          "no": 51,
+          "title": "Bài 51. Số có ba chữ số",
+          "slug": "bai-51-so-co-ba-chu-so",
+          "kind": "theory",
+          "keyIdeas": ["đọc, viết số có ba chữ số", "hàng trăm, chục, đơn vị"],
+          "interactiveIdea": "Bảng giá trị hàng: kéo khối để tạo số và đọc tên số."
+        },
+        {
+          "no": 52,
+          "title": "Bài 52. Viết số thành tổng các trăm, chục, đơn vị",
+          "slug": "bai-52-viet-so-thanh-tong-cac-tram-chuc-don-vi",
+          "kind": "theory",
+          "keyIdeas": ["phân tích số theo hàng", "viết số thành tổng"],
+          "interactiveIdea": "Số tách rời thành 300 + 40 + 5 khi chạm vào."
+        },
+        {
+          "no": 53,
+          "title": "Bài 53. So sánh các số có ba chữ số",
+          "slug": "bai-53-so-sanh-cac-so-co-ba-chu-so",
+          "kind": "theory",
+          "keyIdeas": ["so sánh từ hàng trăm", "sắp xếp thứ tự"],
+          "interactiveIdea": "Trò chơi xếp các thẻ số có ba chữ số theo thứ tự tăng dần."
+        },
+        {
+          "no": 54,
+          "title": "Bài 54. Luyện tập chung",
+          "slug": "bai-54-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề các số trong phạm vi 1000",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Các số trong phạm vi 1000\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "label": "Chủ đề 11",
+      "title": "Độ dài và đơn vị đo độ dài. Tiền Việt Nam",
+      "slug": "do-dai-va-don-vi-do-do-dai-tien-viet-nam",
+      "strand": "do-luong",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 55,
+          "title": "Bài 55. Đề-xi-mét. Mét. Ki-lô-mét",
+          "slug": "bai-55-de-xi-met-met-ki-lo-met",
+          "kind": "theory",
+          "keyIdeas": ["đơn vị dm, m, km", "đổi đơn vị độ dài"],
+          "interactiveIdea": "Thanh trượt đổi đơn vị với hình minh họa quãng đường thực tế."
+        },
+        {
+          "no": 56,
+          "title": "Bài 56. Giới thiệu tiền Việt Nam",
+          "slug": "bai-56-gioi-thieu-tien-viet-nam",
+          "kind": "theory",
+          "keyIdeas": ["nhận biết tờ tiền", "đổi tiền đơn giản"],
+          "interactiveIdea": "Cửa hàng ảo: chọn tờ tiền để trả đúng giá món hàng."
+        },
+        {
+          "no": 57,
+          "title": "Bài 57. Thực hành và trải nghiệm đo độ dài",
+          "slug": "bai-57-thuc-hanh-va-trai-nghiem-do-do-dai",
+          "kind": "activity",
+          "keyIdeas": ["làm thước dây theo mét, đề-xi-mét", "ước lượng rồi đo kiểm tra"],
+          "interactiveIdea": "Ước lượng chiều dài đồ vật quen thuộc rồi đo bằng thước dây ảo."
+        },
+        {
+          "no": 58,
+          "title": "Bài 58. Luyện tập chung",
+          "slug": "bai-58-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề độ dài và đơn vị đo độ dài. tiền việt nam",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Độ dài và đơn vị đo độ dài. Tiền Việt Nam\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 12,
+      "label": "Chủ đề 12",
+      "title": "Phép cộng, phép trừ trong phạm vi 1000",
+      "slug": "phep-cong-phep-tru-trong-pham-vi-1000",
+      "strand": "so-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 59,
+          "title": "Bài 59. Phép cộng (không nhớ) trong phạm vi 1000",
+          "slug": "bai-59-phep-cong-khong-nho-trong-pham-vi-1000",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính cộng ba chữ số", "cộng từng hàng"],
+          "interactiveIdea": "Bảng giá trị hàng: gộp khối trăm, chục, đơn vị."
+        },
+        {
+          "no": 60,
+          "title": "Bài 60. Phép cộng (có nhớ) trong phạm vi 1000",
+          "slug": "bai-60-phep-cong-co-nho-trong-pham-vi-1000",
+          "kind": "theory",
+          "keyIdeas": ["cộng có nhớ sang hàng chục, hàng trăm"],
+          "interactiveIdea": "Đủ 10 thanh chục tự đổi thành một tấm trăm."
+        },
+        {
+          "no": 61,
+          "title": "Bài 61. Phép trừ (không nhớ) trong phạm vi 1000",
+          "slug": "bai-61-phep-tru-khong-nho-trong-pham-vi-1000",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính trừ ba chữ số", "trừ từng hàng"],
+          "interactiveIdea": "Phép trừ dọc từng bước có tô sáng hàng."
+        },
+        {
+          "no": 62,
+          "title": "Bài 62. Phép trừ (có nhớ) trong phạm vi 1000",
+          "slug": "bai-62-phep-tru-co-nho-trong-pham-vi-1000",
+          "kind": "theory",
+          "keyIdeas": ["trừ có nhớ", "đổi hàng trên khi thiếu"],
+          "interactiveIdea": "Tháo tấm trăm thành 10 thanh chục để trừ."
+        },
+        {
+          "no": 63,
+          "title": "Bài 63. Luyện tập chung",
+          "slug": "bai-63-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề phép cộng, phép trừ trong phạm vi 1000",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Phép cộng, phép trừ trong phạm vi 1000\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 13,
+      "label": "Chủ đề 13",
+      "title": "Làm quen với yếu tố thống kê, xác suất",
+      "slug": "lam-quen-voi-yeu-to-thong-ke-xac-suat",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 64,
+          "title": "Bài 64. Thu thập, phân loại, kiểm đếm số liệu",
+          "slug": "bai-64-thu-thap-phan-loai-kiem-dem-so-lieu",
+          "kind": "theory",
+          "keyIdeas": ["thu thập số liệu", "phân loại", "kiểm đếm bằng vạch"],
+          "interactiveIdea": "Bấm vào từng đồ vật để ghi vạch kiểm đếm theo loại."
+        },
+        {
+          "no": 65,
+          "title": "Bài 65. Biểu đồ tranh",
+          "slug": "bai-65-bieu-do-tranh",
+          "kind": "theory",
+          "keyIdeas": ["đọc biểu đồ tranh", "trả lời câu hỏi từ biểu đồ"],
+          "interactiveIdea": "Xây biểu đồ tranh bằng kéo hình biểu tượng vào từng hàng."
+        },
+        {
+          "no": 66,
+          "title": "Bài 66. Chắc chắn, có thể, không thể",
+          "slug": "bai-66-chac-chan-co-the-khong-the",
+          "kind": "theory",
+          "keyIdeas": ["khả năng xảy ra của sự kiện", "chắc chắn, có thể, không thể"],
+          "interactiveIdea": "Hộp bóc thăm ảo: đổi màu bóng trong hộp và dự đoán khả năng."
+        },
+        {
+          "no": 67,
+          "title": "Bài 67. Thực hành và trải nghiệm thu thập, phân loại, kiểm đếm số liệu",
+          "slug": "bai-67-thuc-hanh-va-trai-nghiem-thu-thap-phan-loai-kiem-dem",
+          "kind": "activity",
+          "keyIdeas": ["khảo sát thực tế", "kiểm đếm và trình bày kết quả"],
+          "interactiveIdea": "Bảng khảo sát lớp: nhập phiếu và tự vẽ biểu đồ tranh."
+        }
+      ]
+    },
+    {
+      "no": 14,
+      "label": "Chủ đề 14",
+      "title": "Ôn tập cuối năm",
+      "slug": "on-tap-cuoi-nam",
+      "strand": "on-tap",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 68,
+          "title": "Bài 68. Ôn tập các số trong phạm vi 1000",
+          "slug": "bai-68-on-tap-cac-so-trong-pham-vi-1000",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại các số trong phạm vi 1000",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về các số trong phạm vi 1000, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 69,
+          "title": "Bài 69. Ôn tập phép cộng, phép trừ trong phạm vi 100",
+          "slug": "bai-69-on-tap-phep-cong-phep-tru-trong-pham-vi-100",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại phép cộng, phép trừ trong phạm vi 100",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về phép cộng, phép trừ trong phạm vi 100, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 70,
+          "title": "Bài 70. Ôn tập phép cộng, phép trừ trong phạm vi 1000",
+          "slug": "bai-70-on-tap-phep-cong-phep-tru-trong-pham-vi-1000",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại phép cộng, phép trừ trong phạm vi 1000",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về phép cộng, phép trừ trong phạm vi 1000, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 71,
+          "title": "Bài 71. Ôn tập phép nhân, phép chia",
+          "slug": "bai-71-on-tap-phep-nhan-phep-chia",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại phép nhân, phép chia",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về phép nhân, phép chia, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 72,
+          "title": "Bài 72. Ôn tập hình học",
+          "slug": "bai-72-on-tap-hinh-hoc",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại về hình học",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về về hình học, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 73,
+          "title": "Bài 73. Ôn tập đo lường",
+          "slug": "bai-73-on-tap-do-luong",
+          "kind": "review",
+          "keyIdeas": ["hệ thống lại đo lường", "luyện tập tổng hợp", "tự đánh giá mức độ nắm bài"],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về đo lường, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 74,
+          "title": "Bài 74. Ôn tập kiểm đếm số liệu và lựa chọn khả năng",
+          "slug": "bai-74-on-tap-kiem-dem-so-lieu-va-lua-chon-kha-nang",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại kiểm đếm số liệu và lựa chọn khả năng",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về kiểm đếm số liệu và lựa chọn khả năng, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 75,
+          "title": "Bài 75. Ôn tập chung",
+          "slug": "bai-75-on-tap-chung",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại toàn bộ kiến thức đã học",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về toàn bộ kiến thức đã học, tự chọn câu theo phần còn yếu."
+        }
+      ]
+    }
+  ]
+}

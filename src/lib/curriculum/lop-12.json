@@ -1,0 +1,479 @@
+{
+  "grade": 12,
+  "volumes": ["Tập 1", "Tập 2", "Chuyên đề học tập"],
+  "chapters": [
+    {
+      "no": 1,
+      "label": "Chương I",
+      "title": "Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số",
+      "slug": "ung-dung-dao-ham-de-khao-sat-va-ve-do-thi-ham-so",
+      "strand": "giai-tich",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Tính đơn điệu và cực trị của hàm số",
+          "slug": "bai-1-tinh-don-dieu-va-cuc-tri-cua-ham-so",
+          "kind": "theory",
+          "keyIdeas": ["Xét tính đơn điệu bằng dấu đạo hàm", "Điểm cực đại, cực tiểu"],
+          "interactiveIdea": "Đồ thị f và f′ đặt chồng, kéo điểm để thấy dấu f′ quyết định tăng, giảm và cực trị."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Giá trị lớn nhất và giá trị nhỏ nhất của hàm số",
+          "slug": "bai-2-gia-tri-lon-nhat-va-gia-tri-nho-nhat-cua-ham-so",
+          "kind": "theory",
+          "keyIdeas": ["GTLN, GTNN trên đoạn", "GTLN, GTNN trên khoảng"],
+          "interactiveIdea": "Kéo hai đầu mút đoạn [a; b] trên đồ thị, điểm đạt GTLN, GTNN tự đánh dấu."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Đường tiệm cận của đồ thị hàm số",
+          "slug": "bai-3-duong-tiem-can-cua-do-thi-ham-so",
+          "kind": "theory",
+          "keyIdeas": ["Tiệm cận ngang, tiệm cận đứng", "Tiệm cận xiên"],
+          "interactiveIdea": "Phóng xa đồ thị phân thức để thấy đường cong bám sát các tiệm cận."
+        },
+        {
+          "no": 4,
+          "title": "Bài 4. Khảo sát sự biến thiên và vẽ đồ thị của hàm số",
+          "slug": "bai-4-khao-sat-su-bien-thien-va-ve-do-thi-cua-ham-so",
+          "kind": "theory",
+          "keyIdeas": [
+            "Sơ đồ khảo sát hàm số",
+            "Hàm bậc ba, phân thức bậc nhất/bậc nhất và bậc hai/bậc nhất"
+          ],
+          "interactiveIdea": "Trình khảo sát từng bước: bảng biến thiên tự sinh rồi đồ thị vẽ dần theo hệ số chọn."
+        },
+        {
+          "no": 5,
+          "title": "Bài 5. Ứng dụng đạo hàm để giải quyết một số vấn đề liên quan đến thực tiễn",
+          "slug": "bai-5-ung-dung-dao-ham-de-giai-quyet-mot-so-van-de-lien-quan-den-thuc-tien",
+          "kind": "theory",
+          "keyIdeas": ["Tốc độ thay đổi của đại lượng", "Bài toán tối ưu thực tế"],
+          "interactiveIdea": "Bài toán làm hộp không nắp: kéo kích thước cắt góc, thể tích và đồ thị V(x) cập nhật để tìm cực đại."
+        },
+        {
+          "no": 6,
+          "title": "Bài tập cuối chương I",
+          "slug": "bai-tap-cuoi-chuong-i",
+          "kind": "review",
+          "keyIdeas": ["Ôn khảo sát hàm số và ứng dụng"],
+          "interactiveIdea": "Ghép đồ thị với bảng biến thiên và công thức hàm."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "label": "Chương II",
+      "title": "Vectơ và hệ trục tọa độ trong không gian",
+      "slug": "vecto-va-he-truc-toa-do-trong-khong-gian",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 6. Vectơ trong không gian",
+          "slug": "bai-6-vecto-trong-khong-gian",
+          "kind": "theory",
+          "keyIdeas": [
+            "Vectơ trong không gian, phép cộng, trừ, nhân số",
+            "Tích vô hướng của hai vectơ trong không gian"
+          ],
+          "interactiveIdea": "Cảnh 3D xoay được để cộng vectơ theo quy tắc hình hộp."
+        },
+        {
+          "no": 2,
+          "title": "Bài 7. Hệ trục tọa độ trong không gian",
+          "slug": "bai-7-he-truc-toa-do-trong-khong-gian",
+          "kind": "theory",
+          "keyIdeas": ["Hệ trục Oxyz", "Tọa độ của điểm và vectơ"],
+          "interactiveIdea": "Hệ trục Oxyz 3D, kéo điểm để xem hình chiếu xuống các mặt tọa độ và bộ ba tọa độ."
+        },
+        {
+          "no": 3,
+          "title": "Bài 8. Biểu thức tọa độ của các phép toán vectơ",
+          "slug": "bai-8-bieu-thuc-toa-do-cua-cac-phep-toan-vecto",
+          "kind": "theory",
+          "keyIdeas": [
+            "Tọa độ tổng, hiệu, tích với số",
+            "Tích vô hướng, độ dài, góc",
+            "Tích có hướng"
+          ],
+          "interactiveIdea": "Nhập tọa độ hai vectơ, xem vectơ tổng, tích có hướng vuông góc và hình bình hành dựng trên chúng."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương II",
+          "slug": "bai-tap-cuoi-chuong-ii",
+          "kind": "review",
+          "keyIdeas": ["Ôn vectơ và tọa độ trong không gian"],
+          "interactiveIdea": "Bài tập định vị điểm trong phòng học 3D bằng tọa độ."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "label": "Chương III",
+      "title": "Các số đặc trưng đo mức độ phân tán của mẫu số liệu ghép nhóm",
+      "slug": "cac-so-dac-trung-do-muc-do-phan-tan-cua-mau-so-lieu-ghep-nhom",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 9. Khoảng biến thiên và khoảng tứ phân vị",
+          "slug": "bai-9-khoang-bien-thien-va-khoang-tu-phan-vi",
+          "kind": "theory",
+          "keyIdeas": ["Khoảng biến thiên của mẫu ghép nhóm", "Khoảng tứ phân vị"],
+          "interactiveIdea": "Biểu đồ tần số ghép nhóm có thanh Q1, Q3 nội suy, kéo dữ liệu để xem khoảng tứ phân vị đổi."
+        },
+        {
+          "no": 2,
+          "title": "Bài 10. Phương sai và độ lệch chuẩn",
+          "slug": "bai-10-phuong-sai-va-do-lech-chuan",
+          "kind": "theory",
+          "keyIdeas": ["Phương sai mẫu ghép nhóm", "Độ lệch chuẩn và ý nghĩa"],
+          "interactiveIdea": "So sánh hai biểu đồ ghép nhóm cùng trung bình khác độ lệch chuẩn, đánh giá độ rủi ro đầu tư."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chương III",
+          "slug": "bai-tap-cuoi-chuong-iii",
+          "kind": "review",
+          "keyIdeas": ["Ôn các số đo độ phân tán"],
+          "interactiveIdea": "Bộ dữ liệu thực để tính và so sánh mức độ phân tán."
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-1",
+      "strand": "hoat-dong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Khảo sát và vẽ đồ thị hàm số với phần mềm GeoGebra",
+          "slug": "khao-sat-va-ve-do-thi-ham-so-voi-phan-mem-geogebra",
+          "kind": "activity",
+          "keyIdeas": ["Vẽ đồ thị và tìm cực trị bằng GeoGebra"],
+          "interactiveIdea": "Bảng GeoGebra nhúng với thanh trượt tham số để khảo sát họ đồ thị."
+        },
+        {
+          "no": 2,
+          "title": "Vẽ vectơ tổng của ba vectơ trong không gian bằng phần mềm GeoGebra",
+          "slug": "ve-vecto-tong-cua-ba-vecto-trong-khong-gian-bang-phan-mem-geogebra",
+          "kind": "activity",
+          "keyIdeas": ["Dựng vectơ trong GeoGebra 3D", "Quy tắc hình hộp"],
+          "interactiveIdea": "Cảnh 3D để dựng ba vectơ và vectơ tổng theo quy tắc hình hộp."
+        },
+        {
+          "no": 3,
+          "title": "Độ dài gang tay (Gang tay của bạn dài bao nhiêu?)",
+          "slug": "do-dai-gang-tay-gang-tay-cua-ban-dai-bao-nhieu",
+          "kind": "activity",
+          "keyIdeas": ["Thu thập số liệu đo gang tay", "Tính số đặc trưng mẫu ghép nhóm"],
+          "interactiveIdea": "Biểu mẫu nhập độ dài gang tay của lớp, tự ghép nhóm và vẽ biểu đồ."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "label": "Chương IV",
+      "title": "Nguyên hàm và tích phân",
+      "slug": "nguyen-ham-va-tich-phan",
+      "strand": "giai-tich",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 11. Nguyên hàm",
+          "slug": "bai-11-nguyen-ham",
+          "kind": "theory",
+          "keyIdeas": ["Khái niệm và tính chất nguyên hàm", "Nguyên hàm của một số hàm sơ cấp"],
+          "interactiveIdea": "Họ đồ thị F(x) + C dịch dọc, kéo C để thấy cùng độ dốc với f(x)."
+        },
+        {
+          "no": 2,
+          "title": "Bài 12. Tích phân",
+          "slug": "bai-12-tich-phan",
+          "kind": "theory",
+          "keyIdeas": [
+            "Diện tích hình thang cong",
+            "Định nghĩa tích phân, công thức Newton–Leibniz",
+            "Tính chất tích phân"
+          ],
+          "interactiveIdea": "Tổng Riemann với số hình chữ nhật tăng dần hội tụ về diện tích dưới đường cong."
+        },
+        {
+          "no": 3,
+          "title": "Bài 13. Ứng dụng hình học của tích phân",
+          "slug": "bai-13-ung-dung-hinh-hoc-cua-tich-phan",
+          "kind": "theory",
+          "keyIdeas": ["Diện tích hình phẳng", "Thể tích vật thể", "Thể tích khối tròn xoay"],
+          "interactiveIdea": "Quay miền phẳng quanh trục Ox trong 3D để tạo khối tròn xoay, cắt lát xem thiết diện."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương IV",
+          "slug": "bai-tap-cuoi-chuong-iv",
+          "kind": "review",
+          "keyIdeas": ["Ôn nguyên hàm, tích phân và ứng dụng"],
+          "interactiveIdea": "Bài tập tính diện tích có miền tô màu kiểm tra."
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "label": "Chương V",
+      "title": "Phương pháp tọa độ trong không gian",
+      "slug": "phuong-phap-toa-do-trong-khong-gian",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 14. Phương trình mặt phẳng",
+          "slug": "bai-14-phuong-trinh-mat-phang",
+          "kind": "theory",
+          "keyIdeas": [
+            "Vectơ pháp tuyến, cặp vectơ chỉ phương",
+            "Phương trình tổng quát mặt phẳng",
+            "Khoảng cách từ điểm đến mặt phẳng"
+          ],
+          "interactiveIdea": "Mặt phẳng 3D quay theo vectơ pháp tuyến kéo được, phương trình cập nhật."
+        },
+        {
+          "no": 2,
+          "title": "Bài 15. Phương trình đường thẳng trong không gian",
+          "slug": "bai-15-phuong-trinh-duong-thang-trong-khong-gian",
+          "kind": "theory",
+          "keyIdeas": ["Phương trình tham số, chính tắc", "Vị trí tương đối của hai đường thẳng"],
+          "interactiveIdea": "Hai đường thẳng 3D kéo được, phân loại cắt nhau, song song, chéo nhau."
+        },
+        {
+          "no": 3,
+          "title": "Bài 16. Công thức tính góc trong không gian",
+          "slug": "bai-16-cong-thuc-tinh-goc-trong-khong-gian",
+          "kind": "theory",
+          "keyIdeas": [
+            "Góc giữa hai đường thẳng",
+            "Góc giữa đường thẳng và mặt phẳng",
+            "Góc giữa hai mặt phẳng"
+          ],
+          "interactiveIdea": "Cảnh 3D đo góc trực tiếp giữa các đối tượng đã chọn và so với công thức."
+        },
+        {
+          "no": 4,
+          "title": "Bài 17. Phương trình mặt cầu",
+          "slug": "bai-17-phuong-trinh-mat-cau",
+          "kind": "theory",
+          "keyIdeas": ["Phương trình mặt cầu", "Tâm và bán kính"],
+          "interactiveIdea": "Kéo tâm, bán kính mặt cầu, mô phỏng vùng phủ sóng của trạm phát."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương V",
+          "slug": "bai-tap-cuoi-chuong-v",
+          "kind": "review",
+          "keyIdeas": ["Ôn phương trình mặt phẳng, đường thẳng, mặt cầu"],
+          "interactiveIdea": "Bài toán định vị máy bay, drone trong hệ tọa độ 3D."
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "label": "Chương VI",
+      "title": "Xác suất có điều kiện",
+      "slug": "xac-suat-co-dieu-kien",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 18. Xác suất có điều kiện",
+          "slug": "bai-18-xac-suat-co-dieu-kien",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa xác suất có điều kiện", "Công thức nhân xác suất"],
+          "interactiveIdea": "Bảng hai chiều co giãn: chọn điều kiện B để thu hẹp không gian mẫu và tính P(A|B)."
+        },
+        {
+          "no": 2,
+          "title": "Bài 19. Công thức xác suất toàn phần và công thức Bayes",
+          "slug": "bai-19-cong-thuc-xac-suat-toan-phan-va-cong-thuc-bayes",
+          "kind": "theory",
+          "keyIdeas": ["Công thức xác suất toàn phần", "Công thức Bayes"],
+          "interactiveIdea": "Sơ đồ cây xét nghiệm bệnh với thanh trượt tỉ lệ mắc bệnh, độ nhạy, đặc hiệu để thấy kết quả Bayes."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chương VI",
+          "slug": "bai-tap-cuoi-chuong-vi",
+          "kind": "review",
+          "keyIdeas": ["Ôn xác suất có điều kiện và Bayes"],
+          "interactiveIdea": "Bộ tình huống thực tế có sơ đồ cây kiểm tra."
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-2",
+      "strand": "hoat-dong",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Tính nguyên hàm và tích phân với phần mềm GeoGebra. Tính gần đúng tích phân bằng phương pháp hình thang",
+          "slug": "tinh-nguyen-ham-va-tich-phan-voi-phan-mem-geogebra-tinh-gan-dung-tich-phan-bang",
+          "kind": "activity",
+          "keyIdeas": ["Tính nguyên hàm, tích phân bằng GeoGebra", "Phương pháp hình thang"],
+          "interactiveIdea": "So sánh trực quan tổng hình thang với tích phân chính xác khi tăng số đoạn chia."
+        },
+        {
+          "no": 2,
+          "title": "Vẽ đồ hoạ 3D với phần mềm GeoGebra",
+          "slug": "ve-do-hoa-3d-voi-phan-mem-geogebra",
+          "kind": "activity",
+          "keyIdeas": ["Vẽ mặt phẳng, đường thẳng, mặt cầu bằng GeoGebra 3D"],
+          "interactiveIdea": "Cảnh GeoGebra 3D để nhập phương trình và quan sát đối tượng."
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "label": "Ôn tập",
+      "title": "Ôn tập cuối năm",
+      "slug": "on-tap-cuoi-nam",
+      "strand": "on-tap",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài tập ôn tập cuối năm",
+          "slug": "bai-tap-on-tap-cuoi-nam",
+          "kind": "review",
+          "keyIdeas": ["Tổng hợp giải tích, hình học tọa độ, thống kê, xác suất lớp 12"],
+          "interactiveIdea": "Đề ôn tổng hợp có bản đồ chủ đề, chỉ ra phần cần ôn lại theo câu sai."
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "label": "Chuyên đề 1",
+      "title": "Biến ngẫu nhiên rời rạc, các số đặc trưng của biến ngẫu nhiên rời rạc",
+      "slug": "chuyen-de-bien-ngau-nhien-roi-rac-cac-so-dac-trung-cua-bien-ngau-nhien-roi-rac",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Biến ngẫu nhiên rời rạc và các số đặc trưng",
+          "slug": "cd-bai-1-bien-ngau-nhien-roi-rac-va-cac-so-dac-trung",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Bảng phân bố xác suất", "Kì vọng, phương sai, độ lệch chuẩn"],
+          "interactiveIdea": "Biểu đồ phân bố xác suất kéo cột được, kì vọng hiển thị như điểm cân bằng."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Biến ngẫu nhiên có phân bố nhị thức và áp dụng",
+          "slug": "cd-bai-2-bien-ngau-nhien-co-phan-bo-nhi-thuc-va-ap-dung",
+          "kind": "chuyen-de",
+          "keyIdeas": [
+            "Phép thử Bernoulli, phân bố nhị thức",
+            "Kì vọng và phương sai của phân bố nhị thức"
+          ],
+          "interactiveIdea": "Bảng Galton thả bi với thanh trượt n, p, so khớp với phân bố nhị thức."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chuyên đề 1",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-1",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn biến ngẫu nhiên rời rạc"],
+          "interactiveIdea": "Bài toán trò chơi may rủi tính kì vọng lời lỗ."
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "label": "Chuyên đề 2",
+      "title": "Ứng dụng toán học để giải quyết một số bài toán tối ưu",
+      "slug": "chuyen-de-ung-dung-toan-hoc-de-giai-quyet-mot-so-bai-toan-toi-uu",
+      "strand": "giai-tich",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 3. Vận dụng hệ bất phương trình bậc nhất hai ẩn để giải quyết một số bài toán quy hoạch tuyến tính",
+          "slug": "cd-bai-3-van-dung-he-bat-phuong-trinh-bac-nhat-hai-an-de-giai-quyet-mot-so-bai",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Lập mô hình quy hoạch tuyến tính", "Tìm nghiệm tối ưu tại đỉnh miền"],
+          "interactiveIdea": "Bài toán sản xuất: kéo đường mức hàm mục tiêu trên miền nghiệm để tìm phương án tối ưu."
+        },
+        {
+          "no": 2,
+          "title": "Bài 4. Vận dụng đạo hàm để giải quyết một số bài toán tối ưu",
+          "slug": "cd-bai-4-van-dung-dao-ham-de-giai-quyet-mot-so-bai-toan-toi-uu",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Lập hàm mục tiêu", "Tìm cực trị bằng đạo hàm"],
+          "interactiveIdea": "Bài toán thiết kế lon nước: kéo bán kính, xem diện tích vỏ và điểm tối ưu."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chuyên đề 2",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-2",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn bài toán tối ưu"],
+          "interactiveIdea": "Bộ bài toán tối ưu thực tiễn có mô phỏng kiểm tra."
+        }
+      ]
+    },
+    {
+      "no": 12,
+      "label": "Chuyên đề 3",
+      "title": "Ứng dụng toán học trong một số vấn đề liên quan đến tài chính",
+      "slug": "chuyen-de-ung-dung-toan-hoc-trong-mot-so-van-de-lien-quan-den-tai-chinh",
+      "strand": "tai-chinh",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 5. Tiền tệ. Lãi suất",
+          "slug": "cd-bai-5-tien-te-lai-suat",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Lãi đơn, lãi kép", "Lãi suất danh nghĩa và thực"],
+          "interactiveIdea": "Máy tính lãi suất so sánh lãi đơn, lãi kép theo kì hạn ghép lãi."
+        },
+        {
+          "no": 2,
+          "title": "Bài 6. Tín dụng. Vay nợ",
+          "slug": "cd-bai-6-tin-dung-vay-no",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Thẻ tín dụng, khoản vay", "Trả góp đều hằng tháng"],
+          "interactiveIdea": "Bảng lịch trả nợ trả góp với biểu đồ gốc và lãi theo từng kì."
+        },
+        {
+          "no": 3,
+          "title": "Bài 7. Đầu tư tài chính. Lập kế hoạch tài chính cá nhân",
+          "slug": "cd-bai-7-dau-tu-tai-chinh-lap-ke-hoach-tai-chinh-ca-nhan",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Các hình thức đầu tư, lợi nhuận và rủi ro", "Kế hoạch tài chính cá nhân"],
+          "interactiveIdea": "Trình lập kế hoạch tiết kiệm, đầu tư mô phỏng giá trị tài sản theo năm."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chuyên đề 3",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-3",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn lãi suất, vay nợ và đầu tư"],
+          "interactiveIdea": "Tình huống tài chính cá nhân để so sánh phương án."
+        }
+      ]
+    }
+  ]
+}

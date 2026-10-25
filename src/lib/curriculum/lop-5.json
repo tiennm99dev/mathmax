@@ -1,0 +1,801 @@
+{
+  "grade": 5,
+  "volumes": ["Tập 1", "Tập 2"],
+  "chapters": [
+    {
+      "no": 1,
+      "label": "Chủ đề 1",
+      "title": "Ôn tập và bổ sung",
+      "slug": "on-tap-va-bo-sung",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Ôn tập số tự nhiên",
+          "slug": "bai-1-on-tap-so-tu-nhien",
+          "kind": "review",
+          "keyIdeas": ["đọc, viết, so sánh số tự nhiên", "giá trị chữ số theo hàng"],
+          "interactiveIdea": "Bảng giá trị hàng nhiều lớp kéo thẻ chữ số."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Ôn tập các phép tính với số tự nhiên",
+          "slug": "bai-2-on-tap-cac-phep-tinh-voi-so-tu-nhien",
+          "kind": "review",
+          "keyIdeas": ["bốn phép tính", "tính chất phép tính", "tính thuận tiện"],
+          "interactiveIdea": "Trò chơi chọn cách tính nhanh nhất cho một biểu thức."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Ôn tập phân số",
+          "slug": "bai-3-on-tap-phan-so",
+          "kind": "review",
+          "keyIdeas": ["phân số bằng nhau", "rút gọn, quy đồng", "so sánh"],
+          "interactiveIdea": "Thanh phân số kéo chia nhỏ để tìm phân số bằng nhau."
+        },
+        {
+          "no": 4,
+          "title": "Bài 4. Phân số thập phân",
+          "slug": "bai-4-phan-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["mẫu số 10, 100, 1 000", "chuyển về phân số thập phân"],
+          "interactiveIdea": "Lưới 10 × 10 tô ô để biểu diễn phần mười, phần trăm."
+        },
+        {
+          "no": 5,
+          "title": "Bài 5. Ôn tập các phép tính với phân số",
+          "slug": "bai-5-on-tap-cac-phep-tinh-voi-phan-so",
+          "kind": "review",
+          "keyIdeas": ["cộng, trừ, nhân, chia phân số"],
+          "interactiveIdea": "Thanh băng phân số minh họa từng phép tính."
+        },
+        {
+          "no": 6,
+          "title": "Bài 6. Cộng, trừ hai phân số khác mẫu số",
+          "slug": "bai-6-cong-tru-hai-phan-so-khac-mau-so",
+          "kind": "theory",
+          "keyIdeas": ["quy đồng mẫu số", "cộng, trừ sau khi quy đồng"],
+          "interactiveIdea": "Hai thanh phân số chia lại cùng mẫu rồi ghép hoặc bớt."
+        },
+        {
+          "no": 7,
+          "title": "Bài 7. Hỗn số",
+          "slug": "bai-7-hon-so",
+          "kind": "theory",
+          "keyIdeas": ["phần nguyên, phần phân số", "đổi hỗn số ra phân số"],
+          "interactiveIdea": "Hình tròn đầy và phần lẻ tô màu chuyển qua lại với phân số."
+        },
+        {
+          "no": 8,
+          "title": "Bài 8. Ôn tập hình học và đo lường",
+          "slug": "bai-8-on-tap-hinh-hoc-va-do-luong",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại hình học và đo lường",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về hình học và đo lường, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 9,
+          "title": "Bài 9. Luyện tập chung",
+          "slug": "bai-9-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề ôn tập và bổ sung",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Ôn tập và bổ sung\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "label": "Chủ đề 2",
+      "title": "Số thập phân",
+      "slug": "so-thap-phan",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 10,
+          "title": "Bài 10. Khái niệm số thập phân",
+          "slug": "bai-10-khai-niem-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["phần nguyên, phần thập phân", "hàng phần mười, phần trăm"],
+          "interactiveIdea": "Thước phóng to giữa hai số nguyên để thấy số thập phân."
+        },
+        {
+          "no": 11,
+          "title": "Bài 11. So sánh các số thập phân",
+          "slug": "bai-11-so-sanh-cac-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["so sánh phần nguyên rồi phần thập phân", "chữ số 0 ở cuối"],
+          "interactiveIdea": "Hai số thập phân xếp thẳng dấu phẩy, tô chữ số khác đầu tiên."
+        },
+        {
+          "no": 12,
+          "title": "Bài 12. Viết số đo đại lượng dưới dạng số thập phân",
+          "slug": "bai-12-viet-so-do-dai-luong-duoi-dang-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["đổi đơn vị sang số thập phân"],
+          "interactiveIdea": "Bảng đơn vị đo trượt dấu phẩy khi đổi đơn vị."
+        },
+        {
+          "no": 13,
+          "title": "Bài 13. Làm tròn số thập phân",
+          "slug": "bai-13-lam-tron-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["làm tròn đến số tự nhiên, phần mười, phần trăm"],
+          "interactiveIdea": "Tia số phóng to có mốc làm tròn, kéo số để xem kết quả."
+        },
+        {
+          "no": 14,
+          "title": "Bài 14. Luyện tập chung",
+          "slug": "bai-14-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": ["củng cố kiến thức chủ đề số thập phân", "vận dụng giải bài toán thực tế"],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Số thập phân\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "label": "Chủ đề 3",
+      "title": "Một số đơn vị đo diện tích",
+      "slug": "mot-so-don-vi-do-dien-tich",
+      "strand": "do-luong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 15,
+          "title": "Bài 15. Ki-lô-mét vuông. Héc-ta",
+          "slug": "bai-15-ki-lo-met-vuong-hec-ta",
+          "kind": "theory",
+          "keyIdeas": ["đơn vị km², ha", "quy mô diện tích lớn"],
+          "interactiveIdea": "Bản đồ phủ ô 1 ha và 1 km² để cảm nhận kích thước."
+        },
+        {
+          "no": 16,
+          "title": "Bài 16. Các đơn vị đo diện tích",
+          "slug": "bai-16-cac-don-vi-do-dien-tich",
+          "kind": "theory",
+          "keyIdeas": ["bảng đơn vị đo diện tích", "đổi đơn vị gấp 100 lần"],
+          "interactiveIdea": "Bảng đơn vị diện tích bấm đổi qua lại có giải thích ×100."
+        },
+        {
+          "no": 17,
+          "title": "Bài 17. Thực hành và trải nghiệm với một số đơn vị đo đại lượng",
+          "slug": "bai-17-thuc-hanh-va-trai-nghiem-voi-mot-so-don-vi-do-dai",
+          "kind": "activity",
+          "keyIdeas": ["đo, ước lượng thực tế", "chọn đơn vị"],
+          "interactiveIdea": "Thử thách ước lượng diện tích sân, lớp rồi kiểm tra bằng số liệu."
+        },
+        {
+          "no": 18,
+          "title": "Bài 18. Luyện tập chung",
+          "slug": "bai-18-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề một số đơn vị đo diện tích",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Một số đơn vị đo diện tích\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "label": "Chủ đề 4",
+      "title": "Các phép tính với số thập phân",
+      "slug": "cac-phep-tinh-voi-so-thap-phan",
+      "strand": "so-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 19,
+          "title": "Bài 19. Phép cộng số thập phân",
+          "slug": "bai-19-phep-cong-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính thẳng dấu phẩy", "cộng như số tự nhiên"],
+          "interactiveIdea": "Phép cộng dọc với dấu phẩy được căn thẳng tự động."
+        },
+        {
+          "no": 20,
+          "title": "Bài 20. Phép trừ số thập phân",
+          "slug": "bai-20-phep-tru-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["đặt tính thẳng dấu phẩy", "thêm chữ số 0"],
+          "interactiveIdea": "Phép trừ dọc có hoạt cảnh mượn qua dấu phẩy."
+        },
+        {
+          "no": 21,
+          "title": "Bài 21. Phép nhân số thập phân",
+          "slug": "bai-21-phep-nhan-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["nhân như số tự nhiên", "đặt dấu phẩy ở tích"],
+          "interactiveIdea": "Mô hình diện tích lưới 10 × 10 cho tích hai số thập phân."
+        },
+        {
+          "no": 22,
+          "title": "Bài 22. Phép chia số thập phân",
+          "slug": "bai-22-phep-chia-so-thap-phan",
+          "kind": "theory",
+          "keyIdeas": ["chia số thập phân cho số tự nhiên", "chia cho số thập phân"],
+          "interactiveIdea": "Phép chia dọc có bước dời dấu phẩy minh họa."
+        },
+        {
+          "no": 23,
+          "title": "Bài 23. Nhân, chia số thập phân với 10; 100; 1 000;... hoặc với 0,1; 0,01; 0,001;...",
+          "slug": "bai-23-nhan-chia-so-thap-phan-voi-10-100-1-000-hoac-voi-0-1",
+          "kind": "theory",
+          "keyIdeas": ["dời dấu phẩy sang phải, trái"],
+          "interactiveIdea": "Dấu phẩy trượt trên bảng giá trị hàng khi nhân chia."
+        },
+        {
+          "no": 24,
+          "title": "Bài 24. Luyện tập chung",
+          "slug": "bai-24-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề các phép tính với số thập phân",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Các phép tính với số thập phân\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "label": "Chủ đề 5",
+      "title": "Một số hình phẳng. Chu vi và diện tích",
+      "slug": "mot-so-hinh-phang-chu-vi-va-dien-tich",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 25,
+          "title": "Bài 25. Hình tam giác. Diện tích hình tam giác",
+          "slug": "bai-25-hinh-tam-giac-dien-tich-hinh-tam-giac",
+          "kind": "theory",
+          "keyIdeas": ["đáy, chiều cao", "diện tích bằng đáy nhân cao chia 2"],
+          "interactiveIdea": "Kéo đỉnh tam giác trên đường song song, diện tích giữ nguyên."
+        },
+        {
+          "no": 26,
+          "title": "Bài 26. Hình thang. Diện tích hình thang",
+          "slug": "bai-26-hinh-thang-dien-tich-hinh-thang",
+          "kind": "theory",
+          "keyIdeas": ["hai đáy, chiều cao", "công thức diện tích hình thang"],
+          "interactiveIdea": "Ghép hai hình thang thành hình bình hành để suy ra công thức."
+        },
+        {
+          "no": 27,
+          "title": "Bài 27. Đường tròn. Chu vi và diện tích hình tròn",
+          "slug": "bai-27-duong-tron-chu-vi-va-dien-tich-hinh-tron",
+          "kind": "theory",
+          "keyIdeas": ["bán kính, đường kính", "chu vi hình tròn", "diện tích hình tròn"],
+          "interactiveIdea": "Lăn bánh xe một vòng để đo chu vi, cắt hình tròn ghép thành gần chữ nhật."
+        },
+        {
+          "no": 28,
+          "title": "Bài 28. Thực hành và trải nghiệm đo, vẽ, lắp ghép, tạo hình",
+          "slug": "bai-28-thuc-hanh-va-trai-nghiem-do-ve-lap-ghep-tao-hinh",
+          "kind": "activity",
+          "keyIdeas": ["đo và vẽ hình", "lắp ghép tạo hình mới"],
+          "interactiveIdea": "Bảng ghép hình tự do tính chu vi, diện tích hình tạo ra."
+        },
+        {
+          "no": 29,
+          "title": "Bài 29. Luyện tập chung",
+          "slug": "bai-29-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề một số hình phẳng. chu vi và diện tích",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Một số hình phẳng. Chu vi và diện tích\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "label": "Chủ đề 6",
+      "title": "Ôn tập học kì 1",
+      "slug": "on-tap-hoc-ki-1",
+      "strand": "on-tap",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 30,
+          "title": "Bài 30. Ôn tập số thập phân",
+          "slug": "bai-30-on-tap-so-thap-phan",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại số thập phân",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về số thập phân, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 31,
+          "title": "Bài 31. Ôn tập các phép tính với số thập phân",
+          "slug": "bai-31-on-tap-cac-phep-tinh-voi-so-thap-phan",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại các phép tính với số thập phân",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về các phép tính với số thập phân, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 32,
+          "title": "Bài 32. Ôn tập một số hình phẳng",
+          "slug": "bai-32-on-tap-mot-so-hinh-phang",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại một số hình phẳng",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về một số hình phẳng, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 33,
+          "title": "Bài 33. Ôn tập diện tích, chu vi một số hình phẳng",
+          "slug": "bai-33-on-tap-dien-tich-chu-vi-mot-so-hinh-phang",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại diện tích, chu vi một số hình phẳng",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về diện tích, chu vi một số hình phẳng, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 34,
+          "title": "Bài 34. Ôn tập đo lường",
+          "slug": "bai-34-on-tap-do-luong",
+          "kind": "review",
+          "keyIdeas": ["hệ thống lại đo lường", "luyện tập tổng hợp", "tự đánh giá mức độ nắm bài"],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về đo lường, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 35,
+          "title": "Bài 35. Ôn tập chung",
+          "slug": "bai-35-on-tap-chung",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại toàn bộ kiến thức đã học",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về toàn bộ kiến thức đã học, tự chọn câu theo phần còn yếu."
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "label": "Chủ đề 7",
+      "title": "Tỉ số và các bài toán liên quan",
+      "slug": "ti-so-va-cac-bai-toan-lien-quan",
+      "strand": "so-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 36,
+          "title": "Bài 36. Tỉ số. Tỉ số phần trăm",
+          "slug": "bai-36-ti-so-ti-so-phan-tram",
+          "kind": "theory",
+          "keyIdeas": ["tỉ số của hai số", "tỉ số phần trăm"],
+          "interactiveIdea": "Lưới 100 ô tô màu theo tỉ số phần trăm."
+        },
+        {
+          "no": 37,
+          "title": "Bài 37. Tỉ lệ bản đồ và ứng dụng",
+          "slug": "bai-37-ti-le-ban-do-va-ung-dung",
+          "kind": "theory",
+          "keyIdeas": ["tỉ lệ bản đồ", "tính khoảng cách thực"],
+          "interactiveIdea": "Bản đồ có thước đo, đổi khoảng cách theo tỉ lệ chọn được."
+        },
+        {
+          "no": 38,
+          "title": "Bài 38. Tìm hai số khi biết tổng và tỉ số của hai số đó",
+          "slug": "bai-38-tim-hai-so-khi-biet-tong-va-ti-so-cua-hai-so-do",
+          "kind": "theory",
+          "keyIdeas": ["sơ đồ đoạn thẳng", "tổng số phần bằng nhau"],
+          "interactiveIdea": "Thanh băng chia phần theo tỉ số, kéo tổng để tìm hai số."
+        },
+        {
+          "no": 39,
+          "title": "Bài 39. Tìm hai số khi biết hiệu và tỉ số của hai số đó",
+          "slug": "bai-39-tim-hai-so-khi-biet-hieu-va-ti-so-cua-hai-so-do",
+          "kind": "theory",
+          "keyIdeas": ["sơ đồ đoạn thẳng", "hiệu số phần bằng nhau"],
+          "interactiveIdea": "Hai thanh băng theo tỉ số, phần chênh lệch ứng với hiệu."
+        },
+        {
+          "no": 40,
+          "title": "Bài 40. Tìm tỉ số phần trăm của hai số",
+          "slug": "bai-40-tim-ti-so-phan-tram-cua-hai-so",
+          "kind": "theory",
+          "keyIdeas": ["chia rồi nhân 100", "viết kí hiệu %"],
+          "interactiveIdea": "Máy tính phần trăm với biểu đồ cột tỉ lệ trực quan."
+        },
+        {
+          "no": 41,
+          "title": "Bài 41. Tìm giá trị phần trăm của một số",
+          "slug": "bai-41-tim-gia-tri-phan-tram-cua-mot-so",
+          "kind": "theory",
+          "keyIdeas": ["tìm a% của một số", "ứng dụng giảm giá, lãi suất"],
+          "interactiveIdea": "Thẻ giảm giá cửa hàng ảo: kéo % để thấy số tiền giảm."
+        },
+        {
+          "no": 42,
+          "title": "Bài 42. Máy tính cầm tay",
+          "slug": "bai-42-may-tinh-cam-tay",
+          "kind": "theory",
+          "keyIdeas": ["các phím cơ bản", "tính và tính phần trăm bằng máy"],
+          "interactiveIdea": "Máy tính cầm tay mô phỏng với hướng dẫn bấm từng phím."
+        },
+        {
+          "no": 43,
+          "title": "Bài 43. Thực hành và trải nghiệm sử dụng máy tính cầm tay",
+          "slug": "bai-43-thuc-hanh-va-trai-nghiem-su-dung-may-tinh-cam-tay",
+          "kind": "activity",
+          "keyIdeas": ["dùng máy tính giải bài toán thực tế", "kiểm tra kết quả"],
+          "interactiveIdea": "Thử thách tính nhanh tình huống mua sắm bằng máy tính mô phỏng."
+        },
+        {
+          "no": 44,
+          "title": "Bài 44. Luyện tập chung",
+          "slug": "bai-44-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề tỉ số và các bài toán liên quan",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Tỉ số và các bài toán liên quan\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "label": "Chủ đề 8",
+      "title": "Thể tích. Đơn vị đo thể tích",
+      "slug": "the-tich-don-vi-do-the-tich",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 45,
+          "title": "Bài 45. Thể tích của một hình",
+          "slug": "bai-45-the-tich-cua-mot-hinh",
+          "kind": "theory",
+          "keyIdeas": ["khái niệm thể tích", "so sánh thể tích bằng khối đơn vị"],
+          "interactiveIdea": "Xếp khối lập phương nhỏ để so sánh thể tích hai hình."
+        },
+        {
+          "no": 46,
+          "title": "Bài 46. Xăng-ti-mét khối. Đề-xi-mét khối",
+          "slug": "bai-46-xang-ti-met-khoi-de-xi-met-khoi",
+          "kind": "theory",
+          "keyIdeas": ["đơn vị cm³, dm³", "1 dm³ = 1 000 cm³"],
+          "interactiveIdea": "Khối 1 dm³ tách thành 1 000 khối 1 cm³ có hoạt cảnh."
+        },
+        {
+          "no": 47,
+          "title": "Bài 47. Mét khối",
+          "slug": "bai-47-met-khoi",
+          "kind": "theory",
+          "keyIdeas": ["đơn vị m³", "đổi m³, dm³, cm³"],
+          "interactiveIdea": "Mô hình 1 m³ đặt cạnh người để cảm nhận kích thước."
+        },
+        {
+          "no": 48,
+          "title": "Bài 48. Luyện tập chung",
+          "slug": "bai-48-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề thể tích. đơn vị đo thể tích",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Thể tích. Đơn vị đo thể tích\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "label": "Chủ đề 9",
+      "title": "Diện tích và thể tích của một số hình khối",
+      "slug": "dien-tich-va-the-tich-cua-mot-so-hinh-khoi",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 49,
+          "title": "Bài 49. Hình khai triển của hình lập phương, hình hộp chữ nhật và hình trụ",
+          "slug": "bai-49-hinh-khai-trien-cua-hinh-lap-phuong-hinh-hop-chu",
+          "kind": "theory",
+          "keyIdeas": ["hình khai triển", "nhận biết hình gấp được"],
+          "interactiveIdea": "Hộp 3D mở ra thành hình khai triển và gấp lại."
+        },
+        {
+          "no": 50,
+          "title": "Bài 50. Diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật",
+          "slug": "bai-50-dien-tich-xung-quanh-va-dien-tich-toan-phan-cua-hinh",
+          "kind": "theory",
+          "keyIdeas": ["diện tích xung quanh", "diện tích toàn phần"],
+          "interactiveIdea": "Hình hộp khai triển tô màu các mặt xung quanh và hai đáy."
+        },
+        {
+          "no": 51,
+          "title": "Bài 51. Diện tích xung quanh và diện tích toàn phần của hình lập phương",
+          "slug": "bai-51-dien-tich-xung-quanh-va-dien-tich-toan-phan-cua-hinh",
+          "kind": "theory",
+          "keyIdeas": ["một mặt nhân 4, nhân 6"],
+          "interactiveIdea": "Khối lập phương chỉnh cạnh, diện tích các mặt cập nhật."
+        },
+        {
+          "no": 52,
+          "title": "Bài 52. Thể tích của hình hộp chữ nhật",
+          "slug": "bai-52-the-tich-cua-hinh-hop-chu-nhat",
+          "kind": "theory",
+          "keyIdeas": ["thể tích bằng dài × rộng × cao"],
+          "interactiveIdea": "Xếp lớp khối đơn vị vào hộp, chỉnh kích thước để đếm."
+        },
+        {
+          "no": 53,
+          "title": "Bài 53. Thể tích của hình lập phương",
+          "slug": "bai-53-the-tich-cua-hinh-lap-phuong",
+          "kind": "theory",
+          "keyIdeas": ["thể tích bằng cạnh × cạnh × cạnh"],
+          "interactiveIdea": "Khối lập phương phóng to khi kéo cạnh, thể tích hiện theo."
+        },
+        {
+          "no": 54,
+          "title": "Bài 54. Thực hành tính toán và ước lượng thể tích một số hình khối",
+          "slug": "bai-54-thuc-hanh-tinh-toan-va-uoc-luong-the-tich-mot-so",
+          "kind": "activity",
+          "keyIdeas": ["ước lượng thể tích đồ vật thực tế", "đo và tính"],
+          "interactiveIdea": "Ước lượng thể tích hộp quen thuộc rồi đo kích thước ảo để kiểm tra."
+        },
+        {
+          "no": 55,
+          "title": "Bài 55. Luyện tập chung",
+          "slug": "bai-55-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề diện tích và thể tích của một số hình khối",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Diện tích và thể tích của một số hình khối\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "label": "Chủ đề 10",
+      "title": "Số đo thời gian. Vận tốc. Các bài toán liên quan đến chuyển động đều",
+      "slug": "so-do-thoi-gian-van-toc-cac-bai-toan-lien-quan-den-chuyen-dong-deu",
+      "strand": "do-luong",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 56,
+          "title": "Bài 56. Các đơn vị đo thời gian",
+          "slug": "bai-56-cac-don-vi-do-thoi-gian",
+          "kind": "theory",
+          "keyIdeas": ["bảng đơn vị đo thời gian", "đổi đơn vị"],
+          "interactiveIdea": "Bánh xe đổi đơn vị thời gian giây, phút, giờ, ngày, năm."
+        },
+        {
+          "no": 57,
+          "title": "Bài 57. Cộng, trừ số đo thời gian",
+          "slug": "bai-57-cong-tru-so-do-thoi-gian",
+          "kind": "theory",
+          "keyIdeas": ["cộng, trừ theo từng đơn vị", "đổi khi vượt 60"],
+          "interactiveIdea": "Phép tính dọc giờ - phút với bước đổi 60 phút thành 1 giờ."
+        },
+        {
+          "no": 58,
+          "title": "Bài 58. Nhân, chia số đo thời gian với một số",
+          "slug": "bai-58-nhan-chia-so-do-thoi-gian-voi-mot-so",
+          "kind": "theory",
+          "keyIdeas": ["nhân, chia từng đơn vị", "đổi đơn vị"],
+          "interactiveIdea": "Phép tính dọc số đo thời gian có hoạt cảnh đổi đơn vị."
+        },
+        {
+          "no": 59,
+          "title": "Bài 59. Vận tốc của một chuyển động đều",
+          "slug": "bai-59-van-toc-cua-mot-chuyen-dong-deu",
+          "kind": "theory",
+          "keyIdeas": ["vận tốc bằng quãng đường chia thời gian", "km/giờ, m/giây"],
+          "interactiveIdea": "Hai xe chạy đua, chỉnh vận tốc để xem quãng đường sau mỗi giờ."
+        },
+        {
+          "no": 60,
+          "title": "Bài 60. Quãng đường, thời gian của một chuyển động đều",
+          "slug": "bai-60-quang-duong-thoi-gian-cua-mot-chuyen-dong-deu",
+          "kind": "theory",
+          "keyIdeas": ["s = v × t", "t = s : v"],
+          "interactiveIdea": "Tam giác công thức s, v, t che một đại lượng để tìm nó."
+        },
+        {
+          "no": 61,
+          "title": "Bài 61. Thực hành tính toán và ước lượng về vận tốc, quãng đường, thời gian trong chuyển động đều",
+          "slug": "bai-61-thuc-hanh-tinh-toan-va-uoc-luong-ve-van-toc-quang",
+          "kind": "activity",
+          "keyIdeas": ["ước lượng vận tốc thực tế", "tính toán chuyển động"],
+          "interactiveIdea": "Bấm giờ ảo khi người chạy một quãng để tính vận tốc."
+        },
+        {
+          "no": 62,
+          "title": "Bài 62. Luyện tập chung",
+          "slug": "bai-62-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề số đo thời gian. vận tốc. các bài toán liên quan đến chuyển động đều",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Số đo thời gian. Vận tốc. Các bài toán liên quan đến chuyển động đều\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "label": "Chủ đề 11",
+      "title": "Một số yếu tố thống kê và xác suất",
+      "slug": "mot-so-yeu-to-thong-ke-va-xac-suat",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 63,
+          "title": "Bài 63. Thu thập, phân loại, sắp xếp các số liệu",
+          "slug": "bai-63-thu-thap-phan-loai-sap-xep-cac-so-lieu",
+          "kind": "theory",
+          "keyIdeas": ["thu thập, phân loại số liệu", "sắp xếp số liệu"],
+          "interactiveIdea": "Bảng nhập số liệu có nút sắp xếp và phân loại."
+        },
+        {
+          "no": 64,
+          "title": "Bài 64. Biểu đồ hình quạt tròn",
+          "slug": "bai-64-bieu-do-hinh-quat-tron",
+          "kind": "theory",
+          "keyIdeas": ["đọc biểu đồ hình quạt", "tỉ số phần trăm của từng phần"],
+          "interactiveIdea": "Biểu đồ quạt kéo ranh giới các phần, phần trăm cập nhật."
+        },
+        {
+          "no": 65,
+          "title": "Bài 65. Tỉ số của số lần lặp lại một sự kiện so với tổng số lần thực hiện",
+          "slug": "bai-65-ti-so-cua-so-lan-lap-lai-mot-su-kien-so-voi-tong-so",
+          "kind": "theory",
+          "keyIdeas": ["thí nghiệm lặp lại", "tỉ số số lần xuất hiện"],
+          "interactiveIdea": "Tung xúc xắc ảo hàng trăm lần và theo dõi tỉ số xuất hiện."
+        },
+        {
+          "no": 66,
+          "title": "Bài 66. Thực hành và trải nghiệm thu thập, phân tích, biểu diễn các số liệu thống kê",
+          "slug": "bai-66-thuc-hanh-va-trai-nghiem-thu-thap-phan-tich-bieu-dien",
+          "kind": "activity",
+          "keyIdeas": ["khảo sát thực tế", "biểu diễn bằng bảng, biểu đồ"],
+          "interactiveIdea": "Phiếu khảo sát nhập trực tiếp, tự vẽ biểu đồ cột và hình quạt."
+        },
+        {
+          "no": 67,
+          "title": "Bài 67. Luyện tập chung",
+          "slug": "bai-67-luyen-tap-chung",
+          "kind": "practice",
+          "keyIdeas": [
+            "củng cố kiến thức chủ đề một số yếu tố thống kê và xác suất",
+            "vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài tập trộn ngẫu nhiên từ các bài trong chủ đề \"Một số yếu tố thống kê và xác suất\" với gợi ý từng bước và phản hồi tức thì."
+        }
+      ]
+    },
+    {
+      "no": 12,
+      "label": "Chủ đề 12",
+      "title": "Ôn tập cuối năm",
+      "slug": "on-tap-cuoi-nam",
+      "strand": "on-tap",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 68,
+          "title": "Bài 68. Ôn tập số tự nhiên, phân số, số thập phân",
+          "slug": "bai-68-on-tap-so-tu-nhien-phan-so-so-thap-phan",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại số tự nhiên, phân số, số thập phân",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về số tự nhiên, phân số, số thập phân, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 69,
+          "title": "Bài 69. Ôn tập các phép tính với số tự nhiên, phân số, số thập phân",
+          "slug": "bai-69-on-tap-cac-phep-tinh-voi-so-tu-nhien-phan-so-so-thap",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại các phép tính với số tự nhiên, phân số, số thập phân",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về các phép tính với số tự nhiên, phân số, số thập phân, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 70,
+          "title": "Bài 70. Ôn tập tỉ số, tỉ số phần trăm",
+          "slug": "bai-70-on-tap-ti-so-ti-so-phan-tram",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại tỉ số, tỉ số phần trăm",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về tỉ số, tỉ số phần trăm, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 71,
+          "title": "Bài 71. Ôn tập hình học",
+          "slug": "bai-71-on-tap-hinh-hoc",
+          "kind": "review",
+          "keyIdeas": ["hệ thống lại hình học", "luyện tập tổng hợp", "tự đánh giá mức độ nắm bài"],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về hình học, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 72,
+          "title": "Bài 72. Ôn tập đo lường",
+          "slug": "bai-72-on-tap-do-luong",
+          "kind": "review",
+          "keyIdeas": ["hệ thống lại đo lường", "luyện tập tổng hợp", "tự đánh giá mức độ nắm bài"],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về đo lường, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 73,
+          "title": "Bài 73. Ôn tập toán chuyển động đều",
+          "slug": "bai-73-on-tap-toan-chuyen-dong-deu",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại toán chuyển động đều",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về toán chuyển động đều, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 74,
+          "title": "Bài 74. Ôn tập một số yếu tố thống kê và xác suất",
+          "slug": "bai-74-on-tap-mot-so-yeu-to-thong-ke-va-xac-suat",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại một số yếu tố thống kê và xác suất",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về một số yếu tố thống kê và xác suất, tự chọn câu theo phần còn yếu."
+        },
+        {
+          "no": 75,
+          "title": "Bài 75. Ôn tập chung",
+          "slug": "bai-75-on-tap-chung",
+          "kind": "review",
+          "keyIdeas": [
+            "hệ thống lại toàn bộ kiến thức đã học",
+            "luyện tập tổng hợp",
+            "tự đánh giá mức độ nắm bài"
+          ],
+          "interactiveIdea": "Bài kiểm tra ôn tập thích ứng về toàn bộ kiến thức đã học, tự chọn câu theo phần còn yếu."
+        }
+      ]
+    }
+  ]
+}

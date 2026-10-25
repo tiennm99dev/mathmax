@@ -1,0 +1,709 @@
+{
+  "grade": 11,
+  "volumes": ["Tập 1", "Tập 2", "Chuyên đề học tập"],
+  "chapters": [
+    {
+      "no": 1,
+      "label": "Chương I",
+      "title": "Hàm số lượng giác và phương trình lượng giác",
+      "slug": "ham-so-luong-giac-va-phuong-trinh-luong-giac",
+      "strand": "dai-so",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Giá trị lượng giác của góc lượng giác",
+          "slug": "bai-1-gia-tri-luong-giac-cua-goc-luong-giac",
+          "kind": "theory",
+          "keyIdeas": [
+            "Góc lượng giác và số đo radian",
+            "Đường tròn lượng giác",
+            "Giá trị lượng giác và các hệ thức cơ bản"
+          ],
+          "interactiveIdea": "Đường tròn lượng giác quay được nhiều vòng, đổi độ ↔ radian và hiện sin, cos, tan, cot."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Công thức lượng giác",
+          "slug": "bai-2-cong-thuc-luong-giac",
+          "kind": "theory",
+          "keyIdeas": [
+            "Công thức cộng",
+            "Công thức nhân đôi, hạ bậc",
+            "Biến đổi tích thành tổng, tổng thành tích"
+          ],
+          "interactiveIdea": "Kiểm chứng công thức bằng hình: kéo hai góc a, b để thấy hai vế công thức cộng luôn bằng nhau."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Hàm số lượng giác",
+          "slug": "bai-3-ham-so-luong-giac",
+          "kind": "theory",
+          "keyIdeas": ["Hàm số chẵn, lẻ, tuần hoàn", "Đồ thị y = sin x, cos x, tan x, cot x"],
+          "interactiveIdea": "Điểm chạy trên đường tròn lượng giác \"trải\" thành đồ thị sin, cos theo thời gian thực."
+        },
+        {
+          "no": 4,
+          "title": "Bài 4. Phương trình lượng giác cơ bản",
+          "slug": "bai-4-phuong-trinh-luong-giac-co-ban",
+          "kind": "theory",
+          "keyIdeas": [
+            "Phương trình sin x = m, cos x = m",
+            "Phương trình tan x = m, cot x = m",
+            "Họ nghiệm và chu kì"
+          ],
+          "interactiveIdea": "Đường ngang y = m cắt đồ thị sin, các giao điểm hiện thành họ nghiệm x = α + k2π."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương I",
+          "slug": "bai-tap-cuoi-chuong-i",
+          "kind": "review",
+          "keyIdeas": ["Ôn công thức và phương trình lượng giác"],
+          "interactiveIdea": "Bộ bài tập có đường tròn lượng giác để kiểm tra nghiệm."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "label": "Chương II",
+      "title": "Dãy số. Cấp số cộng và cấp số nhân",
+      "slug": "day-so-cap-so-cong-va-cap-so-nhan",
+      "strand": "dai-so",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 5. Dãy số",
+          "slug": "bai-5-day-so",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa và cách cho dãy số", "Dãy tăng, giảm, bị chặn"],
+          "interactiveIdea": "Nhập công thức số hạng tổng quát hoặc truy hồi, xem các số hạng dưới dạng cột và điểm."
+        },
+        {
+          "no": 2,
+          "title": "Bài 6. Cấp số cộng",
+          "slug": "bai-6-cap-so-cong",
+          "kind": "theory",
+          "keyIdeas": ["Công sai, số hạng tổng quát", "Tổng n số hạng đầu"],
+          "interactiveIdea": "Cầu thang khối vuông minh họa cấp số cộng và cách ghép đôi Gauss để tính tổng."
+        },
+        {
+          "no": 3,
+          "title": "Bài 7. Cấp số nhân",
+          "slug": "bai-7-cap-so-nhan",
+          "kind": "theory",
+          "keyIdeas": ["Công bội, số hạng tổng quát", "Tổng n số hạng đầu"],
+          "interactiveIdea": "Mô phỏng gấp giấy, vi khuẩn nhân đôi với biểu đồ tăng theo cấp số nhân."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương II",
+          "slug": "bai-tap-cuoi-chuong-ii",
+          "kind": "review",
+          "keyIdeas": ["Ôn dãy số, cấp số cộng, cấp số nhân"],
+          "interactiveIdea": "Bài toán gửi tiết kiệm so sánh tăng tuyến tính và tăng cấp số nhân."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "label": "Chương III",
+      "title": "Các số đặc trưng đo xu thế trung tâm của mẫu số liệu ghép nhóm",
+      "slug": "cac-so-dac-trung-do-xu-the-trung-tam-cua-mau-so-lieu-ghep-nhom",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 8. Mẫu số liệu ghép nhóm",
+          "slug": "bai-8-mau-so-lieu-ghep-nhom",
+          "kind": "theory",
+          "keyIdeas": ["Ghép nhóm số liệu", "Bảng tần số ghép nhóm"],
+          "interactiveIdea": "Kéo độ rộng nhóm để thấy bảng tần số và biểu đồ tần số ghép nhóm thay đổi."
+        },
+        {
+          "no": 2,
+          "title": "Bài 9. Các số đặc trưng đo xu thế trung tâm",
+          "slug": "bai-9-cac-so-dac-trung-do-xu-the-trung-tam",
+          "kind": "theory",
+          "keyIdeas": ["Số trung bình mẫu ghép nhóm", "Trung vị, tứ phân vị", "Mốt"],
+          "interactiveIdea": "Biểu đồ cột tương tác đánh dấu nhóm chứa trung vị, mốt và nội suy vị trí của chúng."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chương III",
+          "slug": "bai-tap-cuoi-chuong-iii",
+          "kind": "review",
+          "keyIdeas": ["Ôn tính số đặc trưng mẫu ghép nhóm"],
+          "interactiveIdea": "Bộ dữ liệu thực (chiều cao, điểm thi) để tự tính và so sánh."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "label": "Chương IV",
+      "title": "Quan hệ song song trong không gian",
+      "slug": "quan-he-song-song-trong-khong-gian",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 10. Đường thẳng và mặt phẳng trong không gian",
+          "slug": "bai-10-duong-thang-va-mat-phang-trong-khong-gian",
+          "kind": "theory",
+          "keyIdeas": ["Các tính chất thừa nhận", "Cách xác định mặt phẳng", "Hình chóp, tứ diện"],
+          "interactiveIdea": "Khung 3D xoay được để dựng hình chóp, tìm giao tuyến của hai mặt phẳng."
+        },
+        {
+          "no": 2,
+          "title": "Bài 11. Hai đường thẳng song song",
+          "slug": "bai-11-hai-duong-thang-song-song",
+          "kind": "theory",
+          "keyIdeas": [
+            "Vị trí tương đối của hai đường thẳng",
+            "Hai đường thẳng chéo nhau",
+            "Giao tuyến song song"
+          ],
+          "interactiveIdea": "Cảnh 3D cho học sinh xoay để phân biệt song song, cắt nhau, chéo nhau."
+        },
+        {
+          "no": 3,
+          "title": "Bài 12. Đường thẳng và mặt phẳng song song",
+          "slug": "bai-12-duong-thang-va-mat-phang-song-song",
+          "kind": "theory",
+          "keyIdeas": ["Điều kiện đường thẳng song song mặt phẳng", "Tính chất giao tuyến"],
+          "interactiveIdea": "Kéo đường thẳng trong không gian, mặt phẳng đổi màu khi song song."
+        },
+        {
+          "no": 4,
+          "title": "Bài 13. Hai mặt phẳng song song",
+          "slug": "bai-13-hai-mat-phang-song-song",
+          "kind": "theory",
+          "keyIdeas": [
+            "Điều kiện hai mặt phẳng song song",
+            "Định lí Thalès trong không gian",
+            "Hình lăng trụ, hình hộp"
+          ],
+          "interactiveIdea": "Hình hộp 3D với mặt cắt song song trượt dọc theo cạnh."
+        },
+        {
+          "no": 5,
+          "title": "Bài 14. Phép chiếu song song",
+          "slug": "bai-14-phep-chieu-song-song",
+          "kind": "theory",
+          "keyIdeas": ["Tính chất phép chiếu song song", "Hình biểu diễn của hình không gian"],
+          "interactiveIdea": "Đèn chiếu ảo tạo bóng của khối hình lên mặt phẳng, đổi phương chiếu để thấy tính chất bảo toàn."
+        },
+        {
+          "no": 6,
+          "title": "Bài tập cuối chương IV",
+          "slug": "bai-tap-cuoi-chuong-iv",
+          "kind": "review",
+          "keyIdeas": ["Ôn quan hệ song song", "Ôn tìm giao tuyến, thiết diện"],
+          "interactiveIdea": "Bài tập dựng thiết diện trên hình chóp 3D."
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "label": "Chương V",
+      "title": "Giới hạn. Hàm số liên tục",
+      "slug": "gioi-han-ham-so-lien-tuc",
+      "strand": "giai-tich",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 15. Giới hạn của dãy số",
+          "slug": "bai-15-gioi-han-cua-day-so",
+          "kind": "theory",
+          "keyIdeas": [
+            "Dãy có giới hạn 0, giới hạn hữu hạn",
+            "Tổng cấp số nhân lùi vô hạn",
+            "Giới hạn vô cực"
+          ],
+          "interactiveIdea": "Điểm dãy số tiến vào dải ε quanh L, thanh trượt ε thu hẹp để thấy chỉ số N."
+        },
+        {
+          "no": 2,
+          "title": "Bài 16. Giới hạn của hàm số",
+          "slug": "bai-16-gioi-han-cua-ham-so",
+          "kind": "theory",
+          "keyIdeas": ["Giới hạn hữu hạn tại một điểm", "Giới hạn một bên", "Giới hạn tại vô cực"],
+          "interactiveIdea": "Phóng to đồ thị gần x₀, hai điểm từ trái và phải tiến lại để so sánh giới hạn một bên."
+        },
+        {
+          "no": 3,
+          "title": "Bài 17. Hàm số liên tục",
+          "slug": "bai-17-ham-so-lien-tuc",
+          "kind": "theory",
+          "keyIdeas": [
+            "Hàm số liên tục tại một điểm, trên khoảng",
+            "Tính liên tục của hàm sơ cấp",
+            "Định lí giá trị trung gian"
+          ],
+          "interactiveIdea": "Vẽ đồ thị \"không nhấc bút\"; điều chỉnh tham số để làm hàm liên tục tại điểm nối."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương V",
+          "slug": "bai-tap-cuoi-chuong-v",
+          "kind": "review",
+          "keyIdeas": ["Ôn giới hạn và tính liên tục"],
+          "interactiveIdea": "Bộ bài tập có đồ thị phóng to kiểm chứng."
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-1",
+      "strand": "hoat-dong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Một vài áp dụng của toán học trong tài chính",
+          "slug": "mot-vai-ap-dung-cua-toan-hoc-trong-tai-chinh",
+          "kind": "activity",
+          "keyIdeas": ["Lãi kép và cấp số nhân", "Vay trả góp"],
+          "interactiveIdea": "Bảng tính khoản vay trả góp với biểu đồ dư nợ giảm dần."
+        },
+        {
+          "no": 2,
+          "title": "Lực căng mặt ngoài của nước",
+          "slug": "luc-cang-mat-ngoai-cua-nuoc",
+          "kind": "activity",
+          "keyIdeas": ["Thực nghiệm đo đạc", "Lập mẫu số liệu và xử lí"],
+          "interactiveIdea": "Nhập kết quả thí nghiệm nhỏ giọt nước để tự sinh bảng ghép nhóm và số đặc trưng."
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "label": "Chương VI",
+      "title": "Hàm số mũ và hàm số lôgarit",
+      "slug": "ham-so-mu-va-ham-so-logarit",
+      "strand": "giai-tich",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 18. Lũy thừa với số mũ thực",
+          "slug": "bai-18-luy-thua-voi-so-mu-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Lũy thừa số mũ nguyên, hữu tỉ, thực", "Tính chất của lũy thừa"],
+          "interactiveIdea": "Thanh trượt số mũ liên tục từ nguyên sang hữu tỉ sang thực, xem giá trị aˣ thay đổi."
+        },
+        {
+          "no": 2,
+          "title": "Bài 19. Lôgarit",
+          "slug": "bai-19-logarit",
+          "kind": "theory",
+          "keyIdeas": [
+            "Khái niệm lôgarit",
+            "Tính chất và quy tắc tính",
+            "Lôgarit thập phân, tự nhiên"
+          ],
+          "interactiveIdea": "Máy đổi lũy thừa ↔ lôgarit và thước trượt lôgarit minh họa log(ab) = log a + log b."
+        },
+        {
+          "no": 3,
+          "title": "Bài 20. Hàm số mũ và hàm số lôgarit",
+          "slug": "bai-20-ham-so-mu-va-ham-so-logarit",
+          "kind": "theory",
+          "keyIdeas": ["Đồ thị y = aˣ, y = logₐx", "Tính đồng biến, nghịch biến theo cơ số"],
+          "interactiveIdea": "Kéo cơ số a để thấy đồ thị mũ và lôgarit đối xứng qua y = x."
+        },
+        {
+          "no": 4,
+          "title": "Bài 21. Phương trình, bất phương trình mũ và lôgarit",
+          "slug": "bai-21-phuong-trinh-bat-phuong-trinh-mu-va-logarit",
+          "kind": "theory",
+          "keyIdeas": ["Phương trình mũ, lôgarit cơ bản", "Bất phương trình mũ, lôgarit"],
+          "interactiveIdea": "Đường ngang y = b cắt đồ thị mũ, tô miền nghiệm của bất phương trình."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương VI",
+          "slug": "bai-tap-cuoi-chuong-vi",
+          "kind": "review",
+          "keyIdeas": ["Ôn lũy thừa, lôgarit và phương trình"],
+          "interactiveIdea": "Bài toán tăng dân số, phân rã phóng xạ có đồ thị tương tác."
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "label": "Chương VII",
+      "title": "Quan hệ vuông góc trong không gian",
+      "slug": "quan-he-vuong-goc-trong-khong-gian",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 22. Hai đường thẳng vuông góc",
+          "slug": "bai-22-hai-duong-thang-vuong-goc",
+          "kind": "theory",
+          "keyIdeas": ["Góc giữa hai đường thẳng trong không gian", "Hai đường thẳng vuông góc"],
+          "interactiveIdea": "Hình lập phương 3D, chọn hai cạnh để tịnh tiến về chung gốc và đo góc."
+        },
+        {
+          "no": 2,
+          "title": "Bài 23. Đường thẳng vuông góc với mặt phẳng",
+          "slug": "bai-23-duong-thang-vuong-goc-voi-mat-phang",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa và điều kiện", "Liên hệ quan hệ song song và vuông góc"],
+          "interactiveIdea": "Cột cờ trên sân 3D, kiểm tra vuông góc với hai đường cắt nhau trong mặt phẳng."
+        },
+        {
+          "no": 3,
+          "title": "Bài 24. Phép chiếu vuông góc. Góc giữa đường thẳng và mặt phẳng",
+          "slug": "bai-24-phep-chieu-vuong-goc-goc-giua-duong-thang-va-mat-phang",
+          "kind": "theory",
+          "keyIdeas": [
+            "Phép chiếu vuông góc",
+            "Định lí ba đường vuông góc",
+            "Góc giữa đường thẳng và mặt phẳng"
+          ],
+          "interactiveIdea": "Xoay đường xiên quanh chân, hình chiếu và góc tạo với mặt phẳng cập nhật trực tiếp."
+        },
+        {
+          "no": 4,
+          "title": "Bài 25. Hai mặt phẳng vuông góc",
+          "slug": "bai-25-hai-mat-phang-vuong-goc",
+          "kind": "theory",
+          "keyIdeas": [
+            "Góc giữa hai mặt phẳng, góc nhị diện",
+            "Điều kiện hai mặt phẳng vuông góc",
+            "Hình lăng trụ đứng, hình chóp đều"
+          ],
+          "interactiveIdea": "Mở cuốn sách 3D để đo góc nhị diện giữa hai trang."
+        },
+        {
+          "no": 5,
+          "title": "Bài 26. Khoảng cách",
+          "slug": "bai-26-khoang-cach",
+          "kind": "theory",
+          "keyIdeas": [
+            "Khoảng cách từ điểm đến đường thẳng, mặt phẳng",
+            "Khoảng cách giữa hai đường thẳng chéo nhau"
+          ],
+          "interactiveIdea": "Hình 3D có đoạn vuông góc chung giữa hai đường chéo nhau hiện ra khi kéo."
+        },
+        {
+          "no": 6,
+          "title": "Bài 27. Thể tích",
+          "slug": "bai-27-the-tich",
+          "kind": "theory",
+          "keyIdeas": ["Thể tích khối chóp, khối lăng trụ", "Thể tích khối chóp cụt đều"],
+          "interactiveIdea": "Đổ \"nước\" từ khối chóp vào lăng trụ cùng đáy cùng cao để thấy tỉ lệ 1/3."
+        },
+        {
+          "no": 7,
+          "title": "Bài tập cuối chương VII",
+          "slug": "bai-tap-cuoi-chuong-vii",
+          "kind": "review",
+          "keyIdeas": ["Ôn góc, khoảng cách, thể tích"],
+          "interactiveIdea": "Bộ bài tập trên hình 3D xoay được."
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "label": "Chương VIII",
+      "title": "Các quy tắc tính xác suất",
+      "slug": "cac-quy-tac-tinh-xac-suat",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 28. Biến cố hợp, biến cố giao, biến cố độc lập",
+          "slug": "bai-28-bien-co-hop-bien-co-giao-bien-co-doc-lap",
+          "kind": "theory",
+          "keyIdeas": ["Biến cố hợp, giao", "Biến cố xung khắc", "Biến cố độc lập"],
+          "interactiveIdea": "Biểu đồ Ven trên không gian mẫu xúc xắc, tô vùng hợp, giao và kiểm tra tính độc lập."
+        },
+        {
+          "no": 2,
+          "title": "Bài 29. Công thức cộng xác suất",
+          "slug": "bai-29-cong-thuc-cong-xac-suat",
+          "kind": "theory",
+          "keyIdeas": ["Công thức cộng cho biến cố xung khắc", "Công thức cộng tổng quát"],
+          "interactiveIdea": "Hai vùng Ven chồng nhau có diện tích tỉ lệ xác suất, minh họa trừ phần giao."
+        },
+        {
+          "no": 3,
+          "title": "Bài 30. Công thức nhân xác suất cho hai biến cố độc lập",
+          "slug": "bai-30-cong-thuc-nhan-xac-suat-cho-hai-bien-co-doc-lap",
+          "kind": "theory",
+          "keyIdeas": ["P(AB) = P(A)P(B) khi độc lập", "Sơ đồ cây"],
+          "interactiveIdea": "Sơ đồ cây xác suất nhân dọc nhánh, kèm mô phỏng nhiều lần thử để kiểm chứng."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương VIII",
+          "slug": "bai-tap-cuoi-chuong-viii",
+          "kind": "review",
+          "keyIdeas": ["Ôn các quy tắc tính xác suất"],
+          "interactiveIdea": "Bài toán xác suất có mô phỏng Monte Carlo kiểm tra."
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "label": "Chương IX",
+      "title": "Đạo hàm",
+      "slug": "dao-ham",
+      "strand": "giai-tich",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 31. Định nghĩa và ý nghĩa của đạo hàm",
+          "slug": "bai-31-dinh-nghia-va-y-nghia-cua-dao-ham",
+          "kind": "theory",
+          "keyIdeas": [
+            "Đạo hàm tại một điểm",
+            "Ý nghĩa hình học: hệ số góc tiếp tuyến",
+            "Ý nghĩa vật lí: vận tốc tức thời"
+          ],
+          "interactiveIdea": "Cát tuyến quay thành tiếp tuyến khi kéo h → 0, hiện hệ số góc và vận tốc tức thời."
+        },
+        {
+          "no": 2,
+          "title": "Bài 32. Các quy tắc tính đạo hàm",
+          "slug": "bai-32-cac-quy-tac-tinh-dao-ham",
+          "kind": "theory",
+          "keyIdeas": [
+            "Đạo hàm hàm sơ cấp cơ bản",
+            "Đạo hàm tổng, hiệu, tích, thương",
+            "Đạo hàm hàm hợp"
+          ],
+          "interactiveIdea": "Máy tính đạo hàm từng bước, tô màu quy tắc được áp dụng ở mỗi bước."
+        },
+        {
+          "no": 3,
+          "title": "Bài 33. Đạo hàm cấp hai",
+          "slug": "bai-33-dao-ham-cap-hai",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa đạo hàm cấp hai", "Ý nghĩa: gia tốc"],
+          "interactiveIdea": "Ba đồ thị đồng bộ: vị trí, vận tốc, gia tốc của vật chuyển động."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương IX",
+          "slug": "bai-tap-cuoi-chuong-ix",
+          "kind": "review",
+          "keyIdeas": ["Ôn đạo hàm và tiếp tuyến"],
+          "interactiveIdea": "Bài tập viết phương trình tiếp tuyến có đồ thị kiểm tra."
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-2",
+      "strand": "hoat-dong",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Một vài mô hình toán học sử dụng hàm số mũ và hàm số lôgarit",
+          "slug": "mot-vai-mo-hinh-toan-hoc-su-dung-ham-so-mu-va-ham-so-logarit",
+          "kind": "activity",
+          "keyIdeas": [
+            "Mô hình tăng trưởng, suy giảm",
+            "Thang đo lôgarit (pH, độ richter, decibel)"
+          ],
+          "interactiveIdea": "Bộ mô hình chọn tham số để khớp dữ liệu tăng trưởng và thang lôgarit."
+        },
+        {
+          "no": 2,
+          "title": "Hoạt động thực hành trải nghiệm Hình học",
+          "slug": "hoat-dong-thuc-hanh-trai-nghiem-hinh-hoc",
+          "kind": "activity",
+          "keyIdeas": ["Làm mô hình khối đa diện", "Đo góc, khoảng cách, thể tích thực tế"],
+          "interactiveIdea": "Trải phẳng khối đa diện thành lưới để in, gấp và đo đạc."
+        }
+      ]
+    },
+    {
+      "no": 12,
+      "label": "Ôn tập",
+      "title": "Ôn tập cuối năm",
+      "slug": "on-tap-cuoi-nam",
+      "strand": "on-tap",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài tập ôn tập cuối năm",
+          "slug": "bai-tap-on-tap-cuoi-nam",
+          "kind": "review",
+          "keyIdeas": [
+            "Tổng hợp lượng giác, dãy số, giới hạn, đạo hàm",
+            "Tổng hợp hình không gian, thống kê, xác suất"
+          ],
+          "interactiveIdea": "Đề ôn tổng hợp có bản đồ chủ đề, chỉ ra phần cần ôn lại theo câu sai."
+        }
+      ]
+    },
+    {
+      "no": 13,
+      "label": "Chuyên đề 1",
+      "title": "Phép biến hình trong mặt phẳng",
+      "slug": "chuyen-de-phep-bien-hinh-trong-mat-phang",
+      "strand": "hinh-hoc",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Phép biến hình",
+          "slug": "cd-bai-1-phep-bien-hinh",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Khái niệm phép biến hình", "Ảnh của một điểm, một hình"],
+          "interactiveIdea": "Bảng vẽ áp quy tắc biến hình lên điểm và hình, hiển thị ảnh tương ứng."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Phép tịnh tiến",
+          "slug": "cd-bai-2-phep-tinh-tien",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Định nghĩa phép tịnh tiến", "Biểu thức tọa độ và tính chất"],
+          "interactiveIdea": "Kéo vectơ tịnh tiến để thấy toàn bộ hình trượt theo."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Phép đối xứng trục",
+          "slug": "cd-bai-3-phep-doi-xung-truc",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Định nghĩa, biểu thức tọa độ", "Trục đối xứng của hình"],
+          "interactiveIdea": "Gương ảo: vẽ một nửa hình, phần đối xứng qua trục tự xuất hiện."
+        },
+        {
+          "no": 4,
+          "title": "Bài 4. Phép quay và phép đối xứng tâm",
+          "slug": "cd-bai-4-phep-quay-va-phep-doi-xung-tam",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Phép quay tâm O góc α", "Phép đối xứng tâm"],
+          "interactiveIdea": "Xoay hình quanh tâm kéo được với thanh trượt góc."
+        },
+        {
+          "no": 5,
+          "title": "Bài 5. Phép dời hình",
+          "slug": "cd-bai-5-phep-doi-hinh",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Định nghĩa và tính chất", "Hai hình bằng nhau"],
+          "interactiveIdea": "Ghép các phép biến hình liên tiếp để chồng khít hai hình bằng nhau."
+        },
+        {
+          "no": 6,
+          "title": "Bài 6. Phép vị tự",
+          "slug": "cd-bai-6-phep-vi-tu",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Phép vị tự tâm I tỉ số k", "Tính chất"],
+          "interactiveIdea": "Thanh trượt k phóng to, thu nhỏ hình qua tâm vị tự, kể cả k âm."
+        },
+        {
+          "no": 7,
+          "title": "Bài 7. Phép đồng dạng",
+          "slug": "cd-bai-7-phep-dong-dang",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Định nghĩa phép đồng dạng", "Hai hình đồng dạng"],
+          "interactiveIdea": "Ghép vị tự và dời hình để biến một hình thành hình đồng dạng cho trước."
+        },
+        {
+          "no": 8,
+          "title": "Bài tập cuối chuyên đề 1",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-1",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn các phép biến hình"],
+          "interactiveIdea": "Câu đố: tìm phép biến hình biến hình A thành hình B."
+        }
+      ]
+    },
+    {
+      "no": 14,
+      "label": "Chuyên đề 2",
+      "title": "Làm quen với một vài khái niệm của lí thuyết đồ thị",
+      "slug": "chuyen-de-lam-quen-voi-mot-vai-khai-niem-cua-li-thuyet-do-thi",
+      "strand": "roi-rac",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 8. Một vài khái niệm cơ bản",
+          "slug": "cd-bai-8-mot-vai-khai-niem-co-ban",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Đỉnh, cạnh, bậc của đỉnh", "Đồ thị liên thông, đường đi, chu trình"],
+          "interactiveIdea": "Bảng vẽ đồ thị: thêm đỉnh, cạnh, xem bậc và kiểm tra liên thông."
+        },
+        {
+          "no": 2,
+          "title": "Bài 9. Đường đi Euler và đường đi Hamilton",
+          "slug": "cd-bai-9-duong-di-euler-va-duong-di-hamilton",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Điều kiện có chu trình, đường đi Euler", "Đường đi Hamilton"],
+          "interactiveIdea": "Bài toán bảy cây cầu Königsberg: vẽ một nét qua mọi cạnh, đếm đỉnh bậc lẻ."
+        },
+        {
+          "no": 3,
+          "title": "Bài 10. Bài toán tìm đường đi tối ưu trong một vài trường hợp đơn giản",
+          "slug": "cd-bai-10-bai-toan-tim-duong-di-toi-uu-trong-mot-vai-truong-hop-don-gian",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Đồ thị có trọng số", "Thuật toán Dijkstra", "Bài toán người giao hàng"],
+          "interactiveIdea": "Bản đồ thành phố chạy Dijkstra từng bước, tô màu đỉnh đã chốt khoảng cách."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chuyên đề 2",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-2",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn khái niệm đồ thị và đường đi tối ưu"],
+          "interactiveIdea": "Bộ đồ thị ngẫu nhiên để luyện tìm đường Euler và đường ngắn nhất."
+        }
+      ]
+    },
+    {
+      "no": 15,
+      "label": "Chuyên đề 3",
+      "title": "Một số yếu tố vẽ kĩ thuật",
+      "slug": "chuyen-de-mot-so-yeu-to-ve-ki-thuat",
+      "strand": "hinh-hoc",
+      "volume": "Chuyên đề học tập",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 11. Hình chiếu vuông góc và hình chiếu trục đo",
+          "slug": "cd-bai-11-hinh-chieu-vuong-goc-va-hinh-chieu-truc-do",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Hình chiếu đứng, bằng, cạnh", "Hình chiếu trục đo"],
+          "interactiveIdea": "Vật thể 3D xoay được, ba hình chiếu vuông góc và hình trục đo cập nhật cùng lúc."
+        },
+        {
+          "no": 2,
+          "title": "Bài 12. Bản vẽ kĩ thuật",
+          "slug": "cd-bai-12-ban-ve-ki-thuat",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Quy ước trình bày bản vẽ", "Đọc và lập bản vẽ đơn giản"],
+          "interactiveIdea": "Bảng vẽ kĩ thuật số có lớp nét, kích thước, kiểm tra quy ước tự động."
+        },
+        {
+          "no": 3,
+          "title": "Bài tập cuối chuyên đề 3",
+          "slug": "cd-bai-tap-cuoi-chuyen-de-3",
+          "kind": "chuyen-de",
+          "keyIdeas": ["Ôn hình chiếu và bản vẽ kĩ thuật"],
+          "interactiveIdea": "Ghép hình chiếu với vật thể 3D đúng."
+        }
+      ]
+    }
+  ]
+}

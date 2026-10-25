@@ -1,0 +1,843 @@
+{
+  "grade": 8,
+  "volumes": ["Tập 1", "Tập 2"],
+  "chapters": [
+    {
+      "no": 1,
+      "label": "Chương 1",
+      "title": "Đa thức",
+      "slug": "da-thuc",
+      "strand": "dai-so",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 1. Đơn thức",
+          "slug": "bai-1-don-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Đơn thức thu gọn", "Bậc của đơn thức", "Đơn thức đồng dạng"],
+          "interactiveIdea": "Thẻ đơn thức kéo vào nhóm đồng dạng, tự cộng hệ số."
+        },
+        {
+          "no": 2,
+          "title": "Bài 2. Đa thức",
+          "slug": "bai-2-da-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Đa thức nhiều biến", "Thu gọn đa thức", "Bậc của đa thức"],
+          "interactiveIdea": "Đa thức hiển thị dạng thẻ, bấm để gộp hạng tử đồng dạng và xác định bậc."
+        },
+        {
+          "no": 3,
+          "title": "Bài 3. Phép cộng và phép trừ đa thức",
+          "slug": "bai-3-phep-cong-va-phep-tru-da-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Cộng hai đa thức", "Trừ hai đa thức"],
+          "interactiveIdea": "Hai hàng thẻ đa thức xếp chồng, các hạng tử đồng dạng tự trượt vào cùng cột."
+        },
+        {
+          "no": 4,
+          "title": "Luyện tập chung trang 17",
+          "slug": "luyen-tap-chung-trang-17",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Đơn thức",
+            "Củng cố: Đa thức",
+            "Củng cố: Phép cộng và phép trừ đa thức"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về đơn thức; đa thức; phép cộng và phép trừ đa thức, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 5,
+          "title": "Bài 4. Phép nhân đa thức",
+          "slug": "bai-4-phep-nhan-da-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Nhân đơn thức với đa thức", "Nhân đa thức với đa thức"],
+          "interactiveIdea": "Mô hình diện tích hình chữ nhật chia ô cho tích hai đa thức hai biến."
+        },
+        {
+          "no": 6,
+          "title": "Bài 5. Phép chia đa thức cho đơn thức",
+          "slug": "bai-5-phep-chia-da-thuc-cho-don-thuc",
+          "kind": "theory",
+          "keyIdeas": ["Chia đơn thức cho đơn thức", "Chia đa thức cho đơn thức"],
+          "interactiveIdea": "Bảng chia từng hạng tử cho đơn thức có kiểm tra điều kiện chia hết."
+        },
+        {
+          "no": 7,
+          "title": "Luyện tập chung trang 25",
+          "slug": "luyen-tap-chung-trang-25",
+          "kind": "practice",
+          "keyIdeas": ["Củng cố: Phép nhân đa thức", "Củng cố: Phép chia đa thức cho đơn thức"],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về phép nhân đa thức; phép chia đa thức cho đơn thức, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 8,
+          "title": "Bài tập cuối chương 1",
+          "slug": "bai-tap-cuoi-chuong-1",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Đa thức",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "label": "Chương 2",
+      "title": "Hằng đẳng thức đáng nhớ và ứng dụng",
+      "slug": "hang-dang-thuc-dang-nho-va-ung-dung",
+      "strand": "dai-so",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 6. Hiệu hai bình phương. Bình phương của một tổng hay một hiệu",
+          "slug": "bai-6-hieu-hai-binh-phuong-binh-phuong-cua-mot-tong-hay-mot-hieu",
+          "kind": "theory",
+          "keyIdeas": ["Hiệu hai bình phương", "Bình phương của tổng, hiệu", "Tính nhanh"],
+          "interactiveIdea": "Hình vuông cạnh a + b cắt ghép trực quan thành a², 2ab, b² với thanh trượt a, b."
+        },
+        {
+          "no": 2,
+          "title": "Bài 7. Lập phương của một tổng. Lập phương của một hiệu",
+          "slug": "bai-7-lap-phuong-cua-mot-tong-lap-phuong-cua-mot-hieu",
+          "kind": "theory",
+          "keyIdeas": ["Lập phương của tổng", "Lập phương của hiệu"],
+          "interactiveIdea": "Khối lập phương 3D cạnh a + b tách thành 8 khối nhỏ tương ứng các hạng tử."
+        },
+        {
+          "no": 3,
+          "title": "Bài 8. Tổng và hiệu hai lập phương",
+          "slug": "bai-8-tong-va-hieu-hai-lap-phuong",
+          "kind": "theory",
+          "keyIdeas": ["Tổng hai lập phương", "Hiệu hai lập phương"],
+          "interactiveIdea": "Trò chơi ghép thẻ nhận dạng hằng đẳng thức và khai triển kiểm tra bằng giá trị số."
+        },
+        {
+          "no": 4,
+          "title": "Luyện tập chung trang 40",
+          "slug": "luyen-tap-chung-trang-40",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Hiệu hai bình phương. Bình phương của một tổng hay một hiệu",
+            "Củng cố: Lập phương của một tổng. Lập phương của một hiệu",
+            "Củng cố: Tổng và hiệu hai lập phương"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về hiệu hai bình phương. Bình phương của một tổng hay một hiệu; lập phương của một tổng. Lập phương của một hiệu; tổng và hiệu hai lập phương, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 5,
+          "title": "Bài 9. Phân tích đa thức thành nhân tử",
+          "slug": "bai-9-phan-tich-da-thuc-thanh-nhan-tu",
+          "kind": "theory",
+          "keyIdeas": ["Đặt nhân tử chung", "Dùng hằng đẳng thức", "Nhóm hạng tử"],
+          "interactiveIdea": "Ô lưới diện tích ngược: sắp xếp các mảnh thành hình chữ nhật để đọc ra hai nhân tử."
+        },
+        {
+          "no": 6,
+          "title": "Luyện tập chung trang 45",
+          "slug": "luyen-tap-chung-trang-45",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Phân tích đa thức thành nhân tử",
+            "Vận dụng giải bài toán thực tế"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về phân tích đa thức thành nhân tử, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 7,
+          "title": "Bài tập cuối chương 2",
+          "slug": "bai-tap-cuoi-chuong-2",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Hằng đẳng thức đáng nhớ và ứng dụng",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "label": "Chương 3",
+      "title": "Tứ giác",
+      "slug": "tu-giac",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 10. Tứ giác",
+          "slug": "bai-10-tu-giac",
+          "kind": "theory",
+          "keyIdeas": ["Tứ giác lồi", "Tổng các góc của tứ giác"],
+          "interactiveIdea": "Tứ giác kéo đỉnh, chia bằng đường chéo thành hai tam giác để thấy tổng góc 360 độ."
+        },
+        {
+          "no": 2,
+          "title": "Bài 11. Hình thang cân",
+          "slug": "bai-11-hinh-thang-can",
+          "kind": "theory",
+          "keyIdeas": ["Hình thang, hình thang cân", "Tính chất và dấu hiệu nhận biết"],
+          "interactiveIdea": "Hình thang kéo đỉnh, báo cân khi hai góc kề đáy bằng nhau và hiện hai đường chéo."
+        },
+        {
+          "no": 3,
+          "title": "Luyện tập chung trang 56",
+          "slug": "luyen-tap-chung-trang-56",
+          "kind": "practice",
+          "keyIdeas": ["Củng cố: Tứ giác", "Củng cố: Hình thang cân"],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về tứ giác; hình thang cân, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 4,
+          "title": "Bài 12. Hình bình hành",
+          "slug": "bai-12-hinh-binh-hanh",
+          "kind": "theory",
+          "keyIdeas": ["Tính chất hình bình hành", "Dấu hiệu nhận biết"],
+          "interactiveIdea": "Hình bình hành kéo được, các cặp cạnh, góc và giao điểm đường chéo được đo trực tiếp."
+        },
+        {
+          "no": 5,
+          "title": "Luyện tập chung trang 62",
+          "slug": "luyen-tap-chung-trang-62",
+          "kind": "practice",
+          "keyIdeas": ["Củng cố: Hình bình hành", "Vận dụng giải bài toán thực tế"],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về hình bình hành, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 6,
+          "title": "Bài 13. Hình chữ nhật",
+          "slug": "bai-13-hinh-chu-nhat",
+          "kind": "theory",
+          "keyIdeas": [
+            "Tính chất hình chữ nhật",
+            "Dấu hiệu nhận biết",
+            "Trung tuyến tam giác vuông"
+          ],
+          "interactiveIdea": "Hình bình hành biến thành hình chữ nhật khi kéo một góc thành vuông, đường chéo bằng nhau."
+        },
+        {
+          "no": 7,
+          "title": "Bài 14. Hình thoi và hình vuông",
+          "slug": "bai-14-hinh-thoi-va-hinh-vuong",
+          "kind": "theory",
+          "keyIdeas": ["Tính chất hình thoi", "Tính chất hình vuông", "Dấu hiệu nhận biết"],
+          "interactiveIdea": "Sơ đồ phả hệ tứ giác: chỉnh tứ giác để nó leo lên hình thoi, hình vuông khi thoả điều kiện."
+        },
+        {
+          "no": 8,
+          "title": "Luyện tập chung trang 73",
+          "slug": "luyen-tap-chung-trang-73",
+          "kind": "practice",
+          "keyIdeas": ["Củng cố: Hình chữ nhật", "Củng cố: Hình thoi và hình vuông"],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về hình chữ nhật; hình thoi và hình vuông, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 9,
+          "title": "Bài tập cuối chương 3",
+          "slug": "bai-tap-cuoi-chuong-3",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Tứ giác",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "label": "Chương 4",
+      "title": "Định lí Thalès",
+      "slug": "dinh-li-thales",
+      "strand": "hinh-hoc",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 15. Định lí Thalès trong tam giác",
+          "slug": "bai-15-dinh-li-thales-trong-tam-giac",
+          "kind": "theory",
+          "keyIdeas": ["Đoạn thẳng tỉ lệ", "Định lí Thalès thuận và đảo"],
+          "interactiveIdea": "Đường song song với một cạnh trượt trong tam giác, các tỉ số đoạn thẳng luôn bằng nhau."
+        },
+        {
+          "no": 2,
+          "title": "Bài 16. Đường trung bình của tam giác",
+          "slug": "bai-16-duong-trung-binh-cua-tam-giac",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa đường trung bình", "Tính chất song song và bằng nửa cạnh đáy"],
+          "interactiveIdea": "Kéo đỉnh tam giác, đường trung bình luôn song song và bằng nửa cạnh thứ ba."
+        },
+        {
+          "no": 3,
+          "title": "Bài 17. Tính chất đường phân giác của tam giác",
+          "slug": "bai-17-tinh-chat-duong-phan-giac-cua-tam-giac",
+          "kind": "theory",
+          "keyIdeas": [
+            "Phân giác chia cạnh đối diện thành hai đoạn tỉ lệ",
+            "Tỉ lệ với hai cạnh kề",
+            "Tính độ dài đoạn thẳng"
+          ],
+          "interactiveIdea": "Kéo đỉnh tam giác, hiển thị tỉ số hai đoạn trên cạnh đối và tỉ số hai cạnh kề."
+        },
+        {
+          "no": 4,
+          "title": "Luyện tập chung trang 87",
+          "slug": "luyen-tap-chung-trang-87",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Định lí Thalès trong tam giác",
+            "Củng cố: Đường trung bình của tam giác",
+            "Củng cố: Tính chất đường phân giác của tam giác"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về định lí Thalès trong tam giác; đường trung bình của tam giác; tính chất đường phân giác của tam giác, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương 4",
+          "slug": "bai-tap-cuoi-chuong-4",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Định lí Thalès",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "label": "Chương 5",
+      "title": "Dữ liệu và biểu đồ",
+      "slug": "du-lieu-va-bieu-do",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 18. Thu thập và phân loại dữ liệu",
+          "slug": "bai-18-thu-thap-va-phan-loai-du-lieu",
+          "kind": "theory",
+          "keyIdeas": ["Phương pháp thu thập dữ liệu", "Phân loại dữ liệu", "Tính hợp lí"],
+          "interactiveIdea": "Kho dữ liệu mẫu để học sinh chọn cách thu thập phù hợp và phát hiện dữ liệu sai."
+        },
+        {
+          "no": 2,
+          "title": "Bài 19. Biểu diễn dữ liệu bằng bảng, biểu đồ",
+          "slug": "bai-19-bieu-dien-du-lieu-bang-bang-bieu-do",
+          "kind": "theory",
+          "keyIdeas": ["Chọn biểu đồ phù hợp", "Chuyển đổi giữa bảng và biểu đồ"],
+          "interactiveIdea": "Một bộ dữ liệu, chuyển đổi giữa biểu đồ tranh, cột, quạt, đoạn thẳng để chọn loại phù hợp."
+        },
+        {
+          "no": 3,
+          "title": "Bài 20. Phân tích số liệu thống kê dựa vào biểu đồ",
+          "slug": "bai-20-phan-tich-so-lieu-thong-ke-dua-vao-bieu-do",
+          "kind": "theory",
+          "keyIdeas": ["Đọc và phân tích biểu đồ", "Phát hiện biểu đồ gây hiểu lầm"],
+          "interactiveIdea": "Biểu đồ có trục chỉnh được để thấy cách cắt trục làm sai lệch thông điệp."
+        },
+        {
+          "no": 4,
+          "title": "Luyện tập chung trang 106",
+          "slug": "luyen-tap-chung-trang-106",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Thu thập và phân loại dữ liệu",
+            "Củng cố: Biểu diễn dữ liệu bằng bảng, biểu đồ",
+            "Củng cố: Phân tích số liệu thống kê dựa vào biểu đồ"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về thu thập và phân loại dữ liệu; biểu diễn dữ liệu bằng bảng, biểu đồ; phân tích số liệu thống kê dựa vào biểu đồ, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương 5",
+          "slug": "bai-tap-cuoi-chuong-5",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Dữ liệu và biểu đồ",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm tập 1",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-1",
+      "strand": "hoat-dong",
+      "volume": "Tập 1",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Công thức lãi kép",
+          "slug": "cong-thuc-lai-kep",
+          "kind": "activity",
+          "keyIdeas": ["Lãi đơn và lãi kép", "Biểu thức đa thức cho số tiền"],
+          "interactiveIdea": "Máy tính tiết kiệm với thanh trượt lãi suất, kì hạn và đồ thị lãi đơn so với lãi kép."
+        },
+        {
+          "no": 2,
+          "title": "Thực hiện tính toán trên đa thức với phần mềm GeoGebra",
+          "slug": "thuc-hien-tinh-toan-tren-da-thuc-voi-phan-mem-geogebra",
+          "kind": "activity",
+          "keyIdeas": ["Nhập và thu gọn đa thức", "Nhân, phân tích đa thức bằng CAS"],
+          "interactiveIdea": "Khung GeoGebra CAS nhúng có bài tập kiểm tra kết quả biến đổi đa thức."
+        },
+        {
+          "no": 3,
+          "title": "Vẽ hình đơn giản với phần mềm GeoGebra",
+          "slug": "ve-hinh-don-gian-voi-phan-mem-geogebra",
+          "kind": "activity",
+          "keyIdeas": ["Dựng tứ giác đặc biệt", "Kiểm chứng định lí Thalès"],
+          "interactiveIdea": "Khung GeoGebra nhúng với nhiệm vụ dựng hình bình hành, hình thoi và kiểm tra tỉ lệ Thalès."
+        },
+        {
+          "no": 4,
+          "title": "Phân tích đặc điểm khí hậu Việt Nam",
+          "slug": "phan-tich-dac-diem-khi-hau-viet-nam",
+          "kind": "activity",
+          "keyIdeas": ["Thu thập số liệu nhiệt độ, lượng mưa", "Biểu diễn và phân tích biểu đồ"],
+          "interactiveIdea": "Bảng số liệu khí hậu theo tỉnh vẽ biểu đồ cột - đường kết hợp và so sánh các vùng."
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "label": "Chương 6",
+      "title": "Phân thức đại số",
+      "slug": "phan-thuc-dai-so",
+      "strand": "dai-so",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 21. Phân thức đại số",
+          "slug": "bai-21-phan-thuc-dai-so",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa phân thức", "Điều kiện xác định", "Hai phân thức bằng nhau"],
+          "interactiveIdea": "Thanh trượt giá trị biến, phân thức báo không xác định khi mẫu bằng 0."
+        },
+        {
+          "no": 2,
+          "title": "Bài 22. Tính chất cơ bản của phân thức đại số",
+          "slug": "bai-22-tinh-chat-co-ban-cua-phan-thuc-dai-so",
+          "kind": "theory",
+          "keyIdeas": ["Tính chất cơ bản", "Rút gọn phân thức", "Quy đồng mẫu thức"],
+          "interactiveIdea": "Rút gọn từng bước: chọn nhân tử chung ở tử và mẫu để gạch bỏ."
+        },
+        {
+          "no": 3,
+          "title": "Luyện tập chung trang 13",
+          "slug": "luyen-tap-chung-trang-13",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Phân thức đại số",
+            "Củng cố: Tính chất cơ bản của phân thức đại số"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về phân thức đại số; tính chất cơ bản của phân thức đại số, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 4,
+          "title": "Bài 23. Phép cộng và phép trừ phân thức đại số",
+          "slug": "bai-23-phep-cong-va-phep-tru-phan-thuc-dai-so",
+          "kind": "theory",
+          "keyIdeas": ["Cộng trừ cùng mẫu", "Cộng trừ khác mẫu"],
+          "interactiveIdea": "Trình quy đồng tìm mẫu thức chung từ các nhân tử, rồi cộng tử thức."
+        },
+        {
+          "no": 5,
+          "title": "Bài 24. Phép nhân và phép chia phân thức đại số",
+          "slug": "bai-24-phep-nhan-va-phep-chia-phan-thuc-dai-so",
+          "kind": "theory",
+          "keyIdeas": ["Nhân phân thức", "Phân thức nghịch đảo", "Chia phân thức"],
+          "interactiveIdea": "Ghép thẻ phân thức để nhân, gạch nhân tử chung chéo và kiểm tra bằng giá trị số."
+        },
+        {
+          "no": 6,
+          "title": "Luyện tập chung trang 23",
+          "slug": "luyen-tap-chung-trang-23",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Phép cộng và phép trừ phân thức đại số",
+            "Củng cố: Phép nhân và phép chia phân thức đại số"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về phép cộng và phép trừ phân thức đại số; phép nhân và phép chia phân thức đại số, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 7,
+          "title": "Bài tập cuối chương 6",
+          "slug": "bai-tap-cuoi-chuong-6",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Phân thức đại số",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "label": "Chương 7",
+      "title": "Phương trình bậc nhất và hàm số bậc nhất",
+      "slug": "phuong-trinh-bac-nhat-va-ham-so-bac-nhat",
+      "strand": "dai-so",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 25. Phương trình bậc nhất một ẩn",
+          "slug": "bai-25-phuong-trinh-bac-nhat-mot-an",
+          "kind": "theory",
+          "keyIdeas": [
+            "Phương trình một ẩn và nghiệm",
+            "Phương trình bậc nhất ax + b = 0",
+            "Cách giải"
+          ],
+          "interactiveIdea": "Cân thăng bằng với hộp ẩn x, thực hiện cùng phép tính hai bên để tìm x."
+        },
+        {
+          "no": 2,
+          "title": "Bài 26. Giải bài toán bằng cách lập phương trình",
+          "slug": "bai-26-giai-bai-toan-bang-cach-lap-phuong-trinh",
+          "kind": "theory",
+          "keyIdeas": ["Chọn ẩn và điều kiện", "Lập và giải phương trình", "Kiểm tra nghiệm"],
+          "interactiveIdea": "Bài toán chuyển động, năng suất có sơ đồ kéo được giúp đặt ẩn và lập phương trình."
+        },
+        {
+          "no": 3,
+          "title": "Luyện tập chung trang 37",
+          "slug": "luyen-tap-chung-trang-37",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Phương trình bậc nhất một ẩn",
+            "Củng cố: Giải bài toán bằng cách lập phương trình"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về phương trình bậc nhất một ẩn; giải bài toán bằng cách lập phương trình, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 4,
+          "title": "Bài 27. Khái niệm hàm số và đồ thị của hàm số",
+          "slug": "bai-27-khai-niem-ham-so-va-do-thi-cua-ham-so",
+          "kind": "theory",
+          "keyIdeas": ["Hàm số và giá trị", "Mặt phẳng toạ độ", "Đồ thị hàm số"],
+          "interactiveIdea": "Máy hàm số: nhập x, ra y và chấm điểm (x; y) lên mặt phẳng toạ độ."
+        },
+        {
+          "no": 5,
+          "title": "Bài 28. Hàm số bậc nhất và đồ thị của hàm số bậc nhất",
+          "slug": "bai-28-ham-so-bac-nhat-va-do-thi-cua-ham-so-bac-nhat",
+          "kind": "theory",
+          "keyIdeas": ["Hàm số y = ax + b", "Đồ thị là đường thẳng", "Cách vẽ đồ thị"],
+          "interactiveIdea": "Thanh trượt a, b vẽ lại đường thẳng y = ax + b tức thì."
+        },
+        {
+          "no": 6,
+          "title": "Bài 29. Hệ số góc của đường thẳng",
+          "slug": "bai-29-he-so-goc-cua-duong-thang",
+          "kind": "theory",
+          "keyIdeas": ["Hệ số góc", "Hai đường thẳng song song, cắt nhau"],
+          "interactiveIdea": "Hai đường thẳng với thanh trượt hệ số góc, báo song song, cắt nhau hay trùng nhau."
+        },
+        {
+          "no": 7,
+          "title": "Luyện tập chung trang 55",
+          "slug": "luyen-tap-chung-trang-55",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Khái niệm hàm số và đồ thị của hàm số",
+            "Củng cố: Hàm số bậc nhất và đồ thị của hàm số bậc nhất",
+            "Củng cố: Hệ số góc của đường thẳng"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về khái niệm hàm số và đồ thị của hàm số; hàm số bậc nhất và đồ thị của hàm số bậc nhất; hệ số góc của đường thẳng, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 8,
+          "title": "Bài tập cuối chương 7",
+          "slug": "bai-tap-cuoi-chuong-7",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Phương trình bậc nhất và hàm số bậc nhất",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "label": "Chương 8",
+      "title": "Mở đầu về tính xác suất của biến cố",
+      "slug": "mo-dau-ve-tinh-xac-suat-cua-bien-co",
+      "strand": "thong-ke-xac-suat",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 30. Kết quả có thể và kết quả thuận lợi",
+          "slug": "bai-30-ket-qua-co-the-va-ket-qua-thuan-loi",
+          "kind": "theory",
+          "keyIdeas": ["Kết quả có thể", "Kết quả thuận lợi cho biến cố"],
+          "interactiveIdea": "Liệt kê kết quả khi rút thẻ, tung xúc xắc và tô màu các kết quả thuận lợi."
+        },
+        {
+          "no": 2,
+          "title": "Bài 31. Cách tính xác suất của biến cố bằng tỉ số",
+          "slug": "bai-31-cach-tinh-xac-suat-cua-bien-co-bang-ti-so",
+          "kind": "theory",
+          "keyIdeas": ["Xác suất bằng tỉ số kết quả thuận lợi", "Các kết quả đồng khả năng"],
+          "interactiveIdea": "Hộp bi màu chỉnh số lượng, xác suất tính bằng tỉ số hiện cạnh biểu đồ."
+        },
+        {
+          "no": 3,
+          "title": "Bài 32. Mối liên hệ giữa xác suất thực nghiệm với xác suất và ứng dụng",
+          "slug": "bai-32-moi-lien-he-giua-xac-suat-thuc-nghiem-voi-xac-suat-va-ung-dung",
+          "kind": "theory",
+          "keyIdeas": ["Xác suất thực nghiệm", "Ước lượng xác suất", "Ứng dụng thực tế"],
+          "interactiveIdea": "Mô phỏng lặp nhiều lần, đường xác suất thực nghiệm tiến dần tới xác suất lí thuyết."
+        },
+        {
+          "no": 4,
+          "title": "Luyện tập chung trang 74",
+          "slug": "luyen-tap-chung-trang-74",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Kết quả có thể và kết quả thuận lợi",
+            "Củng cố: Cách tính xác suất của biến cố bằng tỉ số",
+            "Củng cố: Mối liên hệ giữa xác suất thực nghiệm với xác suất và ứng dụng"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về kết quả có thể và kết quả thuận lợi; cách tính xác suất của biến cố bằng tỉ số; mối liên hệ giữa xác suất thực nghiệm với xác suất và ứng dụng, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 5,
+          "title": "Bài tập cuối chương 8",
+          "slug": "bai-tap-cuoi-chuong-8",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Mở đầu về tính xác suất của biến cố",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "label": "Chương 9",
+      "title": "Tam giác đồng dạng",
+      "slug": "tam-giac-dong-dang",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 33. Hai tam giác đồng dạng",
+          "slug": "bai-33-hai-tam-giac-dong-dang",
+          "kind": "theory",
+          "keyIdeas": ["Định nghĩa tam giác đồng dạng", "Tỉ số đồng dạng"],
+          "interactiveIdea": "Phóng to, thu nhỏ tam giác bằng thanh tỉ số và so sánh các góc, cạnh tương ứng."
+        },
+        {
+          "no": 2,
+          "title": "Bài 34. Ba trường hợp đồng dạng của hai tam giác",
+          "slug": "bai-34-ba-truong-hop-dong-dang-cua-hai-tam-giac",
+          "kind": "theory",
+          "keyIdeas": ["Cạnh-cạnh-cạnh", "Cạnh-góc-cạnh", "Góc-góc"],
+          "interactiveIdea": "Bộ dựng hai tam giác từ dữ kiện, ứng dụng kiểm tra trường hợp đồng dạng nào được thoả."
+        },
+        {
+          "no": 3,
+          "title": "Luyện tập chung trang 91",
+          "slug": "luyen-tap-chung-trang-91",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Hai tam giác đồng dạng",
+            "Củng cố: Ba trường hợp đồng dạng của hai tam giác"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về hai tam giác đồng dạng; ba trường hợp đồng dạng của hai tam giác, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 4,
+          "title": "Bài 35. Định lí Pythagore và ứng dụng",
+          "slug": "bai-35-dinh-li-pythagore-va-ung-dung",
+          "kind": "theory",
+          "keyIdeas": ["Định lí Pythagore", "Định lí đảo", "Ứng dụng tính độ dài"],
+          "interactiveIdea": "Hình vuông dựng trên ba cạnh tam giác vuông, cắt ghép chứng minh a² + b² = c²."
+        },
+        {
+          "no": 5,
+          "title": "Bài 36. Các trường hợp đồng dạng của hai tam giác vuông",
+          "slug": "bai-36-cac-truong-hop-dong-dang-cua-hai-tam-giac-vuong",
+          "kind": "theory",
+          "keyIdeas": [
+            "Góc nhọn bằng nhau",
+            "Hai cạnh góc vuông tỉ lệ",
+            "Cạnh huyền và cạnh góc vuông tỉ lệ"
+          ],
+          "interactiveIdea": "Hai tam giác vuông với thanh trượt, báo đồng dạng khi điều kiện tỉ lệ thoả."
+        },
+        {
+          "no": 6,
+          "title": "Bài 37. Hình đồng dạng",
+          "slug": "bai-37-hinh-dong-dang",
+          "kind": "theory",
+          "keyIdeas": ["Hình đồng dạng phối cảnh", "Hình đồng dạng trong thực tế"],
+          "interactiveIdea": "Phép vị tự với tâm và tỉ số kéo được áp lên hình bất kì."
+        },
+        {
+          "no": 7,
+          "title": "Luyện tập chung trang 108",
+          "slug": "luyen-tap-chung-trang-108",
+          "kind": "practice",
+          "keyIdeas": [
+            "Củng cố: Định lí Pythagore và ứng dụng",
+            "Củng cố: Các trường hợp đồng dạng của hai tam giác vuông",
+            "Củng cố: Hình đồng dạng"
+          ],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về định lí Pythagore và ứng dụng; các trường hợp đồng dạng của hai tam giác vuông; hình đồng dạng, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 8,
+          "title": "Bài tập cuối chương 9",
+          "slug": "bai-tap-cuoi-chuong-9",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Tam giác đồng dạng",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "label": "Chương 10",
+      "title": "Một số hình khối trong thực tiễn",
+      "slug": "mot-so-hinh-khoi-trong-thuc-tien",
+      "strand": "hinh-hoc",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài 38. Hình chóp tam giác đều",
+          "slug": "bai-38-hinh-chop-tam-giac-deu",
+          "kind": "theory",
+          "keyIdeas": ["Đỉnh, cạnh, mặt, trung đoạn", "Diện tích xung quanh", "Thể tích"],
+          "interactiveIdea": "Hình chóp tam giác đều 3D xoay được, mở lưới trải và chỉnh chiều cao."
+        },
+        {
+          "no": 2,
+          "title": "Bài 39. Hình chóp tứ giác đều",
+          "slug": "bai-39-hinh-chop-tu-giac-deu",
+          "kind": "theory",
+          "keyIdeas": [
+            "Đặc điểm hình chóp tứ giác đều",
+            "Diện tích xung quanh",
+            "Thể tích bằng 1/3 lăng trụ"
+          ],
+          "interactiveIdea": "Rót nước ảo từ hình chóp vào hình hộp cùng đáy, cùng chiều cao để thấy tỉ lệ 1/3."
+        },
+        {
+          "no": 3,
+          "title": "Luyện tập chung trang 121",
+          "slug": "luyen-tap-chung-trang-121",
+          "kind": "practice",
+          "keyIdeas": ["Củng cố: Hình chóp tam giác đều", "Củng cố: Hình chóp tứ giác đều"],
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về hình chóp tam giác đều; hình chóp tứ giác đều, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+        },
+        {
+          "no": 4,
+          "title": "Bài tập cuối chương 10",
+          "slug": "bai-tap-cuoi-chuong-10",
+          "kind": "review",
+          "keyIdeas": [
+            "Hệ thống hoá kiến thức chương: Một số hình khối trong thực tiễn",
+            "Bài tập trắc nghiệm và tự luận tổng hợp",
+            "Vận dụng giải toán thực tế"
+          ],
+          "interactiveIdea": "Bài kiểm tra cuối chương có bản đồ kỹ năng tô màu theo từng bài, chỉ ra bài cần ôn lại."
+        }
+      ]
+    },
+    {
+      "no": 12,
+      "label": "HĐTHTN",
+      "title": "Hoạt động thực hành trải nghiệm tập 2",
+      "slug": "hoat-dong-thuc-hanh-trai-nghiem-tap-2",
+      "strand": "hoat-dong",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Một vài ứng dụng của hàm số bậc nhất trong tài chính",
+          "slug": "mot-vai-ung-dung-cua-ham-so-bac-nhat-trong-tai-chinh",
+          "kind": "activity",
+          "keyIdeas": ["Mô hình chi phí, doanh thu bằng hàm bậc nhất", "Điểm hoà vốn"],
+          "interactiveIdea": "Hai đồ thị chi phí và doanh thu chỉnh được, tô vùng lãi lỗ và điểm hoà vốn."
+        },
+        {
+          "no": 2,
+          "title": "Ứng dụng định lí Thalès, định lí Pythagore và tam giác đồng dạng để đo chiều cao, khoảng cách",
+          "slug": "ung-dung-dinh-li-thales-dinh-li-pythagore-va-tam-giac-dong-dang-de-do-chieu-cao",
+          "kind": "activity",
+          "keyIdeas": ["Đo chiều cao bằng bóng nắng", "Đo khoảng cách không tới được"],
+          "interactiveIdea": "Cảnh mô phỏng cây và bóng nắng, kéo cọc để tính chiều cao bằng tam giác đồng dạng."
+        },
+        {
+          "no": 3,
+          "title": "Thực hành tính toán trên phân thức đại số và vẽ đồ thị hàm số với phần mềm GeoGebra",
+          "slug": "thuc-hanh-tinh-toan-tren-phan-thuc-dai-so-va-ve-do-thi-ham-so-voi-phan-mem",
+          "kind": "activity",
+          "keyIdeas": ["Rút gọn, tính phân thức bằng CAS", "Vẽ đồ thị hàm bậc nhất"],
+          "interactiveIdea": "Khung GeoGebra nhúng với bài tập rút gọn phân thức và vẽ đồ thị có kiểm tra."
+        },
+        {
+          "no": 4,
+          "title": "Mô tả thí nghiệm ngẫu nhiên với phần mềm Excel",
+          "slug": "mo-ta-thi-nghiem-ngau-nhien-voi-phan-mem-excel",
+          "kind": "activity",
+          "keyIdeas": ["Mô phỏng tung đồng xu, xúc xắc bằng RAND", "Tính xác suất thực nghiệm"],
+          "interactiveIdea": "Bảng tính mô phỏng dùng hàm ngẫu nhiên, học sinh đổi số lần thử và xem tần suất."
+        }
+      ]
+    },
+    {
+      "no": 13,
+      "label": "Ôn tập",
+      "title": "Ôn tập cuối năm",
+      "slug": "on-tap-cuoi-nam",
+      "strand": "on-tap",
+      "volume": "Tập 2",
+      "lessons": [
+        {
+          "no": 1,
+          "title": "Bài tập ôn tập cuối năm",
+          "slug": "bai-tap-on-tap-cuoi-nam",
+          "kind": "review",
+          "keyIdeas": [
+            "Đa thức, hằng đẳng thức, phân thức",
+            "Phương trình và hàm số bậc nhất",
+            "Tứ giác, Thalès, đồng dạng, hình chóp, thống kê, xác suất"
+          ],
+          "interactiveIdea": "Đề ôn tập thích ứng theo mạch kiến thức, kèm lời giải từng bước."
+        }
+      ]
+    }
+  ]
+}
