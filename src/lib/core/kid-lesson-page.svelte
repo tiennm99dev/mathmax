@@ -11,7 +11,7 @@
   import PrevNext from './prev-next.svelte';
   import KidCard from './kid/kid-card.svelte';
   import { crumbs } from './crumbs.js';
-  import { lesson as copy } from './copy.vi.js';
+  import { lesson as copy, readAloud } from './copy.vi.js';
 
   /**
    * Lesson layout for grades 1-5: a 20 px base size, 48 px touch targets, the
@@ -73,7 +73,9 @@
       <RichText as="h2" html={section.heading} class="pt-2 text-2xl font-bold text-slate-900" />
       {#each section.blocks as block, b (b)}
         <KidCard
-          what={section.label}
+          what={section.blocks.length > 1
+            ? readAloud.part(section.label, b + 1, section.blocks.length)
+            : section.label}
           speak={block.type !== 'widget' && block.type !== 'tex' && block.type !== 'table'}
           tone={section.project ? 'accent' : 'plain'}
         >

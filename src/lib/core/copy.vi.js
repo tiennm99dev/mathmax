@@ -90,6 +90,8 @@ export const readAloud = {
   stop: 'Dừng',
   /** @param {string} what */
   label: (what) => `Nghe đọc: ${what}`,
+  /** One card of a section that spans several cards, so each button has its own name. @param {string} what @param {number} n @param {number} total */
+  part: (what, n, total) => `${what}, phần ${n}/${total}`,
 };
 
 export const hub = {
