@@ -28,7 +28,7 @@ export default {
             ],
             [
               'Số nguyên tố',
-              'Số nguyên tố lớn hơn $1$, chỉ có hai ước là $1$ và chính nó; hợp số lớn hơn $1$, có nhiều hơn hai ước. Số $0$ và số $1$ không là số nguyên tố, cũng không là hợp số.',
+              'Số nguyên tố lớn hơn $1$, chỉ có hai ước là $1$ và chính nó; hợp số lớn hơn $1$, có nhiều hơn hai ước. Số $0$ và số $1$ không là số nguyên tố, cũng không là hợp số. Mọi hợp số đều phân tích được ra thừa số nguyên tố (theo cột dọc hoặc sơ đồ cây), chẳng hạn $120 = 2^3 \\cdot 3 \\cdot 5$.',
             ],
             [
               'Ước chung, ƯCLN',
