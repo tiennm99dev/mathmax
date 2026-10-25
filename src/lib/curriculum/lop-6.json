@@ -70,9 +70,11 @@
           "keyIdeas": [
             "Củng cố: Tập hợp",
             "Củng cố: Cách ghi số tự nhiên",
-            "Củng cố: Thứ tự trong tập hợp các số tự nhiên"
+            "Củng cố: Thứ tự trong tập hợp các số tự nhiên",
+            "Củng cố: Phép cộng và phép trừ số tự nhiên",
+            "Củng cố: Phép nhân và phép chia số tự nhiên"
           ],
-          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về tập hợp; cách ghi số tự nhiên; thứ tự trong tập hợp các số tự nhiên, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về tập hợp; cách ghi số tự nhiên; thứ tự trong tập hợp các số tự nhiên; phép cộng, phép trừ; phép nhân, phép chia số tự nhiên, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
         },
         {
           "no": 7,
