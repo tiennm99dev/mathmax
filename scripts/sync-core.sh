@@ -14,6 +14,8 @@
 # src/lib/curriculum/ apart from index.js, src/lib/i18n/site.vi.js,
 # src/lib/domain/, src/lib/lessons/, static/, README, RUNBOOK, LICENSE, VERSION,
 # CHANGELOG, package.json name/version/description and package-lock.json.
+# The synced routes import src/lib/curriculum/legacy-redirects.js, so a target
+# without one gets an empty table it then owns.
 #
 # Run it from a clean mathmax checkout so CORE_VERSION names exactly what was
 # copied. Afterwards, in the target: npm install, then the repo gates.
@@ -173,6 +175,32 @@ for (const field of JSON.parse(fields)) {
 }
 writeFileSync(to, `${JSON.stringify(pkg, null, 2)}\n`);
 EOF
+
+redirects="$target/src/lib/curriculum/legacy-redirects.js"
+if [[ ! -f "$redirects" ]]; then
+  mkdir -p "$(dirname "$redirects")"
+  cat >"$redirects" <<'EOF'
+/**
+ * Old URLs of this site, each prerendered as a meta-refresh page pointing at its
+ * new curriculum path. Site-owned: sync-core.sh only creates this file.
+ */
+
+/** @typedef {{ strand: string, slug: string, to: string }} LegacyRedirect */
+
+/** @type {LegacyRedirect[]} */
+export const legacyRedirects = [];
+
+/**
+ * @param {string} strand
+ * @param {string} slug
+ * @returns {LegacyRedirect | undefined}
+ */
+export function findRedirect(strand, slug) {
+  return legacyRedirects.find((r) => r.strand === strand && r.slug === slug);
+}
+EOF
+  echo "sync-core: created an empty $redirects"
+fi
 
 echo "$sha" >"$target/CORE_VERSION"
 echo "sync-core: synced mathmax $sha into $target"
