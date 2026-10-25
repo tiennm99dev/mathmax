@@ -8,7 +8,7 @@ import {
   shearBTarget,
   morphSquareA,
   morphSquareB,
-} from './geom-helpers.js';
+} from './engine.js';
 
 // Layout constants mirrored from the lesson page.
 const VIEW = 520;
