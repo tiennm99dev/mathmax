@@ -79,7 +79,7 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Thứ tự nháy chuột',
-          text: 'GeoGebra đo góc theo chiều ngược chiều kim đồng hồ, từ tia thứ nhất sang tia thứ hai. Nếu nó hiện một số lớn hơn $180^\\circ$, ví dụ $310^\\circ$, thì em đã nháy theo chiều ngược lại; hãy nháy lại theo thứ tự $B$, $O$, $A$ để được $360^\\circ - 310^\\circ = 50^\\circ$. Số đo của một góc ở lớp 6 không vượt quá $180^\\circ$.',
+          text: 'GeoGebra đo góc ngược chiều kim đồng hồ, từ tia thứ nhất sang tia thứ hai. Nếu nó hiện một số lớn hơn $180^\\circ$, ví dụ $310^\\circ$, thì em đã nháy theo chiều ngược lại; hãy nháy lại theo thứ tự $B$, $O$, $A$ để được $360^\\circ - 310^\\circ = 50^\\circ$. Số đo của một góc ở lớp 6 không vượt quá $180^\\circ$.',
         },
         {
           type: 'p',

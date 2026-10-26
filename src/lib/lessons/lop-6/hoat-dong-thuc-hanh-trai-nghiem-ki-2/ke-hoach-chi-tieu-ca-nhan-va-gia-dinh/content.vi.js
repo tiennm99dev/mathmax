@@ -64,7 +64,7 @@ export default {
               'Chi cần thiết nhưng linh hoạt',
               'mua sắm, đi lại, giải trí, dự phòng (có thể tăng, giảm tuỳ tháng)',
             ],
-            ['Chi phát sinh', 'mừng sinh nhật, đi cỗ, xem phim, sửa đồ hỏng bất ngờ'],
+            ['Chi phát sinh', 'mừng sinh nhật, đi cỗ, sửa đồ hỏng bất ngờ'],
           ],
         },
         {
@@ -205,7 +205,7 @@ export default {
       answers: [0, 1, 3],
       hints: ['Chi thiết yếu là khoản tháng nào cũng phải có để sống và sinh hoạt.'],
       solution:
-        'Điện nước, ăn uống, thuê nhà là chi cố định thiết yếu. Xem phim và quà sinh nhật là chi phát sinh.',
+        'Điện nước, ăn uống, thuê nhà là chi cố định thiết yếu. Vé xem phim là chi giải trí (chi linh hoạt), quà sinh nhật là chi phát sinh.',
     },
     {
       type: 'number',

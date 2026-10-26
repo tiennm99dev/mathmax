@@ -209,11 +209,13 @@
   </div>
 
   <p
-    class="rounded-lg p-3 text-sm {report.total > income
+    class="rounded-lg p-3 text-sm {income > 0 && report.total > income
       ? 'bg-rose-50 font-semibold text-rose-900'
       : 'bg-emerald-50 text-emerald-900'}"
     aria-live="polite"
   >
-    Tổng chi {fmt(report.total)} đồng, bằng {pct2(report.spentOfIncome)}% số tiền có. {verdict}
+    Tổng chi {fmt(report.total)} đồng{income > 0
+      ? `, bằng ${pct2(report.spentOfIncome)}% số tiền có`
+      : ''}. {verdict}
   </p>
 </div>
