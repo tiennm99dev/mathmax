@@ -198,12 +198,12 @@ export default {
         '$\\dfrac{2x}{x - 3}$',
         '$\\dfrac{2x}{x + 3}$',
         '$\\dfrac{2}{x - 3}$',
-        '$\\dfrac{4x^3 + 12x^2}{2x^3 - 18x}$',
+        '$\\dfrac{2x^2}{x - 3}$',
       ],
       answer: 0,
       hints: ['Phân tích $x^2 - 9 = (x - 3)(x + 3)$ rồi rút gọn trước khi nhân.'],
       solution:
-        '$\\dfrac{4x^2(x + 3)}{(x - 3)(x + 3) \\cdot 2x} = \\dfrac{2x}{x - 3}$. Lựa chọn cuối đúng giá trị nhưng chưa rút gọn.',
+        '$\\dfrac{4x^2(x + 3)}{(x - 3)(x + 3) \\cdot 2x} = \\dfrac{2x}{x - 3}$. Lựa chọn cuối quên chia cả tử và mẫu cho $2x$, chỉ chia cho $2$.',
     },
     {
       type: 'choice',

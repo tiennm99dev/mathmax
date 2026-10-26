@@ -332,8 +332,8 @@ export const congTru = {
         `Nhân tử phụ của x là ${lin(a)}, của ${lin(a)} là x.`,
       ],
       steps: [
-        `MTC = ${xTimes(a)}. Tử thức: ${m}(${lin(a)}) ${sign} ${n}x = ${polyText(top)}.`,
-        `Kết quả: ${polyText(top)}/[${xTimes(a)}].`,
+        `MTC = ${xTimes(a)}. Tử thức: ${m}(${lin(a)}) ${sign} ${n === 1 ? '' : n}x = ${polyText(top)}.`,
+        `Kết quả: ${group(top)}/[${xTimes(a)}].`,
         `Tại x = ${intText(t)}: ${substText(top, t)} = ${intText(num)}; mẫu ${intText(t)} · ${operand(t + a)} = ${intText(t * (t + a))}; giá trị ${numberText(value)}.`,
       ],
     };
@@ -377,6 +377,8 @@ export const nhanChia = {
       while (t === b || t === -a) t = int(rand, -5, 7);
       const p = fracText([a, 1], [-b, 1]);
       const value = (t - b) / (t + a);
+      const raw = `${intText(t - b)}/${operand(t + a)}`;
+      const quotient = raw === numberText(value) ? raw : `${raw} = ${numberText(value)}`;
       return {
         prompt: `Tìm phân thức nghịch đảo của ${p}, rồi tính giá trị của phân thức nghịch đảo đó tại x = ${intText(t)}. Viết kết quả là số nguyên, phân số hoặc số thập phân.`,
         answer: value,
@@ -386,7 +388,7 @@ export const nhanChia = {
         ],
         steps: [
           `Phân thức nghịch đảo của ${p} là ${fracText([-b, 1], [a, 1])}.`,
-          `Tại x = ${intText(t)}: (${substText([-b, 1], t)})/(${substText([a, 1], t)}) = ${intText(t - b)}/${operand(t + a)} = ${numberText(value)}.`,
+          `Tại x = ${intText(t)}: (${substText([-b, 1], t)})/(${substText([a, 1], t)}) = ${quotient}.`,
         ],
       };
     }
