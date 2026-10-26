@@ -23,7 +23,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Chia đơn thức cho đơn thức',
-          text: 'Với $b \\ne 0$ và $m \\ge n$: $\\;ax^m : bx^n = \\dfrac{a}{b}x^{m - n}$. Ta chia hệ số cho hệ số, lũy thừa của biến cho lũy thừa của biến (trừ số mũ). Khi $m < n$ thì $ax^m$ không chia hết cho $bx^n$.',
+          text: 'Với $b \\ne 0$ và $m \\ge n$: $\\;ax^m : bx^n = \\dfrac{a}{b}x^{m - n}$. Ta chia hệ số cho hệ số, lũy thừa của biến cho lũy thừa của biến (trừ số mũ). Khi $m < n$ và $a \\ne 0$ thì $ax^m$ không chia hết cho $bx^n$.',
         },
         {
           type: 'p',
@@ -112,7 +112,7 @@ export default {
   explore: {
     title: 'Chia đa thức như chia số',
     instruction:
-      'Chọn một phép chia rồi bấm “Bước tiếp” (hoặc Tab tới nút rồi Enter) để làm từng thao tác chia, nhân, trừ. Bên trái là phép chia đa thức, bên phải là phép chia số tự nhiên có cùng số vòng: hai phép chia đi cùng nhịp. Quan sát xem khi nào phải dừng, và kiểm tra lại bằng đẳng thức bị chia = chia · thương + dư.',
+      'Chọn một phép chia rồi bấm “Bước tiếp” (hoặc Tab tới nút rồi Enter) để làm từng thao tác chia, nhân, trừ. Khung “Chia đa thức” làm phép chia đa thức, khung “Chia số tự nhiên” làm một phép chia số có cùng số vòng: hai phép chia đi cùng nhịp. Quan sát xem khi nào phải dừng, và kiểm tra lại bằng đẳng thức bị chia = chia · thương + dư.',
   },
   examples: [
     {

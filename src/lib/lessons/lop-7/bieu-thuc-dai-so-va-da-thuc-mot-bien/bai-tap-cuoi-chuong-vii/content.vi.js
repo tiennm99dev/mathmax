@@ -137,7 +137,7 @@ export default {
     {
       type: 'text',
       prompt: 'Đa thức nào không có bậc?',
-      accept: ['0', 'đa thức 0', 'đa thức không', 'không'],
+      accept: ['0', 'số 0', 'đa thức 0', 'đa thức không', 'đa thức bằng 0', 'không'],
       hints: ['Đó là đa thức có mọi hệ số đều bằng $0$.'],
       solution: 'Đa thức $0$ (đa thức không) không có bậc.',
     },

@@ -113,11 +113,11 @@
     Bước {step} trên {total}{action >= 0 ? `, vòng ${current + 1}: ${ACTIONS[action]}` : ''}
   </p>
 
-  <div class="grid gap-4 md:grid-cols-2">
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_14rem]">
     <section class="rounded-lg border border-slate-200 p-3" aria-label="Chia đa thức">
       <h4 class="mb-2 text-sm font-semibold text-slate-700">Chia đa thức</h4>
       <div class="flex items-start gap-2 overflow-x-auto" aria-hidden="true">
-        <table class="border-collapse text-sm">
+        <table class="border-collapse text-xs sm:text-sm">
           <tbody>
             <tr>
               <td class="w-4"></td>
@@ -152,7 +152,7 @@
             {/each}
           </tbody>
         </table>
-        <div class="min-w-24 border-l-2 border-slate-500 pl-2 text-sm">
+        <div class="shrink-0 border-l-2 border-slate-500 pl-2 text-xs sm:text-sm">
           <div class="border-b-2 border-slate-500 py-1 whitespace-nowrap">
             <Tex math={polyTex(preset.q)} />
           </div>
@@ -199,7 +199,7 @@
             {/each}
           </tbody>
         </table>
-        <div class="min-w-12 border-l-2 border-slate-500 pl-2">
+        <div class="shrink-0 border-l-2 border-slate-500 pl-2">
           <div class="border-b-2 border-slate-500">{preset.b}</div>
           <div class={action === 0 ? 'bg-indigo-50' : ''}>{shownDigits || '?'}</div>
         </div>
