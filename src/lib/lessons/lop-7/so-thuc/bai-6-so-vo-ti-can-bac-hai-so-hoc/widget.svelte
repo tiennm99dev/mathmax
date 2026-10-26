@@ -5,7 +5,7 @@
   import { button } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import { clamp } from '#lib/core/visuals/svg-math.js';
-  import { isSquare } from '../_shared/decimal.js';
+  import { isSquare } from '#lib/core/decimal.js';
   import { MAX_AREA, MAX_LEVEL, MIN_AREA, bracketText, tryDigit } from './engine.js';
 
   const UNITS = 8;

@@ -2,7 +2,8 @@
   import { draggable } from '#lib/actions/draggable.svelte.js';
   import { clamp, linear } from '#lib/core/visuals/svg-math.js';
   import { button } from '#lib/core/ui.js';
-  import { intText, kindOf } from '../_shared/integers.js';
+  import { intText } from '#lib/core/number-format.js';
+  import { kindOf } from '../_shared/integers.js';
   import { CHALLENGES, START, compare, relationSentence, temperatureSentence } from './engine.js';
 
   // Thermometer: a vertical number line, positive direction upwards.

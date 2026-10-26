@@ -2,7 +2,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
-  import { degText, lenText, rightMark } from '../_shared/triangle-math.js';
+  import { degText } from '#lib/core/visuals/angle-math.js';
+  import { lenText, rightMark } from '../_shared/triangle-math.js';
   import { CASES, compare, legs, measures } from './engine.js';
 
   const W = 400;

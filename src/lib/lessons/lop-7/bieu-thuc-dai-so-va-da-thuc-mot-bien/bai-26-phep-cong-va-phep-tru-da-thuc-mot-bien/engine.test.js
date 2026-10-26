@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add, collect, sub } from '../_shared/poly.js';
+import { add, collect, sub } from '#lib/algebra-engine/polynomial.js';
 import { PAIRS, columnTex, columns } from './engine.js';
 
 /** Result coefficients, by degree, from the columns. */

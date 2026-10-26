@@ -2,16 +2,9 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
-  import { polyTex, polyText, termTex, termsOf } from '../_shared/poly.js';
-  import {
-    ACTIONS,
-    PRESETS,
-    longDivide,
-    numberDivide,
-    numberNarration,
-    polyNarration,
-    shownIn,
-  } from './engine.js';
+  import { polyTex, polyText, termTex, termsOf } from '#lib/algebra-engine/polynomial.js';
+  import { longDivide, numberDivide } from '#lib/algebra-engine/long-division.js';
+  import { ACTIONS, PRESETS, numberNarration, polyNarration, shownIn } from './engine.js';
 
   const START =
     'Bấm “Bước tiếp” để thực hiện từng thao tác: chia, nhân, trừ. Hai phép chia bên dưới đi cùng nhịp.';

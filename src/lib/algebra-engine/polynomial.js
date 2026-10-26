@@ -1,19 +1,16 @@
 /**
- * Polynomials in one variable for the chapter "Biểu thức đại số và đa thức
- * một biến". A collected polynomial is an array of coefficients indexed by
- * degree (`[1, -3, 2]` is 2x² − 3x + 1) with no trailing zeros, so the zero
- * polynomial is `[]`. An uncollected one, as a learner first meets it, is a
+ * Polynomials in one variable, as the grade 7 book introduces them in "Biểu
+ * thức đại số và đa thức một biến". A collected polynomial is an array of
+ * coefficients indexed by degree (`[1, -3, 2]` is 2x² − 3x + 1) with no
+ * trailing zeros, so the zero polynomial is `[]`. An uncollected one, as a learner first meets it, is a
  * list of terms `{ c, e }` (coefficient and exponent) in written order.
  * Writers produce TeX (`polyTex`) or plain text with the book's minus sign
  * and superscript exponents (`polyText`); decimals use a comma.
  */
 
-import { formatNumber, sup, texNumber } from '#lib/core/number-format.js';
+import { MINUS, formatNumber, sup, texNumber } from '#lib/core/number-format.js';
 
 /** @typedef {{ c: number, e: number }} Term */
-
-/** The minus sign the book prints (U+2212), never a hyphen. */
-export const MINUS = '−';
 
 /**
  * Rounds away floating-point noise (0.1 + 0.2) so equal values compare equal.
@@ -227,26 +224,4 @@ export function termsText(terms, x = 'x') {
  */
 export function polyText(p, x = 'x') {
   return termsText(termsOf(p), x);
-}
-
-/**
- * An integer as the book writes it: −12; bracketed when negative inside a
- * formula: (−3).
- * @param {number} n
- * @param {boolean} [bracket]
- */
-export function intText(n, bracket = false) {
-  if (n >= 0) return String(n);
-  return bracket ? `(${MINUS}${-n})` : `${MINUS}${-n}`;
-}
-
-/**
- * Reads an integer typed by a learner: '12', '-12', '−12', '+5'. Returns
- * null for anything else.
- * @param {string} text
- * @returns {number | null}
- */
-export function readInteger(text) {
-  const s = text.trim().replace(/\s/g, '').replace(/[−–]/g, '-');
-  return /^[+-]?\d{1,9}$/.test(s) ? Number(s) : null;
 }

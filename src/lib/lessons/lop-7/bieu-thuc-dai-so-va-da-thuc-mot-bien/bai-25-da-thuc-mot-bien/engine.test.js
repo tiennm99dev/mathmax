@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { evaluate } from '../_shared/poly.js';
+import { evaluate } from '#lib/algebra-engine/polynomial.js';
 import {
   PRESETS,
   ROOT_PRESETS,

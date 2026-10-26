@@ -5,7 +5,7 @@
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
-import { intText, operand } from './integers.js';
+import { intText, operand } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 

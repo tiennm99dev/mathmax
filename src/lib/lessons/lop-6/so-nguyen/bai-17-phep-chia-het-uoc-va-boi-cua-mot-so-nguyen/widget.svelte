@@ -1,7 +1,7 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { intText } from '../_shared/integers.js';
+  import { intText } from '#lib/core/number-format.js';
   import {
     DIVISOR_CHOICES,
     MULTIPLE_CHOICES,

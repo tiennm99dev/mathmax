@@ -80,16 +80,3 @@ export function decimalFraction(n, k) {
   const d = decimalsOf(n, k);
   return { num: n / 10 ** (k - d), den: 10 ** d };
 }
-
-/**
- * Reads a decimal answer that may carry a trailing per cent sign or the word
- * "đồng": '45%', '1 300 000 đồng', '−3,5'. Returns null otherwise.
- * @param {string} text
- * @returns {number | null}
- */
-export function readAnswer(text) {
-  const parsed = parseNumber(text);
-  if (!parsed) return null;
-  const unit = parsed.unit.toLowerCase();
-  return unit === '' || unit === '%' || unit === 'đồng' ? parsed.value : null;
-}

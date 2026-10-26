@@ -6,7 +6,7 @@
  * explained with the equality a = b · q that makes it a divisor or multiple.
  */
 
-import { intText, operand } from '../_shared/integers.js';
+import { intText, operand } from '#lib/core/number-format.js';
 
 /** @typedef {'uoc' | 'boi'} Mode */
 

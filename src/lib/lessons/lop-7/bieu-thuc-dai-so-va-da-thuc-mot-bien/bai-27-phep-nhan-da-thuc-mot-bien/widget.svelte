@@ -3,7 +3,13 @@
   import Tex from '#lib/components/tex.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { colorAt } from '#lib/core/visuals/svg-math.js';
-  import { polyTex, polyText, termText, termTex, termsTex } from '../_shared/poly.js';
+  import {
+    polyTex,
+    polyText,
+    termText,
+    termTex,
+    termsTex,
+  } from '#lib/algebra-engine/polynomial.js';
   import { PRODUCTS, cellTex, grid, productTex, sumCells } from './engine.js';
 
   let id = $state(PRODUCTS[0].id);

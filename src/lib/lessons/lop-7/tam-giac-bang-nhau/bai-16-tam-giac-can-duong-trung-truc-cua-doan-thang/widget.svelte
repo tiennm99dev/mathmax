@@ -4,7 +4,8 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import TickMarks from '#lib/core/visuals/tick-marks.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
-  import { degText, rightMark, wedge } from '../_shared/triangle-math.js';
+  import { degText } from '#lib/core/visuals/angle-math.js';
+  import { rightMark, wedge } from '../_shared/triangle-math.js';
   import { A, B, placeM, readings } from './engine.js';
 
   const W = 400;

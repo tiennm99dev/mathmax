@@ -5,7 +5,7 @@
  * array.
  */
 
-import { collect } from '../_shared/poly.js';
+import { collect } from '#lib/algebra-engine/polynomial.js';
 
 /** @typedef {{ id: string, c: number, e: number }} Card */
 

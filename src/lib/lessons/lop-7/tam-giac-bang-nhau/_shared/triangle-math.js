@@ -9,11 +9,9 @@
  */
 
 import { formatNumber } from '#lib/core/number-format.js';
+import { norm } from '#lib/core/visuals/angle-math.js';
 
 const RAD = Math.PI / 180;
-
-/** @param {number} a */
-export const norm = (a) => ((a % 360) + 360) % 360;
 
 /**
  * The point at distance `r` from `o` in direction `deg`.
@@ -163,15 +161,6 @@ export function labelAt(v, a, b, c, gap = 18) {
   const g = { x: (a.x + b.x + c.x) / 3, y: (a.y + b.y + c.y) / 3 };
   const d = dist(v, g) || 1;
   return { x: v.x + ((v.x - g.x) / d) * gap, y: v.y + ((v.y - g.y) / d) * gap + 5 };
-}
-
-/**
- * Degree text the Vietnamese way: whole degrees as '47°', otherwise one
- * decimal with a comma ('32,5°').
- * @param {number} deg
- */
-export function degText(deg) {
-  return `${formatNumber(deg, 1)}°`;
 }
 
 /**

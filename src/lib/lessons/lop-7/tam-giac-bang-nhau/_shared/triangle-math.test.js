@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { degText } from '#lib/core/visuals/angle-math.js';
 import {
   angleAt,
   angles,
@@ -9,7 +10,6 @@ import {
   kindOf,
   roundTo180,
   ssaBases,
-  degText,
 } from './triangle-math.js';
 
 describe('triangle angles', () => {

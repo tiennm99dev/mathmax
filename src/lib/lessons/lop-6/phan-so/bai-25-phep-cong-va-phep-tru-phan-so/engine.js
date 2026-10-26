@@ -7,7 +7,7 @@
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
 import { lcm } from '#lib/numtheory-engine/index.js';
-import { fracOperand, fracText } from '../_shared/fractions.js';
+import { fracOperand, fracText } from '#lib/core/fractions.js';
 
 /**
  * @typedef {object} Cell

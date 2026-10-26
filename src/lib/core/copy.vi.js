@@ -65,6 +65,11 @@ export const drill = {
   next: 'Câu tiếp theo',
   results: 'Xem kết quả',
   invalid: 'Hãy nhập một số tự nhiên, ví dụ 1024 hoặc 1 024.',
+  /** @param {string | undefined} unit the question's unit, if it has one */
+  unit: (unit) =>
+    unit
+      ? `Câu này tính bằng ${unit}: nhập số, có thể kèm ${unit} phía sau.`
+      : 'Câu này chỉ cần nhập số, không kèm đơn vị.',
   /** @param {string} answer */
   right: (answer) => `Đúng rồi! Đáp số: ${answer}.`,
   retry: 'Chưa đúng. Em xem gợi ý rồi thử lại lần nữa nhé.',
@@ -92,8 +97,10 @@ export const practice = {
   fractionPlaceholder: 'Ví dụ: 3/4',
   textPlaceholder: 'Nhập câu trả lời',
   unit: 'Đơn vị',
-  moveUp: 'Đưa lên',
-  moveDown: 'Đưa xuống',
+  /** @param {string} item the item's text */
+  moveUp: (item) => `Đưa "${item}" lên`,
+  /** @param {string} item the item's text */
+  moveDown: (item) => `Đưa "${item}" xuống`,
   /** @param {number} n */
   position: (n) => `Vị trí ${n}`,
   matchLeft: 'Chọn một mục bên trái, rồi chọn mục ghép với nó bên phải.',
@@ -111,6 +118,8 @@ export const practice = {
     invalid: 'Chưa đọc được câu trả lời. Kiểm tra lại cách viết nhé.',
     unit: 'Giá trị đúng nhưng đơn vị chưa đúng.',
     'not-simplest': 'Bằng đáp số, nhưng em hãy rút gọn phân số.',
+    'negative-denominator':
+      'Bằng đáp số, nhưng em hãy viết phân số với mẫu dương, ví dụ −1/4 thay cho 1/−4.',
   },
 };
 

@@ -160,6 +160,32 @@ describe('checkAnswer: number', () => {
     expect(reason(withUnit, '12 CM^2')).toBe('correct');
   });
 
+  it('accepts Vietnamese unit words for unit symbols', () => {
+    /** @type {Exercise} */
+    const angle = { ...base, type: 'number', answer: 130, unit: '°' };
+    /** @type {Exercise} */
+    const money = { ...base, type: 'number', answer: 5000, unit: 'đ' };
+    /** @type {Exercise} */
+    const share = { ...base, type: 'number', answer: 25, unit: '%' };
+    /** @type {Exercise} */
+    const length = { ...base, type: 'number', answer: 4, unit: 'cm' };
+    /** @type {Exercise} */
+    const area = { ...base, type: 'number', answer: 6, unit: 'm²' };
+    expect(reason(angle, '130 độ')).toBe('correct');
+    expect(reason(angle, '130 Độ')).toBe('correct');
+    expect(reason(angle, '130°')).toBe('correct');
+    expect(reason(money, '5 000 đồng')).toBe('correct');
+    expect(reason(money, '5000 VND')).toBe('correct');
+    expect(reason(money, '5000 vnđ')).toBe('correct');
+    expect(reason(share, '25 phần trăm')).toBe('correct');
+    expect(reason(length, '4 xăng-ti-mét')).toBe('correct');
+    expect(reason(length, '4 xentimét')).toBe('correct');
+    expect(reason(area, '6 mét vuông')).toBe('correct');
+    expect(reason(angle, '130 cm')).toBe('unit');
+    expect(normalizeUnit('đồng')).toBe(normalizeUnit('đ'));
+    expect(normalizeUnit('km/giờ')).toBe(normalizeUnit('km/h'));
+  });
+
   it('flags a right value in the wrong unit', () => {
     expect(reason(withUnit, '12 m²')).toBe('unit');
     expect(reason(withUnit, '13 m²')).toBe('wrong');
@@ -225,8 +251,20 @@ describe('checkAnswer: fraction', () => {
   it('asks for lowest terms when required', () => {
     expect(reason(simplest, '3/4')).toBe('correct');
     expect(checkAnswer(simplest, '6/8')).toEqual({ correct: false, reason: 'not-simplest' });
-    expect(reason(simplest, '-3/-4')).toBe('not-simplest');
+    expect(reason(simplest, '-3/-4')).toBe('negative-denominator');
     expect(reason(simplest, '5/4')).toBe('wrong');
+  });
+
+  it('asks for a positive denominator when lowest terms are required', () => {
+    /** @type {Exercise} */
+    const quarter = { ...base, type: 'fraction', answer: [-1, 4], simplest: true };
+    expect(checkAnswer(quarter, '1/-4')).toEqual({
+      correct: false,
+      reason: 'negative-denominator',
+    });
+    expect(reason(quarter, '1/−4')).toBe('negative-denominator');
+    expect(reason(quarter, '-1/4')).toBe('correct');
+    expect(reason(quarter, '1/4')).toBe('wrong');
   });
 
   it('accepts whole and mixed numbers by value', () => {

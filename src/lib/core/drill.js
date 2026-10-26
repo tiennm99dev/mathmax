@@ -7,6 +7,7 @@
  */
 
 import { GROUP } from './number-format.js';
+import { normalizeUnit } from './answer-check.js';
 
 /**
  * @typedef {object} Question
@@ -16,6 +17,12 @@ import { GROUP } from './number-format.js';
  * @property {string[]} steps the worked solution, one step per line
  * @property {string[]} [hints] plain-text hint ladder, mildest first; when
  *   left out, `hintsFor` derives it from the steps
+ * @property {string} [unit] the unit the answer is counted in, such as '%',
+ *   'đồng' or '°'. The learner may type it, or its Vietnamese word, after the
+ *   number; a question without one takes a bare number only
+ * @property {(text: string) => number | null} [read] how this question reads
+ *   the typed number, when it differs from the board's `read` (a fraction
+ *   among integers, say)
  */
 
 /**
@@ -100,6 +107,49 @@ export function buildSet(skills, perSkill, seed) {
     }
   }
   return shuffle(rand, out);
+}
+
+/**
+ * Splits typed text into the number and a trailing unit: '45 %' gives
+ * { number: '45', unit: '%' }, '−3/4' gives { number: '−3/4', unit: '' }.
+ * The unit starts at the first character after the last digit (or closing
+ * bracket) that cannot belong to a number.
+ * @param {string} text
+ * @returns {{ number: string, unit: string }}
+ */
+export function splitUnit(text) {
+  const s = text.trim();
+  const m = /^(.*?[\d)])\s*([^\d\s.,/+\-\u2212\u2013\u2014()][\s\S]*)$/u.exec(s);
+  return m ? { number: m[1], unit: m[2].trim() } : { number: s, unit: '' };
+}
+
+/**
+ * Reads a typed answer to one question. A unit after the number is checked
+ * against the question's own `unit` (so '45%' answers a percentage question
+ * but not a count), then the number is read by the question's `read`, else
+ * by the board's. Returns 'unit' when the unit does not belong there, null
+ * when the number cannot be read.
+ * @param {Pick<Question, 'unit' | 'read'>} question
+ * @param {string} text
+ * @param {(text: string) => number | null} read
+ * @returns {number | null | 'unit'}
+ */
+export function readAnswer(question, text, read) {
+  const { number, unit } = splitUnit(text);
+  if (unit && (!question.unit || normalizeUnit(unit) !== normalizeUnit(question.unit))) {
+    return 'unit';
+  }
+  return (question.read ?? read)(number);
+}
+
+/**
+ * An answer written with its unit: '45%', '90°', '12 000 đồng'.
+ * @param {string} text the formatted number
+ * @param {string} [unit]
+ */
+export function withUnit(text, unit) {
+  if (!unit) return text;
+  return /^[%°‰]/.test(unit) ? `${text}${unit}` : `${text} ${unit}`;
 }
 
 /**

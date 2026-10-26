@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
-import { inLowestTerms, readValue, sameValue } from './adaptive.js';
+import { inLowestTerms, readValue, sameValue } from '#lib/core/adaptive.js';
 import { NUMBER_SKILLS, chiaHet, soNguyen, soThapPhan } from './number-skills.js';
 
-/** @param {import('./adaptive.js').ReviewSkill} skill */
+/** @param {import('#lib/core/adaptive.js').ReviewSkill} skill */
 function sample(skill, count = 400) {
   const r = rng(2026);
   return Array.from({ length: count }, () => skill.make(r));

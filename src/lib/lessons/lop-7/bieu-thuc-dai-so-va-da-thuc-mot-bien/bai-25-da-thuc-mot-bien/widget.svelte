@@ -2,7 +2,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { numText, termText, termTex, termsTex } from '../_shared/poly.js';
+  import { numText, termText, termTex, termsTex } from '#lib/algebra-engine/polynomial.js';
   import {
     PRESETS,
     cardsOf,

@@ -4,7 +4,7 @@
  * difference) of the two coefficients.
  */
 
-import { collect, termTex } from '../_shared/poly.js';
+import { collect, termTex } from '#lib/algebra-engine/polynomial.js';
 
 /**
  * Pairs of polynomials, each written in the (unsorted) order of the problem.

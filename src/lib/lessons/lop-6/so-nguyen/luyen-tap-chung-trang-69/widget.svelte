@@ -1,6 +1,6 @@
 <script>
   import DrillBoard from '#lib/core/drill-board.svelte';
-  import { intText, readInteger } from '../_shared/integers.js';
+  import { intText, readInteger } from '#lib/core/number-format.js';
   import { congTruSoNguyen, quyTacDauNgoac, tapHopSoNguyen } from '../_shared/skills.js';
 
   const SKILLS = [tapHopSoNguyen, congTruSoNguyen, quyTacDauNgoac];

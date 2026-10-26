@@ -16,6 +16,10 @@
    * - `marks`: fixed points such as `{ value: 3, label: 'A' }`.
    * - `hops`: arcs such as `{ from: 2, to: 5, label: '+3' }`.
    * - `format`: tick and value text; defaults to Vietnamese decimals.
+   * - `valueText`: what screen readers hear for the marker's value. It
+   *   defaults to Vietnamese decimals (2/3 is read as '0,6667'), never a raw
+   *   float such as 0.6666666865, even when `format` only writes the ticks;
+   *   pass it to read the value another way, such as a fraction.
    * - `label`: accessible name of the line; `markerLabel` names the marker.
    *
    * @type {{
@@ -29,6 +33,7 @@
    *   marks?: Array<{ value: number, label?: string, color?: string }>;
    *   hops?: Array<{ from: number, to: number, label?: string, color?: string }>;
    *   format?: (v: number) => string;
+   *   valueText?: (v: number) => string;
    *   label?: string;
    *   markerLabel?: string;
    *   width?: number;
@@ -46,6 +51,7 @@
     marks = [],
     hops = [],
     format = (v) => formatNumber(v, 4),
+    valueText = (v) => formatNumber(v, 4),
     label = 'Tia số',
     markerLabel = 'Điểm trên tia số',
     width = 480,
@@ -67,6 +73,8 @@
     return out;
   };
   const majors = $derived(seq(step));
+  /** The value for `aria-valuenow`, rounded so no float noise is exposed. */
+  const now = (/** @type {number} */ v) => Math.round(v * 1e6) / 1e6;
   const minors = $derived(subdivisions > 1 ? seq(fine) : []);
 
   /** @type {SVGSVGElement | undefined} */
@@ -178,10 +186,10 @@
         role="slider"
         tabindex="0"
         aria-label={markerLabel}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
-        aria-valuetext={format(value)}
+        aria-valuemin={now(min)}
+        aria-valuemax={now(max)}
+        aria-valuenow={now(value)}
+        aria-valuetext={valueText(value)}
         aria-orientation="horizontal"
         style="cursor:grab; outline:none"
         use:draggable={drag}

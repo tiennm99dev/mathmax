@@ -4,7 +4,7 @@
  * placement challenges.
  */
 
-import { intText } from '../_shared/integers.js';
+import { intText } from '#lib/core/number-format.js';
 
 /**
  * '<', '=' or '>'.

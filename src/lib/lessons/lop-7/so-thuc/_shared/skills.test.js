@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
 import { CHAPTER_SKILLS, PAGE_37_SKILLS } from './skills.js';
-import { numberText, readNumber } from './decimal.js';
+import { numberText, readNumber } from '#lib/core/decimal.js';
 
 /**
  * Every number in a text as written: '−2,5', '7/12', '144'.

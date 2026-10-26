@@ -12,7 +12,6 @@ import {
   digitAt,
   digitsText,
   expand,
-  intText,
   isFiniteDecimal,
   isSquare,
   numberText,
@@ -22,7 +21,8 @@ import {
   scaledText,
   scaledValue,
   sqrtFloor,
-} from './decimal.js';
+} from '#lib/core/decimal.js';
+import { intText } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 

@@ -1,5 +1,5 @@
 <script>
-  import AdaptiveDrill from '../_shared/adaptive-drill.svelte';
+  import AdaptiveDrill from '#lib/core/adaptive-drill.svelte';
   import { NUMBER_SKILLS } from '../_shared/number-skills.js';
 </script>
 

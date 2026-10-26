@@ -1,6 +1,7 @@
 <script>
   import DrillBoard from '#lib/core/drill-board.svelte';
-  import { CHAPTER_SKILLS, probabilityText, readProbability } from '../_shared/skills.js';
+  import { probabilityText, readProbability } from '#lib/core/fractions.js';
+  import { CHAPTER_SKILLS } from '../_shared/skills.js';
 </script>
 
 <DrillBoard

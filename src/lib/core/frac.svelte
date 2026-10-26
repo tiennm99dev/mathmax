@@ -1,5 +1,6 @@
 <script>
-  import { MINUS, fracText } from './fractions.js';
+  import { fracText } from './fractions.js';
+  import { MINUS } from './number-format.js';
 
   /**
    * A fraction drawn stacked, numerator over a bar over denominator, in plain

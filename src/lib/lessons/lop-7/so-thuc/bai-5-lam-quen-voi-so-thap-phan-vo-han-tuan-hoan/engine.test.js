@@ -7,7 +7,7 @@ import {
   finiteReason,
   roundingCase,
 } from './engine.js';
-import { PRECISIONS } from '../_shared/decimal.js';
+import { PRECISIONS } from '#lib/core/decimal.js';
 
 describe('division rows', () => {
   it('shows each remainder with a zero brought down', () => {

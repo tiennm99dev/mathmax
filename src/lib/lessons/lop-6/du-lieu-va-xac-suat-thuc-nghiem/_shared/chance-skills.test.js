@@ -1,12 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
-import {
-  CHAPTER_SKILLS,
-  PAGE_97_SKILLS,
-  ketQuaSuKien,
-  readPercentOrNatural,
-  xacSuatThucNghiem,
-} from './skills.js';
+import { buildSet, hintsFor, readAnswer, rng } from '#lib/core/drill.js';
+import { readNatural } from '#lib/core/number-format.js';
+import { CHAPTER_SKILLS, PAGE_97_SKILLS, ketQuaSuKien, xacSuatThucNghiem } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -117,9 +112,15 @@ describe('chance skills', () => {
     expect(new Set(chapter.map((q) => q.prompt)).size).toBe(12);
   });
 
-  it('reads answers with or without a percent sign', () => {
-    expect(readPercentOrNatural('65')).toBe(65);
-    expect(readPercentOrNatural(' 65 % ')).toBe(65);
-    expect(readPercentOrNatural('6,5')).toBeNull();
+  it('takes a percent sign only on percentage questions', () => {
+    const percent = { unit: '%' };
+    expect(readAnswer(percent, '65', readNatural)).toBe(65);
+    expect(readAnswer(percent, ' 65 % ', readNatural)).toBe(65);
+    expect(readAnswer(percent, '65 phần trăm', readNatural)).toBe(65);
+    expect(readAnswer(percent, '6,5', readNatural)).toBeNull();
+    expect(readAnswer({}, '65%', readNatural)).toBe('unit');
+    const units = sample(xacSuatThucNghiem).map((q) => q.unit);
+    expect(units).toContain('%');
+    expect(units).toContain(undefined);
   });
 });

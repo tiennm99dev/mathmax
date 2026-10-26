@@ -7,23 +7,23 @@
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
+import { intText, operand } from '#lib/core/number-format.js';
 import {
   add,
   coef,
   collect,
   degree,
   evaluate,
-  intText,
   mul,
   polyText,
   sub,
   termText,
   termsOf,
   termsText,
-} from './poly.js';
+} from '#lib/algebra-engine/polynomial.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-/** @typedef {import('./poly.js').Term} Term */
+/** @typedef {import('#lib/algebra-engine/polynomial.js').Term} Term */
 
 /**
  * A non-zero integer from −hi to hi.
@@ -32,11 +32,8 @@ import {
  */
 const signed = (rand, hi) => (rand() < 0.5 ? -1 : 1) * int(rand, 1, hi);
 
-/**
- * An integer bracketed when negative: (−3).
- * @param {number} n
- */
-const br = (n) => intText(n, true);
+/** An integer bracketed when negative: (−3). */
+const br = operand;
 
 /**
  * A collected polynomial of the given degree: a non-zero leading

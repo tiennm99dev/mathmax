@@ -166,6 +166,7 @@
         bind:value
         {marks}
         format={(x) => tickLabel(x, parts)}
+        valueText={(x) => tickLabel(x, parts)}
         label={zoomed
           ? `Trục số phóng to từ ${tickLabel(lo, 1)} đến ${tickLabel(hi, 1)}`
           : 'Trục số từ −3 đến 3'}

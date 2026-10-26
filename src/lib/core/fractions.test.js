@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
+  probabilityText,
+  readProbability,
   fracOperand,
   fracText,
   mixedText,
@@ -67,5 +69,23 @@ describe('readFraction', () => {
     expect(readFraction('')).toBeNull();
     expect(readFraction('ba phần tư')).toBeNull();
     expect(readFraction('3 4')).toBeNull();
+  });
+});
+
+describe('probabilities', () => {
+  it('reads fractions, whole numbers and decimals', () => {
+    expect(readProbability('2/6')).toBe(1 / 3);
+    expect(readProbability(' 1 / 3 ')).toBe(1 / 3);
+    expect(readProbability('0,4')).toBe(2 / 5);
+    expect(readProbability('0.25')).toBe(1 / 4);
+    expect(readProbability('1/0')).toBeNull();
+    expect(readProbability('một nửa')).toBeNull();
+  });
+
+  it('writes a probability as its simplest fraction', () => {
+    expect(probabilityText(2 / 6)).toBe('1/3');
+    expect(probabilityText(0)).toBe('0');
+    expect(probabilityText(1)).toBe('1');
+    expect(probabilityText(7 / 19)).toBe('7/19');
   });
 });

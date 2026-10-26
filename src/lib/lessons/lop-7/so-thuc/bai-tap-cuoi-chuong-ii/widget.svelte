@@ -1,6 +1,6 @@
 <script>
   import DrillBoard from '#lib/core/drill-board.svelte';
-  import { numberText, readNumber } from '../_shared/decimal.js';
+  import { numberText, readNumber } from '#lib/core/decimal.js';
   import { CHAPTER_SKILLS } from '../_shared/skills.js';
 </script>
 

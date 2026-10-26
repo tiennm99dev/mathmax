@@ -1,6 +1,6 @@
 /**
- * Exact decimal work for the chapter "Số thực": the long division that turns
- * a fraction into a finite or repeating decimal (with its remainders, so a
+ * Exact decimal work (grade 7 "Số thực" and later): the long division that
+ * turns a fraction into a finite or repeating decimal (with its remainders, so a
  * widget can show where they repeat), rounding by the next digit, square
  * roots digit by digit, and reading and writing numbers with a decimal comma
  * and the book's minus sign.
@@ -9,8 +9,7 @@
  * digit far after the comma is still exact.
  */
 
-/** The minus sign the book prints (U+2212), never a hyphen. */
-export const MINUS = '−';
+import { MINUS } from './number-format.js';
 
 /**
  * @typedef {object} Expansion
@@ -274,12 +273,4 @@ export function numberText(value) {
     return isFiniteDecimal(p, q) ? decimalText(p, q) : `${p < 0 ? MINUS : ''}${Math.abs(p)}/${q}`;
   }
   return String(value).replace('.', ',').replace('-', MINUS);
-}
-
-/**
- * Plain text of an integer with the book's minus sign.
- * @param {number} n
- */
-export function intText(n) {
-  return n < 0 ? `${MINUS}${-n}` : `${n}`;
 }

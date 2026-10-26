@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
 import { CHAPTER_SKILLS, soSanhHonSo } from './skills.js';
-import { readFraction, valueText } from './fractions.js';
+import { readFraction, valueText } from '#lib/core/fractions.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 500) {

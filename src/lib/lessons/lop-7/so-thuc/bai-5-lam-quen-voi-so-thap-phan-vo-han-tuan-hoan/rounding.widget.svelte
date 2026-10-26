@@ -1,7 +1,7 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, textInput } from '#lib/core/ui.js';
-  import { PRECISIONS } from '../_shared/decimal.js';
+  import { PRECISIONS } from '#lib/core/decimal.js';
   import { ROUNDING_NUMBERS, checkRounding, roundingCase } from './engine.js';
 
   const inputId = $props.id();

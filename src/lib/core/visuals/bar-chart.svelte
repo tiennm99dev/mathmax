@@ -16,7 +16,13 @@
    *   largest value; for an interactive chart it is fixed when it first renders,
    *   so the axis does not move while dragging.
    * - `step`: snap for edits (1). `unit`: axis title such as 'Số học sinh'.
-   * - `showValues`: print each value above its bar.
+   * - `showValues`: print each value above its bar. Turn it off for "read
+   *   the chart" or "draw from the table" tasks: the values then leave the
+   *   picture and the chart's accessible name too (an editable bar still
+   *   tells screen readers its own value).
+   *
+   * Text never renders below `MIN_TEXT_PX` CSS pixels: at 390 px the chart is
+   * drawn smaller than its viewBox, so its font sizes grow to compensate.
    *
    * @type {{
    *   data?: Array<{ label: string, value: number, color?: string }>;
@@ -44,10 +50,20 @@
     onchange,
   } = $props();
 
-  const LEFT = 48;
+  /** Smallest on-screen size, in CSS pixels, of any text in the chart. */
+  const MIN_TEXT_PX = 12;
+
+  // Rendered width of the chart; 0 until measured (and during prerender).
+  let shownWidth = $state(0);
+  // ViewBox units per CSS pixel, at least 1 so a wide screen keeps the sizes.
+  const zoom = $derived(shownWidth > 0 ? Math.max(1, width / shownWidth) : 1);
+  /** A font size in viewBox units that renders at least `MIN_TEXT_PX`. */
+  const font = (/** @type {number} */ base) => Math.max(base, MIN_TEXT_PX * zoom);
+
+  const LEFT = $derived(Math.max(48, font(12) * 3.4));
   const RIGHT = 14;
-  const TOP = 28;
-  const BOTTOM = 40;
+  const TOP = $derived(Math.max(28, font(12) + 16));
+  const BOTTOM = $derived(Math.max(40, font(13) + 26));
 
   const peak = (/** @type {Array<{ value: number }>} */ d) =>
     Math.max(step * 5, ...d.map((b) => b.value));
@@ -92,7 +108,10 @@
   style:aspect-ratio="{width} / {height}"
   style:touch-action={interactive ? 'none' : null}
   role={interactive ? 'group' : 'img'}
-  aria-label="{title}: {data.map((b) => `${b.label} ${fmt(b.value)}`).join(', ')}"
+  aria-label="{title}: {data
+    .map((b) => (showValues ? `${b.label} ${fmt(b.value)}` : b.label))
+    .join(', ')}"
+  bind:clientWidth={shownWidth}
 >
   {#each axis.ticks as t (t)}
     <line
@@ -103,8 +122,12 @@
       stroke="#e2e8f0"
       stroke-width="1"
     />
-    <text x={LEFT - 6} y={y.map(t) + 4} text-anchor="end" font-size="12" fill="#64748b"
-      >{fmt(t)}</text
+    <text
+      x={LEFT - 6}
+      y={y.map(t) + font(12) / 3}
+      text-anchor="end"
+      font-size={font(12)}
+      fill="#64748b">{fmt(t)}</text
     >
   {/each}
   {#if unit}
@@ -112,7 +135,7 @@
       x={LEFT - 6}
       y={TOP - 12}
       text-anchor="start"
-      font-size="12"
+      font-size={font(12)}
       font-weight="600"
       fill="#334155">{unit}</text
     >
@@ -138,15 +161,19 @@
       fill={color}
       rx="2"
     />
-    <text x={cx(i)} y={height - BOTTOM + 20} text-anchor="middle" font-size="13" fill="#334155"
-      >{bar.label}</text
+    <text
+      x={cx(i)}
+      y={height - BOTTOM + font(13) + 7}
+      text-anchor="middle"
+      font-size={font(13)}
+      fill="#334155">{bar.label}</text
     >
     {#if showValues}
       <text
         x={cx(i)}
         y={top - (interactive ? 14 : 6)}
         text-anchor="middle"
-        font-size="13"
+        font-size={font(13)}
         font-weight="700"
         fill="#1e293b">{fmt(bar.value)}</text
       >

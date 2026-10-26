@@ -1,10 +1,8 @@
 /**
  * Question generators for the chapter "Làm quen với biến cố và xác suất của
  * biến cố". Answers are counts (natural numbers) or probabilities; a
- * probability travels as its value m/n, and `readProbability` accepts the
- * learner's fraction, whole number or decimal comma, so 2/6, 1/3 and the
- * same value written as a fraction compare equal (equal fractions divide to
- * the very same double).
+ * probability travels as its value m/n, which `readProbability` and
+ * `probabilityText` from `#lib/core/fractions.js` read and write.
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
@@ -39,37 +37,6 @@ export function fracText(m, n) {
 export function ratioText(m, n) {
   const simple = fracText(m, n);
   return simple === `${m}/${n}` ? simple : `${m}/${n} = ${simple}`;
-}
-
-/**
- * Reads a probability the learner typed: a fraction 'a/b', a whole number or
- * a decimal with a comma or point. Null when it cannot be read.
- * @param {string} text
- * @returns {number | null}
- */
-export function readProbability(text) {
-  const s = text.trim().replace(/\s+/g, '');
-  let m = /^(\d+)\/(\d+)$/.exec(s);
-  if (m) {
-    const d = Number(m[2]);
-    return d === 0 ? null : Number(m[1]) / d;
-  }
-  m = /^(\d+)(?:[.,](\d+))?$/.exec(s);
-  if (m) return Number(m[2] === undefined ? m[1] : `${m[1]}.${m[2]}`);
-  return null;
-}
-
-/**
- * The value of a probability as its simplest fraction text, for the drill
- * board's "the answer is" line.
- * @param {number} value
- */
-export function probabilityText(value) {
-  for (let d = 1; d <= 1000; d++) {
-    const n = Math.round(value * d);
-    if (n / d === value) return fracText(n, d);
-  }
-  return String(value).replace('.', ',');
 }
 
 /**

@@ -8,7 +8,7 @@
 import { int } from '#lib/core/drill.js';
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
-import { fracOperand, fracText } from './fractions.js';
+import { fracOperand, fracText } from '#lib/core/fractions.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
-import { CHAPTER_SKILLS, fracText, probabilityText, ratioText, readProbability } from './skills.js';
+import { probabilityText, readProbability } from '#lib/core/fractions.js';
+import { CHAPTER_SKILLS, fracText, ratioText } from './skills.js';
 
 /** @param {string} s */
 const n = (s) => Number(s);

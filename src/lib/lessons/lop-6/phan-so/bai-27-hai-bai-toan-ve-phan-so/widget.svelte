@@ -3,7 +3,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, textInput } from '#lib/core/ui.js';
   import { fmt, readNatural } from '#lib/core/number-format.js';
-  import Stepper from '../_shared/stepper.svelte';
+  import Stepper from '#lib/core/stepper.svelte';
   import { snapParts, solve } from './engine.js';
 
   /** @typedef {import('./engine.js').Mode} Mode */

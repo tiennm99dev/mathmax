@@ -1,6 +1,6 @@
 <script>
   import DrillBoard from '#lib/core/drill-board.svelte';
-  import { readFraction, valueText } from '../_shared/fractions.js';
+  import { readFraction, valueText } from '#lib/core/fractions.js';
   import { PAGE_25_SKILLS } from '../_shared/skills.js';
 </script>
 

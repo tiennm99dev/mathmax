@@ -9,9 +9,7 @@
  */
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
-
-/** The minus sign the book prints (U+2212), never a hyphen. */
-export const MINUS = '−';
+import { MINUS } from './number-format.js';
 
 /**
  * A fraction as plain text: '3/4', '−3/4', '5' when the denominator is 1.
@@ -123,4 +121,32 @@ export function texOperand(n, d) {
   const f = fraction(n, d);
   const t = texFrac(f.n, f.d);
   return f.n < 0 ? `\\left(${t}\\right)` : t;
+}
+
+/**
+ * Reads a probability the learner typed: a fraction 'a/b', a whole number or
+ * a decimal with a comma or point. Null when it cannot be read. Equal
+ * fractions divide to the very same double, so 2/6 and 1/3 compare equal.
+ * @param {string} text
+ * @returns {number | null}
+ */
+export function readProbability(text) {
+  const s = text.trim().replace(/\s+/g, '');
+  let m = /^(\d+)\/(\d+)$/.exec(s);
+  if (m) {
+    const d = Number(m[2]);
+    return d === 0 ? null : Number(m[1]) / d;
+  }
+  m = /^(\d+)(?:[.,](\d+))?$/.exec(s);
+  if (m) return Number(m[2] === undefined ? m[1] : `${m[1]}.${m[2]}`);
+  return null;
+}
+
+/**
+ * The value of a probability as its simplest fraction text ('1/3', '0',
+ * '1'), for the drill board's "the answer is" line.
+ * @param {number} value
+ */
+export function probabilityText(value) {
+  return toFraction(value) ? valueText(value) : String(value).replace('.', ',');
 }

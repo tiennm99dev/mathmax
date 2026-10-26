@@ -1,5 +1,5 @@
 <script>
-  import DoubleBarChart from '../_shared/double-bar-chart.svelte';
+  import DoubleBarChart from '#lib/core/visuals/double-bar-chart.svelte';
 
   /** Club sign-ups of two classes, referred to by the lesson's exercises. */
   const CLUBS = ['Bóng đá', 'Cờ vua', 'Vẽ', 'Hát'];

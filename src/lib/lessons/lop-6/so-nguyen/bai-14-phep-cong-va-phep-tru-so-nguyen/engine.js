@@ -4,7 +4,7 @@
  * the opposite chips of b. Also the book's rule, in words, for a sum.
  */
 
-import { intText, operand } from '../_shared/integers.js';
+import { intText, operand } from '#lib/core/number-format.js';
 
 /**
  * The number actually added: b for 'a + b', its opposite for 'a − b'.

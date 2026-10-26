@@ -1,6 +1,18 @@
 import { describe, it, expect } from 'vitest';
-import { buildSet, hintsFor, int, isDone, nextPhase, rng, shuffle, skillMap } from './drill.js';
-import { GROUP } from './number-format.js';
+import {
+  buildSet,
+  hintsFor,
+  int,
+  isDone,
+  nextPhase,
+  readAnswer,
+  rng,
+  shuffle,
+  skillMap,
+  splitUnit,
+  withUnit,
+} from './drill.js';
+import { GROUP, readNatural } from './number-format.js';
 
 /** @type {import('./drill.js').Skill[]} */
 const SKILLS = [
@@ -101,5 +113,39 @@ describe('hintsFor', () => {
 
   it('prefers the hints a question carries', () => {
     expect(hintsFor(q({ hints: ['Đếm số thừa số.'] }))).toEqual(['Đếm số thừa số.']);
+  });
+});
+
+describe('per-question answers', () => {
+  it('splits a trailing unit off the number', () => {
+    expect(splitUnit(' 45 % ')).toEqual({ number: '45', unit: '%' });
+    expect(splitUnit('1 300 000 đồng')).toEqual({ number: '1 300 000', unit: 'đồng' });
+    expect(splitUnit('−3/4')).toEqual({ number: '−3/4', unit: '' });
+    expect(splitUnit('(−2)')).toEqual({ number: '(−2)', unit: '' });
+    expect(splitUnit('abc')).toEqual({ number: 'abc', unit: '' });
+  });
+
+  it('accepts a unit only on a question that has it', () => {
+    const money = { unit: 'đồng' };
+    expect(readAnswer(money, '12 000 đồng', readNatural)).toBe(12000);
+    expect(readAnswer(money, '12 000 đ', readNatural)).toBe(12000);
+    expect(readAnswer(money, '12 000', readNatural)).toBe(12000);
+    expect(readAnswer(money, '12 000 %', readNatural)).toBe('unit');
+    expect(readAnswer({}, '45%', readNatural)).toBe('unit');
+    expect(readAnswer({}, '45 đồng', readNatural)).toBe('unit');
+    expect(readAnswer({ unit: '°' }, '130 độ', readNatural)).toBe(130);
+  });
+
+  it('lets a question bring its own reader', () => {
+    const half = { read: (/** @type {string} */ t) => (t === '1/2' ? 0.5 : null) };
+    expect(readAnswer(half, '1/2', readNatural)).toBe(0.5);
+    expect(readAnswer({}, '1/2', readNatural)).toBeNull();
+  });
+
+  it('writes an answer with its unit', () => {
+    expect(withUnit('45', '%')).toBe('45%');
+    expect(withUnit('90', '°')).toBe('90°');
+    expect(withUnit('12 000', 'đồng')).toBe('12 000 đồng');
+    expect(withUnit('7')).toBe('7');
   });
 });

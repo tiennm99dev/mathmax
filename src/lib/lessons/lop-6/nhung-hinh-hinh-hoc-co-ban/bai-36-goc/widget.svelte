@@ -2,8 +2,8 @@
   import { button } from '#lib/core/ui.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { along, directionTo, measure, norm, placeOf } from '../_shared/angle.js';
-  import { arcPath, insidePath } from '../_shared/angle-draw.js';
+  import { along, arcPath, insidePath, measure, norm } from '#lib/core/visuals/angle-math.js';
+  import { directionTo, placeOf } from '../_shared/angle.js';
   import { challengeResult } from './engine.js';
 
   const W = 400;

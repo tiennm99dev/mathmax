@@ -3,9 +3,10 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import { sectorPath } from '#lib/core/visuals/svg-math.js';
-  import Stepper from '../_shared/stepper.svelte';
-  import Frac from '../_shared/frac.svelte';
-  import { MINUS, fracText, valueText } from '../_shared/fractions.js';
+  import Stepper from '#lib/core/stepper.svelte';
+  import Frac from '#lib/core/frac.svelte';
+  import { fracText, valueText } from '#lib/core/fractions.js';
+  import { MINUS } from '#lib/core/number-format.js';
   import { PLACE_SETS, ascending, isAt, mixedParts, pieFill, standing } from './engine.js';
 
   let mode = $state('line');

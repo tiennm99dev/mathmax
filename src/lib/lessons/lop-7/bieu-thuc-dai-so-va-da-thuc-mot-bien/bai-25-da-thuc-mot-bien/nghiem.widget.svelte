@@ -3,7 +3,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
-  import { evaluate, numTex, polyText, substituteTex } from '../_shared/poly.js';
+  import { evaluate, numTex, polyText, substituteTex } from '#lib/algebra-engine/polynomial.js';
   import { ROOT_PRESETS } from './engine.js';
 
   const W = 340;

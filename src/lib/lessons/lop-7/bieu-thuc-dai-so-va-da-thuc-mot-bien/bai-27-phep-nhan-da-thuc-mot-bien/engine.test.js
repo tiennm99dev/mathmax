@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { mul } from '../_shared/poly.js';
+import { mul } from '#lib/algebra-engine/polynomial.js';
 import { PRODUCTS, cellTex, grid, productTex, sumCells, timesTerm } from './engine.js';
 
 describe('multiplication grid', () => {

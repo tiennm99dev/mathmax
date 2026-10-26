@@ -9,10 +9,11 @@ describe('renderRichText', () => {
 
   it('renders inline TeX between text', () => {
     const html = renderRichText('Ta có $a^2$ nhé');
-    expect(html.startsWith('Ta có <span class="katex">')).toBe(true);
+    expect(html.startsWith('Ta có <span class="tex"><span class="sr-only">a²</span>')).toBe(true);
+    expect(html).toContain('<span aria-hidden="true"><span class="katex">');
     expect(html.endsWith(' nhé')).toBe(true);
     expect(html).not.toContain('katex-display');
-    expect(html).toContain('<math');
+    expect(html).not.toContain('<math');
   });
 
   it('renders display TeX', () => {

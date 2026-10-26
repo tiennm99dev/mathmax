@@ -25,15 +25,16 @@ export function texStrict(code, message) {
 
 /**
  * Options for `katex.renderToString`. KaTeX escapes its input and runs with
- * `trust: false`, so the markup is safe to inject. Output keeps MathML for
- * screen readers.
+ * `trust: false`, so the markup is safe to inject. Output is the visual HTML
+ * only: callers wrap it with `texHtml` from `tex-text.js`, whose plain text is
+ * what screen readers read (KaTeX MathML is left out of accessible names).
  * @param {boolean} display
  */
 export function texOptions(display) {
   return /** @type {const} */ ({
     displayMode: display,
     throwOnError: false,
-    output: 'htmlAndMathml',
+    output: 'html',
     strict: texStrict,
   });
 }

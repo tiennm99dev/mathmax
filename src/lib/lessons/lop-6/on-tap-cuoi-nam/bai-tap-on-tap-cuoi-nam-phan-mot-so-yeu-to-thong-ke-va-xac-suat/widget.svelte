@@ -6,7 +6,7 @@
   import { format as fracText } from '#lib/fraction-engine/index.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import BarChart from '#lib/core/visuals/bar-chart.svelte';
-  import { readValue, sameValue } from '../_shared/adaptive.js';
+  import { readValue, sameValue } from '#lib/core/adaptive.js';
   import { EXPERIMENTS, chartQuestion, experimental, runTrials, tallyOutcomes } from './engine.js';
 
   let mode = $state('chart');

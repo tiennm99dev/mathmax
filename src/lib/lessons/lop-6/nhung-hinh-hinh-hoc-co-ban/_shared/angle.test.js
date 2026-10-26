@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { along, clockAngle, directionTo, kindOf, measure, placeOf } from './angle.js';
-import { ccwSides } from './angle-draw.js';
+import { along, ccwSides, measure } from '#lib/core/visuals/angle-math.js';
+import { clockAngle, directionTo, kindOf, placeOf } from './angle.js';
 
 const O = { x: 200, y: 150 };
 

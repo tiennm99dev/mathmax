@@ -3,7 +3,7 @@
   import { fmt } from '#lib/core/number-format.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { along, directionTo } from '../_shared/angle.js';
+  import { along, directionTo } from '#lib/core/visuals/angle-math.js';
   import { lineDir } from '../_shared/transversal.js';
   import { TILT, meetLine, record } from './engine.js';
 

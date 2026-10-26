@@ -1,8 +1,8 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
-  import Stepper from '../_shared/stepper.svelte';
-  import Frac from '../_shared/frac.svelte';
-  import { fracText, mixedText } from '../_shared/fractions.js';
+  import Stepper from '#lib/core/stepper.svelte';
+  import Frac from '#lib/core/frac.svelte';
+  import { fracText, mixedText } from '#lib/core/fractions.js';
   import { product, quotient, tiles } from './engine.js';
 
   const BLUE = '#4F46E5';

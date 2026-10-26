@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from 'svelte';
   import { button, textInput } from '#lib/core/ui.js';
-  import { decimalText, expand } from '../_shared/decimal.js';
+  import { decimalText, expand } from '#lib/core/decimal.js';
   import { MAX_TERM, PRESETS, divisionRows, finiteReason } from './engine.js';
 
   const inputId = $props.id();

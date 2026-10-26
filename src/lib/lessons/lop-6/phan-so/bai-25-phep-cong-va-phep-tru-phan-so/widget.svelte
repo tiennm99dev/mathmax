@@ -1,9 +1,9 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import Stepper from '../_shared/stepper.svelte';
-  import Frac from '../_shared/frac.svelte';
-  import { fracText } from '../_shared/fractions.js';
+  import Stepper from '#lib/core/stepper.svelte';
+  import Frac from '#lib/core/frac.svelte';
+  import { fracText } from '#lib/core/fractions.js';
   import { lcm } from '#lib/numtheory-engine/index.js';
   import { combine, resultCells, workLines } from './engine.js';
 

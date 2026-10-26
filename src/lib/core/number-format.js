@@ -11,6 +11,8 @@
  * - `fmt`, `sup`, `powText`, `readNatural`: natural numbers the way the lower
  *   secondary books print them, grouped by a narrow space (2 345), with
  *   superscript exponents (2⁵).
+ * - `MINUS`, `intText`, `operand`, `readInteger`: integers with the book's
+ *   minus sign (−1 234), bracketed inside an operation ((−5) + 3).
  */
 
 const SUPERSCRIPT = '⁰¹²³⁴⁵⁶⁷⁸⁹';
@@ -100,4 +102,37 @@ export function readNatural(text) {
   const s = text.trim().replace(/\s/g, '');
   if (/^\d{1,3}(\.\d{3})+$/.test(s)) return Number(s.replace(/\./g, ''));
   return /^\d+$/.test(s) ? Number(s) : null;
+}
+
+/** The minus sign the book prints (U+2212), never a hyphen. */
+export const MINUS = '−';
+
+/**
+ * An integer as plain text, grouped like `fmt`: −1 234, 0, 56.
+ * @param {number} n
+ */
+export function intText(n) {
+  return n < 0 ? `${MINUS}${fmt(-n)}` : fmt(n);
+}
+
+/**
+ * An integer as an operand: negatives go in brackets, (−5).
+ * @param {number} n
+ */
+export function operand(n) {
+  return n < 0 ? `(${intText(n)})` : intText(n);
+}
+
+/**
+ * Reads an integer typed by a learner: '-5', '−5', '+5', '5', '- 12',
+ * '1 024' or '−1.024'. Returns null for anything else.
+ * @param {string} text
+ * @returns {number | null}
+ */
+export function readInteger(text) {
+  const s = text.trim().replace(/[−–—]/g, '-').replace(/\s/g, '');
+  const m = /^([+-]?)(\d{1,3}(?:\.\d{3})+|\d+)$/.exec(s);
+  if (!m) return null;
+  const n = Number(m[2].replace(/\./g, ''));
+  return m[1] === '-' ? (n === 0 ? 0 : -n) : n;
 }

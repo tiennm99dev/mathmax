@@ -6,23 +6,18 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { fmt, formatFixed, formatNumber, powText } from '#lib/core/number-format.js';
+import {
+  fmt,
+  formatFixed,
+  formatNumber,
+  intText,
+  operand as term,
+  powText,
+} from '#lib/core/number-format.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
 import { fraction, simplify, format as fracText } from '#lib/fraction-engine/index.js';
 
-/** @typedef {import('./adaptive.js').ReviewSkill} ReviewSkill */
-
-/**
- * An integer the book's way: −12, 1 024.
- * @param {number} n
- */
-export const intText = (n) => (n < 0 ? `−${fmt(-n)}` : fmt(n));
-
-/**
- * An integer written after an operator: negatives in brackets, (−12).
- * @param {number} n
- */
-export const term = (n) => (n < 0 ? `(−${fmt(-n)})` : fmt(n));
+/** @typedef {import('#lib/core/adaptive.js').ReviewSkill} ReviewSkill */
 
 /** @param {number} n */
 const whole = (n) => fraction(n, 1);
@@ -274,7 +269,7 @@ function smallFraction(rand) {
   return fraction(n, d);
 }
 
-/** @param {import('./adaptive.js').ReviewQuestion['answer']} f */
+/** @param {import('#lib/core/adaptive.js').ReviewQuestion['answer']} f */
 const ft = (f) => fracText(f);
 
 /** @type {ReviewSkill} */

@@ -1,7 +1,8 @@
 /**
- * Text to read aloud from rendered content. KaTeX writes each formula twice
- * (visual HTML and MathML); only the MathML text is kept, without its TeX
- * annotation, and controls marked `data-no-speech` are skipped.
+ * Text to read aloud from rendered content: what a screen reader would read.
+ * Formulas keep their accessible text (see `tex-text.js`), the KaTeX drawing
+ * and anything else marked `aria-hidden` is dropped, and controls marked
+ * `data-no-speech` are skipped.
  * @param {Element | null | undefined} el
  * @returns {string}
  */

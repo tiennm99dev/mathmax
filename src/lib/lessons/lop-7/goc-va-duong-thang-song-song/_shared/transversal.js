@@ -13,7 +13,7 @@
  * 0° and 180°).
  */
 
-import { measure, norm } from './angle.js';
+import { measure, norm } from '#lib/core/visuals/angle-math.js';
 
 /** @typedef {1 | 2 | 3 | 4} AngleNo */
 

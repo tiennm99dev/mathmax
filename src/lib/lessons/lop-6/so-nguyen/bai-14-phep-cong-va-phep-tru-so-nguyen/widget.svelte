@@ -4,7 +4,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
-  import { intText, operand } from '../_shared/integers.js';
+  import { intText, operand } from '#lib/core/number-format.js';
   import { addend, chipBoard, chipRows, sumSteps } from './engine.js';
 
   const OPS = [

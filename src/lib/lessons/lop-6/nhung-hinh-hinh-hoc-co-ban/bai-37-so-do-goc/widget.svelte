@@ -3,8 +3,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { KIND_NAME, along, directionTo, kindOf } from '../_shared/angle.js';
-  import { arcPath, rightMarkPath } from '../_shared/angle-draw.js';
+  import { along, arcPath, rightMarkPath } from '#lib/core/visuals/angle-math.js';
+  import { KIND_NAME, directionTo, kindOf } from '../_shared/angle.js';
   import {
     foldUpper,
     judgeReading,

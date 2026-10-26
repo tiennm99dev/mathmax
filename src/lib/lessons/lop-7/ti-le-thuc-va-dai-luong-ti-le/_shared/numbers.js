@@ -1,41 +1,12 @@
 /**
  * Reading and writing the numbers of the chapter "Tỉ lệ thức và đại lượng tỉ
- * lệ": integers with the book's minus sign, and exact rational values typed
- * as an integer, a decimal with a comma or a fraction a/b.
+ * lệ": exact rational values typed as an integer, a decimal with a comma or a
+ * fraction a/b. Integers use `intText`, `operand` and `readInteger` from
+ * `#lib/core/number-format.js`.
  */
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
-import { formatNumber } from '#lib/core/number-format.js';
-
-/** The minus sign the book prints (U+2212), never a hyphen. */
-export const MINUS = '−';
-
-/**
- * An integer as the book writes it: -12 → '−12'.
- * @param {number} n
- */
-export function intText(n) {
-  return n < 0 ? `${MINUS}${Math.abs(n)}` : String(n);
-}
-
-/**
- * An integer in a plain-text formula, bracketed when negative: -3 → '(−3)'.
- * @param {number} n
- */
-export function termText(n) {
-  return n < 0 ? `(${intText(n)})` : intText(n);
-}
-
-/**
- * Reads an integer typed by a learner: '12', '-12', '−12', '+5'. Returns
- * null for anything else.
- * @param {string} text
- * @returns {number | null}
- */
-export function readInteger(text) {
-  const s = text.trim().replace(/\s/g, '').replace(/[−–]/g, '-');
-  return /^[+-]?\d{1,9}$/.test(s) ? Number(s) : null;
-}
+import { MINUS, formatNumber, intText } from '#lib/core/number-format.js';
 
 /**
  * Reads an exact rational typed by a learner: an integer ('−4'), a decimal

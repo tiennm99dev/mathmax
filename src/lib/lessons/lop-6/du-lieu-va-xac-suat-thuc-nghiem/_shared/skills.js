@@ -3,12 +3,11 @@
  * skill per lesson. Every answer is a natural number (a count, a number of
  * pictograph symbols, a value read off a chart, a number of outcomes or an
  * experimental probability written as a whole percentage), so the drill board
- * writes it with its defaults; `readPercentOrNatural` also accepts a typed
- * percent sign.
+ * reads and writes it with its defaults; a percentage question carries the
+ * unit '%', which the learner may type after the number.
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
-import { readNatural } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -373,6 +372,7 @@ export const xacSuatThucNghiem = {
       return {
         prompt: `Tung một đồng xu ${n} lần, có ${heads} lần xuất hiện mặt ngửa. Xác suất thực nghiệm của sự kiện "Xuất hiện mặt ${askHeads ? 'ngửa' : 'sấp'}" bằng bao nhiêu phần trăm?`,
         answer,
+        unit: '%',
         hints: askHeads
           ? [`Lập tỉ số ${heads}/${n} rồi đổi ra tỉ số phần trăm.`]
           : ['Mỗi lần tung chỉ được mặt sấp hoặc mặt ngửa.', `Số lần mặt sấp là ${n} − ${heads}.`],
@@ -444,12 +444,3 @@ export const PAGE_97_SKILLS = [ketQuaSuKien, xacSuatThucNghiem];
 
 /** Every lesson of the chapter, for the end-of-chapter test. */
 export const CHAPTER_SKILLS = [...PAGE_87_SKILLS, ...PAGE_97_SKILLS];
-
-/**
- * Reads a natural-number answer typed with or without a final percent sign,
- * so "65" and "65%" both answer a percentage question.
- * @param {string} text
- */
-export function readPercentOrNatural(text) {
-  return readNatural(text.trim().replace(/\s*%$/, ''));
-}

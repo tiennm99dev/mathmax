@@ -313,6 +313,7 @@ export const tiSoPhanTram = {
       return {
         prompt: `Tính tỉ số phần trăm của ${decStr(a, 0)} và ${decStr(b, 0)} (nhập số phần trăm, có thể kèm dấu %).`,
         answer: q,
+        unit: '%',
         hints: [
           'Tỉ số phần trăm của a và b là a/b · 100%.',
           'Nhân số thứ nhất với 100 rồi chia cho số thứ hai.',
@@ -332,6 +333,7 @@ export const tiSoPhanTram = {
       return {
         prompt: `Một món hàng giá ${decStr(price, 0)} đồng, nay được giảm giá ${m}%. Giá mới của món hàng là bao nhiêu đồng?`,
         answer: r,
+        unit: 'đồng',
         hints: [
           'Tính số tiền được giảm trước: đó là m% của giá cũ.',
           'Giá mới bằng giá cũ trừ số tiền được giảm (hoặc bằng (100 − m)% của giá cũ).',
@@ -349,6 +351,7 @@ export const tiSoPhanTram = {
     return {
       prompt: `Gửi tiết kiệm ${decStr(deposit, 0)} đồng với lãi suất ${decStr(rate, 1)}% một năm. Sau một năm, tiền lãi là bao nhiêu đồng?`,
       answer: interest,
+      unit: 'đồng',
       hints: ['Tiền lãi một năm bằng lãi suất (tính theo phần trăm) của số tiền gửi.'],
       steps: [
         `Tiền lãi bằng ${decStr(rate, 1)}% của ${decStr(deposit, 0)}: ${decStr(deposit, 0)} · ${decStr(rate, 1)}/100.`,

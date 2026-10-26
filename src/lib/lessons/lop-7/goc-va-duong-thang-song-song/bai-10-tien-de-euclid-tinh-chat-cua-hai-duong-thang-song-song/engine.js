@@ -4,7 +4,7 @@
  * transversal turning across two parallel lines.
  */
 
-import { intersect, norm } from '../_shared/angle.js';
+import { intersect, norm } from '#lib/core/visuals/angle-math.js';
 import { PAIRS, angleAt } from '../_shared/transversal.js';
 
 /** How far the line through M can tilt either way, in degrees. */

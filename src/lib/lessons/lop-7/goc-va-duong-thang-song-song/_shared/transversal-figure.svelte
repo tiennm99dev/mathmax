@@ -1,6 +1,13 @@
 <script>
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
-  import { along, arcPath, bisectorDir, degText, intersect, sectorPath } from './angle.js';
+  import {
+    along,
+    arcPath,
+    bisectorDir,
+    degText,
+    intersect,
+    sectorPath,
+  } from '#lib/core/visuals/angle-math.js';
   import { NUMBERS, angleAt, raysOf } from './transversal.js';
 
   /**

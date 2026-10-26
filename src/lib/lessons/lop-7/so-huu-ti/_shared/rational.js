@@ -10,10 +10,8 @@
  */
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
-import { formatNumber, texNumber } from '#lib/core/number-format.js';
-
-/** The minus sign the book prints (U+2212), never a hyphen. */
-export const MINUS = '−';
+import { MINUS, formatNumber, texNumber } from '#lib/core/number-format.js';
+import { toFraction } from '#lib/core/fractions.js';
 
 /** @typedef {import('#lib/fraction-engine/fraction.js').Fraction} Fraction */
 
@@ -140,22 +138,6 @@ export function readWritten(text) {
 export function readValue(text) {
   const w = readWritten(text);
   return w ? w.f.n / w.f.d : null;
-}
-
-/**
- * The simplest fraction equal to a double, searching denominators up to
- * `maxDen`; null when there is none.
- * @param {number} value
- * @param {number} [maxDen]
- * @returns {Fraction | null}
- */
-export function toFraction(value, maxDen = 10000) {
-  if (!Number.isFinite(value)) return null;
-  for (let d = 1; d <= maxDen; d++) {
-    const n = Math.round(value * d);
-    if (n / d === value) return simplify(fraction(n, d));
-  }
-  return null;
 }
 
 /**

@@ -5,16 +5,14 @@ import {
   collect,
   degree,
   evaluate,
-  intText,
   mul,
   polyTex,
   polyText,
   substituteTex,
-  readInteger,
   sub,
   termsOf,
   termsTex,
-} from './poly.js';
+} from './polynomial.js';
 
 describe('collecting and reading a polynomial', () => {
   it('collects like terms and reads degree and coefficients', () => {
@@ -89,14 +87,5 @@ describe('writing', () => {
   it('writes plain text with the book minus and superscripts', () => {
     expect(polyText([7, -1, -3])).toBe('−3x² − x + 7');
     expect(polyText([0, 0, 0, 2])).toBe('2x³');
-    expect(intText(-3, true)).toBe('(−3)');
-    expect(intText(4, true)).toBe('4');
-  });
-
-  it('reads integers typed with any minus sign', () => {
-    expect(readInteger(' −15 ')).toBe(-15);
-    expect(readInteger('+8')).toBe(8);
-    expect(readInteger('2,5')).toBeNull();
-    expect(readInteger('')).toBeNull();
   });
 });

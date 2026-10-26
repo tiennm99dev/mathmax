@@ -1,5 +1,5 @@
 <script>
-  import DoubleBarChart from '../_shared/double-bar-chart.svelte';
+  import DoubleBarChart from '#lib/core/visuals/double-bar-chart.svelte';
   import { button } from '#lib/core/ui.js';
   import { BOYS, CLASSES, GIRLS, compareText, questions, total } from './engine.js';
 

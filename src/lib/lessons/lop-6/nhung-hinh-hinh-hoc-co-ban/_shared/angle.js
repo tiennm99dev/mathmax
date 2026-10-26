@@ -1,5 +1,6 @@
 /**
- * Pure angle helpers for the lessons on angles. Directions are whole degrees
+ * Angle helpers for the lessons on angles, on top of
+ * `#lib/core/visuals/angle-math.js`. Directions are whole degrees
  * measured the mathematical way: 0° points right and angles grow
  * counter-clockwise. Points are SVG points (y grows downwards); the helpers
  * flip y themselves.
@@ -9,45 +10,14 @@
  * @typedef {'dinh' | 'canh-x' | 'canh-y' | 'trong' | 'ngoai' | 'bet' | 'trung'} PointPlace
  */
 
-/** @param {number} a */
-export const norm = (a) => ((a % 360) + 360) % 360;
-
-/**
- * Unit vector of a direction, in SVG coordinates.
- * @param {number} deg
- * @returns {Pt}
- */
-export function dirOf(deg) {
-  const t = (deg * Math.PI) / 180;
-  return { x: Math.cos(t), y: -Math.sin(t) };
-}
-
-/**
- * The point at distance `r` from `o` in direction `deg`.
- * @param {Pt} o @param {number} r @param {number} deg
- * @returns {Pt}
- */
-export function along(o, r, deg) {
-  const u = dirOf(deg);
-  return { x: o.x + r * u.x, y: o.y + r * u.y };
-}
+import { directionTo as exactDirection, measure, norm } from '#lib/core/visuals/angle-math.js';
 
 /**
  * Direction of `p` seen from `o`, in [0, 360), rounded to whole degrees.
  * @param {Pt} o @param {Pt} p
  */
 export function directionTo(o, p) {
-  return norm(Math.round((Math.atan2(o.y - p.y, p.x - o.x) * 180) / Math.PI));
-}
-
-/**
- * Measure of the angle formed by two rays with directions `a` and `b`: the
- * smaller of the two turns between them, from 0° to 180°.
- * @param {number} a @param {number} b
- */
-export function measure(a, b) {
-  const d = norm(b - a);
-  return d <= 180 ? d : 360 - d;
+  return norm(Math.round(exactDirection(o, p)));
 }
 
 /**

@@ -5,7 +5,7 @@
  * exactly 1,999396.
  */
 
-import { scaledText, sqrtFloor } from '../_shared/decimal.js';
+import { scaledText, sqrtFloor } from '#lib/core/decimal.js';
 
 /** Smallest and largest area offered. */
 export const MIN_AREA = 1;

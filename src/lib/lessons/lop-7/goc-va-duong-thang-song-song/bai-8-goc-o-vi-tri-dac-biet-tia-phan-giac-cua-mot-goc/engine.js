@@ -5,7 +5,7 @@
  * is checked against the bisector.
  */
 
-import { norm } from '../_shared/angle.js';
+import { norm } from '#lib/core/visuals/angle-math.js';
 
 export const MIN = 10;
 export const MAX = 170;

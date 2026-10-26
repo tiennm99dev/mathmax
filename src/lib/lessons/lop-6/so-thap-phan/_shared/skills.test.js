@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { readAnswer, readDecimal, valueText } from './decimal.js';
+import { readAnswer, withUnit } from '#lib/core/drill.js';
+import { readDecimal, valueText } from './decimal.js';
 import {
   CHAPTER_SKILLS,
   PAGE_41_SKILLS,
@@ -91,7 +92,9 @@ describe('chapter skills', () => {
     it(`${skill.id}: the answer survives being typed back`, () => {
       for (const q of sample(skill)) {
         expect(readDecimal(valueText(q.answer)), q.prompt).toBe(q.answer);
-        expect(readAnswer(valueText(q.answer)), q.prompt).toBe(q.answer);
+        const typed = withUnit(valueText(q.answer), q.unit);
+        expect(readAnswer(q, typed, readDecimal), q.prompt).toBe(q.answer);
+        if (q.unit) expect(readAnswer({}, typed, readDecimal), q.prompt).toBe('unit');
         expect(q.steps.length).toBeGreaterThan(1);
         expect(q.hints?.length).toBeGreaterThan(0);
         // No hint states the answer, unless it is a one-digit number.

@@ -3,7 +3,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
   import { colorAt } from '#lib/core/visuals/svg-math.js';
-  import { collect, polyTex, polyText, termTex, termText } from '../_shared/poly.js';
+  import { collect, polyTex, polyText, termTex, termText } from '#lib/algebra-engine/polynomial.js';
   import { PAIRS, columnTex, columns } from './engine.js';
 
   let pairId = $state(PAIRS[0].id);

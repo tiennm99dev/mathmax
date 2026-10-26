@@ -10,7 +10,7 @@
     degText,
     directionTo,
     sectorPath,
-  } from '../_shared/angle.js';
+  } from '#lib/core/visuals/angle-math.js';
   import { MAX, MIN, fourAngles, lineDirection, rayInside, split } from './engine.js';
 
   const W = 400;

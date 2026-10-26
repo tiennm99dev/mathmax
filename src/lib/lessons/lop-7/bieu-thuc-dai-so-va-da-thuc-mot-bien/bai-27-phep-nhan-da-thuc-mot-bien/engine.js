@@ -5,9 +5,9 @@
  * degree gives the product.
  */
 
-import { collect, polyTex, termTex, termsOf } from '../_shared/poly.js';
+import { collect, polyTex, termTex, termsOf } from '#lib/algebra-engine/polynomial.js';
 
-/** @typedef {import('../_shared/poly.js').Term} Term */
+/** @typedef {import('#lib/algebra-engine/polynomial.js').Term} Term */
 
 /**
  * Factors by degree (`[−2, 1]` is x − 2).

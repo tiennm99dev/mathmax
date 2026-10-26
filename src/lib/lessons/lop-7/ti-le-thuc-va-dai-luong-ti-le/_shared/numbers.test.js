@@ -1,24 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fraction } from '#lib/fraction-engine/index.js';
-import { intText, readInteger, readValue, termText, valueTex, valueText } from './numbers.js';
-
-describe('integers', () => {
-  it('writes the book minus and brackets negative terms', () => {
-    expect(intText(-12)).toBe('−12');
-    expect(intText(7)).toBe('7');
-    expect(termText(-3)).toBe('(−3)');
-    expect(termText(3)).toBe('3');
-  });
-
-  it('reads signed integers and rejects the rest', () => {
-    expect(readInteger(' −15 ')).toBe(-15);
-    expect(readInteger('-4')).toBe(-4);
-    expect(readInteger('+8')).toBe(8);
-    expect(readInteger('2,5')).toBeNull();
-    expect(readInteger('')).toBeNull();
-    expect(readInteger('x')).toBeNull();
-  });
-});
+import { readValue, valueTex, valueText } from './numbers.js';
 
 describe('rational values', () => {
   it('reads integers, decimals and fractions exactly', () => {

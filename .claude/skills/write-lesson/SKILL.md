@@ -32,12 +32,18 @@ src/lib/lessons/lop-N/<chuong-slug>/
   _shared/               optional helpers used by several lessons of this chapter
 ```
 
+A lesson never imports from another lesson's folder (`../bai-26-.../engine.js`):
+lesson folders are independent pages. Code two lessons need goes in the
+chapter's `_shared/`, or comes from core.
+
 Never edit anything else: not `src/lib/core/`, `src/lib/curriculum/`,
 `src/lib/domain/`, `src/routes/`, `src/params/`, `scripts/`, configs,
 `package.json`, workflows or another chapter. No registry, route or hub needs an
 edit: a lesson goes live when its `content.vi.js` exists. Before writing a
-helper, check core (section 6): number writing, seeded random sets and practice
-drills already live there, so never copy them into `_shared/`. If you need a
+helper, check core (section 6): number, integer, fraction and decimal writing
+and reading, angle geometry, seeded random sets, practice drills, adaptive
+review sets and measuring drills already live there, so never copy them into
+`_shared/`. If you need a
 helper that core lacks, build it in `_shared/` and mention it in your final
 report so a core pass can promote it. Never add dependencies.
 
@@ -196,7 +202,8 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `number-line` | number line with marker, marks and hop arcs |
 | `fraction-bars` | fraction strips, numerators draggable |
 | `area-grid` | unit-square grid with a draggable rectangle |
-| `bar-chart`, `line-chart`, `pie-chart` | charts, optionally editable by drag or keys |
+| `bar-chart`, `line-chart`, `pie-chart` | charts, optionally editable by drag or keys; `bar-chart` `showValues={false}` hides the values for read-the-chart tasks |
+| `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories |
 | `data-table` | statistics table with tally marks and percentages |
 | `probability-spinner` | spinner with running frequency table |
 | `unit-converter` | length, mass, capacity, time and VND money |
@@ -206,6 +213,13 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 
 `#lib/core/visuals/svg-math.js` has `clamp`, `snap`, `linear`, `planeScale`,
 `polar`, `angleOf`, `sectorPath`, `hopPath` and `PALETTE`/`colorAt`.
+`#lib/core/visuals/angle-math.js` works in degrees on SVG points: `norm`,
+`dirOf`, `along`, `directionTo`, `measure`, `ccwSides`, `bisectorDir`,
+`intersect`, `degText` ('32,5°') and the angle drawings `arcPath`,
+`sectorPath`, `insidePath`, `rightMarkPath`.
+
+`number-line` reads the marker's value to screen readers as Vietnamese decimals;
+pass `valueText` when it should be read another way (a fraction).
 
 Other shared pieces:
 
@@ -225,7 +239,18 @@ Other shared pieces:
   `52,9`, `formatFixed(5, 1)` gives `5,0` (decimals kept), `texNumber(text)`
   braces the comma for TeX (`3{,}5`). For natural numbers the way the book
   prints them: `fmt(2345)` gives `2 345` (narrow space), `sup`, `powText`
-  (`2⁵`) and `readNatural` for typed input.
+  (`2⁵`) and `readNatural` for typed input. Integers: `MINUS` (the book's
+  `−`), `intText` (`−1 234`), `operand` (`(−5)`) and `readInteger`.
+- `#lib/core/fractions.js`: `fracText` (`−3/4`), `fracOperand`, `mixedText`
+  (`1 3/4`), `texFrac`, `texOperand`, `toFraction`, `valueText`,
+  `readFraction`, and `readProbability`/`probabilityText` for probabilities.
+  `#lib/core/frac.svelte` draws a stacked fraction in HTML (no KaTeX) and
+  `#lib/core/stepper.svelte` is a labelled − / + whole-number stepper.
+- `#lib/core/decimal.js`: exact decimals from integers: `expand` (long
+  division with its remainders and period), `decimalText` (`0,(45)`),
+  `decimalTex`, `digitAt`, `roundFraction`, `sqrtFloor`, `roundSqrt`,
+  `scaledText`, `isFiniteDecimal`, `PRECISIONS`, and `readNumber`/`numberText`
+  for answers typed as an integer, a fraction or a decimal comma.
 - `#lib/core/drill-board.svelte` with `#lib/core/drill.js`: a generated
   practice drill for `practice` and `review` lessons. Write one `Skill`
   (`{ id, label, make(rand) }`, `make` returns `{ prompt, answer, steps,
@@ -235,7 +260,28 @@ Other shared pieces:
   hint ladder (the question's `hints`, else its steps that do not give the
   answer away) and a second try; only a second miss shows the full solution.
   The skill map scores first attempts. `read`, `format` and `invalidText`
-  props adapt it to answers other than natural numbers.
+  props adapt it to answers other than natural numbers. A question may also
+  carry its own `unit` (`'%'`, `'đồng'`, `'°'`): the learner may then type
+  that unit, or its Vietnamese word, after the number, and a question without
+  a unit takes a bare number only. A question may carry its own `read` when it
+  is read differently from the rest of the set. Never write a `read` that
+  accepts a unit on every question.
+- `#lib/core/adaptive-drill.svelte` with `#lib/core/adaptive.js`: an adaptive
+  review set for year-end or chapter reviews: each next question comes from
+  the learner's weakest skill; answers are exact fractions (`readValue`
+  reads integers, decimals and `p/q`).
+- `#lib/core/measure-skills.js`: ready drill skills for converting mass
+  (`MASS_SKILLS`), time (`TIME_SKILLS`) and temperature (`TEMPERATURE_SKILLS`).
+- `#lib/core/feedback-note.svelte` (a coloured live feedback line, tone `ok`,
+  `warn` or `info`) and `#lib/core/right-wrong-sorter.svelte` (sort actions
+  into "Làm đúng" and "Làm sai" on top of the card sorter).
+- `#lib/core/motion.js`: `frameLoop` (per-frame callback with elapsed seconds),
+  `reducedMotion()` and `wrap` for animated widgets.
+- `#lib/core/tex-text.js`: `texText` turns TeX into the linear text screen
+  readers hear (`√144`, `3/4`); prerendered content and `tex.svelte` already
+  use it, so TeX in options, labels and buttons keeps a distinct accessible
+  name. `htmlText` reads rendered rich text back as plain text for an
+  `aria-label`.
 - `#lib/core/card-sorter.svelte` with `#lib/core/card-sorter.js`: sort cards
   (`{ id, label, bin, why }`) into bins by tap, keyboard or drag, checked per
   move, with take-back and "Gỡ thẻ sai". `shuffled(cards, seed)` mixes the deck
@@ -247,7 +293,9 @@ Other shared pieces:
   warning fails `content.test.js`.
 - `#lib/core/kid/picture.svelte` and `#lib/core/kid/pictures/index.js`
   (`pictures`, `pictureGroups`).
-- Engines, pure and tested: `#lib/geom-engine/index.js`, `#lib/algebra-engine/index.js`,
+- Engines, pure and tested: `#lib/geom-engine/index.js`, `#lib/algebra-engine/index.js`
+  (with `polynomial.js` for one-variable polynomials and `long-division.js`
+  for polynomial and natural-number long division),
   `#lib/numtheory-engine/index.js`, `#lib/fraction-engine/index.js`,
   `#lib/stats-engine/index.js`, `#lib/units-engine/index.js` (re-exports
   `formatNumber`).
@@ -309,9 +357,12 @@ with zero warnings; fix the cause, never weaken a test.
 6. `git diff --name-only main...HEAD` (and `git status --short`) lists only paths
    under `src/lib/lessons/lop-N/<chuong-slug>/`.
 7. Spot check one lesson in the browser (`npm run preview`, agent-browser where
-   the host has it): at 390 px and 1280 px wide; the widget responds to pointer
-   and keyboard; answer one exercise right and one wrong and open its hints; no
-   console errors. On a kid grade, also check the read-aloud cards.
+   the host has it). `vite preview` caches the file list of `build/` when it
+   starts, so stop and restart the preview after every rebuild before any
+   browser check, or it serves stale pages and 404s for new ones. Check at
+   390 px and 1280 px wide; the widget responds to pointer and keyboard;
+   answer one exercise right and one wrong and open its hints; no console
+   errors. On a kid grade, also check the read-aloud cards.
 
 ## 9. Commit
 

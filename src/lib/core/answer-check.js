@@ -21,8 +21,10 @@ import { gcd } from '#lib/numtheory-engine/index.js';
  * - `invalid`: the input could not be read as the expected form.
  * - `unit`: the value is right but a different unit was written.
  * - `not-simplest`: the fraction is equal but not in lowest terms.
+ * - `negative-denominator`: the fraction is equal but written with a
+ *   negative denominator (`1/-4`), where lowest terms are asked for.
  * - `wrong`: a readable, complete answer that is not right.
- * @typedef {'correct' | 'empty' | 'incomplete' | 'invalid' | 'unit' | 'not-simplest' | 'wrong'} CheckReason
+ * @typedef {'correct' | 'empty' | 'incomplete' | 'invalid' | 'unit' | 'not-simplest' | 'negative-denominator' | 'wrong'} CheckReason
  */
 
 /** @typedef {{ correct: boolean, reason: CheckReason }} CheckResult */
@@ -33,16 +35,68 @@ const SPACE_RE = /\s+/g;
 const SUPERSCRIPTS = /** @type {Record<string, string>} */ ({ '²': '2', '³': '3', '¹': '1' });
 
 /**
+ * Unit words a learner may type for a unit symbol, keyed by the word folded
+ * (lower case, no diacritics, đ as d, no spaces or hyphens): `130 độ` answers
+ * a `°` question, `5 đồng` a `đ` one, `25 phần trăm` a `%` one.
+ * @type {Record<string, string>}
+ */
+const UNIT_WORDS = {
+  do: '°',
+  doc: '°c',
+  d: 'đ',
+  dong: 'đ',
+  vnd: 'đ',
+  phantram: '%',
+  met: 'm',
+  metvuong: 'm2',
+  metkhoi: 'm3',
+  xentimet: 'cm',
+  xangtimet: 'cm',
+  centimet: 'cm',
+  xentimetvuong: 'cm2',
+  xangtimetvuong: 'cm2',
+  centimetvuong: 'cm2',
+  xentimetkhoi: 'cm3',
+  xangtimetkhoi: 'cm3',
+  centimetkhoi: 'cm3',
+  milimet: 'mm',
+  milimetvuong: 'mm2',
+  decimet: 'dm',
+  dximet: 'dm',
+  dexime: 'dm',
+  decimetvuong: 'dm2',
+  decimetkhoi: 'dm3',
+  kilomet: 'km',
+  kilometvuong: 'km2',
+  gam: 'g',
+  kilogam: 'kg',
+  kilogram: 'kg',
+  lit: 'l',
+  mililit: 'ml',
+  giay: 's',
+  gio: 'h',
+  kmgio: 'km/h',
+  kilometgio: 'km/h',
+  kilomettrengio: 'km/h',
+  mgiay: 'm/s',
+  mettrengiay: 'm/s',
+};
+
+/**
  * Normalises a unit for comparison: case, spaces, `^` and superscript digits
- * are ignored, so `cm²`, `cm^2` and `CM2` match.
+ * are ignored, so `cm²`, `cm^2` and `CM2` match, and a Vietnamese unit word
+ * stands for its symbol (`độ` for `°`, `đồng` or `VND` for `đ`, `phần trăm`
+ * for `%`, `xăng-ti-mét` for `cm`, `mét vuông` for `m²`).
  * @param {string} unit
  */
 export function normalizeUnit(unit) {
-  return unit
+  const u = unit
     .toLowerCase()
     .replace(SPACE_RE, '')
     .replace(/\^/g, '')
     .replace(/[²³¹]/g, (c) => SUPERSCRIPTS[c]);
+  const word = u.normalize('NFD').replace(/\p{M}/gu, '').replace(/đ/g, 'd').replace(/[-./]/g, '');
+  return UNIT_WORDS[word] ?? u;
 }
 
 /**
@@ -220,6 +274,7 @@ export function checkAnswer(exercise, response) {
       if (!f) return result('invalid');
       const [p, q] = exercise.answer;
       if (f[0] * q !== p * f[1]) return result('wrong');
+      if (exercise.simplest && f[1] < 0) return result('negative-denominator');
       if (exercise.simplest && !isSimplest(f)) return result('not-simplest');
       return result('correct');
     }

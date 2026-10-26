@@ -5,7 +5,7 @@
  * a − (b + c) = a − b − (c) = a − b − c.
  */
 
-import { MINUS, intText } from '../_shared/integers.js';
+import { MINUS, intText } from '#lib/core/number-format.js';
 
 /**
  * @typedef {{ sign: 1 | -1, terms: number[], bracket: boolean }} Group

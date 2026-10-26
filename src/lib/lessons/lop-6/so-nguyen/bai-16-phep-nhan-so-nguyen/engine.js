@@ -6,7 +6,7 @@
  * each time a drops by 1, the product drops by b).
  */
 
-import { intText, operand } from '../_shared/integers.js';
+import { intText, operand } from '#lib/core/number-format.js';
 
 /** Factors run from −RANGE to RANGE. */
 export const RANGE = 4;

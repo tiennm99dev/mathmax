@@ -10,7 +10,7 @@ import {
   tiLeThuc,
   vanDung,
 } from './skills.js';
-import { intText, readInteger } from './numbers.js';
+import { intText, readInteger } from '#lib/core/number-format.js';
 
 /**
  * Recomputes an answer from the prompt alone, by trying every integer: the
@@ -190,7 +190,9 @@ describe('chapter skills', () => {
         const q = skill.make(rand);
         expect(Number.isInteger(q.answer)).toBe(true);
         expect(recompute(q.prompt), q.prompt).toBe(q.answer);
-        expect(q.steps.join(' '), q.prompt).toContain(intText(q.answer));
+        // Steps may group digits (1 740) or not (1740): compare them ungrouped.
+        const ungroup = (/** @type {string} */ t) => t.replace(/(\d)\u202f(?=\d)/g, '$1');
+        expect(ungroup(q.steps.join(' ')), q.prompt).toContain(ungroup(intText(q.answer)));
         expect(readInteger(intText(q.answer))).toBe(q.answer);
         for (const h of q.hints ?? []) expect(h).not.toMatch(/\bundefined\b|NaN/);
         expect(q.prompt).not.toMatch(/\bundefined\b|NaN|--|\+ -/);

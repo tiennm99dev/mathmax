@@ -5,7 +5,7 @@
  */
 
 import { compare, fraction, simplify } from '#lib/fraction-engine/index.js';
-import { MINUS } from '../_shared/rational.js';
+import { MINUS } from '#lib/core/number-format.js';
 
 /** @typedef {import('../_shared/rational.js').Written} Written */
 

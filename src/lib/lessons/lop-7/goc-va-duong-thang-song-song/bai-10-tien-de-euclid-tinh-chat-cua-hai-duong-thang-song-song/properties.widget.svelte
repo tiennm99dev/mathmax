@@ -2,7 +2,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import TransversalFigure from '../_shared/transversal-figure.svelte';
-  import { along, degText, directionTo } from '../_shared/angle.js';
+  import { along, degText, directionTo } from '#lib/core/visuals/angle-math.js';
   import { PAIRS, PAIR_NAME, sub } from '../_shared/transversal.js';
   import { parallelPair, transversalDir } from './engine.js';
 

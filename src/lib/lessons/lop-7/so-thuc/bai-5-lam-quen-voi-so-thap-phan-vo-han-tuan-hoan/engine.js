@@ -14,7 +14,7 @@ import {
   roundFraction,
   scaledText,
   scaledValue,
-} from '../_shared/decimal.js';
+} from '#lib/core/decimal.js';
 
 /** Fractions offered by the division widget, as [p, q]. */
 export const PRESETS = /** @type {Array<[number, number]>} */ ([

@@ -1,7 +1,16 @@
 <script>
   import { tick } from 'svelte';
   import { button, textInput } from './ui.js';
-  import { buildSet, hintsFor, isDone, isRetry, nextPhase, skillMap } from './drill.js';
+  import {
+    buildSet,
+    hintsFor,
+    isDone,
+    isRetry,
+    nextPhase,
+    readAnswer,
+    skillMap,
+    withUnit,
+  } from './drill.js';
   import { fmt, readNatural } from './number-format.js';
   import { drill as copy, hints as hintCopy } from './copy.vi.js';
 
@@ -15,7 +24,9 @@
    * - `skills`: generators (see `drill.js`); each question may carry its own
    *   `hints`, otherwise the solution steps before the answer are the ladder.
    * - `read`, `format`: how typed text becomes a number and how an answer is
-   *   written; natural numbers grouped the book's way by default.
+   *   written; natural numbers grouped the book's way by default. A question
+   *   may bring its own `read`, and its own `unit`: a unit typed after the
+   *   number is accepted only when it is that question's unit.
    * - `invalidText`: what to say when `read` returns null.
    * @type {{
    *   skills: import('./drill.js').Skill[];
@@ -54,6 +65,8 @@
   /** @type {import('./drill.js').DrillPhase} */
   let phase = $state('ask');
   let hintsShown = $state(0);
+  // The last input carried a unit that this question does not take.
+  let unitIssue = $state(false);
   /** @type {HTMLInputElement | undefined} */
   let input = $state();
 
@@ -65,10 +78,14 @@
   const score = $derived(results.filter(Boolean).length);
   const toReview = $derived(map.filter((s) => s.status === 'weak' || s.status === 'mixed'));
   const done = $derived(isDone(phase));
+  const answerText = $derived(current ? withUnit(format(current.answer), current.unit) : '');
+  const bareNumbers = $derived(read === readNatural && !current?.unit && !current?.read);
 
   async function check() {
     if (!current || done) return;
-    const value = read(typed);
+    const got = readAnswer(current, typed, read);
+    unitIssue = got === 'unit';
+    const value = got === 'unit' ? null : got;
     const ok = value === null ? null : value === current.answer;
     const first = !isRetry(phase);
     phase = nextPhase(phase, ok);
@@ -89,6 +106,7 @@
   async function advance() {
     index++;
     typed = '';
+    unitIssue = false;
     phase = 'ask';
     hintsShown = 0;
     await tick();
@@ -100,6 +118,7 @@
     index = 0;
     results = [];
     typed = '';
+    unitIssue = false;
     phase = 'ask';
     hintsShown = 0;
   }
@@ -145,7 +164,7 @@
           bind:this={input}
           bind:value={typed}
           class="{textInput} max-w-48"
-          inputmode="numeric"
+          inputmode={bareNumbers ? 'numeric' : 'text'}
           autocomplete="off"
           readonly={done}
           aria-describedby="{inputId}-feedback"
@@ -161,7 +180,9 @@
 
       <div id="{inputId}-feedback" class="space-y-2" aria-live="polite">
         {#if phase === 'invalid' || phase === 'retry-invalid'}
-          <p class="font-semibold text-amber-800">{invalidText}</p>
+          <p class="font-semibold text-amber-800">
+            {unitIssue ? copy.unit(current.unit) : invalidText}
+          </p>
         {/if}
         {#if isRetry(phase)}
           <p class="font-semibold text-rose-900">{copy.retry}</p>
@@ -187,13 +208,11 @@
           <p
             class="rounded-lg border border-emerald-200 bg-emerald-50 p-3 font-semibold text-emerald-900"
           >
-            {phase === 'right'
-              ? copy.right(format(current.answer))
-              : copy.fixed(format(current.answer))}
+            {phase === 'right' ? copy.right(answerText) : copy.fixed(answerText)}
           </p>
         {:else if phase === 'wrong'}
           <div class="rounded-lg border border-rose-300 bg-rose-50 p-3 text-rose-950">
-            <p class="font-semibold">{copy.wrong(format(current.answer))}</p>
+            <p class="font-semibold">{copy.wrong(answerText)}</p>
             <ol class="mt-2 list-decimal space-y-1 pl-5 tabular-nums">
               {#each current.steps as step, i (i)}
                 <li>{step}</li>
