@@ -3,7 +3,7 @@ export default {
   summary:
     'Số hữu tỉ là số viết được dưới dạng phân số a/b với a, b là số nguyên, b khác 0; cách biểu diễn số hữu tỉ trên trục số, số đối và so sánh hai số hữu tỉ.',
   intro:
-    'Nhiệt độ một buổi sáng mùa đông ở Sa Pa là $-1{,}5\\,^\\circ\\mathrm{C}$, một chiếc bánh được chia cho mỗi bạn $\\frac{3}{4}$ cái, mực nước hồ hạ xuống $\\frac{-2}{3}$ m. Những số như $-1{,}5$; $\\frac{3}{4}$; $\\frac{-2}{3}$ không phải số nguyên nhưng đều viết được dưới dạng phân số. Chúng là các số hữu tỉ, tập hợp số mà em học trong chương này.',
+    'Nhiệt độ một buổi sáng mùa đông ở Sa Pa là $-1{,}5\\,^\\circ\\mathrm{C}$, một chiếc bánh được chia cho mỗi bạn $\\frac{3}{4}$ cái, mực nước hồ thay đổi $\\frac{-2}{3}$ m (tức là hạ xuống $\\frac{2}{3}$ m). Những số như $-1{,}5$; $\\frac{3}{4}$; $\\frac{-2}{3}$ không phải số nguyên nhưng đều viết được dưới dạng phân số. Chúng là các số hữu tỉ, tập hợp số mà em học trong chương này.',
   objectives: [
     'Nhận biết số hữu tỉ và tập hợp $\\mathbb{Q}$ các số hữu tỉ.',
     'Biểu diễn số hữu tỉ trên trục số.',

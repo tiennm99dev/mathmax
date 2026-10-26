@@ -73,7 +73,8 @@
    */
   function moveTerm(side, i) {
     const t = eq[side][i];
-    if (isX(t)) return;
+    // x stays put, and moving a 0 would change nothing.
+    if (isX(t) || t.v.n === 0) return;
     const flip = mode === 'flip';
     const next = move(eq, side, i, flip);
     history = [...history, next];
@@ -180,10 +181,11 @@
         </p>
         <div class="flex flex-wrap gap-2">
           {#each eq[side] as t, i (i)}
-            {#if isX(t)}
+            {#if isX(t) || t.v.n === 0}
               <span
-                class="inline-flex min-h-11 items-center rounded-lg bg-indigo-600 px-3 font-bold text-white"
-                >{termText(t, i === 0)}</span
+                class="inline-flex min-h-11 items-center rounded-lg px-3 font-bold {isX(t)
+                  ? 'bg-indigo-600 text-white'
+                  : 'border border-slate-300 bg-white text-slate-700'}">{termText(t, i === 0)}</span
               >
             {:else}
               <button
