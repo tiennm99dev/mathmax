@@ -175,7 +175,7 @@
           bốn tỉ lệ thức:
         </p>
         <ul class="mt-2 grid gap-2 sm:grid-cols-2">
-          {#each formsTex as tex (tex)}
+          {#each formsTex as tex, i (i)}
             <li><Tex math={tex} /></li>
           {/each}
         </ul>
