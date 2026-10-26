@@ -387,8 +387,206 @@ export const binhHanhThucTe = {
   },
 };
 
+/** @type {Skill} */
+export const hinhChuNhat = {
+  id: 'hinh-chu-nhat',
+  label: 'Bài 13. Hình chữ nhật',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      const d = int(rand, 4, 24) + pick(rand, [0, 0, 0.5]);
+      return {
+        prompt: `Hình chữ nhật ABCD có hai đường chéo cắt nhau tại O và AC = ${cm(2 * d)}. Tính OB (cm).`,
+        answer: d,
+        unit: 'cm',
+        hints: [
+          'Hai đường chéo của hình chữ nhật bằng nhau.',
+          'O là trung điểm của mỗi đường chéo.',
+        ],
+        steps: [
+          `BD = AC = ${cm(2 * d)}.`,
+          `O là trung điểm của BD nên OB = ${numberText(2 * d)} : 2 = ${cm(d)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const h = int(rand, 5, 30);
+      if (rand() < 0.5) {
+        return {
+          prompt: `Tam giác ABC vuông tại A có cạnh huyền BC = ${cm(h)}. Tính độ dài đường trung tuyến AM (cm).`,
+          answer: h / 2,
+          unit: 'cm',
+          hints: ['Trong tam giác vuông, trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền.'],
+          steps: [`AM = BC : 2 = ${h} : 2 = ${cm(h / 2)}.`],
+        };
+      }
+      return {
+        prompt: `Tam giác ABC vuông tại A, M là trung điểm của BC và AM = ${cm(h / 2)}. Tính BC (cm).`,
+        answer: h,
+        unit: 'cm',
+        hints: ['Trong tam giác vuông, trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền.'],
+        steps: [`AM = BC : 2, nên BC = 2 · ${numberText(h / 2)} = ${cm(h)}.`],
+      };
+    }
+    if (v === 2) {
+      const t = 10 * int(rand, 2, 16);
+      return {
+        prompt: `Hình chữ nhật ABCD có hai đường chéo cắt nhau tại O và góc AOB = ${deg(t)}. Tính góc OAB.`,
+        answer: (180 - t) / 2,
+        unit: '°',
+        hints: [
+          'Hai đường chéo bằng nhau và cắt nhau tại trung điểm mỗi đường, nên OA = OB.',
+          'Tam giác OAB cân tại O.',
+        ],
+        steps: [
+          'OA = OB nên tam giác OAB cân tại O.',
+          `Góc OAB = (180° − ${t}°) : 2 = ${(180 - t) / 2}°.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      const b = 5 * int(rand, 2, 17);
+      if (rand() < 0.5) {
+        return {
+          prompt: `Tam giác ABC vuông tại A, M là trung điểm của BC và góc B = ${deg(b)}. Tính góc AMC.`,
+          answer: 2 * b,
+          unit: '°',
+          hints: [
+            'MA = MB = BC : 2, nên tam giác MAB cân tại M.',
+            'Góc AMC là góc ngoài của tam giác MAB.',
+          ],
+          steps: [`MA = MB nên góc MAB = góc B = ${b}°.`, `Góc AMC = ${b}° + ${b}° = ${2 * b}°.`],
+        };
+      }
+      return {
+        prompt: `Tam giác ABC vuông tại A, M là trung điểm của BC và góc B = ${deg(b)}. Tính góc AMB.`,
+        answer: 180 - 2 * b,
+        unit: '°',
+        hints: ['MA = MB = BC : 2, nên tam giác MAB cân tại M.'],
+        steps: [
+          `MA = MB nên góc MAB = góc B = ${b}°.`,
+          `Góc AMB = 180° − 2 · ${b}° = ${180 - 2 * b}°.`,
+        ],
+      };
+    }
+    const k = pick(rand, [2, 3, 4]);
+    const bc = int(rand, 2, 12);
+    const p = 2 * (k + 1) * bc;
+    return {
+      prompt: `Hình chữ nhật ABCD có chu vi ${cm(p)} và AB = ${k}BC. Tính BC (cm).`,
+      answer: bc,
+      unit: 'cm',
+      hints: ['Chu vi = 2 · (AB + BC).', `Thay AB = ${k}BC.`],
+      steps: [
+        `AB + BC = ${p} : 2 = ${p / 2} cm, tức ${k + 1}BC = ${p / 2} cm.`,
+        `BC = ${p / 2} : ${k + 1} = ${cm(bc)}.`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const hinhThoiVuong = {
+  id: 'hinh-thoi-vuong',
+  label: 'Bài 14. Hình thoi và hình vuông',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      const s = int(rand, 3, 25) + pick(rand, [0, 0, 0.5]);
+      return {
+        prompt: `Một hình thoi có chu vi ${cm(4 * s)}. Tính độ dài mỗi cạnh (cm).`,
+        answer: s,
+        unit: 'cm',
+        hints: ['Hình thoi có bốn cạnh bằng nhau.'],
+        steps: [`Mỗi cạnh dài ${numberText(4 * s)} : 4 = ${cm(s)}.`],
+      };
+    }
+    if (v === 1) {
+      const a = 2 * int(rand, 15, 75);
+      if (a === 90) return hinhThoiVuong.make(rand);
+      if (rand() < 0.5) {
+        return {
+          prompt: `Hình thoi ABCD có hai đường chéo cắt nhau tại O và góc BAD = ${deg(a)}. Tính góc OAB.`,
+          answer: a / 2,
+          unit: '°',
+          hints: ['Đường chéo AC là tia phân giác của góc A.'],
+          steps: [`Góc OAB = ${a}° : 2 = ${a / 2}°.`],
+        };
+      }
+      return {
+        prompt: `Hình thoi ABCD có hai đường chéo cắt nhau tại O và góc BAD = ${deg(a)}. Tính góc OBA.`,
+        answer: 90 - a / 2,
+        unit: '°',
+        hints: [
+          'Đường chéo AC là tia phân giác của góc A.',
+          'Hai đường chéo của hình thoi vuông góc với nhau.',
+        ],
+        steps: [
+          `Góc OAB = ${a}° : 2 = ${a / 2}°, góc AOB = 90°.`,
+          `Góc OBA = 90° − ${a / 2}° = ${90 - a / 2}°.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const s = int(rand, 3, 20);
+      const { given, why } = pick(rand, [
+        { given: 'góc A = 60°', why: 'Góc A = 60°.' },
+        { given: 'góc B = 120°', why: 'Góc A = 180° − 120° = 60° (hai góc kề cạnh AB bù nhau).' },
+      ]);
+      return {
+        prompt: `Hình thoi ABCD có ${given} và AB = ${cm(s)}. Tính đường chéo BD (cm).`,
+        answer: s,
+        unit: 'cm',
+        hints: ['Tam giác ABD có AB = AD.', 'Tam giác cân có một góc 60° là tam giác gì?'],
+        steps: [
+          why,
+          'Tam giác ABD cân tại A có góc A = 60° nên là tam giác đều.',
+          `BD = AB = ${cm(s)}.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      const h = int(rand, 2, 15) + pick(rand, [0, 0, 0.5]);
+      if (rand() < 0.5) {
+        return {
+          prompt: `Hình vuông ABCD có hai đường chéo cắt nhau tại O và AC = ${cm(2 * h)}. Tính OD (cm).`,
+          answer: h,
+          unit: 'cm',
+          hints: ['Hai đường chéo của hình vuông bằng nhau và cắt nhau tại trung điểm mỗi đường.'],
+          steps: [`BD = AC = ${cm(2 * h)}.`, `OD = ${numberText(2 * h)} : 2 = ${cm(h)}.`],
+        };
+      }
+      return {
+        prompt: `Hình vuông ABCD có hai đường chéo cắt nhau tại O và OA = ${cm(h)}. Tính BD (cm).`,
+        answer: 2 * h,
+        unit: 'cm',
+        hints: ['Hai đường chéo của hình vuông bằng nhau và cắt nhau tại trung điểm mỗi đường.'],
+        steps: [`AC = 2 · OA = ${cm(2 * h)}.`, `BD = AC = ${cm(2 * h)}.`],
+      };
+    }
+    const x = 5 * int(rand, 4, 14);
+    if (x === 45) return hinhThoiVuong.make(rand);
+    return {
+      prompt: `Hình thoi ABCD có góc ABD = ${deg(x)}. Tính góc BAD.`,
+      answer: 180 - 2 * x,
+      unit: '°',
+      hints: [
+        'Đường chéo BD là tia phân giác của góc B.',
+        'Hai góc kề cạnh AB của hình thoi bù nhau.',
+      ],
+      steps: [`Góc ABC = 2 · ${x}° = ${2 * x}°.`, `Góc BAD = 180° − ${2 * x}° = ${180 - 2 * x}°.`],
+    };
+  },
+};
+
 /** Skills of "Luyện tập chung trang 56". */
 export const SKILLS_TRANG_56 = [tuGiac, hinhThangCan];
 
 /** Skills of "Luyện tập chung trang 62". */
 export const SKILLS_TRANG_62 = [hinhBinhHanh, binhHanhThucTe];
+
+/** Skills of "Luyện tập chung trang 73". */
+export const SKILLS_TRANG_73 = [hinhChuNhat, hinhThoiVuong];
+
+/** One skill per lesson of the chapter, for the end-of-chapter test. */
+export const CHAPTER_SKILLS = [tuGiac, hinhThangCan, hinhBinhHanh, hinhChuNhat, hinhThoiVuong];
