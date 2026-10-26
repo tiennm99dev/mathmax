@@ -6,6 +6,7 @@ import {
   dist,
   gcd,
   isParallel,
+  labelSpot,
   midpoint,
   simplify,
   triangleFromSides,
@@ -53,5 +54,14 @@ describe('triangle helpers', () => {
     expect(gcd(12, 18)).toBe(6);
     expect(simplify(4, 12)).toEqual([1, 3]);
     expect(simplify(5, 7)).toEqual([5, 7]);
+  });
+
+  it('places a vertex name away from the centroid and inside the board', () => {
+    const G = { x: 50, y: 50 };
+    expect(labelSpot({ x: 50, y: 20 }, G, 10, 100, 100)).toEqual({ x: 50, y: 12 });
+    expect(labelSpot({ x: 80, y: 50 }, G, 10, 100, 100)).toEqual({ x: 88, y: 50 });
+    const edge = labelSpot({ x: 0, y: 0 }, G, 20, 100, 100);
+    expect(edge.x).toBe(12);
+    expect(edge.y).toBe(12);
   });
 });

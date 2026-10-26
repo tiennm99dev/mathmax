@@ -91,3 +91,21 @@ export function simplify(p, q) {
   const g = gcd(p, q) || 1;
   return [p / g, q / g];
 }
+
+/**
+ * Where to centre a vertex's name: `gap` away from vertex P, on the side
+ * facing away from G (usually the centroid), kept at least `margin` inside a
+ * w × h board so a vertex dragged to an edge never pushes its name off it.
+ * @param {Pt} P @param {Pt} G @param {number} gap
+ * @param {number} w @param {number} h @param {number} [margin]
+ * @returns {Pt}
+ */
+export function labelSpot(P, G, gap, w, h, margin = 12) {
+  const d = dist(G, P) || 1;
+  const x = P.x + ((P.x - G.x) / d) * gap;
+  const y = P.y + ((P.y - G.y) / d) * gap;
+  return {
+    x: Math.max(margin, Math.min(w - margin, x)),
+    y: Math.max(margin, Math.min(h - margin, y)),
+  };
+}

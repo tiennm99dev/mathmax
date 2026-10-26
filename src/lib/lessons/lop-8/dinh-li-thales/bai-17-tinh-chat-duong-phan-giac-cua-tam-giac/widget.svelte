@@ -5,6 +5,8 @@
   import Tex from '#lib/components/tex.svelte';
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber, texNumber } from '#lib/core/number-format.js';
+  import { directionTo, sectorPath } from '#lib/core/visuals/angle-math.js';
+  import { labelSpot } from '../_shared/tri.js';
   import { B, C, COLS, ROWS, bisector, snapA } from './engine.js';
 
   /** @typedef {import('./engine.js').Pt} Pt */
@@ -26,6 +28,20 @@
   const sC = toSvg(C);
   const sD = $derived(toSvg(m.D));
   const sM = $derived(toSvg(m.M));
+
+  // Vertex names sit outside the triangle and stay on the board at its edges.
+  const vertexLabels = $derived.by(() => {
+    const G = { x: (sA.x + sB.x + sC.x) / 3, y: (sA.y + sB.y + sC.y) / 3 };
+    return [
+      { n: 'A', ...labelSpot(sA, G, 24, W, H) },
+      { n: 'B', ...labelSpot(sB, G, 24, W, H) },
+      { n: 'C', ...labelSpot(sC, G, 24, W, H) },
+    ];
+  });
+
+  /** Grid lines, one per 1 cm cell. */
+  const gridX = Array.from({ length: COLS + 1 }, (_, k) => PAD + k * U);
+  const gridY = Array.from({ length: ROWS + 1 }, (_, k) => PAD + k * U);
 
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
@@ -71,19 +87,10 @@
   );
 
   /**
-   * A small arc marking the angle at V from ray VP to ray VQ.
+   * Filled mark of the angle at V between rays VP and VQ.
    * @param {Pt} V @param {Pt} P @param {Pt} Q @param {number} r
    */
-  function arc(V, P, Q, r) {
-    const a1 = Math.atan2(P.y - V.y, P.x - V.x);
-    const a2 = Math.atan2(Q.y - V.y, Q.x - V.x);
-    let d = a2 - a1;
-    while (d > Math.PI) d -= 2 * Math.PI;
-    while (d < -Math.PI) d += 2 * Math.PI;
-    const s = { x: V.x + r * Math.cos(a1), y: V.y + r * Math.sin(a1) };
-    const e = { x: V.x + r * Math.cos(a1 + d), y: V.y + r * Math.sin(a1 + d) };
-    return `M ${V.x} ${V.y} L ${s.x} ${s.y} A ${r} ${r} 0 0 ${d > 0 ? 1 : 0} ${e.x} ${e.y} Z`;
-  }
+  const arc = (V, P, Q, r) => sectorPath(V, directionTo(V, P), directionTo(V, Q), r);
 </script>
 
 <div class="space-y-4">
@@ -100,6 +107,13 @@
     maxWidth="max-w-xl"
     label="Tam giác ABC với đường phân giác AD của góc A"
   >
+    {#each gridX as x (x)}
+      <line x1={x} y1={PAD} x2={x} y2={H - PAD} stroke="#E2E8F0" />
+    {/each}
+    {#each gridY as y (y)}
+      <line x1={PAD} y1={y} x2={W - PAD} y2={y} stroke="#E2E8F0" />
+    {/each}
+
     <polygon
       points="{sA.x},{sA.y} {sB.x},{sB.y} {sC.x},{sC.y}"
       fill="#EEF2FF"
@@ -133,10 +147,19 @@
 
     <circle cx={sD.x} cy={sD.y} r="6" fill="#0F766E" stroke="#fff" stroke-width="2" />
     <text x={sD.x - 5} y={sD.y + 22} font-size="20" font-weight="700" fill="#0F766E">D</text>
-    <text x={sB.x - 26} y={sB.y + 6} font-size="20" font-weight="700" fill="#1F2937">B</text>
-    <text x={sC.x + 10} y={sC.y + 6} font-size="20" font-weight="700" fill="#1F2937">C</text>
 
-    <text x={sA.x + 12} y={sA.y - 12} font-size="20" font-weight="700" fill="#1F2937">A</text>
+    {#each vertexLabels as v (v.n)}
+      <text
+        x={v.x}
+        y={v.y}
+        dy="0.35em"
+        text-anchor="middle"
+        font-size="20"
+        font-weight="700"
+        fill="#1F2937"
+        pointer-events="none">{v.n}</text
+      >
+    {/each}
     <DragPoint
       drag={dragA}
       r={11}
