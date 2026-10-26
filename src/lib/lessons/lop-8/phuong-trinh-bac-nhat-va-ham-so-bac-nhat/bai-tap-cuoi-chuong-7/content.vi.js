@@ -146,11 +146,11 @@ export default {
     {
       type: 'choice',
       prompt: 'Nghiệm của phương trình $3(x + 1) - (x - 2) = 7 - 2x$ là',
-      options: ['$x = 0$', '$x = \\dfrac{1}{2}$', 'Phương trình vô nghiệm', 'Mọi số đều là nghiệm'],
+      options: ['$x = 0$', '$x = \\dfrac{1}{2}$', '$x = -\\dfrac{1}{2}$', '$x = \\dfrac{3}{2}$'],
       answer: 1,
       hints: ['Bỏ ngoặc, chú ý dấu trừ trước ngoặc thứ hai.', 'Vế trái thu gọn thành $2x + 5$.'],
       solution:
-        '$3x + 3 - x + 2 = 7 - 2x \\Leftrightarrow 2x + 5 = 7 - 2x \\Leftrightarrow 4x = 2 \\Leftrightarrow x = \\dfrac{1}{2}$.',
+        '$3x + 3 - x + 2 = 7 - 2x \\Leftrightarrow 2x + 5 = 7 - 2x \\Leftrightarrow 4x = 2 \\Leftrightarrow x = \\dfrac{1}{2}$. Nếu quên đổi dấu số $-2$ khi bỏ ngoặc, em sẽ được $x = \\dfrac{3}{2}$, một đáp số sai.',
     },
     {
       type: 'choice',

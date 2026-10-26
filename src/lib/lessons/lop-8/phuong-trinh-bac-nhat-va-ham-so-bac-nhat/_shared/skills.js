@@ -458,7 +458,7 @@ export const hamSoBacNhat = {
         answer: b,
         hints: [`Thay x = ${intText(p)}, y = ${intText(q)} vào công thức.`],
         steps: [
-          `${intText(q)} = ${subst(a, 0, p)} + b = ${intText(a * p)} + b.`,
+          `${intText(q)} = ${a === 1 ? intText(p) : `${subst(a, 0, p)} + b = ${intText(a * p)}`} + b.`,
           `b = ${intText(q)} − ${operand(a * p)} = ${intText(b)}.`,
         ],
       };
@@ -587,7 +587,9 @@ export const heSoGoc = {
         ],
         steps: [
           `Phương trình hoành độ giao điểm: ${lin(a, b)} = ${lin(c, d)}.`,
-          `${lin(a - c, 0)} = ${intText(d - b)}, nên x = ${intText(x)}.`,
+          a - c === 1
+            ? `x = ${intText(d - b)}.`
+            : `${lin(a - c, 0)} = ${intText(d - b)}, nên x = ${intText(x)}.`,
           `y = ${subst(a, b, x)} = ${intText(y)}. Giao điểm A${pt(x, y)}.`,
         ],
       };
