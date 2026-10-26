@@ -67,14 +67,11 @@ export function describe(labels, values, unit) {
   ];
   const up = Math.max(...d);
   const down = Math.min(...d);
-  if (up > 0) {
-    const i = d.indexOf(up);
-    out.push(`Tăng mạnh nhất: từ ${labels[i]} đến ${labels[i + 1]}, tăng ${fmt(up)} ${unit}.`);
-  }
-  if (down < 0) {
-    const i = d.indexOf(down);
-    out.push(`Giảm mạnh nhất: từ ${labels[i]} đến ${labels[i + 1]}, giảm ${fmt(-down)} ${unit}.`);
-  }
+  // Every interval that reaches the extreme change, so a tie names them all.
+  const spans = (/** @type {number} */ target) =>
+    d.flatMap((x, i) => (x === target ? [`từ ${labels[i]} đến ${labels[i + 1]}`] : [])).join('; ');
+  if (up > 0) out.push(`Tăng mạnh nhất: ${spans(up)}, tăng ${fmt(up)} ${unit}.`);
+  if (down < 0) out.push(`Giảm mạnh nhất: ${spans(down)}, giảm ${fmt(-down)} ${unit}.`);
   return out;
 }
 

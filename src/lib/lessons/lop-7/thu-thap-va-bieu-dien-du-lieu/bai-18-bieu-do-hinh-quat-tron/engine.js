@@ -5,6 +5,8 @@
  * drags the slice boundaries.
  */
 
+import { formatNumber } from '#lib/core/number-format.js';
+
 /** Students in the class. */
 export const TOTAL = 40;
 
@@ -36,6 +38,9 @@ export function rows(data) {
  * @property {string} id
  * @property {string} text what to build, in plain text
  * @property {number[]} counts the counts that solve it, in `START` order
+ * @property {'percent' | 'count' | 'angle'} unit the quantity the task is
+ *   given in, so feedback talks in that quantity and leaves the conversion to
+ *   the learner
  */
 
 /** @type {Challenge[]} */
@@ -44,16 +49,19 @@ export const CHALLENGES = [
     id: 'phan-tram',
     text: 'Kéo để biểu đồ thể hiện: Đi bộ 25%, Xe đạp 40%, Xe buýt 15%, Bố mẹ đưa đón 20%.',
     counts: [10, 16, 6, 8],
+    unit: 'percent',
   },
   {
     id: 'so-ban',
     text: 'Lớp 7A có 40 bạn: 8 bạn đi bộ, 20 bạn đi xe đạp, 4 bạn đi xe buýt, còn lại bố mẹ đưa đón. Kéo cho đúng.',
     counts: [8, 20, 4, 8],
+    unit: 'count',
   },
   {
     id: 'goc',
     text: 'Kéo sao cho góc ở tâm của các hình quạt là: Đi bộ 90°, Xe đạp 180°, Xe buýt 36°, Bố mẹ đưa đón 54°.',
     counts: [10, 20, 4, 6],
+    unit: 'angle',
   },
 ];
 
@@ -70,8 +78,13 @@ export function check(data, challenge) {
   if (i === -1) return { done: true, text: 'Chính xác! Biểu đồ đã khớp với đề bài.' };
   const want = challenge.counts[i];
   const more = want > r[i].count;
+  const show = {
+    percent: (/** @type {number} */ n) => `${formatNumber((n * 100) / TOTAL, 1)}%`,
+    count: (/** @type {number} */ n) => `${n} bạn`,
+    angle: (/** @type {number} */ n) => `${formatNumber((n * 360) / TOTAL, 1)}°`,
+  }[challenge.unit];
   return {
     done: false,
-    text: `Hình quạt "${r[i].label}" cần ${more ? 'lớn hơn' : 'nhỏ hơn'}: hiện có ${r[i].count} bạn, cần ${want} bạn.`,
+    text: `Hình quạt "${r[i].label}" cần ${more ? 'lớn hơn' : 'nhỏ hơn'}: hiện là ${show(r[i].count)}, cần ${show(want)}.`,
   };
 }

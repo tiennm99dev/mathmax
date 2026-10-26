@@ -21,7 +21,7 @@ group('trend of a series', () => {
     expect(text).toContain('Cao nhất: 210 cây (2023)');
     expect(text).toContain('Thấp nhất: 120 cây (2019)');
     expect(text).toContain('từ 2021 đến 2022, tăng 40 cây');
-    expect(text).toContain('từ 2020 đến 2021, giảm 10 cây');
+    expect(text).toContain('Giảm mạnh nhất: từ 2020 đến 2021; từ 2023 đến 2024, giảm 10 cây');
   });
 
   it('lists every moment that ties for the highest value and skips a missing fall', () => {

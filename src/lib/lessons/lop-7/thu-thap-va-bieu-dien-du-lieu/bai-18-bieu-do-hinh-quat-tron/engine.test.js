@@ -46,6 +46,9 @@ describe('challenges', () => {
     expect(miss.done).toBe(false);
     expect(miss.text).toContain('Xe đạp');
     expect(miss.text).toContain('lớn hơn');
+    expect(miss.text).toContain('hiện là 35%, cần 40%');
+    expect(check(START, CHALLENGES[1]).text).toContain('hiện là 10 bạn, cần 8 bạn');
+    expect(check(START, CHALLENGES[2]).text).toContain('hiện là 126°, cần 180°');
     const data = START.map((d, i) => ({ ...d, value: c.counts[i] }));
     expect(check(data, c).done).toBe(true);
   });
