@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
-import { readValue, sameValue } from './adaptive.js';
+import { inLowestTerms, readValue, sameValue } from './adaptive.js';
 import { NUMBER_SKILLS, chiaHet, soNguyen, soThapPhan } from './number-skills.js';
 
 /** @param {import('./adaptive.js').ReviewSkill} skill */
@@ -30,6 +30,8 @@ describe('every number skill', () => {
         expect(sameValue(/** @type {any} */ (shown), q.answer), q.prompt).toBe(true);
         expect(q.steps.at(-1), q.prompt).toContain(q.display);
         expect(q.hints.length).toBeGreaterThan(0);
+        expect(q.simplest === true, q.prompt).toBe(q.prompt.includes('phân số tối giản'));
+        if (q.simplest) expect(inLowestTerms(q.display), q.display).toBe(true);
         for (const h of q.hints) expect(h).not.toBe(q.steps.at(-1));
       }
     });

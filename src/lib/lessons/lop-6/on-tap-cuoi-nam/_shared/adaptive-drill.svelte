@@ -3,7 +3,15 @@
   import { button, textInput } from '#lib/core/ui.js';
   import { isDone, isRetry, nextPhase, rng } from '#lib/core/drill.js';
   import { hints as hintCopy } from '#lib/core/copy.vi.js';
-  import { drawQuestion, nextSkill, readValue, sameValue, statusOf, tally } from './adaptive.js';
+  import {
+    drawQuestion,
+    inLowestTerms,
+    nextSkill,
+    readValue,
+    sameValue,
+    statusOf,
+    tally,
+  } from './adaptive.js';
 
   /**
    * An adaptive review set. Each skill is asked once first; after that the
@@ -57,6 +65,9 @@
   /** @type {import('#lib/core/drill.js').DrillPhase} */
   let phase = $state('ask');
   let hintsShown = $state(0);
+  // A right value typed as a fraction that still reduces: asked to simplify,
+  // without using up the try.
+  let notSimplest = $state(false);
   /** @type {HTMLInputElement | undefined} */
   let input = $state();
 
@@ -82,6 +93,8 @@
     if (done) return;
     const value = readValue(typed);
     const ok = value === null ? null : sameValue(value, set.q.answer);
+    notSimplest = ok === true && set.q.simplest === true && !inLowestTerms(typed);
+    if (notSimplest) return;
     const first = !isRetry(phase);
     phase = nextPhase(phase, ok);
     if (ok === null) return;
@@ -97,6 +110,7 @@
   async function advance() {
     typed = '';
     hintsShown = 0;
+    notSimplest = false;
     if (attempts.length >= length) {
       finished = true;
       return;
@@ -117,6 +131,7 @@
     typed = '';
     phase = 'ask';
     hintsShown = 0;
+    notSimplest = false;
   }
 </script>
 
@@ -173,7 +188,12 @@
             Hãy nhập một số: số nguyên (−12), số thập phân (3,75) hoặc phân số (5/6).
           </p>
         {/if}
-        {#if isRetry(phase)}
+        {#if notSimplest}
+          <p class="font-semibold text-amber-800">
+            Giá trị đúng rồi, nhưng đề yêu cầu phân số tối giản. Em rút gọn rồi nhập lại nhé.
+          </p>
+        {/if}
+        {#if isRetry(phase) && !notSimplest}
           <p class="font-semibold text-rose-900">
             Chưa đúng. Em xem gợi ý rồi thử lại lần nữa nhé.
           </p>

@@ -108,8 +108,10 @@ export const TASKS = [
     check: ({ O, A }) => {
       if (same(O, A)) return { ok: false, msg: 'A đang trùng với O, chưa có tia OA.' };
       const deg = angleFromOx(O, A);
-      const shown = Math.round(Math.min(deg, 360 - deg));
-      if (Math.abs(deg - 135) < 1e-9)
+      // The angle between rays Ox and OA, whichever side of Ox A is on.
+      const measure = Math.min(deg, 360 - deg);
+      const shown = Math.round(measure);
+      if (Math.abs(measure - 135) < 1e-9)
         return { ok: true, msg: 'Đúng: góc xOA = 90° + 45° = 135°, là một góc tù.' };
       if (shown < 90)
         return { ok: false, msg: `Góc xOA ≈ ${shown}° là góc nhọn; cần một góc tù 135°.` };

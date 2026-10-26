@@ -42,7 +42,13 @@ describe('construction tasks', () => {
     expect(solutions(task('thang-can'))).toEqual([{ D: { x: 3, y: 4 } }]);
     expect(solutions(task('truc-doi-xung'))).toEqual([{ D: { x: 8, y: 4 } }]);
     expect(solutions(task('tam-doi-xung'))).toEqual([{ C: { x: 8, y: 5 }, D: { x: 4, y: 5 } }]);
-    expect(solutions(task('goc'))).toEqual([{ A: { x: 0, y: 4 } }, { A: { x: 1, y: 3 } }]);
+    // A above or below Ox: both give an angle xOA of 135°.
+    expect(solutions(task('goc'))).toEqual([
+      { A: { x: 0, y: 0 } },
+      { A: { x: 0, y: 4 } },
+      { A: { x: 1, y: 1 } },
+      { A: { x: 1, y: 3 } },
+    ]);
     expect(solutions(task('chu-nhat'))).toEqual([{ C: { x: 4, y: 5 } }, { C: { x: 5, y: 4 } }]);
     // C beyond B on line AB through (1, 2) and (4, 3).
     expect(solutions(task('thang-hang'))).toEqual([{ C: { x: 7, y: 4 } }, { C: { x: 10, y: 5 } }]);

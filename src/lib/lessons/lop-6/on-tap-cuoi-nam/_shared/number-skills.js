@@ -295,6 +295,7 @@ export const phanSo = {
       const answer = simplify(raw);
       const op = minus ? '−' : '+';
       return {
+        simplest: true,
         prompt: `Tính và viết kết quả dưới dạng phân số tối giản: ${ft(p)} ${op} ${ft(q)}.`,
         answer,
         display: ft(answer),
@@ -316,6 +317,7 @@ export const phanSo = {
       const raw = divide ? fraction(p.n * q.d, p.d * q.n) : fraction(p.n * q.n, p.d * q.d);
       const answer = simplify(raw);
       return {
+        simplest: true,
         prompt: `Tính và viết kết quả dưới dạng phân số tối giản: ${ft(p)} ${divide ? ':' : '·'} ${ft(q)}.`,
         answer,
         display: ft(answer),

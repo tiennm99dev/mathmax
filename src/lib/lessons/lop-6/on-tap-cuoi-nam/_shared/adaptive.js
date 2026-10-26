@@ -22,6 +22,7 @@ import { int } from '#lib/core/drill.js';
  * @property {string} display the answer as the book writes it, e.g. '−3/4' or '3,825'
  * @property {string[]} steps worked solution, the last step states the answer
  * @property {string[]} hints mildest first, never the answer itself
+ * @property {boolean} [simplest] the prompt asks for a fraction in lowest terms
  */
 
 /**
@@ -61,6 +62,25 @@ export function readValue(text) {
   const d = 10 ** digits.length;
   const n = Number(m[2] || '0') * d + Number(digits || '0');
   return simplify(fraction(m[1] === '-' ? -n : n, d));
+}
+
+/**
+ * Whether typed text is written in lowest terms: a whole number, or `p/q`
+ * with no common divisor other than 1. A decimal such as `0,5` is not a
+ * fraction, so it does not count.
+ * @param {string} text
+ */
+export function inLowestTerms(text) {
+  const s = text
+    .trim()
+    .replace(/[−–]/g, '-')
+    .replace(/(\d)[\s\u202f\u00a0]+(?=\d)/g, '$1');
+  if (/^[+-]?\d+$/.test(s)) return true;
+  const m = /^[+-]?(\d+)\s*\/\s*[+-]?(\d+)$/.exec(s);
+  if (!m) return false;
+  let [a, b] = [Number(m[1]), Number(m[2])];
+  while (b) [a, b] = [b, a % b];
+  return a === 1;
 }
 
 /**

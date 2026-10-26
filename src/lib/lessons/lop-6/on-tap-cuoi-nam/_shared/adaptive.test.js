@@ -3,6 +3,7 @@ import { rng } from '#lib/core/drill.js';
 import { fraction } from '#lib/fraction-engine/index.js';
 import {
   drawQuestion,
+  inLowestTerms,
   nextSkill,
   readValue,
   sameValue,
@@ -24,6 +25,14 @@ const skill = (id) => ({
   }),
 });
 const SKILLS = ['a', 'b', 'c'].map(skill);
+
+describe('inLowestTerms', () => {
+  it('accepts whole numbers and reduced fractions only', () => {
+    for (const s of ['5/6', '−5/6', '5/−6', '7', '-12', '13 / 25'])
+      expect(inLowestTerms(s), s).toBe(true);
+    for (const s of ['10/12', '-4/6', '0,5', '2.5', 'abc']) expect(inLowestTerms(s), s).toBe(false);
+  });
+});
 
 describe('readValue', () => {
   it('reads integers, decimals and fractions exactly', () => {
