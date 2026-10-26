@@ -16,6 +16,7 @@ import {
   monoOperand,
   monoText,
   mulMono,
+  mulPoly,
   neg,
   polyDegree,
   polyText,
@@ -311,3 +312,197 @@ export const congTruDaThuc = {
 
 /** The skills of the lessons before "Luyện tập chung trang 17". */
 export const SKILLS_TRANG_17 = [donThuc, daThuc, congTruDaThuc];
+
+/**
+ * A polynomial as a factor: in brackets when it has more than one term.
+ * @param {Mono[]} p
+ */
+const factor = (p) => (p.length > 1 ? `(${polyText(p)})` : monoOperand(p[0]));
+
+/**
+ * One line per term product: '2x · (−3y) = −6xy'.
+ * @param {Mono} m
+ * @param {Mono[]} p
+ */
+function productLines(m, p) {
+  return p
+    .map((t) => `${monoOperand(m)} · ${monoOperand(t)} = ${monoText(mulMono(m, t))}`)
+    .join('; ');
+}
+
+/**
+ * A binomial a·x + b·y with non-zero integer coefficients.
+ * @param {() => number} rand
+ */
+function linear(rand) {
+  return [mono(nonZero(rand, -5, 5), { x: 1 }), mono(nonZero(rand, -5, 5), { y: 1 })];
+}
+
+/** @type {Skill} */
+export const nhanDaThuc = {
+  id: 'nhan-da-thuc',
+  label: 'Bài 4. Phép nhân đa thức',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const m = randomMono(rand, nonZero(rand, -4, 4), 2);
+      const p = distinctTerms(rand, 3, rand() < 0.5);
+      const res = p.map((t) => mulMono(m, t));
+      const k = int(rand, 0, 2);
+      const target = res[k];
+      return {
+        prompt: `Tính ${monoText(m)}${factor(p)}. Hệ số của hạng tử chứa ${varText(target)} trong kết quả là bao nhiêu?`,
+        answer: target.coef,
+        hints: [
+          'Nhân đơn thức với từng hạng tử của đa thức.',
+          `Hạng tử chứa ${varText(target)} là tích ${monoOperand(m)} · ${monoOperand(p[k])}.`,
+        ],
+        steps: [productLines(m, p) + '.', `Kết quả: ${polyText(res)}.`],
+      };
+    }
+    if (v === 1) {
+      const a = linear(rand);
+      const b = linear(rand);
+      const coef = a[0].coef * b[1].coef + a[1].coef * b[0].coef;
+      return {
+        prompt: `Tính ${factor(a)}${factor(b)}. Hệ số của hạng tử chứa xy sau khi thu gọn là bao nhiêu (ghi 0 nếu hạng tử đó triệt tiêu)?`,
+        answer: coef,
+        hints: [
+          'Nhân mỗi hạng tử của đa thức này với từng hạng tử của đa thức kia.',
+          `Có hai tích chứa xy: ${monoOperand(a[0])} · ${monoOperand(b[1])} và ${monoOperand(a[1])} · ${monoOperand(b[0])}.`,
+        ],
+        steps: [
+          `Các tích: ${productLines(a[0], b)}; ${productLines(a[1], b)}.`,
+          `Hệ số của xy: ${intText(a[0].coef * b[1].coef)} + ${operand(a[1].coef * b[0].coef)} = ${intText(coef)}.`,
+          `Kết quả: ${polyText(mulPoly(a, b))}.`,
+        ],
+      };
+    }
+    const a = distinctTerms(rand, 2, rand() < 0.5);
+    const b = distinctTerms(rand, 2, rand() < 0.5);
+    const res = mulPoly(a, b);
+    if (v === 2) {
+      const val = point(rand);
+      return {
+        prompt: `Tính giá trị của biểu thức ${factor(a)}${factor(b)} tại ${at(val)}.`,
+        answer: evalPoly(res, val),
+        hints: [
+          'Có thể tính giá trị của từng thừa số rồi nhân lại.',
+          `Thừa số thứ nhất có giá trị ${intText(evalPoly(a, val))}.`,
+        ],
+        steps: [
+          `Thừa số thứ nhất: ${intText(evalPoly(a, val))}; thừa số thứ hai: ${intText(evalPoly(b, val))}.`,
+          `Giá trị của tích: ${operand(evalPoly(a, val))} · ${operand(evalPoly(b, val))} = ${intText(evalPoly(res, val))}.`,
+        ],
+      };
+    }
+    const d = /** @type {number} */ (polyDegree(res));
+    return {
+      prompt: `Tìm bậc của đa thức ${factor(a)}${factor(b)} sau khi nhân và thu gọn.`,
+      answer: d,
+      hints: [
+        'Nhân ra rồi thu gọn, sau đó tìm hạng tử có bậc cao nhất.',
+        'Hạng tử bậc cao nhất là tích của hai hạng tử bậc cao nhất của hai thừa số.',
+      ],
+      steps: [`Nhân và thu gọn: ${polyText(res)}.`, `Hạng tử bậc cao nhất có bậc ${d}.`],
+    };
+  },
+};
+
+/**
+ * A monomial whose exponent of `name` is the letter n, as plain text: '3xⁿy²'.
+ * @param {number} coef
+ * @param {string} name
+ * @param {Record<string, number>} rest the other variables
+ */
+function withN(coef, name, rest) {
+  const lead = coef === 1 ? '' : coef === -1 ? '−' : intText(coef);
+  const names = [...Object.keys(rest), name].sort();
+  return (
+    lead +
+    names.map((v) => (v === name ? `${v}ⁿ` : rest[v] === 1 ? v : `${v}${sup(rest[v])}`)).join('')
+  );
+}
+
+/** @type {Skill} */
+export const chiaDaThuc = {
+  id: 'chia-da-thuc',
+  label: 'Bài 5. Phép chia đa thức cho đơn thức',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 3) {
+      const p = int(rand, 1, 3);
+      const q = int(rand, 1, 3);
+      const b = mono(nonZero(rand, -4, 4), { x: p, y: q });
+      const k1 = nonZero(rand, -6, 6);
+      const k2 = nonZero(rand, -6, 6);
+      const t1 = withN(k1, 'x', { y: int(rand, q, q + 2) });
+      const x2 = int(rand, p, p + 2);
+      const t2 = withN(k2, 'y', { x: x2 });
+      const poly = `${t1} ${k2 < 0 ? '−' : '+'} ${withN(Math.abs(k2), 'y', { x: x2 })}`;
+      const n = Math.max(p, q);
+      return {
+        prompt: `Tìm số tự nhiên n nhỏ nhất để đa thức ${poly} chia hết cho đơn thức ${monoText(b)}.`,
+        answer: n,
+        hints: [
+          'Mỗi hạng tử phải chia hết cho đơn thức: số mũ của mỗi biến không nhỏ hơn số mũ của nó trong đơn thức chia.',
+          `Hạng tử đầu cần n ≥ ${p}; hạng tử sau cần số mũ của y ít nhất là bao nhiêu?`,
+        ],
+        steps: [
+          `Hạng tử ${t1} chia hết cho ${monoText(b)} khi n ≥ ${p} (số mũ của x trong đơn thức chia).`,
+          `Hạng tử ${t2} chia hết cho ${monoText(b)} khi n ≥ ${q} (số mũ của y trong đơn thức chia).`,
+          `Cần đồng thời hai điều kiện, nên n ≥ ${n}; số nhỏ nhất là ${n}.`,
+        ],
+      };
+    }
+    const b = mono(nonZero(rand, -4, 4), { x: int(rand, 1, 2), y: int(rand, 0, 2) });
+    const quot = distinctTerms(rand, 3, rand() < 0.5);
+    const a = quot.map((t) => mulMono(t, b));
+    const shown = `(${polyText(a)}) : ${monoOperand(b)}`;
+    const lines = a.map((t, i) => `${monoOperand(t)} : ${monoOperand(b)} = ${monoText(quot[i])}`);
+    const divide = `Chia từng hạng tử: ${lines.join('; ')}.`;
+    if (v === 0) {
+      const target = pick(
+        rand,
+        quot.filter((t) => varKey(t) !== ''),
+      );
+      return {
+        prompt: `Thực hiện phép chia ${shown}. Hệ số của hạng tử chứa ${varText(target)} trong thương là bao nhiêu?`,
+        answer: target.coef,
+        hints: [
+          'Chia từng hạng tử của đa thức cho đơn thức: chia hệ số, trừ số mũ.',
+          `Hạng tử chứa ${varText(target)} là thương của ${monoText(mulMono(target, b))} cho ${monoText(b)}.`,
+        ],
+        steps: [divide, `Thương: ${polyText(quot)}.`],
+      };
+    }
+    if (v === 1) {
+      const val = point(rand);
+      return {
+        prompt: `Thực hiện phép chia ${shown} rồi tính giá trị của thương tại ${at(val)}.`,
+        answer: evalPoly(quot, val),
+        hints: ['Chia trước rồi mới thay số.', `Thương là ${polyText(quot)}.`],
+        steps: [
+          divide,
+          `Thay ${at(val)} vào ${polyText(quot)}: ${sumLine(quot.map((t) => evalMono(t, val)))} = ${intText(evalPoly(quot, val))}.`,
+        ],
+      };
+    }
+    const d = /** @type {number} */ (polyDegree(quot));
+    return {
+      prompt: `Thực hiện phép chia ${shown}. Thương có bậc bao nhiêu?`,
+      answer: d,
+      hints: [
+        'Chia từng hạng tử cho đơn thức, rồi tìm bậc của thương.',
+        'Mỗi hạng tử của thương có bậc bằng bậc của hạng tử bị chia trừ bậc của đơn thức chia.',
+      ],
+      steps: [divide, `Thương: ${polyText(quot)}, có bậc ${d}.`],
+    };
+  },
+};
+
+/** The skills of the lessons before "Luyện tập chung trang 25". */
+export const SKILLS_TRANG_25 = [nhanDaThuc, chiaDaThuc];
+
+/** One skill per lesson of the chapter, for the end-of-chapter review. */
+export const CHAPTER_SKILLS = [...SKILLS_TRANG_17, ...SKILLS_TRANG_25];
