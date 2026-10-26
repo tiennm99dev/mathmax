@@ -184,12 +184,16 @@ export default {
     {
       type: 'number',
       prompt:
-        'Một bảo tàng có $750$ lượt khách trong năm, trong đó bốn tháng đầu năm có $107 + 111 = 218$ lượt. Ước lượng xác suất một lượt khách (chọn ngẫu nhiên) đến vào bốn tháng đầu năm, tính theo phần trăm và làm tròn đến hàng đơn vị.',
+        'Một bảo tàng có $750$ lượt khách trong năm; từ tháng $1$ đến tháng $4$, số lượt khách lần lượt là $52;\\ 55;\\ 54;\\ 57$. Ước lượng xác suất một lượt khách (chọn ngẫu nhiên) đến vào bốn tháng đầu năm, tính theo phần trăm và làm tròn đến hàng đơn vị.',
       answer: 29,
       tolerance: 0.5,
       unit: '%',
-      hints: ['Tính $\\dfrac{218}{750}$ rồi đổi ra phần trăm.'],
-      solution: '$\\dfrac{218}{750} \\approx 0{,}291 \\approx 29\\%$.',
+      hints: [
+        'Cộng số lượt khách của bốn tháng đầu năm.',
+        'Chia tổng đó cho $750$ rồi đổi ra phần trăm.',
+      ],
+      solution:
+        'Số lượt khách trong bốn tháng đầu năm: $k = 52 + 55 + 54 + 57 = 218$. $\\dfrac{218}{750} \\approx 0{,}291 \\approx 29\\%$.',
     },
   ],
   takeaways: [

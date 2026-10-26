@@ -59,7 +59,9 @@
         ? 'Không có kết quả thuận lợi nào: E là biến cố không thể.'
         : r.k === r.n
           ? 'Mọi kết quả đều thuận lợi: E là biến cố chắc chắn.'
-          : `Xác suất của E là ${formatNumber(r.k / r.n, 2)} (làm tròn).`;
+          : (r.k * 100) % r.n === 0
+            ? `Xác suất của E là ${formatNumber(r.k / r.n, 2)}.`
+            : `Xác suất của E khoảng ${formatNumber(r.k / r.n, 2)} (làm tròn).`;
     return {
       tone: /** @type {const} */ ('ok'),
       text: `Các viên bi cùng kích thước nên ${r.n} kết quả có thể là đồng khả năng. Có ${r.k} kết quả thuận lợi cho E. ${kind}`,

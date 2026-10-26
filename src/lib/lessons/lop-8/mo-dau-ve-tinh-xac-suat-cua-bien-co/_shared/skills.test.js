@@ -149,6 +149,17 @@ describe('chapter skills', () => {
     expect(readProbability('6/20')).toBe(readProbability('3/10'));
   });
 
+  it('read a count grouped with a dot or a space as a whole number', () => {
+    for (let seed = 1; seed <= 200; seed++) {
+      for (const q of buildSet(CHAPTER_SKILLS, 3, seed)) {
+        if (!Number.isInteger(q.answer) || q.answer < 1000) continue;
+        const dotted = String(q.answer).replace(/\B(?=(\d{3})+$)/g, '.');
+        expect(readAnswer(q, dotted, readProbability), q.prompt).toBe(q.answer);
+        expect(readAnswer(q, String(q.answer), readProbability), q.prompt).toBe(q.answer);
+      }
+    }
+  });
+
   it('write ratios with their lowest terms', () => {
     expect(ratioText(6, 20)).toBe('6/20 = 3/10');
     expect(ratioText(7, 20)).toBe('7/20');

@@ -7,7 +7,7 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { fmt } from '#lib/core/number-format.js';
+import { fmt, readNatural } from '#lib/core/number-format.js';
 import { probabilityText } from '#lib/core/fractions.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
@@ -39,6 +39,21 @@ export function ratioText(k, n) {
  * @param {number} v
  */
 export const answerText = (v) => (Number.isInteger(v) ? fmt(v) : probabilityText(v));
+
+/**
+ * A skill whose count answers are read as natural numbers, so a count typed
+ * with dot grouping ('1.350') is read as 1350 rather than as a decimal by the
+ * board's probability reader. Probability answers are never whole here.
+ * @param {Skill} skill
+ * @returns {Skill}
+ */
+const countsAsNaturals = (skill) => ({
+  ...skill,
+  make(rand) {
+    const q = skill.make(rand);
+    return Number.isInteger(q.answer) ? { ...q, read: readNatural } : q;
+  },
+});
 
 /**
  * @typedef {object} Condition
@@ -90,7 +105,7 @@ const listText = (list) =>
 const COLOURS = ['đỏ', 'xanh', 'vàng'];
 
 /** @type {Skill} */
-export const ketQua = {
+export const ketQua = countsAsNaturals({
   id: 'ket-qua',
   label: 'Bài 30. Kết quả có thể và kết quả thuận lợi',
   make(rand) {
@@ -169,10 +184,10 @@ export const ketQua = {
       ],
     };
   },
-};
+});
 
 /** @type {Skill} */
-export const tiSo = {
+export const tiSo = countsAsNaturals({
   id: 'ti-so',
   label: 'Bài 31. Cách tính xác suất của biến cố bằng tỉ số',
   make(rand) {
@@ -240,10 +255,10 @@ export const tiSo = {
       ],
     };
   },
-};
+});
 
 /** @type {Skill} */
-export const thucNghiem = {
+export const thucNghiem = countsAsNaturals({
   id: 'thuc-nghiem',
   label: 'Bài 32. Xác suất thực nghiệm và ứng dụng',
   make(rand) {
@@ -311,10 +326,10 @@ export const thucNghiem = {
       ],
     };
   },
-};
+});
 
 /** @type {Skill} */
-export const thucTe = {
+export const thucTe = countsAsNaturals({
   id: 'thuc-te',
   label: 'Vận dụng thực tế',
   make(rand) {
@@ -336,7 +351,7 @@ export const thucTe = {
       const red = int(rand, 2, 8);
       const blue = red + int(rand, 2, 8);
       return {
-        prompt: `Một hộp có ${red} viên bi đỏ và ${blue} viên bi xanh cùng kích thước. Cần cho thêm vào hộp ít nhất bao nhiêu viên bi đỏ để xác suất lấy ngẫu nhiên được bi đỏ bằng 1/2?`,
+        prompt: `Một hộp có ${red} viên bi đỏ và ${blue} viên bi xanh cùng kích thước. Cần cho thêm vào hộp bao nhiêu viên bi đỏ để xác suất lấy ngẫu nhiên được bi đỏ bằng 1/2?`,
         answer: blue - red,
         hints: ['Xác suất lấy được bi đỏ bằng 1/2 khi số bi đỏ bằng số bi xanh.'],
         steps: [
@@ -381,7 +396,7 @@ export const thucTe = {
       ],
     };
   },
-};
+});
 
 /** The three lessons of the chapter, for the practice lesson. */
 export const PRACTICE_SKILLS = [ketQua, tiSo, thucNghiem];
