@@ -3,7 +3,7 @@ export default {
   summary:
     'Luyện tập chung: phân tích đa thức thành nhân tử bằng đặt nhân tử chung, hằng đẳng thức và nhóm hạng tử, rồi vận dụng để tìm x, tính nhanh và giải bài toán thực tế.',
   intro:
-    'Phân tích đa thức thành nhân tử là công cụ dùng mãi về sau: để tìm $x$, để tính nhanh và để rút gọn phân thức ở chương tiếp theo. Bài luyện tập này giúp em chọn đúng phương pháp, phối hợp nhiều phương pháp và phân tích đến cùng.',
+    'Phân tích đa thức thành nhân tử là công cụ dùng mãi về sau: để tìm $x$, để tính nhanh và để rút gọn phân thức đại số sau này. Bài luyện tập này giúp em chọn đúng phương pháp, phối hợp nhiều phương pháp và phân tích đến cùng.',
   objectives: [
     'Chọn và phối hợp các phương pháp đặt nhân tử chung, dùng hằng đẳng thức, nhóm hạng tử.',
     'Phân tích triệt để: các nhân tử không còn phân tích tiếp được.',
@@ -69,11 +69,10 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Điền số thích hợp: $x^2 - 2xy + y^2 - 16 = (x - y - 4)(x - y + \\square)$.',
-      answer: 4,
-      hints: ['$x^2 - 2xy + y^2 = (x - y)^2$.', '$(x - y)^2 - 16$ là hiệu hai bình phương.'],
-      solution:
-        '$x^2 - 2xy + y^2 - 16 = (x - y)^2 - 4^2 = (x - y - 4)(x - y + 4)$. Ô trống là $4$.',
+      prompt: 'Điền số thích hợp: $x^2 + 2xy + y^2 - 9 = (x + y - 3)(x + y + \\square)$.',
+      answer: 3,
+      hints: ['$x^2 + 2xy + y^2 = (x + y)^2$.', '$(x + y)^2 - 9$ là hiệu hai bình phương.'],
+      solution: '$x^2 + 2xy + y^2 - 9 = (x + y)^2 - 3^2 = (x + y - 3)(x + y + 3)$. Ô trống là $3$.',
     },
     {
       type: 'choice',
@@ -109,11 +108,12 @@ export default {
     },
     {
       type: 'multi',
-      prompt: 'Chọn tất cả các giá trị của $x$ thoả mãn $x(x - 2) - 3(2 - x) = 0$.',
-      options: ['$2$', '$-2$', '$3$', '$-3$'],
+      prompt: 'Chọn tất cả các giá trị của $x$ thoả mãn $x(x - 5) - 2(5 - x) = 0$.',
+      options: ['$5$', '$-5$', '$2$', '$-2$'],
       answers: [0, 3],
-      hints: ['Đổi dấu: $-3(2 - x) = 3(x - 2)$.', 'Vế trái bằng $(x - 2)(x + 3)$.'],
-      solution: '$x(x - 2) + 3(x - 2) = (x - 2)(x + 3) = 0$, nên $x = 2$ hoặc $x = -3$.',
+      hints: ['Đổi dấu: $-2(5 - x) = 2(x - 5)$.', 'Vế trái bằng $(x - 5)(x + 2)$.'],
+      solution:
+        '$x(x - 5) - 2(5 - x) = x(x - 5) + 2(x - 5) = (x - 5)(x + 2) = 0$, nên $x - 5 = 0$ hoặc $x + 2 = 0$, tức $x = 5$ hoặc $x = -2$.',
     },
     {
       type: 'number',

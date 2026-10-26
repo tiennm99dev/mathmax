@@ -18,7 +18,7 @@
   /** @type {{ tone: 'ok' | 'warn' | 'info', text: string }} */
   let note = $state({
     tone: 'info',
-    text: 'Chọn một biểu thức ở cột trái, rồi chọn dạng tích ở cột phải mà em cho là bằng nó.',
+    text: 'Chọn một tổng hoặc hiệu hai lập phương, rồi chọn dạng tích mà em cho là bằng nó.',
   });
 
   const left = $derived(LEFT.find((c) => c.id === leftId) ?? null);
@@ -69,7 +69,7 @@
     done = {};
     leftId = null;
     rightId = null;
-    note = { tone: 'info', text: 'Bắt đầu lại: chọn một biểu thức ở cột trái.' };
+    note = { tone: 'info', text: 'Bắt đầu lại: chọn một tổng hoặc hiệu hai lập phương.' };
   }
 
   const compareText = $derived.by(() => {
@@ -94,12 +94,12 @@
 </script>
 
 <div class="space-y-4">
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-[1fr_1.6fr]">
+  <div class="space-y-4">
     <section aria-labelledby="{uid}-left">
       <h3 id="{uid}-left" class="mb-2 text-sm font-semibold text-slate-700">
         Tổng, hiệu hai lập phương
       </h3>
-      <ul class="space-y-2">
+      <ul class="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {#each LEFT as card (card.id)}
           <li>
             <button
@@ -121,7 +121,7 @@
 
     <section aria-labelledby="{uid}-right">
       <h3 id="{uid}-right" class="mb-2 text-sm font-semibold text-slate-700">Dạng tích</h3>
-      <ul class="grid grid-cols-1 gap-2 md:grid-cols-2">
+      <ul class="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {#each RIGHT as card (card.id)}
           <li>
             <button

@@ -136,11 +136,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Biết $a - b = 3$ và $ab = 10$. Tính $a^3 - b^3$.',
-      answer: 117,
+      prompt: 'Biết $a - b = 2$ và $ab = 15$. Tính $a^3 - b^3$.',
+      answer: 98,
       hints: ['$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$.', '$a^2 + ab + b^2 = (a - b)^2 + 3ab$.'],
       solution:
-        '$a^2 + ab + b^2 = (a - b)^2 + 3ab = 9 + 30 = 39$. Vậy $a^3 - b^3 = 3 \\cdot 39 = 117$.',
+        '$a^2 + ab + b^2 = (a - b)^2 + 3ab = 4 + 45 = 49$. Vậy $a^3 - b^3 = 2 \\cdot 49 = 98$ (kiểm tra với $a = 5$, $b = 3$: $125 - 27 = 98$).',
     },
     {
       type: 'match',

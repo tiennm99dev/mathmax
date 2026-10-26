@@ -73,7 +73,7 @@ export default {
   explore: {
     title: 'Ghép thẻ hằng đẳng thức',
     instruction:
-      'Chọn một tổng hoặc hiệu hai lập phương ở cột trái và một dạng tích ở cột phải. Kéo thanh trượt để so giá trị hai bên tại một giá trị x, rồi bấm "Ghép cặp". Chú ý: có cặp bằng nhau tại một giá trị x nhưng vẫn không phải hằng đẳng thức.',
+      'Chọn một tổng hoặc hiệu hai lập phương ở nhóm trên và một dạng tích ở nhóm dưới. Kéo thanh trượt để so giá trị hai bên tại một giá trị x, rồi bấm "Ghép cặp". Chú ý: có cặp bằng nhau tại một giá trị x nhưng vẫn không phải hằng đẳng thức.',
   },
   examples: [
     {
