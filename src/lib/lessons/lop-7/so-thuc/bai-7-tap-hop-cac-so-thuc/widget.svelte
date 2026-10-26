@@ -22,6 +22,11 @@
   const placedCards = $derived(placed.map((id) => /** @type {NumberCard} */ (byId(id))));
   const focusCard = $derived(byId(focus));
   const finished = $derived(placed.length === CARDS.length);
+  /** The focused number has at most four digits after the comma, so '=' is exact. */
+  const focusExact = $derived(
+    focusCard !== null &&
+      Math.abs(focusCard.value * 1e4 - Math.round(focusCard.value * 1e4)) < 1e-9,
+  );
 
   /** @param {SetId} region */
   const inRegion = (region) => placedCards.filter((c) => c.set === region);
@@ -173,8 +178,8 @@
         <ul class="mt-2 space-y-1 px-2 text-slate-800">
           <li>
             <span class="font-semibold">{focusCard.label}</span>
-            {focusCard.set === 'I' ? '≈' : '='}
-            {formatNumber(focusCard.value, focusCard.set === 'I' ? 3 : 4)} thuộc
+            {focusExact ? '=' : '≈'}
+            {formatNumber(focusCard.value, focusExact ? 4 : 3)} thuộc
             {memberships(focusCard).join(', ')}.
           </li>
           <li>Số đối: {focusCard.opposite}.</li>

@@ -226,7 +226,11 @@
   {#if known}
     <div class="rounded-lg border border-slate-200 bg-white p-2">
       <p class="px-2 text-sm text-slate-700">
-        √{area} nằm giữa {known.lo} và {known.hi} trên trục số:
+        {#if exact}
+          √{area} = {known.lo} trên trục số:
+        {:else}
+          √{area} nằm giữa {known.lo} và {known.hi} trên trục số:
+        {/if}
       </p>
       {#key `${area}-${found}`}
         <NumberLine

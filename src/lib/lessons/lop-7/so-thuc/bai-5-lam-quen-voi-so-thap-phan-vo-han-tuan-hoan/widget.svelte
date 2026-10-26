@@ -83,10 +83,13 @@
       shown = rows.length;
       return;
     }
-    timer = setInterval(() => {
-      if (shown >= rows.length) stop();
-      else shown++;
-    }, 550);
+    timer = setInterval(
+      () => {
+        if (shown >= rows.length) stop();
+        else shown++;
+      },
+      rows.length > 12 ? 150 : 550,
+    );
   }
 
   function restart() {
@@ -168,9 +171,9 @@
   {/if}
 
   <div class="rounded-lg border border-slate-200 bg-white p-3">
-    <p class="text-lg text-slate-900">
+    <p class="text-lg break-words text-slate-900">
       <span class="font-semibold">{p} : {q} =</span>
-      <span class="font-mono tabular-nums"
+      <span class="font-mono break-all tabular-nums"
         >{e.negative
           ? '−'
           : ''}{e.whole}{#if rows.length > 0},{/if}{#each rows.slice(0, shown) as r, i (i)}<span
@@ -216,7 +219,7 @@
     <button type="button" class={button.quiet} onclick={restart}>Làm lại</button>
   </div>
 
-  <div aria-live="polite" class="space-y-1">
+  <div aria-live="polite" class="space-y-1 break-words">
     {#if done && rows.length > 0}
       <p class="font-semibold text-indigo-800">{verdict}</p>
     {:else if rows.length === 0}

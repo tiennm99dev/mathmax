@@ -287,7 +287,7 @@ export const canBacHai = {
       prompt: `Dùng máy tính cầm tay tính √${s} rồi làm tròn kết quả đến ${place}.`,
       answer: scaledValue(scaled, places),
       hints: [
-        `Máy tính cho √${s} = ${dec(sqrtFloor(s, 2), 2)}…`,
+        `Máy tính cho √${s} = ${dec(sqrtFloor(s, places + 2), places + 2)}…`,
         `Nhìn chữ số ngay bên phải ${place}.`,
       ],
       steps: [
