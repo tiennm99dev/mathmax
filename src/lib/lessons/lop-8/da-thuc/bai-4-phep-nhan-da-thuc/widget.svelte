@@ -158,9 +158,9 @@
     <div class="{cardClass} space-y-3 p-3">
       <p class="text-sm font-semibold text-slate-700">Thử lại bằng giá trị cụ thể</p>
       <div class="flex flex-wrap gap-4">
-        <Stepper label="x =" bind:value={x} min={-5} max={5} format={intText} />
+        <Stepper label="Giá trị x" bind:value={x} min={-5} max={5} format={intText} />
         {#if hasVarY}
-          <Stepper label="y =" bind:value={y} min={-5} max={5} format={intText} />
+          <Stepper label="Giá trị y" bind:value={y} min={-5} max={5} format={intText} />
         {/if}
       </div>
       <p class="text-sm text-slate-700 tabular-nums" aria-live="polite">

@@ -153,7 +153,7 @@
   <p class="text-sm text-slate-700 tabular-nums">
     A = <span class="font-semibold">{polyText(r.a)}</span>; B =
     <span class="font-semibold">{polyText(r.b)}</span>. Tính
-    <span class="font-semibold">A {sub ? MINUS : '+'} B</span>.
+    <span class="font-semibold whitespace-nowrap">A {sub ? MINUS : '+'} B</span>.
   </p>
 
   <div class="{cardClass} overflow-x-auto p-3">

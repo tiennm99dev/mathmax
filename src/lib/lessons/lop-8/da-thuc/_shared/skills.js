@@ -93,7 +93,8 @@ function point(rand) {
  * @param {Record<string, number>} v
  */
 function evalLine(m, v) {
-  const parts = [intText(m.coef)];
+  // A coefficient of 1 is not written, as in the monomial itself.
+  const parts = m.coef === 1 ? [] : [intText(m.coef)];
   for (const [name, e] of Object.entries(m.vars)) {
     parts.push(`${operand(v[name])}${e === 1 ? '' : sup(e)}`);
   }
@@ -165,7 +166,8 @@ export const donThuc = {
         ],
       };
     }
-    const m = randomMono(rand, nonZero(rand, -4, 4), 2);
+    // Both variables occur, so each given value is used.
+    const m = mono(nonZero(rand, -4, 4), { x: int(rand, 1, 2), y: int(rand, 1, 2) });
     const val = point(rand);
     return {
       prompt: `Tính giá trị của đơn thức ${monoText(m)} tại ${at(val)}.`,
