@@ -8,7 +8,7 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { sub } from './transversal.js';
+import { PAIRS, sub } from './transversal.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -181,3 +181,188 @@ export const songSong = {
 
 /** Skills of the practice on page 50: Bài 8 and Bài 9. */
 export const PAGE_50_SKILLS = [keBu, doiDinh, phanGiac, songSong];
+
+/** @param {number} n */
+const pairsOf = (n) => (n * (n - 1)) / 2;
+
+/** @type {Skill} */
+export const tinhChat = {
+  id: 'tinh-chat',
+  label: 'Bài 10. Tính chất hai đường thẳng song song',
+  make(rand) {
+    const lead =
+      'Đường thẳng c cắt hai đường thẳng song song a, b tại A, B (đánh số góc như Bài 9).';
+    if (pick(rand, ['pair', 'pair', 'ratio']) === 'ratio') {
+      const i = pick(rand, [1, 2, 3, 4]);
+      const j = (i % 4) + 1;
+      const k = pick(rand, [2, 3, 4, 5, 8, 9]);
+      const small = 180 / (k + 1);
+      const big = k * small;
+      const t = pick(rand, [1, 2, 3, 4]);
+      const value = t % 2 === i % 2 ? big : small;
+      const at = `Â${sub(t)}`;
+      const known = t === i || t === j;
+      const from = t % 2 === i % 2 ? i : j;
+      return {
+        prompt: `${lead} Biết Â${sub(i)} gấp ${k} lần Â${sub(j)}. Tính B̂${sub(t)} (độ).`,
+        answer: value,
+        hints: [
+          `Â${sub(i)} và Â${sub(j)} là hai góc kề bù, nên tổng của chúng bằng 180°.`,
+          `Từ góc ở đỉnh A, dùng cặp góc đồng vị Â${sub(t)} và B̂${sub(t)}.`,
+        ],
+        steps: [
+          `Â${sub(i)} + Â${sub(j)} = 180° (kề bù) nên ${k + 1} · Â${sub(j)} = 180°, Â${sub(j)} = ${small}°, Â${sub(i)} = ${big}°.`,
+          `${known ? '' : `${at} đối đỉnh với Â${sub(from)} nên ${at} = ${value}°. `}a // b nên B̂${sub(t)} = ${at} = ${value}° (hai góc đồng vị).`,
+        ],
+      };
+    }
+    const i = pick(rand, [1, 2, 3, 4]);
+    const k = pick(rand, [1, 2, 3, 4]);
+    const a = angle(rand, 25, 155);
+    const same = i % 2 === k % 2;
+    const answer = same ? a : 180 - a;
+    const at = `Â${sub(i)}`;
+    const bt = `B̂${sub(k)}`;
+    const bi = `B̂${sub(i)}`;
+    const name = (/** @type {keyof typeof PAIRS} */ kind) =>
+      PAIRS[kind].some(([p, q]) => p === i && q === k);
+    /** @type {string[]} */
+    let steps;
+    if (name('so-le-trong')) {
+      steps = [`${at} và ${bt} là hai góc so le trong, a // b nên ${bt} = ${at} = ${a}°.`];
+    } else if (name('trong-cung-phia')) {
+      steps = [
+        `${at} và ${bt} là hai góc trong cùng phía, a // b nên ${at} + ${bt} = 180°.`,
+        `${bt} = 180° − ${a}° = ${answer}°.`,
+      ];
+    } else {
+      steps = [`a // b nên ${bi} = ${at} = ${a}° (hai góc đồng vị).`];
+      if (k !== i) {
+        steps.push(
+          same
+            ? `${bt} và ${bi} là hai góc đối đỉnh nên ${bt} = ${a}°.`
+            : `${bt} và ${bi} là hai góc kề bù nên ${bt} = 180° − ${a}° = ${answer}°.`,
+        );
+      }
+    }
+    return {
+      prompt: `${lead} Biết ${at} = ${a}°. Tính ${bt} (độ).`,
+      answer,
+      hints: [
+        `${at} ở đỉnh A, ${bt} ở đỉnh B: hai góc đó ở vị trí nào đối với nhau?`,
+        'Hai đường thẳng song song: góc so le trong, góc đồng vị bằng nhau; góc trong cùng phía bù nhau.',
+      ],
+      steps,
+    };
+  },
+};
+
+/** @type {Skill} */
+export const keThem = {
+  id: 'ke-them',
+  label: 'Bài 10. Kẻ thêm đường thẳng song song',
+  make(rand) {
+    const kind = pick(rand, ['sum', 'part', 'trapezoid']);
+    if (kind === 'trapezoid') {
+      const k = pick(rand, [2, 3, 4, 5]);
+      const c = 180 / (k + 1);
+      const b = k * c;
+      const askB = rand() < 0.5;
+      /** @type {string[]} */
+      const steps = [
+        'AB // CD, đường thẳng BC cắt hai đường thẳng đó, nên ABC + BCD = 180° (hai góc trong cùng phía).',
+      ];
+      if (askB) steps.push(`${k + 1} · BCD = 180°, BCD = ${c}°, nên ABC = ${k} · ${c}° = ${b}°.`);
+      else steps.push(`ABC = ${k} · BCD nên ${k + 1} · BCD = 180°, BCD = 180° : ${k + 1} = ${c}°.`);
+      return {
+        prompt: `Tứ giác ABCD có AB // CD, AD vuông góc với cả AB và CD, góc ABC gấp ${k} lần góc BCD. Tính góc ${askB ? 'ABC' : 'BCD'} (độ).`,
+        answer: askB ? b : c,
+        hints: [
+          'Hai góc ABC và BCD nằm ở vị trí nào đối với hai đường thẳng song song AB, CD và đường thẳng BC?',
+          'Hai góc trong cùng phía tạo bởi một đường thẳng cắt hai đường thẳng song song có tổng 180°.',
+        ],
+        steps,
+      };
+    }
+    const p = int(rand, 20, 80);
+    const q = int(rand, 20, 80);
+    const s = p + q;
+    const lead =
+      'Hai tia Ax, By song song, cùng hướng; điểm M nằm giữa hai đường thẳng chứa chúng, về phía hai tia đó.';
+    const draw = "Qua M kẻ đường thẳng zz' // Ax, tia Mz' ngược hướng với Ax; khi đó zz' // By.";
+    if (kind === 'sum') {
+      return {
+        prompt: `${lead} Biết xÂM = ${p}°, yB̂M = ${q}°. Tính AM̂B (độ).`,
+        answer: s,
+        hints: [
+          'Qua M kẻ một đường thẳng song song với Ax.',
+          'Đường thẳng đó cũng song song với By; dùng hai cặp góc so le trong.',
+        ],
+        steps: [
+          draw,
+          `AM̂z' = xÂM = ${p}° và z'M̂B = yB̂M = ${q}° (các cặp góc so le trong).`,
+          `AM̂B = AM̂z' + z'M̂B = ${p}° + ${q}° = ${s}°.`,
+        ],
+      };
+    }
+    return {
+      prompt: `${lead} Biết AM̂B = ${s}°, xÂM = ${p}°. Tính yB̂M (độ).`,
+      answer: q,
+      hints: [
+        'Qua M kẻ một đường thẳng song song với Ax.',
+        'AM̂B bằng tổng của hai góc so le trong với xÂM và yB̂M.',
+      ],
+      steps: [
+        draw,
+        `AM̂z' = xÂM = ${p}° (so le trong), nên z'M̂B = ${s}° − ${p}° = ${q}°.`,
+        `yB̂M = z'M̂B = ${q}° (so le trong).`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const suyLuan = {
+  id: 'suy-luan',
+  label: 'Bài 11. Suy luận từ định lí',
+  make(rand) {
+    const k = int(rand, 2, 4);
+    const m = int(rand, 2, 3);
+    const lead = `Có ${k} đường thẳng phân biệt đôi một song song và ${m} đường thẳng phân biệt khác, mỗi đường vuông góc với một trong ${k} đường thẳng đó.`;
+    if (rand() < 0.5) {
+      return {
+        prompt: `${lead} Có tất cả bao nhiêu cặp đường thẳng vuông góc với nhau?`,
+        answer: k * m,
+        hints: [
+          'Một đường thẳng vuông góc với một trong hai đường thẳng song song thì sao với đường kia?',
+          `Mỗi đường trong ${m} đường vuông góc với bao nhiêu đường song song?`,
+        ],
+        steps: [
+          `Đường thẳng vuông góc với một trong hai đường thẳng song song thì vuông góc với đường kia, nên mỗi đường trong ${m} đường vuông góc với cả ${k} đường song song.`,
+          `Các đường cùng nhóm không vuông góc với nhau (chúng song song). Số cặp vuông góc: ${k} · ${m} = ${k * m}.`,
+        ],
+      };
+    }
+    const pk = pairsOf(k);
+    const pm = pairsOf(m);
+    return {
+      prompt: `${lead} Có tất cả bao nhiêu cặp đường thẳng song song với nhau?`,
+      answer: pk + pm,
+      hints: [
+        `Các đường trong ${m} đường kia cùng vuông góc với mọi đường song song; hai đường thẳng phân biệt cùng vuông góc với một đường thẳng thì sao?`,
+        'Đếm số cặp trong từng nhóm đường thẳng song song rồi cộng lại.',
+      ],
+      steps: [
+        `${k} đường song song tạo thành ${pk} cặp song song.`,
+        `${m} đường còn lại cùng vuông góc với một đường thẳng nên đôi một song song, tạo thành ${pm} cặp.`,
+        `Hai đường ở hai nhóm khác nhau thì vuông góc, không song song. Tổng: ${pk} + ${pm} = ${pk + pm}.`,
+      ],
+    };
+  },
+};
+
+/** Skills of the practice on page 58: Bài 10 and Bài 11. */
+export const PAGE_58_SKILLS = [tinhChat, keThem, suyLuan];
+
+/** Every skill of the chapter, for the end-of-chapter review. */
+export const CHAPTER_SKILLS = [...PAGE_50_SKILLS, ...PAGE_58_SKILLS];
