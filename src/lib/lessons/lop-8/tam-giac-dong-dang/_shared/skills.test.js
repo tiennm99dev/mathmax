@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { rng, buildSet } from '#lib/core/drill.js';
 import { readNumber } from '#lib/core/decimal.js';
 import {
+  CHAPTER_SKILLS,
   PRACTICE_108,
   PRACTICE_91,
   answerText,
@@ -9,11 +10,12 @@ import {
   hinhDongDang,
   pythagore,
   tamGiacVuong,
+  thucTe,
   truongHop,
 } from './skills.js';
 
 const RUNS = 400;
-const ALL = [...PRACTICE_91, ...PRACTICE_108];
+const ALL = [...PRACTICE_91, ...PRACTICE_108, thucTe];
 
 /**
  * The numbers named `XY = …` in a prompt, read with a decimal comma.
@@ -142,6 +144,25 @@ describe('chapter skills', () => {
     }
   });
 
+  it('solves the applied problems', () => {
+    for (const q of questions(thucTe, 29)) {
+      const nums = numbers(q.prompt);
+      if (/con sông/.test(q.prompt)) {
+        const [bc, ce, de] = nums.slice(-3);
+        expect(close(q.answer * ce, de * bc)).toBe(true);
+      } else if (/gương/.test(q.prompt)) {
+        const [a, b, eye] = nums;
+        expect(close(q.answer * a, eye * b)).toBe(true);
+      } else if (/cửa sổ/.test(q.prompt)) {
+        const [d, w, far] = nums;
+        expect(close(q.answer * d, w * (d + far))).toBe(true);
+      } else {
+        const [stake, shadow, big] = nums;
+        expect(close(q.answer * shadow, stake * big)).toBe(true);
+      }
+    }
+  });
+
   it('builds full sets without repeats', () => {
     const p91 = buildSet(PRACTICE_91, 5, 1);
     expect(p91).toHaveLength(10);
@@ -149,5 +170,9 @@ describe('chapter skills', () => {
     const p108 = buildSet(PRACTICE_108, 4, 1);
     expect(p108).toHaveLength(12);
     expect(new Set(p108.map((q) => q.prompt)).size).toBe(12);
+    const chapter = buildSet(CHAPTER_SKILLS, 2, 1);
+    expect(chapter).toHaveLength(12);
+    expect(new Set(chapter.map((q) => q.prompt)).size).toBe(12);
+    expect(new Set(chapter.map((q) => q.skill)).size).toBe(6);
   });
 });

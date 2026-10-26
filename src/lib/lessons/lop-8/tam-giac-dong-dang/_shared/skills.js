@@ -395,8 +395,104 @@ export const hinhDongDang = {
   },
 };
 
+/** @type {Skill} */
+export const thucTe = {
+  id: 'thuc-te',
+  label: 'Vận dụng thực tế',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      // Width of a river: AB ⊥ BE, DE ⊥ BE, A, C, D collinear, so
+      // △ABC ∽ △DEC (g.g) and AB = DE · BC / CE with BC = m · CE.
+      const ce = int(rand, 4, 12);
+      const m = int(rand, 2, 5);
+      const de = int(rand, 5, 15);
+      const bc = ce * m;
+      return {
+        prompt: `Để đo khoảng cách AB qua một con sông, người ta đứng ở bờ có điểm B, kẻ BE vuông góc với AB, lấy C trên BE rồi dựng ED vuông góc với BE sao cho A, C, D thẳng hàng (D, A ở hai phía của BE). Đo được BC = ${bc} m, CE = ${ce} m, DE = ${de} m. Tính AB (mét).`,
+        answer: de * m,
+        unit: 'm',
+        hints: [
+          'Hai tam giác vuông ABC và DEC có hai góc ở C đối đỉnh.',
+          '△ABC ∽ △DEC nên AB/DE = BC/EC.',
+        ],
+        steps: [
+          '△ABC và △DEC vuông tại B, E và có góc ACB = góc DCE (đối đỉnh), nên △ABC ∽ △DEC.',
+          `AB/DE = BC/EC = ${bc} : ${ce} = ${m}.`,
+          `AB = ${m} · ${de} = ${de * m} m.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      // A mirror on the ground: equal angles at the mirror give similar
+      // right triangles, tree = eye · (tree to mirror) / (person to mirror).
+      const eye = pick(rand, [1.5, 1.6]);
+      const a = pick(rand, [1, 1.5, 2]);
+      const m = int(rand, 4, 10);
+      const b = tidy(a * m);
+      return {
+        prompt: `Bạn Minh đặt một chiếc gương phẳng nằm trên mặt đất, lùi lại đến khi nhìn thấy ngọn cây trong gương. Khi đó Minh đứng cách gương ${t(a)} m, gốc cây cách gương ${t(b)} m, mắt Minh cách mặt đất ${t(eye)} m. Cây cao bao nhiêu mét?`,
+        answer: tidy(eye * m),
+        unit: 'm',
+        hints: [
+          'Góc tới bằng góc phản xạ nên hai tam giác vuông (người – gương, cây – gương) có một góc nhọn bằng nhau.',
+          'Chiều cao cây / chiều cao mắt = khoảng cách cây – gương / khoảng cách người – gương.',
+        ],
+        steps: [
+          'Hai tam giác vuông có góc nhọn ở gương bằng nhau nên đồng dạng.',
+          `Chiều cao cây / ${t(eye)} = ${t(b)} : ${t(a)} = ${m}.`,
+          `Chiều cao cây = ${t(eye)} · ${m} = ${t(eye * m)} m.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      // Looking through a window: eye d metres from a window w metres
+      // tall sees a strip of the opposite wall w · (d + D) / d tall.
+      const d = pick(rand, [1, 2]);
+      const w = pick(rand, [0.6, 0.8, 1, 1.2]);
+      const m = int(rand, 10, 30);
+      const far = d * (m - 1);
+      return {
+        prompt: `Bạn Lan đứng cách cửa sổ ${d} m, nhìn qua cửa sổ cao ${t(w)} m sang bức tường của toà nhà đối diện cách cửa sổ ${far} m. Mép trên và mép dưới cửa sổ giới hạn tầm nhìn. Lan nhìn thấy được một phần bức tường cao bao nhiêu mét?`,
+        answer: tidy(w * m),
+        unit: 'm',
+        hints: [
+          'Tia nhìn qua hai mép cửa sổ tạo thành hai tam giác chung đỉnh ở mắt Lan, có cạnh đối diện song song.',
+          'Chiều cao phần tường / chiều cao cửa sổ = khoảng cách từ mắt đến tường / khoảng cách từ mắt đến cửa sổ.',
+        ],
+        steps: [
+          `Khoảng cách từ mắt đến tường là ${d} + ${far} = ${d + far} m.`,
+          `Hai tam giác đồng dạng theo tỉ số ${d + far} : ${d} = ${m}.`,
+          `Phần tường nhìn thấy cao ${t(w)} · ${m} = ${t(w * m)} m.`,
+        ],
+      };
+    }
+    // Height of a pyramid from the shadow of a stake.
+    const stake = pick(rand, [1, 1.2, 2]);
+    const shadow = pick(rand, [1.5, 2, 2.5]);
+    const m = int(rand, 50, 80);
+    const big = tidy(shadow * m);
+    return {
+      prompt: `Cùng một thời điểm, một cây cọc cao ${t(stake)} m cắm vuông góc với mặt đất có bóng dài ${t(shadow)} m, còn bóng của một kim tự tháp (tính từ tâm đáy) dài ${t(big)} m. Tính chiều cao kim tự tháp (mét).`,
+      answer: tidy(stake * m),
+      unit: 'm',
+      hints: [
+        'Tia nắng song song nên hai tam giác vuông (vật – bóng) có góc nhọn bằng nhau.',
+        'Chiều cao tỉ lệ với độ dài bóng.',
+      ],
+      steps: [
+        `Tỉ số đồng dạng: ${t(big)} : ${t(shadow)} = ${m}.`,
+        `Chiều cao kim tự tháp = ${t(stake)} · ${m} = ${t(stake * m)} m.`,
+      ],
+    };
+  },
+};
+
 /** Bài 33 and 34, practised on "Luyện tập chung trang 91". */
 export const PRACTICE_91 = [dongDang, truongHop];
 
 /** Bài 35, 36 and 37, practised on "Luyện tập chung trang 108". */
 export const PRACTICE_108 = [pythagore, tamGiacVuong, hinhDongDang];
+
+/** The whole chapter and its applied problems, for the end-of-chapter test. */
+export const CHAPTER_SKILLS = [dongDang, truongHop, pythagore, tamGiacVuong, hinhDongDang, thucTe];
