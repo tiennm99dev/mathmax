@@ -43,6 +43,12 @@
   const done = $derived(last.final);
   const division = $derived(done ? null : divideOut(eq));
   const collectable = $derived(canCollect(eq));
+  /** The root as `x = …`, also when the last step reads `3 = x`. */
+  const rootTex = $derived.by(() => {
+    if (!done) return '';
+    const value = solved(eq);
+    return last.tex.startsWith('x = ') || !value ? last.tex : `x = ${fracTex(value)}`;
+  });
 
   /** @param {Step} next @param {string} text */
   function push(next, text) {
@@ -140,7 +146,7 @@
   <FeedbackNote
     tone={done ? 'ok' : 'info'}
     text={done
-      ? `Xong! Nghiệm của phương trình là ${texText(last.tex)}. Em có thể thay vào phương trình ban đầu để thử lại.`
+      ? `Xong! Nghiệm của phương trình là ${texText(rootTex)}. Em có thể thay vào phương trình ban đầu để thử lại.`
       : note}
   />
 

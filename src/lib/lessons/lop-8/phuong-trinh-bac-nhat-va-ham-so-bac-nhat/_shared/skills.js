@@ -184,7 +184,7 @@ export const lapPhuongTrinh = {
       const t = int(rand, 1, 4);
       const d = (v1 + v2) * t;
       return {
-        prompt: `Hai bến A và B cách nhau ${d} km. Cùng một lúc, một xe đi từ A với vận tốc ${v1} km/h và một xe đi từ B với vận tốc ${v2} km/h, ngược chiều nhau. Sau bao nhiêu giờ hai xe gặp nhau?`,
+        prompt: `Hai địa điểm A và B cách nhau ${d} km. Cùng một lúc, một xe đi từ A với vận tốc ${v1} km/h và một xe đi từ B với vận tốc ${v2} km/h, ngược chiều nhau. Sau bao nhiêu giờ hai xe gặp nhau?`,
         answer: t,
         unit: 'giờ',
         hints: [
@@ -207,7 +207,7 @@ export const lapPhuongTrinh = {
         if (!Number.isInteger(dv) || dv < 10 || dv > 40) continue;
         const v2 = v1 + dv;
         return {
-          prompt: `Một xe máy khởi hành từ A với vận tốc ${v1} km/h. Sau đó ${h} giờ, một ô tô cũng khởi hành từ A đi cùng chiều với vận tốc ${v2} km/h. Sau bao nhiêu giờ kể từ lúc khởi hành thì ô tô đuổi kịp xe máy?`,
+          prompt: `Một xe máy khởi hành từ A với vận tốc ${v1} km/h. Sau đó ${h} giờ, một ô tô cũng khởi hành từ A đi cùng chiều với vận tốc ${v2} km/h. Sau bao nhiêu giờ kể từ lúc ô tô khởi hành thì ô tô đuổi kịp xe máy?`,
           answer: x,
           unit: 'giờ',
           hints: [
