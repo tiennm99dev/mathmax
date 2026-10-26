@@ -134,7 +134,7 @@ export default {
     },
     {
       type: 'multi',
-      prompt: 'Những cách viết gọn nào sau đây là đúng?',
+      prompt: 'Những đẳng thức nào sau đây đúng với mọi giá trị của các biến?',
       options: [
         '$1 \\cdot x^2 = x^2$',
         '$(-1)xy = -xy$',

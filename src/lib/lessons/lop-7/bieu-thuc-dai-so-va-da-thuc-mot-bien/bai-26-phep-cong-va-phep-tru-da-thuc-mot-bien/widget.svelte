@@ -34,6 +34,7 @@
   const tint = (e) => `background-color: ${colorAt(e)}1f; border-color: ${colorAt(e)};`;
   /** @param {number} c @param {number} e */
   const cellTex = (c, e) => (c === 0 ? '' : termTex({ c, e }));
+  const uid = $props.id();
 </script>
 
 <div class="space-y-4">
@@ -82,18 +83,21 @@
       </p>
     </div>
   {:else}
+    <p class="text-center text-sm text-slate-600" id="{uid}-cap">
+      {op === '+' ? 'Cộng' : 'Trừ'} theo cột: mỗi cột chứa các hạng tử cùng bậc
+    </p>
     <div class="overflow-x-auto">
-      <table class="mx-auto border-collapse text-center text-lg">
-        <caption class="mb-1 caption-top text-sm text-wrap text-slate-600">
-          {op === '+' ? 'Cộng' : 'Trừ'} theo cột: mỗi cột chứa các hạng tử cùng bậc
-        </caption>
+      <table
+        class="mx-auto border-collapse text-center text-base sm:text-lg"
+        aria-labelledby="{uid}-cap"
+      >
         <thead>
           <tr>
             <th scope="col" class="px-2 py-1 text-sm font-normal text-slate-500"></th>
             {#each cols as c (c.e)}
               <th
                 scope="col"
-                class="border-b-4 px-2 py-1 text-sm font-semibold whitespace-nowrap"
+                class="border-b-4 px-1 py-1 text-sm sm:px-2 font-semibold whitespace-nowrap"
                 style={tint(c.e)}
               >
                 Bậc {c.e}
@@ -105,7 +109,9 @@
           <tr>
             <th scope="row" class="px-1 py-1 text-left font-semibold whitespace-nowrap">P(x)</th>
             {#each cols as c (c.e)}
-              <td class="min-w-14 px-2 py-2"><Tex math={cellTex(c.a, c.e)} /></td>
+              <td class="min-w-12 px-1 py-2 sm:min-w-14 sm:px-2"
+                ><Tex math={cellTex(c.a, c.e)} /></td
+              >
             {/each}
           </tr>
           <tr>
@@ -113,13 +119,18 @@
               >{op === '+' ? '+' : '−'} Q(x)</th
             >
             {#each cols as c (c.e)}
-              <td class="min-w-14 px-2 py-2"><Tex math={cellTex(c.b, c.e)} /></td>
+              <td class="min-w-12 px-1 py-2 sm:min-w-14 sm:px-2"
+                ><Tex math={cellTex(c.b, c.e)} /></td
+              >
             {/each}
           </tr>
           <tr class="border-t-2 border-slate-700">
             <th scope="row" class="px-1 py-1 text-left font-semibold whitespace-nowrap">Kết quả</th>
             {#each cols as c, i (c.e)}
-              <td class="min-w-14 px-2 py-2 font-semibold" style={i < shown ? tint(c.e) : ''}>
+              <td
+                class="min-w-12 px-1 py-2 sm:min-w-14 sm:px-2 font-semibold"
+                style={i < shown ? tint(c.e) : ''}
+              >
                 {#if i < shown}
                   <Tex math={c.r === 0 ? '0' : termTex({ c: c.r, e: c.e })} />
                 {:else}

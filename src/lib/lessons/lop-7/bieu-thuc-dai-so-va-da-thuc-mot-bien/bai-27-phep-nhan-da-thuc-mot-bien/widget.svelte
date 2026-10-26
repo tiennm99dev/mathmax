@@ -37,6 +37,8 @@
       [...product.p, ...product.q].every((c) => c > 0),
   );
 
+  const uid = $props.id();
+
   const X = 110;
   const U = 22;
   /** @param {{ c: number, e: number }} t */
@@ -79,11 +81,11 @@
     onchange={choose}
   />
 
+  <p class="text-center text-sm text-slate-600" id="{uid}-cap">
+    Bảng nhân: hàng là các hạng tử của thừa số thứ nhất, cột là các hạng tử của thừa số thứ hai
+  </p>
   <div class="overflow-x-auto">
-    <table class="mx-auto border-collapse text-center text-lg">
-      <caption class="mb-1 text-sm text-slate-600">
-        Bảng nhân: hàng là các hạng tử của thừa số thứ nhất, cột là các hạng tử của thừa số thứ hai
-      </caption>
+    <table class="mx-auto border-collapse text-center text-lg" aria-labelledby="{uid}-cap">
       <thead>
         <tr>
           <th scope="col" class="p-2 text-base"><Tex math="\times" /></th>

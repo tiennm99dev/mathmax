@@ -25,7 +25,7 @@ export default {
         },
         {
           type: 'tex',
-          tex: '2x \\cdot (3x^2 - x + 5) = 2x \\cdot 3x^2 + 2x \\cdot (-x) + 2x \\cdot 5 = 6x^3 - 2x^2 + 10x',
+          tex: '\\begin{aligned} &2x \\cdot (3x^2 - x + 5) \\\\ &= 2x \\cdot 3x^2 + 2x \\cdot (-x) + 2x \\cdot 5 \\\\ &= 6x^3 - 2x^2 + 10x \\end{aligned}',
         },
         {
           type: 'callout',
@@ -46,7 +46,7 @@ export default {
         },
         {
           type: 'tex',
-          tex: '(2x + 3)(x - 1) = 2x \\cdot x + 2x \\cdot (-1) + 3 \\cdot x + 3 \\cdot (-1) = 2x^2 - 2x + 3x - 3 = 2x^2 + x - 3',
+          tex: '\\begin{aligned} &(2x + 3)(x - 1) \\\\ &= 2x \\cdot x + 2x \\cdot (-1) + 3 \\cdot x + 3 \\cdot (-1) \\\\ &= 2x^2 - 2x + 3x - 3 \\\\ &= 2x^2 + x - 3 \\end{aligned}',
         },
         {
           type: 'p',

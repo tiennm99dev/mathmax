@@ -25,7 +25,7 @@ export default {
         },
         {
           type: 'tex',
-          tex: '\\begin{aligned} P(x) + Q(x) &= (2x^3 - 3x^2 + 5x - 1) + (-2x^3 + x^2 + 4) \\\\ &= (2x^3 - 2x^3) + (-3x^2 + x^2) + 5x + (-1 + 4) \\\\ &= -2x^2 + 5x + 3. \\end{aligned}',
+          tex: '\\begin{aligned} P(x) + Q(x) &= (2x^3 - 3x^2 + 5x - 1) \\\\ &\\quad + (-2x^3 + x^2 + 4) \\\\ &= (2x^3 - 2x^3) + (-3x^2 + x^2) \\\\ &\\quad + 5x + (-1 + 4) \\\\ &= -2x^2 + 5x + 3. \\end{aligned}',
         },
         {
           type: 'callout',
@@ -60,7 +60,7 @@ export default {
         },
         {
           type: 'tex',
-          tex: '\\begin{aligned} P(x) - Q(x) &= (2x^3 - 3x^2 + 5x - 1) - (-2x^3 + x^2 + 4) \\\\ &= 2x^3 - 3x^2 + 5x - 1 + 2x^3 - x^2 - 4 \\\\ &= 4x^3 - 4x^2 + 5x - 5. \\end{aligned}',
+          tex: '\\begin{aligned} P(x) - Q(x) &= (2x^3 - 3x^2 + 5x - 1) \\\\ &\\quad - (-2x^3 + x^2 + 4) \\\\ &= 2x^3 - 3x^2 + 5x - 1 \\\\ &\\quad + 2x^3 - x^2 - 4 \\\\ &= 4x^3 - 4x^2 + 5x - 5. \\end{aligned}',
         },
         {
           type: 'p',

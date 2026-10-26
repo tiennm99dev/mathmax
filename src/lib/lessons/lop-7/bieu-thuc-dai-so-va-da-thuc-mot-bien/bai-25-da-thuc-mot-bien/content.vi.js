@@ -54,7 +54,7 @@ export default {
         },
         {
           type: 'tex',
-          tex: '-3x^2 - 12 + x^5 + x^2 - 2x^4 = x^5 - 2x^4 + (-3x^2 + x^2) - 12 = x^5 - 2x^4 - 2x^2 - 12',
+          tex: '\\begin{aligned} &-3x^2 - 12 + x^5 + x^2 - 2x^4 \\\\ &= x^5 - 2x^4 + (-3x^2 + x^2) - 12 \\\\ &= x^5 - 2x^4 - 2x^2 - 12 \\end{aligned}',
         },
         {
           type: 'p',
