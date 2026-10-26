@@ -52,7 +52,7 @@ export default {
           items: [
             'Nhân chéo sai: từ $\\frac{a}{b} = \\frac{c}{d}$ suy ra $ad = bc$, không phải $ac = bd$.',
             'Lấy hiệu mà đổi thứ tự ở mẫu: $\\frac{x}{3} = \\frac{y}{5}$ và $y - x = 14$ thì dùng $\\frac{y - x}{5 - 3}$, không dùng $\\frac{y - x}{3 - 5}$.',
-            'Quên đổi hệ số: với tổng $2x + 3y - z$ cần viết $\\frac{2x}{4} = \\frac{3y}{9} = \\frac{z}{4}$ trước khi cộng.',
+            'Quên đổi hệ số: với $\\frac{x}{2} = \\frac{y}{3} = \\frac{z}{4}$ và tổng $2x + 3y - z$ cần viết $\\frac{2x}{4} = \\frac{3y}{9} = \\frac{z}{4}$ trước khi cộng.',
             'Nhầm loại tỉ lệ: cùng quãng đường thì vận tốc tăng, thời gian giảm (tỉ lệ nghịch); không được lập $\\frac{v_1}{t_1} = \\frac{v_2}{t_2}$.',
             'Chia tỉ lệ nghịch với $2$; $3$; $4$ mà chia theo $2 : 3 : 4$: phải chia theo $\\frac{1}{2} : \\frac{1}{3} : \\frac{1}{4} = 6 : 4 : 3$.',
             'Nhầm hệ số của chiều ngược lại: tỉ lệ thuận đổi thành $\\frac{1}{k}$, tỉ lệ nghịch giữ nguyên $a$.',

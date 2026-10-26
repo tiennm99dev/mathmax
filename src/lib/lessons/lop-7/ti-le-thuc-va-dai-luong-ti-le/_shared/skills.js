@@ -1,7 +1,8 @@
 /**
  * Question generators for the chapter "Tỉ lệ thức và đại lượng tỉ lệ", one
- * skill per theory lesson plus one of real-life applications. Every answer is an integer, so a drill board
- * reads input with `readInteger` and writes answers with `intText`.
+ * skill per theory lesson plus one of real-life applications. Every answer
+ * is an integer, so a drill board reads input with `readInteger` and writes
+ * answers with `intText`.
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
@@ -611,7 +612,8 @@ export const vanDung = {
       for (;;) {
         const n1 = int(rand, 4, 20);
         const d1 = int(rand, 4, 30);
-        const e = int(rand, 1, d1 - 2);
+        // Finish at most half the days early, so the crew at most doubles.
+        const e = int(rand, 1, Math.floor(d1 / 2));
         const total = n1 * d1;
         if (total % (d1 - e) !== 0) continue;
         const n2 = total / (d1 - e);
