@@ -154,7 +154,8 @@ export default {
       ],
       answer: 1,
       hints: ['Xem các dấu hiệu nhận biết hình vuông.'],
-      solution: 'Hình chữ nhật có hai đường chéo vuông góc là hình vuông (Định lí 4).',
+      solution:
+        'Hình chữ nhật có hai đường chéo vuông góc là hình vuông (dấu hiệu nhận biết hình vuông, Bài 14).',
     },
     {
       type: 'multi',

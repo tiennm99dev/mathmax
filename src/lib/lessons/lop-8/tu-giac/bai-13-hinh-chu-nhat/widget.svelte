@@ -18,8 +18,8 @@
   } from '../_shared/para.js';
 
   const W = 420;
-  const H = 270;
-  const A = { x: 105, y: 235 };
+  const H = 300;
+  const A = { x: 105, y: 216 };
   const START = { a: 8, b: 5, deg: 65 };
 
   /** @type {SVGSVGElement | undefined} */ let svgEl = $state();
