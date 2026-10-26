@@ -8,6 +8,7 @@
   import {
     CRITERIA,
     POPULATION,
+    POPULATION_2021,
     STRUCTURE,
     YEARS,
     centralAngle,
@@ -66,7 +67,7 @@
   const series = $derived([
     {
       name: checked ? 'Dân số (2021: số liệu thật)' : 'Dân số (2021: dự đoán của em)',
-      values: [...POPULATION, checked ? 98.51 : guess],
+      values: [...POPULATION, checked ? POPULATION_2021 : guess],
     },
   ]);
 

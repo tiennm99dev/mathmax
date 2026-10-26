@@ -422,7 +422,7 @@
           {/each}
         </ul>
       {:else if done}
-        <p class="text-rose-700">Không có giao điểm C nên không có gì để đo.</p>
+        <p class="text-rose-700">Không có đỉnh C tạo thành tam giác nên không có gì để đo.</p>
       {:else}
         <p class="text-slate-600">Làm hết các bước để đo độ dài và số đo góc.</p>
       {/if}

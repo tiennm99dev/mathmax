@@ -119,6 +119,15 @@ export function thirdVertexSSS(a, b, c) {
 }
 
 /**
+ * Whether the circles centred at A (radius `ca`) and B (radius `bc`), with
+ * AB = `ab`, touch in exactly one point, which then lies on line AB.
+ * @param {number} ab @param {number} bc @param {number} ca
+ */
+export function circlesTouch(ab, bc, ca) {
+  return Math.abs(ab - (bc + ca)) < 1e-9 || Math.abs(ab - Math.abs(bc - ca)) < 1e-9;
+}
+
+/**
  * The point C of triangle ABC with AB = c, AC = b and angle A = `deg`, in the
  * same frame as {@link thirdVertexSSS}.
  * @param {number} b AC
@@ -443,18 +452,23 @@ function triangleSSS(s) {
   /** @type {Step[]} */
   const opening = [sideAB(A, B, s.ab, scale), .../** @type {Step[]} */ (circles)];
   if (!C) {
+    const touch = circlesTouch(s.ab, s.bc, s.ca);
     return {
       ok: false,
       steps: [
         ...opening,
         {
           tool: 'Giao điểm của 2 đối tượng',
-          text: 'Chọn công cụ Giao điểm của 2 đối tượng, nháy vào hai đường tròn vừa vẽ: GeoGebra không tìm được giao điểm.',
+          text: touch
+            ? 'Chọn công cụ Giao điểm của 2 đối tượng, nháy vào hai đường tròn vừa vẽ: GeoGebra chỉ tìm được một giao điểm, nằm trên đường thẳng AB.'
+            : 'Chọn công cụ Giao điểm của 2 đối tượng, nháy vào hai đường tròn vừa vẽ: GeoGebra không tìm được giao điểm.',
           draw: [],
         },
       ],
       measures: [],
-      verdict: `Hai đường tròn tâm A bán kính ${num(s.ca)} và tâm B bán kính ${num(s.bc)} không cắt nhau, nên không có điểm C: không vẽ được tam giác có ba cạnh ${num(s.ab)}; ${num(s.bc)}; ${num(s.ca)}.`,
+      verdict: touch
+        ? `Hai đường tròn tâm A bán kính ${num(s.ca)} và tâm B bán kính ${num(s.bc)} chỉ chạm nhau tại một điểm nằm trên đường thẳng AB, nên A, B và điểm đó thẳng hàng: không vẽ được tam giác có ba cạnh ${num(s.ab)}; ${num(s.bc)}; ${num(s.ca)}.`
+        : `Hai đường tròn tâm A bán kính ${num(s.ca)} và tâm B bán kính ${num(s.bc)} không cắt nhau, nên không có điểm C: không vẽ được tam giác có ba cạnh ${num(s.ab)}; ${num(s.bc)}; ${num(s.ca)}.`,
     };
   }
   const measures = triangleMeasures(A, B, C, scale);

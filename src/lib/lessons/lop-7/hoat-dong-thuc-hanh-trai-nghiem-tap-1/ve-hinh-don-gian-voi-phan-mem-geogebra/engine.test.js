@@ -11,6 +11,7 @@ import {
   projectOnLine,
   thirdVertexSAS,
   thirdVertexSSS,
+  circlesTouch,
   triangleKind,
 } from './engine.js';
 
@@ -156,5 +157,33 @@ describe('triangleKind', () => {
     expect(triangleKind([60, 51, 69])).toBe('tam giác nhọn');
     expect(triangleKind([90, 45, 45])).toBe('tam giác vuông');
     expect(triangleKind([120, 30, 30])).toBe('tam giác tù');
+  });
+});
+
+describe('circlesTouch', () => {
+  it('tells touching circles from circles that miss or cross', () => {
+    expect(circlesTouch(5, 2, 3)).toBe(true);
+    expect(circlesTouch(2, 3, 5)).toBe(true);
+    expect(circlesTouch(2, 3, 6)).toBe(false);
+    expect(circlesTouch(4, 5, 6)).toBe(false);
+  });
+});
+
+describe('construction of a triangle from three sides that only touch', () => {
+  it('says the circles touch on line AB instead of saying they miss', () => {
+    const built = construction('ccc', {
+      a: { x: 0, y: 0 },
+      b: { x: 0, y: 0 },
+      m: { x: 0, y: 0 },
+      unit: 44,
+      ab: 4,
+      bc: 2,
+      ca: 2,
+      angle: 60,
+      w: 440,
+      h: 330,
+    });
+    expect(built.ok).toBe(false);
+    expect(built.verdict).toContain('chỉ chạm nhau');
   });
 });
