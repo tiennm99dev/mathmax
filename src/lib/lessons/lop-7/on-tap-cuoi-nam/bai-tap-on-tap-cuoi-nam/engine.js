@@ -81,7 +81,7 @@ export const soHuuTi = {
       const quotient = div(b, c);
       const answer = simplify(add(a, quotient));
       return {
-        prompt: `Tính: ${text(a)} + ${text(b)} : ${operandOf(c)}. Viết kết quả dưới dạng phân số tối giản.`,
+        prompt: `Tính: ${text(a)} + ${operandOf(b)} : ${operandOf(c)}. Viết kết quả dưới dạng phân số tối giản.`,
         answer,
         display: text(answer),
         simplest: true,
@@ -345,7 +345,7 @@ export const daThuc = {
     const what = power === 0 ? 'hệ số tự do' : `hệ số của x${power > 1 ? sup(power) : ''}`;
     const op = minus ? '−' : '+';
     return {
-      prompt: `Cho P(x) = ${polyText(p)} và Q(x) = ${polyText(q.slice(1))}. Tìm ${what} của đa thức P(x) ${op} Q(x).`,
+      prompt: `Cho P(x) = ${polyText(p)} và Q(x) = ${polyText(q.slice(1))}. Tìm ${what} trong đa thức P(x) ${op} Q(x).`,
       answer: whole(coef),
       display: intText(coef),
       hints: [
@@ -355,7 +355,7 @@ export const daThuc = {
       steps: [
         `Trong P(x): ${what} là ${intText(p[idx])}; trong Q(x): ${what} là ${intText(q[idx])}.`,
         `${intText(p[idx])} ${op} ${fracOperand(q[idx], 1)} = ${intText(coef)}.`,
-        `${what[0].toUpperCase()}${what.slice(1)} của P(x) ${op} Q(x) là ${intText(coef)}.`,
+        `${what[0].toUpperCase()}${what.slice(1)} trong P(x) ${op} Q(x) là ${intText(coef)}.`,
       ],
     };
   },

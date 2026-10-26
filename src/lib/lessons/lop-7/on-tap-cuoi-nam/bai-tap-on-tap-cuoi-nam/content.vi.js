@@ -114,7 +114,7 @@ export default {
   explore: {
     title: 'Đề ôn tập thích ứng',
     instruction:
-      'Đề có $16$ câu. Tám câu đầu lấy mỗi mạch một câu; từ câu thứ chín, đề chọn thêm câu ở phần em đã làm sai (ô ghi rõ vì sao chọn câu đó). Nhập số nguyên, số thập phân (dùng dấu phẩy, ví dụ $5{,}29$) hoặc phân số dạng $7/20$. Sai lần đầu, em được gợi ý và làm lại; sai lần hai, em xem lời giải từng bước. Bản đồ kĩ năng chấm theo lần làm đầu.',
+      'Đề có $16$ câu. Tám câu đầu lấy mỗi mạch một câu; từ câu thứ chín, đề ưu tiên chọn câu ở phần em đã làm sai (ô ghi rõ vì sao chọn câu đó). Nhập số nguyên, số thập phân (dùng dấu phẩy, ví dụ $5{,}29$) hoặc phân số dạng $7/20$. Sai lần đầu, em được gợi ý và làm lại; sai lần hai, em xem lời giải từng bước. Bản đồ kĩ năng chấm theo lần làm đầu.',
   },
   examples: [
     {
