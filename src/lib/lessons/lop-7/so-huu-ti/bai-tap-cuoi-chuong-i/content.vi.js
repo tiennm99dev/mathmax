@@ -28,7 +28,7 @@ export default {
             ],
             [
               'Bài 3. Lũy thừa với số mũ tự nhiên',
-              '$x^n = x \\cdot x \\cdot \\ldots \\cdot x$ ($n$ thừa số); $x^0 = 1$ ($x \\ne 0$). $x^m \\cdot x^n = x^{m+n}$; $\\;x^m : x^n = x^{m-n}$; $\\;\\left(x^m\\right)^n = x^{m \\cdot n}$; $\\;\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
+              '$x^n = x \\cdot x \\cdot \\ldots \\cdot x$ ($n$ thừa số); $x^0 = 1$ ($x \\ne 0$). $x^m \\cdot x^n = x^{m+n}$; $\\;x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$); $\\;\\left(x^m\\right)^n = x^{m \\cdot n}$; $\\;\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
             ],
             [
               'Bài 4. Thứ tự thực hiện các phép tính. Quy tắc chuyển vế',
@@ -50,7 +50,7 @@ export default {
         {
           type: 'list',
           items: [
-            'So sánh hai số âm theo phần số: $-0{,}5 < -0{,}4$ vì $-0{,}5$ nằm xa điểm $0$ hơn về bên trái.',
+            'So sánh hai số âm như so sánh hai số dương: thật ra $-0{,}5 < -0{,}4$ vì điểm $-0{,}5$ nằm bên trái điểm $-0{,}4$ trên trục số.',
             'Nhầm số đối với số nghịch đảo: số đối của $\\frac{2}{3}$ là $\\frac{-2}{3}$, còn số nghịch đảo là $\\frac{3}{2}$.',
             'Nhân số mũ khi nhân hai lũy thừa cùng cơ số: $3^2 \\cdot 3^4 = 3^6$, không phải $3^8$.',
             'Quên dấu ngoặc khi lũy thừa số âm: $(-3)^2 = 9$ nhưng $-3^2 = -9$.',
@@ -78,10 +78,10 @@ export default {
     },
     {
       problem:
-        'Tính $B = 2 : \\left(\\frac{1}{2} - \\frac{2}{3}\\right)^2 + 0{,}125^3 \\cdot 8^3 - (-12)^4 : 6^4$.',
+        'Tính $B = 2 : \\left(\\frac{1}{2} - \\frac{2}{3}\\right)^2 + (0{,}125)^3 \\cdot 8^3 - (-12)^4 : 6^4$.',
       steps: [
         'Trong ngoặc: $\\frac{1}{2} - \\frac{2}{3} = \\frac{3}{6} - \\frac{4}{6} = \\frac{-1}{6}$, nên $\\left(\\frac{-1}{6}\\right)^2 = \\frac{1}{36}$ và $2 : \\frac{1}{36} = 72$.',
-        'Cùng số mũ: $0{,}125^3 \\cdot 8^3 = (0{,}125 \\cdot 8)^3 = 1^3 = 1$ và $(-12)^4 : 6^4 = (-12 : 6)^4 = (-2)^4 = 16$.',
+        'Cùng số mũ: $(0{,}125)^3 \\cdot 8^3 = (0{,}125 \\cdot 8)^3 = 1^3 = 1$ và $(-12)^4 : 6^4 = (-12 : 6)^4 = (-2)^4 = 16$.',
         '$B = 72 + 1 - 16 = 57$.',
       ],
       answer: '$B = 57$.',

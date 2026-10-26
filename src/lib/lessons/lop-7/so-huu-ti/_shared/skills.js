@@ -80,8 +80,9 @@ const opd = (f) => bracket(fracText(f));
  */
 function asFraction(w) {
   const s = simplify(w.f);
-  if (w.form !== 'dec' && s.n === w.f.n && s.d === w.f.d) return null;
-  return `${writtenText(w)} = ${fracText(s)}`;
+  const t = writtenText(w);
+  if (t === fracText(s)) return null;
+  return `${t} = ${fracText(s)}`;
 }
 
 /**
@@ -496,14 +497,16 @@ function smallFrac(rand, maxN) {
 }
 
 /**
- * A decimal with one place (or a quarter), non-zero.
+ * A decimal with one place (or a quarter) that is not an integer.
  * @param {() => number} rand
  * @returns {Written}
  */
 function smallDec(rand) {
-  if (rand() < 0.3) return { f: simplify(fraction(nonZero(rand, -7, 7) * 25, 100)), form: 'dec' };
+  const quarters = rand() < 0.3;
   for (;;) {
-    const f = simplify(fraction(nonZero(rand, -30, 30), 10));
+    const f = quarters
+      ? simplify(fraction(nonZero(rand, -7, 7) * 25, 100))
+      : simplify(fraction(nonZero(rand, -30, 30), 10));
     if (f.d !== 1) return { f, form: 'dec' };
   }
 }

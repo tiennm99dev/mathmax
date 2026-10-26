@@ -143,14 +143,14 @@ export default {
     },
     {
       type: 'fraction',
-      prompt: 'Tính $\\left(\\frac{-1}{2}\\right)^3 + \\frac{3}{4} : 1{,}5 - 0{,}5^2$.',
+      prompt: 'Tính $\\left(\\frac{-1}{2}\\right)^3 + \\frac{3}{4} : 1{,}5 - (0{,}5)^2$.',
       answer: [1, 8],
       hints: [
         'Lũy thừa trước, rồi đến phép chia, cuối cùng là cộng, trừ.',
-        '$1{,}5 = \\frac{3}{2}$ và $0{,}5^2 = \\frac{1}{4}$.',
+        '$1{,}5 = \\frac{3}{2}$ và $(0{,}5)^2 = \\frac{1}{4}$.',
       ],
       solution:
-        '$\\left(\\frac{-1}{2}\\right)^3 = \\frac{-1}{8}$; $\\;\\frac{3}{4} : \\frac{3}{2} = \\frac{1}{2}$; $\\;0{,}5^2 = \\frac{1}{4}$. Vậy $\\frac{-1}{8} + \\frac{4}{8} - \\frac{2}{8} = \\frac{1}{8}$.',
+        '$\\left(\\frac{-1}{2}\\right)^3 = \\frac{-1}{8}$; $\\;\\frac{3}{4} : \\frac{3}{2} = \\frac{1}{2}$; $\\;(0{,}5)^2 = \\frac{1}{4}$. Vậy $\\frac{-1}{8} + \\frac{4}{8} - \\frac{2}{8} = \\frac{1}{8}$.',
     },
     {
       type: 'choice',

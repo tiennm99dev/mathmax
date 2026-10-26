@@ -70,6 +70,13 @@ describe('skills for powers, order of operations and transposition', () => {
           expect(t, t).not.toMatch(/-\d/);
           expect(t, t).not.toMatch(/undefined|NaN|Infinity|\+ −|−−/);
         }
+        // A conversion step only lists numbers whose fraction form looks different.
+        for (const t of q.steps.filter((s) => s.startsWith('Viết dưới dạng phân số: '))) {
+          for (const part of t.slice('Viết dưới dạng phân số: '.length, -1).split('; ')) {
+            const [left, right] = part.split(' = ');
+            expect(left, t).not.toBe(right);
+          }
+        }
         // The answer, written back the way the board shows it, reads as the same number.
         const shown = valueText(q.answer).split(' = ')[0];
         expect(readValue(shown), q.prompt).toBe(q.answer);
