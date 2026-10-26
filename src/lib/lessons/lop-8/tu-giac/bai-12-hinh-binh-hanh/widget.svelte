@@ -213,7 +213,9 @@
     projector: (p) => {
       const tx = B.x + D.x - A.x;
       const ty = B.y + D.y - A.y;
-      if (Math.hypot(p.x - tx, p.y - ty) < SNAP) return { x: tx, y: ty };
+      // Snap only on the way in, so a small arrow-key step can leave the spot again.
+      const d = Math.hypot(p.x - tx, p.y - ty);
+      if (d < SNAP && d < Math.hypot(C.x - tx, C.y - ty)) return { x: tx, y: ty };
       return { x: clamp(p.x, PAD, W - PAD), y: clamp(p.y, PAD, H - PAD) };
     },
     onChange: announce,

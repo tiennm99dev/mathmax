@@ -197,8 +197,10 @@ export const hinhThangCan = {
     }
     if (v === 3) {
       const small = int(rand, 3, 12);
-      const big = small + 2 * int(rand, 1, 6);
-      const leg = int(rand, 3, 10) + pick(rand, [0, 0, 0.5]);
+      const overhang = int(rand, 1, 6);
+      const big = small + 2 * overhang;
+      // A leg longer than the overhang (big − small) : 2 lets the trapezoid exist.
+      const leg = overhang + int(rand, 1, 4) + pick(rand, [0, 0, 0.5]);
       const p = small + big + 2 * leg;
       return {
         prompt: `Hình thang cân ABCD có đáy nhỏ AB = ${cm(small)}, đáy lớn CD = ${cm(big)}, cạnh bên AD = ${cm(leg)}. Tính chu vi hình thang (cm).`,

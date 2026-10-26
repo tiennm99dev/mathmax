@@ -89,6 +89,8 @@ describe('stored answers match an independent computation', () => {
       } else if (/lần góc D/.test(q.prompt)) {
         want = 180 / (n[0] + 1);
       } else if (/chu vi/.test(q.prompt)) {
+        // The leg must be longer than the overhang, or no trapezoid has these sides.
+        expect(n[2], q.prompt).toBeGreaterThan((n[1] - n[0]) / 2);
         want = n[0] + n[1] + 2 * n[2];
       } else {
         want = 180 - (180 - n[0]) / 2;

@@ -5,7 +5,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import { formatFixed } from '#lib/core/number-format.js';
-  import { arcPath, directionTo } from '#lib/core/visuals/angle-math.js';
+  import { along, arcPath, bisectorDir, directionTo } from '#lib/core/visuals/angle-math.js';
   import { angleAt, dist, pointsAttr, units } from '../_shared/quad.js';
 
   const W = 400;
@@ -39,6 +39,10 @@
   const ac = $derived(units(dist(A, C)));
   const bd = $derived(isosceles ? ac : units(dist(B, D)));
   const square = $derived(Math.abs(A.x - D.x) < 1e-6 || Math.abs(B.x - C.x) < 1e-6);
+  // Equal legs are judged on the printed lengths: a trapezoid whose legs are
+  // parallel has equal legs without being isosceles, and the table must say so.
+  const legsEqual = $derived(ad === bc);
+  const diagonalsEqual = $derived(ac === bd);
 
   /** @param {number} v */
   const len = (v) => formatFixed(v, 1);
@@ -51,6 +55,12 @@
       };
     }
     const kind = square ? 'hình thang vuông' : 'hình thang';
+    if (legsEqual) {
+      return {
+        tone: /** @type {const} */ ('warn'),
+        text: `Hai cạnh bên AD = BC = ${len(ad)} nhưng D̂ = ${shownD}°, Ĉ = ${shownC}°: hai góc kề đáy DC không bằng nhau, nên ABCD là ${kind} nhưng không cân. Hình thang có hai cạnh bên bằng nhau chưa chắc là hình thang cân. Hai đường chéo: AC = ${len(ac)}, BD = ${len(bd)}.`,
+      };
+    }
     return {
       tone: /** @type {const} */ ('info'),
       text: `D̂ = ${shownD}°, Ĉ = ${shownC}°: hai góc kề đáy DC chưa bằng nhau, nên ABCD là ${kind} nhưng không cân. Hai cạnh bên AD = ${len(ad)}, BC = ${len(bc)}; hai đường chéo AC = ${len(ac)}, BD = ${len(bd)}.`,
@@ -65,15 +75,28 @@
   }
 
   /**
-   * Keeps the top base AB parallel to DC and at least MIN_BASE long, then
-   * snaps B to the isosceles position when it is close.
+   * Keeps the top base AB parallel to DC and at least MIN_BASE long, then,
+   * when `snap` is set, snaps B to the isosceles (or upright) position when
+   * it is close, so B follows while A or C moves.
+   * @param {boolean} [snap]
    */
-  function fixB() {
+  function fixB(snap = true) {
     B.y = A.y;
     B.x = Math.max(A.x + MIN_BASE, Math.min(W - 20, B.x));
+    if (!snap) return;
     if (Math.abs(B.x - symX) < SNAP && symX > A.x + MIN_BASE - 1e-9) B.x = symX;
     else if (Math.abs(B.x - C.x) < SNAP) B.x = C.x;
   }
+
+  /**
+   * Snaps `x` onto `target` only when it comes closer to it than `from`, so a
+   * small arrow-key step can still leave a snapped position.
+   * @param {number} x @param {number} from @param {number} target
+   */
+  const snapIn = (x, from, target) => {
+    const d = Math.abs(x - target);
+    return d < SNAP && d < Math.abs(from - target);
+  };
 
   const dragA = $derived({
     point: A,
@@ -85,7 +108,7 @@
     /** @param {{ x: number, y: number }} p */
     projector: (p) => {
       let x = Math.max(20, Math.min(C.x - MIN_BASE - 10, p.x));
-      if (Math.abs(x - D.x) < SNAP) x = D.x;
+      if (snapIn(x, A.x, D.x)) x = D.x;
       return { x, y: Math.max(TOP_MIN, Math.min(TOP_MAX, p.y)) };
     },
     onChange: () => {
@@ -101,9 +124,14 @@
     keyStep: 2,
     keyShiftStep: 10,
     /** @param {{ x: number, y: number }} p */
-    projector: (p) => ({ x: p.x, y: A.y }),
+    projector: (p) => {
+      let x = p.x;
+      if (symX > A.x + MIN_BASE - 1e-9 && snapIn(x, B.x, symX)) x = symX;
+      else if (snapIn(x, B.x, C.x)) x = C.x;
+      return { x, y: A.y };
+    },
     onChange: () => {
-      fixB();
+      fixB(false);
       announce();
     },
   });
@@ -139,6 +167,20 @@
     C.x = 350;
     announce();
   }
+
+  /**
+   * Where the angle label of vertex `o` goes: along the bisector of its angle,
+   * so it stays inside the angle however the top base is dragged.
+   * @param {{ x: number, y: number }} o @param {{ x: number, y: number }} p
+   * @param {{ x: number, y: number }} q @param {number} r
+   */
+  const inAngle = (o, p, q, r) => along(o, r, bisectorDir(directionTo(o, p), directionTo(o, q)));
+  const labelA = $derived(inAngle(A, D, B, 38));
+  // When the two top labels would meet, B's moves further down its bisector.
+  const labelB = $derived.by(() => {
+    const near = inAngle(B, A, C, 38);
+    return Math.abs(near.x - labelA.x) < 36 ? inAngle(B, A, C, 58) : near;
+  });
 
   const arcs = $derived([
     { o: A, p: D, q: B, v: 180 - shownD, name: 'A' },
@@ -210,13 +252,18 @@
       font-weight="600"
       fill="#B45309">{shownC}°</text
     >
-    <text x={A.x + 26} y={A.y + 30} font-size="13" font-weight="600" fill="#3730A3"
-      >{180 - shownD}°</text
+    <text
+      x={labelA.x}
+      y={labelA.y + 5}
+      text-anchor="middle"
+      font-size="13"
+      font-weight="600"
+      fill="#3730A3">{180 - shownD}°</text
     >
     <text
-      x={B.x - 26}
-      y={B.y + 30}
-      text-anchor="end"
+      x={labelB.x}
+      y={labelB.y + 5}
+      text-anchor="middle"
       font-size="13"
       font-weight="600"
       fill="#3730A3">{180 - shownC}°</text
@@ -268,12 +315,12 @@
         <tr class="border-t border-slate-200">
           <td class="py-1 pr-3">Cạnh bên AD, BC</td>
           <td class="py-1 pr-3">{len(ad)}; {len(bc)}</td>
-          <td class="py-1">{isosceles ? 'Có' : 'Không'}</td>
+          <td class="py-1">{legsEqual ? 'Có' : 'Không'}</td>
         </tr>
         <tr class="border-t border-slate-200">
           <td class="py-1 pr-3">Đường chéo AC, BD</td>
           <td class="py-1 pr-3">{len(ac)}; {len(bd)}</td>
-          <td class="py-1">{isosceles ? 'Có' : 'Không'}</td>
+          <td class="py-1">{diagonalsEqual ? 'Có' : 'Không'}</td>
         </tr>
         <tr class="border-t border-slate-200">
           <td class="py-1 pr-3">Â + D̂ (hai góc kề cạnh bên)</td>
