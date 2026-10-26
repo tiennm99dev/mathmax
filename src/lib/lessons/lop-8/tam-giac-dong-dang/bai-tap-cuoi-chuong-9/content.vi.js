@@ -291,14 +291,14 @@ export default {
     {
       type: 'number',
       prompt:
-        'Bạn Lan đứng cách cửa sổ $1$ m, nhìn qua cửa sổ cao $80$ cm sang bức tường của toà nhà đối diện, cách cửa sổ $24$ m. Mỗi tầng của toà nhà đối diện cao $4$ m. Lan nhìn thấy được trọn chiều cao của bao nhiêu tầng?',
+        'Bạn Lan đứng cách cửa sổ $1$ m, nhìn qua cửa sổ cao $80$ cm sang bức tường của toà nhà đối diện, cách cửa sổ $24$ m. Mỗi tầng của toà nhà đối diện cao $4$ m. Mép trên và mép dưới cửa sổ giới hạn tầm nhìn. Phần bức tường Lan nhìn thấy cao bằng bao nhiêu tầng nhà?',
       answer: 5,
       hints: [
         'Hai tia nhìn qua mép trên và mép dưới cửa sổ tạo thành hai tam giác chung đỉnh ở mắt Lan, cạnh đối diện song song nên đồng dạng.',
         'Khoảng cách từ mắt đến bức tường là $1 + 24 = 25$ m, gấp $25$ lần khoảng cách đến cửa sổ.',
       ],
       solution:
-        'Hai tam giác đồng dạng với tỉ số $\\dfrac{25}{1} = 25$, nên phần tường nhìn thấy cao $25 \\cdot 0{,}8 = 20$ m, tức $20 : 4 = 5$ tầng.',
+        'Hai tam giác đồng dạng với tỉ số $\\dfrac{25}{1} = 25$, nên phần tường nhìn thấy cao $25 \\cdot 0{,}8 = 20$ m, bằng chiều cao của $20 : 4 = 5$ tầng nhà.',
     },
   ],
   takeaways: [
