@@ -57,10 +57,10 @@
     const s = { a, b, c };
     const rest = a + b + c - s[big];
     if (kind === 'triangle')
-      return `Ghép được tam giác ABC. Cạnh lớn nhất ${L} = ${n(s[big])} nhỏ hơn tổng hai cạnh còn lại ${others.join(' + ')} = ${n(rest)}, nên cả ba bất đẳng thức tam giác đều đúng.`;
+      return `Ghép được tam giác ABC. Cạnh lớn nhất ${L} = ${n(s[big])} cm nhỏ hơn tổng hai cạnh còn lại ${others.join(' + ')} = ${n(rest)} cm, nên cả ba bất đẳng thức tam giác đều đúng.`;
     if (kind === 'flat')
-      return `Không ghép được tam giác: ${L} = ${n(s[big])} đúng bằng ${others.join(' + ')} = ${n(rest)}. Hai que kia chỉ chạm nhau khi nằm thẳng trên ${L}, ba điểm A, B, C thẳng hàng.`;
-    return `Không ghép được tam giác: ${L} = ${n(s[big])} lớn hơn ${others.join(' + ')} = ${n(rest)}. Hai đầu que còn cách nhau ${n(e.gap)}, dù có xoay thế nào cũng không chạm.`;
+      return `Không ghép được tam giác: ${L} = ${n(s[big])} cm đúng bằng ${others.join(' + ')} = ${n(rest)} cm. Hai que kia chỉ chạm nhau khi nằm thẳng trên ${L}, ba điểm A, B, C thẳng hàng.`;
+    return `Không ghép được tam giác: ${L} = ${n(s[big])} cm lớn hơn ${others.join(' + ')} = ${n(rest)} cm. Hai đầu que còn cách nhau ${n(e.gap)} cm, dù có xoay thế nào cũng không chạm.`;
   });
 </script>
 

@@ -113,7 +113,14 @@
     {/if}
 
     <circle cx={pH.x} cy={pH.y} r="4" fill={PERP} />
-    <text x={pH.x - 6} y={pH.y + 20} font-size="14" font-weight="700" fill="#047857">H</text>
+    <text
+      x={M.x >= A.x ? pH.x - 6 : pH.x + 6}
+      y={pH.y + 20}
+      text-anchor={M.x >= A.x ? 'end' : 'start'}
+      font-size="14"
+      font-weight="700"
+      fill="#047857">H</text
+    >
 
     <DragPoint
       drag={dragA}
@@ -142,7 +149,9 @@
     >
       <line x1="0" y1={cy(0)} x2={W} y2={cy(0)} stroke="#CBD5E1" />
       <line x1="0" y1={cy(r.AH)} x2={W} y2={cy(r.AH)} stroke={PERP} stroke-dasharray="4 4" />
-      <text x="6" y={cy(r.AH) - 5} font-size="12" fill="#047857">AH = {len(r.AH)}</text>
+      <text x="6" y={cy(r.AH) + (r.AH >= 2 ? 14 : -5)} font-size="12" fill="#047857"
+        >AH = {len(r.AH)}</text
+      >
       <path d={curve} fill="none" stroke={OBL} stroke-width="2" />
       <circle cx={pH.x} cy={cy(r.AH)} r="4" fill={PERP} />
       <line x1={m.x} y1={cy(0)} x2={m.x} y2={cy(r.AM)} stroke={OBL} stroke-opacity="0.4" />

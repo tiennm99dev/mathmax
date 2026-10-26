@@ -62,9 +62,9 @@
   ]);
   /** Feet of the perpendiculars from I, each with an end of its side. */
   const feet = $derived([
-    { name: 'H', at: bis.H, side: tri.C },
-    { name: 'K', at: bis.K, side: tri.A },
-    { name: 'L', at: bis.L, side: tri.B },
+    { name: 'H', at: bis.H, side: tri.C, end: bis.D },
+    { name: 'K', at: bis.K, side: tri.A, end: bis.E },
+    { name: 'L', at: bis.L, side: tri.B, end: bis.F },
   ]);
 
   /** @param {number} v */
@@ -80,6 +80,28 @@
     const d = Math.hypot(a.x - b.x, a.y - b.y) || 1;
     return { x: a.x + ((a.x - b.x) / d) * gap, y: a.y + ((a.y - b.y) / d) * gap + 5 };
   }
+
+  /**
+   * Shifts the labels of a foot and of the bisector end on the same side
+   * apart along that side, so the two never sit on top of each other.
+   * Returns the shift for the foot's label; the end's label takes the
+   * opposite one.
+   * @param {{ at: { x: number, y: number }, side: { x: number, y: number }, end: { x: number, y: number } }} ft
+   */
+  function spread(ft) {
+    const f = S(ft.at);
+    const e = S(ft.end);
+    let dx = f.x - e.x;
+    let dy = f.y - e.y;
+    if (Math.hypot(dx, dy) < 1) {
+      const s = S(ft.side);
+      dx = s.x - f.x;
+      dy = s.y - f.y;
+    }
+    const d = Math.hypot(dx, dy) || 1;
+    return { x: (dx / d) * 8, y: (dy / d) * 8 };
+  }
+  const shifts = $derived(feet.map(spread));
 
   const feedback = $derived(
     mode === 'trung-tuyen'
@@ -147,20 +169,22 @@
       <text x={G.x + 8} y={G.y - 8} font-size="14" font-weight="700" fill="#B91C1C">G</text>
     {:else}
       {@const I = S(bis.I)}
-      {#each bisLines as b (b.name)}
+      {#each bisLines as b, i (b.name)}
         {@const v = S(b.from)}
         {@const e = S(b.to)}
-        {@const t = tag(b.to, bis.I)}
+        {@const t0 = tag(b.to, bis.I)}
+        {@const t = { x: t0.x - shifts[i].x, y: t0.y - shifts[i].y }}
         <line x1={v.x} y1={v.y} x2={e.x} y2={e.y} stroke={BIS} stroke-width="2.5" />
         <circle cx={e.x} cy={e.y} r="3.5" fill={BIS} />
         <text x={t.x} y={t.y} text-anchor="middle" font-size="13" font-weight="700" fill="#B45309"
           >{b.name}</text
         >
       {/each}
-      {#each feet as ft (ft.name)}
+      {#each feet as ft, i (ft.name)}
         {@const f = S(ft.at)}
         {@const sd = S(ft.side)}
-        {@const t = tag(ft.at, bis.I, 12)}
+        {@const t0 = tag(ft.at, bis.I, 12)}
+        {@const t = { x: t0.x + shifts[i].x, y: t0.y + shifts[i].y }}
         <line
           x1={I.x}
           y1={I.y}

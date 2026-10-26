@@ -19,7 +19,7 @@
   const BOX = { minX: -6, maxX: 6, minY: -4.5, maxY: 4.5 };
   const { toSvg, fromSvg } = frame(U, 200, 150);
   /** @type {Record<'A' | 'B' | 'C', string>} */
-  const COLOR = { A: '#4F46E5', B: '#D97706', C: '#059669' };
+  const COLOR = { A: '#4338CA', B: '#B45309', C: '#047857' };
   /** @param {{ x: number, y: number }} p SVG point to grid point */
   function grid(p) {
     const g = fromSvg(p);
