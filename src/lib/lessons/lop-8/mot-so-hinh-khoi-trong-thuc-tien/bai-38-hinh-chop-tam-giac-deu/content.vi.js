@@ -216,15 +216,15 @@ export default {
     {
       type: 'number',
       prompt:
-        'Một hộp quà có dạng hình chóp tam giác đều mà bốn mặt là bốn tam giác đều bằng nhau, cạnh $5$ cm, chiều cao mỗi tam giác $4{,}2$ cm. Tính tổng diện tích bìa để làm một hộp (không tính mép dán).',
-      answer: 42,
+        'Một hộp quà có dạng hình chóp tam giác đều mà bốn mặt là bốn tam giác đều bằng nhau, cạnh $5$ cm, chiều cao mỗi tam giác khoảng $4{,}3$ cm. Tính tổng diện tích bìa để làm một hộp (không tính mép dán).',
+      answer: 43,
       unit: 'cm²',
       hints: [
-        'Mỗi mặt là một tam giác có đáy $5$ cm và chiều cao $4{,}2$ cm.',
+        'Mỗi mặt là một tam giác có đáy $5$ cm và chiều cao $4{,}3$ cm.',
         'Hộp có $4$ mặt như nhau: ba mặt bên và mặt đáy.',
       ],
       solution:
-        'Diện tích một mặt: $\\dfrac{1}{2} \\cdot 5 \\cdot 4{,}2 = 10{,}5$ (cm²). Bốn mặt: $4 \\cdot 10{,}5 = 42$ (cm²). Cách khác: $S_{xq} = 7{,}5 \\cdot 4{,}2 = 31{,}5$, cộng đáy $10{,}5$ được $42$ cm².',
+        'Diện tích một mặt: $\\dfrac{1}{2} \\cdot 5 \\cdot 4{,}3 = 10{,}75$ (cm²). Bốn mặt: $4 \\cdot 10{,}75 = 43$ (cm²). Cách khác: $S_{xq} = 7{,}5 \\cdot 4{,}3 = 32{,}25$ (cm²), cộng đáy $10{,}75$ cm² được $43$ cm².',
     },
   ],
   takeaways: [
