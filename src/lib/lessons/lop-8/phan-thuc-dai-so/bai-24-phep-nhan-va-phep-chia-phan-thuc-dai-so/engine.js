@@ -54,9 +54,12 @@ export function originalAt(a, op, b, v) {
   const p = ratioAt(a.top, a.bottom, v);
   const q = ratioAt(b.top, b.bottom, v);
   if (p === null || q === null) return null;
-  if (op === 'mul') return p * q;
-  if (q === 0) return null;
-  return p / q;
+  if (op === 'div' && q === 0) return null;
+  // One division of exact products, as `ratioAt` does for the reduced
+  // fraction, so equal values are equal numbers: p * q would round twice
+  // and print −7,000000000000001 next to −7.
+  const joined = combine(a, op, b);
+  return valueAt(joined.top, v) / valueAt(joined.bottom, v);
 }
 
 /**

@@ -113,7 +113,7 @@ export const phanThuc = {
       const bv = evaluate(bottom, t);
       const value = tv / bv;
       return {
-        prompt: `Tính giá trị của phân thức ${fracText(top, bottom)} tại x = ${intText(t)}. Viết kết quả là số nguyên hoặc phân số tối giản, ví dụ −7/3.`,
+        prompt: `Tính giá trị của phân thức ${fracText(top, bottom)} tại x = ${intText(t)}. Viết kết quả là số nguyên, phân số (ví dụ −7/3) hoặc số thập phân.`,
         answer: value,
         hints: [
           `Kiểm tra mẫu khác 0 tại x = ${intText(t)}, rồi tính riêng tử và mẫu.`,

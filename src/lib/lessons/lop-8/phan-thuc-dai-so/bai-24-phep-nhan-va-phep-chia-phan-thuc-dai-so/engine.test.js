@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { numberText } from '#lib/core/decimal.js';
 import { CARDS, combine, flip, originalAt } from './engine.js';
 import { cancelAll, productTex, ratioAt, ratioTex, standing } from '../_shared/factors.js';
 
@@ -35,6 +36,24 @@ describe('fraction cards', () => {
             const want = originalAt(a, op, b, v);
             if (want === null) continue;
             expect(ratioAt(c.top, c.bottom, v)).toBeCloseTo(want, 9);
+          }
+        }
+      }
+    }
+  });
+
+  it('give the reduced fraction exactly the value of the original, so both print alike', () => {
+    for (const a of CARDS) {
+      for (const b of CARDS) {
+        for (const op of /** @type {const} */ (['mul', 'div'])) {
+          const c = combine(a, op, b);
+          const { topOut, bottomOut } = cancelAll(c.top, c.bottom);
+          for (let v = -5; v <= 5; v += 0.5) {
+            const want = originalAt(a, op, b, v);
+            if (want === null) continue;
+            const got = ratioAt(standing(c.top, topOut), standing(c.bottom, bottomOut), v);
+            expect(numberText(/** @type {number} */ (got))).toBe(numberText(want));
+            expect(numberText(want).length).toBeLessThan(12);
           }
         }
       }
