@@ -316,7 +316,7 @@ export const tongHieuLapPhuong = {
 /** @type {Skill} */
 export const datNhanTuChung = {
   id: 'dat-nhan-tu-chung',
-  label: 'Đặt nhân tử chung',
+  label: 'Bài 9. Đặt nhân tử chung',
   make(rand) {
     const v = int(rand, 0, 2);
     if (v === 0) {
@@ -370,7 +370,7 @@ export const datNhanTuChung = {
 /** @type {Skill} */
 export const dungHangDangThuc = {
   id: 'dung-hang-dang-thuc',
-  label: 'Dùng hằng đẳng thức',
+  label: 'Bài 9. Dùng hằng đẳng thức',
   make(rand) {
     const v = int(rand, 0, 2);
     if (v === 0) {
@@ -425,7 +425,7 @@ export const dungHangDangThuc = {
 /** @type {Skill} */
 export const nhomHangTu = {
   id: 'nhom-hang-tu',
-  label: 'Nhóm hạng tử',
+  label: 'Bài 9. Nhóm hạng tử',
   make(rand) {
     const v = int(rand, 0, 1);
     if (v === 0) {
