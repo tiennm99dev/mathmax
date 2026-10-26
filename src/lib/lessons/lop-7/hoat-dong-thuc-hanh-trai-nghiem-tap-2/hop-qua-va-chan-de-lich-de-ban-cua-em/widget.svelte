@@ -5,7 +5,7 @@
   import Stepper from '#lib/core/stepper.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, focusRing, textInput } from '#lib/core/ui.js';
-  import { formatNumber } from '#lib/core/number-format.js';
+  import { GROUP, formatNumber } from '#lib/core/number-format.js';
   import { readNumber } from '#lib/core/decimal.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
   import {
@@ -19,8 +19,8 @@
     viewPoint,
   } from './engine.js';
 
-  /** @param {number} v */
-  const num = (v) => formatNumber(v, 2);
+  /** Numbers as the book prints them: 4 605,02 (a narrow space groups thousands). @param {number} v */
+  const num = (v) => formatNumber(v, 2).replaceAll('.', GROUP);
 
   let shape = $state('hop');
   // Gift box
@@ -43,9 +43,13 @@
   let t = $state(0);
   /** @type {(() => void) | null} */
   let stop = null;
+  function halt() {
+    stop?.();
+    stop = null;
+  }
   /** @param {number} target */
   function animateTo(target) {
-    stop?.();
+    halt();
     if (reducedMotion()) {
       t = target;
       return;
@@ -53,13 +57,13 @@
     stop = frameLoop((dt) => {
       const step = dt / 1.6;
       t = target > t ? Math.min(target, t + step) : Math.max(target, t - step);
-      if (t === target) {
-        stop?.();
-        stop = null;
-      }
+      // frameLoop books the next frame after this tick returns, so cancel
+      // once it has: stopping inside the tick would leave the loop running
+      // and keep pulling t back to the target.
+      if (t === target) queueMicrotask(halt);
     });
   }
-  onDestroy(() => stop?.());
+  onDestroy(halt);
 
   // The view turns by drag or arrow keys.
   let view = $state({ yaw: -30, pitch: 52 });
@@ -208,14 +212,14 @@
         ? `6 · ${num(a)}² = ${num(need.faces)} cm²`
         : `2 · (${num(a)} · ${num(b)} + ${num(b)} · ${num(c)} + ${num(c)} · ${num(a)}) = ${num(need.faces)} cm²`
       : ends
-        ? `S_xq + 2 · S_đáy = (${num(tri.w)} + ${num(tri.s)} + ${num(tri.s)}) · ${num(L)} + 2 · ${num(tri.w)} · ${num(tri.m)} : 2 = ${num(need.faces)} cm²`
-        : `S_xq = (${num(tri.w)} + ${num(tri.s)} + ${num(tri.s)}) · ${num(L)} = ${num(need.faces)} cm²`,
+        ? `Sxq + 2 · Sđáy = (${num(tri.w)} + ${num(tri.s)} + ${num(tri.s)}) · ${num(L)} + 2 · ${num(tri.w)} · ${num(tri.m)} : 2 = ${num(need.faces)} cm²`
+        : `Sxq = (${num(tri.w)} + ${num(tri.s)} + ${num(tri.s)}) · ${num(L)} = ${num(need.faces)} cm²`,
   );
   const feedback = $derived(
     check === 'ok'
       ? `Đúng! Diện tích các mặt: ${formula}.`
       : check === 'invalid'
-        ? 'Hãy nhập một số, ví dụ 216 hoặc 216,5.'
+        ? 'Hãy nhập một số, ví dụ 150 hoặc 37,5.'
         : check === 'wrong'
           ? misses >= 2
             ? `Chưa đúng. Cách tính: ${formula}.`
@@ -237,6 +241,7 @@
     bind:value={shape}
     onchange={() => {
       reset();
+      halt();
       t = 0;
     }}
   />
@@ -362,10 +367,7 @@
     max={1}
     step={0.01}
     format={(v) => `${Math.round(v * 100)}%`}
-    oninput={() => {
-      stop?.();
-      stop = null;
-    }}
+    oninput={halt}
   />
   <div class="flex flex-wrap gap-2">
     <button type="button" class={button.primary} onclick={() => animateTo(1)}>Gấp lại</button>

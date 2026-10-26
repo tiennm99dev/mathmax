@@ -2,7 +2,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, textInput } from '#lib/core/ui.js';
-  import { formatNumber } from '#lib/core/number-format.js';
+  import { GROUP, formatNumber } from '#lib/core/number-format.js';
   import { readNumber } from '#lib/core/decimal.js';
   import {
     MAX_ROWS,
@@ -17,8 +17,8 @@
 
   /** @typedef {import('./engine.js').Relation} Relation */
 
-  /** @param {number} v */
-  const num = (v) => formatNumber(v, 4);
+  /** Numbers as the book prints them: 4 605,02 (a narrow space groups thousands). @param {number} v */
+  const num = (v) => formatNumber(v, 4).replaceAll('.', GROUP);
 
   let id = $state(SITUATIONS[0].id);
   const s = $derived(situation(id));
@@ -60,16 +60,17 @@
 
   function clear() {
     xs = [...s.start];
+    typed = '';
     error = '';
     choice = null;
   }
 
   // The chart: axes from 0 to a round maximum above every value in the table.
   const W = 360;
-  const H = 250;
+  const H = 262;
   const L = 48;
   const R = 14;
-  const T = 14;
+  const T = 26;
   const B = 34;
   const xTop = $derived(niceMax(Math.max(...xs)));
   const yTop = $derived(niceMax(Math.max(...rows.map((r) => r.y))));
@@ -195,7 +196,9 @@
     <text x={W - R} y={H - 4} font-size="12" text-anchor="end" fill="#334155" font-weight="700"
       >x</text
     >
-    <text x={L - 30} y={T + 4} font-size="12" fill="#334155" font-weight="700">y</text>
+    <text x={L} y={T - 12} font-size="12" text-anchor="middle" fill="#334155" font-weight="700"
+      >y</text
+    >
     <text x={L - 5} y={H - B + 15} font-size="11" text-anchor="end" fill="#64748B">O</text>
     {#if curve}
       <path d={curve} fill="none" stroke="#10B981" stroke-width="2.5" stroke-linejoin="round" />

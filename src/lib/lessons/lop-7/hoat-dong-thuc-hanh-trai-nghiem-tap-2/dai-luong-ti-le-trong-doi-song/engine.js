@@ -5,6 +5,8 @@
  * proportional (x · y constant) or neither.
  */
 
+import { fmt } from '#lib/core/number-format.js';
+
 /** @typedef {'thuan' | 'nghich' | 'khac'} Relation */
 
 /**
@@ -160,7 +162,7 @@ export function classify(rows) {
 export function rejectX(s, x, taken) {
   if (x === null || !Number.isFinite(x)) return 'Hãy nhập một số, ví dụ 25 hoặc 2,5.';
   if (x <= 0) return 'Giá trị của x phải lớn hơn 0.';
-  if (x > s.xMax) return `Hãy nhập một số không quá ${s.xMax}.`;
+  if (x > s.xMax) return `Hãy nhập một số không quá ${fmt(s.xMax)}.`;
   if (taken.includes(x)) return 'Giá trị này đã có trong bảng, hãy chọn giá trị khác.';
   return '';
 }
