@@ -183,11 +183,14 @@
 
   <div class="overflow-x-auto rounded-lg border border-slate-200 p-3 text-sm">
     <p><Tex math={formula} /></p>
-    {#if at >= 1 && at <= 4}
+    {#if at === 1}
+      <p class="mt-2">
+        Sau 1 kì: <Tex math="P(1 + r) = P + Pr" />, đúng bằng số tiền lãi đơn; chưa có lãi của lãi.
+      </p>
+    {:else if at >= 2 && at <= 4}
       <p class="mt-2">
         Khai triển: <Tex math={`P(1 + r)^{${at}} = ${expansionTex(at)}`} />. Hai hạng tử đầu
-        <Tex math={at === 1 ? 'P + Pr' : `P + ${at}Pr`} /> chính là số tiền lãi đơn; các hạng tử còn lại
-        là lãi của lãi.
+        <Tex math={`P + ${at}Pr`} /> chính là số tiền lãi đơn; các hạng tử còn lại là lãi của lãi.
       </p>
     {/if}
   </div>

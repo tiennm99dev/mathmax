@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import Tex from '#lib/components/tex.svelte';
@@ -53,10 +54,20 @@
       : `Dòng ${rows.length}: đã tính xong, kết quả hiện bên dưới dòng lệnh.`;
   }
 
-  /** @param {string} text */
-  function insert(text) {
-    line = line ? `${text.replace('()', `(${line})`)}` : text;
+  /**
+   * Wraps what is already typed in the command: `x^2 - 1` becomes
+   * `Factor(x^2 - 1)` or `Division(x^2 - 1, )`.
+   * @param {string} text
+   */
+  async function insert(text) {
+    const typed = line.trim();
+    line = typed ? text.replace('(', `(${typed}`) : text;
+    await tick();
+    // Leave the caret where the next argument goes: inside the brackets,
+    // after the comma when the dividend is already there.
+    const caret = typed ? line.length - 1 : line.indexOf('(') + 1;
     lineEl?.focus();
+    lineEl?.setSelectionRange(caret, caret);
   }
 
   // Checked tasks

@@ -1,11 +1,11 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Hoạt động thực hành: dùng phần mềm GeoGebra dựng hình chữ nhật, hình bình hành, hình thang theo số đo cho trước, đo để kiểm tra các tính chất của tứ giác và kiểm chứng định lí Thalès.',
+    'Hoạt động thực hành: dùng phần mềm GeoGebra dựng hình chữ nhật, hình bình hành, hình thoi, hình thang theo số đo cho trước, đo để kiểm tra các tính chất của tứ giác và kiểm chứng định lí Thalès.',
   intro:
     'Ở lớp 7 em đã dùng GeoGebra vẽ đường song song, đường vuông góc và vẽ tam giác. Lớp 8 em học thêm các tứ giác đặc biệt và định lí Thalès. Bài này kết hợp các công cụ đó để dựng chính xác những tứ giác có số đo cho trước, rồi dùng công cụ đo để tự kiểm tra các tính chất đã học.',
   objectives: [
-    'Dựng hình chữ nhật, hình bình hành, hình thang khi biết các số đo, bằng các công cụ Đoạn thẳng với độ dài cố định, Đường vuông góc, Đường song song, Đường tròn, Giao điểm và Đa giác.',
+    'Dựng hình chữ nhật, hình bình hành, hình thoi, hình thang khi biết các số đo, bằng các công cụ Đoạn thẳng với độ dài cố định, Đường vuông góc, Đường song song, Đường tròn, Giao điểm và Đa giác.',
     'Dùng công cụ Góc, Khoảng cách hoặc độ dài, Trung điểm để kiểm tra tính chất của hình vừa dựng.',
     'Kiểm chứng định lí Thalès trong tam giác bằng cách kéo các điểm và quan sát các tỉ số.',
     'Mô tả bằng lời các bước dựng một hình bằng GeoGebra.',
@@ -49,7 +49,7 @@ export default {
       ],
     },
     {
-      heading: 'Dựng hình chữ nhật và hình bình hành',
+      heading: 'Dựng hình chữ nhật, hình bình hành và hình thoi',
       blocks: [
         {
           type: 'p',
@@ -88,6 +88,24 @@ export default {
         {
           type: 'p',
           text: 'Kiểm tra: $AB = CD$, $BC = DA$; $\\widehat{A} = \\widehat{C} = 60^\\circ$, $\\widehat{B} = \\widehat{D} = 120^\\circ$; dùng Trung điểm hoặc tâm lấy trung điểm của $AC$ và của $BD$: hai điểm trùng nhau.',
+        },
+        {
+          type: 'p',
+          text: 'Hình thoi $ABCD$ có cạnh $AB = 3$ cm, $\\widehat{ABC} = 60^\\circ$ (hình thoi là hình bình hành có hai cạnh kề bằng nhau):',
+        },
+        {
+          type: 'list',
+          ordered: true,
+          items: [
+            'Vẽ $AB = 3$.',
+            "Dùng Góc với số đo cho trước: nháy vào $A$ rồi $B$, gõ $60^\\circ$, được điểm $A'$ với $BA' = BA = 3$. Vì $BC = BA$ nên $A'$ chính là đỉnh $C$: đổi tên $A'$ thành $C$.",
+            'Vẽ đường thẳng qua $A$ song song với $BC$ và đường thẳng qua $C$ song song với $AB$; giao điểm của chúng là $D$.',
+            'Dùng Đa giác nối $A, B, C, D$, rồi vẽ hai đường chéo $AC$, $BD$ cắt nhau tại $O$.',
+          ],
+        },
+        {
+          type: 'p',
+          text: 'Kiểm tra: bốn cạnh đều bằng $3$ cm; công cụ Góc cho $\\widehat{AOB} = 90^\\circ$ (hai đường chéo vuông góc) và $\\widehat{ABD} = \\widehat{DBC} = 30^\\circ$ (đường chéo $BD$ là đường phân giác của góc $B$).',
         },
       ],
     },
@@ -156,6 +174,7 @@ export default {
           items: [
             'Dựng hình chữ nhật $ABCD$ có $AB = 4$ cm, $BC = 3$ cm; dùng công cụ Góc kiểm tra bốn góc vuông.',
             'Dựng hình bình hành $ABCD$ có $AB = 4$ cm, $BC = 3$ cm, $\\widehat{ABC} = 120^\\circ$; kiểm tra trung điểm của $AC$ và $BD$ trùng nhau.',
+            'Dựng hình thoi $ABCD$ có cạnh $3$ cm, $\\widehat{ABC} = 60^\\circ$; dùng công cụ Góc kiểm tra hai đường chéo vuông góc.',
             'Dựng hình thang $ADEC$ có $AD = 6$ cm, $EC = 3$ cm, $AC = 2$ cm, $DE = 4$ cm; đo lại $DE$.',
             'Dựng hình chữ nhật $ABCD$ có $AB = 6$ cm và đường chéo $AC = 9$ cm; dựng hình bình hành $ABCD$ có $AB = 4$ cm, $AC = 5$ cm, $BC = 6$ cm. Viết các bước em đã làm.',
             'Kiểm chứng định lí Thalès: ghi bảng giá trị của $AM/AB$ và $AN/AC$ cho ba vị trí khác nhau của $M$.',
@@ -164,7 +183,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Báo cáo: các tệp ảnh, các bước dựng của từng hình, bảng số đo và nhận xét: các số đo có khớp với tính chất của hình chữ nhật, hình bình hành, hình thang và với định lí Thalès không.',
+          text: 'Báo cáo: các tệp ảnh, các bước dựng của từng hình, bảng số đo và nhận xét: các số đo có khớp với tính chất của hình chữ nhật, hình bình hành, hình thoi, hình thang và với định lí Thalès không.',
         },
       ],
     },
@@ -254,6 +273,16 @@ export default {
     {
       type: 'number',
       prompt:
+        'Dựng hình thoi $ABCD$ có cạnh $3$ cm, $\\widehat{ABC} = 60^\\circ$ rồi vẽ hai đường chéo cắt nhau tại $O$. Công cụ Góc đo $\\widehat{AOB}$ được bao nhiêu độ?',
+      answer: 90,
+      unit: '°',
+      hints: ['Nhớ lại tính chất hai đường chéo của hình thoi.'],
+      solution:
+        'Trong hình thoi, hai đường chéo vuông góc với nhau, nên $\\widehat{AOB} = 90^\\circ$, dù cạnh và góc $B$ bằng bao nhiêu.',
+    },
+    {
+      type: 'number',
+      prompt:
         'Để dựng hình thang $ADEC$ có đáy lớn $AD = 7$ cm, đáy nhỏ $EC = 4$ cm, cạnh bên $AC = 2$ cm, $DE = 3$ cm theo cách của bài, đoạn thẳng $AB$ vẽ đầu tiên dài bao nhiêu xăng-ti-mét?',
       answer: 3,
       unit: 'cm',
@@ -314,7 +343,7 @@ export default {
   ],
   takeaways: [
     'Dựng hình bằng các công cụ (vuông góc, song song, đường tròn, giao điểm), không vẽ bằng mắt, để hình luôn đúng khi kéo các điểm.',
-    'Hình chữ nhật: hai đường vuông góc tại hai đầu $AB$ và đường tròn cho cạnh còn lại. Hình bình hành: góc với số đo cho trước, hoặc tam giác $ABC$, rồi hai đường song song cho $D$.',
+    'Hình chữ nhật: hai đường vuông góc tại hai đầu $AB$ và đường tròn cho cạnh còn lại. Hình bình hành: góc với số đo cho trước, hoặc tam giác $ABC$, rồi hai đường song song cho $D$. Hình thoi: như hình bình hành với $BC = BA$; đo được hai đường chéo vuông góc.',
     'Hình thang $ADEC$: dựng tam giác $ABC$ với $AB = AD - EC$, rồi hai đường song song cho $E$.',
     'Định lí Thalès: $MN \\parallel BC$ thì $\\dfrac{AM}{AB} = \\dfrac{AN}{AC}$; GeoGebra cho hai tỉ số luôn bằng nhau khi kéo hình.',
   ],

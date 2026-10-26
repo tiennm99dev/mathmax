@@ -750,6 +750,17 @@ export function isExpandedForm(node) {
   }
 }
 
+/**
+ * Number of monomials a sum is written with: `3x + 2x - 1` shows 3.
+ * @param {Node} node
+ * @returns {number}
+ */
+export function writtenTerms(node) {
+  if (node.t === 'add' || node.t === 'sub') return writtenTerms(node.a) + writtenTerms(node.b);
+  if (node.t === 'neg') return writtenTerms(node.a);
+  return 1;
+}
+
 /** @param {Node} node @returns {boolean} */
 function isMonomialNode(node) {
   switch (node.t) {
@@ -825,12 +836,19 @@ export function checkAnswer(text, expected, form) {
         'Đúng giá trị nhưng chưa khai triển hết: hãy viết thành tổng các đơn thức, bỏ hết dấu ngoặc.',
     };
   }
+  if (form === 'expanded' && writtenTerms(tree) > Math.max(expected.size, 1)) {
+    return {
+      ok: false,
+      message:
+        'Đúng giá trị nhưng chưa thu gọn: còn các hạng tử đồng dạng (hoặc hạng tử bằng 0), hãy cộng chúng lại.',
+    };
+  }
   if (form === 'factored') {
     const need = factorCount(factor(expected));
     if (writtenFactors(tree) < need) {
       return {
         ok: false,
-        message: `Đúng giá trị nhưng chưa phân tích hết: kết quả có ${need} nhân tử khác hằng số.`,
+        message: `Đúng giá trị nhưng chưa phân tích hết: phân tích đến cùng thì được ${need} nhân tử khác hằng số.`,
       };
     }
   }

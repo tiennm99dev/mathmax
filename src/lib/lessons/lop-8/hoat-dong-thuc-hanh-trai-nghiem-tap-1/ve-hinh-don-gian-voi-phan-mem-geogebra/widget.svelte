@@ -127,9 +127,17 @@
     return { x: q.x + (d.x / len) * 14 - 4, y: q.y - (d.y / len) * 14 + 5 };
   }
 
-  /** @param {Extract<Drawn, { kind: 'point' }>} o */
+  /**
+   * Label beside a point; the centre of a figure (where the diagonals meet)
+   * gets a fixed offset, since "away from the centre" has no direction there.
+   * @param {Extract<Drawn, { kind: 'point' }>} o
+   */
   const pointLabelFor = (o) =>
-    o.name.includes('≡') ? { x: toScreen(o.p).x + 8, y: toScreen(o.p).y - 8 } : labelAt(o.p);
+    o.name.includes('≡')
+      ? { x: toScreen(o.p).x + 8, y: toScreen(o.p).y - 8 }
+      : o.name === 'O'
+        ? { x: toScreen(o.p).x + 10, y: toScreen(o.p).y + 5 }
+        : labelAt(o.p);
 
   /** @param {string | number} value */
   function choose(value) {
@@ -222,6 +230,26 @@
     <div class="grid gap-3 sm:grid-cols-3">
       <SliderField label="AB" bind:value={ab} min={2} max={8} step={0.5} unit="cm" format={cm} />
       <SliderField label="BC" bind:value={bc} min={1} max={6} step={0.5} unit="cm" format={cm} />
+      <SliderField
+        label="Góc ABC"
+        bind:value={angle}
+        min={30}
+        max={150}
+        step={5}
+        format={(v) => `${v}°`}
+      />
+    </div>
+  {:else if figure === 'hinh-thoi'}
+    <div class="grid gap-3 sm:grid-cols-2">
+      <SliderField
+        label="Cạnh AB"
+        bind:value={ab}
+        min={2}
+        max={8}
+        step={0.5}
+        unit="cm"
+        format={cm}
+      />
       <SliderField
         label="Góc ABC"
         bind:value={angle}

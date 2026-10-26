@@ -1,6 +1,7 @@
 /**
  * Constructions behind the GeoGebra activity of grade 8: a rectangle, a
- * parallelogram from two sides and the included angle, the book's trapezoid
+ * parallelogram from two sides and the included angle, a rhombus from its
+ * side and one angle, the book's trapezoid
  * ADEC from its four sides, and a check of Thalès' theorem. Points are in
  * centimetres with y pointing up, as on GeoGebra's grid; the widget maps
  * them to the screen.
@@ -39,21 +40,22 @@ import { formatNumber } from '#lib/core/number-format.js';
  * @property {string[]} [hideAtEnd] helper points hidden once the figure is finished
  */
 
-/** @typedef {'chu-nhat' | 'binh-hanh' | 'hinh-thang' | 'thales'} Figure */
+/** @typedef {'chu-nhat' | 'binh-hanh' | 'hinh-thoi' | 'hinh-thang' | 'thales'} Figure */
 
 /** @type {ReadonlyArray<{ value: Figure, label: string }>} */
 export const FIGURES = [
   { value: 'chu-nhat', label: 'Hình chữ nhật' },
   { value: 'binh-hanh', label: 'Hình bình hành' },
+  { value: 'hinh-thoi', label: 'Hình thoi' },
   { value: 'hinh-thang', label: 'Hình thang' },
   { value: 'thales', label: 'Định lí Thalès' },
 ];
 
 /**
  * @typedef {object} Params
- * @property {number} ab rectangle and parallelogram: side AB
+ * @property {number} ab rectangle, parallelogram and rhombus: side AB
  * @property {number} bc rectangle and parallelogram: side BC
- * @property {number} angle parallelogram: angle ABC in degrees
+ * @property {number} angle parallelogram and rhombus: angle ABC in degrees
  * @property {number} big trapezoid: larger base AD
  * @property {number} small trapezoid: smaller base EC
  * @property {number} legAC trapezoid: leg AC
@@ -261,6 +263,68 @@ function parallelogram(q) {
   };
 }
 
+/**
+ * Rhombus ABCD from its side AB and angle ABC: rotating A about B by the
+ * angle gives C with BC = BA, parallels give D, then the Angle tool on the
+ * diagonals.
+ * @param {Params} q @returns {Built}
+ */
+function rhombus(q) {
+  const A = { x: 0, y: 0 };
+  const B = { x: q.ab, y: 0 };
+  const turn = ((180 - q.angle) * Math.PI) / 180;
+  const dir = { x: Math.cos(turn), y: Math.sin(turn) };
+  const C = add(B, scale(dir, q.ab));
+  const D = add(A, sub(C, B));
+  const O = midpoint(A, C);
+  return {
+    ok: true,
+    steps: [
+      {
+        tool: 'Đoạn thẳng với độ dài cố định',
+        text: `Nháy vào điểm A, gõ độ dài ${show(q.ab)}: được đoạn AB.`,
+        draw: [point(A, 'A'), point(B, 'B'), seg(A, B)],
+      },
+      {
+        tool: 'Góc với số đo cho trước',
+        text: `Nháy vào A rồi B, gõ ${q.angle}°, chọn cùng chiều kim đồng hồ: được điểm A' với BA' = BA. Vì hình thoi có BC = BA nên A' chính là đỉnh C: đổi tên A' thành C.`,
+        draw: [{ kind: 'angle', at: B, from: A, to: C }, point(C, 'C'), seg(B, C)],
+      },
+      {
+        tool: 'Đường song song',
+        text: 'Vẽ đường qua A song song với BC và đường qua C song song với AB; giao điểm của chúng là D.',
+        draw: [
+          { kind: 'line', p: A, d: dir },
+          { kind: 'line', p: C, d: { x: 1, y: 0 } },
+          point(D, 'D'),
+        ],
+        helper: true,
+      },
+      {
+        tool: 'Đa giác',
+        text: 'Ẩn các đối tượng phụ, nháy lần lượt A, B, C, D, A: được hình thoi ABCD.',
+        draw: [{ kind: 'polygon', pts: [A, B, C, D] }],
+      },
+      {
+        tool: 'Góc',
+        text: 'Vẽ hai đường chéo AC, BD cắt nhau tại O; đo góc AOB và hai góc ABD, DBC.',
+        draw: [seg(A, C), seg(B, D), point(O, 'O'), { kind: 'angle', at: O, from: A, to: B }],
+      },
+    ],
+    measures: [
+      { label: 'AB', value: dist(A, B), unit: 'cm' },
+      { label: 'BC', value: dist(B, C), unit: 'cm' },
+      { label: 'CD', value: dist(C, D), unit: 'cm' },
+      { label: 'DA', value: dist(D, A), unit: 'cm' },
+      { label: 'Góc AOB', value: angleAt(A, O, B), unit: 'deg' },
+      { label: 'Góc ABD', value: angleAt(A, B, D), unit: 'deg' },
+      { label: 'Góc DBC', value: angleAt(D, B, C), unit: 'deg' },
+    ],
+    verdict:
+      'Bốn cạnh bằng nhau; góc AOB = 90°: hai đường chéo vuông góc; góc ABD = góc DBC: BD là đường phân giác của góc ABC.',
+  };
+}
+
 /** @param {Params} q @returns {Built} */
 function trapezoid(q) {
   const A = { x: 0, y: 0 };
@@ -410,6 +474,7 @@ function thales(q) {
 export function construction(figure, params) {
   if (figure === 'chu-nhat') return rectangle(params);
   if (figure === 'binh-hanh') return parallelogram(params);
+  if (figure === 'hinh-thoi') return rhombus(params);
   if (figure === 'hinh-thang') return trapezoid(params);
   return thales(params);
 }

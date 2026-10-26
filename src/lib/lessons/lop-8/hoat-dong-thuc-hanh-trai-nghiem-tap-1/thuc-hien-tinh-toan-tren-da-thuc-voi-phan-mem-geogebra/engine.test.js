@@ -122,6 +122,13 @@ describe('checkAnswer', () => {
     expect(r.message).toContain('chưa khai triển');
   });
 
+  it('rejects a right value with like terms left to collect', () => {
+    const r = checkAnswer('25x^2 - 5xy - 5xy + y^2', expanded, 'expanded');
+    expect(r.ok).toBe(false);
+    expect(r.message).toContain('chưa thu gọn');
+    expect(checkAnswer('0', poly('x - x'), 'expanded').ok).toBe(true);
+  });
+
   it('rejects a wrong value', () => {
     expect(checkAnswer('25x^2 - 5xy + y^2', expanded, 'expanded').ok).toBe(false);
   });

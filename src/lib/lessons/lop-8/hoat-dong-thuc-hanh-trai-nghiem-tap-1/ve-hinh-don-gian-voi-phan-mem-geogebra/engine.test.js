@@ -55,6 +55,18 @@ describe('parallelogram', () => {
   });
 });
 
+describe('rhombus', () => {
+  it('has four equal sides and perpendicular diagonals that bisect the angles', () => {
+    for (const angle of [40, 90, 120]) {
+      const m = measures('hinh-thoi', { ab: 3, angle });
+      for (const k of ['AB', 'BC', 'CD', 'DA']) expect(m[k]).toBeCloseTo(3, 9);
+      expect(m['Góc AOB']).toBeCloseTo(90, 9);
+      expect(m['Góc ABD']).toBeCloseTo(angle / 2, 9);
+      expect(m['Góc DBC']).toBeCloseTo(angle / 2, 9);
+    }
+  });
+});
+
 describe('trapezoid ADEC', () => {
   it('matches the book data', () => {
     const m = measures('hinh-thang');
