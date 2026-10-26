@@ -1,7 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
 import { readNumber, numberText } from '#lib/core/decimal.js';
-import { SKILLS_TRANG_13, fracText, phanThuc, substText, tinhChat } from './skills.js';
+import {
+  CHAPTER_SKILLS,
+  SKILLS_TRANG_13,
+  SKILLS_TRANG_23,
+  congTru,
+  fracText,
+  nhanChia,
+  phanThuc,
+  substText,
+  tinhChat,
+} from './skills.js';
 import { lcm } from './factors.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
@@ -65,7 +75,7 @@ describe('chapter skills', () => {
     expect(SKILLS_TRANG_13.map((s) => s.id)).toEqual(['phan-thuc', 'tinh-chat']);
   });
 
-  for (const skill of SKILLS_TRANG_13) {
+  for (const skill of CHAPTER_SKILLS) {
     it(`${skill.id} gives readable answers with hints and a worked solution`, () => {
       for (const q of sample(skill)) {
         expect(Number.isFinite(q.answer)).toBe(true);
@@ -124,6 +134,86 @@ describe('chapter skills', () => {
 
   it('build a practice set without repeated prompts', () => {
     const set = buildSet(SKILLS_TRANG_13, 5, 1);
+    expect(set).toHaveLength(10);
+    expect(new Set(set.map((q) => q.prompt)).size).toBe(10);
+  });
+});
+
+const OPERAND = String.raw`(?:\(([^()]+)\)|([\dx²³]+))(?:\/(?:\(([^()]+)\)|([\dx²³]+)))?`;
+const BINARY = new RegExp(`${OPERAND} ([+−·:]) ${OPERAND}`);
+
+/**
+ * The first binary operation between two fractions (or a fraction and a
+ * polynomial) in a prompt, as a function of x.
+ * @param {string} prompt
+ * @returns {(x: number) => number}
+ */
+function operation(prompt) {
+  const m = BINARY.exec(prompt);
+  if (!m) throw new Error(prompt);
+  const side = (/** @type {number} */ i) => {
+    const top = poly(m[i] ?? m[i + 1]);
+    const bottomText = m[i + 2] ?? m[i + 3];
+    const bottom = bottomText ? poly(bottomText) : () => 1;
+    return (/** @type {number} */ x) => top(x) / bottom(x);
+  };
+  const f = side(1);
+  const g = side(6);
+  const op = m[5];
+  return (x) =>
+    op === '+' ? f(x) + g(x) : op === '−' ? f(x) - g(x) : op === '·' ? f(x) * g(x) : f(x) / g(x);
+}
+
+describe('operation skills', () => {
+  it('list one skill per lesson after page 13', () => {
+    expect(SKILLS_TRANG_23.map((s) => s.id)).toEqual(['cong-tru', 'nhan-chia']);
+    expect(CHAPTER_SKILLS.map((s) => s.id)).toEqual([
+      'phan-thuc',
+      'tinh-chat',
+      'cong-tru',
+      'nhan-chia',
+    ]);
+  });
+
+  it('cong-tru answers match the operations in the prompts', () => {
+    for (const q of sample(congTru)) {
+      const e = operation(q.prompt);
+      if (q.prompt.includes('Kết quả là một số')) {
+        for (const x of [-7.5, 0.5, 11.25]) expect(e(x)).toBeCloseTo(q.answer, 9);
+      } else if (q.prompt.startsWith('Biết')) {
+        const m = /= k\/\(([^()]+)\)/.exec(q.prompt);
+        if (!m) throw new Error(q.prompt);
+        const d = poly(m[1]);
+        for (const x of [-7.5, 0.5, 11.25]) expect(e(x) * d(x)).toBeCloseTo(q.answer, 9);
+      } else {
+        const t = at(q.prompt);
+        expect(Number.isFinite(e(t))).toBe(true);
+        expect(q.answer).toBeCloseTo(e(t), 9);
+      }
+    }
+  });
+
+  it('nhan-chia answers match the operations in the prompts', () => {
+    for (const q of sample(nhanChia)) {
+      const t = at(q.prompt);
+      if (q.prompt.includes('nghịch đảo')) {
+        const [f] = fractions(q.prompt);
+        const top = poly(f.top)(t);
+        expect(top).not.toBe(0);
+        expect(q.answer).toBeCloseTo(poly(f.bottom)(t) / top, 9);
+      } else {
+        const m = BINARY.exec(q.prompt);
+        if (!m) throw new Error(q.prompt);
+        // Every denominator and the divisor's numerator are non-zero at t.
+        for (const text of [m[3], m[4], m[8], m[9], m[5] === ':' ? (m[6] ?? m[7]) : undefined])
+          if (text) expect(poly(text)(t)).not.toBe(0);
+        expect(q.answer).toBeCloseTo(operation(q.prompt)(t), 9);
+      }
+    }
+  });
+
+  it('build a practice set without repeated prompts', () => {
+    const set = buildSet(SKILLS_TRANG_23, 5, 1);
     expect(set).toHaveLength(10);
     expect(new Set(set.map((q) => q.prompt)).size).toBe(10);
   });

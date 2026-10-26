@@ -241,3 +241,200 @@ export const tinhChat = {
 
 /** The skills of "Luyện tập chung" after Bài 21 and Bài 22. */
 export const SKILLS_TRANG_13 = [phanThuc, tinhChat];
+
+/**
+ * The product x(x + a) as plain text, the way the book writes it.
+ * @param {number} a
+ */
+const xTimes = (a) => `x(${lin(a)})`;
+
+/** @type {Skill} */
+export const congTru = {
+  id: 'cong-tru',
+  label: 'Bài 23. Cộng, trừ phân thức',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const a = int(rand, 1, 9);
+      const k = int(rand, 2, 6);
+      const first = fracText([0, k], [-a, 1]);
+      const second = `${k * a}/(${a} ${MINUS} x)`;
+      return {
+        prompt: `Thực hiện phép cộng ${first} + ${second}. Kết quả là một số; tìm số đó.`,
+        answer: k,
+        hints: [
+          `Hai mẫu ${lin(-a)} và ${a} ${MINUS} x là hai đa thức đối nhau: dùng quy tắc đổi dấu.`,
+          `${second} = ${MINUS}${k * a}/(${lin(-a)}).`,
+        ],
+        steps: [
+          `Đổi dấu: ${second} = ${MINUS}${k * a}/(${lin(-a)}).`,
+          `Cộng hai phân thức cùng mẫu: (${k}x ${MINUS} ${k * a})/(${lin(-a)}) = ${k}(${lin(-a)})/(${lin(-a)}) = ${k}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const a = nonZero(rand, -9, 9);
+      const c = int(rand, 1, 9);
+      let t = int(rand, -5, 10);
+      while (t === a) t = int(rand, -5, 10);
+      const first = fracText([c, 0, 1], [-a, 1]);
+      const second = fracText([a * a + c], [-a, 1]);
+      return {
+        prompt: `Rút gọn biểu thức ${first} ${MINUS} ${second} rồi tính giá trị của nó tại x = ${intText(t)}.`,
+        answer: t + a,
+        hints: [
+          'Hai phân thức cùng mẫu: trừ hai tử thức (đặt tử thức bị trừ trong ngoặc) và giữ nguyên mẫu.',
+          `Tử thức mới là x² ${MINUS} ${a * a}; phân tích nó thành nhân tử.`,
+        ],
+        steps: [
+          `${first} ${MINUS} ${second} = (x² + ${c} ${MINUS} ${a * a + c})/(${lin(-a)}) = (x² ${MINUS} ${a * a})/(${lin(-a)}).`,
+          `= (${lin(-a)})(${lin(a)})/(${lin(-a)}) = ${lin(a)}.`,
+          `Tại x = ${intText(t)} (thoả mãn x ≠ ${intText(a)}): ${intText(t)} + ${operand(a)} = ${intText(t + a)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const a = int(rand, 1, 9);
+      const m = int(rand, 1, 4);
+      const first = fracText([m], [-a, 1]);
+      const second = fracText([m], [a, 1]);
+      return {
+        prompt: `Biết ${first} ${MINUS} ${second} = k/(x² ${MINUS} ${a * a}). Tìm k.`,
+        answer: 2 * a * m,
+        hints: [
+          `Mẫu thức chung là (${lin(-a)})(${lin(a)}) = x² ${MINUS} ${a * a}.`,
+          `Nhân tử phụ của ${lin(-a)} là ${lin(a)}, của ${lin(a)} là ${lin(-a)}.`,
+        ],
+        steps: [
+          `MTC = (${lin(-a)})(${lin(a)}) = x² ${MINUS} ${a * a}.`,
+          m === 1
+            ? `Tử thức: (${lin(a)}) ${MINUS} (${lin(-a)}) = ${2 * a * m}.`
+            : `Tử thức: ${m}(${lin(a)}) ${MINUS} ${m}(${lin(-a)}) = (${polyText([m * a, m])}) ${MINUS} (${polyText([-m * a, m])}) = ${2 * a * m}.`,
+          `Vậy k = ${2 * a * m}.`,
+        ],
+      };
+    }
+    const m = int(rand, 1, 5);
+    const n = int(rand, 1, 5);
+    const a = nonZero(rand, -6, 6);
+    const s = pick(rand, [1, -1]);
+    let t = nonZero(rand, -4, 6);
+    while (t === -a) t = nonZero(rand, -4, 6);
+    const top = [m * a, m + s * n];
+    const num = m * (t + a) + s * n * t;
+    const value = num / (t * (t + a));
+    const sign = s > 0 ? '+' : MINUS;
+    return {
+      prompt: `Thực hiện phép tính ${m}/x ${sign} ${fracText([n], [a, 1])} rồi tính giá trị của kết quả tại x = ${intText(t)}. Viết kết quả là số nguyên, phân số (ví dụ −7/3) hoặc số thập phân.`,
+      answer: value,
+      hints: [
+        `Mẫu thức chung là ${xTimes(a)}.`,
+        `Nhân tử phụ của x là ${lin(a)}, của ${lin(a)} là x.`,
+      ],
+      steps: [
+        `MTC = ${xTimes(a)}. Tử thức: ${m}(${lin(a)}) ${sign} ${n}x = ${polyText(top)}.`,
+        `Kết quả: ${polyText(top)}/[${xTimes(a)}].`,
+        `Tại x = ${intText(t)}: ${substText(top, t)} = ${intText(num)}; mẫu ${intText(t)} · ${operand(t + a)} = ${intText(t * (t + a))}; giá trị ${numberText(value)}.`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const nhanChia = {
+  id: 'nhan-chia',
+  label: 'Bài 24. Nhân, chia phân thức',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const a = int(rand, 1, 9);
+      const m = int(rand, 2, 5);
+      const k = int(rand, 1, 3);
+      let t = nonZero(rand, -4, 6);
+      while (t === -a) t = nonZero(rand, -4, 6);
+      const first = fracText([-a * a, 0, 1], [0, m]);
+      const second = fracText([0, 0, m * k], [a, 1]);
+      const result = k === 1 ? `x(${lin(-a)})` : `${k}x(${lin(-a)})`;
+      return {
+        prompt: `Thực hiện phép nhân ${first} · ${second} rồi tính giá trị của kết quả tại x = ${intText(t)}.`,
+        answer: k * t * (t - a),
+        hints: [
+          'Nhân tử với tử, mẫu với mẫu, nhưng phân tích thành nhân tử trước khi nhân để rút gọn.',
+          `x² ${MINUS} ${a * a} = (${lin(-a)})(${lin(a)}).`,
+        ],
+        steps: [
+          `${first} · ${second} = (${lin(-a)})(${lin(a)}) · ${m * k}x² / [${m}x(${lin(a)})].`,
+          `Chia tử và mẫu cho ${m}x(${lin(a)}): kết quả ${result}.`,
+          `Tại x = ${intText(t)}: ${k === 1 ? '' : `${k} · `}${operand(t)} · ${operand(t - a)} = ${intText(k * t * (t - a))}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const a = nonZero(rand, -6, 6);
+      let b = nonZero(rand, -6, 6);
+      while (b === -a) b = nonZero(rand, -6, 6);
+      let t = int(rand, -5, 7);
+      while (t === b || t === -a) t = int(rand, -5, 7);
+      const p = fracText([a, 1], [-b, 1]);
+      const value = (t - b) / (t + a);
+      return {
+        prompt: `Tìm phân thức nghịch đảo của ${p}, rồi tính giá trị của phân thức nghịch đảo đó tại x = ${intText(t)}. Viết kết quả là số nguyên, phân số hoặc số thập phân.`,
+        answer: value,
+        hints: [
+          'Phân thức nghịch đảo của A/B (A/B khác 0) là B/A.',
+          `Phân thức nghịch đảo là ${fracText([-b, 1], [a, 1])}; thay x = ${intText(t)}.`,
+        ],
+        steps: [
+          `Phân thức nghịch đảo của ${p} là ${fracText([-b, 1], [a, 1])}.`,
+          `Tại x = ${intText(t)}: (${substText([-b, 1], t)})/(${substText([a, 1], t)}) = ${intText(t - b)}/${operand(t + a)} = ${numberText(value)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const b = int(rand, 1, 6);
+      let a = nonZero(rand, -6, 6);
+      while (a === b || a === -b) a = nonZero(rand, -6, 6);
+      let t = int(rand, -5, 8);
+      while (t === a || t === b || t === -b) t = int(rand, -5, 8);
+      const first = fracText([a * a, -2 * a, 1], [b, 1]);
+      const second = fracText([-a, 1], [-b * b, 0, 1]);
+      return {
+        prompt: `Thực hiện phép chia ${first} : ${second} rồi tính giá trị của kết quả tại x = ${intText(t)}.`,
+        answer: (t - a) * (t - b),
+        hints: [
+          'Chia cho một phân thức là nhân với phân thức nghịch đảo của nó.',
+          `${polyText([a * a, -2 * a, 1])} = (${lin(-a)})²; x² ${MINUS} ${b * b} = (${lin(-b)})(${lin(b)}).`,
+        ],
+        steps: [
+          `${first} : ${second} = (${lin(-a)})²/(${lin(b)}) · (${lin(-b)})(${lin(b)})/(${lin(-a)}).`,
+          `Rút gọn ${lin(-a)} và ${lin(b)}: kết quả (${lin(-a)})(${lin(-b)}).`,
+          `Tại x = ${intText(t)}: ${operand(t - a)} · ${operand(t - b)} = ${intText((t - a) * (t - b))}.`,
+        ],
+      };
+    }
+    const a = int(rand, 1, 9);
+    const k = int(rand, 2, 5);
+    let t = nonZero(rand, -4, 8);
+    while (t === -a) t = nonZero(rand, -4, 8);
+    const first = fracText([-a * a, 0, 1], [0, k]);
+    const value = (t - a) / (k * t);
+    return {
+      prompt: `Thực hiện phép chia ${first} : (${lin(a)}) rồi tính giá trị của kết quả tại x = ${intText(t)}. Viết kết quả là số nguyên, phân số hoặc số thập phân.`,
+      answer: value,
+      hints: [
+        `Chia cho đa thức ${lin(a)} là nhân với phân thức nghịch đảo 1/(${lin(a)}).`,
+        `x² ${MINUS} ${a * a} = (${lin(-a)})(${lin(a)}).`,
+      ],
+      steps: [
+        `${first} : (${lin(a)}) = (${lin(-a)})(${lin(a)})/(${k}x) · 1/(${lin(a)}) = (${lin(-a)})/(${k}x).`,
+        `Tại x = ${intText(t)}: ${intText(t - a)}/(${k} · ${operand(t)}) = ${intText(t - a)}/${operand(k * t)} = ${numberText(value)}.`,
+      ],
+    };
+  },
+};
+
+/** The skills of "Luyện tập chung" after Bài 23 and Bài 24. */
+export const SKILLS_TRANG_23 = [congTru, nhanChia];
+
+/** Every skill of the chapter, one per lesson, for the chapter review. */
+export const CHAPTER_SKILLS = [...SKILLS_TRANG_13, ...SKILLS_TRANG_23];
