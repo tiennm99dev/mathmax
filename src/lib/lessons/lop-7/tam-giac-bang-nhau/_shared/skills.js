@@ -355,7 +355,7 @@ export const tamGiacVuong = {
           'Trong tam giác OBM vuông tại B, hai góc nhọn phụ nhau.',
         ],
         steps: [
-          `Góc BOM = ${2 * a}° : 2 = ${a}° (Ot là tia phân giác).`,
+          `Góc BOM = ${2 * a}° : 2 = ${a}° (OM là tia phân giác của góc xOy).`,
           `Tam giác OBM vuông tại B nên góc OMB = 90° − ${a}° = ${90 - a}°.`,
         ],
       };
