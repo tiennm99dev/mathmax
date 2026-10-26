@@ -13,9 +13,9 @@
   const R = 62;
 
   let mode = $state(/** @type {'ghep' | 'song-song' | 'goc-ngoai'} */ ('ghep'));
-  let a = $state({ x: 150, y: 50 });
-  let b = $state({ x: 60, y: 180 });
-  let c = $state({ x: 330, y: 180 });
+  let a = $state({ x: 130, y: 50 });
+  let b = $state({ x: 40, y: 180 });
+  let c = $state({ x: 300, y: 180 });
   /** @type {SVGSVGElement | undefined} */ let svgEl = $state();
 
   const r = $derived(readings(a, b, c));

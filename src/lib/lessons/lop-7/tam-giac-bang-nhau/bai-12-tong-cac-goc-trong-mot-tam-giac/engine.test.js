@@ -37,4 +37,33 @@ describe('angle-sum board', () => {
     expect(readings({ x: 200, y: 30 }, B, C).kind).toBe('nhọn');
     expect(readings({ x: 30, y: 150 }, B, C).kind).toBe('tù');
   });
+
+  it('never reads 90° for an angle that is only close to right', () => {
+    // At B the sides go to (-340, -70) and (-10, 50): the angle is about 90,3°.
+    const r = readings({ x: 30, y: 30 }, { x: 370, y: 100 }, { x: 360, y: 150 });
+    expect(r.B).toBe(91);
+    expect(r.A + r.B + r.C).toBe(180);
+    expect(r.kind).toBe('tù');
+  });
+
+  it('reads 90° exactly when the grid angle is right, and never otherwise', () => {
+    const b = { x: 100, y: 180 };
+    const c = { x: 250, y: 110 };
+    const stay = { x: 0, y: 0 };
+    let right = 0;
+    let checked = 0;
+    for (let x = 30; x <= 370; x += 10) {
+      for (let y = 30; y <= 190; y += 10) {
+        const a = { x, y };
+        if (placeVertex(a, stay, b, c) === stay) continue;
+        const r = readings(a, b, c);
+        checked++;
+        if (r.kind === 'vuông') right++;
+        expect(r.A + r.B + r.C).toBe(180);
+        expect([r.A, r.B, r.C].includes(90)).toBe(r.kind === 'vuông');
+      }
+    }
+    expect(checked).toBeGreaterThan(100);
+    expect(right).toBeGreaterThan(0);
+  });
 });

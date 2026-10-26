@@ -70,7 +70,7 @@
     { A: "A'", B: '', C: "C'" },
   ];
   const namesFor = $derived(
-    mode === 'ccg'
+    mode === 'ccg' && tris.length === 2
       ? [
           { A: 'A', B: 'B', C: 'C₁' },
           { A: '', B: '', C: 'C₂' },
@@ -92,6 +92,8 @@
     if (mode === 'ccg') {
       if (tris.length === 2)
         return `Có hai tam giác ABC₁ và ABC₂ khác nhau (BC₁ = ${lenText(ms[0].a)} cm, BC₂ = ${lenText(ms[1].a)} cm) cùng có AB, AC và B̂ như nhau. Hai cạnh và một góc không xen giữa chưa đủ để kết luận hai tam giác bằng nhau.`;
+      if (d.b < d.c)
+        return `Với số đo này chỉ có một tam giác (BC = ${lenText(m.a)} cm): AC vừa bằng khoảng cách từ A đến đường thẳng BC, tam giác vuông tại C. Tăng AC một chút (vẫn ngắn hơn AB) sẽ có hai tam giác. Vì vậy đây không phải là một trường hợp bằng nhau.`;
       return `Với số đo này chỉ có một tam giác (BC = ${lenText(m.a)} cm). Nhưng thử AC ngắn hơn AB: sẽ có hai tam giác. Vì vậy đây không phải là một trường hợp bằng nhau.`;
     }
     return `Hai tam giác ABC và A'BC' có ba góc bằng nhau (Â = ${degText(ms[0].A)}, B̂ = ${degText(ms[0].B)}, Ĉ = ${degText(ms[0].C)}) nhưng BC = ${lenText(ms[0].a)} cm, BC' = ${lenText(ms[1].a)} cm: chúng không bằng nhau. Ba góc không xác định độ lớn của tam giác.`;

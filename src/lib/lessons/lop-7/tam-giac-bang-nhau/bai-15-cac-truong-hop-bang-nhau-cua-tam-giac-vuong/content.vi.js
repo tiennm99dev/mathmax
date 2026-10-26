@@ -56,7 +56,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Đặt hai tam giác chung đỉnh góc vuông, cạnh góc vuông $AB$ trùng $DE$. Đỉnh còn lại nằm trên đường vuông góc với $AB$ tại $A$, cách $B$ một khoảng bằng cạnh huyền: trên tia đó chỉ có đúng một điểm như vậy, nên hai tam giác trùng khít.',
+          text: 'Đặt $\\triangle DEF$ lên $\\triangle ABC$ sao cho cạnh góc vuông $DE$ trùng $AB$ ($D$ trùng $A$, $E$ trùng $B$) và $F$, $C$ nằm cùng phía đối với $AB$. Khi đó $F$ và $C$ cùng nằm trên tia vuông góc với $AB$ tại $A$, và cùng cách $B$ một khoảng bằng cạnh huyền. Trên tia đó chỉ có đúng một điểm như vậy, nên $F$ trùng $C$ và hai tam giác trùng khít.',
         },
         {
           type: 'callout',
