@@ -8,8 +8,8 @@ describe('BASES', () => {
     expect(lens).toEqual([
       [4, 5, 3],
       [6, 5, 5],
-      [6, 4, 3, 5],
-      [8, 5, 2, 5],
+      [7, 4, 4, 5],
+      [10, 5, 4, 5],
     ]);
     for (const b of BASES) expect(Number.isInteger(polygonArea(b.pts))).toBe(true);
   });
@@ -29,8 +29,9 @@ describe('BASES', () => {
     expect(BASES.map((b) => [measures(b.pts, 1).C, measures(b.pts, 1).S])).toEqual([
       [12, 6],
       [16, 12],
-      [18, 18],
-      [20, 20],
+      [20, 22],
+      [24, 28],
     ]);
+    for (const b of BASES) expect(measures(b.pts, 1).C).not.toBe(measures(b.pts, 1).S);
   });
 });

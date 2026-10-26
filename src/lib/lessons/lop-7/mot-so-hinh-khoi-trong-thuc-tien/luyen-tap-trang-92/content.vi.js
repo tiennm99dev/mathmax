@@ -74,12 +74,12 @@ export default {
     },
     {
       problem:
-        'Một hình lập phương có thể tích $64\\ \\text{cm}^3$. Tính diện tích xung quanh của nó.',
+        'Một hình lập phương có thể tích $125\\ \\text{cm}^3$. Tính diện tích xung quanh của nó.',
       steps: [
-        'Tìm cạnh $a$ sao cho $a^3 = 64$: vì $4^3 = 4\\cdot 4\\cdot 4 = 64$ nên $a = 4$ cm.',
-        '$S_{xq} = 4a^2 = 4\\cdot 16 = 64\\ (\\text{cm}^2)$.',
+        'Tìm cạnh $a$ sao cho $a^3 = 125$: vì $5^3 = 5\\cdot 5\\cdot 5 = 125$ nên $a = 5$ cm.',
+        '$S_{xq} = 4a^2 = 4\\cdot 25 = 100\\ (\\text{cm}^2)$.',
       ],
-      answer: '$S_{xq} = 64\\ \\text{cm}^2$.',
+      answer: '$S_{xq} = 100\\ \\text{cm}^2$.',
     },
   ],
   practice: [

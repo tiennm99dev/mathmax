@@ -31,14 +31,19 @@ function recompute(prompt) {
   }
   if (prompt.includes('lít nước')) {
     const [a, b, c] = n;
+    expect(b).toBeLessThanOrEqual(a);
     expect((a * b * c) % 1000).toBe(0);
     return (a * b * c) / 1000;
   }
   if (prompt.includes('có thể tích') && prompt.includes('hình hộp')) {
     const [V, a, b] = n;
+    expect(b).toBeLessThanOrEqual(a);
     return V / (a * b);
   }
-  if (prompt.startsWith('Tính thể tích của hình hộp')) return n[0] * n[1] * n[2];
+  if (prompt.startsWith('Tính thể tích của hình hộp')) {
+    expect(n[1]).toBeLessThanOrEqual(n[0]);
+    return n[0] * n[1] * n[2];
+  }
   if (prompt.includes('khối gỗ hình lập phương')) return n[0] ** 3;
   if (prompt.includes('lập phương có cạnh')) return 4 * n[0] ** 2;
   if (prompt.includes('lập phương có diện tích xung quanh')) return Math.sqrt(n[0] / 4) ** 3;

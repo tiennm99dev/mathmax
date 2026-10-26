@@ -95,13 +95,13 @@ export default {
     },
     {
       problem:
-        'Một hình lăng trụ đứng tứ giác có đáy là hình thang với hai đáy $6$ cm và $3$ cm, hai cạnh bên $4$ cm và $5$ cm, chiều cao hình thang $4$ cm. Chiều cao của lăng trụ là $10$ cm. Tính diện tích xung quanh và thể tích.',
+        'Một hình lăng trụ đứng tứ giác có đáy là hình thang với hai đáy $7$ cm và $4$ cm, hai cạnh bên $4$ cm và $5$ cm, chiều cao hình thang $4$ cm. Chiều cao của lăng trụ là $10$ cm. Tính diện tích xung quanh và thể tích.',
       steps: [
-        '$C_{\\text{đáy}} = 6 + 3 + 4 + 5 = 18$ (cm), nên $S_{xq} = 18\\cdot 10 = 180\\ (\\text{cm}^2)$.',
-        '$S_{\\text{đáy}} = \\dfrac{(6 + 3)\\cdot 4}{2} = 18\\ (\\text{cm}^2)$.',
-        '$V = 18\\cdot 10 = 180\\ (\\text{cm}^3)$.',
+        '$C_{\\text{đáy}} = 7 + 4 + 4 + 5 = 20$ (cm), nên $S_{xq} = 20\\cdot 10 = 200\\ (\\text{cm}^2)$.',
+        '$S_{\\text{đáy}} = \\dfrac{(7 + 4)\\cdot 4}{2} = 22\\ (\\text{cm}^2)$.',
+        '$V = 22\\cdot 10 = 220\\ (\\text{cm}^3)$.',
       ],
-      answer: '$S_{xq} = 180\\ \\text{cm}^2$, $V = 180\\ \\text{cm}^3$.',
+      answer: '$S_{xq} = 200\\ \\text{cm}^2$, $V = 220\\ \\text{cm}^3$.',
     },
     {
       problem:

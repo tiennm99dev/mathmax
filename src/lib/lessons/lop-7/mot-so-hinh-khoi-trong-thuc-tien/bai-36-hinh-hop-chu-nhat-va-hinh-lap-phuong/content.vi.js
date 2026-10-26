@@ -144,7 +144,7 @@ export default {
       type: 'text',
       prompt:
         "Hình hộp chữ nhật $ABCD.A'B'C'D'$ có bốn đường chéo. Viết tên đường chéo đi qua đỉnh $B$.",
-      accept: ["BD'", "D'B"],
+      accept: ["BD'", "D'B", 'BD’', 'D’B', 'BD′', 'D′B'],
       hints: [
         'Đường chéo nối hai đỉnh không cùng nằm trên một mặt nào.',
         'Đỉnh đối diện với $B$ nằm ở đáy trên, ở vị trí "chéo" với $B$ qua tâm hình hộp.',

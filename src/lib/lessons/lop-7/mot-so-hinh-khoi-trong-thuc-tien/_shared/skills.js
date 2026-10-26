@@ -73,7 +73,7 @@ export const hopTheTich = {
     const kind = pick(rand, ['volume', 'height', 'litre']);
     if (kind === 'litre') {
       const a = 10 * int(rand, 4, 12);
-      const b = 10 * int(rand, 2, 6);
+      const b = 10 * int(rand, 2, Math.min(a / 10, 6));
       const c = 10 * int(rand, 2, 6);
       const v = a * b * c;
       return {
@@ -88,7 +88,7 @@ export const hopTheTich = {
       };
     }
     const a = int(rand, 3, 15);
-    const b = int(rand, 2, 12);
+    const b = int(rand, 2, Math.min(a, 12));
     const c = int(rand, 2, 12);
     const v = a * b * c;
     if (kind === 'height') {

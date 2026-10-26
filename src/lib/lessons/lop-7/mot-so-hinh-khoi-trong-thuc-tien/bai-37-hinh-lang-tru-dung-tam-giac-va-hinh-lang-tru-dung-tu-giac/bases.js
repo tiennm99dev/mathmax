@@ -1,6 +1,7 @@
 /**
  * Bases the prism widget offers, chosen so that every side, the perimeter
- * and the area are whole numbers of centimetres. Corners are listed
+ * and the area are whole numbers of centimetres, and the perimeter and the
+ * area are different numbers, so S_xq and V never show the same value. Corners are listed
  * counter-clockwise from A at the front left.
  */
 
@@ -31,22 +32,22 @@ export const BASES = [
   {
     id: 'hinh-thang-vuong',
     short: 'Hình thang vuông',
-    name: 'hình thang ABCD vuông tại B và C, đáy AB = 6 cm, CD = 3 cm, BC = 4 cm, DA = 5 cm',
+    name: 'hình thang ABCD vuông tại B và C, đáy AB = 7 cm, CD = 4 cm, BC = 4 cm, DA = 5 cm',
     pts: [
       { x: 0, y: 0 },
-      { x: 6, y: 0 },
-      { x: 6, y: 4 },
+      { x: 7, y: 0 },
+      { x: 7, y: 4 },
       { x: 3, y: 4 },
     ],
   },
   {
     id: 'hinh-thang-can',
     short: 'Hình thang cân',
-    name: 'hình thang cân ABCD, đáy AB = 8 cm, CD = 2 cm, BC = DA = 5 cm, chiều cao 4 cm',
+    name: 'hình thang cân ABCD, đáy AB = 10 cm, CD = 4 cm, BC = DA = 5 cm, chiều cao 4 cm',
     pts: [
       { x: 0, y: 0 },
-      { x: 8, y: 0 },
-      { x: 5, y: 4 },
+      { x: 10, y: 0 },
+      { x: 7, y: 4 },
       { x: 3, y: 4 },
     ],
   },
