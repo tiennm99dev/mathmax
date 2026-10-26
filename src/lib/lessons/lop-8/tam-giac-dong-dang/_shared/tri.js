@@ -102,6 +102,17 @@ export function similar(t, u) {
 }
 
 /**
+ * Whether two triangles are similar under some pairing of their vertices:
+ * their sides, each sorted from shortest to longest, are proportional.
+ * @param {Tri} t @param {Tri} u
+ */
+export function similarAnyOrder(t, u) {
+  const p = [t.ab, t.bc, t.ca].sort((x, y) => x - y);
+  const q = [u.ab, u.bc, u.ca].sort((x, y) => x - y);
+  return sameRatio(q[0], p[0], q[1], p[1]) && sameRatio(q[1], p[1], q[2], p[2]);
+}
+
+/**
  * Vertices in a frame with B at the origin, C on the positive x-axis and A
  * above it (y up).
  * @param {Tri} t

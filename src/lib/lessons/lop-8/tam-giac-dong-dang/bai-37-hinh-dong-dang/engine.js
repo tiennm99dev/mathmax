@@ -37,7 +37,7 @@ export function perimeter(pts) {
 }
 
 /**
- * Starting shapes, in SVG units on a 20-unit grid: a triangle, a house and
+ * Starting shapes, in SVG units (the grid square is 20 units): a triangle, a house and
  * an arrow. Vertex names follow the order of the points.
  */
 export const SHAPES = {
@@ -54,12 +54,12 @@ export const SHAPES = {
     { x: 190, y: 130 },
   ],
   'mui-ten': [
-    { x: 190, y: 140 },
-    { x: 230, y: 140 },
-    { x: 230, y: 120 },
-    { x: 260, y: 150 },
-    { x: 230, y: 180 },
-    { x: 230, y: 160 },
-    { x: 190, y: 160 },
+    { x: 180, y: 135 },
+    { x: 240, y: 135 },
+    { x: 240, y: 105 },
+    { x: 285, y: 150 },
+    { x: 240, y: 195 },
+    { x: 240, y: 165 },
+    { x: 180, y: 165 },
   ],
 };

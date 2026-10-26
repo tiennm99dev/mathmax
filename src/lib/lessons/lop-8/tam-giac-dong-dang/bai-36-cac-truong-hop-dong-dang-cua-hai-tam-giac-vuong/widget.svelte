@@ -74,7 +74,9 @@
         text:
           mode === 'goc'
             ? 'Góc B′ bằng góc C chứ không bằng góc B: hai tam giác vẫn đồng dạng nhưng B′ ứng với C, tức △A′B′C′ ∽ △ACB.'
-            : 'A′B′ tỉ lệ với AC và A′C′ tỉ lệ với AB: hai tam giác vẫn đồng dạng nhưng theo thứ tự △A′B′C′ ∽ △ACB.',
+            : mode === 'cgv'
+              ? 'A′B′ tỉ lệ với AC và A′C′ tỉ lệ với AB: hai tam giác vẫn đồng dạng nhưng theo thứ tự △A′B′C′ ∽ △ACB.'
+              : 'B′C′ : BC bằng A′B′ : AC (không phải A′B′ : AB): hai tam giác vẫn đồng dạng nhưng theo thứ tự △A′B′C′ ∽ △ACB.',
       };
     }
     if (s === 'invalid') {

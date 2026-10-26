@@ -6,18 +6,31 @@
  * equal ratios and equal angles are exact.
  */
 
-import { fromASA, fromSAS, fromSSS, sameRatio } from '../_shared/tri.js';
+import { fromASA, fromSAS, fromSSS, sameRatio, similarAnyOrder } from '../_shared/tri.js';
 
 /**
  * @typedef {import('../_shared/tri.js').Tri} Tri
- * @typedef {'similar' | 'invalid' | 'sides' | 'angle' | 'one' | 'none'} Status
- *   similar: the case holds; invalid: a triangle cannot be built;
+ * @typedef {'similar' | 'reordered' | 'invalid' | 'sides' | 'angle' | 'one' | 'none'} Status
+ *   similar: the case holds; reordered: the case fails for A ↔ A′, B ↔ B′,
+ *   C ↔ C′ but the triangles are similar under another pairing of vertices;
+ *   invalid: a triangle cannot be built;
  *   sides: c.g.c sides proportional but included angles differ;
  *   angle: c.g.c included angles equal but sides not proportional;
  *   one: g.g only one pair of angles equal; none: nothing of the case holds
  *   (for c.c.c, the three ratios are not all equal)
  * @typedef {{ left: Tri | null, right: Tri | null, status: Status }} Check
  */
+
+/**
+ * Turns a failed case into 'reordered' when the two triangles are still
+ * similar with their vertices paired another way.
+ * @param {Tri} left @param {Tri} right @param {Status} status
+ * @returns {Check}
+ */
+function settle(left, right, status) {
+  if (status !== 'similar' && similarAnyOrder(left, right)) status = 'reordered';
+  return { left, right, status };
+}
 
 /**
  * Cạnh – cạnh – cạnh: A′B′/AB = B′C′/BC = C′A′/CA.
@@ -30,7 +43,7 @@ export function checkSSS(p, q) {
   const right = fromSSS(q.ab, q.bc, q.ca);
   if (!left || !right) return { left, right, status: 'invalid' };
   const ok = sameRatio(q.ab, p.ab, q.bc, p.bc) && sameRatio(q.bc, p.bc, q.ca, p.ca);
-  return { left, right, status: ok ? 'similar' : 'none' };
+  return settle(left, right, ok ? 'similar' : 'none');
 }
 
 /**
@@ -47,7 +60,7 @@ export function checkSAS(p, q) {
   const angle = p.A === q.A;
   /** @type {Status} */
   const status = sides && angle ? 'similar' : sides ? 'sides' : angle ? 'angle' : 'none';
-  return { left, right, status };
+  return settle(left, right, status);
 }
 
 /**
@@ -61,5 +74,5 @@ export function checkAA(p, q) {
   const right = fromASA(q.bc, q.B, q.C);
   if (!left || !right) return { left, right, status: 'invalid' };
   const equal = Number(p.B === q.B) + Number(p.C === q.C);
-  return { left, right, status: equal === 2 ? 'similar' : equal === 1 ? 'one' : 'none' };
+  return settle(left, right, equal === 2 ? 'similar' : equal === 1 ? 'one' : 'none');
 }

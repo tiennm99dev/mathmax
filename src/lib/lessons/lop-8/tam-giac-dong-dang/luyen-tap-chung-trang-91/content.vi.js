@@ -150,6 +150,7 @@ export default {
       prompt:
         '$\\triangle ABC \\backsim \\triangle MNP$ với $\\widehat{A} = 60^\\circ$ và $\\widehat{N} = 75^\\circ$. Góc $C$ bằng bao nhiêu độ?',
       answer: 45,
+      unit: '°',
       hints: [
         '$\\widehat{B} = \\widehat{N}$.',
         'Tổng ba góc của $\\triangle ABC$ là $180^\\circ$.',

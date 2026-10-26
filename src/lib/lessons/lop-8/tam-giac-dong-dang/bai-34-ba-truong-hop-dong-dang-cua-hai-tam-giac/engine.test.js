@@ -13,6 +13,10 @@ describe('cạnh – cạnh – cạnh', () => {
     expect(checkSSS({ ab: 4, bc: 5, ca: 6 }, { ab: 8, bc: 10, ca: 11 }).status).toBe('none');
   });
 
+  it('notices three sides in one ratio with the vertices paired another way', () => {
+    expect(checkSSS({ ab: 4, bc: 5, ca: 6 }, { ab: 10, bc: 8, ca: 12 }).status).toBe('reordered');
+  });
+
   it('flags lengths that make no triangle', () => {
     expect(checkSSS({ ab: 1, bc: 2, ca: 3 }, { ab: 2, bc: 4, ca: 6 }).status).toBe('invalid');
   });
@@ -44,8 +48,13 @@ describe('góc – góc', () => {
     const c = checkAA(p, { bc: 8, B: 50, C: 70 });
     expect(c.status).toBe('similar');
     expect(c.left && c.right && similar(c.left, c.right)).toBe(true);
-    expect(checkAA(p, { bc: 8, B: 50, C: 60 }).status).toBe('one');
+    expect(checkAA(p, { bc: 8, B: 50, C: 65 }).status).toBe('one');
     expect(checkAA(p, { bc: 8, B: 40, C: 60 }).status).toBe('none');
+  });
+
+  it('notices similar triangles whose vertices pair another way', () => {
+    // 50°, 60°, 70° in both, but B′ = 50° = B while C′ = 60° = Â.
+    expect(checkAA({ bc: 5, B: 50, C: 70 }, { bc: 8, B: 50, C: 60 }).status).toBe('reordered');
   });
 
   it('flags angles that add up to 180° or more', () => {

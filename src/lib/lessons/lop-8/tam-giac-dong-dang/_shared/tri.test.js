@@ -10,6 +10,7 @@ import {
   ratioTex,
   sameRatio,
   similar,
+  similarAnyOrder,
 } from './tri.js';
 
 /** @param {import('./tri.js').Tri} t */
@@ -104,5 +105,16 @@ describe('ratioTex', () => {
     expect(ratioTex(8, 4)).toBe('\\dfrac{8}{4} = 2');
     expect(ratioTex(6, 4)).toBe('\\dfrac{6}{4} = \\dfrac{3}{2}');
     expect(ratioTex(3, 4)).toBe('\\dfrac{3}{4}');
+  });
+});
+
+describe('similarAnyOrder', () => {
+  it('pairs sides by length, whatever the vertex names', () => {
+    const t = fromSSS(4, 5, 6);
+    const u = fromSSS(10, 8, 12);
+    const w = fromSSS(10, 8, 11);
+    expect(t && u && similarAnyOrder(t, u)).toBe(true);
+    expect(t && u && similar(t, u)).toBe(false);
+    expect(t && w && similarAnyOrder(t, w)).toBe(false);
   });
 });

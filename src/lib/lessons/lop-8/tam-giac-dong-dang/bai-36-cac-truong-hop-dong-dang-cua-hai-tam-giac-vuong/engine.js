@@ -50,7 +50,8 @@ export function checkLegs(p, q) {
 }
 
 /**
- * Hypotenuse and a leg in proportion: B′C′/BC = A′B′/AB.
+ * Hypotenuse and a leg in proportion: B′C′/BC = A′B′/AB. When instead
+ * B′C′/BC = A′B′/AC, the triangles are similar with B and C swapped.
  * @param {{ bc: number, ab: number }} p
  * @param {{ bc: number, ab: number }} q
  * @returns {Check}
@@ -59,5 +60,11 @@ export function checkHypotenuseLeg(p, q) {
   const left = fromHypotenuseLeg(p.bc, p.ab);
   const right = fromHypotenuseLeg(q.bc, q.ab);
   if (!left || !right) return { left, right, status: 'invalid' };
-  return { left, right, status: sameRatio(q.bc, p.bc, q.ab, p.ab) ? 'similar' : 'none' };
+  /** @type {Status} */
+  const status = sameRatio(q.bc, p.bc, q.ab, p.ab)
+    ? 'similar'
+    : sameRatio(q.bc, p.bc, q.ab, left.ca)
+      ? 'swapped'
+      : 'none';
+  return { left, right, status };
 }

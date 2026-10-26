@@ -26,7 +26,7 @@
   let g1 = $state({ ab: 4, ca: 6, A: 60 });
   let g2 = $state({ ab: 6, ca: 9, A: 75 });
   let a1 = $state({ bc: 5, B: 50, C: 70 });
-  let a2 = $state({ bc: 8, B: 50, C: 60 });
+  let a2 = $state({ bc: 8, B: 50, C: 65 });
 
   const check = $derived(
     mode === 'ccc' ? checkSSS(s1, s2) : mode === 'cgc' ? checkSAS(g1, g2) : checkAA(a1, a2),
@@ -80,8 +80,12 @@
       sides: 'Hai cạnh đã tỉ lệ nhưng góc xen giữa khác nhau: chưa đồng dạng. Hãy chỉnh góc A′.',
       angle: 'Góc xen giữa đã bằng nhau nhưng hai tỉ số cạnh khác nhau: chưa đồng dạng.',
       one: 'Mới có một cặp góc bằng nhau. Cần thêm một cặp nữa thì mới kết luận đồng dạng.',
+      reordered:
+        'Với cách ghép A ↔ A′, B ↔ B′, C ↔ C′ thì điều kiện chưa thoả, nhưng hai tam giác vẫn đồng dạng theo một cách ghép đỉnh khác. Xếp các cạnh từ nhỏ đến lớn, hoặc so các góc, để tìm cách ghép đúng.',
     };
-    return { tone: /** @type {const} */ ('warn'), text: why[s] };
+    /** @type {'info' | 'warn'} */
+    const tone = s === 'reordered' ? 'info' : 'warn';
+    return { tone, text: why[s] };
   });
 </script>
 

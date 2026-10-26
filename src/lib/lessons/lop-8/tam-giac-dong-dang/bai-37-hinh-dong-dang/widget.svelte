@@ -14,7 +14,7 @@
   const UNIT = 20;
   const GRID_X = Array.from({ length: W / UNIT + 1 }, (_, i) => i * UNIT);
   const GRID_Y = Array.from({ length: H / UNIT + 1 }, (_, i) => i * UNIT);
-  const NAMES = ['A', 'B', 'C', 'D', 'E', 'G', 'H'];
+  const NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   const SHAPE_OPTIONS = [
     { value: 'tam-giac', label: 'Tam giác' },
     { value: 'nha', label: 'Ngôi nhà' },
@@ -134,7 +134,7 @@
     if (k === 1) return `k = 1: H′ trùng với H.`;
     return k > 1
       ? `k = ${kt} > 1: H′ là hình phóng to của H, mọi đoạn thẳng dài gấp ${kt} lần.`
-      : `k = ${kt} < 1: H′ là hình thu nhỏ của H, mọi đoạn thẳng chỉ bằng ${kt} lần.`;
+      : `k = ${kt} < 1: H′ là hình thu nhỏ của H, mỗi đoạn thẳng của H′ chỉ bằng ${kt} lần đoạn tương ứng của H.`;
   });
 
   const guessRatios = $derived(

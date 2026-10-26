@@ -37,6 +37,11 @@ describe('hypotenuse and leg', () => {
     expect(checkHypotenuseLeg({ bc: 5, ab: 5 }, { bc: 10, ab: 6 }).status).toBe('invalid');
   });
 
+  it('notices the leg that pairs with the other leg', () => {
+    // 3-4-5 and 6-8-10: B′C′/BC = 2 = A′B′/AC, so B′ pairs with C.
+    expect(checkHypotenuseLeg({ bc: 5, ab: 3 }, { bc: 10, ab: 8 }).status).toBe('swapped');
+  });
+
   it('rejects ratios that differ', () => {
     expect(checkHypotenuseLeg({ bc: 5, ab: 3 }, { bc: 10, ab: 7 }).status).toBe('none');
   });
