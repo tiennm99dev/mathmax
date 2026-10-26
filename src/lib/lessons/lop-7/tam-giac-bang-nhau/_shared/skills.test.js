@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet } from '#lib/core/drill.js';
-import { PAGE_68_SKILLS, PAGE_74_SKILLS } from './skills.js';
+import { CHAPTER_SKILLS, PAGE_68_SKILLS, PAGE_74_SKILLS, PAGE_85_SKILLS } from './skills.js';
 
 /**
  * Recomputes a question's answer from its prompt alone.
@@ -10,6 +10,31 @@ import { PAGE_68_SKILLS, PAGE_74_SKILLS } from './skills.js';
 function recompute(prompt) {
   const n = (/** @type {string} */ s) => Number(s);
   let m;
+  if ((m = /BC = (\d+) cm\. Tính HB/.exec(prompt))) return n(m[1]) / 2;
+  if ((m = /góc xOy = (\d+)°, MA vuông góc.*Tính góc OMB/.exec(prompt))) return 90 - n(m[1]) / 2;
+  if ((m = /BC = EF, B̂ = Ê = (\d+)°\. Tính F̂/.exec(prompt))) return 90 - n(m[1]);
+  if ((m = /BC = EF = (\d+) cm, AB = DE\. Biết AC = (\d+) cm\. Tính DF/.exec(prompt))) {
+    expect(n(m[2])).toBeLessThan(n(m[1]));
+    return n(m[2]);
+  }
+  if ((m = /cân tại A có góc ở đỉnh Â = (\d+)°\. Tính góc ở đáy B̂/.exec(prompt)))
+    return (180 - n(m[1])) / 2;
+  if ((m = /cân tại A có góc ở đáy B̂ = (\d+)°\. Tính góc ở đỉnh Â/.exec(prompt)))
+    return 180 - 2 * n(m[1]);
+  if ((m = /cạnh bên AB = (\d+) cm và cạnh đáy BC = (\d+) cm\. Tính chu vi/.exec(prompt))) {
+    expect(n(m[2])).toBeLessThan(2 * n(m[1]));
+    return 2 * n(m[1]) + n(m[2]);
+  }
+  if ((m = /cân tại A có Â = 60° và BC = (\d+) cm\. Tính AB/.exec(prompt))) return n(m[1]);
+  if ((m = /cân tại A có góc ngoài tại đỉnh A bằng (\d+)°\. Tính B̂/.exec(prompt)))
+    return n(m[1]) / 2;
+  if ((m = /trung trực của đoạn thẳng AB và MA = (\d+) cm\. Tính MB/.exec(prompt))) return n(m[1]);
+  if ((m = /cắt AB tại O\. Biết OA = (\d+) cm\. Tính AB/.exec(prompt))) return 2 * n(m[1]);
+  if ((m = /MA = (\d+) cm, AB = (\d+) cm\. Tính chu vi tam giác MAB/.exec(prompt))) {
+    expect(n(m[2])).toBeLessThan(2 * n(m[1]));
+    return 2 * n(m[1]) + n(m[2]);
+  }
+  if ((m = /góc MAB = (\d+)°\. Tính góc AMB/.exec(prompt))) return 180 - 2 * n(m[1]);
   if ((m = /Â = (\d+)°, B̂ = (\d+)°\. Tính Ĉ/.exec(prompt))) return 180 - n(m[1]) - n(m[2]);
   if ((m = /vuông tại A có B̂ = (\d+)°\. Tính Ĉ/.exec(prompt))) return 90 - n(m[1]);
   if ((m = /B̂ = Ĉ và Â = (\d+)°\. Tính B̂/.exec(prompt))) return (180 - n(m[1])) / 2;
@@ -50,6 +75,8 @@ function recompute(prompt) {
 for (const [name, skills] of /** @type {const} */ ([
   ['page 68', PAGE_68_SKILLS],
   ['page 74', PAGE_74_SKILLS],
+  ['page 85', PAGE_85_SKILLS],
+  ['chapter', CHAPTER_SKILLS],
 ])) {
   describe(`${name} skills`, () => {
     it('stores answers that match a recomputation, over many sets', () => {
@@ -83,5 +110,21 @@ describe('every kind of question is reachable', () => {
     }
     // 4 + 3 + 3 + 2 kinds on page 68, 3 + 3 + 2 on page 74; the side kind has three wordings.
     expect(prompts.size).toBeGreaterThanOrEqual(22);
+  });
+});
+
+describe('the chapter review', () => {
+  it('draws every skill of the chapter once per family, in book order', () => {
+    expect(CHAPTER_SKILLS).toEqual([...PAGE_68_SKILLS, ...PAGE_74_SKILLS, ...PAGE_85_SKILLS]);
+    expect(new Set(CHAPTER_SKILLS.map((s) => s.id)).size).toBe(CHAPTER_SKILLS.length);
+  });
+
+  it('reaches every page 85 question kind', () => {
+    const prompts = new Set();
+    for (let seed = 1; seed <= 200; seed++) {
+      for (const q of buildSet(PAGE_85_SKILLS, 3, seed)) prompts.add(q.prompt.replace(/\d+/g, '#'));
+    }
+    // 4 kinds of right-triangle question, 5 isosceles, 4 perpendicular bisector.
+    expect(prompts.size).toBe(13);
   });
 });

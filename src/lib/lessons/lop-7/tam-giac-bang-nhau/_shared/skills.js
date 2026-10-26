@@ -324,5 +324,192 @@ export const thucTe = {
   },
 };
 
+/** @type {Skill} */
+export const tamGiacVuong = {
+  id: 'tam-giac-vuong',
+  label: 'Bài 15. Tam giác vuông bằng nhau',
+  make(rand) {
+    const kind = pick(rand, ['altitude', 'bisector', 'hyp-angle', 'hyp-leg']);
+    if (kind === 'altitude') {
+      const h = int(rand, 2, 15);
+      return {
+        prompt: `Tam giác ABC có AB = AC, kẻ AH vuông góc với BC (H thuộc BC). Biết BC = ${2 * h} cm. Tính HB (cm).`,
+        answer: h,
+        hints: [
+          'Xét hai tam giác vuông AHB và AHC: cạnh huyền nào bằng nhau, cạnh góc vuông nào chung?',
+          'Hai tam giác bằng nhau cho HB = HC.',
+        ],
+        steps: [
+          'Hai tam giác vuông AHB, AHC có cạnh huyền AB = AC, cạnh góc vuông AH chung, nên △AHB = △AHC (cạnh huyền - cạnh góc vuông).',
+          `Suy ra HB = HC, nên HB = BC : 2 = ${2 * h} : 2 = ${h} (cm).`,
+        ],
+      };
+    }
+    if (kind === 'bisector') {
+      const a = int(rand, 10, 40);
+      return {
+        prompt: `M nằm trên tia phân giác của góc xOy = ${2 * a}°, MA vuông góc với Ox (A thuộc Ox), MB vuông góc với Oy (B thuộc Oy). Tính góc OMB (độ).`,
+        answer: 90 - a,
+        hints: [
+          'Góc BOM bằng một nửa góc xOy.',
+          'Trong tam giác OBM vuông tại B, hai góc nhọn phụ nhau.',
+        ],
+        steps: [
+          `Góc BOM = ${2 * a}° : 2 = ${a}° (Ot là tia phân giác).`,
+          `Tam giác OBM vuông tại B nên góc OMB = 90° − ${a}° = ${90 - a}°.`,
+        ],
+      };
+    }
+    if (kind === 'hyp-angle') {
+      const b = int(rand, 15, 75);
+      return {
+        prompt: `△ABC vuông tại A và △DEF vuông tại D có BC = EF, B̂ = Ê = ${b}°. Tính F̂ (độ).`,
+        answer: 90 - b,
+        hints: [
+          'Hai tam giác vuông bằng nhau theo trường hợp cạnh huyền - góc nhọn.',
+          'Trong tam giác DEF vuông tại D, Ê + F̂ = 90°.',
+        ],
+        steps: [
+          '△ABC = △DEF (cạnh huyền - góc nhọn), nên F̂ = Ĉ.',
+          `Trong tam giác DEF vuông tại D: F̂ = 90° − ${b}° = ${90 - b}°.`,
+        ],
+      };
+    }
+    const c = int(rand, 5, 20);
+    const s = int(rand, 2, c - 1);
+    return {
+      prompt: `△ABC vuông tại A và △DEF vuông tại D có BC = EF = ${c} cm, AB = DE. Biết AC = ${s} cm. Tính DF (cm).`,
+      answer: s,
+      hints: [
+        'BC, EF là hai cạnh huyền; AB, DE là hai cạnh góc vuông.',
+        'Dùng trường hợp cạnh huyền - cạnh góc vuông, rồi tìm cạnh tương ứng với AC.',
+      ],
+      steps: [
+        '△ABC = △DEF (cạnh huyền BC = EF, cạnh góc vuông AB = DE).',
+        `DF và AC là hai cạnh tương ứng, nên DF = AC = ${s} cm.`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const tamGiacCan = {
+  id: 'tam-giac-can',
+  label: 'Bài 16. Tam giác cân, tam giác đều',
+  make(rand) {
+    const kind = pick(rand, ['base', 'apex', 'perimeter', 'sixty', 'exterior']);
+    if (kind === 'base') {
+      const a = 2 * int(rand, 10, 80);
+      const b = (180 - a) / 2;
+      return {
+        prompt: `Tam giác ABC cân tại A có góc ở đỉnh Â = ${a}°. Tính góc ở đáy B̂ (độ).`,
+        answer: b,
+        hints: ['Trong tam giác cân, hai góc ở đáy bằng nhau.', `B̂ + Ĉ = 180° − ${a}°.`],
+        steps: [`B̂ + Ĉ = 180° − ${a}° = ${180 - a}° và B̂ = Ĉ.`, `B̂ = ${180 - a}° : 2 = ${b}°.`],
+      };
+    }
+    if (kind === 'apex') {
+      const b = int(rand, 20, 85);
+      return {
+        prompt: `Tam giác ABC cân tại A có góc ở đáy B̂ = ${b}°. Tính góc ở đỉnh Â (độ).`,
+        answer: 180 - 2 * b,
+        hints: ['Góc Ĉ bằng góc nào?', 'Dùng tổng ba góc của tam giác.'],
+        steps: [`Ĉ = B̂ = ${b}° (hai góc ở đáy).`, `Â = 180° − ${b}° − ${b}° = ${180 - 2 * b}°.`],
+      };
+    }
+    if (kind === 'perimeter') {
+      const s = int(rand, 3, 15);
+      const t = int(rand, 2, 2 * s - 1);
+      return {
+        prompt: `Tam giác ABC cân tại A có cạnh bên AB = ${s} cm và cạnh đáy BC = ${t} cm. Tính chu vi tam giác ABC (cm).`,
+        answer: 2 * s + t,
+        hints: ['Cạnh bên AC bằng cạnh nào?'],
+        steps: [`AC = AB = ${s} cm.`, `Chu vi = ${s} + ${s} + ${t} = ${2 * s + t} (cm).`],
+      };
+    }
+    if (kind === 'sixty') {
+      const s = int(rand, 3, 20);
+      return {
+        prompt: `Tam giác ABC cân tại A có Â = 60° và BC = ${s} cm. Tính AB (cm).`,
+        answer: s,
+        hints: ['Tính hai góc ở đáy B̂ và Ĉ.', 'Tam giác có ba góc bằng nhau là tam giác gì?'],
+        steps: [
+          'B̂ = Ĉ = (180° − 60°) : 2 = 60°, nên ba góc bằng nhau.',
+          `Tam giác ABC đều, nên AB = BC = ${s} cm.`,
+        ],
+      };
+    }
+    const e = 2 * int(rand, 20, 85);
+    return {
+      prompt: `Tam giác ABC cân tại A có góc ngoài tại đỉnh A bằng ${e}°. Tính B̂ (độ).`,
+      answer: e / 2,
+      hints: ['Góc ngoài tại A bằng tổng hai góc trong không kề với nó: B̂ + Ĉ.', 'B̂ = Ĉ.'],
+      steps: [`B̂ + Ĉ = ${e}° (góc ngoài tại A) và B̂ = Ĉ.`, `B̂ = ${e}° : 2 = ${e / 2}°.`],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const trungTruc = {
+  id: 'trung-truc',
+  label: 'Bài 16. Đường trung trực',
+  make(rand) {
+    const kind = pick(rand, ['distance', 'segment', 'perimeter', 'angle']);
+    const s = int(rand, 3, 15);
+    if (kind === 'distance') {
+      return {
+        prompt: `Điểm M nằm trên đường trung trực của đoạn thẳng AB và MA = ${s} cm. Tính MB (cm).`,
+        answer: s,
+        hints: ['Điểm nằm trên đường trung trực của một đoạn thẳng thì cách đều hai mút.'],
+        steps: [`M cách đều A và B, nên MB = MA = ${s} cm.`],
+      };
+    }
+    if (kind === 'segment') {
+      return {
+        prompt: `Đường thẳng d là đường trung trực của đoạn thẳng AB, cắt AB tại O. Biết OA = ${s} cm. Tính AB (cm).`,
+        answer: 2 * s,
+        hints: ['Đường trung trực đi qua trung điểm của đoạn thẳng.'],
+        steps: [`O là trung điểm của AB nên OB = OA = ${s} cm.`, `AB = 2 · ${s} = ${2 * s} (cm).`],
+      };
+    }
+    if (kind === 'perimeter') {
+      const t = int(rand, 2, 2 * s - 1);
+      return {
+        prompt: `Điểm M nằm trên đường trung trực của đoạn thẳng AB (M không thuộc AB), MA = ${s} cm, AB = ${t} cm. Tính chu vi tam giác MAB (cm).`,
+        answer: 2 * s + t,
+        hints: ['M cách đều A và B: MB bằng bao nhiêu?'],
+        steps: [`MB = MA = ${s} cm.`, `Chu vi = ${s} + ${s} + ${t} = ${2 * s + t} (cm).`],
+      };
+    }
+    const b = int(rand, 20, 85);
+    return {
+      prompt: `Điểm M nằm trên đường trung trực của đoạn thẳng AB (M không thuộc AB) và góc MAB = ${b}°. Tính góc AMB (độ).`,
+      answer: 180 - 2 * b,
+      hints: [
+        'MA = MB nên tam giác MAB cân tại M.',
+        'Trong tam giác cân, hai góc ở đáy bằng nhau.',
+      ],
+      steps: [
+        `MA = MB nên tam giác MAB cân tại M, góc MBA = góc MAB = ${b}°.`,
+        `Góc AMB = 180° − ${b}° − ${b}° = ${180 - 2 * b}°.`,
+      ],
+    };
+  },
+};
+
 export const PAGE_68_SKILLS = [tongBaGoc, gocNgoai, tuongUng, ccc];
 export const PAGE_74_SKILLS = [cgc, gcg, thucTe];
+export const PAGE_85_SKILLS = [tamGiacVuong, tamGiacCan, trungTruc];
+/** One skill per question family of the chapter, in book order. */
+export const CHAPTER_SKILLS = [
+  tongBaGoc,
+  gocNgoai,
+  tuongUng,
+  ccc,
+  cgc,
+  gcg,
+  thucTe,
+  tamGiacVuong,
+  tamGiacCan,
+  trungTruc,
+];
