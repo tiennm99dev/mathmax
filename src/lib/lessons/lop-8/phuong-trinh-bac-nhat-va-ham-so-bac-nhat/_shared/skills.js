@@ -7,7 +7,7 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { intText, operand } from '#lib/core/number-format.js';
+import { fmt, intText, operand } from '#lib/core/number-format.js';
 import { numberText } from '#lib/core/decimal.js';
 import { polyText } from '#lib/algebra-engine/polynomial.js';
 
@@ -286,5 +286,338 @@ export const lapPhuongTrinh = {
   },
 };
 
+/**
+ * A signed tail ' + 5', ' − 3', or '' for 0.
+ * @param {number} b
+ */
+const tail = (b) => (b === 0 ? '' : ` ${b < 0 ? '−' : '+'} ${Math.abs(b)}`);
+
+/**
+ * a · (t) + b written out, the working of f(t) for f(x) = ax + b.
+ * @param {number} a
+ * @param {number} b
+ * @param {number} t
+ */
+const subst = (a, b, t) => `${intText(a)} · ${operand(t)}${tail(b)}`;
+
+/**
+ * A point (x; y) with the book's minus sign.
+ * @param {number} x
+ * @param {number} y
+ */
+export const pt = (x, y) => `(${intText(x)}; ${intText(y)})`;
+
+/**
+ * A coefficient written before a factor: '3 · ', '−', '' for 1.
+ * @param {number} a
+ */
+const coef = (a) => (a === 1 ? '' : a === -1 ? '−' : `${intText(a)} · `);
+
+/** @type {Skill} */
+export const hamSo = {
+  id: 'ham-so-va-do-thi',
+  label: 'Bài 27. Khái niệm hàm số và đồ thị của hàm số',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      const a = nonZero(rand, -6, 6);
+      const b = int(rand, -9, 9);
+      const t = nonZero(rand, -5, 5);
+      const y = a * t + b;
+      return {
+        prompt: `Cho hàm số y = f(x) = ${lin(a, b)}. Tính f(${intText(t)}).`,
+        answer: y,
+        hints: [`Thay x = ${intText(t)} vào công thức, chú ý dấu.`],
+        steps: [`f(${intText(t)}) = ${subst(a, b, t)} = ${intText(y)}.`],
+      };
+    }
+    if (v === 1) {
+      const a = nonZero(rand, -3, 3);
+      const c = int(rand, -9, 9);
+      const t = nonZero(rand, -4, 4);
+      const y = a * t * t + c;
+      return {
+        prompt: `Cho hàm số y = f(x) = ${polyText([c, 0, a])}. Tính f(${intText(t)}).`,
+        answer: y,
+        hints: [
+          `Thay x = ${intText(t)}; bình phương của một số luôn không âm: ${operand(t)}² = ${t * t}.`,
+        ],
+        steps: [
+          `f(${intText(t)}) = ${coef(a)}${operand(t)}²${tail(c)} = ${coef(a)}${t * t}${tail(c)} = ${intText(y)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const p = nonZero(rand, -5, 5);
+      let q = nonZero(rand, -12, 12);
+      while (q === p) q = nonZero(rand, -12, 12);
+      const a = q / p;
+      return {
+        prompt: `Đồ thị của hàm số y = ax đi qua điểm A${pt(p, q)}. Tìm a (viết dạng số nguyên, phân số hoặc số thập phân).`,
+        answer: a,
+        hints: [
+          'Điểm A thuộc đồ thị nên toạ độ của A thoả mãn y = ax.',
+          `Thay x = ${intText(p)}, y = ${intText(q)} vào y = ax.`,
+        ],
+        steps: [
+          `A thuộc đồ thị nên ${intText(q)} = a · ${operand(p)}.`,
+          `a = ${intText(q)} : ${operand(p)} = ${numberText(a)}.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      const a = nonZero(rand, -5, 5);
+      const b = int(rand, -9, 9);
+      const x = int(rand, -6, 6);
+      const k = a * x + b;
+      return {
+        prompt: `Cho hàm số f(x) = ${lin(a, b)}. Tìm x để f(x) = ${intText(k)}.`,
+        answer: x,
+        hints: [`Giải phương trình ${lin(a, b)} = ${intText(k)}.`],
+        steps: [
+          `Ta có phương trình ${lin(a, b)} = ${intText(k)}.`,
+          `${lin(a, 0)} = ${intText(k - b)}, nên x = ${intText(k - b)} : ${operand(a)} = ${intText(x)}.`,
+        ],
+      };
+    }
+    const xs = [-2, -1, 0, 1, 2];
+    const ys = xs.map(() => int(rand, -9, 9));
+    const i = int(rand, 0, 4);
+    let j = int(rand, 0, 4);
+    while (j === i) j = int(rand, 0, 4);
+    const sum = ys[i] + ys[j];
+    return {
+      prompt: `Hàm số y = f(x) cho bởi bảng: x = −2; −1; 0; 1; 2 thì y tương ứng = ${ys.map(intText).join('; ')}. Tính f(${intText(xs[i])}) + f(${intText(xs[j])}).`,
+      answer: sum,
+      hints: [`f(${intText(xs[i])}) là giá trị của y ứng với x = ${intText(xs[i])} trong bảng.`],
+      steps: [
+        `Đọc bảng: f(${intText(xs[i])}) = ${intText(ys[i])}, f(${intText(xs[j])}) = ${intText(ys[j])}.`,
+        `Tổng: ${intText(ys[i])} + ${operand(ys[j])} = ${intText(sum)}.`,
+      ],
+    };
+  },
+};
+
+/**
+ * The coefficient (m + k) as text: (m − 3), (m + 2), m.
+ * @param {number} k
+ */
+const mPlus = (k) => (k === 0 ? 'm' : `(m${tail(k)})`);
+
+/** @type {Skill} */
+export const hamSoBacNhat = {
+  id: 'ham-so-bac-nhat',
+  label: 'Bài 28. Hàm số bậc nhất và đồ thị của hàm số bậc nhất',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      const a = nonZero(rand, -6, 6);
+      const b = nonZero(rand, -12, 12);
+      const x = -b / a;
+      return {
+        prompt: `Đồ thị của hàm số y = ${lin(a, b)} cắt trục hoành tại điểm có hoành độ bằng bao nhiêu? (Viết dạng số nguyên, phân số hoặc số thập phân.)`,
+        answer: x,
+        hints: [
+          'Mọi điểm trên trục hoành có tung độ bằng 0.',
+          `Giải phương trình ${lin(a, b)} = 0.`,
+        ],
+        steps: [
+          `Cho y = 0: ${lin(a, b)} = 0.`,
+          `${lin(a, 0)} = ${intText(-b)}, nên x = ${intText(-b)} : ${operand(a)} = ${numberText(x)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const k = nonZero(rand, -5, 5);
+      const a = nonZero(rand, -4, 4);
+      const p = nonZero(rand, -4, 4);
+      const d = int(rand, -6, 6);
+      const q = a * p + d;
+      const m = a - k;
+      return {
+        prompt: `Cho hàm số bậc nhất y = ${mPlus(k)}x${tail(d)} với m ≠ ${intText(-k)}. Tìm m để đồ thị của hàm số đi qua điểm A${pt(p, q)}.`,
+        answer: m,
+        hints: [
+          `Thay x = ${intText(p)}, y = ${intText(q)} vào công thức để được một phương trình ẩn m.`,
+          `Tìm hệ số ${mPlus(k)} trước: ${mPlus(k)} · ${operand(p)} = ${intText(q - d)}.`,
+        ],
+        steps: [
+          `Thay toạ độ của A: ${intText(q)} = ${mPlus(k)} · ${operand(p)}${tail(d)}.`,
+          `${mPlus(k)} · ${operand(p)} = ${intText(q - d)}, nên m${tail(k)} = ${intText(a)}.`,
+          `m = ${intText(m)} (thoả mãn m ≠ ${intText(-k)}).`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const a = nonZero(rand, -5, 5);
+      const p = nonZero(rand, -4, 4);
+      const b = nonZero(rand, -9, 9);
+      const q = a * p + b;
+      return {
+        prompt: `Tìm b để đồ thị của hàm số y = ${lin(a, 0)} + b đi qua điểm B${pt(p, q)}.`,
+        answer: b,
+        hints: [`Thay x = ${intText(p)}, y = ${intText(q)} vào công thức.`],
+        steps: [
+          `${intText(q)} = ${subst(a, 0, p)} + b = ${intText(a * p)} + b.`,
+          `b = ${intText(q)} − ${operand(a * p)} = ${intText(b)}.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      const open = pick(rand, [10, 12, 15]);
+      const rate = pick(rand, [11, 12, 13, 14, 15, 16]);
+      const x = int(rand, 3, 30);
+      const cost = open + rate * (x - 1);
+      return {
+        prompt: `Một hãng taxi tính giá cước theo công thức T(x) = ${open} + ${rate}(x − 1) (nghìn đồng), trong đó x là số ki-lô-mét đã đi (x ≥ 1). Một khách trả ${fmt(cost)} nghìn đồng. Khách đã đi bao nhiêu ki-lô-mét?`,
+        answer: x,
+        unit: 'km',
+        hints: [
+          `Giải phương trình ${open} + ${rate}(x − 1) = ${cost}.`,
+          `${rate}(x − 1) = ${cost - open}.`,
+        ],
+        steps: [
+          `Phương trình: ${open} + ${rate}(x − 1) = ${cost}.`,
+          `${rate}(x − 1) = ${cost - open}, nên x − 1 = ${x - 1}, x = ${x} (thoả mãn).`,
+        ],
+      };
+    }
+    const years = int(rand, 3, 6);
+    const drop = pick(rand, [2, 3, 4, 5, 6]);
+    const price = drop * years;
+    const half = int(rand, 1, 2 * years - 1);
+    const left = price - (drop * half) / 2;
+    const x = half / 2;
+    return {
+      prompt: `Một máy mới mua giá ${price} triệu đồng, mỗi năm giá trị giảm ${drop} triệu đồng, nên sau x năm giá trị còn lại là V(x) = ${price} − ${drop}x (triệu đồng), 0 ≤ x ≤ ${years}. Sau bao nhiêu năm giá trị của máy còn ${numberText(left)} triệu đồng?`,
+      answer: x,
+      unit: 'năm',
+      hints: [`Giải phương trình ${price} − ${drop}x = ${numberText(left)}.`],
+      steps: [
+        `Phương trình: ${price} − ${drop}x = ${numberText(left)}.`,
+        `${drop}x = ${numberText(price - left)}, nên x = ${numberText(x)} (thoả mãn).`,
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const heSoGoc = {
+  id: 'he-so-goc',
+  label: 'Bài 29. Hệ số góc của đường thẳng',
+  make(rand) {
+    const v = int(rand, 0, 4);
+    if (v === 0) {
+      const b = nonZero(rand, -9, 9);
+      const a = nonZero(rand, -6, 6);
+      const r = pick(rand, [2, 3, 4, 5]);
+      if (rand() < 0.5) {
+        return {
+          prompt: `Tìm hệ số góc của đường thẳng y = ${intText(b)} ${a < 0 ? '−' : '+'} ${lin(Math.abs(a), 0)}.`,
+          answer: a,
+          hints: ['Viết lại về dạng y = ax + b rồi đọc hệ số của x.'],
+          steps: [`y = ${lin(a, b)}, nên hệ số góc là ${intText(a)}.`],
+        };
+      }
+      return {
+        prompt: `Tìm hệ số góc của đường thẳng y = (${lin(a, b)})/${r}. (Viết dạng số nguyên, phân số hoặc số thập phân.)`,
+        answer: a / r,
+        hints: [
+          'Viết lại về dạng y = ax + b: chia từng hạng tử của tử thức cho mẫu.',
+          'Hệ số góc là hệ số của x, viết ở dạng tối giản.',
+        ],
+        steps: [
+          `y = (${intText(a)}/${r})x + (${intText(b)}/${r}).`,
+          `Hệ số góc là ${intText(a)}/${r} = ${numberText(a / r)}.`,
+        ],
+      };
+    }
+    if (v === 1) {
+      const a = nonZero(rand, -6, 6);
+      const k = nonZero(rand, -5, 5);
+      const c = int(rand, -9, 9);
+      let d = int(rand, -9, 9);
+      while (d === c) d = int(rand, -9, 9);
+      const m = a - k;
+      return {
+        prompt: `Tìm m để đường thẳng y = ${mPlus(k)}x${tail(c)} song song với đường thẳng y = ${lin(a, d)}.`,
+        answer: m,
+        hints: [
+          'Hai đường thẳng song song khi hệ số góc bằng nhau và hệ số tự do khác nhau.',
+          `m${tail(k)} = ${intText(a)}.`,
+        ],
+        steps: [
+          `Hệ số tự do ${intText(c)} ≠ ${intText(d)}, nên chỉ cần hai hệ số góc bằng nhau.`,
+          `m${tail(k)} = ${intText(a)}, nên m = ${intText(m)}.`,
+        ],
+      };
+    }
+    if (v === 2) {
+      const a = nonZero(rand, -5, 5);
+      const p = nonZero(rand, -4, 4);
+      const b = int(rand, -9, 9);
+      const q = a * p + b;
+      return {
+        prompt: `Đường thẳng y = ax + b có hệ số góc bằng ${intText(a)} và đi qua điểm ${pt(p, q)}. Tìm b.`,
+        answer: b,
+        hints: [
+          `Hệ số góc ${intText(a)} cho a = ${intText(a)}; thay toạ độ điểm vào y = ${lin(a, 0)} + b.`,
+        ],
+        steps: [
+          `a = ${intText(a)}, nên y = ${lin(a, 0)} + b.`,
+          `Thay x = ${intText(p)}, y = ${intText(q)}: ${intText(q)} = ${intText(a * p)} + b, nên b = ${intText(b)}.`,
+        ],
+      };
+    }
+    if (v === 3) {
+      const a = nonZero(rand, -4, 4);
+      let c = nonZero(rand, -4, 4);
+      while (c === a) c = nonZero(rand, -4, 4);
+      const x = int(rand, -4, 4);
+      const y = int(rand, -8, 8);
+      const b = y - a * x;
+      const d = y - c * x;
+      const askY = rand() < 0.5;
+      return {
+        prompt: `Hai đường thẳng y = ${lin(a, b)} và y = ${lin(c, d)} cắt nhau tại điểm A. Tìm ${askY ? 'tung độ' : 'hoành độ'} của A.`,
+        answer: askY ? y : x,
+        hints: [
+          'Tại giao điểm, hai đường thẳng có cùng hoành độ và cùng tung độ, nên hai biểu thức của y bằng nhau.',
+          `Giải ${lin(a, b)} = ${lin(c, d)}${askY ? ' rồi thay x vào một trong hai công thức' : ''}.`,
+        ],
+        steps: [
+          `Phương trình hoành độ giao điểm: ${lin(a, b)} = ${lin(c, d)}.`,
+          `${lin(a - c, 0)} = ${intText(d - b)}, nên x = ${intText(x)}.`,
+          `y = ${subst(a, b, x)} = ${intText(y)}. Giao điểm A${pt(x, y)}.`,
+        ],
+      };
+    }
+    const a = nonZero(rand, -5, 5);
+    let c = nonZero(rand, -5, 5);
+    while (c === a) c = nonZero(rand, -5, 5);
+    const k = nonZero(rand, -6, 6);
+    const e = nonZero(rand, -9, 9);
+    const m = e - k;
+    return {
+      prompt: `Tìm m để hai đường thẳng y = ${lin(a, 0)} + m${tail(k)} và y = ${lin(c, e)} cắt nhau tại một điểm trên trục tung.`,
+      answer: m,
+      hints: [
+        `Hệ số góc ${intText(a)} ≠ ${intText(c)} nên hai đường thẳng luôn cắt nhau.`,
+        'Điểm trên trục tung có hoành độ 0: hai hệ số tự do phải bằng nhau.',
+      ],
+      steps: [
+        `Đường thẳng y = ${lin(c, e)} cắt trục tung tại ${pt(0, e)}.`,
+        `Cần m${tail(k)} = ${intText(e)}, nên m = ${intText(m)}.`,
+      ],
+    };
+  },
+};
+
 /** The practice set after Bài 25 and Bài 26. */
 export const SKILLS_TRANG_37 = [phuongTrinh, lapPhuongTrinh];
+
+/** The practice set after Bài 27, Bài 28 and Bài 29. */
+export const SKILLS_TRANG_55 = [hamSo, hamSoBacNhat, heSoGoc];
+
+/** Every skill of the chapter, one per lesson, for the chapter review. */
+export const CHAPTER_SKILLS = [...SKILLS_TRANG_37, ...SKILLS_TRANG_55];
