@@ -64,7 +64,7 @@ export default {
   explore: {
     title: 'Bộ bài luyện trộn ngẫu nhiên',
     instruction:
-      'Mỗi lượt có 12 câu trộn ngẫu nhiên: tính góc tạo bởi một đường thẳng cắt hai đường thẳng song song, kẻ thêm đường thẳng song song để tính góc, và đếm cặp đường thẳng song song, vuông góc nhờ các định lí. Nhập một số tự nhiên (số đo góc bằng độ, ví dụ 135). Sai lần đầu, em được xem gợi ý và làm lại; sai lần hai, lời giải từng bước sẽ hiện ra.',
+      'Mỗi lượt có 12 câu trộn ngẫu nhiên: tính góc tạo bởi một đường thẳng cắt hai đường thẳng song song, kẻ thêm đường thẳng song song để tính góc, và đếm cặp đường thẳng song song, vuông góc nhờ các định lí. Nhập một số tự nhiên: số đo góc bằng độ (ví dụ 135) hoặc số cặp đường thẳng (ví dụ 6). Sai lần đầu, em được xem gợi ý và làm lại; sai lần hai, lời giải từng bước sẽ hiện ra.',
   },
   examples: [
     {
