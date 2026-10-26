@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet } from '#lib/core/drill.js';
-import { PAGE_70_SKILLS } from './skills.js';
+import { CHAPTER_SKILLS, PAGE_70_SKILLS, PAGE_82_SKILLS } from './skills.js';
 
 /**
  * Recomputes a question's answer from its prompt alone, checking along the
@@ -69,6 +69,44 @@ function recompute(prompt) {
     for (let bc = 1; bc < 100; bc++) if (Math.abs(p - q) < bc && bc < p + q) best = bc;
     return best;
   }
+  return recomputeConcurrency(prompt);
+}
+
+/**
+ * Recomputes the answer of a question about medians, bisectors,
+ * perpendicular bisectors and altitudes from its prompt alone.
+ * @param {string} prompt
+ * @returns {number}
+ */
+function recomputeConcurrency(prompt) {
+  const n = (/** @type {string} */ s) => Number(s);
+  /** @type {RegExpExecArray | null} */
+  let m;
+  if ((m = /Â = (\d+)°\. Hai đường phân giác BE và CF/.exec(prompt))) {
+    const a = n(m[1]);
+    expect(a).toBeLessThan(180);
+    return 180 - (180 - a) / 2;
+  }
+  if ((m = /trung tuyến AM = (\d+) cm\. Tính AG/.exec(prompt))) {
+    expect(n(m[1]) % 3).toBe(0);
+    return (2 * n(m[1])) / 3;
+  }
+  if ((m = /GN = (\d+) cm\. Tính BN/.exec(prompt))) return 3 * n(m[1]);
+  if ((m = /CG = (\d+) cm\. Tính GP/.exec(prompt))) return n(m[1]) / 2;
+  if ((m = /vuông tại A có BC = (\d+) cm\. .* Tính OA/.exec(prompt))) return n(m[1]) / 2;
+  if ((m = /nhọn có Â = (\d+)° và trực tâm H\. Tính số đo góc BHC/.exec(prompt))) {
+    expect(n(m[1])).toBeLessThan(90);
+    return 180 - n(m[1]);
+  }
+  if ((m = /nhọn có Â = (\d+)°, B̂ = (\d+)° và trực tâm H\. Tính số đo góc HBC/.exec(prompt))) {
+    const angles = [n(m[1]), n(m[2]), 180 - n(m[1]) - n(m[2])];
+    for (const v of angles) {
+      expect(v).toBeGreaterThan(0);
+      expect(v).toBeLessThan(90);
+    }
+    return 90 - angles[2];
+  }
+  if ((m = /cân tại A có Â = (\d+)° và đường cao AD/.exec(prompt))) return n(m[1]) / 2;
   throw new Error(`unrecognised prompt: ${prompt}`);
 }
 
@@ -99,5 +137,38 @@ describe('page 70 skills', () => {
     }
     // 3 angle kinds (largest and smallest worded apart), 4 perpendicular kinds, 4 side kinds.
     expect(prompts.size).toBe(11);
+  });
+});
+
+describe('page 82 and chapter skills', () => {
+  it('store answers that match a recomputation, over many sets', () => {
+    for (let seed = 1; seed <= 150; seed++) {
+      for (const q of [
+        ...buildSet(PAGE_82_SKILLS, 6, seed),
+        ...buildSet(CHAPTER_SKILLS, 3, seed),
+      ]) {
+        expect(q.answer, q.prompt).toBe(recompute(q.prompt));
+        expect(Number.isInteger(q.answer) && q.answer > 0, q.prompt).toBe(true);
+        expect(q.steps.at(-1), q.prompt).toContain(String(q.answer));
+        for (const h of q.hints ?? []) {
+          expect(h, q.prompt).not.toMatch(new RegExp(`= ${q.answer}(°| cm)?\\.?$`));
+        }
+      }
+    }
+  });
+
+  it('reach every kind of question on page 82', () => {
+    const prompts = new Set();
+    for (let seed = 1; seed <= 200; seed++) {
+      for (const q of buildSet(PAGE_82_SKILLS, 3, seed)) prompts.add(q.prompt.replace(/\d+/g, '#'));
+    }
+    // 4 median and bisector kinds, 4 perpendicular bisector and altitude kinds.
+    expect(prompts.size).toBe(8);
+  });
+
+  it('cover one skill per lesson of the chapter in the review', () => {
+    const set = buildSet(CHAPTER_SKILLS, 3, 9);
+    expect(new Set(set.map((q) => q.skill)).size).toBe(5);
+    expect(set).toHaveLength(15);
   });
 });
