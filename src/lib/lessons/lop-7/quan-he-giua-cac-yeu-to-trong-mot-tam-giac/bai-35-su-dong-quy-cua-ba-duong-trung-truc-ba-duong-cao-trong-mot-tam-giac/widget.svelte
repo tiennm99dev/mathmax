@@ -129,6 +129,14 @@
   const oVisible = $derived(onBoard(per.O));
   const hVisible = $derived(onBoard(alt.H));
   const hAtVertex = $derived(info.kind === 'vuong');
+  /** O sits on a side or next to a midpoint label: put its label inward. */
+  const oCrowded = $derived(per.place === 'canh' || per.sides.some((s) => dist(s.at, per.O) < 1));
+  /** H sits on a vertex or next to a foot or vertex label: put its label inward. */
+  const hCrowded = $derived(
+    hAtVertex ||
+      alt.rows.some((r) => dist(r.foot, alt.H) < 1) ||
+      VS.some((v) => dist(tri[v], alt.H) < 1),
+  );
 
   const feedback = $derived(
     mode === 'trung-truc'
@@ -215,7 +223,7 @@
       <TickMarks from={S(tri.A)} to={S(per.sides[2].at)} count={3} color="#1F2937" />
       <TickMarks from={S(per.sides[2].at)} to={S(tri.B)} count={3} color="#1F2937" />
       {#if oVisible}
-        {@const t = specialTag(per.O, per.place === 'canh')}
+        {@const t = specialTag(per.O, oCrowded)}
         {#each VS as v (v)}
           {@const p = S(tri[v])}
           <line
@@ -275,7 +283,7 @@
         {/if}
       {/each}
       {#if hVisible}
-        {@const t = specialTag(alt.H, hAtVertex)}
+        {@const t = specialTag(alt.H, hCrowded)}
         <circle cx={Hp.x} cy={Hp.y} r="5" fill="#DC2626" />
         <text x={t.x} y={t.y} text-anchor="middle" font-size="14" font-weight="700" fill="#B91C1C"
           >H</text

@@ -93,7 +93,7 @@ export default {
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Với tam giác tù, ba đường cao không cắt nhau mà chính các đường thẳng chứa chúng mới đồng quy tại trực tâm $H$, nằm ngoài tam giác.',
+          text: 'Với tam giác tù, ba đoạn đường cao không cùng đi qua một điểm; chính các đường thẳng chứa chúng mới đồng quy tại trực tâm $H$, nằm ngoài tam giác.',
         },
       ],
     },
