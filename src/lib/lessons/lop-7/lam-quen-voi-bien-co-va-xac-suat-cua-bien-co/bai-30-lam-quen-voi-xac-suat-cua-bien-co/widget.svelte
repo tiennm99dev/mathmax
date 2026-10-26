@@ -10,12 +10,12 @@
   import {
     EVENTS,
     MAX_CELLS,
-    MIN_CELLS,
     cells,
     countRatio,
     favourable,
     fracTex,
     hits,
+    minCells,
     trueProbability,
     weights,
   } from './engine.js';
@@ -61,6 +61,7 @@
   /** @param {string | number} value */
   function setMode(value) {
     mode = value === 'lech' ? 'lech' : 'deu';
+    n = Math.max(n, minCells(mode));
     clear();
     announce =
       mode === 'deu'
@@ -81,7 +82,7 @@
     <SliderField
       label="Số ô của vòng quay"
       value={n}
-      min={MIN_CELLS}
+      min={minCells(mode)}
       max={MAX_CELLS}
       oninput={setCells}
     />

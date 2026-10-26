@@ -96,7 +96,7 @@ export default {
     {
       type: 'text',
       prompt:
-        'Biến cố không thể biết trước được là có xảy ra hay không được gọi là biến cố gì? (Điền hai chữ còn thiếu: biến cố ...)',
+        'Biến cố mà ta không biết trước được là có xảy ra hay không được gọi là biến cố gì? (Điền hai chữ còn thiếu: biến cố ...)',
       accept: ['ngẫu nhiên', 'biến cố ngẫu nhiên'],
       hints: ['Đó là loại biến cố không phải chắc chắn, cũng không phải không thể.'],
       solution: 'Đó là biến cố ngẫu nhiên.',

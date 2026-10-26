@@ -5,6 +5,7 @@ import {
   favourable,
   fracTex,
   hits,
+  minCells,
   trueProbability,
   weights,
 } from './engine.js';
@@ -48,6 +49,13 @@ describe('one oversized cell', () => {
   it('makes cell 1 fill half the wheel', () => {
     expect(weights(5, 'lech')).toEqual([4, 1, 1, 1, 1]);
     expect(trueProbability(5, 'lech', test('o-1'))).toEqual({ n: 1, d: 2 });
+  });
+
+  it('needs three cells so the cells really differ in size', () => {
+    expect(minCells('deu')).toBe(2);
+    expect(minCells('lech')).toBe(3);
+    expect(weights(2, 'lech')).toEqual([1, 1]);
+    expect(weights(3, 'lech')).toEqual([2, 1, 1]);
   });
 
   it('breaks counting cells', () => {

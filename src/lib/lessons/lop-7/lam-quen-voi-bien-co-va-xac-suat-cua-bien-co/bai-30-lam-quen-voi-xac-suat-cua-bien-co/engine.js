@@ -12,6 +12,16 @@ import { fraction, simplify } from '#lib/fraction-engine/fraction.js';
 export const MIN_CELLS = 2;
 export const MAX_CELLS = 12;
 
+/**
+ * The fewest cells a wheel of this mode may have. With only two cells, cell 1
+ * filling half the wheel leaves the other half to cell 2, so the cells would
+ * still be equal; the lopsided wheel needs at least three.
+ * @param {WheelMode} mode
+ */
+export function minCells(mode) {
+  return mode === 'lech' ? 3 : MIN_CELLS;
+}
+
 /** @param {number} k */
 const isPrime = (k) => {
   if (k < 2) return false;
