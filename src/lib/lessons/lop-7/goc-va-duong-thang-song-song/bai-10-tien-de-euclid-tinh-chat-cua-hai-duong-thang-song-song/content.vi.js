@@ -52,7 +52,7 @@ export default {
         { type: 'widget', name: 'properties' },
         {
           type: 'p',
-          text: 'Từ tính chất trên và tính chất hai góc kề bù, ta suy ra: nếu $a \\parallel b$ thì hai góc trong cùng phía bù nhau, chẳng hạn $\\widehat{A}_1 + \\widehat{B}_2 = 180^\\circ$ vì $\\widehat{B}_2 + \\widehat{B}_3 = 180^\\circ$ và $\\widehat{B}_3 = \\widehat{A}_1$.',
+          text: 'Hai góc nằm trong dải giữa $a$, $b$ và ở cùng một phía của $c$ gọi là hai góc trong cùng phía: $\\widehat{A}_1$ và $\\widehat{B}_2$; $\\widehat{A}_4$ và $\\widehat{B}_3$. Từ tính chất trên và tính chất hai góc kề bù, ta suy ra: nếu $a \\parallel b$ thì hai góc trong cùng phía bù nhau, chẳng hạn $\\widehat{A}_1 + \\widehat{B}_2 = 180^\\circ$ vì $\\widehat{B}_2 + \\widehat{B}_3 = 180^\\circ$ và $\\widehat{B}_3 = \\widehat{A}_1$.',
         },
         {
           type: 'callout',

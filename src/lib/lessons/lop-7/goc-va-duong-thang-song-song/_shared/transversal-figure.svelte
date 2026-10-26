@@ -123,7 +123,7 @@
 
   {#each VERTICES as v (v)}
     <!-- The letter sits just off the line, outside the numbered corner marks. -->
-    {@const L = along(vertex(v), 34, dirAt(v) + (v === 'A' ? 180 : 0))}
+    {@const L = along(vertex(v), 42, dirAt(v) + (v === 'A' ? 180 : 0))}
     <text
       x={L.x}
       y={L.y + (v === 'A' ? -7 : 17)}

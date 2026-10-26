@@ -101,7 +101,7 @@
           <div class="min-w-0 flex-1">
             <p class="py-2 font-semibold text-slate-900">{theorem.steps[s].text}</p>
             <label class="block text-xs font-semibold text-slate-600" for="{baseId}-{s}"
-              >Lí do</label
+              >Lí do<span class="sr-only"> của bước {pos + 1}</span></label
             >
             <select
               id="{baseId}-{s}"

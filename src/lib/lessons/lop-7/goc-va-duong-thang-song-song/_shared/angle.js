@@ -7,6 +7,8 @@
  * @typedef {{ x: number, y: number }} Pt
  */
 
+import { formatNumber } from '#lib/core/number-format.js';
+
 /** @param {number} a */
 export const norm = (a) => ((a % 360) + 360) % 360;
 
@@ -109,6 +111,5 @@ export function intersect(p, d, q, e) {
  * @param {number} deg
  */
 export function degText(deg) {
-  const r = Math.round(deg * 10) / 10;
-  return `${String(r).replace('.', ',')}°`;
+  return `${formatNumber(deg, 1)}°`;
 }
