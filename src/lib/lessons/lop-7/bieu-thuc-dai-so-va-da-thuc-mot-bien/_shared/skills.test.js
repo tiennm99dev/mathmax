@@ -1,6 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
-import { PAGE_34_SKILLS, bieuThuc, congTru, daThuc } from './skills.js';
+import {
+  CHAPTER_SKILLS,
+  PAGE_34_SKILLS,
+  PAGE_44_SKILLS,
+  bieuThuc,
+  chia,
+  congTru,
+  daThuc,
+  nhan,
+} from './skills.js';
 
 const SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
@@ -48,6 +57,63 @@ const valueAt = (p, a) => [...p].reduce((s, [e, c]) => s + c * a ** e, 0);
 
 /** @param {string} n */
 const num = (n) => Number(n.replace(/−/g, '-'));
+
+/**
+ * Coefficients by degree as an array.
+ * @param {Map<number, number>} p
+ */
+const toArray = (p) => {
+  const out = Array(Math.max(0, ...p.keys()) + 1).fill(0);
+  for (const [e, c] of p) out[e] = c;
+  return out;
+};
+
+/** @param {number[]} p @param {number[]} q */
+const times = (p, q) => {
+  const out = Array(p.length + q.length - 1).fill(0);
+  p.forEach((a, i) => q.forEach((b, j) => (out[i + j] += a * b)));
+  return out;
+};
+
+/**
+ * Long division of coefficient arrays: quotient and remainder.
+ * @param {number[]} p
+ * @param {number[]} q
+ */
+function divide(p, q) {
+  const rest = p.slice();
+  const dq = q.length - 1;
+  const quot = Array(Math.max(1, p.length - dq)).fill(0);
+  for (let e = rest.length - 1; e >= dq; e--) {
+    const c = rest[e] / q[dq];
+    quot[e - dq] = c + 0;
+    q.forEach((b, j) => (rest[e - dq + j] -= c * b));
+  }
+  return { quot, rest: rest.slice(0, dq).map((c) => c + 0) };
+}
+
+/**
+ * The degree asked for by 'hệ số tự do' or 'hệ số của x²'.
+ * @param {string} name
+ */
+function askedDegree(name) {
+  if (name === 'hệ số tự do') return 0;
+  const k = /^hệ số của x([⁰¹²³⁴⁵⁶⁷⁸⁹]*)$/.exec(name);
+  if (!k) throw new Error(name);
+  return k[1] === '' ? 1 : SUP.indexOf(k[1]);
+}
+
+/**
+ * Two factors written '(A) · (B)' or '(A)(B)'.
+ * @param {string} text
+ */
+function factors(text) {
+  const parts = text.includes(') · (') ? text.split(') · (') : text.split(')(');
+  if (parts.length !== 2) throw new Error(text);
+  return [parts[0].replace(/^\(/, ''), parts[1].replace(/\)$/, '')].map((t) =>
+    toArray(parsePoly(t)),
+  );
+}
 
 /**
  * Recomputes an answer from the prompt alone.
@@ -99,11 +165,33 @@ function recompute(prompt) {
     const at = /^ tại x = (\S+)\.$/.exec(m[5]);
     if (ask === 'Tính giá trị của' && at) return valueAt(r, num(at[1]));
   }
+  if ((m = /^Tìm (.+) trong tích (.+)\.$/.exec(prompt))) {
+    const [p, q] = factors(m[2]);
+    return times(p, q)[askedDegree(m[1])] ?? 0;
+  }
+  if ((m = /^Tính giá trị của tích (.+) tại x = (\S+)\.$/.exec(prompt))) {
+    const [p, q] = factors(m[1]);
+    const a = num(m[2]);
+    return valueAt(new Map(times(p, q).map((c, e) => [e, c])), a);
+  }
+  if ((m = /^Thực hiện phép chia \((.+)\) : \((.+)\)\. Tìm (.+) trong thương\.$/.exec(prompt))) {
+    const { quot, rest } = divide(toArray(parsePoly(m[1])), toArray(parsePoly(m[2])));
+    expect(rest.every((c) => c === 0)).toBe(true);
+    return quot[askedDegree(m[3])] ?? 0;
+  }
+  if ((m = /^Tìm dư khi chia đa thức (.+) cho (.+)\.$/.exec(prompt))) {
+    const { rest } = divide(toArray(parsePoly(m[1])), toArray(parsePoly(m[2])));
+    return rest[0];
+  }
+  if ((m = /^Tìm số a để đa thức (.+) \+ a chia hết cho (.+)\.$/.exec(prompt))) {
+    const { rest } = divide(toArray(parsePoly(m[1])), toArray(parsePoly(m[2])));
+    return -rest[0];
+  }
   throw new Error(`unrecognised prompt: ${prompt}`);
 }
 
 describe('chapter skills', () => {
-  for (const skill of [bieuThuc, daThuc, congTru]) {
+  for (const skill of [bieuThuc, daThuc, congTru, nhan, chia]) {
     it(`${skill.id} answers match a recomputation from the prompt`, () => {
       const rand = rng(12345);
       for (let i = 0; i < 400; i++) {
@@ -123,6 +211,11 @@ describe('chapter skills', () => {
     const set = buildSet(PAGE_34_SKILLS, 4, 1);
     expect(set).toHaveLength(12);
     expect(new Set(set.map((q) => q.skill)).size).toBe(3);
+  });
+
+  it('builds the later practice set and the chapter set', () => {
+    expect(new Set(buildSet(PAGE_44_SKILLS, 4, 1).map((q) => q.skill)).size).toBe(2);
+    expect(new Set(buildSet(CHAPTER_SKILLS, 2, 1).map((q) => q.skill)).size).toBe(5);
   });
 
   it('sometimes cancels the top terms when asking for the degree of a sum', () => {

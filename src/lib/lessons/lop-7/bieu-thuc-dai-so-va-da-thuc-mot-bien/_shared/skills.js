@@ -14,9 +14,11 @@ import {
   degree,
   evaluate,
   intText,
+  mul,
   polyText,
   sub,
   termText,
+  termsOf,
   termsText,
 } from './poly.js';
 
@@ -267,5 +269,181 @@ export const congTru = {
   },
 };
 
+/**
+ * "hệ số của x²" or "hệ số tự do", for a question about a polynomial.
+ * @param {number} k
+ */
+const coefName = (k) => (k === 0 ? 'hệ số tự do' : `hệ số của ${termText({ c: 1, e: k })}`);
+
+/**
+ * A single-term polynomial c·xᵉ as coefficients by degree.
+ * @param {number} c
+ * @param {number} e
+ */
+const mono = (c, e) => {
+  const p = Array(e + 1).fill(0);
+  p[e] = c;
+  return p;
+};
+
+/** @type {Skill} */
+export const nhan = {
+  id: 'nhan-da-thuc',
+  label: 'Bài 27. Phép nhân đa thức một biến',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 1) {
+      const m = mono(signed(rand, 4), int(rand, 1, 3));
+      const q = randomPoly(rand, 2, 5);
+      const r = mul(m, q);
+      const k = pick(
+        rand,
+        r.map((_, e) => e).filter((e) => r[e] !== 0),
+      );
+      const mt = polyText(m);
+      return {
+        prompt: `Tìm ${coefName(k)} trong tích (${mt}) · (${polyText(q)}).`,
+        answer: r[k],
+        hints: [
+          'Nhân đơn thức với từng hạng tử của đa thức: nhân các hệ số, cộng các số mũ.',
+          `Chỉ một tích cho lũy thừa ${termText({ c: 1, e: k })}.`,
+        ],
+        steps: [
+          `(${mt}) · (${polyText(q)}) = ${polyText(r)}.`,
+          `Hệ số cần tìm là ${intText(r[k])}.`,
+        ],
+      };
+    }
+    const p = [signed(rand, 5), signed(rand, 3)];
+    const q = v === 2 ? randomPoly(rand, 2, 4) : [signed(rand, 5), signed(rand, 3)];
+    const r = mul(p, q);
+    const factors = `(${polyText(p)})(${polyText(q)})`;
+    if (v === 3) {
+      const a = pick(rand, [-2, -1, 1, 2, 3]);
+      const pa = evaluate(p, a);
+      const qa = evaluate(q, a);
+      return {
+        prompt: `Tính giá trị của tích ${factors} tại x = ${intText(a)}.`,
+        answer: pa * qa + 0,
+        hints: ['Có thể tính giá trị của từng thừa số rồi nhân, hoặc thu gọn tích rồi thay số.'],
+        steps: [
+          `${polyText(p)} tại x = ${intText(a)} bằng ${intText(pa)}; ${polyText(q)} tại x = ${intText(a)} bằng ${intText(qa)}.`,
+          `Tích bằng ${intText(pa)} · ${br(qa)} = ${intText(pa * qa)}.`,
+        ],
+      };
+    }
+    const k = v === 2 ? int(rand, 1, 2) : int(rand, 0, 1);
+    return {
+      prompt: `Tìm ${coefName(k)} trong tích ${factors}.`,
+      answer: coef(r, k),
+      hints: [
+        'Nhân mỗi hạng tử của đa thức này với từng hạng tử của đa thức kia.',
+        k === 0
+          ? 'Hệ số tự do của tích là tích của hai hệ số tự do.'
+          : `Cộng các tích có cùng lũy thừa ${termText({ c: 1, e: k })}.`,
+      ],
+      steps: [`${factors} = ${polyText(r)}.`, `Hệ số cần tìm là ${intText(coef(r, k))}.`],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const chia = {
+  id: 'chia-da-thuc',
+  label: 'Bài 28. Phép chia đa thức một biến',
+  make(rand) {
+    const v = int(rand, 0, 3);
+    if (v === 0) {
+      const m = mono(signed(rand, 3), int(rand, 1, 2));
+      const q = randomPoly(rand, 2, 5);
+      q[0] = q[0] === 0 ? signed(rand, 5) : q[0];
+      const a = mul(m, q);
+      const k = int(rand, 0, 2);
+      const mt = polyText(m);
+      return {
+        prompt: `Thực hiện phép chia (${polyText(a)}) : (${mt}). Tìm ${coefName(k)} trong thương.`,
+        answer: q[k],
+        hints: [`Chia từng hạng tử của đa thức cho ${mt}: chia hệ số cho hệ số, trừ các số mũ.`],
+        steps: [
+          `(${polyText(a)}) : (${mt}) = ${polyText(q)}.`,
+          `Kiểm tra: (${mt}) · (${polyText(q)}) = ${polyText(a)}.`,
+        ],
+      };
+    }
+    const r = signed(rand, 3);
+    const b = [-r, 1]; // x − r
+    const bt = polyText(b);
+    if (v === 1) {
+      const q = [signed(rand, 5), signed(rand, 4), int(rand, 1, 3)];
+      const a = mul(b, q);
+      const k = int(rand, 0, 1);
+      return {
+        prompt: `Thực hiện phép chia (${polyText(a)}) : (${bt}). Tìm ${coefName(k)} trong thương.`,
+        answer: q[k],
+        hints: [
+          `Đặt tính: chia hạng tử bậc cao nhất ${termText({ c: a[3], e: 3 })} cho x, nhân rồi trừ; lặp lại.`,
+        ],
+        steps: [
+          `Đặt tính chia được thương ${polyText(q)}, dư 0.`,
+          `Kiểm tra: (${bt})(${polyText(q)}) = ${polyText(a)}.`,
+        ],
+      };
+    }
+    // Synthetic division by x − r: quotient coefficients from the top down.
+    const p = randomPoly(rand, int(rand, 2, 3), 4);
+    /** @type {number[]} */
+    const quot = Array(p.length - 1).fill(0);
+    let carry = 0;
+    for (let e = p.length - 1; e >= 1; e--) {
+      carry = p[e] + carry * r;
+      quot[e - 1] = carry;
+    }
+    const rest = p[0] + carry * r;
+    if (v === 2) {
+      return {
+        prompt: `Tìm dư khi chia đa thức ${polyText(p)} cho ${bt}.`,
+        answer: rest,
+        hints: [
+          `Đặt tính: chia hạng tử bậc cao nhất cho x, nhân với ${bt} rồi trừ; lặp lại.`,
+          'Dừng khi dư không còn chứa x (bậc nhỏ hơn bậc 1 của đa thức chia).',
+        ],
+        steps: [
+          `Các vòng chia lần lượt cho các hạng tử của thương: ${termsOf(quot)
+            .map((t) => termText(t))
+            .join('; ')}.`,
+          `Thương ${polyText(quot)}, dư ${intText(rest)}.`,
+          `Kiểm tra: ${polyText(p)} = (${bt})(${polyText(quot)}) + ${br(rest)}.`,
+        ],
+      };
+    }
+    // Ask for the constant term that makes the division exact.
+    const top = p.slice();
+    top[0] = 0;
+    const a = -evaluate(top, r);
+    if (a === 0) return chia.make(rand);
+    const shown = `${polyText(top)} + a`;
+    const solved = top.slice();
+    solved[0] = a;
+    return {
+      prompt: `Tìm số a để đa thức ${shown} chia hết cho ${bt}.`,
+      answer: a,
+      hints: [
+        'Đặt tính chia, coi a là một số; dư cuối cùng là một biểu thức chứa a.',
+        'Phép chia hết khi dư bằng 0.',
+      ],
+      steps: [
+        `Đặt tính chia ${shown} cho ${bt}: dư cuối cùng là a ${a > 0 ? '−' : '+'} ${Math.abs(a)}.`,
+        `Dư bằng 0 khi a = ${intText(a)}; khi đó ${polyText(solved)} = (${bt})(${polyText(quot)}).`,
+      ],
+    };
+  },
+};
+
 /** Skills of the practice page after Bài 24 to Bài 26. */
 export const PAGE_34_SKILLS = [bieuThuc, daThuc, congTru];
+
+/** Skills of the practice page after Bài 27 and Bài 28. */
+export const PAGE_44_SKILLS = [nhan, chia];
+
+/** Every skill of the chapter, in lesson order. */
+export const CHAPTER_SKILLS = [bieuThuc, daThuc, congTru, nhan, chia];
