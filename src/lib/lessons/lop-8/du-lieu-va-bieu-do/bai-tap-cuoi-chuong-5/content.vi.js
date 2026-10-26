@@ -189,11 +189,11 @@ export default {
     {
       type: 'number',
       prompt:
-        'Biểu đồ đoạn thẳng cho số lượt khách (nghìn lượt) đến một khu du lịch trong bốn quý: $120$; $150$; $180$; $150$. Trung bình mỗi quý có bao nhiêu nghìn lượt khách?',
-      answer: 150,
+        'Biểu đồ đoạn thẳng cho số lượt khách (nghìn lượt) đến một khu du lịch trong bốn quý: $90$; $130$; $170$; $110$. Trung bình mỗi quý có bao nhiêu nghìn lượt khách?',
+      answer: 125,
       unit: 'nghìn lượt',
       hints: ['Cộng bốn số liệu rồi chia cho $4$.'],
-      solution: '$(120 + 150 + 180 + 150) : 4 = 600 : 4 = 150$ (nghìn lượt).',
+      solution: '$(90 + 130 + 170 + 110) : 4 = 500 : 4 = 125$ (nghìn lượt).',
     },
     {
       type: 'number',

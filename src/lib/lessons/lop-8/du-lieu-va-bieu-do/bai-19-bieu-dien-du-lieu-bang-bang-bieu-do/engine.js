@@ -78,7 +78,7 @@ export const DATA_SETS = [
       },
       cot: {
         fit: 'ok',
-        why: 'Vẽ được, nhưng phải vẽ tới 12 cột, khó thấy xu hướng tăng giảm bằng biểu đồ đoạn thẳng.',
+        why: 'Vẽ được, nhưng phải vẽ tới 12 cột, khó thấy xu hướng tăng giảm hơn biểu đồ đoạn thẳng.',
       },
       quat: {
         fit: 'bad',
@@ -136,7 +136,7 @@ export const DATA_SETS = [
       },
       tranh: {
         fit: 'bad',
-        why: 'Khối lượng là số đo và không chia hết cho một số tròn; phải vẽ những phần biểu tượng rất lẻ, khó đọc.',
+        why: 'Khối lượng là số đo, các số liệu không cùng chia hết cho một số tròn như 5 hay 10; phải vẽ những phần biểu tượng rất lẻ, khó đọc.',
       },
       quat: {
         fit: 'ok',

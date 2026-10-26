@@ -53,7 +53,7 @@
       const b = v[v.length - 1];
       const looks = looksTimes(a, b, base);
       const real = b / a;
-      const text = `Trên hình, cột của ${data.labels.at(-1)} cao gấp ${times(looks)} lần cột của ${data.labels[0]}. Thực tế ${data.labels.at(-1)} bán ${b} sản phẩm, ${data.labels[0]} bán ${a} sản phẩm: chỉ gấp ${times(real)} lần.`;
+      const text = `Trên hình, cột của ${data.labels.at(-1)} cao gấp ${times(looks)} lần cột của ${data.labels[0]}. Thực tế ${data.labels.at(-1)} bán ${b} sản phẩm, ${data.labels[0]} bán ${a} sản phẩm: ${base === 0 ? 'đúng là' : 'chỉ'} gấp ${times(real)} lần.`;
       if (base === 0)
         return {
           tone: /** @type {const} */ ('ok'),
