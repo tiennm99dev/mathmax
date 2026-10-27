@@ -3,6 +3,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
+  import { dist } from '#lib/geom-engine/plane.js';
   import { fromSvg, toSvg, wrapDeg } from '../_shared/polar.js';
   import { COMMON, WORDS, chordFoot, len, relation, sentence } from './engine.js';
 
@@ -41,7 +42,15 @@
       { p: toSvg(h, U, foot.h, dir - 90), name: 'B' },
     ];
   });
-  const labelO2 = $derived(d > 0 ? toSvg(o2, U, 1.1, dir - 90) : { x: O.x + 18, y: O.y - 14 });
+  // The O′ label goes beside O′ on the side farthest from the common points,
+  // so it never sits on A or B.
+  const labelO2 = $derived.by(() => {
+    if (d === 0) return { x: O.x + 18, y: O.y - 14 };
+    const spots = [dir - 90, dir + 90, dir].map((deg) => toSvg(o2, U, 1.1, deg));
+    const room = (/** @type {{ x: number, y: number }} */ s) =>
+      Math.min(Infinity, ...common.map((q) => dist(s, q.p)));
+    return spots.reduce((best, s) => (room(s) > room(best) + 1 ? s : best));
+  });
   const labelO = $derived(d > 0 ? toSvg(O, U, 0.7, dir + 180) : { x: O.x - 14, y: O.y + 14 });
 
   /**
