@@ -60,9 +60,11 @@
     const R = len(info.outer.radius);
     const r = len(info.inner.radius);
     if (info.equilateral) {
+      const tenths = (/** @type {number} */ px) => Math.round((px / UNIT) * 10);
+      const shown = tenths(info.outer.radius) === 2 * tenths(info.inner.radius);
       return {
         tone: /** @type {const} */ ('ok'),
-        text: `Tam giác đều: tâm $O$ và tâm $I$ trùng nhau (là trọng tâm). $R = ${R}$, $r = ${r}$, nên $R = 2r$.`,
+        text: `Tam giác đều: tâm $O$ và tâm $I$ trùng nhau (là trọng tâm). $R = ${R}$, $r = ${r}$, ${shown ? 'nên $R = 2r$' : 'nên $R \\approx 2r$ (các số đã làm tròn)'}.`,
       };
     }
     if (info.kind === 'vuong') {
@@ -91,7 +93,7 @@
   }
 
   const presets = [
-    { label: 'Tam giác đều', pts: () => equilateral({ x: 200, y: 200 }, 140) },
+    { label: 'Tam giác đều', pts: () => equilateral({ x: 200, y: 200 }, 160) },
     {
       label: 'Tam giác vuông',
       pts: () => [

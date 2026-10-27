@@ -2,8 +2,9 @@
  * Question generators for the chapter "Đường tròn ngoại tiếp và đường tròn
  * nội tiếp", for the drill boards of its practice lessons. Every answer is a
  * whole number or ends in ,5 (a radius that is half of a whole length), so
- * the learner types it exactly. Prompts and steps are plain text with the
- * book's decimal comma; square roots are written √3.
+ * the learner types it exactly. Prompts and steps are rich text with the
+ * book's decimal comma; angles are written as TeX ($\widehat{BAC}$) and
+ * square roots as √3.
  */
 
 import { int, pick } from '#lib/core/drill.js';
@@ -52,7 +53,7 @@ export const gocNoiTiep = {
         unit: '°',
         steps: [
           'Số đo góc nội tiếp bằng nửa số đo cung bị chắn.',
-          `∠AMB = ${arc}° : 2 = ${arc / 2}°.`,
+          `$\\widehat{AMB}$ = ${arc}° : 2 = ${arc / 2}°.`,
         ],
         hints: ['Góc nội tiếp bằng nửa số đo cung bị chắn.'],
       };
@@ -60,12 +61,12 @@ export const gocNoiTiep = {
     if (variant === 1) {
       const x = int(rand, 20, 85);
       return {
-        prompt: `Tam giác nhọn ABC nội tiếp đường tròn (O) có ∠BAC = ${x}°. Tính góc ở tâm BOC (độ).`,
+        prompt: `Tam giác nhọn ABC nội tiếp đường tròn (O) có $\\widehat{BAC}$ = ${x}°. Tính góc ở tâm BOC (độ).`,
         answer: 2 * x,
         unit: '°',
         steps: [
           'Góc nội tiếp BAC và góc ở tâm BOC cùng chắn cung nhỏ BC.',
-          `Góc ở tâm gấp đôi góc nội tiếp: ∠BOC = 2 · ${x}° = ${2 * x}°.`,
+          `Góc ở tâm gấp đôi góc nội tiếp: $\\widehat{BOC}$ = 2 · ${x}° = ${2 * x}°.`,
         ],
         hints: ['Hai góc cùng chắn cung BC; góc nội tiếp bằng nửa góc ở tâm.'],
       };
@@ -73,13 +74,13 @@ export const gocNoiTiep = {
     if (variant === 2) {
       const arc = 2 * int(rand, 20, 80);
       return {
-        prompt: `Cung nhỏ AB của đường tròn (O) có số đo ${arc}°. Điểm M nằm trên cung nhỏ AB. Tính ∠AMB (độ).`,
+        prompt: `Cung nhỏ AB của đường tròn (O) có số đo ${arc}°. Điểm M nằm trên cung nhỏ AB. Tính $\\widehat{AMB}$ (độ).`,
         answer: (360 - arc) / 2,
         unit: '°',
         steps: [
-          'M nằm trên cung nhỏ nên ∠AMB chắn cung lớn AB.',
+          'M nằm trên cung nhỏ nên $\\widehat{AMB}$ chắn cung lớn AB.',
           `Cung lớn AB có số đo 360° − ${arc}° = ${360 - arc}°.`,
-          `∠AMB = ${360 - arc}° : 2 = ${(360 - arc) / 2}°.`,
+          `$\\widehat{AMB}$ = ${360 - arc}° : 2 = ${(360 - arc) / 2}°.`,
         ],
         hints: ['M nằm trên cung nhỏ thì góc AMB chắn cung nào?', 'Cung lớn = 360° − cung nhỏ.'],
       };
@@ -90,7 +91,7 @@ export const gocNoiTiep = {
       answer: c / 2,
       unit: 'cm',
       steps: [
-        'Góc ACB là góc nội tiếp chắn nửa đường tròn nên ∠ACB = 90°.',
+        'Góc ACB là góc nội tiếp chắn nửa đường tròn nên $\\widehat{ACB}$ = 90°.',
         `AB² = AC² + BC² = ${a * a} + ${b * b} = ${c * c}, nên AB = ${c} cm.`,
         `Bán kính R = AB : 2 = ${t(c / 2)} cm.`,
       ],
@@ -192,17 +193,17 @@ export const noiTiepTamGiac = {
     }
     const A = 2 * int(rand, 15, 60);
     return {
-      prompt: `Tam giác ABC có ∠BAC = ${A}°, I là tâm đường tròn nội tiếp. Tính ∠BIC (độ).`,
+      prompt: `Tam giác ABC có $\\widehat{BAC}$ = ${A}°, I là tâm đường tròn nội tiếp. Tính $\\widehat{BIC}$ (độ).`,
       answer: 90 + A / 2,
       unit: '°',
       steps: [
-        'I là giao điểm các đường phân giác nên ∠IBC = ∠ABC/2 và ∠ICB = ∠ACB/2.',
-        `∠ABC + ∠ACB = 180° − ${A}° = ${180 - A}°, nên ∠IBC + ∠ICB = ${(180 - A) / 2}°.`,
-        `∠BIC = 180° − ${(180 - A) / 2}° = ${90 + A / 2}°.`,
+        'I là giao điểm các đường phân giác nên $\\widehat{IBC}$ = $\\widehat{ABC}$/2 và $\\widehat{ICB}$ = $\\widehat{ACB}$/2.',
+        `$\\widehat{ABC}$ + $\\widehat{ACB}$ = 180° − ${A}° = ${180 - A}°, nên $\\widehat{IBC}$ + $\\widehat{ICB}$ = ${(180 - A) / 2}°.`,
+        `$\\widehat{BIC}$ = 180° − ${(180 - A) / 2}° = ${90 + A / 2}°.`,
       ],
       hints: [
         'BI và CI là các đường phân giác của góc B và góc C.',
-        'Tính ∠IBC + ∠ICB rồi dùng tổng ba góc của tam giác IBC.',
+        'Tính $\\widehat{IBC}$ + $\\widehat{ICB}$ rồi dùng tổng ba góc của tam giác IBC.',
       ],
     };
   },
@@ -223,12 +224,12 @@ export const tuGiacNoiTiep = {
         ['D', 'B'],
       ]);
       return {
-        prompt: `Tứ giác ABCD nội tiếp đường tròn có ∠${given} = ${x}°. Tính ∠${asked} (độ).`,
+        prompt: `Tứ giác ABCD nội tiếp đường tròn có $\\widehat{${given}}$ = ${x}°. Tính $\\widehat{${asked}}$ (độ).`,
         answer: 180 - x,
         unit: '°',
         steps: [
-          `∠${given} và ∠${asked} là hai góc đối của tứ giác nội tiếp nên ∠${given} + ∠${asked} = 180°.`,
-          `∠${asked} = 180° − ${x}° = ${180 - x}°.`,
+          `$\\widehat{${given}}$ và $\\widehat{${asked}}$ là hai góc đối của tứ giác nội tiếp nên $\\widehat{${given}}$ + $\\widehat{${asked}}$ = 180°.`,
+          `$\\widehat{${asked}}$ = 180° − ${x}° = ${180 - x}°.`,
         ],
         hints: ['Trong tứ giác nội tiếp, tổng hai góc đối bằng 180°.'],
       };
@@ -246,15 +247,15 @@ export const tuGiacNoiTiep = {
       ]);
       const unit = 180 / (p + q);
       return {
-        prompt: `Tứ giác ABCD nội tiếp đường tròn có ∠A : ∠C = ${p} : ${q}. Tính ∠C (độ).`,
+        prompt: `Tứ giác ABCD nội tiếp đường tròn có $\\widehat{A}$ : $\\widehat{C}$ = ${p} : ${q}. Tính $\\widehat{C}$ (độ).`,
         answer: q * unit,
         unit: '°',
         steps: [
-          '∠A + ∠C = 180° (hai góc đối của tứ giác nội tiếp).',
+          '$\\widehat{A}$ + $\\widehat{C}$ = 180° (hai góc đối của tứ giác nội tiếp).',
           `Chia 180° thành ${p} + ${q} = ${p + q} phần, mỗi phần ${unit}°.`,
-          `∠C = ${q} · ${unit}° = ${q * unit}°.`,
+          `$\\widehat{C}$ = ${q} · ${unit}° = ${q * unit}°.`,
         ],
-        hints: ['∠A + ∠C = 180°.', `Chia 180° theo tỉ lệ ${p} : ${q}.`],
+        hints: ['$\\widehat{A}$ + $\\widehat{C}$ = 180°.', `Chia 180° theo tỉ lệ ${p} : ${q}.`],
       };
     }
     if (variant === 2) {
