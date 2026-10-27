@@ -7,10 +7,17 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { numTex } from '#lib/algebra-engine/polynomial.js';
+import { numTex as dottedTex } from '#lib/algebra-engine/polynomial.js';
 import { clean, discriminant, quadTex, solveQuadratic, texOperand } from './quadratic.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
+
+/**
+ * A number in TeX with the book's thousands spacing and decimal comma:
+ * 1296 gives '1\,296', -2.5 gives '-2{,}5'.
+ * @param {number} v
+ */
+const numTex = (v) => dottedTex(v).replace(/(\d)\.(?=\d{3})/g, '$1\\,');
 
 /** Coefficients a whose products with small squares stay short decimals. */
 const NICE_A = [-3, -2, -1.5, -1, -0.5, -0.25, 0.25, 0.5, 1, 1.5, 2, 3];
@@ -373,7 +380,7 @@ export const lapPhuongTrinh = {
         answer: n,
         steps: [
           `Gọi số nhỏ là $x$ $(x \\in \\mathbb{N})$, số liền sau là $x + 1$. Ta có $x(x + 1) = ${p}$, tức $x^2 + x - ${p} = 0$.`,
-          `$\\Delta = 1 + 4 \\cdot ${p} = ${sq * sq} = ${sq}^2$; $x_1 = \\dfrac{-1 + ${sq}}{2} = ${n}$, $x_2 = \\dfrac{-1 - ${sq}}{2} = ${-n - 1}$ (loại vì không là số tự nhiên).`,
+          `$\\Delta = 1 + 4 \\cdot ${p} = ${numTex(sq * sq)} = ${sq}^2$; $x_1 = \\dfrac{-1 + ${sq}}{2} = ${n}$, $x_2 = \\dfrac{-1 - ${sq}}{2} = ${-n - 1}$ (loại vì không là số tự nhiên).`,
           `Số nhỏ hơn là $${n}$.`,
         ],
         hints: [
@@ -394,7 +401,7 @@ export const lapPhuongTrinh = {
         unit: 'm',
         steps: [
           `Gọi chiều rộng là $x$ (m), $x > 0$; chiều dài là $x + ${d}$ (m). Ta có $x(x + ${d}) = ${area}$, tức $${quadTex(1, d, -area)} = 0$.`,
-          `$\\Delta = ${d * d} + 4 \\cdot ${area} = ${sq * sq} = ${sq}^2$; $x_1 = \\dfrac{-${d} + ${sq}}{2} = ${w}$, $x_2 = \\dfrac{-${d} - ${sq}}{2} = ${-w - d}$ (loại vì $x > 0$).`,
+          `$\\Delta = ${d * d} + 4 \\cdot ${area} = ${numTex(sq * sq)} = ${sq}^2$; $x_1 = \\dfrac{-${d} + ${sq}}{2} = ${w}$, $x_2 = \\dfrac{-${d} - ${sq}}{2} = ${-w - d}$ (loại vì $x > 0$).`,
           `Chiều rộng mảnh vườn là $${w}$ m.`,
         ],
         hints: [
@@ -414,7 +421,7 @@ export const lapPhuongTrinh = {
         answer: x,
         unit: 'giờ',
         steps: [
-          `${hoursText(t)} $= ${numTex(t)}$ giờ. Gọi thời gian đội I làm riêng là $x$ (giờ), $x > 0$; đội II cần $x + ${k}$ giờ.`,
+          `${Number.isInteger(t) ? '' : `${hoursText(t)} $= ${numTex(t)}$ giờ. `}Gọi thời gian đội I làm riêng là $x$ (giờ), $x > 0$; đội II cần $x + ${k}$ giờ.`,
           `Mỗi giờ hai đội làm được $\\dfrac{1}{x} + \\dfrac{1}{x + ${k}} = \\dfrac{1}{${numTex(t)}}$ công việc, suy ra $${numTex(t)}(2x + ${k}) = x(x + ${k})$, tức $${quadTex(1, b, c)} = 0$.`,
           `Phương trình có hai nghiệm $${x}$ và $${numTex(other)}$; loại nghiệm âm.`,
           `Đội I làm riêng cần $${x}$ giờ (đội II cần $${x + k}$ giờ).`,
@@ -444,7 +451,7 @@ export const lapPhuongTrinh = {
         unit: 'km/h',
         steps: [
           `Gọi vận tốc ban đầu là $x$ (km/h), $x > 0$. Thời gian đi là $\\dfrac{${dist}}{x}$ giờ; khi đi nhanh hơn là $\\dfrac{${dist}}{x + ${k}}$ giờ.`,
-          `$\\dfrac{${dist}}{x} - \\dfrac{${dist}}{x + ${k}} = ${numTex(t)}$, suy ra $${quadTex(1, k, c)} = 0$.`,
+          `$\\dfrac{${dist}}{x} - \\dfrac{${dist}}{x + ${k}} = ${numTex(t)}$, suy ra $x^2 + ${k}x - ${numTex(-c)} = 0$.`,
           `Phương trình có hai nghiệm $${v}$ và $${-v - k}$; loại nghiệm âm.`,
           `Vận tốc ban đầu của ô tô là $${v}$ km/h.`,
         ],

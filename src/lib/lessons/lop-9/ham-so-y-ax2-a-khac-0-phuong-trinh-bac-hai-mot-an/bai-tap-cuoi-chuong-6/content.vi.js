@@ -57,7 +57,7 @@ export default {
         {
           type: 'callout',
           tone: 'note',
-          text: 'Bộ đề bên dưới có $10$ câu tự sinh, mỗi bài của chương hai câu. Đáp số là số nguyên hoặc số thập phân (dùng dấu phẩy). Bấm "Làm bộ đề mới" để có bộ khác.',
+          text: 'Bộ đề bên dưới có $10$ câu tự sinh, hai câu cho mỗi kĩ năng trong bản đồ (Bài 19 có hai kĩ năng: biệt thức và giải phương trình). Đáp số là số nguyên hoặc số thập phân (dùng dấu phẩy). Bấm "Làm bộ đề mới" để có bộ khác.',
         },
       ],
     },
@@ -220,7 +220,7 @@ export default {
         '$\\Delta = 1{,}1^2 + 4 \\cdot 0{,}05 \\cdot 300 = 61{,}21$.',
       ],
       solution:
-        '$0{,}05v^2 + 1{,}1v - 300 = 0$, $\\Delta = 1{,}21 + 60 = 61{,}21$; $v_1 = \\dfrac{-1{,}1 + \\sqrt{61{,}21}}{0{,}1} \\approx 67{,}2$, $v_2 < 0$ (loại). Ô tô chạy khoảng $67{,}2$ dặm/giờ, chưa vượt giới hạn $70$ dặm/giờ.',
+        '$0{,}05v^2 + 1{,}1v - 300 = 0$, $\\Delta = 1{,}21 + 60 = 61{,}21$; $v_1 = \\dfrac{-1{,}1 + \\sqrt{61{,}21}}{0{,}1} \\approx 67{,}2$, $v_2 < 0$ (loại). Ô tô chạy khoảng $67{,}2$ dặm/giờ.',
     },
     {
       type: 'number',
