@@ -86,20 +86,15 @@
     }
     pouring = true;
     flow = 0;
-    let done = false;
-    const halt = frameLoop((dt) => {
-      if (done) return;
+    stop = frameLoop((dt) => {
       flow = Math.min(1, flow + dt / POUR_SECONDS);
       if (flow < 1) return;
-      done = true;
       pouring = false;
       flow = 0;
       pours = Math.min(3, pours + 1);
-      // The loop books its next frame after this tick returns, so stop it then.
-      queueMicrotask(halt);
+      stop?.();
       stop = null;
     });
-    stop = halt;
   }
 
   function reset() {

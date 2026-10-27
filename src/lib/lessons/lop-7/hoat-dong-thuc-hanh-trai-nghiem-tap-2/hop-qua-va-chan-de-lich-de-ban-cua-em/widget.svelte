@@ -57,10 +57,7 @@
     stop = frameLoop((dt) => {
       const step = dt / 1.6;
       t = target > t ? Math.min(target, t + step) : Math.max(target, t - step);
-      // frameLoop books the next frame after this tick returns, so cancel
-      // once it has: stopping inside the tick would leave the loop running
-      // and keep pulling t back to the target.
-      if (t === target) queueMicrotask(halt);
+      if (t === target) halt();
     });
   }
   onDestroy(halt);

@@ -17,7 +17,8 @@ export function reducedMotion() {
 /**
  * Calls `onTick(dt)` once per animation frame with the seconds since the
  * previous frame (at most 0.1 s, so a hidden tab does not jump). Returns a
- * function that stops the loop.
+ * function that stops the loop; it works from inside `onTick` too, so a tick
+ * that reaches the end can stop the loop without a next frame being booked.
  * @param {(dt: number) => void} onTick
  * @returns {() => void}
  */
@@ -26,14 +27,19 @@ export function frameLoop(onTick) {
   /** @type {number | null} */
   let last = null;
   let id = 0;
+  let stopped = false;
   /** @param {number} now */
   const step = (now) => {
+    if (stopped) return;
     if (last !== null) onTick(Math.min(0.1, (now - last) / 1000));
     last = now;
-    id = requestAnimationFrame(step);
+    if (!stopped) id = requestAnimationFrame(step);
   };
   id = requestAnimationFrame(step);
-  return () => cancelAnimationFrame(id);
+  return () => {
+    stopped = true;
+    cancelAnimationFrame(id);
+  };
 }
 
 /**
