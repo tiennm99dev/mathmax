@@ -121,6 +121,8 @@
     return `M ${a.x} ${a.y} A ${DIAL_R} ${DIAL_R} 0 0 0 ${b.x} ${b.y} Z`;
   });
   const TICKS = Array.from({ length: 19 }, (_, i) => i * 10);
+  // The 0 and 180 marks lie on the straw itself, so their labels sit just
+  // inside the scale instead of on the straw.
 
   const status = $derived(
     aligned
@@ -265,7 +267,7 @@
       {@const b = scalePt(t, DIAL_R - (t % 30 === 0 ? 9 : 5))}
       <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#92400E" stroke-width="1" />
       {#if t % 30 === 0}
-        {@const l = scalePt(t, DIAL_R - 19)}
+        {@const l = scalePt(t === 0 ? 10 : t === 180 ? 170 : t, DIAL_R - 19)}
         <text x={l.x} y={l.y + 4} font-size="11" text-anchor="middle" fill="#78350F">{t}</text>
       {/if}
     {/each}

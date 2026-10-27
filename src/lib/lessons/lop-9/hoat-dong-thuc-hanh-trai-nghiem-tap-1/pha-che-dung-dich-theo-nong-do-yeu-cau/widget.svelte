@@ -60,7 +60,9 @@
   // Each equation on its own line so the block fits a phone screen.
   const plugged = $derived(
     free
-      ? `\\begin{aligned} x + y &= ${m1} + ${m2} = ${m1 + m2} \\\\ c &= \\dfrac{${c1} \\cdot ${m1} + ${c2} \\cdot ${m2}}{${m1 + m2 || 1}} \\approx ${texNumber(formatNumber(result.percent, 2))} \\end{aligned}`
+      ? result.mass === 0
+        ? `x + y = ${m1} + ${m2} = 0`
+        : `\\begin{aligned} x + y &= ${m1} + ${m2} = ${m1 + m2} \\\\ c &= \\dfrac{${c1} \\cdot ${m1} + ${c2} \\cdot ${m2}}{${m1 + m2}} \\approx ${texNumber(formatNumber(result.percent, 2))} \\end{aligned}`
       : `\\begin{aligned} x + y &= ${m1} + ${m2} = ${m1 + m2}${massOk ? '' : ` \\ne ${task.mass}`} \\\\ ${c1} \\cdot ${m1} + ${c2} \\cdot ${m2} &= ${c1 * m1 + c2 * m2}${c1 * m1 + c2 * m2 === task.target * task.mass ? '' : ` \\ne ${task.target * task.mass}`} \\end{aligned}`,
   );
 

@@ -228,7 +228,7 @@ export default {
       prompt:
         'Một bạn tính chiều cao cột cờ bằng $d\\tan\\alpha$ và được kết quả nhỏ hơn thực tế khoảng $1{,}5$ m. Bạn ấy đã quên điều gì?',
       options: [
-        'Đổi góc nâng sang radian',
+        'Đo khoảng cách $d$ đến chân cột cờ',
         'Cộng thêm chiều cao của giác kế',
         'Dùng $\\sin\\alpha$ thay cho $\\tan\\alpha$',
         'Nhân đôi khoảng cách $d$',
@@ -272,7 +272,7 @@ export default {
         '$x = \\dfrac{15\\tan 35^\\circ}{\\tan 50^\\circ - \\tan 35^\\circ}$, rồi tính $1{,}5 + x\\tan 50^\\circ$.',
       ],
       solution:
-        '$x = \\dfrac{15\\tan 35^\\circ}{\\tan 50^\\circ - \\tan 35^\\circ} \\approx \\dfrac{10{,}503}{0{,}4915} \\approx 21{,}37$ m. Phần tháp cao hơn mắt: $x\\tan 50^\\circ \\approx 25{,}47$ m. Chiều cao tháp: $1{,}5 + 25{,}47 \\approx 27{,}0$ m.',
+        '$x = \\dfrac{15\\tan 35^\\circ}{\\tan 50^\\circ - \\tan 35^\\circ} \\approx \\dfrac{10{,}503}{0{,}4915} \\approx 21{,}37$ m. Phần tháp cao hơn mắt: $x\\tan 50^\\circ \\approx 25{,}46$ m. Chiều cao tháp: $1{,}5 + 25{,}46 \\approx 27{,}0$ m.',
     },
     {
       type: 'number',
