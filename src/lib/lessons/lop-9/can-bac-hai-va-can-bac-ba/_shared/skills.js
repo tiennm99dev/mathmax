@@ -450,7 +450,7 @@ export const thucTe = {
     if (variant === 1) {
       const k = int(rand, 3, 20);
       return {
-        prompt: `Một bể nước hình lập phương chứa đầy được ${fmt(k ** 3)} lít nước. Tính độ dài cạnh của bể theo đềximét (1 lít = 1 dm³).`,
+        prompt: `Một bể nước hình lập phương chứa đầy được ${fmt(k ** 3)} lít nước. Tính độ dài cạnh của bể theo đề-xi-mét (1 lít = 1 dm³).`,
         answer: k,
         unit: 'dm',
         steps: [
