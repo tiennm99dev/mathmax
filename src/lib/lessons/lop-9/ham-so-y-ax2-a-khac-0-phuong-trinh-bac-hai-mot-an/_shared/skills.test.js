@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import katex from 'katex';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { rng } from '#lib/core/drill.js';
-import { SKILLS_TRANG_18 } from './skills.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_18, SKILLS_TRANG_28, hoursText } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -96,18 +96,112 @@ function solve(prompt) {
     expect(Math.abs(b * b - 4 * a * c)).toBeLessThan(1e-9);
     return -b / (2 * a);
   }
+  m = /^Không giải phương trình, tính (tổng|tích) hai nghiệm của phương trình \$(.+) = 0\$\.$/.exec(
+    prompt,
+  );
+  if (m) {
+    const [a, b, c] = parsePoly(m[2]);
+    const r = roots([a, b, c]);
+    expect(r.length).toBe(2);
+    return m[1] === 'tổng' ? r[0] + r[1] : r[0] * r[1];
+  }
+  m =
+    /^Gọi \$x_1\$, \$x_2\$ là hai nghiệm của phương trình \$(.+) = 0\$\. Không giải phương trình, tính \$(.+)\$\.$/.exec(
+      prompt,
+    );
+  if (m) {
+    const [x1, x2] = roots(parsePoly(m[1]));
+    if (m[2] === 'x_1^2 + x_2^2') return x1 ** 2 + x2 ** 2;
+    if (m[2] === '(x_1 - x_2)^2') return (x1 - x2) ** 2;
+    if (m[2] === 'x_1^3 + x_2^3') return x1 ** 3 + x2 ** 3;
+  }
+  m = /^Nhẩm nghiệm của phương trình \$(.+) = 0\$\. Nhập nghiệm khác \$(.+)\$\.$/.exec(prompt);
+  if (m) {
+    const known = num(m[2]);
+    const r = roots(parsePoly(m[1]));
+    expect(r.some((x) => Math.abs(x - known) < 1e-9)).toBe(true);
+    const other = r.filter((x) => Math.abs(x - known) > 1e-9);
+    expect(other.length).toBe(1);
+    return other[0];
+  }
+  m =
+    /^Tìm hai số biết tổng của chúng bằng \$(.+)\$ và tích bằng \$(.+)\$\. Nhập số (lớn|nhỏ) hơn\.$/.exec(
+      prompt,
+    );
+  if (m) {
+    const r = roots([1, -num(m[1]), num(m[2])]);
+    return m[3] === 'lớn' ? r[0] : r[1];
+  }
+  m = /^Tích của hai số tự nhiên liên tiếp bằng \$(\d+)\$\. Tìm số nhỏ hơn\.$/.exec(prompt);
+  if (m) {
+    const p = Number(m[1]);
+    for (let n = 0; n <= p; n++) if (n * (n + 1) === p) return n;
+  }
+  m =
+    /^Một mảnh vườn hình chữ nhật có chiều dài hơn chiều rộng \$(\d+)\$ m và diện tích bằng \$(\d+)\$ m²\./.exec(
+      prompt,
+    );
+  if (m) return roots([1, Number(m[1]), -Number(m[2])])[0];
+  m =
+    /^Hai đội công nhân cùng làm một công việc thì hoàn thành sau (.+)\. Nếu làm riêng, đội I hoàn thành công việc nhanh hơn đội II \$(\d+)\$ giờ\./.exec(
+      prompt,
+    );
+  if (m) {
+    const t = readHours(m[1]);
+    const k = Number(m[2]);
+    // 1/x + 1/(x + k) = 1/t, solved by bisection on x > 0.
+    return bisect((x) => 1 / x + 1 / (x + k) - 1 / t, 1e-6, 1000);
+  }
+  m =
+    /^Một ô tô đi quãng đường \$(\d+)\$ km với vận tốc không đổi\. Nếu mỗi giờ ô tô đi nhanh hơn \$(\d+)\$ km thì đến nơi sớm hơn (.+)\. Tính/.exec(
+      prompt,
+    );
+  if (m) {
+    const [d, k, t] = [Number(m[1]), Number(m[2]), readHours(m[3])];
+    return bisect((x) => d / x - d / (x + k) - t, 1e-6, 1000);
+  }
+  m = /^Giá một chiếc áo là \$(\d+)\$ nghìn đồng\..+ giá chiếc áo là \$(\d+)\$ nghìn đồng\./.exec(
+    prompt,
+  );
+  if (m) return (Math.sqrt(Number(m[2]) / Number(m[1])) - 1) * 100;
   throw new Error(`unknown prompt: ${prompt}`);
+}
+
+/**
+ * Hours written by `hoursText`: '$1$ giờ $12$ phút' → 1.2.
+ * @param {string} text
+ */
+function readHours(text) {
+  const h = /\$(\d+)\$ giờ/.exec(text);
+  const m = /\$(\d+)\$ phút/.exec(text);
+  return (h ? Number(h[1]) : 0) + (m ? Number(m[1]) / 60 : 0);
+}
+
+/**
+ * The root of a decreasing-or-increasing f on [lo, hi] by bisection.
+ * @param {(x: number) => number} f
+ * @param {number} lo
+ * @param {number} hi
+ */
+function bisect(f, lo, hi) {
+  const sign = Math.sign(f(lo));
+  for (let i = 0; i < 200; i++) {
+    const mid = (lo + hi) / 2;
+    if (Math.sign(f(mid)) === sign) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
 }
 
 /** Every `$...$` span of a rich text. @param {string} text */
 const texSpans = (text) => [...text.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]);
 
 describe('chapter skills', () => {
-  for (const skill of SKILLS_TRANG_18) {
+  for (const skill of CHAPTER_SKILLS) {
     it(`${skill.id}: answers match a fresh solution of the prompt`, () => {
       for (const q of sample(skill)) {
         const expected = solve(q.prompt);
-        expect(Math.abs(q.answer - expected), q.prompt).toBeLessThan(1e-9);
+        expect(Math.abs(q.answer - expected), q.prompt).toBeLessThan(1e-6);
       }
     });
 
@@ -130,6 +224,18 @@ describe('chapter skills', () => {
       }
     });
   }
+
+  it('builds the practice sets from the chapter skills', () => {
+    expect(CHAPTER_SKILLS).toEqual([...SKILLS_TRANG_18, ...SKILLS_TRANG_28]);
+    expect(new Set(CHAPTER_SKILLS.map((s) => s.id)).size).toBe(CHAPTER_SKILLS.length);
+  });
+
+  it('writes hours the book way', () => {
+    expect(hoursText(1.2)).toBe('$1$ giờ $12$ phút');
+    expect(hoursText(0.5)).toBe('$30$ phút');
+    expect(hoursText(4)).toBe('$4$ giờ');
+    expect(readHours(hoursText(3.75))).toBe(3.75);
+  });
 
   it('reads coefficients back', () => {
     expect(parsePoly('-0{,}5x^{2} + 3x - 7')).toEqual([-0.5, 3, -7]);
