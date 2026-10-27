@@ -1,5 +1,6 @@
 <script>
   import { tick } from 'svelte';
+  import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { button, textInput } from './ui.js';
   import {
     buildSet,
@@ -28,6 +29,8 @@
    *   may bring its own `read`, and its own `unit`: a unit typed after the
    *   number is accepted only when it is that question's unit.
    * - `invalidText`: what to say when `read` returns null.
+   * - Prompts, hints and solution steps are rich text: inline `$...$` TeX
+   *   such as `$S_{xq}$` shows as math.
    * @type {{
    *   skills: import('./drill.js').Skill[];
    *   perSkill: number;
@@ -48,6 +51,7 @@
 
   const STATUS = {
     todo: 'border-slate-200 bg-white text-slate-600',
+    doing: 'border-sky-200 bg-sky-50 text-sky-900',
     good: 'border-emerald-300 bg-emerald-50 text-emerald-900',
     mixed: 'border-amber-300 bg-amber-50 text-amber-900',
     weak: 'border-rose-300 bg-rose-50 text-rose-900',
@@ -156,7 +160,7 @@
         {copy.progress(index + 1, questions.length, score)}
       </p>
       <label for={inputId} class="block text-lg font-semibold text-slate-900"
-        >{current.prompt}</label
+        ><LiveRichText text={current.prompt} /></label
       >
       <div class="flex flex-wrap gap-2">
         <input
@@ -193,7 +197,7 @@
               {#each ladder.slice(0, hintsShown) as hint, i (i)}
                 <li class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-950">
                   <span class="font-semibold">{hintCopy.title} {i + 1}:</span>
-                  {hint}
+                  <LiveRichText text={hint} />
                 </li>
               {/each}
             </ol>
@@ -215,7 +219,7 @@
             <p class="font-semibold">{copy.wrong(answerText)}</p>
             <ol class="mt-2 list-decimal space-y-1 pl-5 tabular-nums">
               {#each current.steps as step, i (i)}
-                <li>{step}</li>
+                <li><LiveRichText text={step} /></li>
               {/each}
             </ol>
           </div>

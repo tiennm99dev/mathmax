@@ -55,6 +55,7 @@ export const drill = {
   skillMap: 'Bản đồ kĩ năng',
   status: {
     todo: 'chưa làm',
+    doing: 'đang làm',
     good: 'vững',
     mixed: 'cần luyện thêm',
     weak: 'cần ôn lại',

@@ -153,14 +153,15 @@ export function withUnit(text, unit) {
 }
 
 /**
- * @typedef {'todo' | 'good' | 'mixed' | 'weak'} SkillStatus
+ * @typedef {'todo' | 'doing' | 'good' | 'mixed' | 'weak'} SkillStatus
  */
 
 /**
  * Per-skill tally of first attempts. `results[i]` is true, false or null
- * (not answered yet) for `questions[i]`. A skill is 'good' when every
- * answered question was right, 'weak' when at most a third was, else
- * 'mixed'; 'todo' until one of its questions is answered.
+ * (not answered yet) for `questions[i]`. A skill is 'todo' until one of its
+ * questions is answered and 'doing' until all of them are, so one slip never
+ * flags it early. Once finished it is 'good' when every question was right
+ * first time, 'weak' when at most a third were, else 'mixed'.
  * @param {Skill[]} skills
  * @param {Question[]} questions
  * @param {Array<boolean | null>} results
@@ -180,7 +181,8 @@ export function skillMap(skills, questions, results) {
     });
     /** @type {SkillStatus} */
     let status = 'todo';
-    if (answered > 0) {
+    if (answered > 0 && answered < total) status = 'doing';
+    else if (answered > 0) {
       if (right === answered) status = 'good';
       else if (right * 3 <= answered) status = 'weak';
       else status = 'mixed';

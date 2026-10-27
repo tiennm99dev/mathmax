@@ -5,7 +5,7 @@
  */
 
 import katex from 'katex';
-import { findClose } from './content-schema.js';
+import { richParts } from './rich-parts.js';
 import { texOptions } from './katex-options.js';
 import { texHtml } from './tex-text.js';
 
@@ -41,31 +41,9 @@ export function renderTex(tex, display) {
  * @param {string} text
  */
 export function renderRichText(text) {
-  let html = '';
-  let plain = '';
-  let i = 0;
-  while (i < text.length) {
-    const ch = text[i];
-    if (ch === '\\' && text[i + 1] === '$') {
-      plain += '$';
-      i += 2;
-      continue;
-    }
-    if (ch === '$') {
-      const display = text[i + 1] === '$';
-      const open = i + (display ? 2 : 1);
-      const close = findClose(text, open, display);
-      if (close !== -1) {
-        html += escapeHtml(plain) + renderTex(text.slice(open, close), display);
-        plain = '';
-        i = close + (display ? 2 : 1);
-        continue;
-      }
-    }
-    plain += ch;
-    i += 1;
-  }
-  return html + escapeHtml(plain);
+  return richParts(text)
+    .map((p) => (p.kind === 'tex' ? renderTex(p.tex, p.display) : escapeHtml(p.text)))
+    .join('');
 }
 
 /**

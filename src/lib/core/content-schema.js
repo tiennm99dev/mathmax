@@ -9,6 +9,7 @@
  */
 
 import { isPictureName } from './kid/pictures/index.js';
+import { findClose } from './rich-parts.js';
 
 /** @typedef {import('./kid/pictures/index.js').PictureName} PictureName */
 /** @typedef {import('#lib/curriculum/index.js').LessonKind} LessonKind */
@@ -177,26 +178,6 @@ export function balancedTex(text) {
     i = close + (display ? 2 : 1);
   }
   return true;
-}
-
-/**
- * Index of the closing delimiter, or -1. Backslash escapes are skipped so
- * `\$` inside TeX does not close it.
- * @param {string} text
- * @param {number} from
- * @param {boolean} display
- */
-export function findClose(text, from, display) {
-  for (let j = from; j < text.length; j++) {
-    if (text[j] === '\\') {
-      j += 1;
-      continue;
-    }
-    if (text[j] !== '$') continue;
-    if (!display) return j;
-    if (text[j + 1] === '$') return j;
-  }
-  return -1;
 }
 
 /** @param {unknown} v @returns {v is Record<string, unknown>} */
