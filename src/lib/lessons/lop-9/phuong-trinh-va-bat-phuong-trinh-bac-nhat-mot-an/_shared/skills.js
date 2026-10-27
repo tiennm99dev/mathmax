@@ -44,6 +44,18 @@ function scaledFactor(k, r) {
   return linText(k, -k * r);
 }
 
+/**
+ * c times a bracketed factor, the way the book writes it: c = 1 gives the
+ * factor alone, c = −1 gives '−(x + 4)', otherwise '2(x − 1)'.
+ * @param {number} c non-zero
+ * @param {string} f the factor as text
+ */
+function times(c, f) {
+  if (c === 1) return f;
+  if (c === -1) return `${MINUS}(${f})`;
+  return `${intText(c)}(${f})`;
+}
+
 /** @type {Skill} */
 export const phuongTrinhTich = {
   id: 'phuong-trinh-tich',
@@ -56,7 +68,8 @@ export const phuongTrinhTich = {
         const k2 = int(rand, 1, 3);
         const r1 = int(rand, -6, 6);
         const r2 = int(rand, -6, 6);
-        if (r1 === r2) continue;
+        // A zero root would print a bare factor x (or 2x) in brackets.
+        if (r1 === r2 || r1 === 0 || r2 === 0) continue;
         const big = Math.max(r1, r2);
         const f1 = scaledFactor(k1, r1);
         const f2 = scaledFactor(k2, r2);
@@ -84,8 +97,9 @@ export const phuongTrinhTich = {
         const small = Math.min(r, -m);
         const f = factorText(r);
         const plus = m < 0 ? MINUS : '+';
+        const coef = Math.abs(m) === 1 ? '' : Math.abs(m);
         return {
-          prompt: `Giải phương trình x(${f}) ${plus} ${Math.abs(m)}(${f}) = 0. Nhập nghiệm nhỏ hơn.`,
+          prompt: `Giải phương trình x(${f}) ${plus} ${coef}(${f}) = 0. Nhập nghiệm nhỏ hơn.`,
           answer: small,
           steps: [
             `Đặt nhân tử chung ${f}: (${f})(${linText(1, m)}) = 0.`,
@@ -134,7 +148,7 @@ export const chuaAnOMau = {
         const num = linText(1, p);
         const den = factorText(q);
         return {
-          prompt: `Giải phương trình (${num})/(${den}) = ${intText(m)}.`,
+          prompt: `Giải phương trình ${p === 0 ? num : `(${num})`}/(${den}) = ${intText(m)}.`,
           answer: x0,
           steps: [
             `ĐKXĐ: x ≠ ${intText(q)}.`,
@@ -168,13 +182,13 @@ export const chuaAnOMau = {
           answer: x0,
           steps: [
             `ĐKXĐ: x ≠ ${intText(q1)} và x ≠ ${intText(q2)}.`,
-            `Khử mẫu (nhân hai vế với (${d1})(${d2})): ${intText(c1)}(${d2}) = ${intText(c2)}(${d1}).`,
+            `Khử mẫu (nhân hai vế với (${d1})(${d2})): ${times(c1, d2)} = ${times(c2, d1)}.`,
             `${lhs} = ${rhs}, nên ${linText(c1 - c2, 0)} = ${intText(c1 * q2 - c2 * q1)}, tức x = ${intText(x0)}.`,
             `x = ${intText(x0)} thoả mãn ĐKXĐ. Phương trình có nghiệm x = ${intText(x0)}.`,
           ],
           hints: [
             `ĐKXĐ: x ≠ ${intText(q1)} và x ≠ ${intText(q2)}.`,
-            `Nhân chéo: ${intText(c1)}(${d2}) = ${intText(c2)}(${d1}).`,
+            `Nhân chéo: ${times(c1, d2)} = ${times(c2, d1)}.`,
           ],
         };
       }

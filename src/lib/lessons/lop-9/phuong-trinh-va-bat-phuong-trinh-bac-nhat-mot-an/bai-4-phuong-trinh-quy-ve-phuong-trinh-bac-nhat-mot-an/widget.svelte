@@ -192,7 +192,9 @@
         {/each}
       </ol>
       <p class="text-sm text-slate-700">
-        Phương trình tích cho hai giá trị: x = {intText(roots[0])} và x = {intText(roots[1])}.
+        Phương trình tích cho hai giá trị:
+        <span class="whitespace-nowrap">x = {intText(roots[0])}</span> và
+        <span class="whitespace-nowrap">x = {intText(roots[1])}</span>.
       </p>
     </section>
 

@@ -77,7 +77,9 @@ describe('every chapter skill', () => {
         expect(q.steps.length).toBeGreaterThanOrEqual(2);
         expect(q.hints?.length ?? 0).toBeGreaterThanOrEqual(1);
         const all = [q.prompt, ...q.steps, ...(q.hints ?? [])].join(' ');
-        expect(all, all).not.toMatch(/NaN|undefined|Infinity|\+ −|− −|\+ -|- |\b1x\b|\(\)/);
+        expect(all, all).not.toMatch(
+          /NaN|undefined|Infinity|\+ −|− −|\+ -|- |\b1x\b|\(\)|\(x\)|(^|[^\d])1\(/,
+        );
         // Hints must not print the answer as the final result.
         for (const h of q.hints ?? []) {
           expect(h, h).not.toMatch(new RegExp(`là ${String(q.answer).replace('-', '−')}\\.$`));
@@ -98,11 +100,11 @@ describe('answers recomputed from the prompts', () => {
         expect(roots).toHaveLength(2);
         expect(q.answer).toBe(Math.max(...roots));
       } else if (
-        (m = /^Giải phương trình x\((.+)\) ([+−]) (\d+)\((.+)\) = 0\. Nhập nghiệm nhỏ hơn\.$/.exec(
+        (m = /^Giải phương trình x\((.+)\) ([+−]) (\d*)\((.+)\) = 0\. Nhập nghiệm nhỏ hơn\.$/.exec(
           q.prompt,
         ))
       ) {
-        const k = (m[2] === '+' ? 1 : -1) * Number(m[3]);
+        const k = (m[2] === '+' ? 1 : -1) * Number(m[3] || 1);
         const f = m[1];
         expect(m[4]).toBe(f);
         const roots = RANGE.filter((x) => x * lin(f, x) + k * lin(f, x) === 0);
@@ -128,8 +130,8 @@ describe('answers recomputed from the prompts', () => {
       let m;
       /** @type {number[]} */
       let roots;
-      if ((m = /^Giải phương trình \((.+)\)\/\((.+)\) = (−?\d+)\.$/.exec(q.prompt))) {
-        const [n, d, k] = [m[1], m[2], num(m[3])];
+      if ((m = /^Giải phương trình (?:\((.+)\)|(x))\/\((.+)\) = (−?\d+)\.$/.exec(q.prompt))) {
+        const [n, d, k] = [m[1] ?? m[2], m[3], num(m[4])];
         roots = RANGE.filter((x) => lin(d, x) !== 0 && lin(n, x) === k * lin(d, x));
       } else if (
         (m = /^Giải phương trình (−?\d+)\/\((.+)\) = (−?\d+)\/\((.+)\)\.$/.exec(q.prompt))
