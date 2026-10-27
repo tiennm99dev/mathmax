@@ -24,14 +24,36 @@
   const hasSecond = $derived(Boolean(exp.second));
   const countCol = $derived(hasSecond ? 'E' : 'D');
 
-  /** Selected cell: its address and formula, shown in the formula bar. */
-  let selected = $state({ ref: 'B2', formula: EXPERIMENTS[0].cellFormula });
+  /**
+   * Selected cell, shown in the formula bar. Only its place is kept; the
+   * formula is derived so it follows the experiment, event and trial count.
+   * @type {{ col: 'B' | 'C' | 'count' | 'share', row: number }}
+   */
+  let selected = $state({ col: 'B', row: 2 });
+  // A row past the last trial no longer exists once fewer trials are chosen.
+  const selectedRow = $derived(Math.min(selected.row, trials + 1));
+  const selectedRef = $derived(
+    selected.col === 'count'
+      ? `${countCol}2`
+      : selected.col === 'share'
+        ? `${countCol}3`
+        : `${selected.col}${selectedRow}`,
+  );
+  const selectedFormula = $derived(
+    selected.col === 'count'
+      ? event.countFormula(range)
+      : selected.col === 'share'
+        ? `=${countCol}2/${trials}`
+        : selected.col === 'C' && exp.second
+          ? exp.second.formula(selectedRow)
+          : exp.cellFormula,
+  );
 
   /** @param {string | number} v */
   function pickExperiment(v) {
     expId = String(v);
     eventId = exp.events[0].id;
-    selected = { ref: 'B2', formula: exp.cellFormula };
+    selected = { col: 'B', row: 2 };
   }
 
   function recalc() {
@@ -88,10 +110,10 @@
 
   <div class="overflow-hidden rounded-lg border border-slate-300 bg-white text-sm">
     <div class="flex items-center gap-2 border-b border-slate-300 bg-slate-50 px-2 py-1.5">
-      <span class="w-12 shrink-0 font-mono font-semibold text-slate-700">{selected.ref}</span>
+      <span class="w-12 shrink-0 font-mono font-semibold text-slate-700">{selectedRef}</span>
       <span class="font-serif italic text-slate-500" aria-hidden="true">fx</span>
       <output class="min-w-0 flex-1 overflow-x-auto font-mono whitespace-nowrap text-slate-900"
-        >{selected.formula}</output
+        >{selectedFormula}</output
       >
     </div>
     <div class="grid gap-0 md:grid-cols-[1fr_1fr]">
@@ -131,8 +153,7 @@
                     type="button"
                     class={cellClass}
                     aria-label="Ô B{i + 2}: {exp.show(v)}"
-                    onclick={() => (selected = { ref: `B${i + 2}`, formula: exp.cellFormula })}
-                    >{exp.show(v)}</button
+                    onclick={() => (selected = { col: 'B', row: i + 2 })}>{exp.show(v)}</button
                   >
                 </td>
                 {#if exp.second}
@@ -142,9 +163,7 @@
                       type="button"
                       class={cellClass}
                       aria-label="Ô C{i + 2}: {second.show(v)}"
-                      onclick={() =>
-                        (selected = { ref: `C${i + 2}`, formula: second.formula(i + 2) })}
-                      >{second.show(v)}</button
+                      onclick={() => (selected = { col: 'C', row: i + 2 })}>{second.show(v)}</button
                     >
                   </td>
                 {/if}
@@ -170,9 +189,7 @@
                 type="button"
                 class="{cellClass} text-lg font-semibold"
                 aria-label="Ô {countCol}2: {hits}"
-                onclick={() =>
-                  (selected = { ref: `${countCol}2`, formula: event.countFormula(range) })}
-                >{fmt(hits)}</button
+                onclick={() => (selected = { col: 'count', row: 2 })}>{fmt(hits)}</button
               >
             </dd>
           </div>
@@ -185,9 +202,7 @@
                 type="button"
                 class="{cellClass} text-lg font-semibold text-indigo-700"
                 aria-label="Ô {countCol}3: {prob(share)}"
-                onclick={() =>
-                  (selected = { ref: `${countCol}3`, formula: `=${countCol}2/${trials}` })}
-                >{prob(share)}</button
+                onclick={() => (selected = { col: 'share', row: 3 })}>{prob(share)}</button
               >
             </dd>
           </div>

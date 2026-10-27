@@ -157,7 +157,11 @@
   function describeLine(lin) {
     const cut = intercepts(lin);
     const oy = `cắt trục Oy tại (0; ${coordText(cut.y)})`;
-    if (cut.x === null) return `đường thẳng song song với Ox, ${oy}.`;
+    if (cut.x === null) {
+      return cut.y === 0
+        ? 'đường thẳng trùng với trục Ox.'
+        : `đường thẳng song song với Ox, ${oy}.`;
+    }
     return `${oy}, cắt trục Ox tại (${coordText(cut.x)}; 0).`;
   }
 

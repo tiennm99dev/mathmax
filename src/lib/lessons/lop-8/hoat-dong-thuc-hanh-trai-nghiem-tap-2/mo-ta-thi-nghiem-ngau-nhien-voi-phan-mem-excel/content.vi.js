@@ -115,7 +115,7 @@ export default {
           items: [
             'Đánh số các quả bóng từ $1$ đến $8$: số $1$ màu xanh, số $2$ và $3$ màu vàng, số $4$ và $5$ màu đỏ, số $6$, $7$, $8$ màu đen.',
             'Ô A1 ghi "Lần thử", B1 ghi "Số bóng", C1 ghi "Màu". Ở B2 gõ =RANDBETWEEN(1;8).',
-            'Ở C2 gõ =IF(B2>=6;"Đen";IF(B2>=4;"Đỏ";IF(B2>=2;"Vàng";"Xanh"))) để hiện màu của quả bóng.',
+            'Ở C2 gõ =IF(B2>=6; "Đen"; IF(B2>=4; "Đỏ"; IF(B2>=2; "Vàng"; "Xanh"))) để hiện màu của quả bóng (Excel bỏ qua dấu cách sau dấu ;).',
             'Chọn B2:C2 rồi kéo nút điền xuống đến hàng 201 để có $200$ lần lấy bóng.',
             'Ở E2 gõ =COUNTIF(C2:C201;"Đen") (hoặc =COUNTIF(B2:B201;">=6")) để đếm số lần lấy được bóng đen; ở E3 gõ =(200-E2)/200.',
             'Nhấn F9 thêm bốn lần, mỗi lần ghi lại kết quả ô E3 vào bảng.',
@@ -238,7 +238,7 @@ export default {
         'Sắp xếp các bước dùng Excel tính xác suất thực nghiệm của biến cố "mặt sấp" sau $100$ lần tung đồng xu.',
       items: [
         'Ở D2 gõ =COUNTIF(B2:B101;"S").',
-        'Ở B2 gõ =IF(RANDBETWEEN(0;1)=1;"S";"N").',
+        'Ở B2 gõ =IF(RANDBETWEEN(0;1)=1; "S"; "N").',
         'Ở D3 gõ =D2/100.',
         'Kéo công thức ở B2 xuống đến B101.',
       ],

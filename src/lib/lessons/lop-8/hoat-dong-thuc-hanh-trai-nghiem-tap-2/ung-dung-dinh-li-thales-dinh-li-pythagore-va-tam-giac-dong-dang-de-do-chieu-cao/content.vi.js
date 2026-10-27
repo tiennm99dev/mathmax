@@ -72,11 +72,11 @@ export default {
         },
         {
           type: 'p',
-          text: '**Cách 1 (tam giác đồng dạng và định lí Pythagore).** Hai tam giác vuông $DBA$ và $DAC$ có $\\widehat{DBA} = \\widehat{DAC}$ (cùng phụ với $\\widehat{DAB}$) nên đồng dạng, suy ra $\\dfrac{BD}{AD} = \\dfrac{AD}{CD}$, tức $BD = \\dfrac{AD^2}{CD}$. Trong tam giác $ADB$ vuông tại $D$: $AB = \\sqrt{AD^2 + BD^2}$.',
+          text: 'Cách 1 (tam giác đồng dạng và định lí Pythagore). Hai tam giác vuông $DBA$ và $DAC$ có $\\widehat{DBA} = \\widehat{DAC}$ (cùng phụ với $\\widehat{DAB}$) nên đồng dạng, suy ra $\\dfrac{BD}{AD} = \\dfrac{AD}{CD}$, tức $BD = \\dfrac{AD^2}{CD}$. Trong tam giác $ADB$ vuông tại $D$: $AB = \\sqrt{AD^2 + BD^2}$.',
         },
         {
           type: 'p',
-          text: '**Cách 2 (chỉ dùng tam giác đồng dạng).** Tam giác $ABC$ vuông tại $A$ và tam giác $DAC$ vuông tại $D$ có chung góc $C$ nên $\\triangle ABC \\backsim \\triangle DAC$. Suy ra $\\dfrac{AB}{DA} = \\dfrac{AC}{DC}$, tức',
+          text: 'Cách 2 (chỉ dùng tam giác đồng dạng). Tam giác $ABC$ vuông tại $A$ và tam giác $DAC$ vuông tại $D$ có chung góc $C$ nên $\\triangle ABC \\backsim \\triangle DAC$. Suy ra $\\dfrac{AB}{DA} = \\dfrac{AC}{DC}$, tức',
         },
         { type: 'tex', tex: 'AB = \\frac{AD \\cdot AC}{CD}.' },
         {
@@ -178,7 +178,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Cùng một thời điểm, một cột điện cao $2$ m có bóng dài $1{,}25$ m, còn bóng của một toà nhà dài $15$ m. Toà nhà cao bao nhiêu mét?',
+        'Cùng một thời điểm, một chiếc cọc cao $2$ m cắm thẳng đứng có bóng dài $1{,}25$ m, còn bóng của một toà nhà dài $15$ m. Toà nhà cao bao nhiêu mét?',
       answer: 24,
       unit: 'm',
       hints: ['$H = \\dfrac{h \\cdot S}{s}$.'],
