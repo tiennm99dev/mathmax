@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
 import { piText } from './pi-text.js';
-import { SKILLS_TRANG_96, rounded } from './skills.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_108, SKILLS_TRANG_96, rounded } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -133,5 +133,96 @@ describe('drill of the practice lesson on page 96', () => {
     expect(piText(0.5)).toBe('0,5π');
     expect(piText(7 / 6)).toBe('7π/6');
     expect(piText(1 / 3)).toBe('π/3');
+  });
+});
+
+/**
+ * Recomputes a question on lines, tangents and two circles from its prompt
+ * alone.
+ * @param {string} p
+ */
+function solveLater(p) {
+  let m = /cách tâm O của đường tròn \(O; (\d+) cm\) một khoảng d = (\d+(?:,\d+)?) cm/.exec(p);
+  if (m) {
+    const r = +m[1];
+    const d = num(m[2]);
+    return d < r ? 2 : d === r ? 1 : 0;
+  }
+  m = /cách tâm O của đường tròn \(O; (\d+) cm\) một khoảng (\d+) cm và cắt/.exec(p);
+  if (m) return 2 * Math.sqrt(Number(m[1]) ** 2 - Number(m[2]) ** 2);
+  m = /^Cho đường tròn \(O; (\d+) cm\), điểm A .* MA = (\d+) cm/.exec(p);
+  if (m) return Math.hypot(+m[1], +m[2]);
+  m = /\(O; (\d+) cm\) với OM = (\d+) cm/.exec(p);
+  if (m) return Math.sqrt(Number(m[2]) ** 2 - Number(m[1]) ** 2);
+  m = /góc AMB = (\d+)°\. Tính số đo góc AOB/.exec(p);
+  if (m) return 180 - +m[1];
+  m = /góc AOB = (\d+)°\. Tính số đo góc AMO/.exec(p);
+  if (m) return (180 - +m[1]) / 2;
+  m =
+    /\(O; (\d+) cm\), kẻ hai tiếp tuyến MA, MB \(A, B là tiếp điểm\) với góc AMB = 60°\. Tính OM/.exec(
+      p,
+    );
+  if (m) return +m[1] / Math.sin(Math.PI / 6);
+  m = /^Cho hai đường tròn \(O; (\d+) cm\) và \(O′; (\d+) cm\) với OO′ = (\d+(?:,\d+)?) cm/.exec(p);
+  if (m) {
+    const [big, small, d] = [+m[1], +m[2], num(m[3])];
+    if (d > big + small || d < big - small) return 0;
+    if (d === big + small || d === big - small) return 1;
+    return 2;
+  }
+  m =
+    /^Đường tròn \(O; (\d+) cm\) tiếp xúc ngoài với đường tròn \(O′; r\) và OO′ = (\d+(?:,\d+)?) cm/.exec(
+      p,
+    );
+  if (m) return num(m[2]) - +m[1];
+  m = /^Đường tròn \(O; (\d+) cm\) tiếp xúc trong .* OO′ = (\d+) cm/.exec(p);
+  if (m) return +m[1] - +m[2];
+  m = /^Ba đường tròn \(A; (\d+) cm\), \(B; (\d+) cm\), \(C; (\d+) cm\)/.exec(p);
+  if (m) return +m[1] + +m[2] + (+m[2] + +m[3]) + (+m[3] + +m[1]);
+  m =
+    /^Hai đường tròn \(O; (\d+) cm\) và \(O′; (\d+) cm\) cắt nhau tại A và B, OO′ = (\d+) cm/.exec(
+      p,
+    );
+  if (m) {
+    expect(m[1]).toBe(m[2]);
+    return 2 * Math.sqrt(Number(m[1]) ** 2 - (+m[3] / 2) ** 2);
+  }
+  throw new Error(`unknown prompt: ${p}`);
+}
+
+describe('drill on lines, tangents and two circles', () => {
+  for (const skill of SKILLS_TRANG_108) {
+    it(`${skill.id}: every answer matches a fresh computation from the prompt`, () => {
+      for (const q of sample(skill)) expect(q.answer).toBeCloseTo(solveLater(q.prompt), 9);
+    });
+
+    it(`${skill.id}: the answer reads back and the last step gives it`, () => {
+      for (const q of sample(skill, 200)) {
+        expect(num(numberText(q.answer))).toBe(q.answer);
+        expect(hintsFor({ ...q, skill: skill.id }).length).toBeGreaterThan(0);
+        expect((q.steps.at(-1) ?? '').replace(/\s/g, '')).toContain(
+          numberText(q.answer).replace(/\s/g, ''),
+        );
+      }
+    });
+  }
+
+  it('covers every variant and every relation of two circles', () => {
+    const shapes = (/** @type {import('#lib/core/drill.js').Skill} */ skill) =>
+      new Set(sample(skill).map((q) => q.prompt.slice(0, 40)));
+    expect(shapes(SKILLS_TRANG_108[0]).size).toBeGreaterThanOrEqual(3);
+    expect(shapes(SKILLS_TRANG_108[1]).size).toBeGreaterThanOrEqual(3);
+    expect(shapes(SKILLS_TRANG_108[2]).size).toBeGreaterThanOrEqual(5);
+    const counts = new Set(
+      sample(SKILLS_TRANG_108[2])
+        .filter((q) => q.prompt.startsWith('Cho hai đường tròn'))
+        .map((q) => q.answer),
+    );
+    expect([...counts].sort()).toEqual([0, 1, 2]);
+  });
+
+  it('builds the chapter review with one skill per lesson idea', () => {
+    expect(new Set(CHAPTER_SKILLS.map((s) => s.id)).size).toBe(7);
+    expect(buildSet(CHAPTER_SKILLS, 2, 5)).toHaveLength(14);
   });
 });

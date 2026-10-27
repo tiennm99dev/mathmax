@@ -366,3 +366,247 @@ export const dienTich = {
 
 /** The drill of "Luyện tập chung trang 96". */
 export const SKILLS_TRANG_96 = [viTriDiem, cungDay, doDaiCung, dienTich];
+
+/** @type {Skill} */
+export const duongThang = {
+  id: 'duong-thang',
+  label: 'Bài 16. Đường thẳng và đường tròn',
+  make(rand) {
+    const variant = int(rand, 0, 2);
+    if (variant === 0) {
+      const r = int(rand, 3, 12);
+      const d = r + pick(rand, [-2, -1.5, -1, -0.5, 0, 0, 0.5, 1, 1.5, 2]);
+      const count = d < r ? 2 : d === r ? 1 : 0;
+      const verdict =
+        d < r
+          ? 'd < R nên a cắt đường tròn'
+          : d === r
+            ? 'd = R nên a tiếp xúc với đường tròn'
+            : 'd > R nên a và đường tròn không giao nhau';
+      return {
+        prompt: `Đường thẳng a cách tâm O của đường tròn (O; ${r} cm) một khoảng d = ${t(d)} cm. Đường thẳng a và đường tròn có bao nhiêu điểm chung?`,
+        answer: count,
+        steps: [
+          `So sánh d = ${t(d)} cm với R = ${r} cm: ${verdict}.`,
+          `Vậy chúng có ${count} điểm chung.`,
+        ],
+        hints: [
+          'd < R: cắt nhau (2 điểm chung); d = R: tiếp xúc (1 điểm); d > R: không giao nhau.',
+        ],
+      };
+    }
+    const [p, q, c] = pick(rand, TRIPLES);
+    const [d, half] = rand() < 0.5 ? [p, q] : [q, p];
+    if (variant === 1) {
+      return {
+        prompt: `Đường thẳng a cách tâm O của đường tròn (O; ${c} cm) một khoảng ${d} cm và cắt đường tròn tại hai điểm A, B. Tính độ dài AB (cm).`,
+        answer: 2 * half,
+        unit: 'cm',
+        steps: [
+          'Gọi H là chân đường vuông góc từ O đến a; tam giác OAB cân tại O nên H là trung điểm của AB.',
+          `AH² = OA² − OH² = ${c * c} − ${d * d} = ${half * half}, nên AH = ${half} cm.`,
+          `AB = 2 · AH = ${2 * half} cm.`,
+        ],
+        hints: [
+          'Đường vuông góc OH chia đôi dây AB.',
+          'Tính AH trong tam giác vuông OHA rồi nhân đôi.',
+        ],
+      };
+    }
+    return {
+      prompt: `Cho đường tròn (O; ${d} cm), điểm A thuộc đường tròn và đường thẳng a vuông góc với OA tại A. Lấy điểm M trên a với MA = ${half} cm. Tính OM (cm).`,
+      answer: c,
+      unit: 'cm',
+      steps: [
+        'a đi qua A thuộc đường tròn và vuông góc với bán kính OA nên a là tiếp tuyến tại A; tam giác OAM vuông tại A.',
+        `OM² = OA² + MA² = ${d * d} + ${half * half} = ${c * c}, nên OM = ${c} cm.`,
+      ],
+      hints: [
+        'Tiếp tuyến vuông góc với bán kính tại tiếp điểm: dùng định lí Pythagore trong tam giác OAM.',
+      ],
+    };
+  },
+};
+
+/** @type {Skill} */
+export const tiepTuyen = {
+  id: 'tiep-tuyen',
+  label: 'Bài 16. Hai tiếp tuyến cắt nhau',
+  make(rand) {
+    const variant = int(rand, 0, 3);
+    if (variant === 0) {
+      const [p, q, c] = pick(rand, TRIPLES);
+      const [r, m] = rand() < 0.5 ? [p, q] : [q, p];
+      return {
+        prompt: `Từ điểm M nằm ngoài đường tròn (O; ${r} cm) với OM = ${c} cm, kẻ hai tiếp tuyến MA, MB (A, B là tiếp điểm). Tính MA (cm).`,
+        answer: m,
+        unit: 'cm',
+        steps: [
+          'MA là tiếp tuyến tại A nên MA ⊥ OA: tam giác OAM vuông tại A.',
+          `MA² = OM² − OA² = ${c * c} − ${r * r} = ${m * m}, nên MA = ${m} cm (và MB = MA).`,
+        ],
+        hints: ['Tiếp tuyến vuông góc với bán kính đi qua tiếp điểm.', 'MA² = OM² − R².'],
+      };
+    }
+    if (variant === 1) {
+      const x = 2 * int(rand, 10, 80);
+      return {
+        prompt: `Từ điểm M nằm ngoài đường tròn (O), kẻ hai tiếp tuyến MA, MB (A, B là tiếp điểm) với góc AMB = ${x}°. Tính số đo góc AOB (độ).`,
+        answer: 180 - x,
+        unit: '°',
+        steps: [
+          'Tứ giác OAMB có góc OAM = góc OBM = 90° (tiếp tuyến vuông góc với bán kính).',
+          `Góc AOB = 360° − 90° − 90° − ${x}° = ${180 - x}°.`,
+        ],
+        hints: ['Tổng bốn góc của tứ giác OAMB bằng 360°, trong đó có hai góc vuông.'],
+      };
+    }
+    if (variant === 2) {
+      const y = 2 * int(rand, 10, 80);
+      return {
+        prompt: `Từ điểm M nằm ngoài đường tròn (O), kẻ hai tiếp tuyến MA, MB (A, B là tiếp điểm) với góc AOB = ${y}°. Tính số đo góc AMO (độ).`,
+        answer: (180 - y) / 2,
+        unit: '°',
+        steps: [
+          `Tứ giác OAMB có hai góc vuông tại A, B nên góc AMB = 180° − ${y}° = ${180 - y}°.`,
+          `MO là tia phân giác của góc AMB, nên góc AMO = ${180 - y}° : 2 = ${(180 - y) / 2}°.`,
+        ],
+        hints: [
+          'Góc AMB và góc AOB có tổng 180°.',
+          'Tia MO là tia phân giác của góc tạo bởi hai tiếp tuyến.',
+        ],
+      };
+    }
+    const r = int(rand, 2, 15);
+    return {
+      prompt: `Từ điểm M nằm ngoài đường tròn (O; ${r} cm), kẻ hai tiếp tuyến MA, MB (A, B là tiếp điểm) với góc AMB = 60°. Tính OM (cm).`,
+      answer: 2 * r,
+      unit: 'cm',
+      steps: [
+        'MO là tia phân giác của góc AMB nên góc AMO = 30°.',
+        `Tam giác OAM vuông tại A có góc AMO = 30° nên OA = OM/2, tức OM = 2 · ${r} = ${2 * r} cm.`,
+      ],
+      hints: [
+        'MO chia đôi góc AMB.',
+        'Trong tam giác vuông, cạnh đối diện góc 30° bằng nửa cạnh huyền.',
+      ],
+    };
+  },
+};
+
+/** How two circles lie, the way the book says it, by number of common points. */
+const TWO_CIRCLES = /** @type {const} */ ({
+  cat: ['R − r < d < R + r', 'hai đường tròn cắt nhau', 2],
+  ngoai: ['d = R + r', 'hai đường tròn tiếp xúc ngoài', 1],
+  trong: ['d = R − r', 'hai đường tròn tiếp xúc trong', 1],
+  xa: ['d > R + r', 'hai đường tròn ở ngoài nhau', 0],
+  dung: ['d < R − r', '(O) đựng (O′)', 0],
+});
+
+/** @type {Skill} */
+export const haiDuongTron = {
+  id: 'hai-duong-tron',
+  label: 'Bài 17. Vị trí tương đối của hai đường tròn',
+  make(rand) {
+    const variant = int(rand, 0, 4);
+    if (variant === 0) {
+      const big = int(rand, 4, 10);
+      const small = int(rand, 1, big - 2);
+      const kind = pick(rand, /** @type {const} */ (['cat', 'ngoai', 'trong', 'xa', 'dung']));
+      const d = {
+        cat: int(rand, big - small + 1, big + small - 1),
+        ngoai: big + small,
+        trong: big - small,
+        xa: big + small + pick(rand, [0.5, 1, 1.5, 2, 3]),
+        dung: (big - small) / 2,
+      }[kind];
+      const [rule, name, count] = TWO_CIRCLES[kind];
+      return {
+        prompt: `Cho hai đường tròn (O; ${big} cm) và (O′; ${small} cm) với OO′ = ${t(d)} cm. Hai đường tròn có bao nhiêu điểm chung?`,
+        answer: count,
+        steps: [
+          `R + r = ${big + small} cm, R − r = ${big - small} cm, d = OO′ = ${t(d)} cm.`,
+          `${rule}, nên ${name}: có ${count} điểm chung.`,
+        ],
+        hints: [
+          'So sánh d = OO′ với cả R + r và R − r.',
+          'Dấu "=" ứng với tiếp xúc (1 điểm chung); nằm giữa hai số là cắt nhau.',
+        ],
+      };
+    }
+    if (variant === 1) {
+      const big = int(rand, 3, 12);
+      const small = int(rand, 1, 20) / 2;
+      const d = big + small;
+      return {
+        prompt: `Đường tròn (O; ${big} cm) tiếp xúc ngoài với đường tròn (O′; r) và OO′ = ${t(d)} cm. Tính r (cm).`,
+        answer: small,
+        unit: 'cm',
+        steps: [
+          'Hai đường tròn tiếp xúc ngoài nên OO′ = R + r.',
+          `r = OO′ − R = ${t(d)} − ${big} = ${t(small)} cm.`,
+        ],
+        hints: ['Tiếp điểm nằm giữa hai tâm: OO′ = R + r.'],
+      };
+    }
+    if (variant === 2) {
+      const big = int(rand, 4, 15);
+      const d = int(rand, 1, big - 1);
+      return {
+        prompt: `Đường tròn (O; ${big} cm) tiếp xúc trong với đường tròn (O′; r), r < ${big} cm, và OO′ = ${d} cm. Tính r (cm).`,
+        answer: big - d,
+        unit: 'cm',
+        steps: [
+          'Hai đường tròn tiếp xúc trong (R > r) nên OO′ = R − r.',
+          `r = R − OO′ = ${big} − ${d} = ${big - d} cm.`,
+        ],
+        hints: ['Tiếp xúc trong: OO′ = R − r.'],
+      };
+    }
+    if (variant === 3) {
+      const a = int(rand, 1, 5);
+      const b = int(rand, 1, 6);
+      const c = int(rand, 1, 7);
+      return {
+        prompt: `Ba đường tròn (A; ${a} cm), (B; ${b} cm), (C; ${c} cm) đôi một tiếp xúc ngoài với nhau. Tính chu vi tam giác ABC (cm).`,
+        answer: 2 * (a + b + c),
+        unit: 'cm',
+        steps: [
+          `Hai đường tròn tiếp xúc ngoài thì đoạn nối tâm bằng tổng hai bán kính: AB = ${a + b}, BC = ${b + c}, CA = ${c + a} (cm).`,
+          `Chu vi tam giác ABC = ${a + b} + ${b + c} + ${c + a} = ${2 * (a + b + c)} cm.`,
+        ],
+        hints: ['Mỗi cạnh của tam giác là một đoạn nối tâm của hai đường tròn tiếp xúc ngoài.'],
+      };
+    }
+    const [p, q, c] = pick(rand, TRIPLES);
+    const [half, chord] = rand() < 0.5 ? [p, q] : [q, p];
+    return {
+      prompt: `Hai đường tròn (O; ${c} cm) và (O′; ${c} cm) cắt nhau tại A và B, OO′ = ${2 * half} cm. Tính độ dài dây chung AB (cm).`,
+      answer: 2 * chord,
+      unit: 'cm',
+      steps: [
+        'OO′ là đường trung trực của AB; gọi H là giao điểm của OO′ và AB. Vì OA = O′A nên H là trung điểm của OO′.',
+        `OH = ${2 * half} : 2 = ${half} cm, AH² = OA² − OH² = ${c * c} − ${half * half} = ${chord * chord}, nên AH = ${chord} cm.`,
+        `AB = 2 · AH = ${2 * chord} cm.`,
+      ],
+      hints: [
+        'Đường nối tâm là đường trung trực của dây chung.',
+        'Hai bán kính bằng nhau nên AB cũng chia đôi OO′; dùng định lí Pythagore trong tam giác AHO.',
+      ],
+    };
+  },
+};
+
+/** The drill of "Luyện tập chung trang 108". */
+export const SKILLS_TRANG_108 = [duongThang, tiepTuyen, haiDuongTron];
+
+/** The drill of the chapter review, one skill per idea of each lesson. */
+export const CHAPTER_SKILLS = [
+  viTriDiem,
+  cungDay,
+  doDaiCung,
+  dienTich,
+  duongThang,
+  tiepTuyen,
+  haiDuongTron,
+];
