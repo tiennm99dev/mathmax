@@ -184,7 +184,9 @@ export const cungDay = {
       };
     }
     if (variant === 2) {
-      const h = int(rand, 1, 11);
+      // At 6 o'clock the hands split the dial into two half circles, so
+      // there is no minor arc to ask about.
+      const h = pick(rand, [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]);
       const parts = Math.min(h, 12 - h);
       return {
         prompt: `Lúc ${h} giờ đúng, tính số đo cung nhỏ có hai mút là hai đầu kim đồng hồ (coi hai kim dài bằng nhau, đơn vị độ).`,

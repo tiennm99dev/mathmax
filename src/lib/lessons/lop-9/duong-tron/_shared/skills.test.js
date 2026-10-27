@@ -54,6 +54,7 @@ function solve(p) {
   m = /^Lúc (\d+) giờ đúng/.exec(p);
   if (m) {
     // the hour hand stands at h·30°, the minute hand at 0°
+    expect(+m[1]).not.toBe(6);
     const a = (+m[1] * 30) % 360;
     return { value: Math.min(a, 360 - a), step: 0 };
   }
