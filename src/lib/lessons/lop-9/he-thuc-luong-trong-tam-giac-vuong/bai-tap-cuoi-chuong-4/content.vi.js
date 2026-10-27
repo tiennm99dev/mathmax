@@ -87,12 +87,12 @@ export default {
       type: 'choice',
       prompt: '$\\sin 60^\\circ$ bằng',
       options: [
-        '$\\dfrac{\\sqrt{3}}{2}$',
         '$\\dfrac{1}{2}$',
         '$\\dfrac{\\sqrt{2}}{2}$',
+        '$\\dfrac{\\sqrt{3}}{2}$',
         '$\\sqrt{3}$',
       ],
-      answer: 0,
+      answer: 2,
       hints: ['Dùng nửa tam giác đều cạnh $2$: các cạnh là $1$, $\\sqrt{3}$, $2$.'],
       solution:
         'Trong nửa tam giác đều cạnh $2$, góc $60^\\circ$ có cạnh đối $\\sqrt{3}$, cạnh huyền $2$, nên $\\sin 60^\\circ = \\dfrac{\\sqrt{3}}{2}$.',

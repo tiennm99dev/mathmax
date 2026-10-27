@@ -164,12 +164,12 @@ export default {
       type: 'choice',
       prompt: 'Cho tam giác $ABC$ vuông tại $A$. Khẳng định nào đúng?',
       options: [
-        '$\\sin C = \\dfrac{AB}{BC}$',
         '$\\sin C = \\dfrac{AC}{BC}$',
         '$\\sin C = \\dfrac{AB}{AC}$',
+        '$\\sin C = \\dfrac{AB}{BC}$',
         '$\\sin C = \\dfrac{AC}{AB}$',
       ],
-      answer: 0,
+      answer: 2,
       hints: [
         'Sin bằng cạnh đối chia cạnh huyền.',
         'Cạnh đối diện với đỉnh $C$ là cạnh không đi qua $C$ trong hai cạnh góc vuông.',

@@ -104,8 +104,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Tam giác $ABC$ vuông tại $A$ có $AB = 6$ cm, $BC = 10$ cm. Khi đó $\\cos B$ bằng',
-      options: ['$\\dfrac{3}{5}$', '$\\dfrac{4}{5}$', '$\\dfrac{3}{4}$', '$\\dfrac{4}{3}$'],
-      answer: 0,
+      options: ['$\\dfrac{4}{5}$', '$\\dfrac{3}{4}$', '$\\dfrac{3}{5}$', '$\\dfrac{4}{3}$'],
+      answer: 2,
       hints: ['Côsin bằng cạnh kề chia cạnh huyền.', 'Cạnh kề của góc $B$ là $AB$.'],
       solution: '$\\cos B = \\dfrac{AB}{BC} = \\dfrac{6}{10} = \\dfrac{3}{5}$.',
     },
@@ -126,8 +126,8 @@ export default {
       type: 'choice',
       prompt:
         'Cho góc nhọn $\\alpha$ với $\\tan\\alpha = \\dfrac{3}{4}$. Khi đó $\\sin\\alpha$ bằng',
-      options: ['$\\dfrac{3}{5}$', '$\\dfrac{4}{5}$', '$\\dfrac{3}{4}$', '$\\dfrac{5}{3}$'],
-      answer: 0,
+      options: ['$\\dfrac{4}{5}$', '$\\dfrac{3}{4}$', '$\\dfrac{5}{3}$', '$\\dfrac{3}{5}$'],
+      answer: 3,
       hints: [
         'Dựng tam giác vuông có cạnh đối $3$, cạnh kề $4$ của góc $\\alpha$.',
         'Cạnh huyền của tam giác đó bằng $\\sqrt{3^2 + 4^2}$.',

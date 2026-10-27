@@ -158,8 +158,8 @@ export default {
     {
       type: 'choice',
       prompt: 'Cho tam giác $ABC$ vuông tại $A$, $BC = a$, $CA = b$, $AB = c$. Hệ thức nào đúng?',
-      options: ['$b = a\\sin B$', '$b = a\\cos B$', '$b = c\\tan C$', '$c = a\\sin B$'],
-      answer: 0,
+      options: ['$b = a\\cos B$', '$b = c\\tan C$', '$c = a\\sin B$', '$b = a\\sin B$'],
+      answer: 3,
       hints: ['$b = CA$ là cạnh đối của góc $B$ và là cạnh kề của góc $C$.'],
       solution:
         'Cạnh góc vuông bằng cạnh huyền nhân sin góc đối: $b = a\\sin B$. Các hệ thức còn lại phải là $b = a\\cos C$, $b = c\\tan B$ và $c = a\\sin C$.',
@@ -212,12 +212,12 @@ export default {
       prompt:
         'Giải tam giác $ABC$ vuông tại $A$ biết $BC = 10$ cm và $\\widehat{B} = 36^\\circ$ (độ dài làm tròn đến hàng phần mười). Kết quả nào đúng?',
       options: [
-        '$\\widehat{C} = 54^\\circ$, $AC \\approx 5{,}9$ cm, $AB \\approx 8{,}1$ cm',
         '$\\widehat{C} = 54^\\circ$, $AC \\approx 8{,}1$ cm, $AB \\approx 5{,}9$ cm',
+        '$\\widehat{C} = 54^\\circ$, $AC \\approx 5{,}9$ cm, $AB \\approx 8{,}1$ cm',
         '$\\widehat{C} = 64^\\circ$, $AC \\approx 5{,}9$ cm, $AB \\approx 8{,}1$ cm',
         '$\\widehat{C} = 54^\\circ$, $AC \\approx 7{,}3$ cm, $AB \\approx 6{,}8$ cm',
       ],
-      answer: 0,
+      answer: 1,
       hints: [
         'Góc $C$ phụ với góc $B$.',
         '$AC$ đối diện góc $B$ nên $AC = BC\\sin B$; $AB = BC\\cos B$.',

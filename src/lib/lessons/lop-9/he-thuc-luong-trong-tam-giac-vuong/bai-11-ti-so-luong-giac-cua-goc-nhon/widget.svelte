@@ -25,8 +25,9 @@
   const snapLen = (/** @type {number} */ v, /** @type {number} */ max) =>
     clampLen(Math.round(v / STEP) * STEP, max);
 
-  let bPt = $state({ x: A.x + 8 * U, y: A.y });
-  let cPt = $state({ x: A.x, y: A.y - 6 * U });
+  // A 4-3-5 triangle, small enough that "Phóng to" works from the start.
+  let bPt = $state({ x: A.x + 4 * U, y: A.y });
+  let cPt = $state({ x: A.x, y: A.y - 3 * U });
   /** @type {'B' | 'C'} */
   let vertex = $state('B');
 
@@ -77,7 +78,8 @@
   /** Sets angle B (or C, when C is the chosen angle) to a special value. */
   function preset(/** @type {number} */ deg) {
     const angleB = vertex === 'B' ? deg : 90 - deg;
-    const legs = legsForAngleB(angleB, 6);
+    // Longer leg 5: the triangle can still grow by 1.5 and shrink by 1.5.
+    const legs = legsForAngleB(angleB, 5);
     setLegs(legs.ab, legs.ac);
   }
 
