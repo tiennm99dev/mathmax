@@ -6,7 +6,9 @@
   import { button } from '#lib/core/ui.js';
   import { formatFixed } from '#lib/core/number-format.js';
   import { along, arcPath, bisectorDir, directionTo } from '#lib/core/visuals/angle-math.js';
-  import { angleAt, dist, pointsAttr, units } from '../_shared/quad.js';
+  import { angleAt, dist } from '#lib/geom-engine/plane.js';
+  import { pointsAttr } from '#lib/utils/svg.js';
+  import { units } from '../_shared/quad.js';
 
   const W = 400;
   const H = 280;

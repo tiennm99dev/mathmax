@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { BASES } from './bases.js';
-import { dist, measures, polygonArea } from '../_shared/prism-geometry.js';
+import { dist, polygonArea } from '#lib/geom-engine/plane.js';
+import { measures } from '../_shared/prism-geometry.js';
 
 describe('BASES', () => {
   it('has the side lengths its description gives, in order AB, BC, CD/CA, DA', () => {

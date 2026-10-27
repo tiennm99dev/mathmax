@@ -4,6 +4,8 @@
  * favourable outcomes to possible outcomes (each ball is one outcome).
  */
 
+import { gcd } from '#lib/numtheory-engine/index.js';
+
 /** @typedef {'do' | 'xanh' | 'vang'} Colour */
 
 /** @type {ReadonlyArray<{ id: Colour, name: string, fill: string }>} */
@@ -31,9 +33,6 @@ export const EVENTS = [
   { id: 'khong-do', text: 'Lấy được viên bi không phải màu đỏ', colours: ['xanh', 'vang'] },
   { id: 'do-vang', text: 'Lấy được viên bi màu đỏ hoặc vàng', colours: ['do', 'vang'] },
 ];
-
-/** @param {number} a @param {number} b @returns {number} */
-export const gcd = (a, b) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
 /**
  * The balls in the box, colour by colour, in a fixed order.

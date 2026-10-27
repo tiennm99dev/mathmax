@@ -1,13 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  BAR_TASK,
-  CHART_KINDS,
-  DATA_SETS,
-  PIE_TASK,
-  exactPercents,
-  iconRow,
-  mismatches,
-} from './engine.js';
+import { BAR_TASK, CHART_KINDS, DATA_SETS, PIE_TASK, exactPercents, mismatches } from './engine.js';
 
 describe('data sets', () => {
   it('give one value per label and exactly one best chart', () => {
@@ -20,14 +12,6 @@ describe('data sets', () => {
 
   it('match the percentages quoted for the sports survey', () => {
     expect(exactPercents(DATA_SETS[0].values)).toEqual([40, 30, 20, 10]);
-  });
-});
-
-describe('iconRow', () => {
-  it('splits a value into whole icons and a part', () => {
-    expect(iconRow(35, 10)).toEqual({ whole: 3, part: 0.5 });
-    expect(iconRow(12, 3)).toEqual({ whole: 4, part: 0 });
-    expect(iconRow(17, 5)).toEqual({ whole: 3, part: 0.4 });
   });
 });
 

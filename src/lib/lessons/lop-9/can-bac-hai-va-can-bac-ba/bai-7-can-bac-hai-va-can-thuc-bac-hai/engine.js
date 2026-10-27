@@ -4,7 +4,7 @@
  * √(x²) = |x| read off the graph y = |x|.
  */
 
-import { numText, rootValue } from '../_shared/root-text.js';
+import { numText, rootValue } from '#lib/core/algebra-text.js';
 
 /**
  * The square roots of a: none when a < 0, the single root 0 when a = 0, and

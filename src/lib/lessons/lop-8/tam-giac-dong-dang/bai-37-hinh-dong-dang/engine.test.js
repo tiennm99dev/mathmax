@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { SHAPES, dist, image, imagePolygon, perimeter } from './engine.js';
+import { dist } from '#lib/geom-engine/plane.js';
+import { SHAPES, image, imagePolygon, perimeter } from './engine.js';
 
 const O = { x: 100, y: 200 };
 

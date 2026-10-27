@@ -5,7 +5,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, texNumber } from '#lib/core/number-format.js';
-  import { lerp, triangleFromSides } from '../_shared/tri.js';
+  import { lerp, triangleFromSides } from '#lib/geom-engine/plane.js';
   import { STEPS, TRIANGLES, measures, nearestStep, stepOf } from './engine.js';
 
   const W = 420;

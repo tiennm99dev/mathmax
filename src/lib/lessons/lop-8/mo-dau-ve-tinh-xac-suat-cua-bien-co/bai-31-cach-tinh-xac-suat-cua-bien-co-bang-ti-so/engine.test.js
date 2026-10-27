@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { EVENTS, balls, gcd, ratio, ratioTex } from './engine.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
+import { EVENTS, balls, ratio, ratioTex } from './engine.js';
 
 /** @param {string} id */
 const colours = (id) => {

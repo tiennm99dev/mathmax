@@ -5,7 +5,7 @@
  */
 
 import { fmt, intText, operand } from '#lib/core/number-format.js';
-import { rootValue } from '../_shared/root-text.js';
+import { rootValue } from '#lib/core/algebra-text.js';
 
 /**
  * The cube root of a, exact for perfect cubes despite rounding in Math.cbrt.

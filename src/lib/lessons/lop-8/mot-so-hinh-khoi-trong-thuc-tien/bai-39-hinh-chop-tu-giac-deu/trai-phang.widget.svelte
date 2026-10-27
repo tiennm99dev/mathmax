@@ -1,4 +1,5 @@
 <script>
+  import LiveRichText from '#lib/components/live-rich-text.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { focusRing } from '#lib/core/ui.js';
   import PyramidView from '../_shared/pyramid-view.svelte';
@@ -19,7 +20,7 @@
   const feedback = $derived(
     `Tam giác SHI vuông tại H: SI² = SH² + HI² = ${num(h)}² + ${num(a / 2)}², nên d = SI ${approx} ${num(m.d)} cm. ` +
       `Bốn mặt bên là bốn tam giác cân bằng nhau, mỗi tam giác có diện tích ½ · ${num(a)} · ${num(m.d)} ${approx} ${num((a * m.d) / 2)} cm². ` +
-      `S_xq = p · d = ${num(m.p)} · ${num(m.d)} ${approx} ${num(m.lateral)} cm²; S_tp = S_xq + a² ${approx} ${num(m.total)} cm².` +
+      `$S_{xq}$ = p · d = ${num(m.p)} · ${num(m.d)} ${approx} ${num(m.lateral)} cm²; $S_{tp}$ = $S_{xq}$ + a² ${approx} ${num(m.total)} cm².` +
       (open > 0.98
         ? ' Lưới gồm hình vuông đáy và bốn tam giác cân dựng trên bốn cạnh của nó.'
         : ''),
@@ -56,6 +57,6 @@
     Hiện đường cao SH và trung đoạn SI
   </label>
   <p class="rounded-lg bg-indigo-50 p-3 text-sm text-indigo-950" aria-live="polite">
-    {feedback}
+    <LiveRichText text={feedback} />
   </p>
 </div>

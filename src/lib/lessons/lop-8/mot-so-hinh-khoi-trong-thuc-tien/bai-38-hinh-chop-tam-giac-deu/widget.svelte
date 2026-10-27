@@ -1,4 +1,5 @@
 <script>
+  import LiveRichText from '#lib/components/live-rich-text.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { focusRing } from '#lib/core/ui.js';
   import PyramidView from '../_shared/pyramid-view.svelte';
@@ -29,7 +30,7 @@
     }
     return (
       part +
-      `p = ${num(m.perimeter)} : 2 = ${num(m.p)} cm; S_xq = p · d ≈ ${num(m.p)} · ${num(m.d)} ≈ ${num(m.lateral)} cm². ` +
+      `p = ${num(m.perimeter)} : 2 = ${num(m.p)} cm; $S_{xq}$ = p · d ≈ ${num(m.p)} · ${num(m.d)} ≈ ${num(m.lateral)} cm². ` +
       `V = ⅓ · S · h ≈ ⅓ · ${num(m.S)} · ${num(h)} ≈ ${num(m.volume)} cm³.`
     );
   });
@@ -110,6 +111,6 @@
   </dl>
 
   <p class="rounded-lg bg-indigo-50 p-3 text-sm text-indigo-950" aria-live="polite">
-    {feedback}
+    <LiveRichText text={feedback} />
   </p>
 </div>

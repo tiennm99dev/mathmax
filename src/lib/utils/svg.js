@@ -23,3 +23,11 @@ export function clientToSvg(svg, clientX, clientY, viewW, viewH) {
 export function clampToViewBox(v, viewW, viewH, pad = 16) {
   return vec(Math.max(pad, Math.min(viewW - pad, v.x)), Math.max(pad, Math.min(viewH - pad, v.y)));
 }
+
+/**
+ * The SVG `points` attribute for a polygon, one decimal place per coordinate.
+ * @param {Array<{ x: number, y: number }>} pts
+ */
+export function pointsAttr(pts) {
+  return pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+}

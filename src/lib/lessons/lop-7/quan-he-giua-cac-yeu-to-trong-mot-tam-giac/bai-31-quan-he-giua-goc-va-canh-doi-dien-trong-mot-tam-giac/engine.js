@@ -6,10 +6,10 @@
  * board shows).
  */
 
-import { OPPOSITE, measureTri, same } from '../_shared/triangle-board.js';
+import { measureTri, OPPOSITE, same } from '#lib/geom-engine/grid-triangle.js';
 
-/** @typedef {import('../_shared/triangle-board.js').Tri} Tri */
-/** @typedef {import('../_shared/triangle-board.js').Vertex} Vertex */
+/** @typedef {import('#lib/geom-engine/grid-triangle.js').Tri} Tri */
+/** @typedef {import('#lib/geom-engine/grid-triangle.js').Vertex} Vertex */
 
 /** @type {Vertex[]} */
 const VERTICES = ['A', 'B', 'C'];

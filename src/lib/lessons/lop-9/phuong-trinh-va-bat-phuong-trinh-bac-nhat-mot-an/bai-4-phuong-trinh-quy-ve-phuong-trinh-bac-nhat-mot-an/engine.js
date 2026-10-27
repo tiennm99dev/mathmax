@@ -14,7 +14,7 @@
 
 import { int } from '#lib/core/drill.js';
 import { MINUS, intText } from '#lib/core/number-format.js';
-import { factorTex, factorText } from '../_shared/linear-text.js';
+import { factorTex, factorText } from '#lib/core/algebra-text.js';
 
 /**
  * @typedef {object} Problem

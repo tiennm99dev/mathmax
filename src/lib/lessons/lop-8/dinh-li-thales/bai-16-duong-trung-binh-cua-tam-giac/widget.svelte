@@ -6,7 +6,7 @@
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import { directionTo, sectorPath } from '#lib/core/visuals/angle-math.js';
-  import { labelSpot } from '../_shared/tri.js';
+  import { labelSpot } from '#lib/geom-engine/plane.js';
   import { COLS, LINES, ROWS, keepsTriangle, midline, midpoints, snapCell } from './engine.js';
 
   /** @typedef {import('./engine.js').Pt} Pt */

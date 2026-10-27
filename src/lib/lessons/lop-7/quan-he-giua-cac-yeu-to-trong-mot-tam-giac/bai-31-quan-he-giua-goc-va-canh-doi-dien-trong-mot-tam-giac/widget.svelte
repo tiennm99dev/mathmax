@@ -4,13 +4,13 @@
   import { formatNumber } from '#lib/core/number-format.js';
   import { degText, directionTo, sectorPath } from '#lib/core/visuals/angle-math.js';
   import {
-    OPPOSITE,
     frame,
-    labelSpot,
+    labelOutside,
     measureTri,
+    OPPOSITE,
     placeVertex,
     toGrid,
-  } from '../_shared/triangle-board.js';
+  } from '#lib/geom-engine/grid-triangle.js';
   import { angleChain, hat, rankGroups, sideChain, sideKind } from './engine.js';
 
   const W = 400;
@@ -122,7 +122,7 @@
       />
     {/each}
     {#each VS as v (v)}
-      {@const s = labelSpot(pts[v], pts, 20)}
+      {@const s = labelOutside(pts[v], pts, 20)}
       <text
         x={s.x}
         y={s.y + 5}

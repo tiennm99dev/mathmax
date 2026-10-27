@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
+  answerText,
   decimalTex,
   decimalText,
   digitAt,
@@ -16,6 +17,7 @@ import {
   scaledValue,
   sqrtFloor,
 } from './decimal.js';
+import { GROUP } from './number-format.js';
 
 describe('expand', () => {
   it('finds the remainders and the period of a repeating decimal', () => {
@@ -169,5 +171,13 @@ describe('reading and writing answers', () => {
     expect(numberText(7)).toBe('7');
     expect(numberText(2 / 3)).toBe('2/3');
     expect(numberText(-5 / 6)).toBe('−5/6');
+  });
+});
+
+describe('answerText', () => {
+  it('groups natural numbers and writes other answers with a decimal comma', () => {
+    expect(answerText(12000)).toBe(`12${GROUP}000`);
+    expect(answerText(7.5)).toBe('7,5');
+    expect(answerText(-2)).toBe('−2');
   });
 });

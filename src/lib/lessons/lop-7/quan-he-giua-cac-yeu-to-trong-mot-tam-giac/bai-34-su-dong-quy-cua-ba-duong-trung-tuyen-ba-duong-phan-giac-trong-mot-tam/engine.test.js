@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { bisectors, medians } from './engine.js';
-import { angleAt, cross, dist } from '../_shared/triangle-board.js';
+import { angleAt, cross, dist } from '#lib/geom-engine/plane.js';
 
 /** A spread of grid triangles, acute, right and obtuse. */
 function triangles() {
@@ -37,7 +37,7 @@ describe('angle bisectors', () => {
       expect(Math.abs(cross(t.A, b.D, b.I))).toBeLessThan(1e-9);
       expect(Math.abs(cross(t.B, b.E, b.I))).toBeLessThan(1e-9);
       expect(Math.abs(cross(t.C, b.F, b.I))).toBeLessThan(1e-9);
-      expect(angleAt(t.B, t.A, b.D)).toBeCloseTo(angleAt(b.D, t.A, t.C), 6);
+      expect(angleAt(t.A, t.B, b.D)).toBeCloseTo(angleAt(t.A, b.D, t.C), 6);
     }
   });
 

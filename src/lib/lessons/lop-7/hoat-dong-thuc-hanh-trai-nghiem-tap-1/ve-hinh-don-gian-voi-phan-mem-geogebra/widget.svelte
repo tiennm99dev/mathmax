@@ -5,12 +5,12 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
+  import { dist } from '#lib/geom-engine/plane.js';
   import {
     FIGURES,
     angleAt,
     bisectorLine,
     construction,
-    dist,
     distToLine,
     placeTriangle,
     projectOnLine,

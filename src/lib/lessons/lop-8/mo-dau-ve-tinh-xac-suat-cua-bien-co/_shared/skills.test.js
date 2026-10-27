@@ -1,8 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, readAnswer } from '#lib/core/drill.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { readProbability } from '#lib/core/fractions.js';
-import { CHAPTER_SKILLS, PRACTICE_SKILLS, answerText, isPrime, ratioText } from './skills.js';
+import {
+  countOrProbabilityText as answerText,
+  ratioText,
+  readProbability,
+} from '#lib/core/fractions.js';
+import { isPrime } from '#lib/numtheory-engine/index.js';
+import { CHAPTER_SKILLS, PRACTICE_SKILLS } from './skills.js';
 
 /** @param {string} s */
 const n = (s) => Number(s.replaceAll(GROUP, ''));

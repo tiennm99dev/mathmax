@@ -6,7 +6,8 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import { button } from '#lib/core/ui.js';
   import { formatFixed, formatNumber } from '#lib/core/number-format.js';
-  import { SHAPES, dist, imagePolygon, perimeter } from './engine.js';
+  import { dist } from '#lib/geom-engine/plane.js';
+  import { SHAPES, imagePolygon, perimeter } from './engine.js';
 
   const W = 400;
   const H = 300;

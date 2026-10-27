@@ -15,13 +15,6 @@ import { fmt } from '#lib/core/number-format.js';
 /** @param {number} n */
 const deg = (n) => `${n}°`;
 
-/**
- * How the boards write an answer: whole numbers grouped the book's way
- * (12 000), others with a decimal comma (7,5).
- * @param {number} n
- */
-export const answerText = (n) => (Number.isInteger(n) && n >= 0 ? fmt(n) : numberText(n));
-
 /** A length in cm with a decimal comma. @param {number} n */
 const cm = (n) => `${numberText(n)} cm`;
 

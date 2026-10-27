@@ -5,6 +5,8 @@
  * triangles around a centre. Points are SVG coordinates (y grows downwards).
  */
 
+import { dist } from '#lib/geom-engine/plane.js';
+
 /** SVG units per centimetre on the board. */
 export const CM = 40;
 
@@ -12,14 +14,6 @@ export const CM = 40;
 export const TOLERANCE = 0.1;
 
 /** @typedef {{ x: number, y: number }} Pt */
-
-/**
- * @param {Pt} p
- * @param {Pt} q
- */
-export function dist(p, q) {
-  return Math.hypot(p.x - q.x, p.y - q.y);
-}
 
 /**
  * The two points that form an equilateral triangle with A and B: where the

@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
+import { dist } from '#lib/geom-engine/plane.js';
 import {
   TASKS,
   angleAt,
   angleKind,
   clipLine,
   construction,
-  dist,
   geogebraAngle,
   midpoint,
   onLine,

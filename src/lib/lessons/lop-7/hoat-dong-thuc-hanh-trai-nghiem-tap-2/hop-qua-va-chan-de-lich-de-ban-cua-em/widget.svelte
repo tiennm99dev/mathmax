@@ -8,16 +8,8 @@
   import { GROUP, formatNumber } from '#lib/core/number-format.js';
   import { readNumber } from '#lib/core/decimal.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
-  import {
-    FLAP,
-    TRIANGLES,
-    boxNet,
-    fold,
-    material,
-    polygonArea,
-    standNet,
-    viewPoint,
-  } from './engine.js';
+  import { polygonArea } from '#lib/geom-engine/plane.js';
+  import { FLAP, TRIANGLES, boxNet, fold, material, standNet, viewPoint } from './engine.js';
 
   /** Numbers as the book prints them: 4 605,02 (a narrow space groups thousands). @param {number} v */
   const num = (v) => formatNumber(v, 2).replaceAll('.', GROUP);

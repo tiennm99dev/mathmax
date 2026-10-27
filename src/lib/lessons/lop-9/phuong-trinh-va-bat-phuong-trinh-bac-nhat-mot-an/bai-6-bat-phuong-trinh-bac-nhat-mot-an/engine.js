@@ -5,7 +5,7 @@
  */
 
 import { formatNumber, intText } from '#lib/core/number-format.js';
-import { linTex, linText, signedFracTex, signedFracText } from '../_shared/linear-text.js';
+import { linTex, linText, signedFracTex, signedFracText } from '#lib/core/algebra-text.js';
 
 /** @typedef {'lt' | 'gt' | 'le' | 'ge'} Sign */
 

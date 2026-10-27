@@ -10,7 +10,8 @@ import {
   sideFromPointer,
   splitAtA,
 } from './para.js';
-import { angleAt, dist, UNIT } from './quad.js';
+import { angleAt, dist } from '#lib/geom-engine/plane.js';
+import { UNIT } from './quad.js';
 
 const A = { x: 100, y: 200 };
 

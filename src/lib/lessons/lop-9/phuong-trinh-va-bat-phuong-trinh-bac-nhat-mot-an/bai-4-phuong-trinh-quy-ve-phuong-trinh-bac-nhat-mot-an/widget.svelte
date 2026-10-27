@@ -4,7 +4,7 @@
   import { rng } from '#lib/core/drill.js';
   import { intText } from '#lib/core/number-format.js';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { factorText } from '../_shared/linear-text.js';
+  import { factorText } from '#lib/core/algebra-text.js';
   import {
     SPAN,
     clearedText,

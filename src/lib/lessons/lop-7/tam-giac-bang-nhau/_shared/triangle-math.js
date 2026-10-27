@@ -10,6 +10,7 @@
 
 import { formatNumber } from '#lib/core/number-format.js';
 import { norm } from '#lib/core/visuals/angle-math.js';
+import { dist } from '#lib/geom-engine/plane.js';
 
 const RAD = Math.PI / 180;
 
@@ -28,11 +29,6 @@ export function along(o, r, deg) {
  */
 export function directionTo(o, p) {
   return norm(Math.atan2(o.y - p.y, p.x - o.x) / RAD);
-}
-
-/** @param {Pt} p @param {Pt} q */
-export function dist(p, q) {
-  return Math.hypot(p.x - q.x, p.y - q.y);
 }
 
 /**

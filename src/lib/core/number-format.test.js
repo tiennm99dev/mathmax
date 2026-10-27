@@ -9,6 +9,7 @@ import {
   formatNumber,
   powText,
   readNatural,
+  roundToTotal,
   sup,
   texNumber,
 } from './number-format.js';
@@ -104,5 +105,19 @@ describe('readInteger', () => {
     expect(readInteger('3,5')).toBeNull();
     expect(readInteger('--3')).toBeNull();
     expect(readInteger('âm 3')).toBeNull();
+  });
+});
+
+describe('roundToTotal', () => {
+  it('keeps the total and stays within one of each value', () => {
+    const values = [70.4, 109.4, 90.4, 89.8];
+    const out = roundToTotal(values, 360);
+    expect(out.reduce((s, v) => s + v, 0)).toBe(360);
+    out.forEach((v, i) => expect(Math.abs(v - values[i])).toBeLessThan(1));
+  });
+
+  it('leaves whole numbers alone and breaks ties in order', () => {
+    expect(roundToTotal([90, 90, 90, 90], 360)).toEqual([90, 90, 90, 90]);
+    expect(roundToTotal([0.5, 0.5], 1)).toEqual([1, 0]);
   });
 });

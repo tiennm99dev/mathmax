@@ -9,7 +9,7 @@
  * digit far after the comma is still exact.
  */
 
-import { MINUS } from './number-format.js';
+import { MINUS, fmt } from './number-format.js';
 
 /**
  * @typedef {object} Expansion
@@ -273,4 +273,14 @@ export function numberText(value) {
     return isFiniteDecimal(p, q) ? decimalText(p, q) : `${p < 0 ? MINUS : ''}${Math.abs(p)}/${q}`;
   }
   return String(value).replace('.', ',').replace('-', MINUS);
+}
+
+/**
+ * How a drill board writes an answer that may be a decimal: natural numbers
+ * grouped the book's way (12 000), anything else as `numberText` writes it
+ * (7,5; −2; 2/3).
+ * @param {number} n
+ */
+export function answerText(n) {
+  return Number.isInteger(n) && n >= 0 ? fmt(n) : numberText(n);
 }

@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { linText, monoText, sumText } from '#lib/core/algebra-text.js';
 import { rng } from '#lib/core/drill.js';
 import { inLowestTerms, readValue, sameValue } from '#lib/core/adaptive.js';
 import {
@@ -8,12 +9,9 @@ import {
   hamSo,
   hangDangThuc,
   hinhChop,
-  linText,
-  monoText,
   phanThuc,
   phuongTrinh,
   shift,
-  sumText,
   thales,
   thongKe,
   tuGiac,

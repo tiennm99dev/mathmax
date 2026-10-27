@@ -7,7 +7,6 @@ import {
   fromSSS,
   isTriangle,
   layout,
-  ratioTex,
   sameRatio,
   similar,
   similarAnyOrder,
@@ -97,14 +96,6 @@ describe('layout', () => {
     const s = fitScale([t, u], 160, 150);
     expect(u.bc * s).toBeLessThanOrEqual(160 + 1e-9);
     expect(layout(u).A.y * s).toBeLessThanOrEqual(150 + 1e-9);
-  });
-});
-
-describe('ratioTex', () => {
-  it('writes the ratio and its lowest terms', () => {
-    expect(ratioTex(8, 4)).toBe('\\dfrac{8}{4} = 2');
-    expect(ratioTex(6, 4)).toBe('\\dfrac{6}{4} = \\dfrac{3}{2}');
-    expect(ratioTex(3, 4)).toBe('\\dfrac{3}{4}');
   });
 });
 

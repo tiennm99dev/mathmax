@@ -6,7 +6,7 @@
   import Tex from '#lib/components/tex.svelte';
   import PairBoard from '../_shared/pair-board.svelte';
   import CompareTable from '../_shared/compare-table.svelte';
-  import { ratioTex } from '../_shared/tri.js';
+  import { ratioTex } from '#lib/core/fractions.js';
   import { checkAA, checkSAS, checkSSS } from './engine.js';
 
   const SIDE_MAX = 15;

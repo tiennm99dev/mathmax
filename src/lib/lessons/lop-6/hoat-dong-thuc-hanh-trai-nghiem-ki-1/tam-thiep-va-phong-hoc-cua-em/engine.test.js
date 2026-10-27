@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { polygonArea } from '#lib/geom-engine/plane.js';
 import {
   CARD_SHAPES,
   convexOverlap,
   placeInHalf,
   placedOutlines,
-  polygonArea,
   roomReport,
   windowsNeeded,
 } from './engine.js';

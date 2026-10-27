@@ -3,7 +3,7 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
   import { degText, directionTo, rightMarkPath, sectorPath } from '#lib/core/visuals/angle-math.js';
-  import { frame } from '../_shared/triangle-board.js';
+  import { frame } from '#lib/geom-engine/grid-triangle.js';
   import { BOX, obliqueLength, placeA, placeM, readings } from './engine.js';
 
   const W = 400;

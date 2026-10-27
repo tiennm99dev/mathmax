@@ -6,7 +6,7 @@
  * steps keeps every comparison exact.
  */
 
-import { simplify } from '../_shared/tri.js';
+import { lowestTerms } from '#lib/core/fractions.js';
 
 /** Equal steps on each of AB and AC. */
 export const STEPS = 12;
@@ -27,9 +27,9 @@ const clampStep = (n) => Math.max(1, Math.min(STEPS - 1, Math.round(n)));
 /**
  * The step nearest to the projection of `raw` on segment PQ (P is step 0,
  * Q is step STEPS), kept strictly inside the segment.
- * @param {import('../_shared/tri.js').Pt} P
- * @param {import('../_shared/tri.js').Pt} Q
- * @param {import('../_shared/tri.js').Pt} raw
+ * @param {import('#lib/geom-engine/plane.js').Pt} P
+ * @param {import('#lib/geom-engine/plane.js').Pt} Q
+ * @param {import('#lib/geom-engine/plane.js').Pt} raw
  */
 export function nearestStep(P, Q, raw) {
   const dx = Q.x - P.x;
@@ -56,13 +56,13 @@ export function measures(tri, i, j) {
     acP,
     cPc: tri.ac - acP,
     /** AB'/AB in lowest terms. */
-    ratioB: simplify(i, STEPS),
+    ratioB: lowestTerms(i, STEPS),
     /** AC'/AC in lowest terms. */
-    ratioC: simplify(j, STEPS),
+    ratioC: lowestTerms(j, STEPS),
     /** AB'/B'B in lowest terms. */
-    ratioB2: simplify(i, STEPS - i),
+    ratioB2: lowestTerms(i, STEPS - i),
     /** AC'/C'C in lowest terms. */
-    ratioC2: simplify(j, STEPS - j),
+    ratioC2: lowestTerms(j, STEPS - j),
     parallel: i === j,
   };
 }

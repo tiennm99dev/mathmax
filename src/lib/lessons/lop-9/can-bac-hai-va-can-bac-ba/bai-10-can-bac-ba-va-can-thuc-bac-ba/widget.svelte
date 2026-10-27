@@ -3,7 +3,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { intText } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import { rootValue } from '../_shared/root-text.js';
+  import { rootValue } from '#lib/core/algebra-text.js';
   import { cbrtText, cubeFaces, cubeRoot, cubeSentence } from './engine.js';
 
   // Plot of y = x³: x from −5,5 to 5,5 and y from −130 to 130.

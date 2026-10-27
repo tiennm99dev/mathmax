@@ -1,12 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, rng } from '#lib/core/drill.js';
-import { readNumber } from '#lib/core/decimal.js';
+import { answerText, readNumber } from '#lib/core/decimal.js';
 import {
   CHAPTER_SKILLS,
   SKILLS_TRANG_56,
   SKILLS_TRANG_62,
   SKILLS_TRANG_73,
-  answerText,
   binhHanhThucTe,
   hinhBinhHanh,
   hinhChuNhat,

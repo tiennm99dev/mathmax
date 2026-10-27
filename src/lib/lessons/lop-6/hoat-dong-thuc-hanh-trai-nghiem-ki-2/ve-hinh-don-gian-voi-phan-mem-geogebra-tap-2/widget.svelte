@@ -5,7 +5,8 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
-  import { TASKS, angleAt, clipLine, construction, dist, geogebraAngle, rotate } from './engine.js';
+  import { dist } from '#lib/geom-engine/plane.js';
+  import { TASKS, angleAt, clipLine, construction, geogebraAngle, rotate } from './engine.js';
 
   const W = 400;
   const H = 300;

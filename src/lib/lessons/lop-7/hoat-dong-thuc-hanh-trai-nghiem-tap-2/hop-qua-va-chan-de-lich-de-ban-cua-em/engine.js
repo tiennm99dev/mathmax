@@ -9,6 +9,8 @@
  * `t · angle`, so t = 0 is the flat net and t = 1 the folded solid.
  */
 
+import { polygonArea } from '#lib/geom-engine/plane.js';
+
 /** @typedef {{ x: number, y: number }} P2 */
 /** @typedef {{ x: number, y: number, z: number }} P3 */
 /**
@@ -287,19 +289,6 @@ export function standNet(tri, L, ends) {
     );
   }
   return pieces;
-}
-
-/**
- * Area of a polygon (shoelace formula).
- * @param {P2[]} pts
- */
-export function polygonArea(pts) {
-  let s = 0;
-  pts.forEach((p, i) => {
-    const q = pts[(i + 1) % pts.length];
-    s += p.x * q.y - q.x * p.y;
-  });
-  return Math.abs(s) / 2;
 }
 
 /**

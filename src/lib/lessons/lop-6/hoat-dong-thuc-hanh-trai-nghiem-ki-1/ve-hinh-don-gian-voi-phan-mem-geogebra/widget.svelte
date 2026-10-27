@@ -4,7 +4,8 @@
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
-  import { FIGURES, construction, dist, rotate } from './engine.js';
+  import { dist } from '#lib/geom-engine/plane.js';
+  import { FIGURES, construction, rotate } from './engine.js';
 
   const W = 400;
   const H = 300;

@@ -4,14 +4,8 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { fmt, formatNumber } from '#lib/core/number-format.js';
   import { colorAt } from '#lib/core/visuals/svg-math.js';
-  import {
-    BAR_DATA,
-    LINE_DATA,
-    axisFrom,
-    heightShare,
-    looksTimes,
-    percentChange,
-  } from './engine.js';
+  import { axisFrom } from '#lib/stats-engine/ticks.js';
+  import { BAR_DATA, LINE_DATA, heightShare, looksTimes, percentChange } from './engine.js';
 
   const W = 480;
   const H = 300;

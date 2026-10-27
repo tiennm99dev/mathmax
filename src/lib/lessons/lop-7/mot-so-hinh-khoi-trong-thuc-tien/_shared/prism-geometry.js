@@ -9,6 +9,8 @@
  * up. A base polygon is listed counter-clockwise seen from above.
  */
 
+import { dist, polygonArea } from '#lib/geom-engine/plane.js';
+
 /** @typedef {{ x: number, y: number }} P2 */
 /** @typedef {{ x: number, y: number, z: number }} P3 */
 /**
@@ -36,30 +38,12 @@ const cross = (a, b) => ({
 /** @param {P2} p @param {number} [z] */
 const lift = (p, z = 0) => ({ x: p.x, y: p.y, z });
 
-/** @param {P2} a @param {P2} b */
-export function dist(a, b) {
-  return Math.hypot(b.x - a.x, b.y - a.y);
-}
-
 /**
  * Perimeter of a polygon (chu vi đáy).
  * @param {P2[]} base
  */
 export function perimeter(base) {
   return base.reduce((s, p, i) => s + dist(p, base[(i + 1) % base.length]), 0);
-}
-
-/**
- * Area of a polygon by the shoelace formula (diện tích đáy).
- * @param {P2[]} base
- */
-export function polygonArea(base) {
-  let s = 0;
-  base.forEach((p, i) => {
-    const q = base[(i + 1) % base.length];
-    s += p.x * q.y - q.x * p.y;
-  });
-  return Math.abs(s) / 2;
 }
 
 /**

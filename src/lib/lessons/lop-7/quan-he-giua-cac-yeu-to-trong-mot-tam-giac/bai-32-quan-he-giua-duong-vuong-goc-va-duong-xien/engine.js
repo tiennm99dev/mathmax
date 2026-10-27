@@ -8,7 +8,9 @@
  * @typedef {{ x: number, y: number }} Pt
  */
 
-import { angleAt, clamp, toGrid } from '../_shared/triangle-board.js';
+import { angleAt } from '#lib/geom-engine/plane.js';
+import { clamp } from '#lib/core/visuals/svg-math.js';
+import { toGrid } from '#lib/geom-engine/grid-triangle.js';
 
 export const BOX = { minX: -6, maxX: 6, minY: 1, maxY: 6 };
 
@@ -54,8 +56,8 @@ export function readings(a, m) {
     HM: Math.abs(m.x - a.x),
     atH,
     /** Angle AMH of the right triangle AHM, at M; 90° when M is H. */
-    atM: atH ? 90 : angleAt(a, m, h),
+    atM: atH ? 90 : angleAt(m, a, h),
     /** Angle HAM, at A. */
-    atA: atH ? 0 : angleAt(h, a, m),
+    atA: atH ? 0 : angleAt(a, h, m),
   };
 }

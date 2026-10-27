@@ -8,6 +8,7 @@
  */
 
 import { formatNumber } from '#lib/core/number-format.js';
+import { dist } from '#lib/geom-engine/plane.js';
 
 /** @typedef {{ x: number, y: number }} Pt */
 
@@ -81,8 +82,6 @@ export const DEFAULTS = {
 export const THALES_B = { x: 0, y: 0 };
 export const THALES_C = { x: 6, y: 0 };
 
-/** @param {Pt} a @param {Pt} b */
-export const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 /** @param {Pt} a @param {Pt} b @returns {Pt} */
 const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
 /** @param {Pt} a @param {Pt} b @returns {Pt} */

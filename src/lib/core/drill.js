@@ -6,7 +6,7 @@
  * second try; only a second miss shows the full solution).
  */
 
-import { GROUP } from './number-format.js';
+import { GROUP, readNatural } from './number-format.js';
 import { normalizeUnit } from './answer-check.js';
 
 /**
@@ -107,6 +107,23 @@ export function buildSet(skills, perSkill, seed) {
     }
   }
   return shuffle(rand, out);
+}
+
+/**
+ * A skill whose whole-number answers are read as natural numbers, so a count
+ * typed with dot grouping ('1.350') is 1350 rather than a decimal, whatever
+ * reader the board uses for the other answers (probabilities, decimals).
+ * @param {Skill} skill
+ * @returns {Skill}
+ */
+export function countsAsNaturals(skill) {
+  return {
+    ...skill,
+    make(rand) {
+      const q = skill.make(rand);
+      return Number.isInteger(q.answer) ? { ...q, read: readNatural } : q;
+    },
+  };
 }
 
 /**

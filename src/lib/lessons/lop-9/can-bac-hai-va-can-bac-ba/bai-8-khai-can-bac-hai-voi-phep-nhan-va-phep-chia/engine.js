@@ -9,7 +9,7 @@
 
 import { fracText } from '#lib/core/fractions.js';
 import { fmt } from '#lib/core/number-format.js';
-import { rootValue } from '../_shared/root-text.js';
+import { rootValue } from '#lib/core/algebra-text.js';
 
 /** The perfect squares the widget offers for a and for b. */
 export const SQUARES = [1, 4, 9, 16, 25];

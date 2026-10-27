@@ -12,6 +12,7 @@
   import FractionBars from '#lib/core/visuals/fraction-bars.svelte';
   import AreaGrid from '#lib/core/visuals/area-grid.svelte';
   import BarChart from '#lib/core/visuals/bar-chart.svelte';
+  import Pictograph from '#lib/core/visuals/pictograph.svelte';
   import PieChart from '#lib/core/visuals/pie-chart.svelte';
   import LineChart from '#lib/core/visuals/line-chart.svelte';
   import DataTable from '#lib/core/visuals/data-table.svelte';
@@ -116,6 +117,7 @@
     ['fraction-bars', 'Băng phân số'],
     ['area-grid', 'Lưới diện tích'],
     ['bar-chart', 'Biểu đồ cột'],
+    ['pictograph', 'Biểu đồ tranh'],
     ['pie-chart', 'Biểu đồ hình quạt tròn'],
     ['line-chart', 'Biểu đồ đoạn thẳng'],
     ['data-table', 'Bảng thống kê'],
@@ -261,6 +263,28 @@
       <BarChart bind:data={barData} interactive unit="Số bạn" title="Loại quả yêu thích" />
       <p class={readout}>{barData.map((b) => `${b.label} ${b.value}`).join(' · ')}</p>
       <BarChart data={barData} title="Cùng dữ liệu, chỉ xem" />
+      <BarChart
+        data={[
+          { label: 'An', value: 96 },
+          { label: 'Bình', value: 100 },
+          { label: 'Cường', value: 104 },
+          { label: 'Dũng', value: 108 },
+        ]}
+        axisStart={90}
+        unit="Sản phẩm"
+        title="Trục đứng bị cắt (axisStart)"
+      />
+    </section>
+
+    <section id="pictograph" class={box}>
+      <h2 class="text-xl font-bold">Biểu đồ tranh <code class="text-sm">pictograph</code></h2>
+      <Pictograph
+        labels={['Lớp 6A', 'Lớp 6B', 'Lớp 6C']}
+        values={[35, 20, 25]}
+        icon={10}
+        unit="cây"
+        title="Số cây mỗi lớp trồng được"
+      />
     </section>
 
     <section id="pie-chart" class={box}>

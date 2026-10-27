@@ -8,7 +8,8 @@
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { MINUS, fmt, intText, operand } from '#lib/core/number-format.js';
-import { eqText, pairText, substituteText } from './equation-text.js';
+import { eqText, linText, pairText, substituteText } from '#lib/core/algebra-text.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -33,33 +34,6 @@ export function nonZero(rand, lo, hi) {
  */
 function signed(rand, lo, hi) {
   return int(rand, lo, hi) * (rand() < 0.5 ? -1 : 1);
-}
-
-/**
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-function gcd(a, b) {
-  return b === 0 ? Math.abs(a) : gcd(b, a % b);
-}
-
-/**
- * `αx + β` as plain text: '3x − 2', '−x', '5', '0'.
- * @param {number} alpha
- * @param {number} beta
- */
-export function linText(alpha, beta) {
-  let out = '';
-  if (alpha !== 0) {
-    const mag = Math.abs(alpha);
-    out = `${alpha < 0 ? MINUS : ''}${mag === 1 ? '' : mag}x`;
-  }
-  if (beta !== 0) {
-    if (out === '') out = intText(beta);
-    else out += ` ${beta < 0 ? MINUS : '+'} ${fmt(Math.abs(beta))}`;
-  }
-  return out === '' ? '0' : out;
 }
 
 /**

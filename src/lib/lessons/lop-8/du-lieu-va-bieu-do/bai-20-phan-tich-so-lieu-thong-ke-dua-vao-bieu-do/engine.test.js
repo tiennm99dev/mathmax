@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { BAR_DATA, LINE_DATA, axisFrom, heightShare, looksTimes, percentChange } from './engine.js';
+import { axisFrom } from '#lib/stats-engine/ticks.js';
+import { BAR_DATA, LINE_DATA, heightShare, looksTimes, percentChange } from './engine.js';
 
 describe('cut axis arithmetic', () => {
   it('keeps heights proportional when the axis starts at 0', () => {

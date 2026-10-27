@@ -5,10 +5,10 @@
  * decimals and the two halves of angle A to one decimal; the tests check
  * that each printed pair agrees at every grid position.
  *
- * @typedef {import('../_shared/tri.js').Pt} Pt
+ * @typedef {import('#lib/geom-engine/plane.js').Pt} Pt
  */
 
-import { angleAt, bisectorFoot, dist, midpoint } from '../_shared/tri.js';
+import { angleAt, bisectorFoot, dist, midpoint } from '#lib/geom-engine/plane.js';
 
 export const COLS = 12;
 export const ROWS = 8;

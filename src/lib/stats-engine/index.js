@@ -9,6 +9,6 @@ export {
   quartiles,
   interquartileRange,
 } from './descriptive.js';
-export { frequencyTable, percentages, pieSlices } from './frequency.js';
+export { frequencyTable, percentages, pieSlices, iconRow } from './frequency.js';
 export { pickWeighted, probabilities, experimentalProbability } from './probability.js';
-export { niceStep, niceAxis } from './ticks.js';
+export { niceStep, niceAxis, axisFrom } from './ticks.js';

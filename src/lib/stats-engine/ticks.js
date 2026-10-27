@@ -39,6 +39,24 @@ export function niceAxis(min, max, count = 5) {
 }
 
 /**
+ * The value axis a spreadsheet would draw from `base` (a cut axis when
+ * `base` is above 0): a round step that
+ * splits the range into about six parts, a top one step at or above the
+ * largest value, and the gridlines from `base` up to the top.
+ * @param {number} base @param {number} maxValue
+ * @returns {{ top: number, ticks: number[] }}
+ */
+export function axisFrom(base, maxValue) {
+  const step = niceStep(maxValue - base, 6);
+  const top = Math.ceil((maxValue + step / 10) / step) * step;
+  const ticks = [base];
+  for (let v = Math.ceil(base / step) * step; v <= top + 1e-9; v += step) {
+    if (v - base > step / 3) ticks.push(Math.round(v * 1e6) / 1e6);
+  }
+  return { top, ticks };
+}
+
+/**
  * Round to the precision of `step`.
  * @param {number} v @param {number} step
  */

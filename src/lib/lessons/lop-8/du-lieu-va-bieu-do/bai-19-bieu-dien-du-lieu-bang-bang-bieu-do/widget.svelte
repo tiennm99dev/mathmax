@@ -5,7 +5,7 @@
   import LineChart from '#lib/core/visuals/line-chart.svelte';
   import PieChart from '#lib/core/visuals/pie-chart.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
-  import Pictograph from './pictograph.svelte';
+  import Pictograph from '#lib/core/visuals/pictograph.svelte';
   import { CHART_KINDS, DATA_SETS } from './engine.js';
 
   let setId = $state(DATA_SETS[0].id);

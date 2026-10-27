@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { gcd } from '#lib/numtheory-engine/index.js';
 import {
   KEYS,
   TASKS,
@@ -7,7 +8,6 @@ import {
   factorText,
   factorize,
   formatResult,
-  gcd,
   lcm,
   press,
   run,

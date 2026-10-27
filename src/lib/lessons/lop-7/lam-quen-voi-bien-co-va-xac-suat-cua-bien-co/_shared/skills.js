@@ -6,18 +6,10 @@
  */
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
+import { lowestTerms, ratioText } from '#lib/core/fractions.js';
+import { isPrime } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/** @param {number} k */
-export const isPrime = (k) => {
-  if (k < 2) return false;
-  for (let d = 2; d * d <= k; d++) if (k % d === 0) return false;
-  return true;
-};
-
-/** @param {number} a @param {number} b @returns {number} */
-const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
 
 /**
  * A probability m/n as plain text in lowest terms: '1/3', '0', '1'.
@@ -25,18 +17,8 @@ const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
  */
 export function fracText(m, n) {
   if (m === 0) return '0';
-  const g = gcd(m, n);
-  return n / g === 1 ? String(m / g) : `${m / g}/${n / g}`;
-}
-
-/**
- * A probability given as m/n of equally likely outcomes, with the
- * simplification when there is one: '2/6 = 1/3'.
- * @param {number} m @param {number} n
- */
-export function ratioText(m, n) {
-  const simple = fracText(m, n);
-  return simple === `${m}/${n}` ? simple : `${m}/${n} = ${simple}`;
+  const [p, q] = lowestTerms(m, n);
+  return q === 1 ? String(p) : `${p}/${q}`;
 }
 
 /**

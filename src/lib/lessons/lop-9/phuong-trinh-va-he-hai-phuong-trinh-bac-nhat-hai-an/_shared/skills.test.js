@@ -1,13 +1,12 @@
 import { describe, it, expect } from 'vitest';
+import { eqTex, eqText, linText, pairText, substituteText } from '#lib/core/algebra-text.js';
 import { rng } from '#lib/core/drill.js';
-import { eqTex, eqText, pairText, substituteText } from './equation-text.js';
 import {
   CHAPTER_SKILLS,
   SKILLS_TRANG_19,
   heCong,
   heThe,
   lapHe,
-  linText,
   nghiemHe,
   phuongTrinh,
 } from './skills.js';

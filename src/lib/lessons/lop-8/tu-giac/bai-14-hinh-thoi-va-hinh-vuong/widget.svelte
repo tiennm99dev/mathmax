@@ -6,7 +6,7 @@
   import { button } from '#lib/core/ui.js';
   import { formatFixed } from '#lib/core/number-format.js';
   import { arcPath, degText, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
-  import { pointsAttr } from '../_shared/quad.js';
+  import { pointsAttr } from '#lib/utils/svg.js';
   import {
     RANGE,
     diagonalAngle,

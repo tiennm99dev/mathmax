@@ -4,7 +4,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
-  import { numText } from '../_shared/root-text.js';
+  import { numText } from '#lib/core/algebra-text.js';
   import { absSentence, curvePath, rootLabel, rootsSentence, squareRoots } from './engine.js';
 
   const plane = planeScale({ xMin: -4, xMax: 10, yMin: -4, yMax: 10, width: 420, pad: 24 });

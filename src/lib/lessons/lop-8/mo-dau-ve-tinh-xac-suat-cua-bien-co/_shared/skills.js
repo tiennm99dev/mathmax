@@ -6,54 +6,12 @@
  * `#lib/core/fractions.js` read and write. Prompts and steps are plain text.
  */
 
-import { int, pick } from '#lib/core/drill.js';
-import { fmt, readNatural } from '#lib/core/number-format.js';
-import { probabilityText } from '#lib/core/fractions.js';
+import { countsAsNaturals, int, pick } from '#lib/core/drill.js';
+import { fmt } from '#lib/core/number-format.js';
+import { ratioText } from '#lib/core/fractions.js';
+import { isPrime } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/** @param {number} a @param {number} b @returns {number} */
-const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
-
-/** @param {number} k */
-export const isPrime = (k) => {
-  if (k < 2) return false;
-  for (let d = 2; d * d <= k; d++) if (k % d === 0) return false;
-  return true;
-};
-
-/**
- * A ratio k/n with its lowest terms when they differ: '6/20 = 3/10'.
- * @param {number} k @param {number} n
- */
-export function ratioText(k, n) {
-  if (k === 0) return `0/${n} = 0`;
-  const g = gcd(k, n);
-  if (g === n) return `${k}/${n} = ${k / g}`;
-  return g === 1 ? `${k}/${n}` : `${k}/${n} = ${k / g}/${n / g}`;
-}
-
-/**
- * The answer as the drill board writes it: a count grouped the book's way,
- * a probability as a fraction.
- * @param {number} v
- */
-export const answerText = (v) => (Number.isInteger(v) ? fmt(v) : probabilityText(v));
-
-/**
- * A skill whose count answers are read as natural numbers, so a count typed
- * with dot grouping ('1.350') is read as 1350 rather than as a decimal by the
- * board's probability reader. Probability answers are never whole here.
- * @param {Skill} skill
- * @returns {Skill}
- */
-const countsAsNaturals = (skill) => ({
-  ...skill,
-  make(rand) {
-    const q = skill.make(rand);
-    return Number.isInteger(q.answer) ? { ...q, read: readNatural } : q;
-  },
-});
 
 /**
  * @typedef {object} Condition

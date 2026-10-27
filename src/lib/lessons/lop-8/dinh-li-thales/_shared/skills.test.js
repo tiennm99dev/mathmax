@@ -1,15 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { rng, buildSet } from '#lib/core/drill.js';
-import { readNumber } from '#lib/core/decimal.js';
-import {
-  CHAPTER_SKILLS,
-  PRACTICE_SKILLS,
-  answerText,
-  phanGiac,
-  thales,
-  trungBinh,
-  thucTe,
-} from './skills.js';
+import { answerText, readNumber } from '#lib/core/decimal.js';
+import { CHAPTER_SKILLS, PRACTICE_SKILLS, phanGiac, thales, trungBinh, thucTe } from './skills.js';
 
 const RUNS = 400;
 

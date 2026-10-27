@@ -5,6 +5,8 @@
  * turns a figure.
  */
 
+import { dist } from '#lib/geom-engine/plane.js';
+
 /** @typedef {{ x: number, y: number }} Pt */
 
 /**
@@ -23,11 +25,6 @@
  */
 
 /** @typedef {{ label: string, value: number, unit: 'length' | 'deg' }} Measure */
-
-/** @param {Pt} a @param {Pt} b */
-export function dist(a, b) {
-  return Math.hypot(a.x - b.x, a.y - b.y);
-}
 
 /**
  * Turns `p` around `c` by `deg` degrees, counterclockwise on screen.

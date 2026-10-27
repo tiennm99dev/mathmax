@@ -7,10 +7,10 @@
   import TickMarks from '#lib/core/visuals/tick-marks.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
+  import { dist } from '#lib/geom-engine/plane.js';
   import {
     CM,
     SQUARE_STEPS,
-    dist,
     hexTriangles,
     hexagon,
     polyPoints,

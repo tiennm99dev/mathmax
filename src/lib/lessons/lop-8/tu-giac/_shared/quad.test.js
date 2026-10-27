@@ -4,12 +4,10 @@ import {
   diagonalPoint,
   isConvex,
   quadAngles,
-  roundToTotal,
-  splitAlongDiagonal,
   splittingSide,
-  units,
-  UNIT,
-} from './quad.js';
+} from '#lib/geom-engine/plane.js';
+import { roundToTotal } from '#lib/core/number-format.js';
+import { splitAlongDiagonal, UNIT, units } from './quad.js';
 
 const square = [
   { x: 0, y: 0 },

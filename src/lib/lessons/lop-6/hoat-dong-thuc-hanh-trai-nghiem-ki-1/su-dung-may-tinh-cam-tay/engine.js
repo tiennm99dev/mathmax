@@ -5,6 +5,8 @@
  * Everything here is pure, so the widget only renders the state.
  */
 
+import { gcd } from '#lib/numtheory-engine/index.js';
+
 /**
  * Keys on the simulated keypad. Each has its main label and, where the
  * lesson uses it, the SHIFT or ALPHA function printed above it.
@@ -139,14 +141,6 @@ export function factorText(n) {
             .join('')}`,
     )
     .join(' × ');
-}
-
-/** @param {number} a @param {number} b */
-export function gcd(a, b) {
-  let x = Math.abs(a);
-  let y = Math.abs(b);
-  while (y) [x, y] = [y, x % y];
-  return x;
 }
 
 /** @param {number} a @param {number} b */

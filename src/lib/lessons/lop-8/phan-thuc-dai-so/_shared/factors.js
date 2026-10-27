@@ -13,6 +13,7 @@
 import { evaluate, mul, polyTex, polyText, termsOf, trim } from '#lib/algebra-engine/polynomial.js';
 import { longDivide } from '#lib/algebra-engine/long-division.js';
 import { MINUS, sup } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /**
  * @typedef {object} Factor
@@ -271,19 +272,6 @@ export function hasCommon(top, topOut, bottom, bottomOut) {
       !(isNumber(f) && Math.abs(numberOf(f)) === 1) &&
       bottom.some((g, j) => !bottomOut[j] && g.key === f.key),
   );
-}
-
-/**
- * Greatest common divisor of two whole numbers.
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-export function gcd(a, b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b) [a, b] = [b, a % b];
-  return a;
 }
 
 /**

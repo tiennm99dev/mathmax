@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { STEPS, TRIANGLES, measures, nearestStep, stepOf } from './engine.js';
-import { dist, isParallel, lerp, triangleFromSides } from '../_shared/tri.js';
+import { dist, isParallel, lerp, triangleFromSides } from '#lib/geom-engine/plane.js';
 
 describe('the Thalès widget model', () => {
   it('builds every offered triangle with the stated sides', () => {

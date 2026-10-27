@@ -136,3 +136,22 @@ export function readInteger(text) {
   const n = Number(m[2].replace(/\./g, ''));
   return m[1] === '-' ? (n === 0 ? 0 : -n) : n;
 }
+
+/**
+ * Whole numbers as close as possible to `values` that add up to `total`
+ * (largest remainder), so printed measures add up the way a theorem says
+ * they must (four angles to 360°, three to 180°, shares to 100%). Values
+ * that tie keep their order.
+ * @param {number[]} values
+ * @param {number} total
+ */
+export function roundToTotal(values, total) {
+  const floors = values.map(Math.floor);
+  let left = total - floors.reduce((s, v) => s + v, 0);
+  const order = values
+    .map((v, i) => ({ i, r: v - Math.floor(v) }))
+    .sort((p, q) => q.r - p.r || p.i - q.i);
+  const out = [...floors];
+  for (let k = 0; left > 0 && k < order.length; k++, left--) out[order[k].i] += 1;
+  return out;
+}

@@ -6,7 +6,8 @@
   import { button } from '#lib/core/ui.js';
   import { formatFixed } from '#lib/core/number-format.js';
   import { arcPath, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
-  import { pointsAttr, UNIT } from '../_shared/quad.js';
+  import { pointsAttr } from '#lib/utils/svg.js';
+  import { UNIT } from '../_shared/quad.js';
   import {
     RANGE,
     diagonals,

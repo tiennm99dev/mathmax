@@ -9,7 +9,8 @@
  */
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
-import { MINUS } from './number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
+import { MINUS, fmt } from './number-format.js';
 
 /**
  * A fraction as plain text: '3/4', '−3/4', '5' when the denominator is 1.
@@ -149,4 +150,50 @@ export function readProbability(text) {
  */
 export function probabilityText(value) {
   return toFraction(value) ? valueText(value) : String(value).replace('.', ',');
+}
+
+/**
+ * How a drill board writes an answer that is either a count or a
+ * probability: a whole number grouped the book's way (1 500), anything else
+ * as a probability fraction (1/4).
+ * @param {number} value
+ */
+export function countOrProbabilityText(value) {
+  return Number.isInteger(value) ? fmt(value) : probabilityText(value);
+}
+
+/**
+ * p/q in lowest terms as a pair of whole numbers: (4, 12) → [1, 3]. The sign
+ * stays where it was written.
+ * @param {number} p
+ * @param {number} q
+ * @returns {[number, number]}
+ */
+export function lowestTerms(p, q) {
+  const g = gcd(p, q) || 1;
+  return [p / g, q / g];
+}
+
+/**
+ * A ratio k/n of natural numbers with its lowest terms when they differ:
+ * '6/20 = 3/10', '6/6 = 1', '0/5 = 0', '3/7'.
+ * @param {number} k
+ * @param {number} n
+ */
+export function ratioText(k, n) {
+  const [p, q] = lowestTerms(k, n);
+  const simple = k === 0 ? '0' : q === 1 ? String(p) : `${p}/${q}`;
+  return simple === `${k}/${n}` ? simple : `${k}/${n} = ${simple}`;
+}
+
+/**
+ * TeX for the ratio p/q of two whole numbers followed by its lowest terms
+ * when they differ: `\dfrac{8}{4} = 2`, `\dfrac{6}{4} = \dfrac{3}{2}`.
+ * @param {number} p
+ * @param {number} q
+ */
+export function ratioTex(p, q) {
+  const [n, d] = lowestTerms(p, q);
+  const reduced = d === 1 ? String(n) : `\\dfrac{${n}}{${d}}`;
+  return n === p && d === q ? `\\dfrac{${p}}{${q}}` : `\\dfrac{${p}}{${q}} = ${reduced}`;
 }

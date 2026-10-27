@@ -8,8 +8,9 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { fmt, formatNumber, intText, MINUS, operand, sup } from '#lib/core/number-format.js';
+import { fmt, formatNumber, intText, operand } from '#lib/core/number-format.js';
 import { fracText } from '#lib/core/fractions.js';
+import { linText, sumText } from '#lib/core/algebra-text.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
 
@@ -27,36 +28,6 @@ const nonzero = (/** @type {() => number} */ rand, /** @type {number} */ max) =>
   int(rand, 1, max) * pick(rand, [1, -1]);
 
 /**
- * A monomial in x and y as the book writes it: (−3, 2, 1) → '−3x²y'.
- * @param {number} c nonzero coefficient
- * @param {number} ex exponent of x
- * @param {number} ey exponent of y
- */
-export function monoText(c, ex, ey) {
-  const pow = (/** @type {string} */ v, /** @type {number} */ e) =>
-    e === 0 ? '' : `${v}${e > 1 ? sup(e) : ''}`;
-  const vars = pow('x', ex) + pow('y', ey);
-  const abs = Math.abs(c);
-  const body = vars === '' ? fmt(abs) : `${abs === 1 ? '' : fmt(abs)}${vars}`;
-  return (c < 0 ? MINUS : '') + body;
-}
-
-/**
- * A sum of monomials [c, ex, ey] with the signs written between terms:
- * '3x²y − xy + 5'.
- * @param {[number, number, number][]} terms
- */
-export function sumText(terms) {
-  return terms
-    .map(([c, ex, ey], i) => {
-      const m = monoText(c, ex, ey);
-      if (i === 0) return m;
-      return c < 0 ? `− ${m.slice(1)}` : `+ ${m}`;
-    })
-    .join(' ');
-}
-
-/**
  * 'x + 3', 'x − 3' or 'x' for x + a.
  * @param {number} a
  * @param {string} [v]
@@ -64,19 +35,6 @@ export function sumText(terms) {
 export function shift(a, v = 'x') {
   if (a === 0) return v;
   return a > 0 ? `${v} + ${a}` : `${v} − ${-a}`;
-}
-
-/**
- * A linear expression ax + b as the book writes it: '3x − 2', '−x + 4', '5'.
- * @param {number} a
- * @param {number} b
- * @param {string} [v]
- */
-export function linText(a, b, v = 'x') {
-  if (a === 0) return intText(b);
-  const head = (a < 0 ? MINUS : '') + (Math.abs(a) === 1 ? '' : fmt(Math.abs(a))) + v;
-  if (b === 0) return head;
-  return b > 0 ? `${head} + ${fmt(b)}` : `${head} − ${fmt(-b)}`;
 }
 
 /** @type {ReviewSkill} */

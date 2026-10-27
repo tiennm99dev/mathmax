@@ -6,6 +6,8 @@
  * @typedef {{ x: number, y: number }} Pt
  */
 
+import { dist } from '#lib/geom-engine/plane.js';
+
 /**
  * The image M′ of M: on ray OM, with OM′ = k · OM.
  * @param {Pt} o @param {number} k @param {Pt} m
@@ -21,11 +23,6 @@ export function image(o, k, m) {
  */
 export function imagePolygon(o, k, pts) {
   return pts.map((p) => image(o, k, p));
-}
-
-/** @param {Pt} p @param {Pt} q */
-export function dist(p, q) {
-  return Math.hypot(q.x - p.x, q.y - p.y);
 }
 
 /**

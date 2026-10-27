@@ -71,3 +71,16 @@ export function pieSlices(values) {
     return slice;
   });
 }
+
+/**
+ * The icons of one row of a picture chart (biểu đồ tranh): whole icons and
+ * the fraction of one more icon, to two decimal places.
+ * @param {number} value
+ * @param {number} icon how much one icon stands for
+ * @returns {{ whole: number, part: number }}
+ */
+export function iconRow(value, icon) {
+  const whole = Math.floor(value / icon);
+  const part = Math.round(((value - whole * icon) / icon) * 100) / 100;
+  return { whole, part };
+}

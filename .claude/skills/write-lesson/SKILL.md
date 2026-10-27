@@ -202,7 +202,8 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `number-line` | number line with marker, marks and hop arcs |
 | `fraction-bars` | fraction strips, numerators draggable |
 | `area-grid` | unit-square grid with a draggable rectangle |
-| `bar-chart`, `line-chart`, `pie-chart` | charts, optionally editable by drag or keys; `bar-chart` `showValues={false}` hides the values for read-the-chart tasks |
+| `bar-chart`, `line-chart`, `pie-chart` | charts, optionally editable by drag or keys; `bar-chart` `showValues={false}` hides the values for read-the-chart tasks, `axisStart` starts its value axis above 0 (a cut axis, marked with a zigzag) |
+| `pictograph` | picture chart (biểu đồ tranh): one row of icons per category, a remainder as part of an icon |
 | `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories |
 | `data-table` | statistics table with tally marks and percentages |
 | `probability-spinner` | spinner with running frequency table |
@@ -217,6 +218,18 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 `dirOf`, `along`, `directionTo`, `measure`, `ccwSides`, `bisectorDir`,
 `intersect`, `degText` ('32,5°') and the angle drawings `arcPath`,
 `sectorPath`, `insidePath`, `rightMarkPath`.
+
+`#lib/geom-engine/plane.js` is point geometry on `{ x, y }`: `dist`, `lerp`,
+`midpoint`, `angleAt(vertex, p, q)` in degrees, `cross`, `isParallel`, `foot`
+(of a perpendicular), `diagonalPoint`, `triangleFromSides`, `bisectorFoot`,
+`labelSpot` (a vertex name pushed away from the centroid and kept on the
+board), `polygonArea`, and for quadrilaterals `quadAngles`, `splittingSide`
+and `isConvex`. `#lib/geom-engine/grid-triangle.js` is a draggable triangle on
+a half-unit grid: `toGrid`, `placeVertex` (never goes flat), `measureTri`
+(exact squared sides, angles), `same`, `OPPOSITE`, `frame` (grid units to SVG
+and back) and `labelOutside`. `#lib/utils/svg.js` has `pointsAttr` for a
+polygon's `points`. Never copy `dist`, `gcd`, `polygonArea` or an angle helper
+into a lesson.
 
 `number-line` reads the marker's value to screen readers as Vietnamese decimals;
 pass `valueText` when it should be read another way (a fraction).
@@ -241,16 +254,29 @@ Other shared pieces:
   prints them: `fmt(2345)` gives `2 345` (narrow space), `sup`, `powText`
   (`2⁵`) and `readNatural` for typed input. Integers: `MINUS` (the book's
   `−`), `intText` (`−1 234`), `operand` (`(−5)`) and `readInteger`.
+  `roundToTotal(values, total)` rounds measures to whole numbers that still
+  add up (four angles to 360°, shares to 100%).
 - `#lib/core/fractions.js`: `fracText` (`−3/4`), `fracOperand`, `mixedText`
   (`1 3/4`), `texFrac`, `texOperand`, `toFraction`, `valueText`,
-  `readFraction`, and `readProbability`/`probabilityText` for probabilities.
+  `readFraction`, and `readProbability`/`probabilityText` for probabilities;
+  `countOrProbabilityText` writes a drill answer that is a count or a
+  probability. Ratios: `lowestTerms` (`[1, 3]`), `ratioText` (`6/20 = 3/10`)
+  and `ratioTex` (`\dfrac{6}{4} = \dfrac{3}{2}`).
+- `#lib/core/algebra-text.js`: algebra written the book's way, as plain text
+  (`−`) or TeX (`-`): `linText`/`linTex` (`3x − 2`), `factorText`/`factorTex`
+  (`x − 3`), `signedFracText`/`signedFracTex`, two-variable equations
+  `eqText`/`eqTex` (`2x − 3y = −5`), `pairText` (`(2; −1)`),
+  `substituteText`, monomials and sums in x and y `monoText`/`sumText`
+  (`3x²y − xy + 5`), and roots `rootValue` (`= 2,5` or `≈ 1,414`),
+  `isShortDecimal`, `numText`.
   `#lib/core/frac.svelte` draws a stacked fraction in HTML (no KaTeX) and
   `#lib/core/stepper.svelte` is a labelled − / + whole-number stepper.
 - `#lib/core/decimal.js`: exact decimals from integers: `expand` (long
   division with its remainders and period), `decimalText` (`0,(45)`),
   `decimalTex`, `digitAt`, `roundFraction`, `sqrtFloor`, `roundSqrt`,
   `scaledText`, `isFiniteDecimal`, `PRECISIONS`, and `readNumber`/`numberText`
-  for answers typed as an integer, a fraction or a decimal comma.
+  for answers typed as an integer, a fraction or a decimal comma;
+  `answerText` writes such a drill answer (`12 000`, `7,5`).
 - `#lib/core/drill-board.svelte` with `#lib/core/drill.js`: a generated
   practice drill for `practice` and `review` lessons. Write one `Skill`
   (`{ id, label, make(rand) }`, `make` returns `{ prompt, answer, steps,
@@ -264,8 +290,12 @@ Other shared pieces:
   carry its own `unit` (`'%'`, `'đồng'`, `'°'`): the learner may then type
   that unit, or its Vietnamese word, after the number, and a question without
   a unit takes a bare number only. A question may carry its own `read` when it
-  is read differently from the rest of the set. Never write a `read` that
-  accepts a unit on every question.
+  is read differently from the rest of the set; `countsAsNaturals(skill)`
+  makes a skill's whole-number answers read as natural numbers (`1.350` is
+  1350) on a board that reads decimals or probabilities. Never write a `read`
+  that accepts a unit on every question. Prompts, hints and steps are rich
+  text: write `$S_{xq}$`, not `S_xq`. The skill map only judges a skill
+  ("cần ôn lại") once all its questions are answered.
 - `#lib/core/adaptive-drill.svelte` with `#lib/core/adaptive.js`: an adaptive
   review set for year-end or chapter reviews: each next question comes from
   the learner's weakest skill; answers are exact fractions (`readValue`
@@ -273,9 +303,10 @@ Other shared pieces:
 - `#lib/core/measure-skills.js`: ready drill skills for converting mass
   (`MASS_SKILLS`), time (`TIME_SKILLS`) and temperature (`TEMPERATURE_SKILLS`).
 - `#lib/core/feedback-note.svelte` (a coloured live feedback line, tone `ok`,
-  `warn` or `info`) and `#lib/core/right-wrong-sorter.svelte` (sort actions
+  `warn` or `info`; its text is rich text, so `$C_M$` shows as math) and `#lib/core/right-wrong-sorter.svelte` (sort actions
   into "Làm đúng" and "Làm sai" on top of the card sorter).
-- `#lib/core/motion.js`: `frameLoop` (per-frame callback with elapsed seconds),
+- `#lib/core/motion.js`: `frameLoop` (per-frame callback with elapsed seconds;
+  the `stop` it returns may be called from inside the callback),
   `reducedMotion()` and `wrap` for animated widgets.
 - `#lib/core/tex-text.js`: `texText` turns TeX into the linear text screen
   readers hear (`√144`, `3/4`); prerendered content and `tex.svelte` already
@@ -289,6 +320,8 @@ Other shared pieces:
   `hintOnWrong` shows `why` as a hint after a wrong move.
 - `#lib/components/tex.svelte`: live KaTeX. Import it only when the TeX changes
   with interaction; static TeX belongs in `content.vi.js`, which is prerendered.
+  `#lib/components/live-rich-text.svelte` shows run-time text with inline
+  `$...$` TeX (a generated sentence such as `$S_{xq}$ = 24 cm²`).
   Vietnamese letters in TeX are allowed (`\text{số dư}`); any other strict-mode
   warning fails `content.test.js`.
 - `#lib/core/kid/picture.svelte` and `#lib/core/kid/pictures/index.js`
@@ -297,16 +330,24 @@ Other shared pieces:
   (with `polynomial.js` for one-variable polynomials and `long-division.js`
   for polynomial and natural-number long division),
   `#lib/numtheory-engine/index.js`, `#lib/fraction-engine/index.js`,
-  `#lib/stats-engine/index.js`, `#lib/units-engine/index.js` (re-exports
+  `#lib/stats-engine/index.js` (with `axisFrom` for a cut value axis and
+  `iconRow` for picture charts), `#lib/units-engine/index.js` (re-exports
   `formatNumber`).
 - Domain components for the site's subject: `src/lib/domain/` (empty on
   MathMax). PhysMax has `vector-field`, `force-diagram`, `motion-plot`,
-  `circuit-board`, `ray-optics-bench`, `wave-plot`, `thermometer`; ChemMax has
-  `periodic-table`, `atom-model`, `molecule-viewer`, `equation-balancer`,
-  `ph-scale`, `lab-glassware`; BioMax has `diagram-hotspots`, `punnett-square`,
-  `pedigree-chart`, `food-web`, `dna-codon-translator`, `population-chart`. Use
-  what `ls src/lib/domain/` actually shows; each has a `<name>.gallery.svelte`
-  demo that `/_gallery/` lists.
+  `circuit-board`, `ray-optics-bench`, `wave-plot`, `thermometer`,
+  `meter-dial` (ammeter or voltmeter dial), and `materials.js` (the book's
+  density table, `material`, `qty` for quantities written the book's way);
+  ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
+  `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
+  book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
+  with `reaction.js` (`terms`, `isBalancedText`); BioMax has
+  `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
+  opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`. Use
+  what `ls src/lib/domain/` actually shows; each component has a
+  `<name>.gallery.svelte` demo that `/_gallery/` lists. When two chapters need
+  the same subject helper, it belongs in `src/lib/domain/`, not in two
+  `_shared/` folders: report it so a core pass can move it.
 
 Widget rules: every control works by pointer and by keyboard, has a Vietnamese
 `aria-label` or visible label, and announces results in an `aria-live` region

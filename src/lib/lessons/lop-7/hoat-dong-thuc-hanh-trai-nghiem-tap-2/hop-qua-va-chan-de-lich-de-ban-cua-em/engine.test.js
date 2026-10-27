@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { FLAP, TRIANGLES, boxNet, fold, material, polygonArea, standNet } from './engine.js';
+import { polygonArea } from '#lib/geom-engine/plane.js';
+import { FLAP, TRIANGLES, boxNet, fold, material, standNet } from './engine.js';
 
 /** @param {ReturnType<typeof fold>} folded @param {string} id */
 const piece = (folded, id) => {

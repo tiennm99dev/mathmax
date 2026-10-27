@@ -5,17 +5,11 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
-  import { formatFixed } from '#lib/core/number-format.js';
+  import { formatFixed, roundToTotal } from '#lib/core/number-format.js';
   import { arcPath, directionTo } from '#lib/core/visuals/angle-math.js';
-  import {
-    diagonalPoint,
-    dist,
-    isConvex,
-    pointsAttr,
-    quadAngles,
-    roundToTotal,
-    units,
-  } from '../_shared/quad.js';
+  import { diagonalPoint, dist, isConvex, quadAngles } from '#lib/geom-engine/plane.js';
+  import { pointsAttr } from '#lib/utils/svg.js';
+  import { units } from '../_shared/quad.js';
 
   const W = 400;
   const H = 280;

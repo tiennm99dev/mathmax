@@ -1,7 +1,7 @@
 <script>
   import { untrack } from 'svelte';
   import { draggable } from '#lib/actions/draggable.svelte.js';
-  import { niceAxis } from '#lib/stats-engine/ticks.js';
+  import { axisFrom, niceAxis } from '#lib/stats-engine/ticks.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import { clamp, colorAt, linear, snap } from './svg-math.js';
 
@@ -16,6 +16,10 @@
    *   largest value; for an interactive chart it is fixed when it first renders,
    *   so the axis does not move while dragging.
    * - `step`: snap for edits (1). `unit`: axis title such as 'Số học sinh'.
+   * - `axisStart`: where the value axis starts (0). Above 0 it is a cut axis,
+   *   marked with a zigzag at the foot of the axis and named in the chart's
+   *   accessible name: bars then rise from `axisStart`, which exaggerates
+   *   the differences between them, as in "spot the misleading chart" tasks.
    * - `showValues`: print each value above its bar. Turn it off for "read
    *   the chart" or "draw from the table" tasks: the values then leave the
    *   picture and the chart's accessible name too (an editable bar still
@@ -32,6 +36,7 @@
    *   unit?: string;
    *   title?: string;
    *   showValues?: boolean;
+   *   axisStart?: number;
    *   width?: number;
    *   height?: number;
    *   onchange?: (data: Array<{ label: string, value: number }>) => void;
@@ -45,6 +50,7 @@
     unit = '',
     title = 'Biểu đồ cột',
     showValues = true,
+    axisStart = 0,
     width = 480,
     height = 300,
     onchange,
@@ -69,8 +75,14 @@
     Math.max(step * 5, ...d.map((b) => b.value));
   // Captured once for an interactive chart, so dragging a bar does not rescale.
   const frozenPeak = untrack(() => peak(data) * 1.25);
-  const axis = $derived(niceAxis(0, max ?? (interactive ? frozenPeak : peak(data)), 5));
-  const y = $derived(linear(0, axis.max, height - BOTTOM, TOP));
+  const axis = $derived.by(() => {
+    const top = max ?? (interactive ? frozenPeak : peak(data));
+    if (!(axisStart > 0)) return niceAxis(0, top, 5);
+    const cut = axisFrom(axisStart, Math.max(top, axisStart + step));
+    return { min: axisStart, max: max ?? cut.top, ticks: cut.ticks };
+  });
+  const cutAxis = $derived(axis.min > 0);
+  const y = $derived(linear(axis.min, axis.max, height - BOTTOM, TOP));
   const slot = $derived((width - LEFT - RIGHT) / Math.max(1, data.length));
   const barW = $derived(Math.min(64, slot * 0.6));
   const cx = (/** @type {number} */ i) => LEFT + slot * (i + 0.5);
@@ -81,7 +93,7 @@
 
   /** @param {number} i @param {number} v */
   function setValue(i, v) {
-    const next = clamp(snap(v, step), 0, axis.max);
+    const next = clamp(snap(v, step), axis.min, axis.max);
     if (next === data[i].value) return;
     data = data.map((b, j) => (j === i ? { ...b, value: next } : b));
     onchange?.(data);
@@ -108,7 +120,7 @@
   style:aspect-ratio="{width} / {height}"
   style:touch-action={interactive ? 'none' : null}
   role={interactive ? 'group' : 'img'}
-  aria-label="{title}: {data
+  aria-label="{title}{cutAxis ? ` (trục đứng bắt đầu từ ${fmt(axis.min)})` : ''}: {data
     .map((b) => (showValues ? `${b.label} ${fmt(b.value)}` : b.label))
     .join(', ')}"
   bind:clientWidth={shownWidth}
@@ -141,6 +153,16 @@
     >
   {/if}
   <line x1={LEFT} y1={TOP - 4} x2={LEFT} y2={height - BOTTOM} stroke="#334155" stroke-width="1.5" />
+  {#if cutAxis}
+    <!-- The zigzag says the axis does not start at 0. -->
+    <polyline
+      points="{LEFT - 6},{height - BOTTOM - 6} {LEFT + 6},{height - BOTTOM - 10} {LEFT -
+        6},{height - BOTTOM - 14} {LEFT + 6},{height - BOTTOM - 18}"
+      fill="none"
+      stroke="#be123c"
+      stroke-width="2"
+    />
+  {/if}
   <line
     x1={LEFT}
     y1={height - BOTTOM}
@@ -151,7 +173,7 @@
   />
 
   {#each data as bar, i (i)}
-    {@const top = y.map(bar.value)}
+    {@const top = y.map(Math.max(bar.value, axis.min))}
     {@const color = bar.color ?? colorAt(i)}
     <rect
       x={cx(i) - barW / 2}
@@ -184,7 +206,7 @@
         role="slider"
         tabindex="0"
         aria-label="Cột {bar.label}"
-        aria-valuemin={0}
+        aria-valuemin={axis.min}
         aria-valuemax={axis.max}
         aria-valuenow={bar.value}
         aria-valuetext="{bar.label}: {fmt(bar.value)}"

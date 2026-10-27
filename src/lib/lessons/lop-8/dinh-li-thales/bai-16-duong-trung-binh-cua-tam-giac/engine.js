@@ -6,12 +6,12 @@
  * parallel to XY and half as long, and the corresponding angles at the
  * midpoint on VX and at X are equal.
  *
- * @typedef {import('../_shared/tri.js').Pt} Pt
+ * @typedef {import('#lib/geom-engine/plane.js').Pt} Pt
  * @typedef {{ A: Pt, B: Pt, C: Pt }} Tri
  * @typedef {'MN' | 'NP' | 'MP'} LineId
  */
 
-import { angleAt, cross, dist, isParallel, midpoint } from '../_shared/tri.js';
+import { angleAt, cross, dist, isParallel, midpoint } from '#lib/geom-engine/plane.js';
 
 export const COLS = 12;
 export const ROWS = 8;

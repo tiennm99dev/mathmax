@@ -8,6 +8,7 @@
  */
 
 import { formatNumber } from '#lib/core/number-format.js';
+import { dist } from '#lib/geom-engine/plane.js';
 
 /** @typedef {{ x: number, y: number }} Pt */
 
@@ -36,11 +37,6 @@ import { formatNumber } from '#lib/core/number-format.js';
  * @property {string} verdict what the measures prove
  * @property {boolean} ok false when the data give no figure (circles that do not meet)
  */
-
-/** @param {Pt} a @param {Pt} b */
-export function dist(a, b) {
-  return Math.hypot(a.x - b.x, a.y - b.y);
-}
 
 /** @param {Pt} a @param {Pt} b @returns {Pt} */
 const sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y });

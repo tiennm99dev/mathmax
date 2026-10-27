@@ -5,12 +5,12 @@
  * meet at the orthocentre H. Vertices sit on a half-unit grid, so the kind
  * of triangle (acute, right, obtuse) is decided exactly from dot products.
  *
- * @typedef {import('../_shared/triangle-board.js').Pt} Pt
- * @typedef {import('../_shared/triangle-board.js').Tri} Tri
- * @typedef {import('../_shared/triangle-board.js').Vertex} Vertex
+ * @typedef {import('#lib/geom-engine/grid-triangle.js').Pt} Pt
+ * @typedef {import('#lib/geom-engine/grid-triangle.js').Tri} Tri
+ * @typedef {import('#lib/geom-engine/grid-triangle.js').Vertex} Vertex
  */
 
-import { cross, dist, foot, mid } from '../_shared/triangle-board.js';
+import { cross, dist, foot, midpoint } from '#lib/geom-engine/plane.js';
 
 const EPS = 1e-9;
 /** @type {Vertex[]} */
@@ -86,7 +86,7 @@ export function bisectorsOfSides(t) {
     { name: 'M', from: t.B, to: t.C, opposite: t.A },
     { name: 'N', from: t.C, to: t.A, opposite: t.B },
     { name: 'P', from: t.A, to: t.B, opposite: t.C },
-  ].map((s) => ({ ...s, at: mid(s.from, s.to) }));
+  ].map((s) => ({ ...s, at: midpoint(s.from, s.to) }));
   return {
     O,
     sides,

@@ -1,14 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import { linText } from '#lib/core/algebra-text.js';
 import { readNumber } from '#lib/core/decimal.js';
 import { rng } from '#lib/core/drill.js';
-import {
-  CHAPTER_SKILLS,
-  SKILLS_TRANG_52,
-  SKILLS_TRANG_63,
-  dec,
-  linText,
-  thucTe,
-} from './skills.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_52, SKILLS_TRANG_63, dec, thucTe } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 800) {

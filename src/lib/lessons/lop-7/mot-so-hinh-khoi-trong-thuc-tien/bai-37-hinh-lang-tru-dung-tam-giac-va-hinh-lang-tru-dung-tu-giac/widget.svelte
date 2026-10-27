@@ -1,11 +1,13 @@
 <script>
+  import LiveRichText from '#lib/components/live-rich-text.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { fmt } from '#lib/core/number-format.js';
   import { focusRing } from '#lib/core/ui.js';
   import PrismView from '../_shared/prism-view.svelte';
   import LateralStrip from '../_shared/lateral-strip.svelte';
-  import { dist, faceIds, faceName, measures } from '../_shared/prism-geometry.js';
+  import { dist } from '#lib/geom-engine/plane.js';
+  import { faceIds, faceName, measures } from '../_shared/prism-geometry.js';
   import { BASES } from './bases.js';
 
   let shape = $state(BASES[0].id);
@@ -43,8 +45,8 @@
     }
     return (
       facePart +
-      `S_xq = C_đáy · h = ${fmt(m.C)} · ${fmt(h)} = ${fmt(m.lateral)} cm². ` +
-      `V = S_đáy · h = ${fmt(m.S)} · ${fmt(h)} = ${fmt(m.volume)} cm³.`
+      `$S_{xq}$ = $C_{\\text{đáy}}$ · h = ${fmt(m.C)} · ${fmt(h)} = ${fmt(m.lateral)} cm². ` +
+      `V = $S_{\\text{đáy}}$ · h = ${fmt(m.S)} · ${fmt(h)} = ${fmt(m.volume)} cm³.`
     );
   });
 </script>
@@ -127,6 +129,6 @@
   </dl>
 
   <p class="rounded-lg bg-indigo-50 p-3 text-sm text-indigo-950" aria-live="polite">
-    {feedback}
+    <LiveRichText text={feedback} />
   </p>
 </div>

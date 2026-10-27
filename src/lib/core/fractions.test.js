@@ -1,16 +1,21 @@
 import { describe, it, expect } from 'vitest';
 import {
-  probabilityText,
-  readProbability,
+  countOrProbabilityText,
   fracOperand,
   fracText,
+  lowestTerms,
   mixedText,
+  probabilityText,
+  ratioTex,
+  ratioText,
   readFraction,
+  readProbability,
   texFrac,
   texOperand,
   toFraction,
   valueText,
 } from './fractions.js';
+import { GROUP } from './number-format.js';
 
 describe('fracText and fracOperand', () => {
   it('puts the sign on the numerator with a true minus sign', () => {
@@ -87,5 +92,33 @@ describe('probabilities', () => {
     expect(probabilityText(0)).toBe('0');
     expect(probabilityText(1)).toBe('1');
     expect(probabilityText(7 / 19)).toBe('7/19');
+  });
+});
+
+describe('ratios', () => {
+  it('reduces a pair to lowest terms', () => {
+    expect(lowestTerms(4, 12)).toEqual([1, 3]);
+    expect(lowestTerms(5, 7)).toEqual([5, 7]);
+    expect(lowestTerms(0, 5)).toEqual([0, 1]);
+  });
+
+  it('writes a ratio with its lowest terms when they differ', () => {
+    expect(ratioText(6, 20)).toBe('6/20 = 3/10');
+    expect(ratioText(6, 6)).toBe('6/6 = 1');
+    expect(ratioText(0, 5)).toBe('0/5 = 0');
+    expect(ratioText(3, 7)).toBe('3/7');
+  });
+
+  it('writes the ratio and its lowest terms as TeX', () => {
+    expect(ratioTex(8, 4)).toBe('\\dfrac{8}{4} = 2');
+    expect(ratioTex(6, 4)).toBe('\\dfrac{6}{4} = \\dfrac{3}{2}');
+    expect(ratioTex(3, 4)).toBe('\\dfrac{3}{4}');
+  });
+});
+
+describe('countOrProbabilityText', () => {
+  it('groups counts and writes probabilities as fractions', () => {
+    expect(countOrProbabilityText(1500)).toBe(`1${GROUP}500`);
+    expect(countOrProbabilityText(0.25)).toBe('1/4');
   });
 });

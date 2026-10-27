@@ -10,6 +10,7 @@
 
 import { int, pick } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
+import { linText } from '#lib/core/algebra-text.js';
 import { MINUS, fmt, intText } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
@@ -28,18 +29,6 @@ export function dec(n, places) {
  * @param {number} value
  */
 const t = (value) => numberText(value);
-
-/**
- * `ax + b` as plain text, with the book's minus sign: (3, −12) → '3x − 12',
- * (−2, 5) → '−2x + 5'.
- * @param {number} a non-zero
- * @param {number} b
- */
-export function linText(a, b) {
-  const lead = a === 1 ? 'x' : a === -1 ? `${MINUS}x` : `${intText(a)}x`;
-  if (b === 0) return lead;
-  return `${lead} ${b < 0 ? MINUS : '+'} ${fmt(Math.abs(b))}`;
-}
 
 /** @type {Skill} */
 export const canBacHai = {

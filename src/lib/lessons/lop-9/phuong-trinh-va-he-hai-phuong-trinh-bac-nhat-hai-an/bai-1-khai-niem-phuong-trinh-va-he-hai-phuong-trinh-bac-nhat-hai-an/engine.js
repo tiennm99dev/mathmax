@@ -6,7 +6,7 @@
 
 import { solveSystem } from '#lib/algebra-engine/system.js';
 import { intText } from '#lib/core/number-format.js';
-import { pairText, substituteText } from '../_shared/equation-text.js';
+import { pairText, substituteText } from '#lib/core/algebra-text.js';
 
 /** @typedef {{ a: number, b: number, c: number }} Equation */
 /** @typedef {{ x: number, y: number }} Point */

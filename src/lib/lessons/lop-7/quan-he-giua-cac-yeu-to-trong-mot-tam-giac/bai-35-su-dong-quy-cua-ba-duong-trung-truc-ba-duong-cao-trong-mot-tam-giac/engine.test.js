@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { altitudes, bisectorsOfSides, circumcenter, classify, report, where } from './engine.js';
-import { cross, dist } from '../_shared/triangle-board.js';
+import { cross, dist } from '#lib/geom-engine/plane.js';
 
 /** A spread of grid triangles, acute, right and obtuse. */
 function triangles() {

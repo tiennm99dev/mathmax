@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { dist } from '#lib/geom-engine/plane.js';
 import {
   FIGURES,
   angleAt,
   circleIntersections,
   construction,
-  dist,
   regularPolygon,
   rotate,
 } from './engine.js';

@@ -3,25 +3,18 @@
  * (hình chóp tam giác đều, hình chóp tứ giác đều). Lengths are whole numbers
  * or halves, so answers are whole numbers or have one decimal digit; the
  * boards read them with `readNumber` and write them with `answerText`.
- * Prompts and steps are plain text: S_xq for diện tích xung quanh, a decimal
+ * Prompts and steps are rich text: $S_{xq}$ for diện tích xung quanh, a decimal
  * comma, "·" for a product.
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { numberText } from '#lib/core/decimal.js';
+import { answerText } from '#lib/core/decimal.js';
 import { fmt } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
 /** Rounds away binary noise from products of short decimals. @param {number} n */
 export const tidy = (n) => Math.round(n * 1e6) / 1e6;
-
-/**
- * How the boards write an answer: whole numbers grouped the book's way,
- * others with a decimal comma (7,5).
- * @param {number} n
- */
-export const answerText = (n) => (Number.isInteger(n) && n >= 0 ? fmt(n) : numberText(n));
 
 /** A number written the book's way. @param {number} n */
 const t = (n) => answerText(tidy(n));
@@ -106,7 +99,7 @@ export const chopTamGiac = {
         prompt: `Hình chóp tam giác đều có cạnh đáy ${a} cm và diện tích xung quanh ${fmt(S)} cm². Tính trung đoạn (cm).`,
         answer: d,
         unit: 'cm',
-        hints: ['S_xq = p · d nên d = S_xq : p.', 'p là nửa chu vi đáy: 3 · a : 2.'],
+        hints: ['$S_{xq}$ = p · d nên d = $S_{xq}$ : p.', 'p là nửa chu vi đáy: 3 · a : 2.'],
         steps: [
           `Nửa chu vi đáy: p = 3 · ${a} : 2 = ${p} (cm).`,
           `d = ${fmt(S)} : ${p} = ${d} (cm).`,
@@ -117,10 +110,13 @@ export const chopTamGiac = {
       prompt: `Hình chóp tam giác đều có cạnh đáy ${a} cm và trung đoạn ${d} cm. Tính diện tích xung quanh (cm²).`,
       answer: S,
       unit: 'cm²',
-      hints: ['S_xq = p · d, với p là nửa chu vi đáy.', 'Đáy là tam giác đều: chu vi bằng 3 · a.'],
+      hints: [
+        '$S_{xq}$ = p · d, với p là nửa chu vi đáy.',
+        'Đáy là tam giác đều: chu vi bằng 3 · a.',
+      ],
       steps: [
         `Nửa chu vi đáy: p = 3 · ${a} : 2 = ${p} (cm).`,
-        `S_xq = p · d = ${p} · ${d} = ${fmt(S)} (cm²).`,
+        `$S_{xq}$ = p · d = ${p} · ${d} = ${fmt(S)} (cm²).`,
       ],
     };
   },
@@ -184,12 +180,12 @@ export const chopTuGiac = {
         unit: 'cm²',
         hints: [
           'Diện tích toàn phần = diện tích xung quanh + diện tích đáy.',
-          'S_xq = p · d với p = 2 · a; đáy là hình vuông cạnh a.',
+          '$S_{xq}$ = p · d với p = 2 · a; đáy là hình vuông cạnh a.',
         ],
         steps: [
-          `p = 2 · ${a} = ${p} (cm); S_xq = ${p} · ${d} = ${fmt(lateral)} (cm²).`,
+          `p = 2 · ${a} = ${p} (cm); $S_{xq}$ = ${p} · ${d} = ${fmt(lateral)} (cm²).`,
           `Diện tích đáy: ${a}² = ${fmt(a * a)} (cm²).`,
-          `S_tp = ${fmt(lateral)} + ${fmt(a * a)} = ${fmt(total)} (cm²).`,
+          `$S_{tp}$ = ${fmt(lateral)} + ${fmt(a * a)} = ${fmt(total)} (cm²).`,
         ],
       };
     }
@@ -198,12 +194,12 @@ export const chopTuGiac = {
       answer: lateral,
       unit: 'cm²',
       hints: [
-        'S_xq = p · d, với p là nửa chu vi đáy.',
+        '$S_{xq}$ = p · d, với p là nửa chu vi đáy.',
         'Đáy là hình vuông: nửa chu vi bằng 2 · a.',
       ],
       steps: [
         `Nửa chu vi đáy: p = 2 · ${a} = ${p} (cm).`,
-        `S_xq = p · d = ${p} · ${d} = ${fmt(lateral)} (cm²).`,
+        `$S_{xq}$ = p · d = ${p} · ${d} = ${fmt(lateral)} (cm²).`,
       ],
     };
   },
@@ -244,13 +240,13 @@ export const trungDoan = {
       unit: 'cm²',
       hints: [
         'Trung đoạn là đường cao của một mặt bên (tam giác cân), nó chia cạnh đáy thành hai nửa.',
-        'd² = cạnh bên² − (nửa cạnh đáy)²; sau đó S_xq = p · d.',
+        'd² = cạnh bên² − (nửa cạnh đáy)²; sau đó $S_{xq}$ = p · d.',
       ],
       steps: [
         `Nửa cạnh đáy: ${a} : 2 = ${half} (cm).`,
         `Trung đoạn: d² = ${e}² − ${half}² = ${e * e} − ${half * half} = ${d * d}, nên d = ${d} cm.`,
         `Nửa chu vi đáy: p = ${tri ? `3 · ${a} : 2` : `2 · ${a}`} = ${p} (cm).`,
-        `S_xq = ${p} · ${d} = ${fmt(S)} (cm²).`,
+        `$S_{xq}$ = ${p} · ${d} = ${fmt(S)} (cm²).`,
       ],
     };
   },
@@ -273,11 +269,11 @@ export const thucTe = {
         answer: cost,
         unit: 'đồng',
         hints: [
-          'Diện tích vải bằng diện tích xung quanh S_xq = p · d.',
+          'Diện tích vải bằng diện tích xung quanh $S_{xq}$ = p · d.',
           'Nhân diện tích vải với giá một mét vuông.',
         ],
         steps: [
-          `S_xq = 2 · ${a} · ${d} = ${area} (m²).`,
+          `$S_{xq}$ = 2 · ${a} · ${d} = ${area} (m²).`,
           `Tiền vải: ${area} · ${fmt(price)} = ${fmt(cost)} (đồng).`,
         ],
       };
@@ -305,8 +301,8 @@ export const thucTe = {
         prompt: `Mái một chòi nghỉ có dạng hình chóp tứ giác đều không có đáy, cạnh đáy ${a} m, trung đoạn ${t(d)} m. Tính diện tích mái cần lợp (m²).`,
         answer: area,
         unit: 'm²',
-        hints: ['Mái gồm bốn mặt bên: diện tích mái là S_xq = p · d.'],
-        steps: [`p = 2 · ${a} = ${2 * a} (m).`, `S_xq = ${2 * a} · ${t(d)} = ${t(area)} (m²).`],
+        hints: ['Mái gồm bốn mặt bên: diện tích mái là $S_{xq}$ = p · d.'],
+        steps: [`p = 2 · ${a} = ${2 * a} (m).`, `$S_{xq}$ = ${2 * a} · ${t(d)} = ${t(area)} (m²).`],
       };
     }
     const a = 2 * int(rand, 4, 10);
@@ -317,8 +313,8 @@ export const thucTe = {
       prompt: `Một chiếc đèn lồng dạng hình chóp tam giác đều có cạnh đáy ${a} cm và trung đoạn ${d} cm. Tính diện tích giấy dán kín ba mặt bên (cm²), bỏ qua mép dán.`,
       answer: S,
       unit: 'cm²',
-      hints: ['Ba mặt bên có tổng diện tích bằng S_xq = p · d.'],
-      steps: [`p = 3 · ${a} : 2 = ${p} (cm).`, `S_xq = ${p} · ${d} = ${fmt(S)} (cm²).`],
+      hints: ['Ba mặt bên có tổng diện tích bằng $S_{xq}$ = p · d.'],
+      steps: [`p = 3 · ${a} : 2 = ${p} (cm).`, `$S_{xq}$ = ${p} · ${d} = ${fmt(S)} (cm²).`],
     };
   },
 };

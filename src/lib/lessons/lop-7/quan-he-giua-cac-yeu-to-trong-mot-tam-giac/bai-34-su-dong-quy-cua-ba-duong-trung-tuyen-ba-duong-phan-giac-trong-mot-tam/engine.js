@@ -3,20 +3,20 @@
  * are in grid units (y up). The medians AM, BN, CP meet at the centroid G;
  * the bisectors AD, BE, CF meet at I, whose feet on BC, CA, AB are H, K, L.
  *
- * @typedef {import('../_shared/triangle-board.js').Pt} Pt
- * @typedef {import('../_shared/triangle-board.js').Tri} Tri
+ * @typedef {import('#lib/geom-engine/grid-triangle.js').Pt} Pt
+ * @typedef {import('#lib/geom-engine/grid-triangle.js').Tri} Tri
  */
 
-import { dist, foot, mid } from '../_shared/triangle-board.js';
+import { dist, foot, midpoint } from '#lib/geom-engine/plane.js';
 
 /**
  * Medians and centroid, with the ratios the lesson is about.
  * @param {Tri} t
  */
 export function medians(t) {
-  const M = mid(t.B, t.C);
-  const N = mid(t.C, t.A);
-  const P = mid(t.A, t.B);
+  const M = midpoint(t.B, t.C);
+  const N = midpoint(t.C, t.A);
+  const P = midpoint(t.A, t.B);
   const G = { x: (t.A.x + t.B.x + t.C.x) / 3, y: (t.A.y + t.B.y + t.C.y) / 3 };
   const rows = [
     { from: 'A', to: 'M', vertex: t.A, end: M },

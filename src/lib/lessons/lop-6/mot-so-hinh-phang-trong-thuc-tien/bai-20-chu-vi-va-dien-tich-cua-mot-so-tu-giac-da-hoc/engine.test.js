@@ -1,11 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import {
-  bounds,
-  parallelogramPieces,
-  polygonArea,
-  rhombusPieces,
-  trapezoidPieces,
-} from './engine.js';
+import { polygonArea } from '#lib/geom-engine/plane.js';
+import { bounds, parallelogramPieces, rhombusPieces, trapezoidPieces } from './engine.js';
 
 /** @param {import('./engine.js').Piece[]} pieces */
 const total = (pieces) => pieces.reduce((s, p) => s + polygonArea(p.pts), 0);

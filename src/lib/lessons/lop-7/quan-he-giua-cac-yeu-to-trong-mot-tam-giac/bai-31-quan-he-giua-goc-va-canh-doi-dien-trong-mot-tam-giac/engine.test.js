@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { angleChain, anglesFollowSides, rankGroups, sideChain, sideKind } from './engine.js';
-import { cross, placeVertex } from '../_shared/triangle-board.js';
+import { cross } from '#lib/geom-engine/plane.js';
+import { placeVertex } from '#lib/geom-engine/grid-triangle.js';
 
 describe('angle and opposite side', () => {
   it('ranks a scalene triangle and pairs each side with its opposite angle', () => {

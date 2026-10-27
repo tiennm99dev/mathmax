@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { polygonArea } from '#lib/geom-engine/plane.js';
 import {
   drawOrder,
   facesViewer,
   measures,
   perimeter,
-  polygonArea,
   prismFaces,
   rectBase,
   viewCentre,

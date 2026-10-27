@@ -9,7 +9,7 @@
   import { button } from '#lib/core/ui.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
-  import { eqTex, eqText, pairText } from '../_shared/equation-text.js';
+  import { eqTex, eqText, pairText } from '#lib/core/algebra-text.js';
   import {
     check,
     checkLine,

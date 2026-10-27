@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { factorText, linTex, linText, signedFracTex, signedFracText } from './linear-text.js';
+import {
+  factorText,
+  linTex,
+  linText,
+  signedFracTex,
+  signedFracText,
+} from '#lib/core/algebra-text.js';
 import {
   CHAPTER_SKILLS,
   SKILLS_TRANG_36,

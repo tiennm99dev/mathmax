@@ -8,7 +8,8 @@
 
 import { int, pick } from '#lib/core/drill.js';
 import { MINUS, fmt, intText } from '#lib/core/number-format.js';
-import { factorText, gcd, linText, signedFracText } from './linear-text.js';
+import { factorText, linText, signedFracText } from '#lib/core/algebra-text.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 

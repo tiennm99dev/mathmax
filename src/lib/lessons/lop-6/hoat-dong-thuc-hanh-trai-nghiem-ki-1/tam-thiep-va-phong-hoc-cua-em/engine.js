@@ -160,20 +160,6 @@ export function placedOutlines(shape, x, y, axis) {
 }
 
 /**
- * Area of a polygon by the shoelace formula, cm².
- * @param {Array<{ x: number, y: number }>} pts
- */
-export function polygonArea(pts) {
-  let s = 0;
-  for (let i = 0; i < pts.length; i++) {
-    const a = pts[i];
-    const b = pts[(i + 1) % pts.length];
-    s += a.x * b.y - b.x * a.y;
-  }
-  return Math.abs(s) / 2;
-}
-
-/**
  * Whether two convex polygons overlap with positive area (touching along an
  * edge or at a corner does not count), by the separating axis test.
  * @param {Array<{ x: number, y: number }>} p

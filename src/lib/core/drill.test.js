@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   buildSet,
+  countsAsNaturals,
   hintsFor,
   int,
   isDone,
@@ -159,5 +160,26 @@ describe('per-question answers', () => {
     expect(withUnit('90', '°')).toBe('90°');
     expect(withUnit('12 000', 'đồng')).toBe('12 000 đồng');
     expect(withUnit('7')).toBe('7');
+  });
+});
+
+describe('countsAsNaturals', () => {
+  it('reads whole-number answers as natural numbers and leaves the rest alone', () => {
+    /** @type {import('./drill.js').Skill} */
+    const skill = {
+      id: 'k',
+      label: 'K',
+      make: (r) =>
+        r() < 0.5
+          ? { prompt: 'count', answer: 1350, steps: [] }
+          : { prompt: 'p', answer: 0.25, steps: [] },
+    };
+    const wrapped = countsAsNaturals(skill);
+    const r = rng(7);
+    for (let i = 0; i < 20; i++) {
+      const q = wrapped.make(r);
+      if (Number.isInteger(q.answer)) expect(q.read?.('1.350')).toBe(1350);
+      else expect(q.read).toBeUndefined();
+    }
   });
 });

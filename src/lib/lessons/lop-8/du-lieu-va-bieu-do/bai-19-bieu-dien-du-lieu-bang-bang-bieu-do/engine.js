@@ -151,19 +151,6 @@ export const DATA_SETS = [
 ];
 
 /**
- * The icons of one row of a picture chart: whole icons and the fraction of
- * one more icon.
- * @param {number} value
- * @param {number} icon how much one icon stands for
- * @returns {{ whole: number, part: number }}
- */
-export function iconRow(value, icon) {
-  const whole = Math.floor(value / icon);
-  const part = Math.round(((value - whole * icon) / icon) * 100) / 100;
-  return { whole, part };
-}
-
-/**
  * Whole-number percentages of a total, for data whose parts are exact.
  * @param {number[]} values
  * @returns {number[]}

@@ -5,6 +5,8 @@
  * means counterclockwise as the learner sees it, the way GeoGebra turns.
  */
 
+import { dist } from '#lib/geom-engine/plane.js';
+
 /** @typedef {{ x: number, y: number }} Pt */
 
 /**
@@ -17,11 +19,6 @@
 
 /** @typedef {{ tool: string, text: string, draw: Drawn[] }} Step */
 /** @typedef {{ label: string, value: number, unit: 'length' | 'deg' }} Measure */
-
-/** @param {Pt} a @param {Pt} b */
-export function dist(a, b) {
-  return Math.hypot(a.x - b.x, a.y - b.y);
-}
 
 /** @param {Pt} a @param {Pt} b @returns {Pt} */
 export function midpoint(a, b) {

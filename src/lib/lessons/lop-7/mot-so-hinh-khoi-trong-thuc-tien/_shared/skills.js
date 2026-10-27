@@ -31,7 +31,7 @@ export const hopXungQuanh = {
           'Mỗi đáy là hình chữ nhật dài a, rộng b.',
         ],
         steps: [
-          `S_xq = 2 · (${a} + ${b}) · ${c} = ${fmt(lateral)} (cm²).`,
+          `$S_{xq}$ = 2 · (${a} + ${b}) · ${c} = ${fmt(lateral)} (cm²).`,
           `Hai đáy: 2 · ${a} · ${b} = ${fmt(2 * a * b)} (cm²).`,
           `Tổng diện tích các mặt: ${fmt(lateral)} + ${fmt(2 * a * b)} = ${fmt(total)} (cm²).`,
         ],
@@ -43,8 +43,8 @@ export const hopXungQuanh = {
         answer: c,
         unit: 'cm',
         hints: [
-          'S_xq = chu vi đáy · chiều cao.',
-          'Tính chu vi đáy 2 · (a + b) rồi lấy S_xq chia cho nó.',
+          '$S_{xq}$ = chu vi đáy · chiều cao.',
+          'Tính chu vi đáy 2 · (a + b) rồi lấy $S_{xq}$ chia cho nó.',
         ],
         steps: [
           `Chu vi đáy: 2 · (${a} + ${b}) = ${2 * (a + b)} (cm).`,
@@ -56,10 +56,10 @@ export const hopXungQuanh = {
       prompt: `Một hình hộp chữ nhật dài ${a} cm, rộng ${b} cm, cao ${c} cm. Tính diện tích xung quanh (cm²).`,
       answer: lateral,
       unit: 'cm²',
-      hints: ['S_xq = 2 · (a + b) · c.', 'Chỉ tính bốn mặt bên, không tính hai đáy.'],
+      hints: ['$S_{xq}$ = 2 · (a + b) · c.', 'Chỉ tính bốn mặt bên, không tính hai đáy.'],
       steps: [
         `Chu vi đáy: 2 · (${a} + ${b}) = ${2 * (a + b)} (cm).`,
-        `S_xq = ${2 * (a + b)} · ${c} = ${fmt(lateral)} (cm²).`,
+        `$S_{xq}$ = ${2 * (a + b)} · ${c} = ${fmt(lateral)} (cm²).`,
       ],
     };
   },
@@ -125,8 +125,11 @@ export const lapPhuong = {
         prompt: `Một hình lập phương có cạnh ${a} cm. Tính diện tích xung quanh (cm²).`,
         answer: 4 * a * a,
         unit: 'cm²',
-        hints: ['Bốn mặt bên đều là hình vuông cạnh a: S_xq = 4a².'],
-        steps: [`a² = ${a} · ${a} = ${a * a}.`, `S_xq = 4 · ${a * a} = ${fmt(4 * a * a)} (cm²).`],
+        hints: ['Bốn mặt bên đều là hình vuông cạnh a: $S_{xq}$ = 4a².'],
+        steps: [
+          `a² = ${a} · ${a} = ${a * a}.`,
+          `$S_{xq}$ = 4 · ${a * a} = ${fmt(4 * a * a)} (cm²).`,
+        ],
       };
     }
     if (kind === 'volume') {
@@ -142,7 +145,7 @@ export const lapPhuong = {
       prompt: `Một hình lập phương có diện tích xung quanh ${fmt(4 * a * a)} cm². Tính thể tích của nó (cm³).`,
       answer: a ** 3,
       unit: 'cm³',
-      hints: ['Từ 4a² = S_xq tìm a², rồi tìm cạnh a.', 'Có cạnh a rồi thì V = a³.'],
+      hints: ['Từ 4a² = $S_{xq}$ tìm a², rồi tìm cạnh a.', 'Có cạnh a rồi thì V = a³.'],
       steps: [
         `a² = ${fmt(4 * a * a)} : 4 = ${a * a}, nên a = ${a} cm.`,
         `V = ${a}³ = ${fmt(a ** 3)} (cm³).`,
@@ -179,10 +182,10 @@ export const langTruTamGiac = {
         prompt: `Một hình lăng trụ đứng tam giác có ba cạnh đáy ${p} cm, ${q} cm, ${r} cm và chiều cao ${h} cm. Tính diện tích xung quanh (cm²).`,
         answer: C * h,
         unit: 'cm²',
-        hints: ['S_xq = chu vi đáy · chiều cao.'],
+        hints: ['$S_{xq}$ = chu vi đáy · chiều cao.'],
         steps: [
           `Chu vi đáy: ${p} + ${q} + ${r} = ${C} (cm).`,
-          `S_xq = ${C} · ${h} = ${fmt(C * h)} (cm²).`,
+          `$S_{xq}$ = ${C} · ${h} = ${fmt(C * h)} (cm²).`,
         ],
       };
     }
@@ -198,7 +201,10 @@ export const langTruTamGiac = {
           'V = diện tích đáy · chiều cao.',
           'Diện tích tam giác vuông bằng nửa tích hai cạnh góc vuông.',
         ],
-        steps: [`S_đáy = ${p} · ${q} : 2 = ${S} (cm²).`, `V = ${S} · ${h} = ${fmt(S * h)} (cm³).`],
+        steps: [
+          `$S_{\\text{đáy}}$ = ${p} · ${q} : 2 = ${S} (cm²).`,
+          `V = ${S} · ${h} = ${fmt(S * h)} (cm³).`,
+        ],
       };
     }
     const base = 2 * int(rand, 2, 8);
@@ -213,7 +219,7 @@ export const langTruTamGiac = {
         'Đừng nhầm đường cao của tam giác với chiều cao của lăng trụ.',
       ],
       steps: [
-        `S_đáy = ${base} · ${height} : 2 = ${S} (cm²).`,
+        `$S_{\\text{đáy}}$ = ${base} · ${height} : 2 = ${S} (cm²).`,
         `V = ${S} · ${h} = ${fmt(S * h)} (cm³).`,
       ],
     };
@@ -236,9 +242,12 @@ export const langTruTuGiac = {
         prompt: `Một hình lăng trụ đứng tứ giác có đáy là hình thang với hai đáy ${big} cm, ${small} cm và chiều cao hình thang ${t} cm. Chiều cao lăng trụ là ${h} cm. Tính thể tích (cm³).`,
         answer: S * h,
         unit: 'cm³',
-        hints: ['Diện tích hình thang = (tổng hai đáy) · chiều cao : 2.', 'Rồi V = S_đáy · h.'],
+        hints: [
+          'Diện tích hình thang = (tổng hai đáy) · chiều cao : 2.',
+          'Rồi V = $S_{\\text{đáy}}$ · h.',
+        ],
         steps: [
-          `S_đáy = (${big} + ${small}) · ${t} : 2 = ${S} (cm²).`,
+          `$S_{\\text{đáy}}$ = (${big} + ${small}) · ${t} : 2 = ${S} (cm²).`,
           `V = ${S} · ${h} = ${fmt(S * h)} (cm³).`,
         ],
       };
@@ -253,7 +262,7 @@ export const langTruTuGiac = {
         unit: 'cm³',
         hints: ['Diện tích hình thoi bằng nửa tích hai đường chéo.'],
         steps: [
-          `S_đáy = ${d1} · ${d2} : 2 = ${S} (cm²).`,
+          `$S_{\\text{đáy}}$ = ${d1} · ${d2} : 2 = ${S} (cm²).`,
           `V = ${S} · ${h} = ${fmt(S * h)} (cm³).`,
         ],
       };
@@ -269,10 +278,10 @@ export const langTruTuGiac = {
       prompt: `Một hình lăng trụ đứng tứ giác có các cạnh đáy ${sides[0]} cm, ${sides[1]} cm, ${sides[2]} cm, ${fourth} cm và chiều cao ${h} cm. Tính diện tích xung quanh (cm²).`,
       answer: C * h,
       unit: 'cm²',
-      hints: ['S_xq = chu vi đáy · chiều cao.'],
+      hints: ['$S_{xq}$ = chu vi đáy · chiều cao.'],
       steps: [
         `Chu vi đáy: ${sides[0]} + ${sides[1]} + ${sides[2]} + ${fourth} = ${C} (cm).`,
-        `S_xq = ${C} · ${h} = ${fmt(C * h)} (cm²).`,
+        `$S_{xq}$ = ${C} · ${h} = ${fmt(C * h)} (cm²).`,
       ],
     };
   },
@@ -291,7 +300,7 @@ export const langTruNguoc = {
         prompt: `Một hình lăng trụ đứng có chu vi đáy ${C} cm và diện tích xung quanh ${fmt(C * h)} cm². Tính chiều cao của lăng trụ (cm).`,
         answer: h,
         unit: 'cm',
-        hints: ['Từ S_xq = C_đáy · h suy ra h = S_xq : C_đáy.'],
+        hints: ['Từ $S_{xq}$ = $C_{\\text{đáy}}$ · h suy ra h = $S_{xq}$ : $C_{\\text{đáy}}$.'],
         steps: [`h = ${fmt(C * h)} : ${C} = ${h} (cm).`],
       };
     }
@@ -301,7 +310,7 @@ export const langTruNguoc = {
         prompt: `Một hình lăng trụ đứng có diện tích đáy ${S} cm² và thể tích ${fmt(S * h)} cm³. Tính chiều cao của lăng trụ (cm).`,
         answer: h,
         unit: 'cm',
-        hints: ['Từ V = S_đáy · h suy ra h = V : S_đáy.'],
+        hints: ['Từ V = $S_{\\text{đáy}}$ · h suy ra h = V : $S_{\\text{đáy}}$.'],
         steps: [`h = ${fmt(S * h)} : ${S} = ${h} (cm).`],
       };
     }
@@ -309,8 +318,8 @@ export const langTruNguoc = {
       prompt: `Một hình lăng trụ đứng có chiều cao ${h} cm và thể tích ${fmt(S * h)} cm³. Tính diện tích đáy (cm²).`,
       answer: S,
       unit: 'cm²',
-      hints: ['Từ V = S_đáy · h suy ra S_đáy = V : h.'],
-      steps: [`S_đáy = ${fmt(S * h)} : ${h} = ${S} (cm²).`],
+      hints: ['Từ V = $S_{\\text{đáy}}$ · h suy ra $S_{\\text{đáy}}$ = V : h.'],
+      steps: [`$S_{\\text{đáy}}$ = ${fmt(S * h)} : ${h} = ${S} (cm²).`],
     };
   },
 };

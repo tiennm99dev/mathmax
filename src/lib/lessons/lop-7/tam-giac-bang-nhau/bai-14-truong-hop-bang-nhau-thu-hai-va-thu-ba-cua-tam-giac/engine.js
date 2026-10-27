@@ -7,7 +7,8 @@
  * axis and the triangle above it.
  */
 
-import { along, angles, dist, fromASA, ssaBases } from '../_shared/triangle-math.js';
+import { dist } from '#lib/geom-engine/plane.js';
+import { along, angles, fromASA, ssaBases } from '../_shared/triangle-math.js';
 
 /** @typedef {import('../_shared/triangle-math.js').Pt} Pt */
 /** @typedef {'cgc' | 'gcg' | 'ccg' | 'ggg'} Mode */

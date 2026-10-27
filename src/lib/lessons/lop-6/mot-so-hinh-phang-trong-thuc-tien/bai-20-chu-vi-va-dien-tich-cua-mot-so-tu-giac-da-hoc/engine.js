@@ -124,19 +124,6 @@ export function trapezoidPieces(a, b, h, t) {
 }
 
 /**
- * Area of a polygon (shoelace formula).
- * @param {Pt[]} pts
- */
-export function polygonArea(pts) {
-  let sum = 0;
-  for (let i = 0; i < pts.length; i++) {
-    const q = pts[(i + 1) % pts.length];
-    sum += pts[i].x * q.y - q.x * pts[i].y;
-  }
-  return Math.abs(sum) / 2;
-}
-
-/**
  * The smallest axis-aligned box around some pieces.
  * @param {Piece[]} pieces
  */

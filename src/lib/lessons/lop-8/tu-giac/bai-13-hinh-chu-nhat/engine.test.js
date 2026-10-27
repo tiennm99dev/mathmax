@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { formatFixed } from '#lib/core/number-format.js';
 import { B, C, HALF, LIMITS, M, angleA, apexFromPointer, apexPoint, stepApex } from './engine.js';
-import { angleAt, dist, UNIT } from '../_shared/quad.js';
+import { angleAt, dist } from '#lib/geom-engine/plane.js';
+import { UNIT } from '../_shared/quad.js';
 
 describe('the median to the hypotenuse', () => {
   it('puts A at the asked distance from the midpoint of BC', () => {

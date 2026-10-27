@@ -8,16 +8,8 @@
 
 import { int, pick } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
-import { fmt } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * How the boards write an answer: whole numbers grouped the book's way,
- * others with a decimal comma (7,5).
- * @param {number} n
- */
-export const answerText = (n) => (Number.isInteger(n) && n >= 0 ? fmt(n) : numberText(n));
 
 /** Rounds away binary noise from products of short decimals. @param {number} n */
 const tidy = (n) => Math.round(n * 1e6) / 1e6;

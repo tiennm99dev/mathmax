@@ -138,25 +138,3 @@ export function fitScale(tris, w, h) {
   }
   return s;
 }
-
-/**
- * Greatest common divisor of two natural numbers.
- * @param {number} a @param {number} b
- * @returns {number}
- */
-export function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
-}
-
-/**
- * TeX for the ratio p/q of two whole numbers followed by its lowest terms:
- * `\dfrac{8}{4} = 2`, `\dfrac{6}{4} = \dfrac{3}{2}`.
- * @param {number} p @param {number} q
- */
-export function ratioTex(p, q) {
-  const g = gcd(p, q);
-  const n = p / g;
-  const d = q / g;
-  const reduced = d === 1 ? String(n) : `\\dfrac{${n}}{${d}}`;
-  return n === p && d === q ? `\\dfrac{${p}}{${q}}` : `\\dfrac{${p}}{${q}} = ${reduced}`;
-}

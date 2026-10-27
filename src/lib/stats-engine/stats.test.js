@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  axisFrom,
   experimentalProbability,
   frequencyTable,
+  iconRow,
   interquartileRange,
   mean,
   median,
@@ -120,5 +122,20 @@ describe('axis ticks', () => {
     expect(niceAxis(0, 23)).toEqual({ min: 0, max: 25, step: 5, ticks: [0, 5, 10, 15, 20, 25] });
     expect(niceAxis(0, 0.3, 3).ticks).toEqual([0, 0.1, 0.2, 0.3]);
     expect(niceAxis(5, 5).ticks.length).toBeGreaterThan(1);
+  });
+});
+
+describe('cut axis', () => {
+  it('starts the axis at the base and tops it a round step above the data', () => {
+    expect(axisFrom(0, 108)).toEqual({ top: 120, ticks: [0, 20, 40, 60, 80, 100, 120] });
+    expect(axisFrom(90, 108)).toEqual({ top: 110, ticks: [90, 95, 100, 105, 110] });
+  });
+});
+
+describe('picture chart rows', () => {
+  it('splits a value into whole icons and part of one more', () => {
+    expect(iconRow(35, 10)).toEqual({ whole: 3, part: 0.5 });
+    expect(iconRow(12, 3)).toEqual({ whole: 4, part: 0 });
+    expect(iconRow(17, 5)).toEqual({ whole: 3, part: 0.4 });
   });
 });

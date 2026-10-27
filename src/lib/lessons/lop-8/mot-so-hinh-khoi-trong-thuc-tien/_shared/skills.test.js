@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet } from '#lib/core/drill.js';
-import { readNumber } from '#lib/core/decimal.js';
+import { answerText, readNumber } from '#lib/core/decimal.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { CHAPTER_SKILLS, PRACTICE_121, answerText } from './skills.js';
+import { CHAPTER_SKILLS, PRACTICE_121 } from './skills.js';
 
 /**
  * Numbers in a prompt, in order, read with a decimal comma and the book's

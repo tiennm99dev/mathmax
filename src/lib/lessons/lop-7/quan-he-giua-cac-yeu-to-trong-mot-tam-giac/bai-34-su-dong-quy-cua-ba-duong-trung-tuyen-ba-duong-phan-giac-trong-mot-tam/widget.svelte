@@ -5,7 +5,7 @@
   import TickMarks from '#lib/core/visuals/tick-marks.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
   import { directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
-  import { frame, labelSpot, placeVertex, toGrid } from '../_shared/triangle-board.js';
+  import { frame, labelOutside, placeVertex, toGrid } from '#lib/geom-engine/grid-triangle.js';
   import { bisectors, medians } from './engine.js';
 
   const W = 400;
@@ -210,7 +210,7 @@
     {/if}
 
     {#each VS as v (v)}
-      {@const s = labelSpot(pts[v], pts, 20)}
+      {@const s = labelOutside(pts[v], pts, 20)}
       <text x={s.x} y={s.y + 5} text-anchor="middle" font-size="15" font-weight="700" fill="#111827"
         >{v}</text
       >

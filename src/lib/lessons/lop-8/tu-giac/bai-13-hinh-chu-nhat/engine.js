@@ -9,7 +9,8 @@
  * @typedef {{ tenths: number, dir: number }} Apex MA in tenths of a unit, direction in whole degrees
  */
 
-import { UNIT, angleAt } from '../_shared/quad.js';
+import { UNIT } from '../_shared/quad.js';
+import { angleAt } from '#lib/geom-engine/plane.js';
 
 /** Half of BC, in units: BC = 10. */
 export const HALF = 5;
