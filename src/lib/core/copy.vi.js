@@ -120,6 +120,7 @@ export const practice = {
     'not-simplest': 'Bằng đáp số, nhưng em hãy rút gọn phân số.',
     'negative-denominator':
       'Bằng đáp số, nhưng em hãy viết phân số với mẫu dương, ví dụ −1/4 thay cho 1/−4.',
+    'not-fraction': 'Bằng đáp số, nhưng em hãy viết dưới dạng phân số, ví dụ 3/10 thay cho 0,3.',
   },
 };
 

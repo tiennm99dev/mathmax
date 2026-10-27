@@ -117,6 +117,12 @@ describe('normalizeText', () => {
     expect(normalizeText('Số nguyên tố?')).toBe('so nguyen to');
   });
 
+  it('folds typographic apostrophes and primes to the ASCII apostrophe', () => {
+    expect(normalizeText('A’B’C’')).toBe("a'b'c'");
+    expect(normalizeText('A′B′')).toBe("a'b'");
+    expect(normalizeText("A'B'")).toBe("a'b'");
+  });
+
   it('treats precomposed and combining forms alike', () => {
     expect(normalizeText('Trền')).toBe(normalizeText('Trền'));
   });
@@ -184,6 +190,26 @@ describe('checkAnswer: number', () => {
     expect(reason(angle, '130 cm')).toBe('unit');
     expect(normalizeUnit('đồng')).toBe(normalizeUnit('đ'));
     expect(normalizeUnit('km/giờ')).toBe(normalizeUnit('km/h'));
+  });
+
+  it('accepts a percent sign written straight after the number', () => {
+    /** @type {Exercise} */
+    const share = { ...base, type: 'number', answer: 35, unit: '%' };
+    expect(reason(share, '35%')).toBe('correct');
+    expect(reason(share, '35 %')).toBe('correct');
+    expect(reason(share, '35%.')).toBe('correct');
+    expect(reason(share, '36%')).toBe('wrong');
+  });
+
+  it('reads a dot or star between unit factors as the middle dot', () => {
+    /** @type {Exercise} */
+    const torque = { ...base, type: 'number', answer: 2.5, unit: 'N·m' };
+    expect(reason(torque, '2,5 N·m')).toBe('correct');
+    expect(reason(torque, '2,5 N.m')).toBe('correct');
+    expect(reason(torque, '2,5 N*m')).toBe('correct');
+    expect(reason(torque, '2,5 N⋅m')).toBe('correct');
+    expect(reason(torque, '2,5 N')).toBe('unit');
+    expect(normalizeUnit('kW.h')).toBe(normalizeUnit('kW·h'));
   });
 
   it('flags a right value in the wrong unit', () => {
@@ -279,8 +305,22 @@ describe('checkAnswer: fraction', () => {
   it('reports empty and unreadable input', () => {
     expect(reason(ex, '')).toBe('empty');
     expect(reason(ex, '3/0')).toBe('invalid');
-    expect(reason(ex, '0,75')).toBe('invalid');
+    expect(reason(ex, '0,75 cm')).toBe('invalid');
     expect(reason(ex, 0.75)).toBe('invalid');
+  });
+
+  it('accepts a decimal equal to the fraction', () => {
+    /** @type {Exercise} */
+    const tenth = { ...base, type: 'fraction', answer: [3, 10] };
+    expect(reason(ex, '0,75')).toBe('correct');
+    expect(reason(ex, '0.75')).toBe('correct');
+    expect(reason(tenth, '0,3')).toBe('correct');
+    expect(reason(tenth, '0,4')).toBe('wrong');
+  });
+
+  it('asks for a fraction when lowest terms are required and a decimal is typed', () => {
+    expect(checkAnswer(simplest, '0,75')).toEqual({ correct: false, reason: 'not-fraction' });
+    expect(reason(simplest, '0,8')).toBe('wrong');
   });
 });
 

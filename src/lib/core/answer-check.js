@@ -23,8 +23,10 @@ import { gcd } from '#lib/numtheory-engine/index.js';
  * - `not-simplest`: the fraction is equal but not in lowest terms.
  * - `negative-denominator`: the fraction is equal but written with a
  *   negative denominator (`1/-4`), where lowest terms are asked for.
+ * - `not-fraction`: a decimal equal to the fraction (`0,3` for 3/10), where
+ *   lowest terms are asked for, so a fraction must be written.
  * - `wrong`: a readable, complete answer that is not right.
- * @typedef {'correct' | 'empty' | 'incomplete' | 'invalid' | 'unit' | 'not-simplest' | 'negative-denominator' | 'wrong'} CheckReason
+ * @typedef {'correct' | 'empty' | 'incomplete' | 'invalid' | 'unit' | 'not-simplest' | 'negative-denominator' | 'not-fraction' | 'wrong'} CheckReason
  */
 
 /** @typedef {{ correct: boolean, reason: CheckReason }} CheckResult */
@@ -33,6 +35,10 @@ const MINUS_RE = /[\u2212\u2013\u2014]/g;
 // JS `\s` already covers no-break and thin spaces.
 const SPACE_RE = /\s+/g;
 const SUPERSCRIPTS = /** @type {Record<string, string>} */ ({ '²': '2', '³': '3', '¹': '1' });
+// Marks joining the factors of a compound unit: `N.m`, `N*m`, `N⋅m` all mean `N·m`.
+const UNIT_PRODUCT_RE = /[.*\u00b7\u2022\u2219\u22c5]/g;
+// Typographic apostrophes and primes a phone keyboard may insert for `'`.
+const APOSTROPHE_RE = /[\u2018\u2019\u02bc\u2032\u00b4`]/g;
 
 /**
  * Unit words a learner may type for a unit symbol, keyed by the word folded
@@ -86,17 +92,20 @@ const UNIT_WORDS = {
  * Normalises a unit for comparison: case, spaces, `^` and superscript digits
  * are ignored, so `cm²`, `cm^2` and `CM2` match, and a Vietnamese unit word
  * stands for its symbol (`độ` for `°`, `đồng` or `VND` for `đ`, `phần trăm`
- * for `%`, `xăng-ti-mét` for `cm`, `mét vuông` for `m²`).
+ * for `%`, `xăng-ti-mét` for `cm`, `mét vuông` for `m²`). A dot, star or dot
+ * operator between the factors of a compound unit reads as the middle dot, so
+ * `N.m` matches `N·m`, and a trailing full stop is dropped (`35 %.`).
  * @param {string} unit
  */
 export function normalizeUnit(unit) {
   const u = unit
     .toLowerCase()
     .replace(SPACE_RE, '')
+    .replace(/[.!?;]+$/, '')
     .replace(/\^/g, '')
     .replace(/[²³¹]/g, (c) => SUPERSCRIPTS[c]);
   const word = u.normalize('NFD').replace(/\p{M}/gu, '').replace(/đ/g, 'd').replace(/[-./]/g, '');
-  return UNIT_WORDS[word] ?? u;
+  return UNIT_WORDS[word] ?? u.replace(UNIT_PRODUCT_RE, '·');
 }
 
 /**
@@ -209,11 +218,13 @@ export function isSimplest([p, q]) {
 /**
  * Folds case, diacritics (including đ), surrounding spaces, inner runs of
  * spaces and trailing sentence punctuation, so `Hình Vuông.` equals
- * `hinh vuong`.
+ * `hinh vuong`. Typographic apostrophes and primes (`’`, `′`) fold to the
+ * ASCII `'`, so `A’B’` equals `A'B'`.
  * @param {string} s
  */
 export function normalizeText(s) {
   return s
+    .replace(APOSTROPHE_RE, "'")
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
@@ -271,8 +282,17 @@ export function checkAnswer(exercise, response) {
       if (isBlank(response)) return result('empty');
       if (typeof response !== 'string') return result('invalid');
       const f = parseFraction(response);
-      if (!f) return result('invalid');
       const [p, q] = exercise.answer;
+      if (!f) {
+        const decimal = parseNumber(response);
+        if (!decimal || decimal.unit !== '' || !Number.isFinite(decimal.value)) {
+          return result('invalid');
+        }
+        if (Math.abs(decimal.value * q - p) > 1e-9 * Math.max(1, Math.abs(p))) {
+          return result('wrong');
+        }
+        return result(exercise.simplest ? 'not-fraction' : 'correct');
+      }
       if (f[0] * q !== p * f[1]) return result('wrong');
       if (exercise.simplest && f[1] < 0) return result('negative-denominator');
       if (exercise.simplest && !isSimplest(f)) return result('not-simplest');
