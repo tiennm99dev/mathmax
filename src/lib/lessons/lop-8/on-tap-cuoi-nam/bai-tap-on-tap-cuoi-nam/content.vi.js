@@ -321,8 +321,9 @@ export default {
     {
       type: 'number',
       prompt:
-        'Một mái lều dạng hình chóp tứ giác đều có cạnh đáy $10$ m và chiều cao $12$ m. Tính diện tích xung quanh của mái lều ($\\text{m}^2$).',
+        'Một mái lều dạng hình chóp tứ giác đều có cạnh đáy $10$ m và chiều cao $12$ m. Tính diện tích xung quanh của mái lều.',
       answer: 260,
+      unit: 'm²',
       hints: [
         'Trung đoạn là cạnh huyền của tam giác vuông có một cạnh là chiều cao, cạnh kia bằng nửa cạnh đáy.',
         '$S_{xq} = p \\cdot d$ với $p$ là nửa chu vi đáy.',
@@ -333,8 +334,9 @@ export default {
     {
       type: 'number',
       prompt:
-        'Một hình chóp tứ giác đều có cạnh đáy $10$ m và chiều cao $12$ m. Tính thể tích của nó ($\\text{m}^3$).',
+        'Một hình chóp tứ giác đều có cạnh đáy $10$ m và chiều cao $12$ m. Tính thể tích của nó.',
       answer: 400,
+      unit: 'm³',
       hints: ['$V = \\dfrac{1}{3} S \\cdot h$, đáy là hình vuông cạnh $10$ m.'],
       solution:
         '$S = 10^2 = 100\\ (\\text{m}^2)$; $V = \\dfrac{1}{3} \\cdot 100 \\cdot 12 = 400\\ (\\text{m}^3)$.',
