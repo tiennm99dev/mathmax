@@ -99,13 +99,13 @@ export default {
     },
     {
       problem:
-        'Ở tình huống mở đầu Bài 25, cửa hàng rút lần lượt hai lá phiếu từ $4$ lá ghi tên khách hàng $A, B, C, D$. Tính xác suất của biến cố $C$: "Khách hàng $A$ được nhận quà".',
+        'Ở tình huống mở đầu Bài 25, cửa hàng rút lần lượt hai lá phiếu từ $4$ lá ghi tên khách hàng $A, B, C, D$. Tính xác suất của biến cố $H$: "Khách hàng $A$ được nhận quà".',
       steps: [
         'Không gian mẫu có $n = 12$ phần tử đồng khả năng (Ví dụ 1 Bài 25).',
         '$A$ được nhận quà khi tên $A$ được rút ở lần thứ nhất hoặc lần thứ hai: $(A, B);\\ (A, C);\\ (A, D);\\ (B, A);\\ (C, A);\\ (D, A)$, nên $k = 6$.',
-        '$P(C) = \\dfrac{6}{12} = \\dfrac{1}{2}$.',
+        '$P(H) = \\dfrac{6}{12} = \\dfrac{1}{2}$.',
       ],
-      answer: '$P(C) = \\dfrac{1}{2}$.',
+      answer: '$P(H) = \\dfrac{1}{2}$.',
     },
   ],
   practice: [

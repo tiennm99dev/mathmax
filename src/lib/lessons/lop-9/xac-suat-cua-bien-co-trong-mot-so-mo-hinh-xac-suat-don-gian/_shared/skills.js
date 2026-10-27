@@ -69,7 +69,7 @@ export const khongGianMau = countsAsNaturals({
         hints: [
           back
             ? 'Thẻ được trả lại, nên lần thứ hai vẫn có đủ số thẻ như lần đầu.'
-            : 'Sau lần rút đầu, trong hộp còn ít hơn một thẻ.',
+            : 'Thẻ đã rút không được trả lại, nên lần thứ hai trong hộp bớt đi một thẻ.',
         ],
         steps: [
           `Lần thứ nhất có $${m}$ kết quả.`,
@@ -241,7 +241,10 @@ export const rutThe = {
       };
     } else if (v === 2) {
       const c = int(rand, 1, m);
-      e = { phrase: `"Có một thẻ ghi số $${c}$"`, test: (a, b) => a === c || b === c };
+      e = {
+        phrase: `"Một trong hai thẻ rút ra ghi số $${c}$"`,
+        test: (a, b) => a === c || b === c,
+      };
     } else {
       const t = int(rand, 4, 2 * m - 2);
       e = { phrase: `"Tổng hai số ghi trên hai thẻ bằng $${t}$"`, test: (a, b) => a + b === t };

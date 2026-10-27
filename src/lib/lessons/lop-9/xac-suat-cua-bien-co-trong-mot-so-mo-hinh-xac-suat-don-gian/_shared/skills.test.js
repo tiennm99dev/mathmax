@@ -66,7 +66,7 @@ function solve(p) {
       test = (a, b) => (a + b) % 2 === want;
     } else if (ask.includes('"Số ghi trên thẻ thứ nhất lớn hơn số ghi trên thẻ thứ hai"')) {
       test = (a, b) => a > b;
-    } else if ((e = /"Có một thẻ ghi số \$(\d)\$"/.exec(ask))) {
+    } else if ((e = /"Một trong hai thẻ rút ra ghi số \$(\d)\$"/.exec(ask))) {
       const c = Number(e[1]);
       test = (a, b) => a === c || b === c;
     } else if ((e = /"Tổng hai số ghi trên hai thẻ bằng \$(\d+)\$"/.exec(ask))) {

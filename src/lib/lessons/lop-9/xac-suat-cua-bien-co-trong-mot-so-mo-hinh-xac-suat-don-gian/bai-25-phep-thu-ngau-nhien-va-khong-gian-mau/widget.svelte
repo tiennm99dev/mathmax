@@ -17,7 +17,7 @@
   let expId = $state(EXPERIMENTS[0].id);
   let view = $state('cay');
   let shown = $state(0);
-  let guess = $state(4);
+  let guess = $state(2);
   let trial = $state(/** @type {string[] | null} */ (null));
   let announce = $state('');
   const selectId = $props.id();
