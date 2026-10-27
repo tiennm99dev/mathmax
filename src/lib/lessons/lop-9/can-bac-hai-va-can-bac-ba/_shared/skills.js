@@ -212,3 +212,268 @@ export const canCuaThuong = {
 
 /** The skills of "Luyện tập chung" after Bài 7 and Bài 8. */
 export const SKILLS_TRANG_52 = [canBacHai, canCuaTich, canCuaThuong];
+
+/** @type {Skill} */
+export const dauCan = {
+  id: 'dau-can',
+  label: 'Bài 9. Đưa thừa số ra ngoài, vào trong dấu căn',
+  make(rand) {
+    const variant = int(rand, 0, 2);
+    const s = pick(rand, FREE);
+    if (variant === 0) {
+      // Đưa thừa số ra ngoài dấu căn: √(k²·s) = k√s.
+      const k = int(rand, 2, 9);
+      const n = k * k * s;
+      return {
+        prompt: `Đưa thừa số ra ngoài dấu căn: √${fmt(n)} = a√${s}. Tìm a.`,
+        answer: k,
+        steps: [
+          `${fmt(n)} = ${k * k} · ${s}, trong đó ${k * k} = ${k}².`,
+          `√${fmt(n)} = √(${k}² · ${s}) = ${k}√${s}.`,
+        ],
+        hints: [`Viết ${fmt(n)} thành tích của một số chính phương với ${s}.`, '√(A²B) = |A|√B.'],
+      };
+    }
+    if (variant === 1) {
+      // Đưa thừa số vào trong dấu căn, kể cả khi thừa số âm.
+      const k = int(rand, 2, 9);
+      const negative = rand() < 0.3;
+      const lead = negative ? `${MINUS}${k}` : `${k}`;
+      const root = negative ? `${MINUS}√n` : '√n';
+      return {
+        prompt: `Đưa thừa số vào trong dấu căn: ${lead}√${s} = ${root}. Tìm n.`,
+        answer: k * k * s,
+        steps: [
+          negative
+            ? `Thừa số ${MINUS}${k} âm nên giữ dấu trừ ở ngoài: ${lead}√${s} = ${MINUS}√(${k}² · ${s}).`
+            : `${k}√${s} = √(${k}² · ${s}).`,
+          `${k}² · ${s} = ${k * k} · ${s} = ${fmt(k * k * s)}.`,
+        ],
+        hints: negative
+          ? ['Với A < 0: A√B = −√(A²B).', `Bình phương ${k} rồi nhân với ${s}.`]
+          : ['Với A ≥ 0: A√B = √(A²B).', `Bình phương ${k} rồi nhân với ${s}.`],
+      };
+    }
+    // Cộng, trừ các căn đồng dạng: √(u²s) + √(v²s) − √(w²s) = (u + v − w)√s.
+    for (;;) {
+      const u = int(rand, 2, 5);
+      const v = int(rand, 2, 6);
+      const w = int(rand, 1, 6);
+      const a = u + v - w;
+      if (a === 0 || u === v || v === w || u === w) continue;
+      const [p, q, r] = [u * u * s, v * v * s, w * w * s].map(fmt);
+      const term = (/** @type {number} */ c) =>
+        c === 1 ? `√${s}` : c === -1 ? `${MINUS}√${s}` : `${intText(c)}√${s}`;
+      return {
+        prompt: `Rút gọn: √${p} + √${q} ${MINUS} √${r} = a√${s}. Tìm a.`,
+        answer: a,
+        steps: [
+          `Đưa thừa số ra ngoài dấu căn: √${p} = ${term(u)}, √${q} = ${term(v)}, √${r} = ${term(w)}.`,
+          `Cộng các căn đồng dạng: (${u} + ${v} ${MINUS} ${w})√${s} = ${term(a)}.`,
+          `Vậy a = ${intText(a)}.`,
+        ],
+        hints: [
+          `Mỗi số dưới dấu căn đều bằng ${s} nhân với một số chính phương.`,
+          'Đưa thừa số ra ngoài để có các căn đồng dạng rồi cộng, trừ hệ số.',
+        ],
+      };
+    }
+  },
+};
+
+/** @type {Skill} */
+export const rutGon = {
+  id: 'rut-gon',
+  label: 'Bài 9. Trục căn thức ở mẫu, rút gọn',
+  make(rand) {
+    const variant = int(rand, 0, 2);
+    if (variant === 0) {
+      // Trục căn thức ở mẫu: ks / √s = k√s.
+      const s = pick(rand, FREE);
+      const k = int(rand, 2, 9);
+      const num = k * s;
+      return {
+        prompt: `Trục căn thức ở mẫu: ${num}/√${s} = a√${s}. Tìm a.`,
+        answer: k,
+        steps: [
+          `Nhân cả tử và mẫu với √${s}: ${num}/√${s} = ${num}√${s} / (√${s} · √${s}) = ${num}√${s} / ${s}.`,
+          `Rút gọn ${num} : ${s} = ${k}, nên ${num}/√${s} = ${k}√${s}.`,
+        ],
+        hints: [`Nhân cả tử và mẫu với √${s}.`, `√${s} · √${s} = ${s}.`],
+      };
+    }
+    if (variant === 1) {
+      // Biểu thức liên hợp: 1/(r − √s) + 1/(r + √s) = 2r / (r² − s).
+      for (;;) {
+        const r = int(rand, 2, 6);
+        const divisors = [];
+        for (let d = 1; d <= 2 * r; d++) if ((2 * r) % d === 0) divisors.push(d);
+        const d = pick(rand, divisors);
+        const s = r * r - d;
+        if (s <= 1 || Number.isInteger(Math.sqrt(s))) continue;
+        return {
+          prompt: `Tính 1/(${r} ${MINUS} √${s}) + 1/(${r} + √${s}).`,
+          answer: (2 * r) / d,
+          steps: [
+            `Mẫu chung: (${r} ${MINUS} √${s})(${r} + √${s}) = ${r}² ${MINUS} ${s} = ${d}.`,
+            `Tử: (${r} + √${s}) + (${r} ${MINUS} √${s}) = ${2 * r}.`,
+            `Kết quả: ${2 * r} : ${d} = ${(2 * r) / d}.`,
+          ],
+          hints: [
+            `${r} ${MINUS} √${s} và ${r} + √${s} là hai biểu thức liên hợp.`,
+            'Quy đồng mẫu rồi dùng hằng đẳng thức (a − b)(a + b) = a² − b².',
+          ],
+        };
+      }
+    }
+    // (√(a²s) − √(b²s) + √(c²s)) : √s = a − b + c.
+    for (;;) {
+      const s = pick(rand, [2, 3, 5]);
+      const a = int(rand, 1, 4);
+      const b = int(rand, 2, 6);
+      const c = int(rand, 2, 6);
+      if (a === b || b === c || a === c || a - b + c === 0) continue;
+      const [p, q, r] = [a * a * s, b * b * s, c * c * s].map(fmt);
+      return {
+        prompt: `Tính (√${p} ${MINUS} √${q} + √${r}) : √${s}.`,
+        answer: a - b + c,
+        steps: [
+          `Chia từng số hạng cho √${s}: √(${p} : ${s}) ${MINUS} √(${q} : ${s}) + √(${r} : ${s}) = √${a * a} ${MINUS} √${b * b} + √${c * c}.`,
+          `= ${a} ${MINUS} ${b} + ${c} = ${intText(a - b + c)}.`,
+        ],
+        hints: [
+          'Thương của hai căn bằng căn của thương: √A : √B = √(A : B).',
+          `Hoặc đưa thừa số ra ngoài dấu căn để có các căn đồng dạng với √${s}.`,
+        ],
+      };
+    }
+  },
+};
+
+/** Non-cube factors for products of cube roots that come out whole. */
+const NON_CUBE = [2, 3, 4, 5];
+
+/** @type {Skill} */
+export const canBacBa = {
+  id: 'can-bac-ba',
+  label: 'Bài 10. Căn bậc ba và căn thức bậc ba',
+  make(rand) {
+    const variant = int(rand, 0, 3);
+    if (variant === 0 || variant === 1) {
+      // ∛ of an integer cube (variant 0) or of a decimal cube (variant 1).
+      const k = variant === 0 ? int(rand, 2, 12) : int(rand, 1, 9);
+      const negative = rand() < 0.5;
+      const sign = negative ? -1 : 1;
+      const root = variant === 0 ? sign * k : sign * dec(k, 1);
+      const cube = variant === 0 ? sign * k ** 3 : sign * dec(k ** 3, 3);
+      const cubeText = variant === 0 ? `${negative ? MINUS : ''}${fmt(k ** 3)}` : t(cube);
+      const arg = negative ? `(${cubeText})` : cubeText;
+      const rootText = variant === 0 ? intText(root) : t(root);
+      const base = negative ? `(${rootText})` : rootText;
+      return {
+        prompt: `Tính ∛${arg}.`,
+        answer: root,
+        steps: [
+          `Tìm số có lập phương bằng ${cubeText}.`,
+          `${base}³ = ${cubeText}, nên ∛${arg} = ${rootText}.`,
+        ],
+        hints: [
+          negative
+            ? 'Căn bậc ba của một số âm là một số âm.'
+            : 'Tìm số x sao cho x³ bằng số dưới dấu căn.',
+          variant === 0 ? `Thử các lập phương 2³ = 8, 3³ = 27, 4³ = 64, …` : `${k}³ = ${k ** 3}.`,
+        ],
+      };
+    }
+    if (variant === 2) {
+      // ∛(su³) · ∛(s²v³) = ∛((suv)³) = suv.
+      const s = pick(rand, NON_CUBE);
+      const u = int(rand, 1, 3);
+      const v = int(rand, 1, 3);
+      const a = s * u ** 3;
+      const b = s * s * v ** 3;
+      const k = s * u * v;
+      return {
+        prompt: `Tính ∛${fmt(a)} · ∛${fmt(b)}.`,
+        answer: k,
+        steps: [
+          `∛${fmt(a)} · ∛${fmt(b)} = ∛(${fmt(a)} · ${fmt(b)}) = ∛${fmt(a * b)}.`,
+          `${fmt(a * b)} = ${k}³, nên kết quả là ${k}.`,
+        ],
+        hints: [
+          'Từng căn không khai được, nhưng tích của chúng thì được.',
+          'Dùng tính chất ∛a · ∛b = ∛(ab).',
+        ],
+      };
+    }
+    // Giải phương trình ∛(ax + b) = c bằng cách lập phương hai vế.
+    for (;;) {
+      const a = int(rand, 1, 5) * pick(rand, [1, -1]);
+      const c = int(rand, -4, 4);
+      const x = int(rand, -9, 9);
+      const b = c ** 3 - a * x;
+      if (c === 0 || b === 0 || Math.abs(b) > 99) continue;
+      const lhs = linText(a, b);
+      const ax = c ** 3 - b;
+      return {
+        prompt: `Tìm x, biết ∛(${lhs}) = ${intText(c)}.`,
+        answer: x,
+        steps: [
+          `Lập phương hai vế: ${lhs} = ${c < 0 ? `(${intText(c)})` : c}³ = ${intText(c ** 3)}.`,
+          `${linText(a, 0)} = ${intText(ax)}, nên x = ${intText(ax)} : ${a < 0 ? `(${intText(a)})` : a} = ${intText(x)}.`,
+        ],
+        hints: ['Với mọi A: (∛A)³ = A.', 'Lập phương hai vế để mất dấu căn.'],
+      };
+    }
+  },
+};
+
+/** @type {Skill} */
+export const thucTe = {
+  id: 'thuc-te',
+  label: 'Vận dụng: bài toán thực tế',
+  make(rand) {
+    const variant = int(rand, 0, 2);
+    if (variant === 0) {
+      const k = int(rand, 6, 30);
+      return {
+        prompt: `Một mảnh vườn hình vuông có diện tích ${fmt(k * k)} m². Tính chu vi mảnh vườn theo mét.`,
+        answer: 4 * k,
+        unit: 'm',
+        steps: [
+          `Cạnh mảnh vườn dài √${fmt(k * k)} = ${k} (m).`,
+          `Chu vi: 4 · ${k} = ${4 * k} (m).`,
+        ],
+        hints: ['Diện tích hình vuông bằng bình phương cạnh.', 'Tìm cạnh bằng căn bậc hai.'],
+      };
+    }
+    if (variant === 1) {
+      const k = int(rand, 3, 20);
+      return {
+        prompt: `Một bể nước hình lập phương chứa đầy được ${fmt(k ** 3)} lít nước. Tính độ dài cạnh của bể theo đềximét (1 lít = 1 dm³).`,
+        answer: k,
+        unit: 'dm',
+        steps: [
+          `Thể tích bể là ${fmt(k ** 3)} dm³ = a³, với a là cạnh bể.`,
+          `a = ∛${fmt(k ** 3)} = ${k} (dm).`,
+        ],
+        hints: ['Thể tích hình lập phương bằng lập phương của cạnh.', 'Tìm cạnh bằng căn bậc ba.'],
+      };
+    }
+    const time = int(rand, 2, 9);
+    const h = 5 * time * time;
+    return {
+      prompt: `Thời gian t (giây) để một vật rơi tự do từ độ cao h (mét) chạm đất được tính gần đúng bởi t = √(h/5). Vật rơi từ độ cao ${h} m thì sau bao nhiêu giây chạm đất?`,
+      answer: time,
+      unit: 's',
+      steps: [`Thay h = ${h}: t = √(${h}/5) = √${time * time}.`, `t = ${time} (giây).`],
+      hints: ['Thay h vào công thức.', `Tính ${h} : 5 trước rồi khai căn.`],
+    };
+  },
+};
+
+/** The skills of "Luyện tập chung" after Bài 9 and Bài 10. */
+export const SKILLS_TRANG_63 = [dauCan, rutGon, canBacBa];
+
+/** Every skill of the chapter, for "Bài tập cuối chương 3". */
+export const CHAPTER_SKILLS = [...SKILLS_TRANG_52, ...SKILLS_TRANG_63, thucTe];
