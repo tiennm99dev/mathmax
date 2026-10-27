@@ -15,7 +15,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Giả sử phương trình $ax^2 + bx + c = 0$ $(a \\ne 0)$ có hai nghiệm $x_1 = \\dfrac{-b + \\sqrt{\\Delta}}{2a}$ và $x_2 = \\dfrac{-b - \\sqrt{\\Delta}}{2a}$ (khi $\\Delta = 0$, hai nghiệm trùng nhau). Cộng và nhân hai nghiệm, ta được $$x_1 + x_2 = \\dfrac{-2b}{2a} = -\\dfrac{b}{a}, \\qquad x_1 x_2 = \\dfrac{b^2 - \\Delta}{4a^2} = \\dfrac{4ac}{4a^2} = \\dfrac{c}{a}.$$',
+          text: 'Giả sử phương trình $ax^2 + bx + c = 0$ $(a \\ne 0)$ có hai nghiệm $x_1 = \\dfrac{-b + \\sqrt{\\Delta}}{2a}$ và $x_2 = \\dfrac{-b - \\sqrt{\\Delta}}{2a}$ (khi $\\Delta = 0$, hai nghiệm trùng nhau). Cộng và nhân hai nghiệm, ta được $$x_1 + x_2 = \\dfrac{-2b}{2a} = -\\dfrac{b}{a},$$ $$x_1 x_2 = \\dfrac{b^2 - \\Delta}{4a^2} = \\dfrac{4ac}{4a^2} = \\dfrac{c}{a}.$$',
         },
         {
           type: 'callout',

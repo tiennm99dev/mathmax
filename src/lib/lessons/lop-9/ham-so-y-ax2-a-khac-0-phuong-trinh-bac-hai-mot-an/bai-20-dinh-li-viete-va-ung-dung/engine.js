@@ -55,15 +55,17 @@ export function vieteTex(a, x1, x2) {
  * @param {number} c
  */
 export function quickRootNote(a, b, c) {
+  /** @param {number} v */
+  const op = (v) => (v < 0 ? `(${numText(v)})` : numText(v));
   const notes = [];
   if (clean(a + b + c) === 0) {
     notes.push(
-      `a + b + c = ${numText(a)} + (${numText(b)}) + (${numText(c)}) = 0, nên x₁ = 1 và x₂ = c/a = ${numText(clean(c / a))}.`,
+      `a + b + c = ${numText(a)} + ${op(b)} + ${op(c)} = 0, nên phương trình có một nghiệm là 1, nghiệm còn lại là c/a = ${numText(clean(c / a))}.`,
     );
   }
   if (clean(a - b + c) === 0) {
     notes.push(
-      `a − b + c = ${numText(a)} − (${numText(b)}) + (${numText(c)}) = 0, nên x₁ = −1 và x₂ = −c/a = ${numText(clean(-c / a))}.`,
+      `a − b + c = ${numText(a)} − ${op(b)} + ${op(c)} = 0, nên phương trình có một nghiệm là −1, nghiệm còn lại là −c/a = ${numText(clean(-c / a))}.`,
     );
   }
   return notes.join(' ');

@@ -31,8 +31,10 @@ describe('Viète from the roots', () => {
   });
 
   it('notices a + b + c = 0 and a − b + c = 0', () => {
-    expect(quickRootNote(2, -7, 5)).toContain('x₂ = c/a = 2,5');
-    expect(quickRootNote(1, 3, 2)).toContain('x₁ = −1');
+    expect(quickRootNote(2, -7, 5)).toBe(
+      'a + b + c = 2 + (−7) + 5 = 0, nên phương trình có một nghiệm là 1, nghiệm còn lại là c/a = 2,5.',
+    );
+    expect(quickRootNote(1, 3, 2)).toContain('một nghiệm là −1, nghiệm còn lại là −c/a = −2');
     expect(quickRootNote(1, -5, 6)).toBe('');
   });
 

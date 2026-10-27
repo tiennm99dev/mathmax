@@ -36,6 +36,16 @@
   const x = $derived(Math.max(-xLimit, Math.min(xLimit, Math.round(toX(handle.x) * 2) / 2)));
   const y = $derived(valueAt(a, x));
 
+  // When a larger |a| shrinks the range, pull the handle in with the shown
+  // point, so the next arrow press moves M at once.
+  $effect(() => {
+    const hx = toX(handle.x);
+    if (Math.abs(hx) > xLimit + 1e-9) {
+      handle.x = mx(Math.sign(hx) * xLimit);
+      handle.y = my(valueAt(a, Math.sign(hx) * xLimit));
+    }
+  });
+
   const snap = (/** @type {{ x: number, y: number }} */ p) => {
     const v = Math.max(-xLimit, Math.min(xLimit, Math.round(toX(p.x) * 2) / 2));
     return { x: mx(v), y: my(valueAt(a, v)) };
@@ -135,9 +145,9 @@
       stroke-width="2.5"
     />
     <text
-      x={mx(target.x) + (target.x < 0 ? 9 : -9)}
-      y={my(target.y) + 20}
-      text-anchor={target.x < 0 ? 'start' : 'end'}
+      x={mx(target.x) + (target.x < 0 ? -9 : 9)}
+      y={my(target.y) + (target.y > 0 ? 20 : -10)}
+      text-anchor={target.x < 0 ? 'end' : 'start'}
       font-size="12"
       font-weight="700"
       fill={met ? '#059669' : TARGET}>A({numText(target.x)}; {numText(target.y)})</text

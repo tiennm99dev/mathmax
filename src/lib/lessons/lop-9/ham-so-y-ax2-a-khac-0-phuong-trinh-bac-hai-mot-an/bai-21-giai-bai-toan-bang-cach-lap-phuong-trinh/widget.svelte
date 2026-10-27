@@ -76,7 +76,7 @@
   const m = $derived(measure(problem, x));
   const roots = $derived(rootsOf(problem));
   const open = $derived(Boolean(opened[problem.id]) || m.ok);
-  const span = $derived(problem.id === 'vuon' ? 15 : 50);
+  const span = $derived(problem.id === 'vuon' ? 15 : 60);
   /** Position on the roots line, 20..360. @param {number} v */
   const lx = (v) => 190 + (v / span) * 170;
   const ticks = $derived(
