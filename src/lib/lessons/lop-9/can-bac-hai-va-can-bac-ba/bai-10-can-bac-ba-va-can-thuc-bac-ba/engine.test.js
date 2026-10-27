@@ -18,6 +18,7 @@ describe('cube roots', () => {
     expect(cubeSentence(64)).toContain('cạnh 4');
     expect(cubeSentence(10)).toContain('∛10 ≈ 2,154');
     expect(cubeSentence(-10)).toContain('số âm');
+    expect(cubeSentence(-20)).toContain('Số −20 không là lập phương');
     expect(cubeSentence(0)).toContain('Căn bậc ba của 0 là 0');
   });
 

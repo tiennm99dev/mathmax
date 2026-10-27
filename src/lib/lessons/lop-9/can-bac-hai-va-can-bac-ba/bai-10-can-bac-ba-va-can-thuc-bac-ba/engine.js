@@ -49,7 +49,7 @@ export function cubeSentence(a) {
   }
   const v = rootValue(r);
   const sign = a < 0 ? 'âm' : 'dương';
-  return `${cbrtText(a)} ${v.sign} ${v.text}. ${fmt(Math.abs(a))} không là lập phương của số nguyên nào, nhưng vẫn có đúng một căn bậc ba; nó là số ${sign}, cùng dấu với ${intText(a)}.`;
+  return `${cbrtText(a)} ${v.sign} ${v.text}. Số ${intText(a)} không là lập phương của số nguyên nào, nhưng vẫn có đúng một căn bậc ba; nó là số ${sign}, cùng dấu với ${intText(a)}.`;
 }
 
 /**
