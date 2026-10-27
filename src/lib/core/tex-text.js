@@ -147,6 +147,9 @@ const SYMBOLS = {
   qquad: ' ',
   enspace: ' ',
   '!': '',
+  square: ' ô trống ',
+  Box: ' ô trống ',
+  boxempty: ' ô trống ',
 };
 
 /** Commands whose one argument is shown as it is. */
@@ -272,6 +275,17 @@ const SUB = /** @type {Record<string, string>} */ ({
  */
 function atom(s) {
   return /^[\p{L}\p{N}.,′²³]*$/u.test(s) || /^\(.*\)$/.test(s) ? s : `(${s})`;
+}
+
+/**
+ * Text for a denominator: like `atom`, but a product that starts with a
+ * number (`6x²`, `2π`) is bracketed too, so `1/(6x²)` is not heard as
+ * `1/6 · x²`. Names made of letters only (`AB`, `x`) stay bare.
+ * @param {string} s
+ */
+function denominator(s) {
+  const bare = atom(s);
+  return bare === s && /\p{N}[.,\p{N}]*[\p{L}′]/u.test(s) ? `(${s})` : bare;
 }
 
 /**
@@ -429,7 +443,7 @@ class Reader {
     if (name === 'frac' || name === 'dfrac' || name === 'tfrac' || name === 'cfrac') {
       const a = this.arg();
       const b = this.arg();
-      return `${atom(a)}/${atom(b)}`;
+      return `${atom(a)}/${denominator(b)}`;
     }
     if (name === 'sqrt') {
       const index = this.optArg();
@@ -477,7 +491,8 @@ class Reader {
  * A linear Unicode form of TeX source for screen readers and speech:
  * `\sqrt{144}` → `√144`, `\frac{3}{4}` → `3/4`, `x^2` → `x²`, `-1` → `−1`,
  * `10\times` → `10×`, `90^\circ` → `90°`, `3{,}5` → `3,5`,
- * `\widehat{ABC}` → `góc ABC`. Spacing commands become spaces; layout-only
+ * `\widehat{ABC}` → `góc ABC`, `\frac{1}{6x^2}` → `1/(6x²)`,
+ * `\square` → `ô trống` (a blank to fill). Spacing commands become spaces; layout-only
  * commands (`\left`, `\displaystyle`) are dropped.
  * @param {string} tex
  * @returns {string}

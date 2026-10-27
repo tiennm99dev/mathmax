@@ -27,6 +27,15 @@ describe('texText', () => {
     ['25\\%', '25%'],
     ['A \\cap B = \\emptyset', 'A∩B=∅'],
     ['\\sin x', 'sin x'],
+    ['3 + \\square = 5', '3+ ô trống =5'],
+    ['\\Box - 2', 'ô trống −2'],
+    ['\\frac{1}{6x^2}', '1/(6x²)'],
+    ['\\frac{5}{2\\pi}', '5/(2π)'],
+    ['\\frac{6x^2}{3}', '6x²/3'],
+    ['\\frac{AB}{CD}', 'AB/CD'],
+    ['\\frac{1}{x^2}', '1/x²'],
+    ['\\frac{3}{4,5}', '3/4,5'],
+    ['\\frac{1}{\\frac{2}{3}}', '1/(2/3)'],
   ])('%s → %s', (tex, text) => {
     expect(texText(tex)).toBe(text);
   });
