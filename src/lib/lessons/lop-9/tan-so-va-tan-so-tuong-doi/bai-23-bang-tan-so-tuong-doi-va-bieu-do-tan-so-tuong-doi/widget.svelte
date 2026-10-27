@@ -13,6 +13,7 @@
     relativeRows,
     roundedText,
     scaleFactor,
+    scaleText,
   } from './engine.js';
 
   let which = $state(/** @type {string | number} */ (0));
@@ -128,7 +129,11 @@
   {#if k !== null}
     <FeedbackNote
       tone="ok"
-      text={`Mọi tần số đều gấp ${k} lần, cỡ mẫu cũng gấp ${k} lần, nên mọi tần số tương đối giữ nguyên: biểu đồ tần số tương đối không đổi, chỉ biểu đồ tần số thay đổi.`}
+      text={scaleText(
+        k,
+        set.counts.reduce((s, m) => s + m, 0),
+        n,
+      )}
     />
   {/if}
 

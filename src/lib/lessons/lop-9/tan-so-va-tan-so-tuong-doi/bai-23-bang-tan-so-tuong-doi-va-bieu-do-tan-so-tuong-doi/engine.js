@@ -4,7 +4,7 @@
  * the widget tells when scaling every frequency left the relative ones alone.
  */
 
-import { formatNumber } from '#lib/core/number-format.js';
+import { formatNumber, texNumber } from '#lib/core/number-format.js';
 
 /** @typedef {{ label: string, values: string[], counts: number[], unit: string }} Dataset */
 
@@ -84,4 +84,18 @@ export function scaleFactor(counts, original) {
   const k = counts[0] / original[0];
   if (!(k > 0) || k === 1) return null;
   return counts.every((m, i) => Math.abs(m - k * original[i]) < 1e-9) ? k : null;
+}
+
+/**
+ * Why the relative frequencies did not move when every count was multiplied
+ * by k: '... gấp 2 lần ...' or, for k = 0,5, '... nhân với 0,5 ...'.
+ * @param {number} k
+ * @param {number} n0 sample size before
+ * @param {number} n sample size now
+ */
+export function scaleText(k, n0, n) {
+  const how = Number.isInteger(k)
+    ? `Mọi tần số đều gấp ${k} lần, cỡ mẫu cũng gấp ${k} lần ($${n0}$ thành $${n}$)`
+    : `Mọi tần số đều được nhân với cùng số $${texNumber(formatNumber(k))}$, cỡ mẫu cũng vậy ($${n0}$ thành $${n}$)`;
+  return `${how}, nên mọi tần số tương đối $\\dfrac{m}{n}$ giữ nguyên: biểu đồ tần số tương đối không đổi, chỉ biểu đồ tần số thay đổi.`;
 }

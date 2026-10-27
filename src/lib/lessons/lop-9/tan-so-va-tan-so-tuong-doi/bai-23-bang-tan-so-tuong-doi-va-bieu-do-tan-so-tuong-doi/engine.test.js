@@ -7,6 +7,7 @@ import {
   relativeRows,
   roundedText,
   scaleFactor,
+  scaleText,
 } from './engine.js';
 
 describe('relative frequencies', () => {
@@ -45,5 +46,14 @@ describe('relative frequencies', () => {
     expect(scaleFactor([16, 24, 12, 8], [8, 12, 6, 4])).toBe(2);
     expect(scaleFactor([8, 12, 6, 4], [8, 12, 6, 4])).toBeNull();
     expect(scaleFactor([9, 12, 6, 4], [8, 12, 6, 4])).toBeNull();
+    expect(scaleFactor([4, 6, 3, 2], [8, 12, 6, 4])).toBe(0.5);
+  });
+
+  it('explains a scaling with the factor written the Vietnamese way', () => {
+    expect(scaleText(2, 30, 60)).toContain('gấp 2 lần');
+    const half = scaleText(0.5, 30, 15);
+    expect(half).toContain('$0{,}5$');
+    expect(half).not.toContain('0.5');
+    katex.renderToString('0{,}5', { strict: 'error' });
   });
 });
