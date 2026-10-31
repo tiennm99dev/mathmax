@@ -113,6 +113,11 @@ describe('Solve for a system', () => {
     const many = runCas('Solve({x - y = 1, 2x - 2y = 2}, {x, y})');
     expect(none.kind === 'system' && none.count).toBe('none');
     expect(many.kind === 'system' && many.count).toBe('many');
+    expect(many.tex).toBe('\\{\\{x = x,\\ y = x - 1\\}\\}');
+    expect(runCas('Solve({x + 2y = 3, 2x + 4y = 6}, {x, y})').tex).toBe(
+      '\\{\\{x = x,\\ y = -\\dfrac{1}{2}x + \\dfrac{3}{2}\\}\\}',
+    );
+    expect(runCas('Solve({2x = 4, x = 2}, {x, y})').tex).toBe('\\{\\{x = 2,\\ y = y\\}\\}');
   });
 
   it('refuses systems that are not of the first degree', () => {

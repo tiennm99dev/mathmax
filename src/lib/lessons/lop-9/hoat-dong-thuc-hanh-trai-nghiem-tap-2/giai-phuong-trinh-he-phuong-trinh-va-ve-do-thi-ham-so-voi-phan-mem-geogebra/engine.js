@@ -672,6 +672,8 @@ function exactRoots(fr) {
  * @property {'one' | 'none' | 'many'} count
  * @property {Root | null} x
  * @property {Root | null} y
+ * @property {{ a: number, b: number, c: number } | null} line with many solutions, the
+ *   equation ax + by = c both equations reduce to (null when both read 0 = 0)
  * @property {Equation[]} equations
  */
 
@@ -734,7 +736,14 @@ export function solveSystem(eqs) {
   if (Math.abs(D) > 1e-12 * scale * scale) {
     const x = (p.c * q.b - q.c * p.b) / D;
     const y = (p.a * q.c - q.a * p.c) / D;
-    return { kind: 'system', count: 'one', x: floatRoot(x), y: floatRoot(y), equations: eqs };
+    return {
+      kind: 'system',
+      count: 'one',
+      x: floatRoot(x),
+      y: floatRoot(y),
+      line: null,
+      equations: eqs,
+    };
   }
   // Same left sides up to a factor: compare the ranks with the right sides.
   const Dx = p.c * q.b - q.c * p.b;
@@ -742,7 +751,15 @@ export function solveSystem(eqs) {
   const empty = rows.some((r) => r.a === 0 && r.b === 0 && Math.abs(r.c) > 0);
   const many =
     !empty && Math.abs(Dx) < 1e-12 * scale * scale && Math.abs(Dy) < 1e-12 * scale * scale;
-  return { kind: 'system', count: many ? 'many' : 'none', x: null, y: null, equations: eqs };
+  const line = many ? (rows.find((r) => r.a !== 0 || r.b !== 0) ?? null) : null;
+  return {
+    kind: 'system',
+    count: many ? 'many' : 'none',
+    x: null,
+    y: null,
+    line,
+    equations: eqs,
+  };
 }
 
 /**
@@ -838,17 +855,46 @@ function singleOutput(r, numeric, named) {
  */
 function systemOutput(r, numeric, named) {
   if (r.count === 'none') return { tex: '\\{\\}', text: 'Tập nghiệm rỗng: hệ vô nghiệm.' };
-  if (r.count === 'many')
-    return {
-      tex: '\\{\\{x = x,\\ y = \\ldots\\}\\}',
-      text: 'Hai phương trình tương đương nhau: hệ có vô số nghiệm.',
-    };
+  if (r.count === 'many') {
+    const l = r.line;
+    // GeoGebra keeps one unknown free and writes the other in terms of it.
+    const [sx, sy] = !l
+      ? ['x', 'y']
+      : l.b !== 0
+        ? ['x', lineTex(-l.a / l.b, l.c / l.b)]
+        : [floatRoot(l.c / l.a).tex, 'y'];
+    const tex = named ? `\\{\\{x = ${sx},\\ y = ${sy}\\}\\}` : `\\{\\{${sx},\\ ${sy}\\}\\}`;
+    const which = !l
+      ? 'mọi cặp số $(x; y)$ đều là nghiệm'
+      : l.b !== 0
+        ? `nghiệm là mọi cặp $(x; ${sy})$ với $x$ tuỳ ý`
+        : `nghiệm là mọi cặp $(${sx}; y)$ với $y$ tuỳ ý`;
+    return { tex, text: `Hệ có vô số nghiệm: ${which}.` };
+  }
   const x = /** @type {Root} */ (r.x);
   const y = /** @type {Root} */ (r.y);
   const sx = shown(x, numeric);
   const sy = shown(y, numeric);
   const tex = named ? `\\{\\{x = ${sx},\\ y = ${sy}\\}\\}` : `\\{\\{${sx},\\ ${sy}\\}\\}`;
   return { tex, text: `Hệ có nghiệm duy nhất $(x; y) = (${sx}; ${sy})$.` };
+}
+
+/**
+ * `kx + m` as TeX with exact coefficients where possible: '2x - 1', '-\\dfrac{1}{2}x + 3'.
+ * @param {number} k @param {number} m
+ */
+function lineTex(k, m) {
+  /** @type {string[]} */
+  const parts = [];
+  if (Math.abs(k) > 1e-12) {
+    const t = floatRoot(Math.abs(k)).tex;
+    parts.push(`${k < 0 ? '-' : ''}${t === '1' ? '' : t}x`);
+  }
+  if (Math.abs(m) > 1e-12 || !parts.length) {
+    const t = floatRoot(Math.abs(m)).tex;
+    parts.push(parts.length ? `${m < 0 ? '-' : '+'} ${t}` : `${m < 0 ? '-' : ''}${t}`);
+  }
+  return parts.join(' ');
 }
 
 // ------------------------------------------------------------------ checking tasks

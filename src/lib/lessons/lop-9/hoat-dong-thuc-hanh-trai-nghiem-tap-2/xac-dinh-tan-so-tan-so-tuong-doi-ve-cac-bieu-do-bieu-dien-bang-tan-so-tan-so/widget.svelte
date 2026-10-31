@@ -154,6 +154,24 @@
         tone: /** @type {const} */ ('info'),
         text: `Chọn ô E${FIRST_ROW}, gõ =COUNTIF(${lay.dataRange};D${FIRST_ROW}) rồi bấm "Nhập". Sau đó sao chép công thức xuống các ô bên dưới.`,
       };
+    // A wrong cell is explained first; a cell right only by luck comes next.
+    const wrong = formulaCells.find((a) => status[a] === false);
+    if (wrong) {
+      const v = ev.value(wrong);
+      const f = formulas[wrong];
+      let why = `Ô ${wrong} hiện ${shown(wrong) || 'trống'}, chưa đúng.`;
+      if (typeof v === 'string' && v.startsWith('#'))
+        why += ` Lỗi ${v}: ${v === '#NAME?' ? 'tên hàm viết sai' : v === '#DIV/0!' ? 'chia cho ô trống hoặc bằng 0' : 'công thức hoặc ô tham chiếu chưa hợp lệ'}.`;
+      else if (wrong.startsWith('E') && loose(f) && Number(wrong.slice(1)) > FIRST_ROW)
+        why += ` Vùng dữ liệu đã trượt khi sao chép; viết ${lay.dataRange} để cố định vùng.`;
+      else if (wrong.startsWith('F') && f && !f.includes('$') && Number(wrong.slice(1)) > FIRST_ROW)
+        why += ` Ô tổng E${lay.totalRow} cần được cố định: $E$${lay.totalRow}.`;
+      else if (wrong.startsWith('F')) why += ' Tần số tương đối = tần số : tổng số.';
+      return {
+        tone: /** @type {const} */ ('warn'),
+        text: `${right}/${formulaCells.length} ô đúng. ${why}`,
+      };
+    }
     const lucky = formulaCells.find(
       (a) =>
         a.startsWith('E') &&
@@ -172,23 +190,6 @@
         tone: /** @type {const} */ ('ok'),
         text: `Bảng đúng hết ${formulaCells.length} ô. Đổi một ô dữ liệu ở cột A: tần số, tần số tương đối và biểu đồ tự cập nhật.`,
       };
-    const wrong = formulaCells.find((a) => status[a] === false);
-    if (wrong) {
-      const v = ev.value(wrong);
-      const f = formulas[wrong];
-      let why = `Ô ${wrong} hiện ${shown(wrong) || 'trống'}, chưa đúng.`;
-      if (typeof v === 'string' && v.startsWith('#'))
-        why += ` Lỗi ${v}: ${v === '#NAME?' ? 'tên hàm viết sai' : v === '#DIV/0!' ? 'chia cho ô trống hoặc bằng 0' : 'công thức hoặc ô tham chiếu chưa hợp lệ'}.`;
-      else if (wrong.startsWith('E') && loose(f) && Number(wrong.slice(1)) > FIRST_ROW)
-        why += ` Vùng dữ liệu đã trượt khi sao chép; viết ${lay.dataRange} để cố định vùng.`;
-      else if (wrong.startsWith('F') && f && !f.includes('$') && Number(wrong.slice(1)) > FIRST_ROW)
-        why += ` Ô tổng E${lay.totalRow} cần được cố định: $E$${lay.totalRow}.`;
-      else if (wrong.startsWith('F')) why += ' Tần số tương đối = tần số : tổng số.';
-      return {
-        tone: /** @type {const} */ ('warn'),
-        text: `${right}/${formulaCells.length} ô đúng. ${why}`,
-      };
-    }
     return {
       tone: /** @type {const} */ ('info'),
       text: `${right}/${formulaCells.length} ô đúng. Còn ${formulaCells.length - filled} ô chưa có công thức.`,

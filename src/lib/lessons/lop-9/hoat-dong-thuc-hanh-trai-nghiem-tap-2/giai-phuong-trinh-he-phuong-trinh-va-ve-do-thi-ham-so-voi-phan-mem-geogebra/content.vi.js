@@ -284,15 +284,15 @@ export default {
       prompt:
         'Sắp xếp các bước tìm giao điểm của parabol $y = x^2$ và đường thẳng $y = x + 2$ bằng GeoGebra.',
       items: [
-        'Gõ y = x + 2 vào ô Nhập lệnh.',
+        'Gõ lần lượt y = x^2 và y = x + 2 vào ô Nhập lệnh để vẽ hai đồ thị.',
         'Mở GeoGebra Classic, hiện cửa sổ Đại số và Hình học.',
+        'Đọc toạ độ hai giao điểm trong cửa sổ Đại số và so sánh với nghiệm của $x^2 = x + 2$.',
         'Chọn công cụ "Giao điểm của hai đối tượng" rồi chọn hai đồ thị.',
-        'Gõ y = x^2 vào ô Nhập lệnh.',
       ],
-      answer: [1, 3, 0, 2],
-      hints: ['Phải vẽ xong cả hai đồ thị mới lấy giao điểm.'],
+      answer: [1, 0, 3, 2],
+      hints: ['Phải vẽ xong cả hai đồ thị mới lấy giao điểm, và có giao điểm rồi mới đọc toạ độ.'],
       solution:
-        'Mở GeoGebra, gõ y = x^2, gõ y = x + 2, rồi dùng công cụ giao điểm: được $(-1; 1)$ và $(2; 4)$.',
+        'Mở GeoGebra, gõ y = x^2 và y = x + 2, dùng công cụ giao điểm, rồi đọc toạ độ: được $(-1; 1)$ và $(2; 4)$, đúng với hai nghiệm $x = -1$, $x = 2$.',
     },
   ],
   takeaways: [

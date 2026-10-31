@@ -63,7 +63,10 @@
       return Math.abs(cross(a, b, c)) / 2 >= 2500;
     }
     const r = dist(next.O, next.B);
-    return inside(next.O) && inside(next.B) && inside(next.M) && r >= 30 && r <= 120;
+    // M never covers O or B, so every handle stays within reach of the pointer.
+    const apart =
+      figure !== 'tiep-tuyen-qua' || Math.min(dist(next.M, next.O), dist(next.M, next.B)) >= 16;
+    return inside(next.O) && inside(next.B) && inside(next.M) && r >= 30 && r <= 120 && apart;
   }
 
   /**
