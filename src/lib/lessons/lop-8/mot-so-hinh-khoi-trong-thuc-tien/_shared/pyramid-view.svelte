@@ -2,16 +2,12 @@
   import { focusRing } from '#lib/core/ui.js';
   import {
     circumradius,
-    clampPitch,
-    drawOrder,
     inradius,
     pathOf,
     pyramidFaces,
     pyramidMeasures,
-    turnByKey,
-    viewPoint,
-    wrapYaw,
   } from './pyramid-geometry.js';
+  import { clampPitch, drawOrder, turnByKey, viewPoint, wrapYaw } from '#lib/geom-engine/solid.js';
 
   /**
    * A regular pyramid S.(base) drawn in 3D that turns by drag or arrow keys
@@ -131,7 +127,7 @@
     return out;
   });
 
-  /** @param {import('./pyramid-geometry.js').Face} face */
+  /** @param {import('#lib/geom-engine/solid.js').Face} face */
   function fillOf(face) {
     if (face.id === highlight) return MARK;
     return face.kind === 'side' ? SIDE : BASE;

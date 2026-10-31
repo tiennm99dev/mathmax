@@ -6,10 +6,14 @@ import {
   int,
   isDone,
   nextPhase,
+  nonZero,
   partition,
   readAnswer,
+  retryMake,
   rng,
+  rounded,
   shuffle,
+  signedInt,
   skillMap,
   splitUnit,
   withUnit,
@@ -199,5 +203,37 @@ describe('partition', () => {
   it('gives n itself for one part and all ones for n parts', () => {
     expect(partition(rng(1), 9, 1)).toEqual([9]);
     expect(partition(rng(1), 5, 5)).toEqual([1, 1, 1, 1, 1]);
+  });
+});
+
+describe('nonZero and signedInt', () => {
+  it('never gives 0 and stays in range', () => {
+    const r = rng(3);
+    for (let t = 0; t < 300; t++) {
+      const n = nonZero(r, -2, 2);
+      const s = signedInt(r, 2, 4);
+      expect(n !== 0 && n >= -2 && n <= 2).toBe(true);
+      expect(Math.abs(s) >= 2 && Math.abs(s) <= 4).toBe(true);
+    }
+  });
+
+  it('gives both signs', () => {
+    const r = rng(5);
+    const signs = new Set(Array.from({ length: 50 }, () => Math.sign(signedInt(r, 1, 3))));
+    expect(signs).toEqual(new Set([-1, 1]));
+  });
+});
+
+describe('rounded and retryMake', () => {
+  it('rounds unless the value sits on a rounding half', () => {
+    expect(rounded(6.2832, 2)).toBe(6.28);
+    expect(rounded(109.899, 0)).toBe(110);
+    expect(rounded(2.25, 1)).toBeNull();
+    expect(rounded(1.005, 2)).toBeNull();
+  });
+
+  it('calls a maker until it gives a value', () => {
+    let calls = 0;
+    expect(retryMake(() => (++calls < 3 ? null : calls))).toBe(3);
   });
 });

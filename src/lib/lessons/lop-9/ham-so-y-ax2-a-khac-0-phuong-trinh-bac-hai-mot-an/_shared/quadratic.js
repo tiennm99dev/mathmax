@@ -6,15 +6,10 @@
  */
 
 import { numTex, polyTex, polyText } from '#lib/algebra-engine/polynomial.js';
+import { tidy } from '#lib/core/number-format.js';
 
-/**
- * Rounds away floating-point noise so 0,1 + 0,2 compares equal to 0,3.
- * @param {number} v
- */
-export function clean(v) {
-  const r = Math.round(v * 1e9) / 1e9;
-  return Object.is(r, -0) ? 0 : r;
-}
+/** Rounds away floating-point noise (`tidy` in `number-format.js`). */
+export const clean = tidy;
 
 /**
  * The discriminant Δ = b² − 4ac.

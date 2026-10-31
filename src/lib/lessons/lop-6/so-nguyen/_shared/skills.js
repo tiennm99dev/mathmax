@@ -4,23 +4,10 @@
  * with `readInteger` and writes them with `intText`.
  */
 
-import { int, pick, shuffle } from '#lib/core/drill.js';
+import { int, nonZero, pick, shuffle } from '#lib/core/drill.js';
 import { intText, operand } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /** @type {Skill} */
 export const tapHopSoNguyen = {

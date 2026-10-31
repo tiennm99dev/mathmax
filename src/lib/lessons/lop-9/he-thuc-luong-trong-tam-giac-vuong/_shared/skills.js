@@ -9,7 +9,7 @@
  * Prompts and steps are plain text with the book's decimal comma.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, pick, retryMake, rounded } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
 import { formatFixed } from '#lib/core/number-format.js';
 
@@ -24,20 +24,6 @@ const deg = (/** @type {number} */ r) => r / RAD;
 
 /** A number as the book writes it in plain text: '0,6', '12/13', '7'. */
 const t = (/** @type {number} */ v) => numberText(v);
-
-/**
- * `value` rounded to `places` decimals as an exact-as-typed double, or null
- * when it lies within 1 % of a unit of the last place from a rounding
- * boundary.
- * @param {number} value
- * @param {number} places
- */
-export function rounded(value, places) {
-  const scaled = value * 10 ** places;
-  const frac = scaled - Math.floor(scaled);
-  if (Math.abs(frac - 0.5) < 0.01) return null;
-  return Math.round(scaled) / 10 ** places;
-}
 
 /** A rounded length with its last place kept: (22, 1) → '22,0'. */
 const fx = (/** @type {number} */ v, /** @type {number} */ places) => formatFixed(v, places);
@@ -62,19 +48,6 @@ export const TRIPLES = [
   [20, 21, 29],
   [12, 16, 20],
 ];
-
-/**
- * Retries `make` until it returns a question (it returns null on a value too
- * close to a rounding boundary).
- * @param {() => Made | null} make
- * @returns {Made}
- */
-function retry(make) {
-  for (;;) {
-    const q = make();
-    if (q) return q;
-  }
-}
 
 /** @type {Skill} */
 export const tiSo = {
@@ -236,7 +209,7 @@ export const mayTinh = {
   id: 'may-tinh',
   label: 'Bài 11. Dùng máy tính cầm tay',
   make(rand) {
-    return retry(() => {
+    return retryMake(() => {
       if (rand() < 0.5) {
         const a = int(rand, 5, 85);
         const name = pick(rand, /** @type {const} */ (['sin', 'cos', 'tan', 'cot']));
@@ -280,7 +253,7 @@ export const heThuc = {
   id: 'he-thuc',
   label: 'Bài 12. Hệ thức giữa cạnh và góc',
   make(rand) {
-    return retry(() => {
+    return retryMake(() => {
       const B = int(rand, 20, 70);
       const C = 90 - B;
       const s = int(rand, 5, 30);
@@ -351,7 +324,7 @@ export const giaiTamGiac = {
   id: 'giai-tam-giac',
   label: 'Bài 12. Giải tam giác vuông',
   make(rand) {
-    return retry(() => {
+    return retryMake(() => {
       const variant = int(rand, 0, 2);
       const ask = pick(rand, ['B', 'C']);
       if (variant === 0) {
@@ -404,7 +377,7 @@ export const thucTe = {
   id: 'thuc-te',
   label: 'Bài 12. Ứng dụng thực tế',
   make(rand) {
-    return retry(() => {
+    return retryMake(() => {
       const variant = int(rand, 0, 4);
       if (variant === 0) {
         const eye = pick(rand, [1.5, 1.6, 1.2]);

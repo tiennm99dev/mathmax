@@ -1,15 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { polygonArea } from '#lib/geom-engine/plane.js';
-import {
-  drawOrder,
-  facesViewer,
-  measures,
-  perimeter,
-  prismFaces,
-  rectBase,
-  viewCentre,
-  viewPoint,
-} from './prism-geometry.js';
+import { drawOrder, facesViewer, viewPoint } from '#lib/geom-engine/solid.js';
+import { measures, perimeter, prismFaces, rectBase, viewCentre } from './prism-geometry.js';
 
 const close = (/** @type {number} */ a, /** @type {number} */ b) => expect(a).toBeCloseTo(b, 9);
 

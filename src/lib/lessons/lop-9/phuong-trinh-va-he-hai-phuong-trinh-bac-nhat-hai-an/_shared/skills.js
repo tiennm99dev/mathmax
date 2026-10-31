@@ -6,35 +6,12 @@
  * book's minus sign and the pair notation (x; y).
  */
 
-import { int, pick, shuffle } from '#lib/core/drill.js';
+import { int, nonZero, pick, shuffle, signedInt } from '#lib/core/drill.js';
 import { MINUS, fmt, intText, operand } from '#lib/core/number-format.js';
 import { eqText, linText, pairText, substituteText } from '#lib/core/algebra-text.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-export function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
-
-/**
- * An integer whose size is from lo to hi, with a random sign.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function signed(rand, lo, hi) {
-  return int(rand, lo, hi) * (rand() < 0.5 ? -1 : 1);
-}
 
 /**
  * A term with a letter coefficient next to a number term, as plain text:
@@ -60,8 +37,8 @@ export const phuongTrinh = {
   make(rand) {
     const variant = int(rand, 0, 2);
     if (variant === 0) {
-      const a = signed(rand, 1, 5);
-      const b = signed(rand, 1, 5);
+      const a = signedInt(rand, 1, 5);
+      const b = signedInt(rand, 1, 5);
       const x0 = int(rand, -5, 5);
       const y0 = nonZero(rand, -6, 6);
       const c = a * x0 + b * y0;
@@ -81,9 +58,9 @@ export const phuongTrinh = {
       };
     }
     if (variant === 1) {
-      const m = signed(rand, 1, 6);
-      const b = signed(rand, 1, 5);
-      const x0 = signed(rand, 2, 4);
+      const m = signedInt(rand, 1, 6);
+      const b = signedInt(rand, 1, 5);
+      const x0 = signedInt(rand, 2, 4);
       const y0 = nonZero(rand, -5, 5);
       const c = m * x0 + b * y0;
       const rest = c - b * y0;
@@ -101,8 +78,8 @@ export const phuongTrinh = {
         ],
       };
     }
-    const a = signed(rand, 1, 5);
-    const b = signed(rand, 1, 4);
+    const a = signedInt(rand, 1, 5);
+    const b = signedInt(rand, 1, 4);
     const k = nonZero(rand, -6, 6);
     const c = b * k;
     return {
@@ -129,10 +106,10 @@ export const phuongTrinh = {
  */
 function system(rand, lo, hi) {
   for (;;) {
-    const a1 = signed(rand, lo, hi);
-    const b1 = signed(rand, lo, hi);
-    const a2 = signed(rand, lo, hi);
-    const b2 = signed(rand, lo, hi);
+    const a1 = signedInt(rand, lo, hi);
+    const b1 = signedInt(rand, lo, hi);
+    const a2 = signedInt(rand, lo, hi);
+    const b2 = signedInt(rand, lo, hi);
     if (a1 * b2 - a2 * b1 === 0) continue;
     const x0 = int(rand, -6, 6);
     const y0 = int(rand, -6, 6);
@@ -183,10 +160,10 @@ export const heThe = {
   label: 'Bài 2. Phương pháp thế',
   make(rand) {
     for (;;) {
-      const a1 = signed(rand, 1, 5);
+      const a1 = signedInt(rand, 1, 5);
       const s = rand() < 0.5 ? 1 : -1;
-      const a2 = signed(rand, 1, 5);
-      const b2 = signed(rand, 1, 5);
+      const a2 = signedInt(rand, 1, 5);
+      const b2 = signedInt(rand, 1, 5);
       // y = αx + β from the first equation a1·x + s·y = c1.
       const alpha = -s * a1;
       const k = a2 + b2 * alpha;

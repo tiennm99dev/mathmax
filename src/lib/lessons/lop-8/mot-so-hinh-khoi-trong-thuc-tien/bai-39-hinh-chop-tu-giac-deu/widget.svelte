@@ -4,17 +4,13 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
   import {
-    clampPitch,
-    drawOrder,
     invertedPyramid,
     num,
     pathOf,
     pyramidLevel,
     squareBox,
-    turnByKey,
-    viewPoint,
-    wrapYaw,
   } from '../_shared/pyramid-geometry.js';
+  import { clampPitch, drawOrder, turnByKey, viewPoint, wrapYaw } from '#lib/geom-engine/solid.js';
 
   /**
    * The "rót nước" experiment: a pyramid container (apex down) and a box with

@@ -2,7 +2,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { along, directionTo, labelAt, sector, wedge } from '../_shared/triangle-math.js';
+  import { along, directionTo } from '#lib/core/visuals/angle-math.js';
+  import { labelAt, sector, wedge } from '../_shared/triangle-math.js';
   import { placeVertex, readings } from './engine.js';
 
   const W = 400;

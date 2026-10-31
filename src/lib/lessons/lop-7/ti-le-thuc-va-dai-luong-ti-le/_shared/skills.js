@@ -7,15 +7,9 @@
 
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { intText, operand as termText } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-const gcd = (a, b) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
 /**
  * A non-zero integer from −hi to hi.

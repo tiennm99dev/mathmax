@@ -5,7 +5,7 @@
  * `valueText` from `rational.js`.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, nonZero, pick } from '#lib/core/drill.js';
 import { add, compare, div, fraction, mul, simplify, sub } from '#lib/fraction-engine/index.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
 import { sup } from '#lib/core/number-format.js';
@@ -17,17 +17,6 @@ import { bracket, decText, fracText, writtenText } from './rational.js';
 
 /** Denominators that keep mental arithmetic reasonable. */
 const DENS = [2, 3, 4, 5, 6, 8, 9, 10, 12];
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand @param {number} lo @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * A lowest-terms fraction, not an integer, with |numerator| up to maxN.

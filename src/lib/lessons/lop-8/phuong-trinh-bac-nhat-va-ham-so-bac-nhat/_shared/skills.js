@@ -6,25 +6,13 @@
  * equation after "Phương trình: " so tests can check it.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, nonZero, pick } from '#lib/core/drill.js';
 import { fmt, intText, operand } from '#lib/core/number-format.js';
 import { numberText } from '#lib/core/decimal.js';
 import { polyText } from '#lib/algebra-engine/polynomial.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-export function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * ax + b as plain text: 3x − 5, −x, 7.
@@ -145,16 +133,6 @@ export const phuongTrinh = {
     };
   },
 };
-
-/**
- * Greatest common divisor of two positive integers.
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
-}
 
 /** @type {Skill} */
 export const lapPhuongTrinh = {

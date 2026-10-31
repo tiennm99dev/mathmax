@@ -3,7 +3,8 @@
  * đều, hình chóp tứ giác đều): the measures the book uses (nửa chu vi đáy p,
  * trung đoạn d, cạnh bên, S_xq = p · d, V = 1/3 · S · h), the faces of the
  * solid unfolded into a net, the water-filled containers of the "rót nước"
- * experiment, and an orthographic view that turns and tilts.
+ * experiment, and the screen box of the view. The turning view itself is
+ * `#lib/geom-engine/solid.js`.
  *
  * Model space is in centimetres: the base lies in the plane z = 0, centred
  * on the origin, z points up. A base polygon is listed counter-clockwise
@@ -11,31 +12,18 @@
  */
 
 import { formatNumber, fmt } from '#lib/core/number-format.js';
+import {
+  add3 as add,
+  cross3 as cross,
+  dot3 as dot,
+  mul3 as mul,
+  sub3 as sub,
+  viewPoint,
+} from '#lib/geom-engine/solid.js';
 
 /** @typedef {{ x: number, y: number }} P2 */
-/** @typedef {{ x: number, y: number, z: number }} P3 */
-/**
- * @typedef {object} Face
- * @property {string} id 'bottom', 'top' or 'side-<i>'
- * @property {'bottom' | 'top' | 'side'} kind
- * @property {number} index side index (edge i of the base), -1 otherwise
- * @property {P3[]} pts corners, counter-clockwise seen from outside the solid
- */
-
-/** @param {P3} a @param {P3} b */
-const sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
-/** @param {P3} a @param {P3} b */
-const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
-/** @param {P3} a @param {number} k */
-const mul = (a, k) => ({ x: a.x * k, y: a.y * k, z: a.z * k });
-/** @param {P3} a @param {P3} b */
-const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
-/** @param {P3} a @param {P3} b */
-const cross = (a, b) => ({
-  x: a.y * b.z - a.z * b.y,
-  y: a.z * b.x - a.x * b.z,
-  z: a.x * b.y - a.y * b.x,
-});
+/** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/solid.js').Face} Face */
 
 /**
  * How the book writes a measure: whole numbers grouped (1 200), others with
@@ -241,60 +229,6 @@ export function pyramidLevel(h, f) {
 }
 
 /**
- * Turns a model point for an orthographic view: `yaw` spins about the
- * vertical axis, `pitch` tilts the eye up above the ground (degrees).
- * Returns screen coordinates (y down) relative to the model origin and the
- * depth towards the viewer.
- * @param {P3} p
- * @param {{ yaw: number, pitch: number }} view
- */
-export function viewPoint(p, view) {
-  const a = (view.yaw * Math.PI) / 180;
-  const b = (view.pitch * Math.PI) / 180;
-  const x = p.x * Math.cos(a) - p.y * Math.sin(a);
-  const y = p.x * Math.sin(a) + p.y * Math.cos(a);
-  return {
-    x,
-    y: -(y * Math.sin(b) + p.z * Math.cos(b)),
-    depth: -y * Math.cos(b) + p.z * Math.sin(b),
-  };
-}
-
-/**
- * True when the outer side of a face is towards the viewer.
- * @param {P3[]} pts corners counter-clockwise seen from outside
- * @param {{ yaw: number, pitch: number }} view
- */
-export function facesViewer(pts, view) {
-  const v = pts.slice(0, 3).map((p) => viewPoint(p, view));
-  // Camera frame (x right, y up, depth towards the viewer) is right-handed.
-  const a = { x: v[1].x - v[0].x, y: -(v[1].y - v[0].y), z: v[1].depth - v[0].depth };
-  const b = { x: v[2].x - v[0].x, y: -(v[2].y - v[0].y), z: v[2].depth - v[0].depth };
-  return cross(a, b).z > 1e-9;
-}
-
-/**
- * Faces in drawing order (farthest first), each with its screen polygon,
- * mean depth and whether its outer side faces the viewer.
- * @param {Face[]} faces
- * @param {{ yaw: number, pitch: number }} view
- * @param {(p: { x: number, y: number }) => { x: number, y: number }} toScreen
- */
-export function drawOrder(faces, view, toScreen) {
-  return faces
-    .map((f) => {
-      const v = f.pts.map((p) => viewPoint(p, view));
-      return {
-        face: f,
-        screen: v.map((p) => toScreen(p)),
-        depth: v.reduce((s, p) => s + p.depth, 0) / v.length,
-        front: facesViewer(f.pts, view),
-      };
-    })
-    .sort((a, b) => a.depth - b.depth);
-}
-
-/**
  * Half-widths of the screen box around the projected centre that holds all
  * the points.
  * @param {P3[]} pts
@@ -332,30 +266,4 @@ export function faceName(id, names, apex = 'S') {
 /** SVG path of a closed polygon. @param {{ x: number, y: number }[]} pts */
 export function pathOf(pts) {
   return pts.map((p, i) => `${i ? 'L' : 'M'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z';
-}
-
-/** @param {number} v */
-export const clampPitch = (v) => Math.max(-5, Math.min(80, v));
-/** @param {number} v */
-export const wrapYaw = (v) => ((((v + 180) % 360) + 360) % 360) - 180;
-
-/**
- * The view after an arrow key, or null for any other key: left/right turn
- * by 10° (30° with Shift), up/down tilt.
- * @param {{ yaw: number, pitch: number }} view
- * @param {string} key
- * @param {boolean} shift
- */
-export function turnByKey(view, key, shift) {
-  const step = shift ? 30 : 10;
-  /** @type {Record<string, [number, number]>} */
-  const moves = {
-    ArrowLeft: [step, 0],
-    ArrowRight: [-step, 0],
-    ArrowUp: [0, step],
-    ArrowDown: [0, -step],
-  };
-  const m = moves[key];
-  if (!m) return null;
-  return { yaw: wrapYaw(view.yaw + m[0]), pitch: clampPitch(view.pitch + m[1]) };
 }

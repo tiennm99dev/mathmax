@@ -9,7 +9,7 @@
  * decimal comma.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, pick, retryMake, rounded } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
 import { formatFixed } from '#lib/core/number-format.js';
 import { piText } from './pi-text.js';
@@ -20,35 +20,8 @@ import { piText } from './pi-text.js';
 /** A number as the book writes it in plain text: '6,5', '7'. */
 const t = (/** @type {number} */ v) => numberText(v);
 
-/**
- * `value` rounded to `places` decimals as an exact-as-typed double, or null
- * when it lies within 1 % of a unit of the last place from a rounding
- * boundary.
- * @param {number} value
- * @param {number} places
- */
-export function rounded(value, places) {
-  const scaled = value * 10 ** places;
-  const frac = scaled - Math.floor(scaled);
-  if (Math.abs(frac - 0.5) < 0.01) return null;
-  return Math.round(scaled) / 10 ** places;
-}
-
 /** A value rounded to hundredths with both places shown: '37,70'. */
 const hundredths = (/** @type {number} */ v) => formatFixed(v, 2);
-
-/**
- * Retries `make` until it returns a question (it returns null on a value too
- * close to a rounding boundary).
- * @param {() => Made | null} make
- * @returns {Made}
- */
-function retry(make) {
-  for (;;) {
-    const q = make();
-    if (q) return q;
-  }
-}
 
 /** Pythagorean triples (leg, leg, hypotenuse). */
 export const TRIPLES = [
@@ -259,7 +232,7 @@ export const doDaiCung = {
   make(rand) {
     const variant = int(rand, 0, 2);
     if (variant === 0) {
-      return retry(() => {
+      return retryMake(() => {
         const r = int(rand, 2, 15);
         const n = 5 * int(rand, 2, 70);
         const value = (Math.PI * r * n) / 180;
@@ -312,7 +285,7 @@ export const dienTich = {
   make(rand) {
     const variant = int(rand, 0, 2);
     if (variant === 0) {
-      return retry(() => {
+      return retryMake(() => {
         const r = int(rand, 2, 12);
         const n = 5 * int(rand, 2, 70);
         const value = (Math.PI * r * r * n) / 360;
@@ -331,7 +304,7 @@ export const dienTich = {
       });
     }
     if (variant === 1) {
-      return retry(() => {
+      return retryMake(() => {
         const big = int(rand, 3, 12);
         const small = int(rand, 1, big - 1);
         const k = big * big - small * small;

@@ -9,27 +9,10 @@
  */
 
 import { formatNumber } from '#lib/core/number-format.js';
-import { norm } from '#lib/core/visuals/angle-math.js';
+import { along, directionTo, norm } from '#lib/core/visuals/angle-math.js';
 import { dist } from '#lib/geom-engine/plane.js';
 
 const RAD = Math.PI / 180;
-
-/**
- * The point at distance `r` from `o` in direction `deg`.
- * @param {Pt} o @param {number} r @param {number} deg
- * @returns {Pt}
- */
-export function along(o, r, deg) {
-  return { x: o.x + r * Math.cos(deg * RAD), y: o.y - r * Math.sin(deg * RAD) };
-}
-
-/**
- * Direction of `p` seen from `o`, in [0, 360).
- * @param {Pt} o @param {Pt} p
- */
-export function directionTo(o, p) {
-  return norm(Math.atan2(o.y - p.y, p.x - o.x) / RAD);
-}
 
 /**
  * Measure of the angle PQR (vertex Q), from 0° to 180°.
@@ -47,14 +30,6 @@ export function angleAt(p, q, r) {
  */
 export function angles(a, b, c) {
   return [angleAt(c, a, b), angleAt(a, b, c), angleAt(b, c, a)];
-}
-
-/**
- * Twice the signed area; zero when the three points are collinear.
- * @param {Pt} a @param {Pt} b @param {Pt} c
- */
-export function cross(a, b, c) {
-  return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
 }
 
 /**

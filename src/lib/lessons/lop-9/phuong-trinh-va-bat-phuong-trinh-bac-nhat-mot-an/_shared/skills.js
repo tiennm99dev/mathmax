@@ -6,35 +6,12 @@
  * book's minus sign.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, nonZero, pick, signedInt } from '#lib/core/drill.js';
 import { MINUS, fmt, intText } from '#lib/core/number-format.js';
 import { factorText, linText, signedFracText } from '#lib/core/algebra-text.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
-
-/**
- * An integer whose size is from lo to hi, with a random sign.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function signed(rand, lo, hi) {
-  return int(rand, lo, hi) * (rand() < 0.5 ? -1 : 1);
-}
 
 /**
  * `k(x − r)` written as a linear factor: k = 2, r = 3 gives '2x − 6'.
@@ -219,7 +196,7 @@ export const batDangThuc = {
     if (variant === 0) {
       const m = int(rand, -6, 8);
       const p = int(rand, 2, 6);
-      const r = signed(rand, 1, 9);
+      const r = signedInt(rand, 1, 9);
       const expr = linText(p, r);
       const value = p * m + r;
       return {
@@ -257,7 +234,7 @@ export const batDangThuc = {
       };
     }
     const k = nonZero(rand, -6, 6);
-    const c = signed(rand, 1, 9);
+    const c = signedInt(rand, 1, 9);
     const left = linText(k, c).replace(/x/, 'a');
     const right = linText(k, c).replace(/x/, 'b');
     const keeps = k > 0;
@@ -287,12 +264,12 @@ export const batPhuongTrinh = {
     const variant = int(rand, 0, 1);
     if (variant === 0) {
       for (;;) {
-        const a = signed(rand, 1, 7);
-        const c = signed(rand, 1, 7);
+        const a = signedInt(rand, 1, 7);
+        const c = signedInt(rand, 1, 7);
         const A = a - c;
         if (A === 0) continue;
-        const b = signed(rand, 0, 12);
-        const d = signed(rand, 0, 12);
+        const b = signedInt(rand, 0, 12);
+        const d = signedInt(rand, 0, 12);
         const B = d - b;
         const strict = rand() < 0.5;
         // Solution: x > B/A (or ≥) when A > 0, x < B/A (or ≤) when A < 0.
@@ -331,7 +308,7 @@ export const batPhuongTrinh = {
     }
     for (;;) {
       const k = int(rand, 2, 12);
-      const a = signed(rand, 1, 5);
+      const a = signedInt(rand, 1, 5);
       const b = -a * k;
       // Bounded above: x ≤ k (or x < k).
       const strict = rand() < 0.5;

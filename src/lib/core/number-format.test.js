@@ -14,6 +14,7 @@ import {
   roundToTotal,
   sup,
   texNumber,
+  tidy,
 } from './number-format.js';
 
 describe('formatNumber', () => {
@@ -149,5 +150,13 @@ describe('hoursText', () => {
     expect(hoursText(0.5)).toBe('$30$ phút');
     expect(hoursText(4)).toBe('$4$ giờ');
     expect(hoursText(3.75)).toBe('$3$ giờ $45$ phút');
+  });
+});
+
+describe('tidy', () => {
+  it('rounds away binary noise and negative zero', () => {
+    expect(tidy(0.1 + 0.2)).toBe(0.3);
+    expect(tidy(1.1 * 1.1, 6)).toBe(1.21);
+    expect(Object.is(tidy(-1e-12), 0)).toBe(true);
   });
 });

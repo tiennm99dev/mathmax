@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { numberText, readNumber } from '#lib/core/decimal.js';
-import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
-import { CHAPTER_SKILLS, SKILLS_TRANG_79, TRIPLES, rounded } from './skills.js';
+import { buildSet, hintsFor, rng, rounded } from '#lib/core/drill.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_79, TRIPLES } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {

@@ -23,15 +23,9 @@ import {
   sqrtFloor,
 } from '#lib/core/decimal.js';
 import { intText } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
 
 /** Denominators whose fractions repeat. */
 const REPEATING_DENS = [3, 6, 7, 9, 11, 12, 13, 15, 18, 22, 27, 33, 37];

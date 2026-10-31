@@ -12,6 +12,7 @@ import { int, pick } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
 import { linText } from '#lib/core/algebra-text.js';
 import { MINUS, fmt, intText } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -150,16 +151,6 @@ export const canCuaTich = {
     };
   },
 };
-
-/**
- * Greatest common divisor of two natural numbers.
- * @param {number} x
- * @param {number} y
- * @returns {number}
- */
-function gcd(x, y) {
-  return y === 0 ? x : gcd(y, x % y);
-}
 
 /** @type {Skill} */
 export const canCuaThuong = {

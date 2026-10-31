@@ -6,26 +6,13 @@
  * sign and superscript exponents; a fraction is written (numerator)/(denominator).
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, nonZero, pick } from '#lib/core/drill.js';
 import { MINUS, intText, operand, sup } from '#lib/core/number-format.js';
 import { numberText } from '#lib/core/decimal.js';
 import { evaluate, polyText, termsOf } from '#lib/algebra-engine/polynomial.js';
 import { lcm, polyRatioText } from './factors.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * A polynomial in brackets when it has more than one term: (x − 2), 6x².

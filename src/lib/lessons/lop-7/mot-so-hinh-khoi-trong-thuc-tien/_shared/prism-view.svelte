@@ -1,6 +1,7 @@
 <script>
   import { focusRing } from '#lib/core/ui.js';
-  import { drawOrder, prismFaces, viewCentre, viewPoint } from './prism-geometry.js';
+  import { prismFaces, viewCentre } from './prism-geometry.js';
+  import { clampPitch, drawOrder, turnByKey, viewPoint, wrapYaw } from '#lib/geom-engine/solid.js';
 
   /**
    * A right prism drawn in 3D that turns by drag or arrow keys and unfolds
@@ -82,7 +83,7 @@
 
   /**
    * Lines of a 1 cm grid on a rectangular face with whole-number sides.
-   * @param {import('./prism-geometry.js').Face} face
+   * @param {import('#lib/geom-engine/solid.js').Face} face
    */
   function gridLines(face) {
     if (face.pts.length !== 4) return [];
@@ -121,16 +122,14 @@
     });
   });
 
-  /** @param {import('./prism-geometry.js').Face} face */
+  /** @param {import('#lib/geom-engine/solid.js').Face} face */
   function fillOf(face) {
     if (face.id === highlight) return MARK;
     return face.kind === 'side' ? SIDE : CAP;
   }
 
-  /** @param {number} v */
-  const clampPitch = (v) => Math.max(-10, Math.min(80, v));
-  /** @param {number} v */
-  const wrapYaw = (v) => ((((v + 180) % 360) + 360) % 360) - 180;
+  /** Lowest tilt: a little below the ground, so the bottom face can be seen. */
+  const MIN_PITCH = -10;
 
   /** @type {{ x: number, y: number } | null} */
   let last = null;
@@ -145,25 +144,20 @@
     const dx = e.clientX - last.x;
     const dy = e.clientY - last.y;
     last = { x: e.clientX, y: e.clientY };
-    view = { yaw: wrapYaw(view.yaw - dx * 0.6), pitch: clampPitch(view.pitch + dy * 0.5) };
+    view = {
+      yaw: wrapYaw(view.yaw - dx * 0.6),
+      pitch: clampPitch(view.pitch + dy * 0.5, MIN_PITCH),
+    };
   }
   function up() {
     last = null;
   }
   /** @param {KeyboardEvent} e */
   function key(e) {
-    const step = e.shiftKey ? 30 : 10;
-    /** @type {Record<string, [number, number]>} */
-    const moves = {
-      ArrowLeft: [step, 0],
-      ArrowRight: [-step, 0],
-      ArrowUp: [0, step],
-      ArrowDown: [0, -step],
-    };
-    const m = moves[e.key];
-    if (!m) return;
+    const next = turnByKey(view, e.key, e.shiftKey, MIN_PITCH);
+    if (!next) return;
     e.preventDefault();
-    view = { yaw: wrapYaw(view.yaw + m[0]), pitch: clampPitch(view.pitch + m[1]) };
+    view = next;
   }
 </script>
 

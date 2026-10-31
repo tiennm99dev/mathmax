@@ -5,7 +5,7 @@
  * text with the book's minus sign and superscript exponents.
  */
 
-import { int, pick, shuffle } from '#lib/core/drill.js';
+import { int, nonZero, pick, shuffle } from '#lib/core/drill.js';
 import { intText, operand, sup } from '#lib/core/number-format.js';
 import {
   collect,
@@ -26,19 +26,6 @@ import {
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 /** @typedef {import('./poly.js').Mono} Mono */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * A monomial in x and y with exponents up to `max`, at least one variable.

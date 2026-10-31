@@ -70,6 +70,30 @@ export function pick(rand, items) {
 }
 
 /**
+ * A whole number from lo to hi other than 0 (drawn again on 0).
+ * @param {() => number} rand
+ * @param {number} lo
+ * @param {number} hi
+ */
+export function nonZero(rand, lo, hi) {
+  for (;;) {
+    const n = int(rand, lo, hi);
+    if (n !== 0) return n;
+  }
+}
+
+/**
+ * A whole number whose size is from lo to hi, with a random sign (the size
+ * is drawn first).
+ * @param {() => number} rand
+ * @param {number} lo
+ * @param {number} hi
+ */
+export function signedInt(rand, lo, hi) {
+  return int(rand, lo, hi) * (rand() < 0.5 ? -1 : 1);
+}
+
+/**
  * A shuffled copy (Fisher-Yates).
  * @template T
  * @param {() => number} rand
@@ -98,6 +122,35 @@ export function partition(rand, n, k) {
   while (cuts.size < k - 1) cuts.add(int(rand, 1, n - 1));
   const sorted = [0, ...[...cuts].sort((a, b) => a - b), n];
   return sorted.slice(1).map((c, i) => c - sorted[i]);
+}
+
+/**
+ * `value` rounded to `places` decimals as an exact-as-typed double, or null
+ * when it lies within 1 % of a unit of the last place from a rounding
+ * boundary, so a question never hangs on how a learner rounds a half.
+ * @param {number} value
+ * @param {number} places
+ * @returns {number | null}
+ */
+export function rounded(value, places) {
+  const scaled = value * 10 ** places;
+  const frac = scaled - Math.floor(scaled);
+  if (Math.abs(frac - 0.5) < 0.01) return null;
+  return Math.round(scaled) / 10 ** places;
+}
+
+/**
+ * Calls `make` until it returns something other than null: a question maker
+ * that gives up on an awkward draw, such as a value `rounded` rejects.
+ * @template T
+ * @param {() => T | null} make
+ * @returns {T}
+ */
+export function retryMake(make) {
+  for (;;) {
+    const q = make();
+    if (q !== null) return q;
+  }
 }
 
 /**

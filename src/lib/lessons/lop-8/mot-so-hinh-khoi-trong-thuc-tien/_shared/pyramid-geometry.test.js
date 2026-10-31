@@ -3,7 +3,6 @@ import {
   baseArea,
   circumradius,
   faceName,
-  facesViewer,
   inradius,
   invertedPyramid,
   num,
@@ -12,8 +11,8 @@ import {
   pyramidMeasures,
   regularBase,
   squareBox,
-  turnByKey,
 } from './pyramid-geometry.js';
+import { facesViewer, turnByKey } from '#lib/geom-engine/solid.js';
 
 /** @param {{ x: number, y: number, z: number }} a @param {{ x: number, y: number, z: number }} b */
 const dist3 = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);

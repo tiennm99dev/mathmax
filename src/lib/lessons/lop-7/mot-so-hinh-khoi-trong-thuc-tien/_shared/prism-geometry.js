@@ -1,40 +1,22 @@
 /**
  * Pure geometry for the right prisms of this chapter (hình hộp chữ nhật,
  * hình lập phương, hình lăng trụ đứng tam giác và tứ giác): the faces of a
- * prism standing on a base polygon, the same faces unfolded into a net, an
- * orthographic view that turns and tilts, and the measures the book uses
- * (chu vi đáy, diện tích đáy, diện tích xung quanh, thể tích).
+ * prism standing on a base polygon, the same faces unfolded into a net, the
+ * centre of the view, and the measures the book uses (chu vi đáy, diện tích
+ * đáy, diện tích xung quanh, thể tích). The turning view itself is
+ * `#lib/geom-engine/solid.js`.
  *
  * Model space is in centimetres: the base lies in the plane z = 0, z points
  * up. A base polygon is listed counter-clockwise seen from above.
  */
 
 import { dist, polygonArea } from '#lib/geom-engine/plane.js';
+import { add3 as add, dot3 as dot, mul3 as mul, sub3 as sub } from '#lib/geom-engine/solid.js';
 
 /** @typedef {{ x: number, y: number }} P2 */
-/** @typedef {{ x: number, y: number, z: number }} P3 */
-/**
- * @typedef {object} Face
- * @property {string} id 'bottom', 'top' or 'side-<i>'
- * @property {'bottom' | 'top' | 'side'} kind
- * @property {number} index side index (edge i of the base), -1 for the bases
- * @property {P3[]} pts corners, counter-clockwise seen from outside the solid
- */
+/** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/solid.js').Face} Face */
 
-/** @param {P3} a @param {P3} b */
-const sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
-/** @param {P3} a @param {P3} b */
-const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
-/** @param {P3} a @param {number} k */
-const mul = (a, k) => ({ x: a.x * k, y: a.y * k, z: a.z * k });
-/** @param {P3} a @param {P3} b */
-const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
-/** @param {P3} a @param {P3} b */
-const cross = (a, b) => ({
-  x: a.y * b.z - a.z * b.y,
-  y: a.z * b.x - a.x * b.z,
-  z: a.x * b.y - a.y * b.x,
-});
 /** @param {P2} p @param {number} [z] */
 const lift = (p, z = 0) => ({ x: p.x, y: p.y, z });
 
@@ -125,60 +107,6 @@ export function prismFaces(base, h, t) {
     }
   }
   return faces;
-}
-
-/**
- * Turns a model point for an orthographic view: `yaw` spins about the
- * vertical axis, `pitch` tilts the eye up above the ground (degrees).
- * Returns screen coordinates (y down) relative to the model origin and the
- * depth towards the viewer.
- * @param {P3} p
- * @param {{ yaw: number, pitch: number }} view
- */
-export function viewPoint(p, view) {
-  const a = (view.yaw * Math.PI) / 180;
-  const b = (view.pitch * Math.PI) / 180;
-  const x = p.x * Math.cos(a) - p.y * Math.sin(a);
-  const y = p.x * Math.sin(a) + p.y * Math.cos(a);
-  return {
-    x,
-    y: -(y * Math.sin(b) + p.z * Math.cos(b)),
-    depth: -y * Math.cos(b) + p.z * Math.sin(b),
-  };
-}
-
-/**
- * True when the outer side of a face is towards the viewer.
- * @param {P3[]} pts corners counter-clockwise seen from outside
- * @param {{ yaw: number, pitch: number }} view
- */
-export function facesViewer(pts, view) {
-  const v = pts.slice(0, 3).map((p) => viewPoint(p, view));
-  // Camera frame (x right, y up, depth towards the viewer) is right-handed.
-  const a = { x: v[1].x - v[0].x, y: -(v[1].y - v[0].y), z: v[1].depth - v[0].depth };
-  const b = { x: v[2].x - v[0].x, y: -(v[2].y - v[0].y), z: v[2].depth - v[0].depth };
-  return cross(a, b).z > 1e-9;
-}
-
-/**
- * Faces in drawing order (farthest first), each with its screen polygon,
- * mean depth and whether its outer side faces the viewer.
- * @param {Face[]} faces
- * @param {{ yaw: number, pitch: number }} view
- * @param {(p: { x: number, y: number }) => { x: number, y: number }} toScreen
- */
-export function drawOrder(faces, view, toScreen) {
-  return faces
-    .map((f) => {
-      const v = f.pts.map((p) => viewPoint(p, view));
-      return {
-        face: f,
-        screen: v.map((p) => toScreen(p)),
-        depth: v.reduce((s, p) => s + p.depth, 0) / v.length,
-        front: facesViewer(f.pts, view),
-      };
-    })
-    .sort((a, b) => a.depth - b.depth);
 }
 
 /**

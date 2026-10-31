@@ -8,7 +8,8 @@
  */
 
 import { dist } from '#lib/geom-engine/plane.js';
-import { along, angles, fromASA, ssaBases } from '../_shared/triangle-math.js';
+import { along } from '#lib/core/visuals/angle-math.js';
+import { angles, fromASA, ssaBases } from '../_shared/triangle-math.js';
 
 /** @typedef {import('../_shared/triangle-math.js').Pt} Pt */
 /** @typedef {'cgc' | 'gcg' | 'ccg' | 'ggg'} Mode */

@@ -8,6 +8,8 @@
  * simple polygon and needs no area computation.
  */
 
+import { tidy as clean } from '#lib/core/number-format.js';
+
 /** @typedef {{ x: number, y: number }} Pt */
 /**
  * @typedef {object} Shape
@@ -31,9 +33,6 @@ export function regular(n, r, startDeg) {
     return { x: clean(r * Math.cos(a)), y: clean(r * Math.sin(a)) };
   });
 }
-
-/** Rounds away float noise such as 1.8e-16 so equal coordinates compare equal. @param {number} v */
-const clean = (v) => Math.round(v * 1e9) / 1e9;
 
 /** @param {Array<[number, number]>} list @returns {Pt[]} */
 const pts = (list) => list.map(([x, y]) => ({ x, y }));

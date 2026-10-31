@@ -227,12 +227,16 @@ board), `polygonArea`, and for quadrilaterals `quadAngles`, `splittingSide`
 and `isConvex`. `#lib/geom-engine/centers.js` has the circles of a
 triangle: `circumcircle` and `incircle` (`{ center, radius }`, null when
 flat) and `touchPoints` (where the incircle meets the sides).
-`#lib/geom-engine/grid-triangle.js` is a draggable triangle on
+`#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
+`add3`, `sub3`, `mul3`, `dot3`, `cross3` on `{ x, y, z }`, `viewPoint`,
+`facesViewer`, `drawOrder` (faces far to near) and the view controls
+`clampPitch`, `wrapYaw`, `turnByKey`. `#lib/geom-engine/grid-triangle.js` is a draggable triangle on
 a half-unit grid: `toGrid`, `placeVertex` (never goes flat), `measureTri`
 (exact squared sides, angles), `same`, `OPPOSITE`, `frame` (grid units to SVG
 and back) and `labelOutside`. `#lib/utils/svg.js` has `pointsAttr` for a
-polygon's `points`. Never copy `dist`, `gcd`, `polygonArea` or an angle helper
-into a lesson.
+polygon's `points`. Never copy `dist`, `cross`, `gcd`
+(`#lib/numtheory-engine/index.js`), `polygonArea`, an angle helper (`along`,
+`directionTo`) or a 3D vector helper into a lesson.
 
 `number-line` reads the marker's value to screen readers as Vietnamese decimals;
 pass `valueText` when it should be read another way (a fraction).
@@ -261,7 +265,8 @@ Other shared pieces:
   add up (four angles to 360°, shares to 100%). In generated TeX write numbers
   with `numTex` (`12\,345{,}5`: thin-space thousands, braced comma, ASCII
   minus), never `formatNumber` with a comma swap, and durations with
-  `hoursText` (`$1$ giờ $12$ phút`).
+  `hoursText` (`$1$ giờ $12$ phút`). `tidy(v, places = 9)` rounds away binary
+  noise (0.1 + 0.2) before comparing or writing a computed value.
 - `#lib/core/fractions.js`: `fracText` (`−3/4`), `fracOperand`, `mixedText`
   (`1 3/4`), `texFrac`, `texOperand`, `toFraction`, `valueText`,
   `readFraction`, and `readProbability`/`probabilityText` for probabilities;
@@ -287,8 +292,10 @@ Other shared pieces:
   practice drill for `practice` and `review` lessons. Write one `Skill`
   (`{ id, label, make(rand) }`, `make` returns `{ prompt, answer, steps,
   hints? }`) per lesson in `_shared/skills.js` using `int`, `pick`,
-  `shuffle` and `partition` (k positive parts adding up to n) from
-  `drill.js`, then render
+  `shuffle`, `nonZero`, `signedInt` (a size from lo to hi with a random
+  sign), `partition` (k positive parts adding up to n), `rounded` (null on a
+  rounding half) and `retryMake` (redraw until a maker returns a question)
+  from `drill.js`, then render
   `<DrillBoard skills={[...]} perSkill={2} />`. A wrong first answer shows a
   hint ladder (the question's `hints`, else its steps that do not give the
   answer away) and a second try; only a second miss shows the full solution.

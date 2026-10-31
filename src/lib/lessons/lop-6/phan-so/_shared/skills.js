@@ -5,23 +5,12 @@
  * answers with `valueText`.
  */
 
-import { int } from '#lib/core/drill.js';
+import { int, nonZero } from '#lib/core/drill.js';
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
 import { gcd, lcm } from '#lib/numtheory-engine/index.js';
 import { fracOperand, fracText } from '#lib/core/fractions.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand @param {number} lo @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * A fraction p/q in lowest terms with q from 2 to maxQ and p ≠ 0.

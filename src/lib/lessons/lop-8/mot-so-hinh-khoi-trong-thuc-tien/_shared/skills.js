@@ -9,12 +9,9 @@
 
 import { int, pick } from '#lib/core/drill.js';
 import { answerText } from '#lib/core/decimal.js';
-import { fmt } from '#lib/core/number-format.js';
+import { fmt, tidy } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/** Rounds away binary noise from products of short decimals. @param {number} n */
-export const tidy = (n) => Math.round(n * 1e6) / 1e6;
 
 /** A number written the book's way. @param {number} n */
 const t = (n) => answerText(tidy(n));

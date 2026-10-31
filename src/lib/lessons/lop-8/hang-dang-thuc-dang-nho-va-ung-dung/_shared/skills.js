@@ -6,24 +6,11 @@
  * and superscript exponents; polynomials are in the single variable x.
  */
 
-import { int, pick } from '#lib/core/drill.js';
+import { int, nonZero, pick } from '#lib/core/drill.js';
 import { MINUS, intText, operand } from '#lib/core/number-format.js';
 import { polyText } from '#lib/algebra-engine/polynomial.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A non-zero integer from lo to hi.
- * @param {() => number} rand
- * @param {number} lo
- * @param {number} hi
- */
-function nonZero(rand, lo, hi) {
-  for (;;) {
-    const n = int(rand, lo, hi);
-    if (n !== 0) return n;
-  }
-}
 
 /**
  * A polynomial in x from coefficients, lowest degree first: [9, 6, 1] gives
