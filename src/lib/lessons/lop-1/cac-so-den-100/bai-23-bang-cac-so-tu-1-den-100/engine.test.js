@@ -50,7 +50,7 @@ describe('colouring patterns', () => {
   });
 
   it('explains a wrong tap', () => {
-    expect(PATTERNS[0].why(100)).toContain('một trăm');
+    expect(PATTERNS[0].why(100)).toContain('ba chữ số');
     expect(PATTERNS[1].why(7)).toContain('một chữ số');
   });
 });

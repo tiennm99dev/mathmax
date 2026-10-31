@@ -111,7 +111,7 @@ export function makeQuestion(kind, rand) {
       kind,
       prompt: `Số nào đọc là "${readNumber(n)}"?`,
       ...numberOptions(rand, n, [near, other]),
-      hint: 'Phần "... mươi" cho em biết số chục.',
+      hint: `Phần "${readNumber(Math.floor(n / 10) * 10)}" là ${Math.floor(n / 10)} chục.`,
       solution: `"${readNumber(n)}" là ${placeText(Math.floor(n / 10), n % 10)}: số ${n}.`,
     };
   }
@@ -141,7 +141,10 @@ export function makeQuestion(kind, rand) {
       sticks: { tens: t, ones: u },
       ...numberOptions(rand, n, [swapped(n), n + 10]),
       hint: 'Mỗi bó có 10 que. Đếm số bó trước, rồi đếm que rời.',
-      solution: `${t} bó là ${t} chục, ${u} que rời là ${u} đơn vị. Có ${n} que tính.`,
+      solution:
+        u > 0
+          ? `${t} bó là ${t} chục, ${u} que rời là ${u} đơn vị. Có ${n} que tính.`
+          : `${t} bó là ${t} chục, không có que rời. Có ${n} que tính.`,
     };
   }
   if (kind === 'compare') {

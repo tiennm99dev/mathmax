@@ -43,10 +43,12 @@ export const PATTERNS = [
   {
     id: 'tron-chuc',
     label: 'Số tròn chục',
-    task: 'Tô các số tròn chục: 10, 20, ... (bỏ qua 100 nhé).',
+    task: 'Tô các số tròn chục có hai chữ số: 10, 20, ..., 90.',
     test: (n) => n % 10 === 0 && n < 100,
     why: (n) =>
-      n === 100 ? '100 là một trăm, không phải số tròn chục.' : `${n} không có 0 ở hàng đơn vị.`,
+      n === 100
+        ? '100 có ba chữ số. Lần này em chỉ tô các số tròn chục có hai chữ số.'
+        : `${n} không có chữ số 0 ở hàng đơn vị.`,
     done: 'Các số tròn chục 10, 20, ..., 90 nằm ở cột cuối. Mỗi số hơn số ngay trên nó 10.',
   },
   {
