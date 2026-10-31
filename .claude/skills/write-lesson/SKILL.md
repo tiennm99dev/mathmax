@@ -147,7 +147,7 @@ Exercises all have `prompt`, `hints` (one or more, revealed one at a time) and
 | `multi` | `options`, `answers` indices | exact set |
 | `text` | `accept: string[]` | ignores case, diacritics, extra spaces, final `.` |
 | `order` | `items`, `answer` (item indices in correct order) | drag to sort |
-| `match` | `left`, `right` (at least as many), `pairs: [[l, r]]` | each left once |
+| `match` | `left`, `right` (at least as many), `pairs: [[l, r]]` | each left once; the page shows `right` in a seeded order, so list it in any order and never scramble it by hand |
 | `count` | `picture`, `answer` 0-100, `choices?` (must include it) | kids count and tap |
 
 `picture` names come from `src/lib/core/kid/pictures/index.js` (apple, banana,

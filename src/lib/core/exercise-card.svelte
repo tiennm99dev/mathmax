@@ -6,7 +6,7 @@
   import Picture from './kid/picture.svelte';
   import { pictures } from './kid/pictures/index.js';
   import { checkAnswer } from './answer-check.js';
-  import { scrambledOrder } from './practice-state.js';
+  import { matchOrder, scrambledOrder } from './practice-state.js';
   import { practice as copy } from './copy.vi.js';
   import { button, card, focusRing, textInput } from './ui.js';
 
@@ -195,6 +195,7 @@
       <MatchInput
         left={exercise.left}
         right={exercise.right}
+        order={matchOrder(exercise)}
         bind:value={pairs}
         labelledby={promptId}
         disabled={correct}

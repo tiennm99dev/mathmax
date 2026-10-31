@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { loadSolved, saveSolved, scrambledOrder } from './practice-state.js';
+import {
+  exerciseSeed,
+  loadSolved,
+  matchOrder,
+  saveSolved,
+  scrambledOrder,
+} from './practice-state.js';
 
 function memoryStorage() {
   /** @type {Map<string, string>} */
@@ -62,5 +68,96 @@ describe('scrambledOrder', () => {
 
   it('reverses when the authored order is already the answer', () => {
     expect(scrambledOrder([0, 1, 2])).toEqual([2, 1, 0]);
+  });
+});
+
+/**
+ * @param {Array<[number, number]>} pairs
+ * @param {string[]} [right]
+ * @returns {import('./content-schema.js').MatchExercise}
+ */
+const matchOf = (pairs, right = ['x', 'y', 'z', 'w']) => ({
+  type: 'match',
+  prompt: 'Nối',
+  left: pairs.map((_, i) => `l${i}`),
+  right,
+  pairs,
+  hints: ['h'],
+  solution: 's',
+});
+
+describe('exerciseSeed', () => {
+  it('is stable for the same exercise and changes with its items', () => {
+    const a = matchOf([
+      [0, 0],
+      [1, 1],
+    ]);
+    expect(exerciseSeed(a)).toBe(
+      exerciseSeed(
+        matchOf([
+          [0, 0],
+          [1, 1],
+        ]),
+      ),
+    );
+    expect(exerciseSeed(a)).not.toBe(
+      exerciseSeed(
+        matchOf(
+          [
+            [0, 0],
+            [1, 1],
+          ],
+          ['x', 'y', 'q'],
+        ),
+      ),
+    );
+    expect(Number.isInteger(exerciseSeed(a)) && exerciseSeed(a) >= 0).toBe(true);
+  });
+});
+
+describe('matchOrder', () => {
+  it('is a permutation of the right indices', () => {
+    const order = matchOrder(
+      matchOf([
+        [0, 2],
+        [1, 0],
+        [2, 3],
+      ]),
+    );
+    expect([...order].sort()).toEqual([0, 1, 2, 3]);
+  });
+
+  it('is the same on every call, so server and browser agree', () => {
+    const ex = matchOf([
+      [0, 1],
+      [1, 2],
+      [2, 0],
+    ]);
+    expect(matchOrder(ex)).toEqual(matchOrder(structuredClone(ex)));
+  });
+
+  it('never shows a left item level with its partner', () => {
+    for (let n = 2; n <= 6; n++) {
+      const right = Array.from({ length: n }, (_, i) => `r${i}-${n}`);
+      for (const pairs of [
+        right.map((_, i) => /** @type {[number, number]} */ ([i, i])),
+        right.map((_, i) => /** @type {[number, number]} */ ([i, (i + 1) % n])),
+      ]) {
+        const order = matchOrder(matchOf(pairs, right));
+        expect(pairs.filter(([l, r]) => order[l] === r)).toEqual([]);
+      }
+    }
+  });
+
+  it('leaves the answer key alone', () => {
+    const ex = matchOf([
+      [0, 0],
+      [1, 1],
+    ]);
+    matchOrder(ex);
+    expect(ex.pairs).toEqual([
+      [0, 0],
+      [1, 1],
+    ]);
   });
 });

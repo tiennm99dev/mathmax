@@ -6,19 +6,33 @@
   /**
    * Tap-to-pair matching. Pick an item on either side, then its partner on the
    * other side; picking a pair's partner again unpairs it. `value` holds
-   * `[leftIndex, rightIndex]` pairs.
+   * `[leftIndex, rightIndex]` pairs, always in authored indices. `order` lists
+   * the right indices in the order they are shown (`matchOrder` in
+   * `practice-state.js`); without it the right column keeps its authored order.
    * @type {{
    *   left: string[];
    *   right: string[];
+   *   order?: number[];
    *   value: Array<[number, number]>;
    *   labelledby: string;
    *   disabled?: boolean;
    *   onchange?: () => void;
    * }}
    */
-  let { left, right, value = $bindable(), labelledby, disabled = false, onchange } = $props();
+  let {
+    left,
+    right,
+    order,
+    value = $bindable(),
+    labelledby,
+    disabled = false,
+    onchange,
+  } = $props();
 
   /** @typedef {'left' | 'right'} Side */
+
+  const leftRows = $derived(left.map((_, i) => i));
+  const rightRows = $derived(order ?? right.map((_, i) => i));
 
   /** @type {{ side: Side, index: number } | null} */
   let active = $state(null);
@@ -63,9 +77,10 @@
   }
 </script>
 
-{#snippet column(/** @type {Side} */ side, /** @type {string[]} */ list)}
+{#snippet column(/** @type {Side} */ side, /** @type {number[]} */ rows)}
   <ul class="space-y-2">
-    {#each list as html, i (i)}
+    {#each rows as i (i)}
+      {@const html = side === 'left' ? left[i] : right[i]}
       {@const no = pairNo(side, i)}
       {@const isActive = active?.side === side && active.index === i}
       <li>
@@ -97,7 +112,7 @@
 <div role="group" aria-labelledby={labelledby}>
   <p class="mb-2 text-sm text-slate-500">{copy.matchLeft}</p>
   <div class="grid grid-cols-2 gap-3">
-    {@render column('left', left)}
-    {@render column('right', right)}
+    {@render column('left', leftRows)}
+    {@render column('right', rightRows)}
   </div>
 </div>

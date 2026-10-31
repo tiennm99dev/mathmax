@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { lesson } from '#lib/curriculum/index.js';
 import { checkMinimums, validateLesson } from './content-schema.js';
 import { renderLesson } from './render-content.server.js';
+import { matchOrder } from './practice-state.js';
 
 /**
  * Every written lesson, validated against the content schema and the per-kind
@@ -69,8 +70,10 @@ describe('lesson content', () => {
       /** @type {string[]} */
       let strict;
       let rendered;
+      let page;
       try {
-        rendered = JSON.stringify(renderLesson(content));
+        page = renderLesson(content);
+        rendered = JSON.stringify(page);
         strict = warn.mock.calls.map((args) => args.join(' '));
       } finally {
         warn.mockRestore();
@@ -78,6 +81,14 @@ describe('lesson content', () => {
       expect(strict, 'TeX that KaTeX strict mode warns about').toEqual([]);
       const broken = [...rendered.matchAll(/katex-error[^>]*title=\\"([^"\\]*)/g)].map((m) => m[1]);
       expect(broken, 'TeX that KaTeX cannot parse').toEqual([]);
+      // The right column is shown in a seeded order taken from the rendered
+      // exercise; no left item may sit level with its partner.
+      page.practice.forEach((ex, i) => {
+        if (ex.type !== 'match') return;
+        const order = matchOrder(ex);
+        const across = ex.pairs.filter(([l, r]) => order[l] === r);
+        expect(across, `practice[${i}] pairs that read straight across`).toEqual([]);
+      });
     });
   }
 });
