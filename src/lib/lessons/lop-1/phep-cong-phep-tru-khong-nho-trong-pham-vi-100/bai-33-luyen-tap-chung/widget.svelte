@@ -18,6 +18,8 @@
   let phase = $state(/** @type {'ask' | 'retry' | 'right' | 'shown'} */ ('ask'));
   /** @type {HTMLHeadingElement | undefined} */
   let heading = $state();
+  /** @type {HTMLDivElement | undefined} */
+  let summary = $state();
 
   const round = $derived(buildRound(seed));
   const finished = $derived(index >= round.length);
@@ -48,15 +50,17 @@
     wrong = [];
     phase = 'ask';
     await tick();
-    heading?.focus();
+    (heading ?? summary)?.focus();
   }
 
-  function again() {
+  async function again() {
     seed += 1;
     index = 0;
     firstTry = [];
     wrong = [];
     phase = 'ask';
+    await tick();
+    heading?.focus();
   }
 
   /** @param {number} i */
@@ -138,7 +142,12 @@
       </button>
     {/if}
   {:else}
-    <div class="rounded-2xl bg-emerald-50 px-4 py-4 text-xl text-emerald-950" aria-live="polite">
+    <div
+      bind:this={summary}
+      tabindex="-1"
+      class="rounded-2xl bg-emerald-50 px-4 py-4 text-xl text-emerald-950 outline-none"
+      aria-live="polite"
+    >
       <p class="font-bold">
         <span aria-hidden="true">⭐ </span>Em làm đúng ngay {score} / {round.length} câu.
       </p>
