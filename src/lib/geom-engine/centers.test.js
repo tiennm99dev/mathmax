@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { dist } from '#lib/geom-engine/plane.js';
+import { dist } from './plane.js';
 import { circumcircle, incircle, touchPoints } from './centers.js';
 
 describe('circumcircle', () => {

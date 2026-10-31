@@ -1,11 +1,10 @@
 /**
- * The circles of a triangle, for the widgets of this chapter: the
- * circumscribed circle (centre where the perpendicular bisectors meet) and
- * the inscribed circle (centre where the angle bisectors meet). Points are
- * plain `{ x, y }` in any unit.
+ * The circles of a triangle: the circumscribed circle (centre where the
+ * perpendicular bisectors meet) and the inscribed circle (centre where the
+ * angle bisectors meet). Points are plain `{ x, y }` in any unit.
  */
 
-import { cross, dist, foot } from '#lib/geom-engine/plane.js';
+import { cross, dist, foot } from './plane.js';
 
 /** @typedef {{ x: number, y: number }} Pt */
 /** @typedef {{ center: Pt, radius: number }} Round */

@@ -10,6 +10,7 @@
  * @typedef {import('#lib/geom-engine/grid-triangle.js').Vertex} Vertex
  */
 
+import { circumcircle } from '#lib/geom-engine/centers.js';
 import { cross, dist, foot, midpoint } from '#lib/geom-engine/plane.js';
 
 const EPS = 1e-9;
@@ -50,15 +51,7 @@ export function classify(t) {
  * @returns {Pt}
  */
 export function circumcenter(t) {
-  const { A, B, C } = t;
-  const d = 2 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y));
-  const a2 = A.x ** 2 + A.y ** 2;
-  const b2 = B.x ** 2 + B.y ** 2;
-  const c2 = C.x ** 2 + C.y ** 2;
-  return {
-    x: (a2 * (B.y - C.y) + b2 * (C.y - A.y) + c2 * (A.y - B.y)) / d,
-    y: (a2 * (C.x - B.x) + b2 * (A.x - C.x) + c2 * (B.x - A.x)) / d,
-  };
+  return circumcircle(t.A, t.B, t.C)?.center ?? { x: NaN, y: NaN };
 }
 
 /**

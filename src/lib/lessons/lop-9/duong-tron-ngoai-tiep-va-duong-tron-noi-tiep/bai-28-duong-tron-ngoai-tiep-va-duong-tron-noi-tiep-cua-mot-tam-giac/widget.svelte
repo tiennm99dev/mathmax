@@ -7,7 +7,7 @@
   import { formatFixed, texNumber } from '#lib/core/number-format.js';
   import { bisectorFoot, labelSpot, midpoint } from '#lib/geom-engine/plane.js';
   import { analyse, equilateral, oppositeSide } from './engine.js';
-  import { touchPoints } from '../_shared/centers.js';
+  import { touchPoints } from '#lib/geom-engine/centers.js';
 
   const W = 400;
   const H = 360;

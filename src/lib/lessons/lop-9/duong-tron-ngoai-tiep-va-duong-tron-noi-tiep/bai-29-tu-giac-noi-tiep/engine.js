@@ -6,7 +6,7 @@
  */
 
 import { dist, isConvex, quadAngles } from '#lib/geom-engine/plane.js';
-import { circumcircle } from '../_shared/centers.js';
+import { circumcircle } from '#lib/geom-engine/centers.js';
 
 /** @typedef {{ x: number, y: number }} Pt */
 

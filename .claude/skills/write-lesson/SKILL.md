@@ -224,7 +224,10 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 (of a perpendicular), `diagonalPoint`, `triangleFromSides`, `bisectorFoot`,
 `labelSpot` (a vertex name pushed away from the centroid and kept on the
 board), `polygonArea`, and for quadrilaterals `quadAngles`, `splittingSide`
-and `isConvex`. `#lib/geom-engine/grid-triangle.js` is a draggable triangle on
+and `isConvex`. `#lib/geom-engine/centers.js` has the circles of a
+triangle: `circumcircle` and `incircle` (`{ center, radius }`, null when
+flat) and `touchPoints` (where the incircle meets the sides).
+`#lib/geom-engine/grid-triangle.js` is a draggable triangle on
 a half-unit grid: `toGrid`, `placeVertex` (never goes flat), `measureTri`
 (exact squared sides, angles), `same`, `OPPOSITE`, `frame` (grid units to SVG
 and back) and `labelOutside`. `#lib/utils/svg.js` has `pointsAttr` for a

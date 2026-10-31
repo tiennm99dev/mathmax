@@ -5,7 +5,7 @@
  */
 
 import { angleAt, dist } from '#lib/geom-engine/plane.js';
-import { circumcircle, incircle } from '../_shared/centers.js';
+import { circumcircle, incircle } from '#lib/geom-engine/centers.js';
 
 /** @typedef {{ x: number, y: number }} Pt */
 
