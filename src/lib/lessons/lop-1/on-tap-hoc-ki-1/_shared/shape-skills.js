@@ -268,10 +268,9 @@ export const tablePositionSkill = {
     }
     const askTop = rand() < 0.5;
     return {
-      prompt: `Hình nào ở ${askTop ? 'trên' : 'dưới'} cái bàn?`,
+      prompt: `Ở ${askTop ? 'trên' : 'dưới'} cái bàn có gì?`,
       visual,
-      options: [capitalize(a), capitalize(b)],
-      answer: askTop ? 0 : 1,
+      ...mixOptions(rand, capitalize(askTop ? a : b), [capitalize(askTop ? b : a)]),
       hint,
       solution,
     };
