@@ -2,14 +2,22 @@ import { describe, it, expect } from 'vitest';
 import { bisectors, medians } from './engine.js';
 import { angleAt, cross, dist } from '#lib/geom-engine/plane.js';
 
-/** A spread of grid triangles, acute, right and obtuse. */
+/**
+ * A spread of grid triangles, acute, right and obtuse: every set of three
+ * grid points once, in both orientations, so no triangle is checked six times
+ * under relabelled vertices.
+ */
 function triangles() {
   const out = [];
   const pts = [];
   for (let x = -4; x <= 4; x += 2) for (let y = -3; y <= 3; y += 1.5) pts.push({ x, y });
-  for (const A of pts)
-    for (const B of pts)
-      for (const C of pts) if (Math.abs(cross(A, B, C)) >= 1) out.push({ A, B, C });
+  for (let i = 0; i < pts.length; i++)
+    for (let j = i + 1; j < pts.length; j++)
+      for (let k = j + 1; k < pts.length; k++) {
+        const [A, B, C] = [pts[i], pts[j], pts[k]];
+        if (Math.abs(cross(A, B, C)) < 1) continue;
+        out.push({ A, B, C }, { A, B: C, C: B });
+      }
   return out;
 }
 

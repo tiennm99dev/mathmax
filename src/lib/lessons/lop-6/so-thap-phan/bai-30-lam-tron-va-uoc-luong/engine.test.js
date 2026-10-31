@@ -33,17 +33,33 @@ describe('roundAt', () => {
   });
 
   it('always lands on the nearer mark, halves going away from 0', () => {
-    for (let v = -30000; v <= 30000; v += 7) {
-      for (const p of PLACES) {
+    // A sweep of values in thousandths, plus every place around every mark
+    // from −3 to 3 units: on the mark, just past it, either side of the half
+    // and just before the next mark. Failures are collected so the loop does
+    // not pay for thousands of assertions.
+    /** @type {string[]} */
+    const bad = [];
+    for (const p of PLACES) {
+      const half = p.u / 2;
+      /** @type {number[]} */
+      const values = [];
+      for (let v = -30000; v <= 30000; v += 7) values.push(v);
+      for (let k = -3; k <= 3; k++) {
+        for (const off of [0, 1, half - 1, half, half + 1, p.u - 1]) values.push(k * p.u + off);
+      }
+      for (const v of values) {
         const [lo, hi] = neighbours(v, p.u);
-        expect(lo).toBeLessThanOrEqual(v);
-        expect(hi).toBeGreaterThan(lo);
         const r = roundAt(v, p.u);
-        expect([lo, hi]).toContain(r);
-        expect(Math.abs(r - v) * 2).toBeLessThanOrEqual(p.u);
-        if (Math.abs(r - v) * 2 === p.u) expect(Math.abs(r)).toBeGreaterThan(Math.abs(v));
+        const ok =
+          lo <= v &&
+          hi > lo &&
+          (r === lo || r === hi) &&
+          Math.abs(r - v) * 2 <= p.u &&
+          (Math.abs(r - v) * 2 !== p.u || Math.abs(r) > Math.abs(v));
+        if (!ok) bad.push(`${v} at ${p.name} gave ${r}`);
       }
     }
+    expect(bad).toEqual([]);
   });
 });
 

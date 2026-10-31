@@ -26,22 +26,32 @@ function sample(skill, count = 600) {
 /** @param {string} s */
 const num = (s) => Number(s.replace(/−/g, '-').replace(/\s/g, ''));
 
+/** @type {Map<string, [number, number]>} */
+const parsed = new Map();
+
 /**
  * Evaluates a printed linear expression such as '−3x + 5' at x,
- * independently of the writer.
+ * independently of the writer. Each text is parsed once into its
+ * coefficients, since the tests evaluate it over the whole range.
  * @param {string} text
  * @param {number} x
  */
 function lin(text, x) {
-  const src = text.replace(/\s/g, '').replace(/−/g, '-');
-  let total = 0;
-  for (const m of src.matchAll(/([+-]?)(\d*)(x?)/g)) {
-    if (m[0] === '') continue;
-    const sign = m[1] === '-' ? -1 : 1;
-    if (m[3] === 'x') total += sign * (m[2] === '' ? 1 : Number(m[2])) * x;
-    else if (m[2] !== '') total += sign * Number(m[2]);
+  let ab = parsed.get(text);
+  if (!ab) {
+    const src = text.replace(/\s/g, '').replace(/−/g, '-');
+    let a = 0;
+    let b = 0;
+    for (const m of src.matchAll(/([+-]?)(\d*)(x?)/g)) {
+      if (m[0] === '') continue;
+      const sign = m[1] === '-' ? -1 : 1;
+      if (m[3] === 'x') a += sign * (m[2] === '' ? 1 : Number(m[2]));
+      else if (m[2] !== '') b += sign * Number(m[2]);
+    }
+    ab = [a, b];
+    parsed.set(text, ab);
   }
-  return total;
+  return ab[0] * x + ab[1];
 }
 
 const RANGE = Array.from({ length: 401 }, (_, i) => i - 200);

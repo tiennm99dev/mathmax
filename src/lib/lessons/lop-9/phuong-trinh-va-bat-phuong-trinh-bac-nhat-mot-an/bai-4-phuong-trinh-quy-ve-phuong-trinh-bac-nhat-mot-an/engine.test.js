@@ -75,29 +75,28 @@ describe('equations with the unknown in the denominator', () => {
     const rand = rng(99);
     let rejected = 0;
     let empty = 0;
+    /** @type {string[]} */
+    const bad = [];
     for (let i = 0; i < 2000; i++) {
       const p = makeProblem(rand);
-      expect(p.a).not.toBe(p.b);
-      expect(p.a).not.toBe(0);
-      expect(p.c).not.toBe(0);
-      expect(p.n).not.toBe(0);
+      const tag = JSON.stringify(p);
+      if (p.a === p.b || p.a === 0 || p.c === 0 || p.n === 0) bad.push(`degenerate ${tag}`);
       // The cleared equation x² − (b + c)x + (ca − n) = 0 has exactly the two roots.
       for (const r of p.roots) {
-        expect(r * r - (p.b + p.c) * r + (p.c * p.a - p.n)).toBe(0);
-      }
-      for (const r of p.roots) {
-        expect(satisfies(p, r)).toBe(isAllowed(p, r));
+        if (r * r - (p.b + p.c) * r + (p.c * p.a - p.n) !== 0) bad.push(`root ${r} of ${tag}`);
+        if (satisfies(p, r) !== isAllowed(p, r)) bad.push(`kept root ${r} of ${tag}`);
       }
       // No other integer in a wide range solves it.
       const sol = solutions(p);
       for (let x = -30; x <= 30; x++) {
-        expect(satisfies(p, x)).toBe(sol.includes(x));
+        if (satisfies(p, x) !== sol.includes(x)) bad.push(`x = ${x} in ${tag}`);
       }
-      expect(conditionMatches(p, excluded(p))).toBe(true);
-      expect(conditionMatches(p, [p.a])).toBe(false);
+      if (!conditionMatches(p, excluded(p))) bad.push(`condition of ${tag}`);
+      if (conditionMatches(p, [p.a])) bad.push(`loose condition of ${tag}`);
       if (sol.length < 2) rejected++;
       if (sol.length === 0) empty++;
     }
+    expect(bad).toEqual([]);
     expect(rejected).toBeGreaterThan(800);
     expect(empty).toBeGreaterThan(0);
   });
