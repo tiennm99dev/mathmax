@@ -355,9 +355,11 @@ Other shared pieces:
   ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
   `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
   book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
-  with `reaction.js` (`terms`, `isBalancedText`); BioMax has
+  with `reaction.js` (`terms`, `isBalancedText`, which also checks condensed
+  structural formulas such as "CH2=CH2 + Br2 → BrCH2–CH2Br"); BioMax has
   `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
-  opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`. Use
+  opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`,
+  `pea` (a garden-pea seed, flower or plant picture for Mendel's traits). Use
   what `ls src/lib/domain/` actually shows; each component has a
   `<name>.gallery.svelte` demo that `/_gallery/` lists. When two chapters need
   the same subject helper, it belongs in `src/lib/domain/`, not in two
