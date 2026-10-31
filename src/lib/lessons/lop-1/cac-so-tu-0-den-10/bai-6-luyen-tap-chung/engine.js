@@ -129,7 +129,7 @@ export function makeQuestion(kind, rand) {
     kind,
     prompt: `${n} gồm ${left} và mấy?`,
     ...numberOptions(rand, right),
-    hint: `Có ${left} hạt rồi, em đếm tiếp đến ${n}.`,
+    hint: `Có ${left} rồi, em đếm tiếp đến ${n}.`,
     solution: `Từ ${left} đếm tiếp đến ${n} được thêm ${right}. ${n} gồm ${left} và ${right}.`,
   };
 }

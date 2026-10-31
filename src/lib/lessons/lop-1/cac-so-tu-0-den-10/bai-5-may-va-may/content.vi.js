@@ -107,7 +107,7 @@ export default {
     },
     {
       type: 'count',
-      prompt: 'Đĩa trái có 2 quả dâu tây, đĩa phải có 3 quả. Gộp lại, có mấy quả dâu tây?',
+      prompt: 'Mẹ mua 2 quả dâu tây, bà cho thêm 3 quả. Gộp lại, có mấy quả dâu tây?',
       picture: 'strawberry',
       answer: 5,
       choices: ZERO_TO_TEN,
@@ -116,7 +116,7 @@ export default {
     },
     {
       type: 'count',
-      prompt: 'Có 4 con thỏ trắng và 4 con thỏ xám. Gộp lại, có mấy con thỏ?',
+      prompt: 'Có 4 con thỏ trong chuồng và 4 con thỏ ngoài vườn. Gộp lại, có mấy con thỏ?',
       picture: 'rabbit',
       answer: 8,
       choices: ZERO_TO_TEN,
