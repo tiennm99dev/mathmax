@@ -365,3 +365,12 @@ export const SKILLS_TRANG_78 = [gocNoiTiep, ngoaiTiepTamGiac, noiTiepTamGiac];
 
 /** The drill of "Luyện tập chung trang 90": Bài 29 and Bài 30. */
 export const SKILLS_TRANG_90 = [tuGiacNoiTiep, daGiacDeu];
+
+/** The drill of the chapter review, one skill per idea of each lesson. */
+export const CHAPTER_SKILLS = [
+  gocNoiTiep,
+  ngoaiTiepTamGiac,
+  noiTiepTamGiac,
+  tuGiacNoiTiep,
+  daGiacDeu,
+];

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { buildSet, rng } from '#lib/core/drill.js';
-import { SKILLS_TRANG_78, SKILLS_TRANG_90 } from './skills.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_78, SKILLS_TRANG_90 } from './skills.js';
 
 const ALL = [...SKILLS_TRANG_78, ...SKILLS_TRANG_90];
 
@@ -107,5 +107,10 @@ describe('chapter drill skills', () => {
   it('builds a set with two questions per skill', () => {
     expect(buildSet(SKILLS_TRANG_78, 2, 7)).toHaveLength(6);
     expect(buildSet(SKILLS_TRANG_90, 2, 7)).toHaveLength(4);
+    expect(buildSet(CHAPTER_SKILLS, 2, 7)).toHaveLength(10);
+  });
+
+  it('the chapter review covers every skill of both practice lessons', () => {
+    expect(CHAPTER_SKILLS).toEqual(ALL);
   });
 });
