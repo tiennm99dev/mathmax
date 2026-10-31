@@ -121,7 +121,7 @@ export default {
   explore: {
     title: 'Đề ôn thi vào lớp 10 thích ứng',
     instruction:
-      'Đề có $20$ câu. Mười câu đầu lấy mỗi chương một câu; từ câu thứ mười một, đề ưu tiên phần em đã làm sai (ô màu tím ghi rõ vì sao chọn câu đó). Nhập số nguyên, số thập phân (dùng dấu phẩy, ví dụ $12{,}5$) hoặc phân số dạng $7/3$. Câu hỏi về độ dài cung, diện tích hay thể tích chỉ hỏi hệ số $k$ trong $k\\pi$. Sai lần đầu, em được gợi ý và làm lại; sai lần hai, em xem lời giải từng bước. Bản đồ kĩ năng chấm theo lần làm đầu.',
+      'Đề có $20$ câu. Mười câu đầu lấy mỗi chương một câu; từ câu thứ mười một, đề ưu tiên phần em đã làm sai (dòng chữ phía trên câu hỏi ghi rõ vì sao chọn câu đó). Nhập số nguyên, số thập phân (dùng dấu phẩy, ví dụ $12{,}5$) hoặc phân số dạng $7/3$. Câu hỏi về độ dài cung, diện tích hay thể tích chỉ hỏi hệ số $k$ trong $k\\pi$. Sai lần đầu, em được gợi ý và làm lại; sai lần hai, em xem lời giải từng bước. Bản đồ kĩ năng chấm theo lần làm đầu.',
   },
   examples: [
     {

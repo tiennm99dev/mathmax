@@ -69,6 +69,7 @@ describe('every review skill', () => {
           shown !== null &&
           sameValue(shown, q.answer) &&
           (q.steps.at(-1) ?? '').includes(q.display) &&
+          !/\d\/\d+[²³]|\b(\d+)\/(\d+) = \1\/\2\b/.test(all) &&
           q.hints.length > 0 &&
           (q.simplest === true) === q.prompt.includes('phân số tối giản') &&
           (!q.simplest || inLowestTerms(q.display)) &&

@@ -43,6 +43,17 @@ export function piText(k) {
 /** A fraction as an operand: negatives in brackets. */
 const showOp = (/** @type {Fraction} */ f) => (f.n < 0 ? `(${show(f)})` : show(f));
 
+/** A fraction as a base or a divisor: negatives and p/q in brackets. */
+const showTight = (/** @type {Fraction} */ f) => (f.n < 0 || f.d !== 1 ? `(${show(f)})` : show(f));
+
+/**
+ * 'm/n = p/q', or just 'm/n' when it is already in lowest terms.
+ * @param {number} m
+ * @param {number} n
+ * @param {Fraction} f m/n in lowest terms
+ */
+const reduced = (m, n, f) => (f.n === m && f.d === n ? `${m}/${n}` : `${m}/${n} = ${show(f)}`);
+
 /** A nonzero integer in [−max, −1] ∪ [1, max]. */
 const nonzero = (/** @type {() => number} */ rand, /** @type {number} */ max) =>
   int(rand, 1, max) * pick(rand, [1, -1]);
@@ -428,8 +439,7 @@ export const heThucLuong = {
           ...(needsBC
             ? [`Theo định lí Pythagore: BC² = ${ab}² + ${ac}² = ${fmt(h * h)}, nên BC = ${h} cm.`]
             : []),
-          `${fn} ${angle} = ${def} = ${n}/${d}.`,
-          `Viết tối giản: ${fn} ${angle} = ${show(value)}.`,
+          `${fn} ${angle} = ${def} = ${reduced(n, d, value)}.`,
         ],
       };
     }
@@ -651,8 +661,8 @@ export const phuongTrinhBacHai = {
           `Δ = ${operand(b)}² − 4 · ${a} · ${operand(c)} = ${fmt(delta)} > 0, nên phương trình có hai nghiệm phân biệt.`,
           `Theo định lí Viète: x₁ + x₂ = ${show(S)}, x₁x₂ = ${show(P)}.`,
           ask === 0
-            ? `x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = ${showOp(S)}² − 2 · ${showOp(P)} = ${show(value)}.`
-            : `1/x₁ + 1/x₂ = (x₁ + x₂)/(x₁x₂) = ${showOp(S)} : ${showOp(P)} = ${show(value)}.`,
+            ? `x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂ = ${showTight(S)}² − 2 · ${showOp(P)} = ${show(value)}.`
+            : `1/x₁ + 1/x₂ = (x₁ + x₂)/(x₁x₂) = ${showOp(S)} : ${showTight(P)} = ${show(value)}.`,
         ],
       };
     }
@@ -756,7 +766,7 @@ export const xacSuat = {
         ],
         steps: [
           `Các kết quả thuận lợi: ${pairs.join(', ')}, có ${pairs.length} kết quả.`,
-          `P = ${pairs.length}/36 = ${show(p)}.`,
+          `P = ${reduced(pairs.length, 36, p)}.`,
         ],
       };
     }
@@ -781,7 +791,7 @@ export const xacSuat = {
         ],
         steps: [
           `Không gian mẫu {SS; SN; NS; NN} có 4 kết quả đồng khả năng; thuận lợi: ${list}.`,
-          `P = ${count}/4 = ${show(p)}.`,
+          `P = ${reduced(count, 4, p)}.`,
         ],
       };
     }
@@ -799,10 +809,7 @@ export const xacSuat = {
           `Có ${N} kết quả đồng khả năng.`,
           `Các số chia hết cho ${k} là ${k}, ${2 * k}, ${3 * k}, …; đếm xem có bao nhiêu số không vượt quá ${N}.`,
         ],
-        steps: [
-          `Từ 1 đến ${N} có ${count} số chia hết cho ${k}.`,
-          `P = ${count}/${N} = ${show(p)}.`,
-        ],
+        steps: [`Từ 1 đến ${N} có ${count} số chia hết cho ${k}.`, `P = ${reduced(count, N, p)}.`],
       };
     }
     const primes = PRIMES.filter((q) => q <= N);
@@ -818,7 +825,7 @@ export const xacSuat = {
       ],
       steps: [
         `Các số nguyên tố từ 1 đến ${N}: ${primes.join(', ')}, có ${primes.length} số.`,
-        `P = ${primes.length}/${N} = ${show(p)}.`,
+        `P = ${reduced(primes.length, N, p)}.`,
       ],
     };
   },
