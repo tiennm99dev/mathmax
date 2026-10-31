@@ -6,6 +6,7 @@ import {
   int,
   isDone,
   nextPhase,
+  partition,
   readAnswer,
   rng,
   shuffle,
@@ -181,5 +182,22 @@ describe('countsAsNaturals', () => {
       if (Number.isInteger(q.answer)) expect(q.read?.('1.350')).toBe(1350);
       else expect(q.read).toBeUndefined();
     }
+  });
+});
+
+describe('partition', () => {
+  it('splits n into k positive parts', () => {
+    const r = rng(7);
+    for (let t = 0; t < 200; t++) {
+      const parts = partition(r, 20, 4);
+      expect(parts).toHaveLength(4);
+      expect(parts.every((p) => p > 0)).toBe(true);
+      expect(parts.reduce((s, p) => s + p, 0)).toBe(20);
+    }
+  });
+
+  it('gives n itself for one part and all ones for n parts', () => {
+    expect(partition(rng(1), 9, 1)).toEqual([9]);
+    expect(partition(rng(1), 5, 5)).toEqual([1, 1, 1, 1, 1]);
   });
 });

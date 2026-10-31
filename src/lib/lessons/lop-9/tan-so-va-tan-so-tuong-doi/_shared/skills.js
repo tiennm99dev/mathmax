@@ -6,16 +6,10 @@
  * inline TeX.
  */
 
-import { formatNumber } from '#lib/core/number-format.js';
-import { int, pick, shuffle } from '#lib/core/drill.js';
+import { numTex } from '#lib/core/number-format.js';
+import { int, partition, pick, shuffle } from '#lib/core/drill.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A number in TeX with a decimal comma: 37.5 gives '37{,}5'.
- * @param {number} v
- */
-export const numTex = (v) => formatNumber(v).replace(',', '{,}');
 
 /**
  * A data sample as plain text, '3; 5; 4', so a long sample wraps on a
@@ -23,19 +17,6 @@ export const numTex = (v) => formatNumber(v).replace(',', '{,}');
  * @param {readonly number[]} values
  */
 export const sampleText = (values) => values.join('; ');
-
-/**
- * k positive whole numbers that add up to n, in random order.
- * @param {() => number} rand
- * @param {number} n
- * @param {number} k at most n
- */
-export function partition(rand, n, k) {
-  const cuts = new Set();
-  while (cuts.size < k - 1) cuts.add(int(rand, 1, n - 1));
-  const sorted = [0, ...[...cuts].sort((a, b) => a - b), n];
-  return sorted.slice(1).map((c, i) => c - sorted[i]);
-}
 
 /**
  * A frequency table in one line: 'giá trị $2, 3, 4$ có tần số lần lượt là $5, 1, 6$'.

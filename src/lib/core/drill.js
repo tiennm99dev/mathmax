@@ -86,6 +86,21 @@ export function shuffle(rand, items) {
 }
 
 /**
+ * k positive whole numbers that add up to n, in random order: the counts of a
+ * frequency table, the shares of a total.
+ * @param {() => number} rand
+ * @param {number} n
+ * @param {number} k from 1 to n
+ * @returns {number[]}
+ */
+export function partition(rand, n, k) {
+  const cuts = new Set();
+  while (cuts.size < k - 1) cuts.add(int(rand, 1, n - 1));
+  const sorted = [0, ...[...cuts].sort((a, b) => a - b), n];
+  return sorted.slice(1).map((c, i) => c - sorted[i]);
+}
+
+/**
  * `perSkill` questions from every skill, mixed in random order. Questions
  * with the same prompt are drawn again so a set never repeats itself.
  * @param {Skill[]} skills

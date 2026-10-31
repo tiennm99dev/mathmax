@@ -255,7 +255,10 @@ Other shared pieces:
   (`2⁵`) and `readNatural` for typed input. Integers: `MINUS` (the book's
   `−`), `intText` (`−1 234`), `operand` (`(−5)`) and `readInteger`.
   `roundToTotal(values, total)` rounds measures to whole numbers that still
-  add up (four angles to 360°, shares to 100%).
+  add up (four angles to 360°, shares to 100%). In generated TeX write numbers
+  with `numTex` (`12\,345{,}5`: thin-space thousands, braced comma, ASCII
+  minus), never `formatNumber` with a comma swap, and durations with
+  `hoursText` (`$1$ giờ $12$ phút`).
 - `#lib/core/fractions.js`: `fracText` (`−3/4`), `fracOperand`, `mixedText`
   (`1 3/4`), `texFrac`, `texOperand`, `toFraction`, `valueText`,
   `readFraction`, and `readProbability`/`probabilityText` for probabilities;
@@ -280,8 +283,9 @@ Other shared pieces:
 - `#lib/core/drill-board.svelte` with `#lib/core/drill.js`: a generated
   practice drill for `practice` and `review` lessons. Write one `Skill`
   (`{ id, label, make(rand) }`, `make` returns `{ prompt, answer, steps,
-  hints? }`) per lesson in `_shared/skills.js` using `int`, `pick` and
-  `shuffle` from `drill.js`, then render
+  hints? }`) per lesson in `_shared/skills.js` using `int`, `pick`,
+  `shuffle` and `partition` (k positive parts adding up to n) from
+  `drill.js`, then render
   `<DrillBoard skills={[...]} perSkill={2} />`. A wrong first answer shows a
   hint ladder (the question's `hints`, else its steps that do not give the
   answer away) and a second try; only a second miss shows the full solution.

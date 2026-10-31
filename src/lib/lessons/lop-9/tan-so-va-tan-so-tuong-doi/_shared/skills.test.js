@@ -2,14 +2,7 @@ import { describe, it, expect } from 'vitest';
 import katex from 'katex';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { rng } from '#lib/core/drill.js';
-import {
-  CHAPTER_SKILLS,
-  SKILLS_BAI_24,
-  SKILLS_TRANG_43,
-  numTex,
-  partition,
-  sampleText,
-} from './skills.js';
+import { CHAPTER_SKILLS, SKILLS_BAI_24, SKILLS_TRANG_43, sampleText } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -147,18 +140,7 @@ describe('chapter skills', () => {
     expect(new Set(CHAPTER_SKILLS.map((s) => s.id)).size).toBe(CHAPTER_SKILLS.length);
   });
 
-  it('splits a sample size into positive parts', () => {
-    const r = rng(7);
-    for (let t = 0; t < 200; t++) {
-      const parts = partition(r, 20, 4);
-      expect(parts).toHaveLength(4);
-      expect(parts.every((p) => p > 0)).toBe(true);
-      expect(parts.reduce((s, p) => s + p, 0)).toBe(20);
-    }
-  });
-
-  it('writes numbers and samples the book way', () => {
-    expect(numTex(37.5)).toBe('37{,}5');
+  it('writes samples the book way', () => {
     expect(sampleText([3, 5, 4])).toBe('3; 5; 4');
   });
 });

@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest';
 import katex from 'katex';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { rng } from '#lib/core/drill.js';
-import { CHAPTER_SKILLS, SKILLS_TRANG_18, SKILLS_TRANG_28, hoursText } from './skills.js';
+import { hoursText } from '#lib/core/number-format.js';
+import { CHAPTER_SKILLS, SKILLS_TRANG_18, SKILLS_TRANG_28 } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
 function sample(skill, count = 600) {
@@ -230,10 +231,7 @@ describe('chapter skills', () => {
     expect(new Set(CHAPTER_SKILLS.map((s) => s.id)).size).toBe(CHAPTER_SKILLS.length);
   });
 
-  it('writes hours the book way', () => {
-    expect(hoursText(1.2)).toBe('$1$ giờ $12$ phút');
-    expect(hoursText(0.5)).toBe('$30$ phút');
-    expect(hoursText(4)).toBe('$4$ giờ');
+  it('reads hours back from the way prompts write them', () => {
     expect(readHours(hoursText(3.75))).toBe(3.75);
   });
 

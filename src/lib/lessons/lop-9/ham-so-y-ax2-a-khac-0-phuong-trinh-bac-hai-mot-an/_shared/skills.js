@@ -7,17 +7,10 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { numTex as dottedTex } from '#lib/algebra-engine/polynomial.js';
+import { hoursText, numTex } from '#lib/core/number-format.js';
 import { clean, discriminant, quadTex, solveQuadratic, texOperand } from './quadratic.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-
-/**
- * A number in TeX with the book's thousands spacing and decimal comma:
- * 1296 gives '1\,296', -2.5 gives '-2{,}5'.
- * @param {number} v
- */
-const numTex = (v) => dottedTex(v).replace(/(\d)\.(?=\d{3})/g, '$1\\,');
 
 /** Coefficients a whose products with small squares stay short decimals. */
 const NICE_A = [-3, -2, -1.5, -1, -0.5, -0.25, 0.25, 0.5, 1, 1.5, 2, 3];
@@ -351,18 +344,6 @@ const TEAM_TIMES = [
   { x: 10, k: 5, t: 6 },
   { x: 12, k: 6, t: 7.2 },
 ];
-
-/**
- * A time in hours as 'h giờ m phút' with TeX numbers: 1,2 gives '$1$ giờ $12$
- * phút', 0,5 gives '$30$ phút'.
- * @param {number} hours
- */
-export function hoursText(hours) {
-  const h = Math.floor(hours);
-  const m = Math.round((hours - h) * 60);
-  if (m === 0) return `$${h}$ giờ`;
-  return h === 0 ? `$${m}$ phút` : `$${h}$ giờ $${m}$ phút`;
-}
 
 /** @type {Skill} */
 export const lapPhuongTrinh = {

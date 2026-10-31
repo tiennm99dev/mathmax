@@ -8,7 +8,7 @@
  * and superscript exponents (`polyText`); decimals use a comma.
  */
 
-import { MINUS, formatNumber, sup, texNumber } from '#lib/core/number-format.js';
+import { MINUS, formatNumber, numTex, sup } from '#lib/core/number-format.js';
 
 /** @typedef {{ c: number, e: number }} Term */
 
@@ -127,10 +127,10 @@ export function termsOf(p, ascending = false) {
 }
 
 /**
- * A number in TeX with the decimal comma braced: 2.5 → '2{,}5'.
- * @param {number} v
+ * A number in TeX the book's way (`numTex` in `number-format.js`): 2.5 →
+ * '2{,}5', 1296 → '1\,296'.
  */
-export const numTex = (v) => texNumber(formatNumber(v)).replace(MINUS, '-');
+export { numTex };
 
 /**
  * One term as TeX. `first` leaves a positive sign off; otherwise the sign is

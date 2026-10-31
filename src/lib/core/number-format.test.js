@@ -7,6 +7,8 @@ import {
   fmt,
   formatFixed,
   formatNumber,
+  hoursText,
+  numTex,
   powText,
   readNatural,
   roundToTotal,
@@ -119,5 +121,33 @@ describe('roundToTotal', () => {
   it('leaves whole numbers alone and breaks ties in order', () => {
     expect(roundToTotal([90, 90, 90, 90], 360)).toEqual([90, 90, 90, 90]);
     expect(roundToTotal([0.5, 0.5], 1)).toEqual([1, 0]);
+  });
+});
+
+describe('numTex', () => {
+  it('groups thousands with a thin space, as fmt does in text', () => {
+    expect(numTex(1296)).toBe('1\\,296');
+    expect(numTex(1234567)).toBe('1\\,234\\,567');
+    expect(numTex(12345.5)).toBe('12\\,345{,}5');
+  });
+
+  it('braces the decimal comma and writes an ASCII minus', () => {
+    expect(numTex(2.5)).toBe('2{,}5');
+    expect(numTex(-2.5)).toBe('-2{,}5');
+    expect(numTex(-1500)).toBe('-1\\,500');
+    expect(numTex(37)).toBe('37');
+  });
+
+  it('rounds to at most the given decimals', () => {
+    expect(numTex(1 / 3, 2)).toBe('0{,}33');
+  });
+});
+
+describe('hoursText', () => {
+  it('writes hours and minutes the book way', () => {
+    expect(hoursText(1.2)).toBe('$1$ giờ $12$ phút');
+    expect(hoursText(0.5)).toBe('$30$ phút');
+    expect(hoursText(4)).toBe('$4$ giờ');
+    expect(hoursText(3.75)).toBe('$3$ giờ $45$ phút');
   });
 });
