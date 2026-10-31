@@ -163,7 +163,7 @@ export default {
     {
       type: 'count',
       prompt:
-        'Mỗi khối vuông dài 1 cm. Các khối xếp thẳng hàng, sát nhau. Hàng khối dài mấy xăng-ti-mét?',
+        'Em có các khối vuông dưới đây, mỗi khối dài 1 cm. Em xếp tất cả thành một hàng thẳng, các khối sát nhau. Hàng khối dài mấy xăng-ti-mét?',
       picture: 'block',
       answer: 6,
       choices: [4, 5, 6, 7, 8],

@@ -54,7 +54,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Mục tiêu: em ước lượng rồi đo độ dài của 4 đồ vật quanh em.',
+          text: 'Mục tiêu: em ước lượng rồi đo độ dài của các đồ vật quanh em.',
         },
         {
           type: 'list',
