@@ -49,9 +49,11 @@ export function story(mode, n, k) {
   const r = n - k;
   const left = r === 0 ? 'không còn con nào' : `còn lại ${r} con`;
   if (mode === 'bot') {
-    return `Trên cành có ${n} con chim. ${k} con bay đi. Trên cành ${left}. Ta viết ${subText(n, k)}.`;
+    const flew = k === 0 ? 'Chưa con nào bay đi' : `${k} con bay đi`;
+    return `Trên cành có ${n} con chim. ${flew}. Trên cành ${left}. Ta viết ${subText(n, k)}.`;
   }
-  return `Có ${n} con chim. Tách ra ${k} con xuống đất. Trên cành ${left}. Ta viết ${subText(n, k)}.`;
+  const down = k === 0 ? 'Chưa tách con nào xuống đất' : `Tách ra ${k} con xuống đất`;
+  return `Có ${n} con chim. ${down}. Trên cành ${left}. Ta viết ${subText(n, k)}.`;
 }
 
 /**
@@ -60,8 +62,8 @@ export function story(mode, n, k) {
  * @param {number} k
  */
 export function zeroNote(n, k) {
-  if (k === 0) return `Chưa con nào rời cành: bớt 0 thì số chim vẫn vậy, ${subText(n, 0)}.`;
-  if (k === n) return `Hai số bằng nhau thì hiệu bằng 0: ${subText(n, n)}.`;
+  if (k === 0) return `Một số trừ đi 0 thì bằng chính số đó: ${subText(n, 0)}.`;
+  if (k === n) return `Một số trừ đi chính nó thì bằng 0: ${subText(n, n)}.`;
   return '';
 }
 

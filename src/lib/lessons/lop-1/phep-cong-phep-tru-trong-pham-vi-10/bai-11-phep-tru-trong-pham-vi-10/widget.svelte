@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Stepper from '#lib/core/stepper.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
@@ -14,6 +15,8 @@
   let mode = $state(/** @type {import('./engine.js').Mode} */ ('bot'));
   let total = $state(6);
   let gone = $state(freshBranch(6));
+  /** @type {HTMLDivElement | undefined} */
+  let scene = $state();
 
   const k = $derived(countGone(gone));
   const rest = $derived(total - k);
@@ -23,9 +26,19 @@
     gone = freshBranch(total);
   }
 
-  /** @param {number} i */
-  function tap(i) {
+  /**
+   * In "Tách ra" a tapped bird moves to the other row, so its button is
+   * replaced; keep keyboard focus on that bird in its new place.
+   * @param {number} i
+   */
+  async function tap(i) {
     gone = toggleBird(gone, i);
+    if (mode !== 'tach') return;
+    await tick();
+    const moved = /** @type {HTMLButtonElement | null | undefined} */ (
+      scene?.querySelector(`button[data-bird="${i}"]`)
+    );
+    moved?.focus();
   }
 
   /** @param {number} i */
@@ -62,7 +75,7 @@
     onchange={reset}
   />
 
-  <div class="rounded-3xl bg-sky-50 p-3">
+  <div bind:this={scene} class="rounded-3xl bg-sky-50 p-3">
     <ul class="flex min-h-16 flex-wrap justify-center gap-1" aria-label="Cành cây">
       {#each gone as g, i (i)}
         <li>
@@ -74,6 +87,7 @@
                 : 'hover:bg-white'}"
               aria-label={birdLabel(i)}
               aria-pressed={g}
+              data-bird={i}
               onclick={() => tap(i)}
             >
               {@render bird(COLOURS[i % COLOURS.length])}
@@ -99,6 +113,7 @@
                 class="{birdButton} hover:bg-white"
                 aria-label={birdLabel(i)}
                 aria-pressed={g}
+                data-bird={i}
                 onclick={() => tap(i)}
               >
                 {@render bird(COLOURS[i % COLOURS.length])}

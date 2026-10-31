@@ -24,6 +24,8 @@ describe('birds on a branch engine', () => {
     expect(zeroNote(7, 0)).toContain('7 − 0 = 7');
     expect(zeroNote(7, 7)).toContain('7 − 7 = 0');
     expect(zeroNote(7, 3)).toBe('');
+    expect(story('bot', 4, 0)).toContain('Chưa con nào bay đi');
+    expect(zeroNote(4, 4)).toContain('trừ đi chính nó');
     expect(feedback('bot', 3, 1)).toContain('ba trừ một bằng hai');
   });
 
