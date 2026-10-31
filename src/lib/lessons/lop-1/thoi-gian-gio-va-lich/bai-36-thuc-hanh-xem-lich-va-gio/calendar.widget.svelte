@@ -99,7 +99,7 @@
     aria-live="polite"
   >
     {#if solved}<span aria-hidden="true">⭐ </span>{/if}{!found
-      ? `Tờ này là ngày ${date}. Em lật tiếp đến ngày ${goal} nhé.`
+      ? `Tờ này là ngày ${date}. Em lật ${date < goal ? 'tới' : 'lùi'} đến ngày ${goal} nhé.`
       : picked === null
         ? 'Tìm thấy rồi! Em chạm vào thứ ghi trên tờ lịch.'
         : missionFeedback(goal, picked)}

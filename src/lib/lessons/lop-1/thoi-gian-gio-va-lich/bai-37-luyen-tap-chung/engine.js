@@ -189,7 +189,7 @@ export function makeQuestion(kind, rand, turn) {
     );
     return {
       kind,
-      prompt: 'Tờ lịch của ngày mai ghi ngày bao nhiêu?',
+      prompt: 'Đây là tờ lịch hôm nay. Tờ lịch ngày mai ghi ngày bao nhiêu?',
       scene,
       options,
       answer,
@@ -231,20 +231,25 @@ export function makeQuestion(kind, rand, turn) {
 }
 
 /**
- * One round: every kind twice, in a mixed order with no kind twice in a row
- * where the shuffle allows.
+ * True when two questions of the same kind come one after the other.
+ * @param {Question[]} list
+ */
+function hasRepeat(list) {
+  return list.some((q, i) => i > 0 && q.kind === list[i - 1].kind);
+}
+
+/**
+ * One round: every kind twice, in a mixed order with no kind twice in a
+ * row. The order is reshuffled from the same seed until no kind repeats,
+ * so it stays the same for every visitor.
  * @param {number} seed
  * @returns {Question[]}
  */
 export function buildRound(seed) {
   const rand = rng(seed * 3371 + 37);
   const list = KINDS.flatMap((k) => [makeQuestion(k, rand, 0), makeQuestion(k, rand, 1)]);
-  const order = shuffle(rand, list);
-  for (let i = 1; i < order.length; i++) {
-    if (order[i].kind !== order[i - 1].kind) continue;
-    const j = order.findIndex((q, k) => k > i && q.kind !== order[i].kind);
-    if (j > 0) [order[i], order[j]] = [order[j], order[i]];
-  }
+  let order = shuffle(rand, list);
+  for (let tries = 0; tries < 200 && hasRepeat(order); tries++) order = shuffle(rand, list);
   return order;
 }
 

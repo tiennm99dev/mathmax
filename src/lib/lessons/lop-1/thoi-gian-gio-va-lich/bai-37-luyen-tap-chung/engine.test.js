@@ -85,6 +85,15 @@ describe('chapter practice round', () => {
     expect(bad).toEqual([]);
   });
 
+  it('never asks the same kind twice in a row', () => {
+    const bad = [];
+    for (let seed = 1; seed <= 300; seed++) {
+      const round = buildRound(seed);
+      if (round.some((q, i) => i > 0 && q.kind === round[i - 1].kind)) bad.push(seed);
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('is the same for the same seed and lists the missed kinds', () => {
     expect(buildRound(3)).toEqual(buildRound(3));
     const round = buildRound(2);

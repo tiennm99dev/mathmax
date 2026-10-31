@@ -171,17 +171,11 @@
 
   {#if mode === 'turn'}
     <div class="flex flex-wrap justify-center gap-3">
-      <button
-        type="button"
-        class="min-h-12 text-lg {button.quiet}"
-        onclick={() => (turn -= 1)}
-        aria-label="Lùi lại một ngày">◀ Hôm qua</button
+      <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={() => (turn -= 1)}
+        ><span aria-hidden="true">◀ </span>Hôm qua</button
       >
-      <button
-        type="button"
-        class="min-h-12 text-lg {button.quiet}"
-        onclick={() => (turn += 1)}
-        aria-label="Tới một ngày">Ngày mai ▶</button
+      <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={() => (turn += 1)}
+        >Ngày mai<span aria-hidden="true"> ▶</span></button
       >
     </div>
     <ul class="space-y-2 rounded-2xl bg-slate-100 px-4 py-3 text-xl" aria-live="polite">
