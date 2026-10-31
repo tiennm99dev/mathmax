@@ -18,7 +18,11 @@
 # without one gets an empty table it then owns.
 #
 # Run it from a clean mathmax checkout so CORE_VERSION names exactly what was
-# copied. Afterwards, in the target: npm install, then the repo gates.
+# copied, into a target whose index is clean (nothing staged), so the sync
+# commit holds only the sync: a deletion or rename staged earlier would
+# otherwise be swept into it. Afterwards, in the target: npm install, then the
+# repo gates, then commit the sync on its own after a `git status` that shows
+# only synced paths; each commit must build on its own.
 set -euo pipefail
 
 die() {
@@ -98,6 +102,15 @@ if [[ -n "$dirty" ]]; then
   exit 1
 fi
 sha="$(git -C "$src" rev-parse HEAD)"
+
+if git -C "$target" rev-parse --git-dir >/dev/null 2>&1; then
+  staged="$(git -C "$target" diff --cached --name-status)"
+  if [[ -n "$staged" ]]; then
+    echo "sync-core: $target has staged changes; commit or unstage them first:" >&2
+    echo "$staged" >&2
+    exit 1
+  fi
+fi
 
 if ((dry_run)); then
   for dir in "${SYNC_DIRS[@]}"; do
@@ -205,3 +218,4 @@ fi
 echo "$sha" >"$target/CORE_VERSION"
 echo "sync-core: synced mathmax $sha into $target"
 echo "sync-core: next, in $target: npm install, then lint, format:check, check, test and build"
+echo "sync-core: then check git status and commit the sync on its own"

@@ -370,6 +370,9 @@ writes, no `{@html}` of anything but KaTeX output. Respect
 `prefers-reduced-motion` for animations. Keep a lesson's JS under 30 KB gzip;
 `npm run size-report` fails any lesson chunk over 60 KB. Put non-trivial logic in
 `engine.js` or a `*.svelte.js` module and test it in Node (there is no jsdom).
+Keep each test well under a second, since the suite runs under load: sample
+fixed seeds and edge cases, and in a loop over many cases collect failures
+into a list checked by one `expect` instead of calling `expect` per case.
 
 ## 7. Quality bar
 
@@ -408,7 +411,10 @@ with zero warnings; fix the cause, never weaken a test.
    src/lib/lessons/lop-N/<chuong-slug>` first) and `npm run check`.
 3. `npm test`.
 4. `npm run build`, then `npm run size-report` within budget.
-5. `npm run stubs -- lop-N/<chuong-slug>` reports `0 stubs`.
+5. `npm run stubs -- lop-N/<chuong-slug>` reports `0 stubs`. When you were
+   given only some lessons of a chapter that has later parts, the gate is
+   checked for your lessons, not the whole chapter: none of them may appear in
+   the stub list the command prints, and the later parts' stubs remain.
 6. `git diff --name-only main...HEAD` (and `git status --short`) lists only paths
    under `src/lib/lessons/lop-N/<chuong-slug>/`.
 7. Spot check one lesson in the browser (`npm run preview`, agent-browser where
@@ -428,6 +434,11 @@ with zero warnings; fix the cause, never weaken a test.
   or test names.
 - No AI attribution: no `Co-Authored-By` trailer for an agent, no "Generated
   with" footer.
+- Start every commit from a clean index: run `git status` first and stage
+  only that commit's paths (`git add <paths>`, never `git add -A` over
+  someone else's work), so a deletion or rename left staged is not swept into
+  an earlier commit. Each commit must build on its own: lint, check, tests and
+  build pass at that commit, not only at the last one.
 - Rebase on `main` before merging; paths are disjoint from other chapters, so a
   conflict means you touched a file you do not own. Do not push unless told to.
 
