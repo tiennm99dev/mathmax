@@ -63,6 +63,29 @@ describe('position scenes', () => {
     expect(fits(SCENES.phong, 'canh-tu', 'phai-ban')).toBe(false);
   });
 
+  it('accepts every place that lies wholly to one side of a piece of furniture', () => {
+    // Left edges and right edges of the furniture drawn in the room.
+    const furniture = { tu: [8, 78], ban: [156, 276], cay: [354, 394] };
+    const bad = [];
+    for (const p of SCENES.phong.places) {
+      for (const [name, [lo, hi]] of Object.entries(furniture)) {
+        const left = p.x + p.size <= lo;
+        const right = p.x >= hi;
+        if (
+          SCENES.phong.phrases[`trai-${name}`] &&
+          left !== fits(SCENES.phong, p.id, `trai-${name}`)
+        )
+          bad.push(`${p.id} trai-${name}`);
+        if (
+          SCENES.phong.phrases[`phai-${name}`] &&
+          right !== fits(SCENES.phong, p.id, `phai-${name}`)
+        )
+          bad.push(`${p.id} phai-${name}`);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('asks questions with exactly one true option', () => {
     const bad = [];
     for (const s of scenes) {

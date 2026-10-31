@@ -16,7 +16,12 @@ import { pick, shuffle } from '#lib/core/drill.js';
  * @property {number} x left edge on the 400 × 240 canvas
  * @property {number} y top edge
  * @property {number} size width and height of the place
- * @property {string[]} truths ids of the phrases true at this place
+ * @property {string[]} truths ids of the phrases that name this place; a
+ *   question about the place asks for one of them
+ * @property {string[]} [also] ids of phrases that are also true here but do
+ *   not name the place well, such as "ở bên phải cái tủ" for a ball on the
+ *   table: a command with one accepts the place, and a question never offers
+ *   one as a wrong option
  */
 /**
  * @typedef {object} Scene
@@ -42,16 +47,45 @@ export const SCENES = {
     mover: 'ball',
     moverName: 'quả bóng',
     places: [
-      { id: 'tren-tu', x: 13, y: 24, size: 60, truths: ['tren-tu'] },
-      { id: 'canh-tu', x: 86, y: 146, size: 60, truths: ['trai-ban', 'phai-tu', 'giua-tu-ban'] },
-      { id: 'tren-ban', x: 186, y: 66, size: 60, truths: ['tren-ban'] },
-      { id: 'duoi-ban', x: 186, y: 146, size: 60, truths: ['duoi-ban'] },
+      {
+        id: 'tren-tu',
+        x: 13,
+        y: 24,
+        size: 60,
+        truths: ['tren-tu'],
+        also: ['trai-ban', 'trai-cay'],
+      },
+      {
+        id: 'canh-tu',
+        x: 86,
+        y: 146,
+        size: 60,
+        truths: ['trai-ban', 'phai-tu', 'giua-tu-ban'],
+        also: ['trai-cay'],
+      },
+      {
+        id: 'tren-ban',
+        x: 186,
+        y: 66,
+        size: 60,
+        truths: ['tren-ban'],
+        also: ['phai-tu', 'trai-cay'],
+      },
+      {
+        id: 'duoi-ban',
+        x: 186,
+        y: 146,
+        size: 60,
+        truths: ['duoi-ban'],
+        also: ['phai-tu', 'trai-cay'],
+      },
       {
         id: 'canh-cay',
         x: 286,
         y: 146,
         size: 60,
         truths: ['phai-ban', 'trai-cay', 'giua-ban-cay'],
+        also: ['phai-tu'],
       },
     ],
     phrases: {
@@ -118,13 +152,15 @@ export function placeOf(scene, id) {
 }
 
 /**
- * True when the phrase is true at the place.
+ * True when the phrase is true at the place, as a name of it or as one of
+ * its other true phrases.
  * @param {Scene} scene
  * @param {string} placeId
  * @param {string} phraseId
  */
 export function fits(scene, placeId, phraseId) {
-  return placeOf(scene, placeId).truths.includes(phraseId);
+  const place = placeOf(scene, placeId);
+  return place.truths.includes(phraseId) || (place.also ?? []).includes(phraseId);
 }
 
 /**
@@ -179,7 +215,7 @@ export function askQuestion(scene, rand, previousPlace = null) {
   const right = pick(rand, place.truths);
   const wrong = shuffle(
     rand,
-    Object.keys(scene.phrases).filter((id) => !place.truths.includes(id)),
+    Object.keys(scene.phrases).filter((id) => !fits(scene, place.id, id)),
   ).slice(0, 2);
   const options = shuffle(rand, [right, ...wrong]);
   return { place: place.id, options, answer: options.indexOf(right) };

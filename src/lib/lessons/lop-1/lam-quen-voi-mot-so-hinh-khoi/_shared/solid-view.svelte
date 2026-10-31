@@ -69,7 +69,7 @@
   aria-valuemax={180}
   aria-valuenow={Math.round(view.yaw)}
   aria-valuetext="Xoay {Math.round(view.yaw)} độ, nhìn từ trên xuống {Math.round(view.pitch)} độ"
-  class="cursor-grab touch-none rounded-2xl border-2 border-slate-200 bg-white active:cursor-grabbing {focusRing}"
+  class="cursor-grab touch-none rounded-2xl select-none border-2 border-slate-200 bg-white active:cursor-grabbing {focusRing}"
   onpointerdown={down}
   onpointermove={move}
   onpointerup={up}

@@ -59,7 +59,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Bạn Mai xếp các khối lập phương thành tháp. Em chạm vào từng khối và đếm.',
+          text: 'Bạn Mai xếp các khối lập phương thành tháp. Em đếm xem tháp có mấy khối.',
         },
         {
           type: 'callout',
