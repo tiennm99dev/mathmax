@@ -9,7 +9,7 @@
 
 import { int, pick, retryMake, rounded } from '#lib/core/drill.js';
 import { numberText } from '#lib/core/decimal.js';
-import { numTex } from '#lib/core/number-format.js';
+import { formatFixed, numTex, texNumber } from '#lib/core/number-format.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
@@ -30,6 +30,24 @@ function piTex(n, d = 1) {
 }
 /** A rounded result for TeX: '188{,}5', '1\\,520{,}5'. */
 const tex = (/** @type {number} */ v) => numTex(v, 2);
+/**
+ * A result rounded to the tenths for TeX, its tenths digit always written:
+ * '88{,}0', '1\\,520{,}5'.
+ * @param {number} v
+ */
+const tenths = (v) => texNumber(formatFixed(v, 1)).replace(/\./g, '\\,');
+/**
+ * The fraction n/d for TeX, followed by its lowest terms when it reduces:
+ * '\\dfrac{4}{108} = \\dfrac{1}{27}', '\\dfrac{32}{75}'.
+ * @param {number} n
+ * @param {number} d
+ */
+function fraction(n, d) {
+  const g = gcd(n, d);
+  const first = `\\dfrac{${n}}{${d}}`;
+  if (g === 1) return first;
+  return `${first} = ${d / g === 1 ? numTex(n / g) : `\\dfrac{${n / g}}{${d / g}}`}`;
+}
 
 /** Pythagorean triples (leg, leg, hypotenuse). */
 export const TRIPLES = [
@@ -100,7 +118,7 @@ export const hinhTru = {
         steps: [
           `Bán kính đáy $r = ${2 * r} : 2 = ${r}$ (cm).`,
           `$S_{xq} = 2\\pi \\cdot ${r} \\cdot ${h} = ${piTex(2 * r * h)}$; hai đáy: $2\\pi \\cdot ${r}^2 = ${piTex(2 * r * r)}$.`,
-          `$S_{tp} = ${piTex(2 * r * h + 2 * r * r)} \\approx ${tex(answer)}$ (cm²).`,
+          `$S_{tp} = ${piTex(2 * r * h + 2 * r * r)} \\approx ${tenths(answer)}$ (cm²).`,
         ],
         hints: ['Bán kính bằng nửa đường kính.', '$S_{tp} = 2\\pi rh + 2\\pi r^2$.'],
       };
@@ -164,7 +182,7 @@ export const hinhNon = {
         steps: [
           `Đường sinh: $l^2 = ${r * r} + ${h * h} = ${l * l}$, nên $l = ${l}$ cm.`,
           `$S_{xq} = \\pi \\cdot ${r} \\cdot ${l} = ${piTex(r * l)}$; đáy: $\\pi \\cdot ${r}^2 = ${piTex(r * r)}$.`,
-          `$S_{tp} = ${piTex(r * l + r * r)} \\approx ${tex(answer)}$ (cm²).`,
+          `$S_{tp} = ${piTex(r * l + r * r)} \\approx ${tenths(answer)}$ (cm²).`,
         ],
         hints: ['Tính đường sinh trước: $l^2 = r^2 + h^2$.', '$S_{tp} = \\pi rl + \\pi r^2$.'],
       };
@@ -235,7 +253,7 @@ export const hinhCau = {
         unit: 'cm³',
         steps: [
           `Bán kính $R = ${d} : 2 = ${r}$ (cm).`,
-          `$V = \\dfrac{4}{3}\\pi \\cdot ${r}^3 = ${piTex(4 * r * r * r, 3)} \\approx ${tex(answer)}$ (cm³).`,
+          `$V = \\dfrac{4}{3}\\pi \\cdot ${r}^3 = ${piTex(4 * r * r * r, 3)} \\approx ${tenths(answer)}$ (cm³).`,
         ],
         hints: ['Bán kính bằng nửa đường kính.', '$V = \\dfrac{4}{3}\\pi R^3$.'],
       };
@@ -262,7 +280,7 @@ export const vanDung = {
           steps: [
             `Phần hình trụ: $\\pi \\cdot ${r}^2 \\cdot ${h} = ${piTex(r * r * h)}$ (mm³).`,
             `Hai nửa hình cầu ghép thành một hình cầu: $\\dfrac{4}{3}\\pi \\cdot ${r}^3 = ${piTex(4 * r ** 3, 3)}$ (mm³).`,
-            `$V = ${piTex(3 * r * r * h + 4 * r ** 3, 3)} \\approx ${tex(answer)}$ (mm³).`,
+            `$V = ${piTex(3 * r * r * h + 4 * r ** 3, 3)} \\approx ${tenths(answer)}$ (mm³).`,
           ],
           hints: ['Hai nửa hình cầu ghép lại thành một hình cầu.'],
         };
@@ -281,7 +299,7 @@ export const vanDung = {
           steps: [
             `Phần hình nón: $\\dfrac{1}{3}\\pi \\cdot ${r}^2 \\cdot ${h} = ${piTex(r * r * h, 3)}$ (cm³).`,
             `Nửa hình cầu: $\\dfrac{1}{2} \\cdot \\dfrac{4}{3}\\pi \\cdot ${r}^3 = ${piTex(2 * r ** 3, 3)}$ (cm³).`,
-            `$V = ${piTex(r * r * h + 2 * r ** 3, 3)} \\approx ${tex(answer)}$ (cm³).`,
+            `$V = ${piTex(r * r * h + 2 * r ** 3, 3)} \\approx ${tenths(answer)}$ (cm³).`,
           ],
           hints: ['Thể tích nửa hình cầu bằng $\\dfrac{2}{3}\\pi R^3$.'],
         };
@@ -302,7 +320,7 @@ export const vanDung = {
           steps: [
             `Bán kính đáy $r = ${dm} : 2 = ${tex(r)}$ (dm).`,
             `$V = \\pi \\cdot ${tex(r)}^2 \\cdot ${h} = ${piTex(r * r * h)} \\approx ${tex(answer)}$ (dm³).`,
-            `$1$ dm³ $= 1$ lít, nên thùng chứa khoảng $${answer}$ lít.`,
+            `$1$ dm³ $= 1$ lít, nên thùng chứa khoảng $${numTex(answer)}$ lít.`,
           ],
           hints: ['$V = \\pi r^2 h$ với $r$ bằng nửa đường kính.', '$1$ dm³ $= 1$ lít.'],
         };
@@ -313,7 +331,8 @@ export const vanDung = {
       const R = int(rand, 1, 4);
       const rc = int(rand, R + 1, 10);
       const answer = rounded((4 * R ** 3) / (3 * rc * rc), 1);
-      if (answer === null) return null;
+      // A rise that rounds to almost nothing makes a poor question.
+      if (answer === null || answer < 0.2) return null;
       return {
         prompt: `Một cốc hình trụ có bán kính đáy ${rc} cm đựng nước. Thả chìm hẳn một viên bi hình cầu bán kính ${R} cm vào cốc (nước không tràn ra). Mực nước dâng lên bao nhiêu xăng-ti-mét (làm tròn đến hàng phần mười)?`,
         answer,
@@ -321,7 +340,7 @@ export const vanDung = {
         steps: [
           `Thể tích nước dâng bằng thể tích viên bi: $\\dfrac{4}{3}\\pi \\cdot ${R}^3 = ${piTex(4 * R ** 3, 3)}$ (cm³).`,
           `Phần nước dâng là hình trụ bán kính ${rc} cm, chiều cao $x$: $\\pi \\cdot ${rc}^2 \\cdot x = ${piTex(4 * R ** 3, 3)}$.`,
-          `$x = \\dfrac{${4 * R ** 3}}{${3 * rc * rc}} \\approx ${tex(answer)}$ (cm).`,
+          `$x = ${fraction(4 * R ** 3, 3 * rc * rc)} \\approx ${tenths(answer)}$ (cm).`,
         ],
         hints: [
           'Lượng nước dâng lên bằng thể tích viên bi.',

@@ -245,7 +245,10 @@
   <dl class="grid grid-cols-1 gap-2 text-sm tabular-nums sm:grid-cols-3">
     <div class="rounded-lg bg-teal-50 p-2">
       <dt class="text-teal-800">Mặt cắt: r = √(R² − d²)</dt>
-      <dd class="font-semibold">r ≈ {num(r, 2)} cm (d = {num(d)} cm)</dd>
+      <dd class="font-semibold">
+        r {Math.abs(r - Math.round(r)) < 1e-9 ? '=' : '≈'}
+        {num(r, 2)} cm (d = {num(d)} cm)
+      </dd>
     </div>
     <div class="rounded-lg bg-indigo-50 p-2">
       <dt class="text-indigo-800">S = 4πR²</dt>

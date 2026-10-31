@@ -3,7 +3,7 @@ export default {
   summary:
     'Hình cầu: tạo ra khi quay nửa hình tròn quanh đường kính; tâm, bán kính, mặt cầu; mặt cắt của hình cầu là hình tròn, qua tâm là hình tròn lớn; diện tích mặt cầu S = 4πR² và thể tích hình cầu V = 4/3πR³.',
   intro:
-    'Quả bóng đá, viên bi, quả địa cầu hay bồn chứa khí hình tròn ở nhà máy đều có dạng hình cầu. Cần bao nhiêu da để may một quả bóng, một bồn cầu chứa được bao nhiêu mét khối khí? Trong bài này, em sẽ thấy hình cầu "vừa khít" trong một hình trụ chiếm đúng $\\dfrac{2}{3}$ thể tích hình trụ đó, và từ đó tìm ra công thức thể tích hình cầu.',
+    'Quả bóng đá, viên bi, quả địa cầu hay bồn chứa khí hình tròn ở nhà máy đều có dạng hình cầu. Cần bao nhiêu da để may một quả bóng, một bồn cầu chứa được bao nhiêu mét khối khí? Trong bài này, em sẽ thả một hình cầu vào hình trụ "vừa khít" với nó, xem nước tràn ra bao nhiêu, và từ đó tìm ra công thức thể tích hình cầu.',
   objectives: [
     'Nhận biết mặt cầu, hình cầu, tâm và bán kính; biết mặt cắt của hình cầu bởi một mặt phẳng là hình tròn.',
     'Tính diện tích mặt cầu $S = 4\\pi R^2$.',
@@ -56,14 +56,14 @@ export default {
         },
         {
           type: 'p',
-          text: 'Đặt hình cầu bán kính $R$ vừa khít trong một hình trụ: bán kính đáy hình trụ bằng $R$, chiều cao bằng $2R$. Đổ đầy nước vào hình trụ rồi nhấn chìm hình cầu cho chạm đáy: lượng nước tràn ra chiếm $\\dfrac{2}{3}$ thể tích hình trụ.',
+          text: 'Đặt hình cầu bán kính $R$ vừa khít trong một hình trụ: bán kính đáy hình trụ bằng $R$, chiều cao bằng $2R$. Đổ đầy nước vào hình trụ rồi nhấn chìm hình cầu cho chạm đáy. Lượng nước tràn ra, bằng thể tích hình cầu, chiếm bao nhiêu phần thể tích hình trụ? Hãy đoán trước, rồi thả quả cầu để kiểm tra.',
         },
         { type: 'widget', name: 'tru-ngoai-tiep' },
         {
           type: 'callout',
           tone: 'theorem',
           title: 'Thể tích hình cầu',
-          text: 'Hình cầu bán kính $R$ có thể tích $$V = \\frac{2}{3} \\cdot \\pi R^2 \\cdot 2R = \\frac{4}{3}\\pi R^3.$$',
+          text: 'Nước tràn ra chiếm $\\dfrac{2}{3}$ thể tích hình trụ ngoại tiếp, nên hình cầu bán kính $R$ có thể tích $$V = \\frac{2}{3} \\cdot \\pi R^2 \\cdot 2R = \\frac{4}{3}\\pi R^3.$$',
         },
         {
           type: 'table',

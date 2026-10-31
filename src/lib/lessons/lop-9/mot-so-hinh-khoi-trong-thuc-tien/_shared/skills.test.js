@@ -118,6 +118,20 @@ describe('chapter skills', () => {
     expect(failures).toEqual([]);
   });
 
+  it('write a tenths-rounded result with its tenths digit and keep water rises visible', () => {
+    /** @type {string[]} */
+    const failures = [];
+    for (const skill of CHAPTER_SKILLS) {
+      for (const q of sample(skill)) {
+        if (!/hàng phần mười/.test(q.prompt)) continue;
+        const last = q.steps[q.steps.length - 1];
+        if (!/\\approx [\d\\,]+\{,\}\d\$/.test(last)) failures.push(last);
+        if (/Mực nước dâng/.test(q.prompt) && q.answer < 0.2) failures.push(q.prompt);
+      }
+    }
+    expect(failures).toEqual([]);
+  });
+
   it('build sets of distinct questions with hints and steps', () => {
     const set = buildSet(SKILLS_TRANG_106, 4, 7);
     expect(set).toHaveLength(12);
