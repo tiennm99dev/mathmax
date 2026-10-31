@@ -15,6 +15,8 @@
   <span class="flex flex-col items-center gap-1">
     {#if figure}
       <ShapeFigure {figure} size={56} />
+      <!-- The card number the feedback line names, such as "Thẻ 3". -->
+      <span class="text-sm text-slate-500" aria-hidden="true">{c.label.split(',')[0]}</span>
     {:else if object}
       <ObjectFigure id={object.id} size={56} decorative />
       <span class="text-base">{object.name}</span>

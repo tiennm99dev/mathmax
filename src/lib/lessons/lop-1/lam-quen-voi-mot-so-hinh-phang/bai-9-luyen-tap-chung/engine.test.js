@@ -93,4 +93,12 @@ describe('mixed shape practice', () => {
       ),
     ).toEqual([]);
   });
+
+  it('draws every stick of a stick shape about the same length', () => {
+    const uneven = STICK_SHAPES.filter((shape) => {
+      const lengths = shape.sticks.map((s) => Math.hypot(s.x2 - s.x1, s.y2 - s.y1));
+      return Math.max(...lengths) > Math.min(...lengths) * 1.05;
+    }).map((shape) => shape.id);
+    expect(uneven).toEqual([]);
+  });
 });

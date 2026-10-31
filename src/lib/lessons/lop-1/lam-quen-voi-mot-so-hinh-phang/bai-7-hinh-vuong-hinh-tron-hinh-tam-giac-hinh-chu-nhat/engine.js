@@ -6,10 +6,10 @@
 import { shuffled } from '#lib/core/card-sorter.js';
 import {
   COLORS,
+  COLOR_NAMES,
   OBJECTS,
   SHAPES,
   SHAPE_NAMES,
-  figureLabel,
   objectSentence,
   shapeTitle,
 } from '../_shared/shapes.js';
@@ -54,11 +54,25 @@ export const OBJECT_CARDS = shuffled(
   7,
 );
 
+/**
+ * Name of a drawn-shape card that does not give its shape away: the sorter
+ * prints it after "Đã chọn", so it gives the card's place and colour only.
+ * @param {import('../_shared/shapes.js').Figure} figure
+ * @param {number} at place in the deck, from 0
+ */
+export function figureCardLabel(figure, at) {
+  const colour = COLOR_NAMES[COLORS.indexOf(/** @type {(typeof COLORS)[number]} */ (figure.color))];
+  return colour ? `Thẻ ${at + 1}, ${colour}` : `Thẻ ${at + 1}`;
+}
+
 /** Drawn-shape cards, in a fixed mixed order. */
 export const FIGURE_CARDS = shuffled(
-  FIGURES.map((f) => ({ id: f.id, label: figureLabel(f), bin: f.kind, why: figureWhy(f) })),
+  FIGURES.map((f) => ({ id: f.id, label: '', bin: f.kind, why: figureWhy(f) })),
   11,
-);
+).map((c, at) => {
+  const figure = /** @type {import('../_shared/shapes.js').Figure} */ (figureOf(c.id));
+  return { ...c, label: figureCardLabel(figure, at) };
+});
 
 /**
  * The drawn shape behind a card id, if any.

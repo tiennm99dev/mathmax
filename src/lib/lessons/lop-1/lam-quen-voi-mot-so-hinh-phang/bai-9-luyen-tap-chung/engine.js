@@ -140,12 +140,12 @@ export const STICK_SHAPES = [
     id: 'ngoi-nha',
     name: 'ngôi nhà',
     sticks: [
-      stick(60, 60, 100, 15),
-      stick(100, 15, 140, 60),
-      stick(60, 60, 140, 60),
-      stick(140, 60, 140, 130),
-      stick(140, 130, 60, 130),
-      stick(60, 130, 60, 60),
+      stick(70, 75, 100, 23),
+      stick(100, 23, 130, 75),
+      stick(70, 75, 130, 75),
+      stick(130, 75, 130, 135),
+      stick(130, 135, 70, 135),
+      stick(70, 135, 70, 75),
     ],
     how: 'Mái nhà có 2 que, thân nhà là hình vuông có 4 que.',
   },
@@ -202,7 +202,7 @@ export function makeQuestion(kind, rand) {
       figure: randomFigure(rand, shape),
       options: nameOptions(),
       answer: SHAPES.indexOf(shape),
-      hint: 'Em đếm số cạnh của hình. Hình không có cạnh là hình tròn.',
+      hint: 'Em đếm số cạnh của hình. Hình không có cạnh là hình tròn. Hình có 4 cạnh: em xem 4 cạnh có dài bằng nhau không.',
       solution: `Đây là ${SHAPE_NAMES[shape]}. ${SHAPE_LOOKS[shape]}`,
     };
   }
@@ -218,7 +218,7 @@ export function makeQuestion(kind, rand) {
       prompt: `Chạm vào ${SHAPE_NAMES[shape]}.`,
       options,
       answer: kinds.indexOf(shape),
-      hint: 'Em đếm số cạnh của từng hình. Hình không có cạnh là hình tròn.',
+      hint: `${SHAPE_LOOKS[shape]} Em đếm số cạnh của từng hình.`,
       solution: `${SHAPE_LOOKS[shape]} Đó là hình em cần tìm.`,
     };
   }
@@ -230,7 +230,7 @@ export function makeQuestion(kind, rand) {
       object: object.id,
       options: nameOptions(),
       answer: SHAPES.indexOf(object.shape),
-      hint: 'Em nhìn hình dạng của đồ vật và đếm số cạnh.',
+      hint: 'Em nhìn hình dạng của đồ vật và đếm số cạnh. Có 4 cạnh thì em xem 4 cạnh có dài bằng nhau không.',
       solution: objectSentence(object),
     };
   }

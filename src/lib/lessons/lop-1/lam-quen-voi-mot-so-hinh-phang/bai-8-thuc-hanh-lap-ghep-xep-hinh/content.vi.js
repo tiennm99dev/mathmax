@@ -132,9 +132,12 @@ export default {
       type: 'choice',
       prompt:
         'Em cắt đôi một hình vuông thành 2 hình tam giác. Ghép 2 hình tam giác đó lại, em được hình nào?',
-      options: ['Hình vuông', 'Hình tròn'],
+      options: ['Hình vuông', 'Hình tròn', 'Hình chữ nhật dài'],
       answer: 0,
-      hints: ['Hình tròn không có cạnh, nên không ghép được từ hình tam giác.'],
+      hints: [
+        'Lúc đầu em cắt hình nào?',
+        'Hai mảnh khít nhau, không chồng lên nhau, không có chỗ trống.',
+      ],
       solution: 'Hai nửa của hình vuông ghép lại được đúng hình vuông ban đầu.',
     },
     {

@@ -8,7 +8,7 @@ import {
   figureWhy,
   objectOf,
 } from './engine.js';
-import { OBJECTS, SHAPES } from '../_shared/shapes.js';
+import { OBJECTS, SHAPES, SHAPE_NAMES } from '../_shared/shapes.js';
 
 describe('shape sorting decks', () => {
   it('has one bin per shape', () => {
@@ -49,5 +49,13 @@ describe('shape sorting decks', () => {
     const small = FIGURES.find((f) => f.id === 'h5');
     expect(small && figureWhy(small)).toBe('To hay nhỏ, nó vẫn là hình tròn.');
     expect(new Set(OBJECTS.map((o) => o.id)).size).toBe(OBJECTS.length);
+  });
+
+  it('names drawn-shape cards without giving their shape away', () => {
+    const names = Object.values(SHAPE_NAMES);
+    const leaks = FIGURE_CARDS.filter((c) => names.some((n) => c.label.includes(n)));
+    expect(leaks).toEqual([]);
+    expect(new Set(FIGURE_CARDS.map((c) => c.label)).size).toBe(FIGURE_CARDS.length);
+    expect(FIGURE_CARDS[0].label).toMatch(/^Thẻ 1, màu /);
   });
 });
