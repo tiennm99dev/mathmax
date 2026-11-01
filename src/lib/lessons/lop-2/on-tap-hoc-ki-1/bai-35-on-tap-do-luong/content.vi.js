@@ -41,7 +41,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Tính với kg và l',
-          text: 'Em tính như với các số, rồi viết đơn vị sau kết quả: 19 kg + 25 kg = 44 kg; 33 l − 8 l = 25 l.',
+          text: 'Em tính như với các số, rồi viết đơn vị sau kết quả: 27 kg + 15 kg = 42 kg; 31 l − 6 l = 25 l.',
         },
       ],
     },

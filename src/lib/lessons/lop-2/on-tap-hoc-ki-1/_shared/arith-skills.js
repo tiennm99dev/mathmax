@@ -221,10 +221,14 @@ export const balanceBagsSkill = {
   id: 'hai-tui',
   label: 'Chọn hai túi để cân thăng bằng',
   make(rand) {
-    const x = int(rand, 2, 9);
-    const y = int(rand, 2, 9);
+    const x = int(rand, 3, 9);
+    const y = int(rand, 3, 9);
     const total = x + y;
-    const p = int(rand, 2, total - 2);
+    // Two bags of different masses, other than the ones already on the left pan.
+    const smaller = Array.from({ length: total }, (_, i) => i).filter(
+      (v) => v >= 2 && 2 * v < total && v !== x && v !== y,
+    );
+    const p = pick(rand, smaller);
     const q = total - p;
     const free = [2, 3, 4, 5, 6, 7, 8, 9].filter((r) => r !== p && r !== q);
     const r = pick(rand, free);

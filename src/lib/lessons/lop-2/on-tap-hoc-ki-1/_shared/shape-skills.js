@@ -316,7 +316,10 @@ export const collinearSkill = {
       w: 300,
       h: 180,
       dots,
-      say: `Bốn điểm ${[...letters].sort().join(', ')}. Em hãy dùng thước để kiểm tra trên hình.`,
+      say: `Bốn điểm trên lưới: ${pts
+        .map((p, i) => `điểm ${letters[i]} ở hàng ${p.y + 1}, cột ${p.x + 1}`)
+        .sort()
+        .join('; ')}.`,
     };
     return {
       prompt: 'Ba điểm nào thẳng hàng?',
@@ -544,18 +547,18 @@ const COUNT_FIGURES = [
   },
 ];
 
-/** Squares of a tile count question: at most this many columns and rows. */
-const MAX_COLS = 4;
-const MAX_ROWS = 3;
-
 /** @type {ReviewSkill} */
 export const countShapesSkill = {
   id: 'dem-hinh',
   label: 'Đếm hình, xếp hình',
   make(rand) {
     if (rand() < 0.3) {
-      const cols = int(rand, 2, MAX_COLS);
-      const rows = int(rand, 2, MAX_ROWS);
+      const rows = int(rand, 2, 3);
+      // As many columns as rows would draw a square, not a rectangle.
+      const cols = pick(
+        rand,
+        [2, 3, 4].filter((c) => c !== rows),
+      );
       const size = 30;
       const left = 20;
       const top = 10;

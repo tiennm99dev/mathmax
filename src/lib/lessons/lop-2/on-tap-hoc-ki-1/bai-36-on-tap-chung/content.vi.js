@@ -32,6 +32,12 @@ export default {
           title: 'Đặt tính có nhớ',
           text: 'Thẳng cột, tính từ phải sang trái, đừng quên nhớ 1 sang hàng chục.',
         },
+        {
+          type: 'callout',
+          tone: 'warning',
+          title: 'Dễ nhầm',
+          text: 'Với đồng hồ buổi chiều, số trên mặt đồng hồ cộng thêm 12 mới ra giờ trong ngày: 5 giờ 30 phút chiều là 17 giờ 30 phút.',
+        },
       ],
     },
     {
@@ -43,12 +49,6 @@ export default {
             'Nhiều hơn, cao hơn, thêm, có tất cả: em làm phép cộng.',
             'Ít hơn, bớt đi, còn lại: em làm phép trừ.',
           ],
-        },
-        {
-          type: 'callout',
-          tone: 'warning',
-          title: 'Dễ nhầm',
-          text: 'Với đồng hồ buổi chiều, số trên mặt đồng hồ cộng thêm 12 mới ra giờ trong ngày: 4 giờ 30 phút chiều là 16 giờ 30 phút.',
         },
       ],
     },

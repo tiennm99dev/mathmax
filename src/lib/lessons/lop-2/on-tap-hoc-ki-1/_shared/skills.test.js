@@ -239,6 +239,33 @@ describe('review skills of the term', () => {
     expect(bad).toEqual([]);
   });
 
+  it('offers three bag pairs of which only the right one balances, never the same bags', () => {
+    const skill = ARITH_SKILLS.find((s) => s.id === 'hai-tui');
+    const bad = [];
+    for (const seed of SEEDS) {
+      const q = skill?.make(rng(seed));
+      if (!q) continue;
+      const [x, y] = nums(q.prompt);
+      const [p, r] = nums(chosen(q));
+      if (q.options.length !== 3 || p === r || [x, y].includes(p) || [x, y].includes(r)) {
+        bad.push(q.prompt);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('never calls a square of tiles a rectangle', () => {
+    const skill = SHAPE_SKILLS.find((s) => s.id === 'dem-hinh');
+    const bad = [];
+    for (const seed of SEEDS) {
+      const q = skill?.make(rng(seed));
+      if (q?.visual?.type !== 'figure' || !q.prompt.startsWith('Cần')) continue;
+      const [rows, cols] = nums(q.visual.figure.say);
+      if (rows === cols) bad.push(q.visual.figure.say);
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('never repeats a skill id within one lesson', () => {
     for (const skills of [ARITH_SKILLS, SHAPE_SKILLS, MEASURE_SKILLS, GENERAL_SKILLS]) {
       expect(new Set(skills.map((s) => s.id)).size).toBe(skills.length);

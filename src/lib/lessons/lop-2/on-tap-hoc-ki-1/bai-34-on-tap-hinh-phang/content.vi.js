@@ -51,13 +51,17 @@ export default {
       ],
     },
     {
-      heading: 'Đếm hình',
+      heading: 'Đếm hình và tìm quy luật',
       blocks: [
         {
           type: 'callout',
           tone: 'warning',
           title: 'Dễ quên',
-          text: 'Em đếm các hình nhỏ trước, rồi đếm cả hình ghép từ hai, ba hình nhỏ. Hình chia 3 mảnh có 3 + 2 + 1 = 6 hình.',
+          text: 'Em đếm các hình nhỏ trước, rồi đếm cả hình ghép từ các hình nhỏ. Hình chia 2 mảnh có 2 + 1 = 3 hình.',
+        },
+        {
+          type: 'p',
+          text: 'Tìm hình theo quy luật: em tìm nhóm hình cứ lặp đi lặp lại, rồi đếm tiếp theo nhóm đó.',
         },
       ],
     },

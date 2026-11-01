@@ -165,7 +165,7 @@ export const clockSkill = {
       prompt: `${hour} giờ còn gọi là mấy giờ?`,
       ...mixOptions(rand, `${dial} giờ ${part}`, [
         `${dial} giờ ${wrongPart}`,
-        `${dial === 11 ? 10 : dial + 1} giờ ${part}`,
+        `${dial === 11 ? 9 : dial + 1} giờ ${part}`,
         `${dial === 1 ? 3 : dial - 1} giờ ${part}`,
       ]),
       hint: 'Em lấy số giờ trừ đi 12, rồi nghĩ xem đó là buổi nào.',

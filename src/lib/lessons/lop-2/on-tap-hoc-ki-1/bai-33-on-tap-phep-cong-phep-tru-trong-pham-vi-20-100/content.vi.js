@@ -19,7 +19,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Cộng qua 10',
-          text: '8 + 5: em tách 5 thành 2 và 3. 8 + 2 = 10, 10 + 3 = 13. Vậy 8 + 5 = 13.',
+          text: '7 + 6: em tách 6 thành 3 và 3. 7 + 3 = 10, 10 + 3 = 13. Vậy 7 + 6 = 13.',
         },
         {
           type: 'callout',
@@ -65,6 +65,19 @@ export default {
           tone: 'note',
           title: 'Phép trừ',
           text: '82 − 57: 2 không trừ được 7, lấy 12 trừ 7 bằng 5, viết 5, nhớ 1. 5 thêm 1 bằng 6, 8 trừ 6 bằng 2, viết 2. Vậy 82 − 57 = 25.',
+        },
+      ],
+    },
+    {
+      heading: 'Tính theo mũi tên và tháp số',
+      blocks: [
+        {
+          type: 'p',
+          text: 'Tính theo mũi tên: kết quả của phép trước là số đầu của phép sau. 12 cộng 5 được 17, 17 trừ 3 được 14.',
+        },
+        {
+          type: 'p',
+          text: 'Tháp số: số ở trên bằng tổng hai số ngay dưới nó. Hàng dưới cùng là 1, 2, 3 thì hàng giữa là 3, 5 và đỉnh tháp là 8.',
         },
       ],
     },
@@ -138,10 +151,10 @@ export default {
     {
       type: 'multi',
       prompt: 'Những phép tính nào có kết quả bé hơn 60?',
-      options: ['50 + 10', '60 − 30', '70 − 20', '60 + 40'],
+      options: ['40 + 20', '60 − 30', '80 − 30', '60 + 40'],
       answers: [1, 2],
       hints: ['Em tính từng phép tính theo số chục, rồi so sánh với 60.'],
-      solution: '50 + 10 = 60, 60 − 30 = 30, 70 − 20 = 50, 60 + 40 = 100. Bé hơn 60 là 30 và 50.',
+      solution: '40 + 20 = 60, 60 − 30 = 30, 80 − 30 = 50, 60 + 40 = 100. Bé hơn 60 là 30 và 50.',
     },
     {
       type: 'number',
@@ -168,10 +181,10 @@ export default {
     {
       type: 'order',
       prompt: 'Xếp các phép tính theo kết quả từ bé đến lớn.',
-      items: ['42 + 49', '91 − 42', '91 − 49', '28 + 35'],
+      items: ['42 + 49', '91 − 42', '91 − 49', '27 + 36'],
       answer: [2, 1, 3, 0],
       hints: ['Em tính kết quả từng phép tính trước.'],
-      solution: '91 − 49 = 42, 91 − 42 = 49, 28 + 35 = 63, 42 + 49 = 91.',
+      solution: '91 − 49 = 42, 91 − 42 = 49, 27 + 36 = 63, 42 + 49 = 91.',
     },
     {
       type: 'choice',

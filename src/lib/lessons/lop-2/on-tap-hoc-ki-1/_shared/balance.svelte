@@ -79,7 +79,7 @@
         x={x + it.w / 2}
         y={panY - h / 2 + 4}
         text-anchor="middle"
-        font-size="11"
+        font-size="13"
         font-weight="700"
         fill="#fff">{it.load.kg} kg</text
       >
@@ -98,7 +98,7 @@
         x={x + it.w / 2}
         y={panY - 14}
         text-anchor="middle"
-        font-size="12"
+        font-size="13"
         font-weight="700"
         fill="#1e293b">{it.load.name}</text
       >

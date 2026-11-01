@@ -14,8 +14,8 @@
   const C = S / 2;
   const R = 92;
   const angles = $derived(handAngles(minutes));
-  const hourTip = $derived(polar(C, C, R * 0.5, angles.hour));
-  const minuteTip = $derived(polar(C, C, R * 0.8, angles.minute));
+  const hourTip = $derived(polar(C, C, R * 0.38, angles.hour));
+  const minuteTip = $derived(polar(C, C, R * 0.58, angles.minute));
 </script>
 
 <svg
