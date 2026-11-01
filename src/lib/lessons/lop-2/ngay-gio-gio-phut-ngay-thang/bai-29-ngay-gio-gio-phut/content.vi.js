@@ -9,6 +9,7 @@ export default {
     'Nói được các buổi trong ngày: sáng, trưa, chiều, tối, đêm.',
     'Biết 13 giờ còn gọi là 1 giờ chiều, 20 giờ còn gọi là 8 giờ tối.',
     'Xem giờ khi kim dài chỉ số 12, số 3, số 6; đọc được giờ rưỡi.',
+    'Biết thêm: 8 giờ 45 phút còn gọi là 9 giờ kém 15 phút.',
   ],
   sections: [
     {
@@ -215,5 +216,6 @@ export default {
     'Một ngày có 24 giờ, một giờ có 60 phút.',
     '13 giờ là 1 giờ chiều, 20 giờ là 8 giờ tối, 24 giờ là 12 giờ đêm.',
     'Kim dài chỉ số 3 là 15 phút, chỉ số 6 là 30 phút. 30 phút còn gọi là rưỡi.',
+    'Kim dài chỉ số 9: còn 15 phút nữa là đến giờ sau, nên em đọc được là giờ kém.',
   ],
 };

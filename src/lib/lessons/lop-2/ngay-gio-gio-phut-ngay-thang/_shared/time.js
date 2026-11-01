@@ -43,14 +43,13 @@ export function mod(n, m) {
 }
 
 /**
- * The part of the day a time falls in. 18 giờ is the last hour of the
- * afternoon, so a time just after it belongs to the evening.
+ * The part of the day a time falls in, by its hour in the book's table: 18:15
+ * is still 6 giờ 15 phút chiều.
  * @param {number} total minutes since 0:00
  * @returns {string} 'sáng', 'trưa', 'chiều', 'tối' or 'đêm'
  */
 export function partOf(total) {
-  const { hours, minutes } = fromMinutes(total);
-  if (hours === 18 && minutes > 0) return 'tối';
+  const { hours } = fromMinutes(total);
   const part = DAY_PARTS.find((p) => p.hours.includes(hours || 24));
   return part ? part.word : 'đêm';
 }
@@ -103,7 +102,8 @@ export function partText(total) {
 /**
  * Every way the lesson names a time, in the order a child would read them:
  * the count through the day when it differs from the dial, then the dial with
- * its part of the day, then "rưỡi" or "kém" when the minute hand allows it.
+ * its part of the day, then "rưỡi" or "kém" when the minute hand allows it. A
+ * "kém" reading names the coming hour, so it takes that hour's part of the day.
  * @param {number} total minutes since 0:00
  * @returns {string[]}
  */
@@ -113,7 +113,7 @@ export function namesOf(total) {
   const names = hours >= 13 || total % 1440 === 0 ? [dayClockText(total)] : [];
   names.push(partText(total));
   if (minutes === 30) names.push(`${dialNumber(hours)} giờ rưỡi ${part}`);
-  if (minutes === 45) names.push(`${dialNumber(hours + 1)} giờ kém 15 phút ${part}`);
+  if (minutes === 45) names.push(`${dialNumber(hours + 1)} giờ kém 15 phút ${partOf(total + 15)}`);
   return names;
 }
 

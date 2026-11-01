@@ -12,6 +12,9 @@ describe('setting a clock to a named time', () => {
 
   it('points at the hand that is wrong', () => {
     expect(checkTarget(toMinutes(8, 0), toMinutes(8, 30)).text).toContain('kim dài chỉ số 6');
+    expect(checkTarget(toMinutes(3, 30), toMinutes(15, 0)).text).toContain(
+      'đúng giờ thì kim dài chỉ số 12',
+    );
     expect(checkTarget(toMinutes(4, 15), toMinutes(14, 15)).text).toContain('ở giữa số 2 và số 3');
     expect(checkTarget(toMinutes(5, 0), toMinutes(20, 0)).text).toContain('chỉ số 8');
   });

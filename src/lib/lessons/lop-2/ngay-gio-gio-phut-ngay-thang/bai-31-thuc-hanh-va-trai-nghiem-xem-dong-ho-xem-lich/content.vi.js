@@ -39,7 +39,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Mẹo nhỏ',
-          text: 'Hôm qua ở ngay bên trái, ngày mai ở ngay bên phải. Tuần trước ở ngay trên, tuần sau ở ngay dưới.',
+          text: 'Trong một hàng, hôm qua ở ngay bên trái, ngày mai ở ngay bên phải. Cùng thứ ở tuần trước ở ngay trên, ở tuần sau ở ngay dưới.',
         },
       ],
     },
@@ -147,7 +147,7 @@ export default {
   ],
   takeaways: [
     'Xem kim dài trước, rồi xem kim ngắn vừa đi qua số nào.',
-    'Trên tờ lịch: bên trái là hôm qua, bên phải là ngày mai, trên là tuần trước, dưới là tuần sau.',
+    'Trên tờ lịch: trong một hàng, bên trái là hôm qua, bên phải là ngày mai; cùng cột, trên là tuần trước, dưới là tuần sau.',
     'Em có thể lập lịch cho tuần của mình bằng lịch và đồng hồ.',
   ],
 };

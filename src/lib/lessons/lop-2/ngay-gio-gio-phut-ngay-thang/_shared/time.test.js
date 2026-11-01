@@ -23,7 +23,9 @@ describe('parts of the day', () => {
     expect(partOf(toMinutes(10, 0))).toBe('sáng');
     expect(partOf(toMinutes(12, 0))).toBe('trưa');
     expect(partOf(toMinutes(18, 0))).toBe('chiều');
-    expect(partOf(toMinutes(18, 30))).toBe('tối');
+    expect(partOf(toMinutes(18, 15))).toBe('chiều');
+    expect(partOf(toMinutes(18, 30))).toBe('chiều');
+    expect(partOf(toMinutes(19, 0))).toBe('tối');
     expect(partOf(toMinutes(21, 30))).toBe('tối');
     expect(partOf(toMinutes(22, 0))).toBe('đêm');
     expect(partOf(0)).toBe('đêm');
@@ -47,6 +49,13 @@ describe('saying a time', () => {
   it('reads a quarter to the next hour', () => {
     expect(namesOf(toMinutes(8, 45))).toContain('9 giờ kém 15 phút sáng');
     expect(namesOf(toMinutes(23, 45))).toContain('12 giờ kém 15 phút đêm');
+  });
+
+  it('gives a quarter to the next hour the part of that hour', () => {
+    expect(namesOf(toMinutes(10, 45))).toContain('11 giờ kém 15 phút trưa');
+    expect(namesOf(toMinutes(12, 45))).toContain('1 giờ kém 15 phút chiều');
+    expect(namesOf(toMinutes(18, 45))).toContain('7 giờ kém 15 phút tối');
+    expect(namesOf(toMinutes(18, 45))).toContain('6 giờ 45 phút chiều');
   });
 
   it('calls midnight 24 giờ or 12 giờ đêm', () => {

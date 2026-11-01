@@ -14,7 +14,7 @@
       <li
         class="rounded-lg py-2 text-center text-base font-bold tabular-nums {chip <= walked
           ? 'bg-rose-600 text-white'
-          : 'bg-slate-100 text-slate-400'}"
+          : 'bg-slate-100 text-slate-600'}"
       >
         {chip}
       </li>
@@ -26,21 +26,11 @@
   >
     {walkMessage(walked)}
   </p>
-  {#if walked < 60}
-    <button
-      type="button"
-      class="min-h-12 w-full text-lg {button.primary}"
-      onclick={() => (walked += WALK_STEP)}
-    >
-      Kim dài đi thêm 5 phút
-    </button>
-  {:else}
-    <button
-      type="button"
-      class="min-h-12 w-full text-lg {button.secondary}"
-      onclick={() => (walked = 0)}
-    >
-      Làm lại
-    </button>
-  {/if}
+  <button
+    type="button"
+    class="min-h-12 w-full text-lg {walked < 60 ? button.primary : button.secondary}"
+    onclick={() => (walked = walked < 60 ? walked + WALK_STEP : 0)}
+  >
+    {walked < 60 ? 'Kim dài đi thêm 5 phút' : 'Làm lại'}
+  </button>
 </div>

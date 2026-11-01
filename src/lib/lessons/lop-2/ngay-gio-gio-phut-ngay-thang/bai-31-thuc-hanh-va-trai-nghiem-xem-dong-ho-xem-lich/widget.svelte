@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import ClockFace from '#lib/core/visuals/clock-face.svelte';
   import { toMinutes } from '#lib/units-engine/clock.js';
@@ -19,6 +20,10 @@
   const activity = $derived(ACTIVITIES.find((a) => a.id === current) ?? ACTIVITIES[0]);
   const done = $derived(placed.length === ACTIVITIES.length);
   const plan = $derived(planOf(placed));
+  /** @type {HTMLParagraphElement | undefined} */
+  let feedback = $state();
+  /** @type {Array<HTMLButtonElement | undefined>} */
+  const buttons = $state([]);
 
   /** @param {string} id */
   function select(id) {
@@ -29,7 +34,7 @@
     message = START;
   }
 
-  function attach() {
+  async function attach() {
     const res = checkPlacement(activity, date, minutes);
     lastOk = res.ok;
     message = res.text;
@@ -40,15 +45,23 @@
     else message = `${res.text} Em đã lập xong lịch cả tuần!`;
     date = null;
     minutes = toMinutes(12, 0);
+    // "Ghi vào lịch" is gone once the plan is full: keep the focus on the result.
+    if (done) {
+      await tick();
+      feedback?.focus();
+    }
   }
 
-  function reset() {
+  async function reset() {
     placed = [];
     current = ACTIVITIES[0].id;
     date = null;
     minutes = toMinutes(12, 0);
     lastOk = false;
     message = START;
+    // "Làm lại" is gone now: hand the focus back to the first activity.
+    await tick();
+    buttons[0]?.focus();
   }
 </script>
 
@@ -58,9 +71,10 @@
   </p>
 
   <div role="group" aria-label="Các việc trong tuần" class="grid gap-2 sm:grid-cols-2">
-    {#each ACTIVITIES as a (a.id)}
+    {#each ACTIVITIES as a, i (a.id)}
       {@const isDone = placed.includes(a.id)}
       <button
+        bind:this={buttons[i]}
         type="button"
         class="flex min-h-16 items-center gap-2 rounded-2xl border-4 px-3 py-2 text-left text-lg font-semibold transition {focusRing} {isDone
           ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
@@ -88,7 +102,9 @@
   {/if}
 
   <p
-    class="rounded-2xl px-4 py-3 text-lg font-semibold {lastOk
+    bind:this={feedback}
+    tabindex="-1"
+    class="rounded-2xl px-4 py-3 text-lg font-semibold outline-none {lastOk
       ? 'bg-emerald-100 text-emerald-900'
       : 'bg-slate-100 text-slate-800'}"
     aria-live="polite"

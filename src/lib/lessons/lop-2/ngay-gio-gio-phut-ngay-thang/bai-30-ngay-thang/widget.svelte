@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import MonthSheet from '../_shared/month-sheet.svelte';
@@ -13,6 +14,8 @@
   let picked = $state(/** @type {number | null} */ (null));
   let result = $state(/** @type {{ ok: boolean, text: string } | null} */ (null));
   const mission = $derived(MISSIONS[turn % MISSIONS.length]);
+  /** @type {HTMLParagraphElement | undefined} */
+  let question = $state();
 
   /** @param {number} step */
   function turnMonth(step) {
@@ -27,10 +30,13 @@
     result = checkMission(mission, given);
   }
 
-  function nextMission() {
+  async function nextMission() {
     turn += 1;
     picked = null;
     result = null;
+    // "Câu tiếp" is gone now: hand the focus to the new question.
+    await tick();
+    question?.focus();
   }
 </script>
 
@@ -70,7 +76,11 @@
     </p>
     <p class="text-lg text-slate-700">{monthSentence(month)}</p>
   {:else}
-    <p class="rounded-2xl bg-sky-50 px-4 py-3 text-xl font-bold text-slate-900">
+    <p
+      bind:this={question}
+      tabindex="-1"
+      class="rounded-2xl bg-sky-50 px-4 py-3 text-xl font-bold text-slate-900 outline-none"
+    >
       {mission.prompt}
     </p>
     <MonthSheet

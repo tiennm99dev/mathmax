@@ -117,15 +117,13 @@
     </p>
   {:else}
     <div class="flex flex-wrap gap-3">
-      {#if result?.ok}
-        <button type="button" class="min-h-12 flex-1 text-lg {button.primary}" onclick={nextTarget}>
-          Giờ khác
-        </button>
-      {:else}
-        <button type="button" class="min-h-12 flex-1 text-lg {button.primary}" onclick={check}>
-          Kiểm tra
-        </button>
-      {/if}
+      <button
+        type="button"
+        class="min-h-12 flex-1 text-lg {button.primary}"
+        onclick={result?.ok ? nextTarget : check}
+      >
+        {result?.ok ? 'Giờ khác' : 'Kiểm tra'}
+      </button>
     </div>
     <p
       class="rounded-2xl px-4 py-3 text-lg font-semibold {result?.ok

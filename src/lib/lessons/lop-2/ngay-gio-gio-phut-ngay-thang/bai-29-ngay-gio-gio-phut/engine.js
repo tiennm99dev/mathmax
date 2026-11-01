@@ -54,7 +54,7 @@ export function checkTarget(shown, target) {
   if (mod(shown, 60) !== want) {
     return {
       ok: false,
-      text: `Kim dài chưa đúng: ${want} phút thì kim dài chỉ số ${minuteNumber(want)}.`,
+      text: `Kim dài chưa đúng: ${want === 0 ? 'đúng giờ' : `${want} phút`} thì kim dài chỉ số ${minuteNumber(want)}.`,
     };
   }
   const hour = dialNumber(hoursNow);
