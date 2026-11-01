@@ -105,8 +105,8 @@ export const extremeSkill = {
       options: values.map(String),
       answer: values.indexOf(right),
       hint: biggest
-        ? 'Em đếm từ 0 trở đi. Số nào được đếm sau cùng thì lớn nhất.'
-        : 'Em đếm từ 0 trở đi. Số nào được đếm trước tiên thì bé nhất.',
+        ? 'Em đếm từ bé đến lớn. Số nào được đếm sau cùng thì lớn nhất.'
+        : 'Em đếm từ bé đến lớn. Số nào được đếm trước tiên thì bé nhất.',
       solution: `Xếp từ bé đến lớn: ${sorted.join(', ')}. Số ${biggest ? 'lớn nhất' : 'bé nhất'} là ${right}.`,
     };
   },

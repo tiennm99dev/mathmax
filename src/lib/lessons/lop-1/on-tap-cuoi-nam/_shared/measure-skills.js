@@ -11,7 +11,7 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { RULER_CM, THINGS, inSentence } from '#lib/core/kid/length.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
-import { FIGURE_NAMES, SHAPES, SHAPE_LOOKS } from '#lib/core/kid/shapes.js';
+import { FIGURE_NAMES, OBJECTS, SHAPES, SHAPE_LOOKS } from '#lib/core/kid/shapes.js';
 import { MINUS } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidSkill<import('./visual.js').Visual>} KidSkill */
@@ -31,23 +31,6 @@ export const FIGURE_LOOKS = /** @type {const} */ ({
   'lap-phuong': 'Khối lập phương có 6 mặt đều là hình vuông to bằng nhau.',
   'hop-chu-nhat': 'Khối hộp chữ nhật có 6 mặt, có mặt là hình chữ nhật.',
 });
-
-/**
- * Everyday objects and the plane shape of the part a child looks at.
- * @type {ReadonlyArray<{ part: string, shape: ShapeKind }>}
- */
-export const SHAPE_OBJECTS = [
-  { part: 'Mặt đồng hồ', shape: 'tron' },
-  { part: 'Đồng xu', shape: 'tron' },
-  { part: 'Cái đĩa', shape: 'tron' },
-  { part: 'Mặt bánh chưng', shape: 'vuong' },
-  { part: 'Viên gạch hoa', shape: 'vuong' },
-  { part: 'Biển báo nguy hiểm', shape: 'tam-giac' },
-  { part: 'Thước ê ke', shape: 'tam-giac' },
-  { part: 'Bìa quyển vở', shape: 'chu-nhat' },
-  { part: 'Cánh cửa ra vào', shape: 'chu-nhat' },
-  { part: 'Lá cờ Tổ quốc', shape: 'chu-nhat' },
-];
 
 /**
  * Everyday objects and their solid.
@@ -126,7 +109,7 @@ export const shapeNameSkill = {
       prompt: 'Đây là hình gì?',
       visual: { type: 'figures', figures: [kind] },
       ...shapeOptions(rand, kind),
-      hint: 'Em đếm số cạnh của hình. Hình không có cạnh nào là hình tròn.',
+      hint: 'Em đếm số cạnh của hình, rồi nhớ lại hình nào có số cạnh như vậy.',
       solution: `Đây là ${FIGURE_NAMES[kind]}. ${FIGURE_LOOKS[kind]}`,
     };
   },
@@ -137,7 +120,7 @@ export const objectShapeSkill = {
   id: 'do-vat',
   label: 'Đồ vật có dạng hình gì',
   make(rand) {
-    const object = pick(rand, SHAPE_OBJECTS);
+    const object = pick(rand, OBJECTS);
     return {
       prompt: `${object.part} có dạng hình gì?`,
       ...shapeOptions(rand, object.shape),
@@ -357,7 +340,7 @@ export const clockSkill = {
         visual: { type: 'clock', hour },
         options: choices.map((h) => `${h} giờ`),
         answer: choices.indexOf(hour),
-        hint: 'Kim dài chỉ số 12 là giờ đúng. Em xem kim ngắn chỉ số mấy.',
+        hint: 'Kim dài chỉ thẳng lên trên là giờ đúng. Em xem kim ngắn chỉ số mấy.',
         solution: `Kim ngắn chỉ số ${hour}, kim dài chỉ số 12. Đồng hồ chỉ ${hour} giờ.`,
       };
     }
@@ -369,7 +352,9 @@ export const clockSkill = {
       prompt: `Lúc ${hour} giờ, kim ${shortHand ? 'ngắn' : 'dài'} chỉ số mấy?`,
       options: sorted.map(String),
       answer: sorted.indexOf(right),
-      hint: 'Lúc giờ đúng, kim dài luôn chỉ số 12, còn kim ngắn chỉ số giờ.',
+      hint: shortHand
+        ? 'Kim ngắn là kim chỉ giờ.'
+        : 'Em nhớ lại đồng hồ lúc giờ đúng: kim dài chỉ thẳng lên trên.',
       solution: `Lúc ${hour} giờ, kim ngắn chỉ số ${hour}, kim dài chỉ số 12.`,
     };
   },

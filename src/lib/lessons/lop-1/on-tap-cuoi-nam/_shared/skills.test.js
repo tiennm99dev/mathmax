@@ -4,16 +4,9 @@ import { THINGS } from '#lib/core/kid/length.js';
 import { readNumber } from '#lib/core/kid/numbers.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
+import { FIGURE_NAMES, OBJECTS } from '#lib/core/kid/shapes.js';
 import { HUNDRED_SKILLS, bigOptions, noBorrowPair, noCarryAddends } from './hundred-skills.js';
-import {
-  MEASURE_SKILLS,
-  SHAPE_OBJECTS,
-  SOLIDS,
-  SOLID_OBJECTS,
-  WEEKDAYS,
-  hourChoices,
-} from './measure-skills.js';
+import { MEASURE_SKILLS, SOLIDS, SOLID_OBJECTS, WEEKDAYS, hourChoices } from './measure-skills.js';
 import { TEN_SKILLS } from './ten-skills.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<import('./visual.js').Visual>} KidQuestion */
@@ -110,7 +103,7 @@ function recompute(id, q) {
     case 'hinh-phang':
       return v?.type === 'figures' ? title(FIGURE_NAMES[v.figures[0]]) : null;
     case 'do-vat': {
-      const object = SHAPE_OBJECTS.find((o) => p.startsWith(`${o.part} `));
+      const object = OBJECTS.find((o) => p.startsWith(`${o.part} `));
       return object ? title(FIGURE_NAMES[object.shape]) : null;
     }
     case 'dem-hinh': {
@@ -163,6 +156,20 @@ function recompute(id, q) {
   }
 }
 
+/**
+ * Whether the hint names the number of a numeric answer that the prompt
+ * does not show ("kim dài chỉ số 12" for "kim dài chỉ số mấy?").
+ * @param {KidQuestion} q
+ * @param {string} right
+ */
+function leaksNumber(q, right) {
+  const n = right.match(/^\d+/)?.[0];
+  if (!n) return false;
+  /** @param {string} text @returns {string[]} */
+  const tokens = (text) => text.match(/\d+/g) ?? [];
+  return tokens(q.hint).includes(n) && !tokens(q.prompt).includes(n);
+}
+
 const ALL = [...TEN_SKILLS, ...HUNDRED_SKILLS, ...MEASURE_SKILLS];
 
 describe('year-end review question makers', () => {
@@ -187,6 +194,7 @@ describe('year-end review question makers', () => {
           right === again &&
           q.hint.length > 0 &&
           !q.hint.includes(` ${right}.`) &&
+          !leaksNumber(q, right) &&
           q.solution.toLowerCase().includes(right.toLowerCase().split(' ')[0]);
         if (!ok) failures.push({ id: skill.id, prompt: q.prompt, options: texts, right, again });
       }

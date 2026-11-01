@@ -15,8 +15,8 @@
    * count, a group with some pictures crossed out, a row of shapes (with a
    * "?" box for a pattern), counting sticks, a whole-hour clock, things
    * lying from one left end (on a centimetre ruler or not), or animals in a
-   * row. Each picture has one text label for screen readers, which never
-   * says the answer the question asks for.
+   * row. Each picture has one text label for screen readers that describes
+   * what is drawn (how many pictures, where the clock hands point).
    * @type {{ visual: import('./visual.js').Visual }}
    */
   let { visual } = $props();
@@ -48,7 +48,8 @@
       case 'clock':
         return `Đồng hồ: kim ngắn chỉ số ${visual.hour}, kim dài chỉ số 12.`;
       case 'strips': {
-        const names = visual.strips.map((s) => inSentence(thingOf(s.thing).label)).join(' và ');
+        const all = visual.strips.map((s) => inSentence(thingOf(s.thing).label));
+        const names = all.length > 1 ? `${all.slice(0, -1).join(', ')} và ${all.at(-1)}` : all[0];
         return visual.ruler
           ? `${names} đặt trên thước, đầu bên trái ở vạch 0`
           : `${names} đặt thẳng một đầu bên trái`;

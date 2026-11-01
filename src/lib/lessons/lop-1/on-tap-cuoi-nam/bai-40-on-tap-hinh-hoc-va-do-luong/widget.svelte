@@ -6,7 +6,7 @@
 
 <AdaptiveQuiz
   skills={MEASURE_SKILLS}
-  length={12}
+  length={14}
   allGood="Tuyệt vời! Em đã nắm chắc hình học và đo lường."
 >
   {#snippet visual(q)}

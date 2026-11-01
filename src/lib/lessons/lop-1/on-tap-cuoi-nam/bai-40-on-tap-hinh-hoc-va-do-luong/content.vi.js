@@ -68,7 +68,7 @@ export default {
   explore: {
     title: 'Bài ôn tập thông minh',
     instruction:
-      'Mỗi bộ có 12 câu về hình, độ dài, đồng hồ và các ngày trong tuần. Đầu tiên em làm thử mỗi phần một câu. Phần nào em làm sai, bài sẽ hỏi thêm phần đó. Bản đồ kĩ năng cho em biết phần nào cần ôn lại.',
+      'Mỗi bộ có 14 câu về hình, độ dài, đồng hồ và các ngày trong tuần. Đầu tiên em làm thử mỗi phần một câu. Phần nào em làm sai, bài sẽ hỏi thêm phần đó. Bản đồ kĩ năng cho em biết phần nào cần ôn lại.',
   },
   examples: [
     {
@@ -93,7 +93,7 @@ export default {
       prompt: 'Hình nào có 3 cạnh?',
       options: ['Hình vuông', 'Hình tam giác', 'Hình tròn'],
       answer: 1,
-      hints: ['Hình tròn không có cạnh. Hình vuông có 4 cạnh.'],
+      hints: ['Em đếm số cạnh của từng hình.'],
       solution: 'Hình tam giác có 3 cạnh.',
     },
     {

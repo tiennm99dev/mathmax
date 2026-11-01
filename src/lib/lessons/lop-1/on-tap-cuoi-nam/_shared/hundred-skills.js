@@ -62,7 +62,7 @@ export const readSkill = {
     return {
       prompt: `Số nào đọc là "${word}"?`,
       ...bigOptions(rand, n, 1, 99),
-      hint: 'Tiếng đầu cho em biết số chục, tiếng sau cho em biết số đơn vị.',
+      hint: 'Phần đầu (như "ba mươi") cho em biết số chục, phần sau (như "lăm") cho em biết số đơn vị.',
       solution,
     };
   },

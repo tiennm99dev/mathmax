@@ -6,7 +6,7 @@
 
 <AdaptiveQuiz
   skills={HUNDRED_SKILLS}
-  length={10}
+  length={12}
   allGood="Tuyệt vời! Em đã nắm chắc các số và phép tính trong phạm vi 100."
 >
   {#snippet visual(q)}

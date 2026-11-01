@@ -53,7 +53,7 @@ export default {
   explore: {
     title: 'Bài ôn tập thông minh',
     instruction:
-      'Mỗi bộ có 12 câu về số, phép tính, hình, độ dài, giờ và lịch. Đầu tiên em làm thử mỗi phần một câu. Phần nào em làm sai, bài sẽ hỏi thêm phần đó. Bản đồ kĩ năng cho em biết phần nào cần ôn lại.',
+      'Mỗi bộ có 16 câu về số, phép tính, hình, độ dài, giờ và lịch. Đầu tiên em làm thử mỗi phần một câu. Phần nào em làm sai, bài sẽ hỏi thêm phần đó. Bản đồ kĩ năng cho em biết phần nào cần ôn lại.',
   },
   examples: [
     {
@@ -152,7 +152,7 @@ export default {
       prompt: 'Lá cờ Tổ quốc có dạng hình gì?',
       options: ['Hình vuông', 'Hình chữ nhật', 'Hình tam giác'],
       answer: 1,
-      hints: ['Lá cờ có 2 cạnh dài và 2 cạnh ngắn.'],
+      hints: ['Lá cờ có mấy cạnh? Các cạnh có dài bằng nhau không?'],
       solution: 'Lá cờ Tổ quốc có dạng hình chữ nhật.',
     },
     {
@@ -176,7 +176,7 @@ export default {
       prompt: 'Lúc 3 giờ, kim ngắn chỉ số mấy?',
       options: ['3', '6', '12'],
       answer: 0,
-      hints: ['Lúc giờ đúng, kim dài chỉ số 12, còn kim ngắn chỉ số giờ.'],
+      hints: ['Kim ngắn là kim chỉ giờ.'],
       solution: 'Lúc 3 giờ, kim ngắn chỉ số 3, kim dài chỉ số 12.',
     },
     {
