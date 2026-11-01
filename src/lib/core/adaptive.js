@@ -11,7 +11,8 @@
  */
 
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
-import { int } from '#lib/core/drill.js';
+import { int, splitUnit } from '#lib/core/drill.js';
+import { normalizeUnit } from '#lib/core/answer-check.js';
 
 /** @typedef {import('#lib/fraction-engine/fraction.js').Fraction} Fraction */
 
@@ -23,6 +24,8 @@ import { int } from '#lib/core/drill.js';
  * @property {string[]} steps worked solution, the last step states the answer
  * @property {string[]} hints mildest first, never the answer itself
  * @property {boolean} [simplest] the prompt asks for a fraction in lowest terms
+ * @property {string} [unit] the unit the answer is counted in ('%', 'cm', '°');
+ *   without it, a unit the prompt names, as in "(theo cm)" or a closing "(độ)."
  */
 
 /**
@@ -30,6 +33,13 @@ import { int } from '#lib/core/drill.js';
  * @property {string} id
  * @property {string} label shown on the skill map
  * @property {(rand: () => number) => ReviewQuestion} make
+ */
+
+/**
+ * What the skill map and the skill picker read of a skill: its id and label.
+ * A review skill, a drill skill and a kid quiz skill all have them, so the
+ * helpers below take any of them and give back the same kind.
+ * @typedef {{ id: string, label: string }} SkillRef
  */
 
 /**
@@ -84,6 +94,39 @@ export function inLowestTerms(text) {
 }
 
 /**
+ * The unit a review answer is counted in: the question's own `unit`, else
+ * the one its prompt names as "(theo cm)", "(tính theo %)" or a closing
+ * "(độ)." Null when it has none, so the answer is a bare number.
+ * @param {Pick<ReviewQuestion, 'prompt' | 'unit'>} question
+ * @returns {string | null}
+ */
+export function questionUnit(question) {
+  if (question.unit) return question.unit;
+  const named =
+    /\((?:tính )?theo ([^()]+)\)/u.exec(question.prompt) ??
+    /\(([^()\s]+)\)[.?]?$/u.exec(question.prompt.trim());
+  return named ? named[1].trim() : null;
+}
+
+/**
+ * Reads a typed review answer. A unit after the number ('35%', '12 cm',
+ * '60 độ') is accepted when it is the question's unit (`questionUnit`);
+ * any other unit gives 'unit', so the board can say which unit belongs there
+ * without using up the try. Null when the number cannot be read.
+ * @param {Pick<ReviewQuestion, 'prompt' | 'unit'>} question
+ * @param {string} text
+ * @returns {{ value: Fraction | null, number: string } | 'unit'}
+ */
+export function readReviewAnswer(question, text) {
+  const { number, unit } = splitUnit(text);
+  if (unit) {
+    const expected = questionUnit(question);
+    if (!expected || normalizeUnit(unit) !== normalizeUnit(expected)) return 'unit';
+  }
+  return { value: readValue(number), number };
+}
+
+/**
  * @param {Fraction} a
  * @param {Fraction} b
  */
@@ -93,7 +136,7 @@ export function sameValue(a, b) {
 
 /**
  * First-attempt tallies per skill.
- * @param {ReviewSkill[]} skills
+ * @param {readonly SkillRef[]} skills
  * @param {Attempt[]} attempts
  */
 export function tally(skills, attempts) {
@@ -131,10 +174,11 @@ export function weightOf(right, answered) {
 
 /**
  * The skill for the next question and why it was chosen.
- * @param {ReviewSkill[]} skills
+ * @template {SkillRef} S
+ * @param {readonly S[]} skills
  * @param {Attempt[]} attempts first attempts so far, in order
  * @param {() => number} rand
- * @returns {{ skill: ReviewSkill, reason: Reason }}
+ * @returns {{ skill: S, reason: Reason }}
  */
 export function nextSkill(skills, attempts, rand) {
   const stats = tally(skills, attempts);

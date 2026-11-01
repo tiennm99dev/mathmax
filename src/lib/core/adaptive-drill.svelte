@@ -2,12 +2,13 @@
   import { tick, untrack } from 'svelte';
   import { button, textInput } from '#lib/core/ui.js';
   import { isDone, isRetry, nextPhase, rng } from '#lib/core/drill.js';
-  import { hints as hintCopy } from '#lib/core/copy.vi.js';
+  import { drill as drillCopy, hints as hintCopy } from '#lib/core/copy.vi.js';
   import {
     drawQuestion,
     inLowestTerms,
     nextSkill,
-    readValue,
+    questionUnit,
+    readReviewAnswer,
     sameValue,
     statusOf,
     tally,
@@ -68,6 +69,9 @@
   // A right value typed as a fraction that still reduces: asked to simplify,
   // without using up the try.
   let notSimplest = $state(false);
+  // The last answer carried a unit this question is not counted in: said so,
+  // without using up the try.
+  let unitIssue = $state(false);
   /** @type {HTMLInputElement | undefined} */
   let input = $state();
 
@@ -91,9 +95,13 @@
 
   async function check() {
     if (done) return;
-    const value = readValue(typed);
+    const got = readReviewAnswer(set.q, typed);
+    unitIssue = got === 'unit';
+    notSimplest = false;
+    if (got === 'unit') return;
+    const { value, number } = got;
     const ok = value === null ? null : sameValue(value, set.q.answer);
-    notSimplest = ok === true && set.q.simplest === true && !inLowestTerms(typed);
+    notSimplest = ok === true && set.q.simplest === true && !inLowestTerms(number);
     if (notSimplest) return;
     const first = !isRetry(phase);
     phase = nextPhase(phase, ok);
@@ -111,6 +119,7 @@
     typed = '';
     hintsShown = 0;
     notSimplest = false;
+    unitIssue = false;
     if (attempts.length >= length) {
       finished = true;
       return;
@@ -132,6 +141,7 @@
     phase = 'ask';
     hintsShown = 0;
     notSimplest = false;
+    unitIssue = false;
   }
 </script>
 
@@ -188,12 +198,17 @@
             Hãy nhập một số: số nguyên (−12), số thập phân (3,75) hoặc phân số (5/6).
           </p>
         {/if}
+        {#if unitIssue}
+          <p class="font-semibold text-amber-800">
+            {drillCopy.unit(questionUnit(set.q) ?? undefined)}
+          </p>
+        {/if}
         {#if notSimplest}
           <p class="font-semibold text-amber-800">
             Giá trị đúng rồi, nhưng đề yêu cầu phân số tối giản. Em rút gọn rồi nhập lại nhé.
           </p>
         {/if}
-        {#if isRetry(phase) && !notSimplest}
+        {#if isRetry(phase) && !notSimplest && !unitIssue}
           <p class="font-semibold text-rose-900">
             Chưa đúng. Em xem gợi ý rồi thử lại lần nữa nhé.
           </p>

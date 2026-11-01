@@ -5,6 +5,8 @@ import {
   drawQuestion,
   inLowestTerms,
   nextSkill,
+  questionUnit,
+  readReviewAnswer,
   readValue,
   sameValue,
   statusOf,
@@ -125,5 +127,41 @@ describe('nextSkill', () => {
       expect(asked.has(q.prompt)).toBe(false);
       asked.add(q.prompt);
     }
+  });
+});
+
+describe('answers with a unit', () => {
+  const cm = { prompt: 'Tam giác ABC vuông tại A có AB = 3 cm, AC = 4 cm. Tính BC (theo cm).' };
+  const percent = { prompt: 'Tìm tần số tương đối của lựa chọn bóng đá (tính theo %).' };
+  const angle = { prompt: 'Tính số đo góc ACB (độ).' };
+  const plain = { prompt: 'Có bao nhiêu học sinh thích môn bơi?' };
+  const kPi = { prompt: 'Viết diện tích dưới dạng kπ (cm²) rồi nhập k.' };
+
+  it('finds the unit the prompt names, or the question gives', () => {
+    expect(questionUnit(cm)).toBe('cm');
+    expect(questionUnit(percent)).toBe('%');
+    expect(questionUnit(angle)).toBe('độ');
+    expect(questionUnit(plain)).toBeNull();
+    expect(questionUnit(kPi)).toBeNull();
+    expect(questionUnit({ ...plain, unit: 'đồng' })).toBe('đồng');
+  });
+
+  it('accepts the question unit after the number', () => {
+    expect(readReviewAnswer(cm, '5 cm')).toEqual({ value: fraction(5), number: '5' });
+    expect(readReviewAnswer(cm, '5')).toEqual({ value: fraction(5), number: '5' });
+    expect(readReviewAnswer(percent, '35%')).toEqual({ value: fraction(35), number: '35' });
+    expect(readReviewAnswer(angle, '60°')).toEqual({ value: fraction(60), number: '60' });
+    expect(readReviewAnswer(angle, '60 độ')).toEqual({ value: fraction(60), number: '60' });
+    expect(readReviewAnswer({ ...plain, unit: '%' }, '12,5 %')?.valueOf()).toEqual({
+      value: fraction(25, 2),
+      number: '12,5',
+    });
+  });
+
+  it('flags a unit the question is not counted in', () => {
+    expect(readReviewAnswer(cm, '5 m')).toBe('unit');
+    expect(readReviewAnswer(plain, '12 học sinh')).toBe('unit');
+    expect(readReviewAnswer(kPi, '9 cm²')).toBe('unit');
+    expect(readReviewAnswer(plain, '−3/4')).toEqual({ value: fraction(-3, 4), number: '−3/4' });
   });
 });
