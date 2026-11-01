@@ -17,6 +17,14 @@
     font-family: 'Be Vietnam Pro', system-ui, sans-serif;
   }
 
+  /* A focused <g> slider would also get the browser's default outline around
+     the bounding box of the whole group, ruler and labels included; the ring
+     below on its knob or shapes marks the focus instead. */
+  svg g[role='slider']:focus,
+  svg g[role='slider']:focus-visible {
+    outline: none;
+  }
+
   /* Focus rings for keyboard users on SVG controls. The ring goes on the
      visible handle shape only: a handle that is itself a shape takes it, and a
      <g> handle passes it to its `.drag-knob` child, or without one to its
