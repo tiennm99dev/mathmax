@@ -392,14 +392,20 @@ Other shared pieces:
   `formatNumber`).
 - Domain components for the site's subject: `src/lib/domain/` (empty on
   MathMax). PhysMax has `vector-field`, `force-diagram`, `motion-plot`,
-  `circuit-board`, `ray-optics-bench`, `wave-plot`, `thermometer`,
-  `meter-dial` (ammeter or voltmeter dial), and `materials.js` (the book's
-  density table, `material`, `qty` for quantities written the book's way);
-  ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
+  `circuit-board`, `ray-optics-bench` (pass `unsigned` on grade 9: the
+  caption then gives d and d′ as plain distances and no k), `wave-plot`,
+  `thermometer`, `meter-dial` (ammeter or voltmeter dial), `boundary-view`
+  (a laser meeting a flat boundary, with `light.js`: `MEDIA`, `boundary`,
+  `reflectance`), `prism.js` (`SPECTRUM`, `prismCorners`, `traceThrough`),
+  `energy.js` (the grade 9 P = 10m, `kinetic`, `potential`) and
+  `materials.js` (the book's density table, `material`, `qty` for quantities
+  written the book's way); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
   `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
   book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
   with `reaction.js` (`terms`, `isBalancedText`, which also checks condensed
-  structural formulas such as "CH2=CH2 + Br2 → BrCH2–CH2Br"); BioMax has
+  structural formulas such as "CH2=CH2 + Br2 → BrCH2–CH2Br") and
+  `elements.js` (`electronConfiguration`, `outerElectrons`,
+  `unpairedElectrons`, `configTex`); BioMax has
   `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
   opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`,
   `pea` (a garden-pea seed, flower or plant picture for Mendel's traits). Use
