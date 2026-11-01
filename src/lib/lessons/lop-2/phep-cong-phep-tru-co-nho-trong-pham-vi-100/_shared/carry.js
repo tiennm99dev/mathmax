@@ -14,6 +14,7 @@
  * DOM-free.
  */
 import { int } from '#lib/core/drill.js';
+import { numberOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
 
 /** @typedef {'+' | '-'} Op */
@@ -96,7 +97,7 @@ export function carrySteps(a, b, op) {
       place: 'ones',
       digit: ur,
       ask: `Hàng đơn vị: ${ua} cộng ${ub} bằng mấy? Em viết chữ số nào?`,
-      hint: `${ua} + ${ub} được hơn 10. Em viết chữ số đơn vị của kết quả, nhớ 1 chục.`,
+      hint: `${ua} + ${ub} được 10 hoặc hơn. Em viết chữ số đơn vị của kết quả, nhớ 1 chục.`,
       text: `${ua} cộng ${ub} bằng ${s}, viết ${ur}, nhớ 1.`,
     };
     /** @type {CarryStep} */
@@ -212,4 +213,19 @@ export function freshCarry(rand, kind, previous) {
     if (!previous || p.a !== previous.a || p.b !== previous.b) return p;
   }
   return makeCarry(rand, kind);
+}
+
+/**
+ * Answer options for a carrying sum: two numbers near it, the slip of
+ * forgetting the carry (35 + 7 written 32) and the sum, in increasing order.
+ * @param {() => number} rand
+ * @param {number} right the sum
+ */
+export function sumOptions(rand, right) {
+  const near = numberOptions(rand, right, right - 3, Math.min(99, right + 3))
+    .options.map(Number)
+    .filter((v) => v !== right)
+    .slice(0, 2);
+  const values = [...near, right - 10, right].sort((x, y) => x - y);
+  return { options: values.map(String), answer: values.indexOf(right) };
 }

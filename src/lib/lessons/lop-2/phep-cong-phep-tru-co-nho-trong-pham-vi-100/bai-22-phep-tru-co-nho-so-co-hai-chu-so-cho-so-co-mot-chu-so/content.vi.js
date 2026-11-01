@@ -106,7 +106,7 @@ export default {
     },
     {
       type: 'count',
-      prompt: 'Có 22 con bướm. 5 con bay đi. Còn lại mấy con bướm?',
+      prompt: 'Có 22 con bướm. 5 con bay đi. Hình vẽ những con bướm còn lại. Còn lại mấy con bướm?',
       picture: 'butterfly',
       answer: 17,
       choices: [16, 17, 18, 27],

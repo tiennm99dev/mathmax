@@ -35,6 +35,8 @@
   let untied = $state(false);
   /** @type {HTMLDivElement | undefined} */
   let pad = $state();
+  /** @type {HTMLParagraphElement | undefined} */
+  let feedback = $state();
 
   async function untie() {
     untied = true;
@@ -67,11 +69,17 @@
   });
 
   /** @param {number} d */
-  function pick(d) {
+  async function pick(d) {
     if (done || mustUntie || wrong.includes(d)) return;
     if (d === steps[step].digit) {
       step += 1;
       wrong = [];
+      // The digit pad goes away once the result is written: keep the focus on
+      // the result instead of losing it to the page.
+      if (step > 1) {
+        await tick();
+        feedback?.focus();
+      }
     } else {
       wrong = [...wrong, d];
     }
@@ -127,7 +135,9 @@
   <div class="flex flex-wrap items-start gap-4">
     <CarryBoard {a} {b} {op} {written} carried={step > 0} {active} />
     <p
-      class="min-w-0 flex-1 basis-56 rounded-2xl px-4 py-3 text-xl font-semibold {done
+      bind:this={feedback}
+      tabindex="-1"
+      class="min-w-0 flex-1 basis-56 rounded-2xl px-4 py-3 text-xl font-semibold outline-none {done
         ? 'bg-emerald-100 text-emerald-900'
         : wrong.length > 0
           ? 'bg-amber-100 text-amber-900'

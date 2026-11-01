@@ -19,6 +19,8 @@
   let choice = $state(sumOptions(rng(19), 35, 7));
   /** @type {HTMLDivElement | undefined} */
   let answers = $state();
+  /** @type {HTMLButtonElement | undefined} */
+  let addButton = $state();
 
   const t = $derived(table(a, b, added));
   const allIn = $derived(t.left === 0);
@@ -54,10 +56,13 @@
     choice = sumOptions(rand, a, b);
   }
 
-  function again() {
+  async function again() {
     added = 0;
     wrong = [];
     solved = false;
+    // "Làm lại" is disabled now, so hand the focus to "Thêm 1 que".
+    await tick();
+    addButton?.focus();
   }
 
   /** @param {number} i */
@@ -88,7 +93,11 @@
     </div>
     <div class="space-y-2 rounded-3xl bg-sky-50 p-3">
       <p class="text-lg font-semibold text-slate-700">Còn thêm: {t.left} que</p>
-      <CountingSticks tens={0} ones={t.left} tone="sky" />
+      {#if t.left > 0}
+        <CountingSticks tens={0} ones={t.left} tone="sky" />
+      {:else}
+        <p class="text-lg text-slate-600">Đã thêm hết que tính.</p>
+      {/if}
     </div>
   </div>
 
@@ -96,6 +105,7 @@
     <button
       type="button"
       class="min-h-12 text-lg {button.primary}"
+      bind:this={addButton}
       disabled={allIn}
       onclick={addOne}>Thêm 1 que</button
     >

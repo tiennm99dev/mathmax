@@ -57,18 +57,25 @@
     takeButton?.focus();
   }
 
-  function reset() {
+  function clear() {
     untied = false;
     taken = 0;
     wrong = [];
     solved = false;
   }
 
+  async function reset() {
+    clear();
+    // "Làm lại" is disabled now, so hand the focus to the next step.
+    await tick();
+    (open ? takeButton : untieButton)?.focus();
+  }
+
   function newTask() {
     const next = freshCarry(rand, 'sub-one', { a, b });
     a = next.a;
     b = next.b;
-    reset();
+    clear();
     choice = differenceOptions(rand, a, b);
   }
 

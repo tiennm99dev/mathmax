@@ -14,6 +14,9 @@ describe('adding sticks one at a time', () => {
     expect(tableMessage(35, 7, 3)).toContain('Còn thiếu 2 que');
     expect(tableMessage(35, 7, 5)).toContain('bó thành 1 chục');
     expect(tableMessage(35, 7, 7)).toContain('4 chục và 2 que rời, tức là 42');
+    expect(tableMessage(46, 4, 4)).toContain(
+      'bó thành 1 chục! Xong! Có 5 chục và 0 que rời, tức là 50',
+    );
   });
 
   it('offers options that hold the sum and the forgotten carry', () => {

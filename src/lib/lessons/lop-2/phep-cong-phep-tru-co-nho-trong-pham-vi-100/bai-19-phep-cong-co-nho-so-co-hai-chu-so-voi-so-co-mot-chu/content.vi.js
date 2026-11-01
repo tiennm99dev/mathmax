@@ -105,7 +105,7 @@ export default {
     },
     {
       type: 'count',
-      prompt: 'Có 18 quả táo. Mẹ mua thêm 4 quả. Có tất cả mấy quả táo?',
+      prompt: 'Có 18 quả táo. Mẹ mua thêm 4 quả. Hình vẽ tất cả số táo. Có tất cả mấy quả táo?',
       picture: 'apple',
       answer: 22,
       choices: [12, 21, 22, 23],

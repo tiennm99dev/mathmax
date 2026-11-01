@@ -5,7 +5,7 @@
  * are ten loose sticks they are tied into one more bundle, so 35 + 7 reads as
  * 4 bundles and 2 loose sticks, 42. Pure and DOM-free.
  */
-import { numberOptions } from '#lib/core/kid/quiz.js';
+import { sumOptions as carrySumOptions } from '../_shared/carry.js';
 
 /**
  * Sticks on the table after `added` of the `b` new sticks went in.
@@ -45,11 +45,14 @@ export function tableMessage(a, b, added) {
   if (!t.tied) {
     return `Có ${ua + added} que rời. Còn thiếu ${10 - ua - added} que nữa là đủ 1 chục.`;
   }
-  if (ua + added === 10) {
-    return `Đủ 10 que rời, em bó thành 1 chục! Có ${t.tens} chục.${t.left > 0 ? ` Còn ${t.left} que nữa.` : ''}`;
+  if (t.left === 0) {
+    const tie = ua + added === 10 ? 'Đủ 10 que rời, em bó thành 1 chục! ' : '';
+    return `${tie}Xong! Có ${t.tens} chục và ${t.ones} que rời, tức là ${t.tens * 10 + t.ones} que tính.`;
   }
-  if (t.left > 0) return `Có ${t.tens} chục và ${t.ones} que rời. Còn ${t.left} que nữa.`;
-  return `Xong! Có ${t.tens} chục và ${t.ones} que rời, tức là ${t.tens * 10 + t.ones} que tính.`;
+  if (ua + added === 10) {
+    return `Đủ 10 que rời, em bó thành 1 chục! Có ${t.tens} chục. Còn ${t.left} que nữa.`;
+  }
+  return `Có ${t.tens} chục và ${t.ones} que rời. Còn ${t.left} que nữa.`;
 }
 
 /**
@@ -60,11 +63,5 @@ export function tableMessage(a, b, added) {
  * @param {number} b
  */
 export function sumOptions(rand, a, b) {
-  const right = a + b;
-  const near = numberOptions(rand, right, right - 3, Math.min(99, right + 3))
-    .options.map(Number)
-    .filter((v) => v !== right)
-    .slice(0, 2);
-  const values = [...near, right - 10, right].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
+  return carrySumOptions(rand, a + b);
 }

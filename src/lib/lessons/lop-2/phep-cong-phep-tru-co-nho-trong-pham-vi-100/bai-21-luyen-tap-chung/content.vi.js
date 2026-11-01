@@ -125,7 +125,7 @@ export default {
     },
     {
       type: 'count',
-      prompt: 'Có 16 quả cam. Mẹ mua thêm 7 quả. Có tất cả mấy quả cam?',
+      prompt: 'Có 16 quả cam. Mẹ mua thêm 7 quả. Hình vẽ tất cả số cam. Có tất cả mấy quả cam?',
       picture: 'orange',
       answer: 23,
       choices: [13, 22, 23, 24],

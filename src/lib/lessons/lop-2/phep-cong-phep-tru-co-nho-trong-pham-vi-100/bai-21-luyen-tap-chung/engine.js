@@ -10,7 +10,7 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { compareSign, SIGN_WORDS } from '#lib/core/kid/numbers.js';
 import { mixOptions, numberOptions, signOptions } from '#lib/core/kid/quiz.js';
-import { carryText, makeCarry } from '../_shared/carry.js';
+import { carryText, makeCarry, sumOptions } from '../_shared/carry.js';
 
 /** A carrying addition set out in columns. */
 /** @typedef {{ a: number, b: number, op: '+' }} Visual */
@@ -38,21 +38,6 @@ export const KIND_LABELS = /** @type {const} */ ({
   'so-sanh': 'So sánh',
   'bai-toan': 'Bài toán có lời văn',
 });
-
-/**
- * Two numbers near the sum and the sum without the carry (35 + 7 written
- * 32), with the sum, in increasing order.
- * @param {() => number} rand
- * @param {number} right
- */
-function sumOptions(rand, right) {
-  const near = numberOptions(rand, right, right - 3, Math.min(99, right + 3))
-    .options.map(Number)
-    .filter((v) => v !== right)
-    .slice(0, 2);
-  const values = [...near, right - 10, right].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
-}
 
 /**
  * A carrying addition in columns, `one` for a one-digit second number.
@@ -98,7 +83,7 @@ function carryQuestion(rand) {
     prompt: 'Phép cộng nào có nhớ?',
     ...opts,
     hint: 'Em cộng hai chữ số ở hàng đơn vị. Được 10 hoặc hơn thì có nhớ.',
-    solution: `${right.a % 10} + ${right.b % 10} = ${(right.a % 10) + (right.b % 10)}: được hơn 10 nên có nhớ. ${right.a} + ${right.b} = ${right.a + right.b}.`,
+    solution: `${right.a % 10} + ${right.b % 10} = ${(right.a % 10) + (right.b % 10)}: được 10 hoặc hơn nên có nhớ. ${right.a} + ${right.b} = ${right.a + right.b}.`,
   };
 }
 
@@ -148,9 +133,10 @@ function compareQuestion(rand) {
  */
 const STORIES = [
   {
-    story: (a, b) => `Lớp 2A có ${a} bạn. Lớp 2B có ${b} bạn. Cả hai lớp có bao nhiêu bạn?`,
-    unit: 'bạn',
-    name: 'bạn',
+    story: (a, b) =>
+      `Cửa hàng buổi sáng bán được ${a} quyển vở, buổi chiều bán được ${b} quyển vở. Cả ngày cửa hàng bán được bao nhiêu quyển vở?`,
+    unit: 'quyển',
+    name: 'quyển vở',
   },
   {
     story: (a, b) =>
