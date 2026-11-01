@@ -5,6 +5,7 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import BalanceScale from '../_shared/balance-scale.svelte';
   import {
+    MAX_WEIGHTS,
     WEIGHTS,
     compareSentence,
     massThing,
@@ -13,7 +14,7 @@
     sortedWeights,
     weighMessage,
   } from '../_shared/mass.js';
-  import { MAX_WEIGHTS, compareOptions, scaleLabel } from './engine.js';
+  import { compareOptions, scaleLabel } from './engine.js';
 
   // Fixed seeds so the prerendered page and the browser agree.
   const pairRand = rng(15);
@@ -39,6 +40,8 @@
 
   /** @type {HTMLElement | undefined} */
   let panel = $state();
+  /** @type {HTMLElement | undefined} */
+  let nextEl = $state();
 
   const choice = $derived(compareOptions(pair));
   const names = $derived(pair.map((p) => massThing(p.id).name));
@@ -67,7 +70,7 @@
       { name: names[0], kg: pair[0].kg },
       { name: names[1], kg: pair[1].kg },
     );
-    if (picked) return wrong.length > 0 ? `Em xem nhé: ${sentence}` : `Đúng rồi! ${sentence}`;
+    if (picked) return wrong.length > 1 ? `Em xem nhé: ${sentence}` : `Đúng rồi! ${sentence}`;
     if (wrong.length > 0) return 'Chưa đúng. Đĩa nào thấp hơn thì vật trên đĩa đó nặng hơn.';
     return 'Em nhìn cân đĩa. Chạm vào câu đúng.';
   });
@@ -82,10 +85,21 @@
     }
   }
 
-  /** @param {number} kg */
-  function addWeight(kg) {
+  /**
+   * Puts a weight of `kg` on the pan. When that balances the scale or fills
+   * the pan, the add buttons turn off, so keyboard focus moves on: to "Vật
+   * khác" once level, else to the weights that can be taken off.
+   * @param {number} kg
+   */
+  async function addWeight(kg) {
     if (level || weights.length >= MAX_WEIGHTS) return;
     weights = [...weights, kg];
+    if (!level && weights.length < MAX_WEIGHTS) return;
+    await tick();
+    (level
+      ? nextEl
+      : /** @type {HTMLElement | null | undefined} */ (panel?.querySelector('[data-weight]'))
+    )?.focus();
   }
 
   /**
@@ -203,6 +217,7 @@
 
   <button
     type="button"
+    bind:this={nextEl}
     class="min-h-12 text-lg {done ? button.primary : button.secondary}"
     onclick={nextThing}>Vật khác</button
   >

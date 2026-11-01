@@ -46,6 +46,8 @@
 
   /** @type {HTMLElement | undefined} */
   let answersEl = $state();
+  /** @type {HTMLElement | undefined} */
+  let pairEl = $state();
 
   const name = $derived(vessel(task.id).name);
   const names = $derived(pair.map((p) => vessel(p.id).name));
@@ -81,13 +83,20 @@
     }
   }
 
-  /** @param {0 | 1} i */
+  /**
+   * Pours a container out into mugs. Its button goes away, so keyboard focus
+   * moves to the other container's button, or to the answers once both are
+   * poured.
+   * @param {0 | 1} i
+   */
   async function pourAll(i) {
     emptied[i] = true;
-    if (emptied[0] && emptied[1]) {
-      await tick();
-      answersEl?.querySelector('button')?.focus();
-    }
+    await tick();
+    /** @type {HTMLElement | null | undefined} */ (
+      emptied[0] && emptied[1]
+        ? answersEl?.querySelector('button')
+        : pairEl?.querySelector('[data-pour]')
+    )?.focus();
   }
 
   /** @param {number} i */
@@ -171,7 +180,7 @@
       onclick={pourOne}>Rót 1 l</button
     >
   {:else}
-    <div class="space-y-3">
+    <div bind:this={pairEl} class="space-y-3">
       {#each pair as p, i (i)}
         <div class="flex flex-wrap items-center gap-3 rounded-2xl bg-sky-50 p-3">
           <Vessel
@@ -187,6 +196,7 @@
             {:else}
               <button
                 type="button"
+                data-pour
                 class="min-h-12 text-lg {button.secondary}"
                 onclick={() => pourAll(/** @type {0 | 1} */ (i))}>Rót {names[i]} ra ca</button
               >

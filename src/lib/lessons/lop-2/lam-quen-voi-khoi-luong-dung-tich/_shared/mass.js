@@ -29,6 +29,9 @@ export const MASS_THINGS = [
 /** The weights (quả cân) of the balance, in kilograms. */
 export const WEIGHTS = /** @type {const} */ ([1, 2, 5]);
 
+/** At most this many weights fit on a pan. */
+export const MAX_WEIGHTS = 6;
+
 /** Size of a weight on the pan, by its kilograms. */
 const WEIGHT_SIZE = /** @type {Record<number, [number, number]>} */ ({
   1: [28, 24],
@@ -117,6 +120,9 @@ export function weighMessage(name, kg, weights) {
   }
   const on = weightsText(sortedWeights(weights));
   const total = weights.length > 1 ? ` = ${sum} kg` : '';
+  if (sum < kg && weights.length >= MAX_WEIGHTS) {
+    return `Đĩa quả cân đã đầy mà ${name} vẫn nặng hơn ${on}${total}. Em bỏ bớt quả cân nhỏ, thay bằng quả cân to hơn nhé.`;
+  }
   if (sum < kg) {
     return `Đĩa có ${name} vẫn thấp hơn: ${name} nặng hơn ${on}${total}. Em thêm quả cân nhé.`;
   }

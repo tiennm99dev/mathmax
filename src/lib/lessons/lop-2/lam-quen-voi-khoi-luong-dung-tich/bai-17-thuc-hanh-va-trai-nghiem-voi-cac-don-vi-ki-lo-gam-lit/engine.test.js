@@ -45,10 +45,12 @@ describe('the guess-then-check game', () => {
     expect(guessStars(5, 3)).toBe(1);
     expect(guessStars(9, 3)).toBe(0);
     expect(checkMessage({ kind: 'mass', id: 'melon', amount: 3 }, 4)).toBe(
-      'Quả dưa hấu cân nặng 3 kg. Em đoán 4 kg. Em đoán nặng hơn 1 kg, rất gần rồi! Em được 2 sao.',
+      'Quả dưa hấu cân nặng 3 kg. Em đoán 4 kg. Em đoán nặng hơn số cân được 1 kg, rất gần rồi! Em được 2 sao.',
     );
     expect(checkMessage({ kind: 'capacity', id: 'can', amount: 5 }, 5)).toContain('Đoán đúng');
-    expect(checkMessage({ kind: 'capacity', id: 'bucket', amount: 10 }, 4)).toContain('ít hơn 6 l');
+    expect(checkMessage({ kind: 'capacity', id: 'bucket', amount: 10 }, 4)).toContain(
+      'ít hơn số đong được 6 l',
+    );
     expect(gameSummary([3, 3, 3, 3, 2, 3])).toContain('rất giỏi');
   });
 });

@@ -6,7 +6,13 @@
   import Cup from '../_shared/cup.svelte';
   import Vessel from '../_shared/vessel.svelte';
   import { CUPS, pourMessage } from '../_shared/capacity.js';
-  import { WEIGHTS, sortedWeights, weighMessage, weightsText } from '../_shared/mass.js';
+  import {
+    MAX_WEIGHTS,
+    WEIGHTS,
+    sortedWeights,
+    weighMessage,
+    weightsText,
+  } from '../_shared/mass.js';
   import {
     GUESS_MAX,
     GUESS_MIN,
@@ -20,9 +26,6 @@
     startGuess,
     unitOf,
   } from './engine.js';
-
-  /** At most this many weights fit on a pan. */
-  const MAX_WEIGHTS = 6;
 
   // The first game is fixed so the prerendered page and the browser agree.
   let seed = $state(1);
@@ -94,11 +97,21 @@
     nextEl?.focus();
   }
 
-  /** @param {number} kg */
-  function addWeight(kg) {
+  /**
+   * Puts a weight of `kg` on the pan. Once level, focus moves to the next
+   * button; when the pan is full but not level, to the weights to take off.
+   * @param {number} kg
+   */
+  async function addWeight(kg) {
     if (checked || weights.length >= MAX_WEIGHTS) return;
     weights = [...weights, kg];
     if (weights.reduce((s, w) => s + w, 0) === item.amount) focusNext();
+    else if (weights.length >= MAX_WEIGHTS) {
+      await tick();
+      /** @type {HTMLElement | null | undefined} */ (
+        controls?.querySelector('[data-weight]')
+      )?.focus();
+    }
   }
 
   /** @param {number} kg */
@@ -161,7 +174,11 @@
           <Vessel
             id={item.id}
             fill={phase === 'check' ? (item.amount - poured) / item.amount : 1}
-            label="{name} đầy nước"
+            label={phase === 'check' && poured === item.amount
+              ? `${capitalize(name)} đã hết nước`
+              : poured > 0
+                ? `${capitalize(name)} còn nước`
+                : `${capitalize(name)} đầy nước`}
             caption={capitalize(name)}
             size={110}
           />

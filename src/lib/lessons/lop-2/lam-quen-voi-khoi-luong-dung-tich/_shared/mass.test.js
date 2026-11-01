@@ -35,6 +35,7 @@ describe('the pan balance', () => {
     expect(weighMessage('quả dưa hấu', 3, [])).toContain('đặt lên đĩa');
     expect(weighMessage('quả dưa hấu', 3, [1])).toContain('thêm quả cân');
     expect(weighMessage('quả dưa hấu', 3, [5])).toContain('bỏ bớt');
+    expect(weighMessage('bao gạo', 10, [1, 1, 1, 1, 1, 1])).toContain('thay bằng quả cân to hơn');
     expect(weighMessage('quả dưa hấu', 3, [1, 2])).toBe(
       'Cân thăng bằng! Quả dưa hấu nặng 2 kg + 1 kg = 3 kg. Quả dưa hấu cân nặng 3 kg.',
     );

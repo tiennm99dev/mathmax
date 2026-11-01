@@ -8,9 +8,6 @@
 import { capitalize } from '#lib/core/kid/quiz.js';
 import { heavierSide, massThing, totalKg, weightsText } from '../_shared/mass.js';
 
-/** At most this many weights fit on a pan. */
-export const MAX_WEIGHTS = 6;
-
 /**
  * The three sentences to choose from for a pair on the balance, always in
  * the same order, and the right one.

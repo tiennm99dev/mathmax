@@ -96,7 +96,7 @@ export default {
     {
       problem: 'Hà đoán cái can chứa được 4 l nước. Hà đong được đầy 5 ca 1 l. Hà đoán thế nào?',
       steps: ['Can chứa được 5 l nước.', 'Hà đoán 4 l, ít hơn 5 l là 1 l.'],
-      answer: 'Hà đoán ít hơn 1 l, khá gần đúng.',
+      answer: 'Hà đoán ít hơn số đong được 1 l. Hà đoán khá gần đúng.',
     },
   ],
   practice: [
@@ -152,7 +152,11 @@ export default {
     {
       type: 'choice',
       prompt: 'Lan đoán quả bí ngô nặng 6 kg. Cân được 4 kg. Lan đoán thế nào?',
-      options: ['Nặng hơn 2 kg', 'Nhẹ hơn 2 kg', 'Đúng luôn'],
+      options: [
+        'Lan đoán nặng hơn số cân được 2 kg.',
+        'Lan đoán nhẹ hơn số cân được 2 kg.',
+        'Lan đoán đúng.',
+      ],
       answer: 0,
       hints: ['So sánh 6 và 4: số nào lớn hơn?'],
       solution: '6 lớn hơn 4 là 2. Lan đoán nặng hơn số cân được 2 kg.',

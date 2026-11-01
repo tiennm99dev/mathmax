@@ -153,11 +153,11 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Quả dưa ở một đĩa. Đĩa kia có quả cân 2 kg và quả cân 1 kg. Cân thăng bằng. Quả dưa nặng mấy ki-lô-gam?',
-      options: ['2 kg', '3 kg', '1 kg'],
+        'Quả bí ngô ở một đĩa. Đĩa kia có quả cân 5 kg và quả cân 1 kg. Cân thăng bằng. Quả bí ngô nặng mấy ki-lô-gam?',
+      options: ['5 kg', '6 kg', '4 kg'],
       answer: 1,
-      hints: ['Cân thăng bằng: quả dưa nặng bằng cả hai quả cân cộng lại.'],
-      solution: 'Hai quả cân nặng 2 + 1 = 3 (kg). Quả dưa cân nặng 3 kg.',
+      hints: ['Cân thăng bằng: quả bí ngô nặng bằng cả hai quả cân cộng lại.'],
+      solution: 'Hai quả cân nặng 5 + 1 = 6 (kg). Quả bí ngô cân nặng 6 kg.',
     },
     {
       type: 'choice',

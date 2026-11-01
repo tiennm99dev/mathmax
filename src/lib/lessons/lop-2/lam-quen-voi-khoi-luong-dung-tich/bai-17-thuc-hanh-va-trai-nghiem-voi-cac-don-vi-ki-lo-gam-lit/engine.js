@@ -114,12 +114,8 @@ export function checkMessage(item, guess) {
   if (d === 0) return `${head} Đoán đúng luôn! Em được 3 sao.`;
   const side =
     item.kind === 'mass'
-      ? guess > item.amount
-        ? 'nặng hơn'
-        : 'nhẹ hơn'
-      : guess > item.amount
-        ? 'nhiều hơn'
-        : 'ít hơn';
+      ? `${guess > item.amount ? 'nặng hơn' : 'nhẹ hơn'} số cân được`
+      : `${guess > item.amount ? 'nhiều hơn' : 'ít hơn'} số đong được`;
   if (d <= 2) {
     return `${head} Em đoán ${side} ${d} ${unit}, rất gần rồi! Em được ${guessStars(guess, item.amount)} sao.`;
   }
