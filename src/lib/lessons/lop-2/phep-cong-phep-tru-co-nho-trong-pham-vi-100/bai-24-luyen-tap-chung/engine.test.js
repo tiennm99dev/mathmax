@@ -27,9 +27,9 @@ function recompute(q) {
   const texts = q.options.map(optionText);
   /** @param {string[]} fits */
   const only = (fits) => (fits.length === 1 ? fits[0] : 'several');
-  if (p.startsWith('Chọn chữ số thích hợp: ')) {
+  if (p.startsWith('Chọn chữ số thích hợp cho ô trống: ')) {
     const [left, sign, right] = p
-      .slice('Chọn chữ số thích hợp: '.length)
+      .slice('Chọn chữ số thích hợp cho ô trống: '.length)
       .match(/^(.+) ([<>]) (\d)□$/)
       ?.slice(1) ?? ['', '', ''];
     const x = value(left);

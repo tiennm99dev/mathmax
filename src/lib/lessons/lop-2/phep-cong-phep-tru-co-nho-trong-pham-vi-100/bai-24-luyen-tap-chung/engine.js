@@ -11,8 +11,10 @@ import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { carryText, equationText, exprText, makeCarry, sumOptions } from '../_shared/carry.js';
 
-/** A carrying calculation set out in columns. */
-/** @typedef {{ a: number, b: number, op: import('../_shared/carry.js').Op }} Visual */
+/**
+ * A carrying calculation set out in columns.
+ * @typedef {{ a: number, b: number, op: import('../_shared/carry.js').Op }} Visual
+ */
 
 /** @typedef {'cong' | 'tru-mot' | 'tru-hai' | 'ba-so' | 'so-sanh' | 'bai-toan'} Kind */
 
@@ -142,7 +144,7 @@ function digitQuestion(rand) {
   const sign = greater ? '>' : '<';
   const digits = greater ? [0, 1, 2, 3] : [6, 7, 8, 9];
   return {
-    prompt: `Chọn chữ số thích hợp: ${exprText(a, b, '-')} ${sign} ${tens}□`,
+    prompt: `Chọn chữ số thích hợp cho ô trống: ${exprText(a, b, '-')} ${sign} ${tens}□`,
     options: digits.map(String),
     answer: digits.indexOf(digit),
     hint: `Em tính ${exprText(a, b, '-')} trước, rồi so sánh với số có hàng chục là ${tens}.`,

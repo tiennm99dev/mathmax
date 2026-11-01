@@ -18,19 +18,19 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Trừ cho số có một chữ số',
-          text: '34 − 7: 4 không trừ được 7, lấy 14 trừ 7 bằng 7, viết 7, nhớ 1. 3 trừ 1 bằng 2, viết 2. Vậy 34 − 7 = 27.',
+          text: '43 − 8: 3 không trừ được 8, lấy 13 trừ 8 bằng 5, viết 5, nhớ 1. 4 trừ 1 bằng 3, viết 3. Vậy 43 − 8 = 35.',
         },
         {
           type: 'callout',
           tone: 'note',
           title: 'Trừ cho số có hai chữ số',
-          text: '60 − 12: 0 không trừ được 2, lấy 10 trừ 2 bằng 8, viết 8, nhớ 1. 1 thêm 1 bằng 2, 6 trừ 2 bằng 4, viết 4. Vậy 60 − 12 = 48.',
+          text: '70 − 13: 0 không trừ được 3, lấy 10 trừ 3 bằng 7, viết 7, nhớ 1. 1 thêm 1 bằng 2, 7 trừ 2 bằng 5, viết 5. Vậy 70 − 13 = 57.',
         },
         {
           type: 'callout',
           tone: 'warning',
           title: 'Đừng quên nhớ 1',
-          text: 'Nếu quên nhớ 1, em sẽ viết sai 60 − 12 = 58. Hãy kiểm tra hàng chục nhé.',
+          text: 'Nếu quên nhớ 1, em sẽ viết sai 70 − 13 = 67. Hãy kiểm tra hàng chục nhé.',
         },
       ],
     },
@@ -39,7 +39,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Có hai dấu phép tính, em tính từ trái sang phải. 25 + 65 − 30: em tính 25 + 65 = 90, rồi 90 − 30 = 60.',
+          text: 'Có hai dấu phép tính, em tính từ trái sang phải. 38 + 52 − 40: em tính 38 + 52 = 90, rồi 90 − 40 = 50.',
         },
       ],
     },
@@ -48,13 +48,13 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Để so sánh, em tính kết quả trước. 60 − 9 = 51. Muốn 51 lớn hơn 5□, em chỉ chọn được chữ số 0, vì 51 > 50.',
+          text: 'Để so sánh, em tính kết quả trước. 70 − 9 = 61. Muốn 61 lớn hơn 6□, ô trống chỉ điền được chữ số 0, vì 61 > 60.',
         },
         {
           type: 'callout',
           tone: 'note',
           title: 'Trình bày bài giải',
-          text: 'Bài giải có câu lời giải, phép tính kèm đơn vị trong ngoặc, và đáp số. Ví dụ: Số bậc sóc còn phải leo là: 32 − 9 = 23 (bậc). Đáp số: 23 bậc.',
+          text: 'Bài giải có câu lời giải, phép tính kèm đơn vị trong ngoặc, và đáp số. Ví dụ: Số quả cam còn lại là: 41 − 6 = 35 (quả). Đáp số: 35 quả cam.',
         },
       ],
     },
@@ -66,25 +66,25 @@ export default {
   },
   examples: [
     {
-      problem: 'Đặt tính rồi tính: 51 − 19.',
+      problem: 'Đặt tính rồi tính: 62 − 28.',
       steps: [
-        'Viết 19 dưới 51, thẳng cột.',
-        '1 không trừ được 9, lấy 11 trừ 9 bằng 2, viết 2, nhớ 1.',
-        '1 thêm 1 bằng 2, 5 trừ 2 bằng 3, viết 3.',
+        'Viết 28 dưới 62, thẳng cột.',
+        '2 không trừ được 8, lấy 12 trừ 8 bằng 4, viết 4, nhớ 1.',
+        '2 thêm 1 bằng 3, 6 trừ 3 bằng 3, viết 3.',
       ],
-      answer: '51 − 19 = 32.',
+      answer: '62 − 28 = 34.',
     },
     {
-      problem: 'Tính: 90 − 40 − 26.',
+      problem: 'Tính: 80 − 30 − 17.',
       steps: [
         'Em tính từ trái sang phải.',
-        '90 − 40 = 50.',
-        '50 − 26: 0 không trừ được 6, lấy 10 trừ 6 bằng 4, viết 4, nhớ 1. 2 thêm 1 bằng 3, 5 trừ 3 bằng 2, viết 2. Được 24.',
+        '80 − 30 = 50.',
+        '50 − 17: 0 không trừ được 7, lấy 10 trừ 7 bằng 3, viết 3, nhớ 1. 1 thêm 1 bằng 2, 5 trừ 2 bằng 3, viết 3. Được 33.',
       ],
-      answer: '90 − 40 − 26 = 24.',
+      answer: '80 − 30 − 17 = 33.',
     },
     {
-      problem: 'Chọn chữ số thích hợp: 42 − 4 < 3□.',
+      problem: 'Chọn chữ số thích hợp cho ô trống: 42 − 4 < 3□.',
       steps: [
         'Em tính trước: 42 − 4 = 38.',
         '38 phải bé hơn số 3□.',
@@ -93,13 +93,13 @@ export default {
       answer: 'Chữ số 9, vì 38 < 39.',
     },
     {
-      problem: 'Cầu thang có 32 bậc. Sóc đã leo được 9 bậc. Sóc còn phải leo bao nhiêu bậc nữa?',
+      problem: 'Rổ có 41 quả cam. Mẹ biếu bà 6 quả. Trong rổ còn lại bao nhiêu quả cam?',
       steps: [
-        'Tìm phần còn lại, em làm phép trừ: 32 − 9.',
-        '2 không trừ được 9, lấy 12 trừ 9 bằng 3, viết 3, nhớ 1. 3 trừ 1 bằng 2, viết 2.',
-        'Số bậc sóc còn phải leo là: 32 − 9 = 23 (bậc).',
+        'Tìm phần còn lại, em làm phép trừ: 41 − 6.',
+        '1 không trừ được 6, lấy 11 trừ 6 bằng 5, viết 5, nhớ 1. 4 trừ 1 bằng 3, viết 3.',
+        'Số quả cam còn lại là: 41 − 6 = 35 (quả).',
       ],
-      answer: 'Đáp số: 23 bậc.',
+      answer: 'Đáp số: 35 quả cam.',
     },
   ],
   practice: [
@@ -162,7 +162,7 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Chọn chữ số thích hợp: 60 − 9 > 5□',
+      prompt: 'Chọn chữ số thích hợp cho ô trống: 60 − 9 > 5□',
       options: ['0', '1', '2'],
       answer: 0,
       hints: ['Em tính 60 − 9 trước.', 'Số 5□ phải bé hơn kết quả đó.'],
@@ -188,14 +188,26 @@ export default {
         '53 − 17 = 36. 71 − 28 = 43. 90 − 46 = 44. Từ bé đến lớn: 53 − 17, 71 − 28, 90 − 46.',
     },
     {
-      type: 'choice',
+      type: 'match',
       prompt:
-        'Có ba thẻ số: 3, 3, 8. Em lấy hai thẻ ghép thành số có hai chữ số. Số lớn nhất là số nào?',
-      options: ['38', '83', '88'],
-      answer: 1,
-      hints: ['Chỉ có một thẻ số 8.', 'Muốn số lớn, em đặt chữ số lớn hơn ở hàng chục.'],
+        'Có ba thẻ số: 3, 3, 8. Em lấy hai thẻ ghép thành số có hai chữ số. Nối mỗi dòng với số đúng.',
+      left: ['Số bé nhất', 'Số lớn nhất'],
+      right: ['33', '38', '83', '88'],
+      pairs: [
+        [0, 0],
+        [1, 2],
+      ],
+      hints: ['Chỉ có một thẻ số 8.', 'Em viết ra các số ghép được, rồi so sánh chữ số hàng chục.'],
       solution:
-        'Em ghép được 33, 38 và 83. Chỉ có một thẻ số 8, nên không có 88. Số lớn nhất là 83.',
+        'Em ghép được 33, 38 và 83. Chỉ có một thẻ số 8, nên không có 88. Số bé nhất là 33, số lớn nhất là 83.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Chú ong bay qua ba bông hoa ghi số 5, 61 và 8. Tổng ba số đó là bao nhiêu?',
+      options: ['64', '74', '84'],
+      answer: 1,
+      hints: ['Em tính từ trái sang phải: 5 + 61 trước.', '6 + 8 = 14. Viết 4, nhớ 1.'],
+      solution: '5 + 61 = 66. 66 + 8 = 74. Vậy tổng ba số là 74.',
     },
     {
       type: 'count',
