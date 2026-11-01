@@ -204,7 +204,7 @@
         <ul class="w-[5.5rem] space-y-1" aria-label="{col[0].a} cộng với một số">
           {#each col as f (`${f.a}+${f.b}`)}
             {@const mark = known[`${f.a}+${f.b}`]}
-            {@const shown = !started || finished || mark !== undefined}
+            {@const shown = !started || finished}
             <li
               class="rounded-md px-1.5 py-0.5 text-base tabular-nums {mark === 'right'
                 ? 'bg-emerald-100 text-emerald-900'

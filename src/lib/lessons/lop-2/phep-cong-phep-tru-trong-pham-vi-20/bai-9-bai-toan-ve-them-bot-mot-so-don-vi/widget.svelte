@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import { rng } from '#lib/core/drill.js';
   import Picture from '#lib/core/kid/picture.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
@@ -57,17 +58,34 @@
       : `Đúng rồi! ${story.a} ${sign} ${story.b} = ${result(story)}.`;
   });
 
-  function addOne() {
+  async function addOne() {
     if (story.kind !== 'them' || added >= story.b) return;
     added += 1;
-    if (added === story.b) step = 'op';
+    if (added === story.b) {
+      step = 'op';
+      await tick();
+      opsEl?.querySelector('button')?.focus();
+    }
   }
 
-  /** @param {number} i */
-  function cross(i) {
+  /** @type {HTMLElement | undefined} */
+  let picturesEl = $state();
+  /** @type {HTMLElement | undefined} */
+  let opsEl = $state();
+
+  /**
+   * Crosses out picture `i`. Its button turns into a plain picture, so focus
+   * moves to the next picture to cross out, or to the calculations once
+   * enough are crossed out.
+   * @param {number} i
+   */
+  async function cross(i) {
     if (story.kind !== 'bot' || crossed.includes(i) || crossed.length >= story.b) return;
     crossed = [...crossed, i];
     if (crossed.length === story.b) step = 'op';
+    await tick();
+    const next = picturesEl?.querySelector('button') ?? opsEl?.querySelector('button');
+    next?.focus();
   }
 
   /** @param {number} i */
@@ -112,6 +130,7 @@
   </div>
 
   <div
+    bind:this={picturesEl}
     class="flex max-w-[18rem] flex-wrap gap-1 rounded-2xl bg-amber-50 p-2 sm:max-w-[33rem]"
     role="group"
     aria-label="Hình: {story.kind === 'them'
@@ -165,7 +184,7 @@
   {/if}
 
   {#if step !== 'act'}
-    <div role="group" aria-label="Chọn phép tính" class="flex flex-wrap gap-3">
+    <div bind:this={opsEl} role="group" aria-label="Chọn phép tính" class="flex flex-wrap gap-3">
       {#each ops.options as op, i (op)}
         <button
           type="button"

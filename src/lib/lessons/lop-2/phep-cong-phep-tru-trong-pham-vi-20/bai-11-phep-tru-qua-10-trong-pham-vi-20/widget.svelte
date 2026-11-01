@@ -95,7 +95,7 @@
 
   <div class="flex flex-wrap justify-center gap-4">
     <div class="space-y-1 text-center">
-      <p class="text-lg font-semibold text-slate-700">Khung thứ nhất (10 chấm)</p>
+      <p class="text-lg font-semibold text-slate-700">Khung thứ nhất</p>
       <TenFrame
         cells={cells.first}
         label="Khung thứ nhất"
