@@ -10,6 +10,7 @@
  */
 
 import { MINUS, fmt } from './number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /**
  * @typedef {object} Expansion
@@ -246,16 +247,6 @@ export function readNumber(text) {
   const digits = w[3] ?? '';
   const n = Number(w[2] + digits);
   return (w[1] === '-' ? -n : n) / 10 ** digits.length;
-}
-
-/**
- * Greatest common divisor of two natural numbers.
- * @param {number} a
- * @param {number} b
- * @returns {number}
- */
-function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
 }
 
 /**

@@ -10,6 +10,7 @@
 import { fracText } from '#lib/core/fractions.js';
 import { fmt } from '#lib/core/number-format.js';
 import { rootValue } from '#lib/core/algebra-text.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** The perfect squares the widget offers for a and for b. */
 export const SQUARES = [1, 4, 9, 16, 25];
@@ -30,16 +31,6 @@ export function side(sq) {
 export function ratioText(p, q) {
   const g = gcd(p, q);
   return fracText(p / g, q / g);
-}
-
-/**
- * Greatest common divisor of two natural numbers.
- * @param {number} x
- * @param {number} y
- * @returns {number}
- */
-function gcd(x, y) {
-  return y === 0 ? x : gcd(y, x % y);
 }
 
 /**

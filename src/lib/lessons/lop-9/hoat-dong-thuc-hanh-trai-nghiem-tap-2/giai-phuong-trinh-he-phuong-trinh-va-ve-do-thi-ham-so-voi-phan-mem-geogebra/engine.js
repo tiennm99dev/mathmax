@@ -11,6 +11,7 @@
  */
 
 import { numTex } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 export class CasError extends Error {}
 
@@ -400,17 +401,11 @@ export function nearFraction(v, maxDen = 1000, tol = 1e-9) {
   for (let q = 1; q <= maxDen; q++) {
     const p = Math.round(v * q);
     if (Math.abs(v * q - p) <= tol * Math.max(1, Math.abs(v * q))) {
-      const g = gcdNum(Math.abs(p), q) || 1;
+      const g = gcd(Math.abs(p), q) || 1;
       return [p / g, q / g];
     }
   }
   return null;
-}
-
-/** @param {number} a @param {number} b */
-function gcdNum(a, b) {
-  while (b) [a, b] = [b, a % b];
-  return a;
 }
 
 /** @param {bigint} a @param {bigint} b */
@@ -433,7 +428,7 @@ export function fracTex(p, q) {
  * @param {number} a @param {number} b @param {number} k @param {number} t
  */
 export function surdTex(a, b, k, t) {
-  const g = gcdNum(gcdNum(Math.abs(a), Math.abs(b)), t) || 1;
+  const g = gcd(gcd(Math.abs(a), Math.abs(b)), t) || 1;
   [a, b, t] = [a / g, b / g, t / g];
   const root = `${Math.abs(b) === 1 ? '' : numTex(Math.abs(b))}\\sqrt{${k}}`;
   let num;
@@ -581,7 +576,7 @@ function floatRoots(c) {
  * @returns {Root[]}
  */
 function exactRoots(fr) {
-  const lcm = fr.reduce((m, [, q]) => (m / gcdNum(m, q)) * q, 1);
+  const lcm = fr.reduce((m, [, q]) => (m / gcd(m, q)) * q, 1);
   /** @type {bigint[]} */
   let a = fr.map(([p, q]) => BigInt(Math.round((p * lcm) / q)));
   /** @type {Root[]} */

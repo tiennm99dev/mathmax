@@ -4,6 +4,7 @@
  * thing from both pans, or splitting both pans into k equal parts, keeps the
  * scale level (an equivalent equation); acting on one pan only tips it.
  */
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /**
  * @typedef {{ x: number, c: number }} Pan  x-boxes and unit weights on a pan
@@ -198,9 +199,6 @@ export function divisor(eq) {
   if (!xs || !cs || cs.length > 1) return null;
   return xs[0].c === 1 ? null : xs[0].c;
 }
-
-/** @param {number} a @param {number} b @returns {number} */
-const gcd = (a, b) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
 /**
  * The exact value p/q in lowest terms with q > 0.

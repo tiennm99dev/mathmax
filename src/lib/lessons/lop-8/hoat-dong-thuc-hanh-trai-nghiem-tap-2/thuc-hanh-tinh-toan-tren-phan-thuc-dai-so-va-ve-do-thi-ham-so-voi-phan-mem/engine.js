@@ -8,6 +8,7 @@
  */
 
 import { formatNumber, texNumber } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 export class CasError extends Error {}
 
@@ -15,21 +16,13 @@ export class CasError extends Error {}
 
 /** @typedef {{ n: number, d: number }} Q exact rational, d > 0 */
 
-/** @param {number} a @param {number} b */
-function gcdInt(a, b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b) [a, b] = [b, a % b];
-  return a;
-}
-
 /** @param {number} n @param {number} [d] @returns {Q} */
 export function q(n, d = 1) {
   if (d === 0) throw new CasError('Không chia được cho 0.');
   if (!Number.isSafeInteger(n) || !Number.isSafeInteger(d)) {
     throw new CasError('Các số trong phép tính quá lớn.');
   }
-  const g = gcdInt(n, d) || 1;
+  const g = gcd(n, d) || 1;
   const s = d < 0 ? -1 : 1;
   return { n: (s * n) / g || 0, d: (s * d) / g };
 }
@@ -167,9 +160,9 @@ function polyAt(p, x) {
 
 /** Integer coefficients with no common factor, leading coefficient positive. @param {Poly} p */
 function primitive(p) {
-  const l = p.reduce((m, c) => (m * c.d) / gcdInt(m, c.d), 1);
+  const l = p.reduce((m, c) => (m * c.d) / gcd(m, c.d), 1);
   const ints = p.map((c) => (c.n * l) / c.d);
-  const g = ints.reduce((m, c) => gcdInt(m, c), 0) || 1;
+  const g = ints.reduce((m, c) => gcd(m, c), 0) || 1;
   const s = ints[ints.length - 1] < 0 ? -1 : 1;
   return { ints: ints.map((c) => (s * c) / g), scale: q(s * g, l) };
 }
@@ -566,8 +559,8 @@ export function mpolyTex(p) {
 function tidy(r) {
   if (!r.num.size) return r;
   const all = [...r.num.values(), ...r.den.values()];
-  const l = all.reduce((m, c) => (m * c.d) / gcdInt(m, c.d), 1);
-  const g = all.reduce((m, c) => gcdInt(m, (c.n * l) / c.d), 0) || 1;
+  const l = all.reduce((m, c) => (m * c.d) / gcd(m, c.d), 1);
+  const g = all.reduce((m, c) => gcd(m, (c.n * l) / c.d), 0) || 1;
   const lead = [...r.den.entries()].sort((a, b) => {
     const [i, j] = a[0].split(',').map(Number);
     const [k, m] = b[0].split(',').map(Number);

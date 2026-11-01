@@ -9,6 +9,7 @@
  * x - 2y + 1 in several). A polynomial it cannot split further is left as it
  * is, as GeoGebra leaves x^2 - 2.
  */
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /** @typedef {{ n: number, d: number }} Rat */
 /** @typedef {Record<string, number>} Mono variable name -> exponent (> 0) */
@@ -37,14 +38,6 @@
 export class CasError extends Error {}
 
 // ---------------------------------------------------------------- rationals
-
-/** @param {number} a @param {number} b */
-function gcd(a, b) {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b) [a, b] = [b, a % b];
-  return a;
-}
 
 /** @param {number} n @param {number} [d] @returns {Rat} */
 export function rat(n, d = 1) {
