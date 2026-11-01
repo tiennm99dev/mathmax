@@ -26,7 +26,7 @@ describe('the segment diagram', () => {
     expect(drawMessage(more, 6, false).tone).toBe('info');
     expect(drawMessage(more, 7, true)).toEqual({
       tone: 'warn',
-      text: 'Đoạn của Việt dài hơn đoạn của Mai 1 phần. Đề bài: Việt nhiều hơn Mai 2. Em kéo dài thêm nhé.',
+      text: 'Đoạn của Việt dài hơn đoạn của Mai 1 phần. Đề bài: Việt nhiều hơn Mai 2 bông hoa. Em kéo dài thêm nhé.',
     });
     expect(drawMessage(more, 8, true).tone).toBe('ok');
     expect(drawMessage(fewer, 6, true).tone).toBe('ok');

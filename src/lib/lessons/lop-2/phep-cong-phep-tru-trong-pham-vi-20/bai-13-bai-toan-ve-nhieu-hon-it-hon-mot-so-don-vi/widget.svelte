@@ -329,7 +329,8 @@
         : 'bg-slate-100 text-slate-800'}"
     aria-live="polite"
   >
-    {#if step === 'done' && wrong.length < 2}<span aria-hidden="true">⭐ </span>{/if}{message}
+    {#if step === 'done' && wrong.length < 2}<span class="mr-1" aria-hidden="true">⭐</span
+      >{/if}{message}
   </p>
 
   {#if step === 'done'}

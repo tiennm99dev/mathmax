@@ -151,11 +151,12 @@ export function compareQuestion(rand) {
  */
 export function storyQuestion(rand) {
   const s = newCompareStory(rand, undefined, rand() < 0.5 ? 'nhieu' : 'it');
+  const [lead, calc, total] = compareSolution(s);
   return {
     prompt: comparePrompt(s),
     ...numberOptions(rand, compareResult(s), 0, 20),
     hint: compareHint(s),
-    solution: compareSolution(s).join(' '),
+    solution: `${lead} ${calc}. ${total}`,
   };
 }
 

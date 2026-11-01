@@ -42,8 +42,9 @@ export function compareWords(a, len, first, second) {
  * @returns {{ tone: 'ok' | 'warn' | 'info', text: string }}
  */
 export function drawMessage(s, len, moved) {
-  const [first, second] = PAIRS[s.pair].who;
-  const rule = `${second} ${s.kind === 'nhieu' ? 'nhiều hơn' : 'ít hơn'} ${first} ${s.k}.`;
+  const { who, name } = PAIRS[s.pair];
+  const [first, second] = who;
+  const rule = `${second} ${s.kind === 'nhieu' ? 'nhiều hơn' : 'ít hơn'} ${first} ${s.k} ${name}.`;
   if (len === compareResult(s)) {
     return {
       tone: 'ok',
