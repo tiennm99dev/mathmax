@@ -119,7 +119,7 @@
 
   /** @param {number} n */
   function cellClass(n) {
-    const base = `flex aspect-square items-center justify-center rounded-md text-xs font-bold tabular-nums transition sm:text-base ${focusRing}`;
+    const base = `flex aspect-square min-h-12 min-w-12 items-center justify-center rounded-md text-base font-bold tabular-nums transition ${focusRing}`;
     if (mode === 'color') {
       if (found.includes(n)) return `${base} bg-emerald-500 text-white`;
       if (wrongTap === n) return `${base} bg-rose-100 text-rose-700 ring-2 ring-rose-400`;
@@ -170,23 +170,27 @@
     </div>
   {/if}
 
-  <div
-    bind:this={grid}
-    class="grid grid-cols-10 gap-0.5 rounded-xl bg-slate-200 p-0.5 sm:gap-1 sm:p-1"
-    role="group"
-    aria-label="Bảng các số từ 1 đến 100. Dùng phím mũi tên để đi giữa các ô."
-  >
-    {#each BOARD as n (n)}
-      <button
-        type="button"
-        data-n={n}
-        class={cellClass(n)}
-        tabindex={n === focusN ? 0 : -1}
-        aria-label={cellLabel(n)}
-        onclick={() => tap(n)}
-        onkeydown={(e) => onKey(e, n)}>{mode === 'missing' && hidden.includes(n) ? '?' : n}</button
-      >
-    {/each}
+  <!-- Every cell is at least 48 px, so on a narrow phone the board scrolls sideways. -->
+  <div class="overflow-x-auto pb-1">
+    <div
+      bind:this={grid}
+      class="grid w-max min-w-full grid-cols-[repeat(10,minmax(3rem,1fr))] gap-1 rounded-xl bg-slate-200 p-1"
+      role="group"
+      aria-label="Bảng các số từ 1 đến 100. Dùng phím mũi tên để đi giữa các ô."
+    >
+      {#each BOARD as n (n)}
+        <button
+          type="button"
+          data-n={n}
+          class={cellClass(n)}
+          tabindex={n === focusN ? 0 : -1}
+          aria-label={cellLabel(n)}
+          onclick={() => tap(n)}
+          onkeydown={(e) => onKey(e, n)}
+          >{mode === 'missing' && hidden.includes(n) ? '?' : n}</button
+        >
+      {/each}
+    </div>
   </div>
 
   {#if mode === 'missing' && active !== null}
