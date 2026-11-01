@@ -1,9 +1,9 @@
-<script>
+<script generics="V">
   import { tick, untrack } from 'svelte';
   import { rng } from '#lib/core/drill.js';
-  import { button, focusRing } from '#lib/core/ui.js';
-  import QuizVisual from './quiz-visual.svelte';
-  import { drawFresh, pickSkill, questionKey, skillMap, toReview } from './quiz.js';
+  import { button } from '#lib/core/ui.js';
+  import ChoiceQuestion from './choice-question.svelte';
+  import { drawFresh, pickSkill, questionKey, skillMap, tapOption, toReview } from './quiz.js';
 
   /**
    * A kid adaptive review set. Every part of the review is asked once
@@ -12,16 +12,21 @@
    * tap shows a hint and a second try; a second miss shows the answer. The
    * skill map at the bottom colours each part by its first tries.
    *
-   * - `skills`: question makers, one per part of the review.
+   * - `skills`: question makers, one per part of the review (`KidSkill`).
    * - `length`: questions in one set.
    * - `allGood`: what the end card says when every part is right.
+   * - `visual`, `option`, `pictureOption`, `listOptions`: as in `choice-question.svelte`.
    * @type {{
-   *   skills: import('./quiz.js').KidSkill[];
+   *   skills: import('./quiz.js').KidSkill<V>[];
    *   length?: number;
    *   allGood: string;
+   *   visual?: import('svelte').Snippet<[import('./quiz.js').KidQuestion<V>, boolean]>;
+   *   option?: import('svelte').Snippet<[any, number]>;
+   *   pictureOption?: (option: import('./quiz.js').KidOption) => boolean;
+   *   listOptions?: (q: import('./quiz.js').KidQuestion<V>) => boolean;
    * }}
    */
-  let { skills, length = 10, allGood } = $props();
+  let { skills, length = 10, allGood, visual, option, pictureOption, listOptions } = $props();
 
   const STATUS = {
     todo: 'border-slate-200 bg-white text-slate-600',
@@ -53,14 +58,14 @@
   let attempts = $state([]);
   /** @type {number[]} */
   let wrong = $state([]);
-  /** `ask`: waiting; `retry`: one miss, hint shown; `right` / `shown`: done. */
-  let phase = $state(/** @type {'ask' | 'retry' | 'right' | 'shown'} */ ('ask'));
+  let phase = $state(/** @type {import('./quiz.js').Phase} */ ('ask'));
   let finished = $state(false);
-  /** @type {HTMLHeadingElement | undefined} */
-  let heading = $state();
+  /** @type {ReturnType<typeof ChoiceQuestion> | undefined} */
+  let question = $state();
+  /** @type {HTMLDivElement | undefined} */
+  let summary = $state();
 
   const q = $derived(set.q);
-  const ended = $derived(phase === 'right' || phase === 'shown');
   const map = $derived(skillMap(skills, attempts));
   const score = $derived(attempts.filter((a) => a.ok).length);
   const review = $derived(toReview(skills, attempts));
@@ -76,15 +81,10 @@
 
   /** @param {number} option */
   function choose(option) {
-    if (ended || wrong.includes(option)) return;
-    const ok = option === q.answer;
-    if (phase === 'ask') attempts = [...attempts, { skill: set.skill.id, ok }];
-    if (ok) {
-      phase = 'right';
-      return;
-    }
-    wrong = [...wrong, option];
-    phase = phase === 'ask' ? 'retry' : 'shown';
+    const step = tapOption({ phase, wrong }, option, q.answer);
+    if (step.first !== null) attempts = [...attempts, { skill: set.skill.id, ok: step.first }];
+    phase = step.phase;
+    wrong = step.wrong;
   }
 
   async function next() {
@@ -92,6 +92,8 @@
     phase = 'ask';
     if (attempts.length >= length) {
       finished = true;
+      await tick();
+      summary?.focus();
       return;
     }
     const pick = pickSkill(skills, attempts, set.rand);
@@ -99,24 +101,17 @@
     set.asked.add(questionKey(fresh));
     set = { ...set, skill: pick.skill, reason: pick.reason, q: fresh };
     await tick();
-    heading?.focus();
+    question?.focus();
   }
 
-  function restart() {
+  async function restart() {
     set = freshSet(Math.floor(Math.random() * 2 ** 31) + 2);
     attempts = [];
     wrong = [];
     phase = 'ask';
     finished = false;
-  }
-
-  /** @param {number} i */
-  function optionClass(i) {
-    const long = q.options.some((o) => o.length > 3);
-    const base = `min-h-16 rounded-2xl border-4 px-4 font-bold transition ${long ? 'text-xl' : 'min-w-16 text-3xl tabular-nums'} ${focusRing}`;
-    if (ended && i === q.answer) return `${base} border-emerald-600 bg-emerald-600 text-white`;
-    if (wrong.includes(i)) return `${base} border-rose-400 bg-rose-50 text-rose-700 line-through`;
-    return `${base} border-slate-300 bg-white text-slate-800 hover:border-indigo-400`;
+    await tick();
+    question?.focus();
   }
 </script>
 
@@ -135,52 +130,26 @@
       {reasonText}
     </p>
 
-    <h3 bind:this={heading} tabindex="-1" class="text-2xl font-bold text-slate-900 outline-none">
-      {q.prompt}
-    </h3>
-
-    {#if q.visual}
-      <QuizVisual visual={q.visual} />
-    {/if}
-
-    <div role="group" aria-label="Chọn đáp án" class="flex flex-wrap gap-3">
-      {#each q.options as option, i (i)}
-        <button
-          type="button"
-          class={optionClass(i)}
-          aria-label={q.optionLabels?.[i] ?? option}
-          aria-disabled={ended || wrong.includes(i)}
-          onclick={() => choose(i)}>{option}</button
-        >
-      {/each}
-    </div>
-
-    <p
-      class="rounded-2xl px-4 py-3 text-xl font-semibold {phase === 'right'
-        ? 'bg-emerald-100 text-emerald-900'
-        : phase === 'ask'
-          ? 'bg-slate-100 text-slate-800'
-          : 'bg-amber-100 text-amber-900'}"
+    <ChoiceQuestion
+      bind:this={question}
+      {q}
+      {phase}
+      {wrong}
+      onchoose={choose}
+      onnext={next}
+      nextLabel={attempts.length < length ? 'Câu tiếp' : 'Xem kết quả'}
+      {visual}
+      {option}
+      {pictureOption}
+      {listOptions}
+    />
+  {:else}
+    <div
+      bind:this={summary}
+      tabindex="-1"
+      class="space-y-2 rounded-2xl bg-emerald-50 px-4 py-4 text-emerald-950 outline-none"
       aria-live="polite"
     >
-      {#if phase === 'ask'}
-        Em chạm vào đáp án đúng.
-      {:else if phase === 'retry'}
-        Chưa đúng. Gợi ý: {q.hint} Em thử lại nhé.
-      {:else if phase === 'right'}
-        <span aria-hidden="true">⭐ </span>Đúng rồi! {q.solution}
-      {:else}
-        Đáp án: {q.solution}
-      {/if}
-    </p>
-
-    {#if ended}
-      <button type="button" class="min-h-12 text-lg {button.primary}" onclick={next}>
-        {attempts.length < length ? 'Câu tiếp' : 'Xem kết quả'}
-      </button>
-    {/if}
-  {:else}
-    <div class="space-y-2 rounded-2xl bg-emerald-50 px-4 py-4 text-emerald-950" aria-live="polite">
       <p class="text-xl font-bold">
         <span aria-hidden="true">⭐ </span>Em làm đúng ngay {score} / {length} câu.
       </p>

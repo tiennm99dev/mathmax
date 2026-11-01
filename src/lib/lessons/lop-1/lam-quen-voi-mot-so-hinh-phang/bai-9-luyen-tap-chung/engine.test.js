@@ -1,15 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { SHAPES, SHAPE_NAMES } from '../_shared/shapes.js';
+import { FIGURE_NAMES, SHAPES, SHAPE_NAMES } from '#lib/core/kid/shapes.js';
+import { weakLabels } from '#lib/core/kid/quiz.js';
 import {
+  KIND_LABELS,
   KINDS,
   STICK_SHAPES,
   buildRound,
   countAloud,
   makeQuestion,
   numberOptions,
-  weakKinds,
 } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 
 describe('mixed shape practice', () => {
   it('asks every kind twice in a round of ten', () => {
@@ -32,7 +39,7 @@ describe('mixed shape practice', () => {
           continue;
         }
         if (q.kind === 'name' && q.figure) {
-          if (right.label.toLowerCase() !== SHAPE_NAMES[q.figure.kind]) {
+          if (right.label.toLowerCase() !== FIGURE_NAMES[q.figure.kind]) {
             bad.push(`${seed} name`);
           }
         }

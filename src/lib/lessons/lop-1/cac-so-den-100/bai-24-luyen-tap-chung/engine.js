@@ -13,7 +13,7 @@ import {
   compareSign,
   placeText,
   readNumber,
-} from '../_shared/numbers.js';
+} from '#lib/core/kid/numbers.js';
 
 /** @typedef {'read' | 'place' | 'sticks' | 'compare' | 'extreme' | 'board'} Kind */
 
@@ -225,18 +225,4 @@ export function buildRound(seed) {
   const rand = rng(seed);
   const kinds = shuffle(rand, [...KINDS, ...KINDS]);
   return kinds.map((k) => makeQuestion(k, rand));
-}
-
-/**
- * Kinds the child missed at the first try, to suggest what to review.
- * @param {readonly Question[]} round
- * @param {ReadonlyArray<boolean | null>} firstTry
- * @returns {string[]}
- */
-export function weakKinds(round, firstTry) {
-  const missed = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) missed.add(q.kind);
-  });
-  return KINDS.filter((k) => missed.has(k)).map((k) => KIND_LABELS[k]);
 }

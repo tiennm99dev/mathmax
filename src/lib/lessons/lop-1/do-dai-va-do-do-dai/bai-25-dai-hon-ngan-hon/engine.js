@@ -5,7 +5,7 @@
  * says which is longer (taller) or shorter. Pure and DOM-free.
  */
 import { int, rng, shuffle } from '#lib/core/drill.js';
-import { KIDS, THINGS, compareSentences, pairWords } from '../_shared/length.js';
+import { KIDS, THINGS, compareSentences, pairWords } from '#lib/core/kid/length.js';
 
 /** Board size along the compared direction, in units. */
 export const SPAN = { length: 16, height: 13 };
@@ -14,10 +14,10 @@ const SIZES = { length: [3, 12], height: [5, 9] };
 
 /**
  * @typedef {{
- *   dim: import('../_shared/length.js').Dimension;
+ *   dim: import('#lib/core/kid/length.js').Dimension;
  *   labels: [string, string];
  *   colors: [string, string];
- *   shapes: [import('../_shared/length.js').Shape, import('../_shared/length.js').Shape];
+ *   shapes: [import('#lib/core/kid/length.js').Shape, import('#lib/core/kid/length.js').Shape];
  *   sizes: [number, number];
  *   starts: [number, number];
  *   ask: 'more' | 'less';
@@ -29,7 +29,7 @@ const SIZES = { length: [3, 12], height: [5, 9] };
  * starts at 0 or 1 unit from the line, the shorter one further out, so its
  * far end passes the longer one's far end by 1 or 2 units.
  * @param {number} seed
- * @param {import('../_shared/length.js').Dimension} dim
+ * @param {import('#lib/core/kid/length.js').Dimension} dim
  * @returns {Round}
  */
 export function makeRound(seed, dim) {
@@ -63,7 +63,7 @@ export function makeRound(seed, dim) {
 /**
  * The shape of a thing from the list, by its label.
  * @param {{ label: string }} item
- * @returns {import('../_shared/length.js').Shape}
+ * @returns {import('#lib/core/kid/length.js').Shape}
  */
 function shapeOf(item) {
   return THINGS.find((t) => t.label === item.label)?.shape ?? 'pencil';
@@ -93,7 +93,7 @@ export function questionOf(r) {
  * otherwise on the nearest whole unit, inside the board.
  * @param {number} start
  * @param {number} size
- * @param {import('../_shared/length.js').Dimension} dim
+ * @param {import('#lib/core/kid/length.js').Dimension} dim
  */
 export function landStart(start, size, dim) {
   const v = Math.round(start);

@@ -9,10 +9,10 @@ import {
   COLOR_NAMES,
   OBJECTS,
   SHAPES,
-  SHAPE_NAMES,
+  FIGURE_NAMES,
   objectSentence,
   shapeTitle,
-} from '../_shared/shapes.js';
+} from '#lib/core/kid/shapes.js';
 
 /** The four bins, one per shape. */
 export const BINS = SHAPES.map((kind) => ({ id: kind, label: shapeTitle(kind) }));
@@ -20,7 +20,7 @@ export const BINS = SHAPES.map((kind) => ({ id: kind, label: shapeTitle(kind) })
 /**
  * Drawn shapes for the second deck: three of each kind, made to look
  * different (size, colour, turn, proportions) while keeping their shape.
- * @type {ReadonlyArray<import('../_shared/shapes.js').Figure & { id: string }>}
+ * @type {ReadonlyArray<import('#lib/core/kid/shapes.js').Figure & { id: string }>}
  */
 export const FIGURES = [
   { id: 'h1', kind: 'vuong', color: COLORS[0], size: 1, turn: 0, variant: 0 },
@@ -39,10 +39,10 @@ export const FIGURES = [
 
 /**
  * Why a drawn shape belongs to its bin, said after it is placed.
- * @param {import('../_shared/shapes.js').Figure} figure
+ * @param {import('#lib/core/kid/shapes.js').Figure} figure
  */
 export function figureWhy(figure) {
-  const name = SHAPE_NAMES[figure.kind];
+  const name = FIGURE_NAMES[figure.kind];
   if (figure.turn !== 0 && figure.kind !== 'tron') return `Xoay đi, nó vẫn là ${name}.`;
   if (figure.size < 0.7) return `To hay nhỏ, nó vẫn là ${name}.`;
   return `Đây là ${name}.`;
@@ -57,7 +57,7 @@ export const OBJECT_CARDS = shuffled(
 /**
  * Name of a drawn-shape card that does not give its shape away: the sorter
  * prints it after "Đã chọn", so it gives the card's place and colour only.
- * @param {import('../_shared/shapes.js').Figure} figure
+ * @param {import('#lib/core/kid/shapes.js').Figure} figure
  * @param {number} at place in the deck, from 0
  */
 export function figureCardLabel(figure, at) {
@@ -70,7 +70,7 @@ export const FIGURE_CARDS = shuffled(
   FIGURES.map((f) => ({ id: f.id, label: '', bin: f.kind, why: figureWhy(f) })),
   11,
 ).map((c, at) => {
-  const figure = /** @type {import('../_shared/shapes.js').Figure} */ (figureOf(c.id));
+  const figure = /** @type {import('#lib/core/kid/shapes.js').Figure} */ (figureOf(c.id));
   return { ...c, label: figureCardLabel(figure, at) };
 });
 

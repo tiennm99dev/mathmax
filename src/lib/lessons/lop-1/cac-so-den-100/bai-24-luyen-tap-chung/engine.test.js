@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { readNumber } from '../_shared/numbers.js';
-import { KINDS, buildRound, makeQuestion, numberOptions, swapped, weakKinds } from './engine.js';
+import { readNumber } from '#lib/core/kid/numbers.js';
+import { weakLabels } from '#lib/core/kid/quiz.js';
+import { KIND_LABELS, KINDS, buildRound, makeQuestion, numberOptions, swapped } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 
 /**
  * The value a question's right option must have, worked out from the

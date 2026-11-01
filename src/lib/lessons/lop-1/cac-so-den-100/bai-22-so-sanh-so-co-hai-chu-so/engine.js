@@ -3,7 +3,7 @@
  * is a number from 10 to 99 built from tens and ones, and the comparison
  * looks at the tens first, then the ones. Pure and DOM-free.
  */
-import { compareReason, compareSign } from '../_shared/numbers.js';
+import { compareReason, compareSign } from '#lib/core/kid/numbers.js';
 
 /** @typedef {{ tens: number, ones: number }} Side */
 

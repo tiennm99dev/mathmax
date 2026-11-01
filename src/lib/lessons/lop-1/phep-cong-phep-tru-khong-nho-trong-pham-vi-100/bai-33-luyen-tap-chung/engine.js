@@ -6,6 +6,7 @@
  * is the same on the server and in the browser. Pure and DOM-free.
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
+import { SIGNS } from '#lib/core/kid/numbers.js';
 import { pictureGroups, pictures } from '#lib/core/kid/pictures/index.js';
 import {
   KINDS as COLUMN_KINDS,
@@ -14,7 +15,7 @@ import {
   exprText,
   makeProblem,
   resultOf,
-} from '../_shared/column.js';
+} from '#lib/core/kid/column.js';
 
 const ADD_KINDS = /** @type {const} */ (['add-one', 'add-two']);
 const SUB_KINDS = /** @type {const} */ (['sub-one', 'sub-two']);
@@ -43,9 +44,6 @@ export const KIND_LABELS = /** @type {const} */ ({
   compare: 'So sánh',
   story: 'Bài toán',
 });
-
-/** Comparison signs in the order the buttons show them. */
-export const SIGNS = /** @type {const} */ (['>', '<', '=']);
 
 const SIGN_WORDS = /** @type {const} */ ({ '>': 'lớn hơn', '<': 'bé hơn', '=': 'bằng' });
 
@@ -77,7 +75,7 @@ export function numberOptions(rand, right, mistakes = []) {
  * one-digit number under the tens: 41 + 5 read as 41 + 50.
  * @param {number} a
  * @param {number} b
- * @param {import('../_shared/column.js').Op} op
+ * @param {import('#lib/core/kid/column.js').Op} op
  */
 function misaligned(a, b, op) {
   return b < 10 ? resultOf(a, b * 10, op) : -1;
@@ -87,7 +85,7 @@ function misaligned(a, b, op) {
  * The full column working of a calculation, as one sentence.
  * @param {number} a
  * @param {number} b
- * @param {import('../_shared/column.js').Op} op
+ * @param {import('#lib/core/kid/column.js').Op} op
  */
 function working(a, b, op) {
   const [ones, tens] = columnSteps(a, b, op);
@@ -166,18 +164,4 @@ export function buildRound(seed) {
   const rand = rng(seed);
   const kinds = shuffle(rand, [...KINDS, ...KINDS]);
   return kinds.map((k) => makeQuestion(k, rand));
-}
-
-/**
- * Kinds the child missed at the first try, to suggest what to review.
- * @param {readonly Question[]} round
- * @param {ReadonlyArray<boolean | null>} firstTry
- * @returns {string[]}
- */
-export function weakKinds(round, firstTry) {
-  const missed = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) missed.add(q.kind);
-  });
-  return KINDS.filter((k) => missed.has(k)).map((k) => KIND_LABELS[k]);
 }

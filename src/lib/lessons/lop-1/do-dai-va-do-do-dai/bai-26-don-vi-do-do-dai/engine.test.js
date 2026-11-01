@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { LONGEST, RULER_CM } from '../_shared/length.js';
+import { LONGEST, RULER_CM } from '#lib/core/kid/length.js';
 import { HANDS, TABLE, answerCards, makeTask, measureMessage, spanMessage } from './engine.js';
 
 describe('hand spans', () => {

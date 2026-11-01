@@ -177,7 +177,8 @@ The page picks the layout from the grade; there is no flag to set.
   Keep each block to one idea, prefer `p`, `callout` and small `table` blocks,
   and keep TeX out except plain numbers and signs. Exercises favour `count`,
   `choice`, `match` and `order`; use pictures, not long word problems. Widgets
-  use large buttons and kid pictures (`#lib/core/kid/picture.svelte`).
+  use large buttons and kid pictures (`#lib/core/kid/picture.svelte`), and
+  the kid building blocks in `#lib/core/kid/` (section 6).
 - **Normal** (`lesson-page.svelte`): intro, objectives, sections, the explore
   widget, step-by-step examples, practice and takeaways. Use proper TeX for every
   formula and unit expression, textbook terminology, and full worked solutions.
@@ -236,7 +237,9 @@ a half-unit grid: `toGrid`, `placeVertex` (never goes flat), `measureTri`
 and back) and `labelOutside`. `#lib/utils/svg.js` has `pointsAttr` for a
 polygon's `points`. Never copy `dist`, `cross`, `gcd`
 (`#lib/numtheory-engine/index.js`), `polygonArea`, an angle helper (`along`,
-`directionTo`) or a 3D vector helper into a lesson.
+`directionTo`) or a 3D vector helper into a lesson. Round binary noise with
+`tidy(value, places)` from `#lib/core/number-format.js`, never a local
+`Math.round(v * 1e6) / 1e6`.
 
 `number-line` reads the marker's value to screen readers as Vietnamese decimals;
 pass `valueText` when it should be read another way (a fraction).
@@ -313,7 +316,10 @@ Other shared pieces:
 - `#lib/core/adaptive-drill.svelte` with `#lib/core/adaptive.js`: an adaptive
   review set for year-end or chapter reviews: each next question comes from
   the learner's weakest skill; answers are exact fractions (`readValue`
-  reads integers, decimals and `p/q`).
+  reads integers, decimals and `p/q`). A question counted in a unit gives it
+  as `unit` (`'%'`, `'cm'`, `'°'`) or names it in the prompt ("(theo cm)",
+  "(tính theo %)" or a closing "(độ)."): the learner may then type it after
+  the number, and any other unit gets a unit message without using the try.
 - `#lib/core/measure-skills.js`: ready drill skills for converting mass
   (`MASS_SKILLS`), time (`TIME_SKILLS`) and temperature (`TEMPERATURE_SKILLS`).
 - `#lib/core/feedback-note.svelte` (a coloured live feedback line, tone `ok`,
@@ -340,6 +346,43 @@ Other shared pieces:
   warning fails `content.test.js`.
 - `#lib/core/kid/picture.svelte` and `#lib/core/kid/pictures/index.js`
   (`pictures`, `pictureGroups`).
+- Kid building blocks for grades 1-5, `#lib/core/kid/` (each drawing has a
+  `<name>.gallery.svelte` demo on `/_gallery/`). Use them before writing a
+  `_shared/` copy:
+  - `numbers.js`: `readNumber` (the book's reading to 100: "hai mươi tư"),
+    `readings`, `capitalReading`, `tensOnes`, `placeText`, `sticksWords`, the
+    signs `SIGNS`/`SIGN_WORDS`/`compareSign`/`compareReason`, the sentences
+    `addText`/`subText` ("5 − 2 = 3"), `addWords`/`subWords` (read aloud),
+    `relatedSubtractions`, `clampInt` and `freshInt`.
+  - `quiz.js` with `choice-round.svelte` and `adaptive-quiz.svelte`: kid
+    tap-the-answer questions (`KidQuestion`: `prompt`, `options`, `answer`,
+    `hint`, `solution`, `kind?`, `optionLabels?`, `visual?`). A "Luyện tập
+    chung" round is `<ChoiceRound build={buildRound} labels={KIND_LABELS}
+    allGood="…">` with a `visual(q, settled)` snippet for the picture; a
+    review is `<AdaptiveQuiz skills={[…]} length={10} allGood="…">` over
+    `KidSkill`s (`{ id, label, make(rand) }`). Both share the option buttons,
+    hint, second try and focus handling of `choice-question.svelte`; an
+    `option` snippet with `pictureOption` draws picture options, and
+    `listOptions` stacks sentence options. Build options with `numberOptions`,
+    `mixOptions`, `signOptions`; `weakLabels` and `tapOption` are the round
+    logic, so an engine never re-implements them.
+  - `shapes.js` with `shape-figure.svelte` and `object-figure.svelte`: the
+    four plane shapes and two solids (`FIGURE_NAMES`, `plainFigure(kind)` for
+    a picture-card look, or a full `Figure` with colour, size, turn and
+    variant) and everyday objects (`OBJECTS`).
+  - `tangram.js`: the shape-building board (pieces `PIECE_SHAPES`, quarter
+    turns, `boardStatus`, `solve`, `statusMessage`) on a `TANGRAM_BOARD` or any
+    `{ w, h, tray }`; a lesson only writes its `PUZZLES`.
+  - `length.js` with `ruler.svelte`, `ruler-board.svelte` (a sliding cm
+    ruler), `thing-shape.svelte` (pencil, crayon, ribbon, straw) and
+    `kid-figure.svelte` (a child of a given height): `THINGS`, `KIDS`,
+    `compareSentences`, `rulerAdvice`, `estimateStars`, `spansToCover`.
+  - `column.js` with `column-board.svelte` and `column-quiz.svelte`: no-carry
+    column addition and subtraction ("đặt tính rồi tính"), `makeProblem` and
+    `freshProblem`; `counting-sticks.svelte` draws que tính bundles and loose
+    sticks (cross-out, extra and ringed columns, `small`).
+  Kid tap targets are at least 48 px at 390 px wide; a grid too wide for
+  that (the 1-100 board) scrolls sideways inside its card.
 - Engines, pure and tested: `#lib/geom-engine/index.js`, `#lib/algebra-engine/index.js`
   (with `polynomial.js` for one-variable polynomials and `long-division.js`
   for polynomial and natural-number long division),

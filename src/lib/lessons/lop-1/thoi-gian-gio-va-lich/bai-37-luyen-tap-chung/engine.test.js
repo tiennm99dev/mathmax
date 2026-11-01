@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { WEEKDAYS } from '../_shared/time.js';
-import { KINDS, buildRound, weakKinds } from './engine.js';
+import { weakLabels } from '#lib/core/kid/quiz.js';
+import { KIND_LABELS, KINDS, buildRound } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 
 const TITLES = WEEKDAYS.map((d) => d.charAt(0).toUpperCase() + d.slice(1));
 

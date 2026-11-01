@@ -7,24 +7,10 @@
  */
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { pictureGroups, pictures } from '#lib/core/kid/pictures/index.js';
-import { SIGN_WORDS, mixOptions, numberOptions, signOf, signOptions } from './quiz.js';
+import { SIGN_WORDS, compareSign, readNumber } from '#lib/core/kid/numbers.js';
+import { mixOptions, numberOptions, signOptions } from '#lib/core/kid/quiz.js';
 
-/** @typedef {import('./quiz.js').KidSkill} KidSkill */
-
-/** Number words, indexed by value, as the book reads them. */
-export const NUMBER_WORDS = /** @type {const} */ ([
-  'không',
-  'một',
-  'hai',
-  'ba',
-  'bốn',
-  'năm',
-  'sáu',
-  'bảy',
-  'tám',
-  'chín',
-  'mười',
-]);
+/** @typedef {import('#lib/core/kid/quiz.js').KidSkill<import('./visual.js').Visual>} KidSkill */
 
 /** Pictures that are counted in the questions. */
 export const COUNTABLE = /** @type {const} */ ([
@@ -46,7 +32,7 @@ export const countSkill = {
       visual: { type: 'groups', groups: [{ picture, n }] },
       ...numberOptions(rand, n, 1, 10),
       hint: `Em chỉ tay vào từng ${noun} và đếm: một, hai, ba, ...`,
-      solution: `Em đếm từ một đến ${NUMBER_WORDS[n]}. Có ${n} ${noun}.`,
+      solution: `Em đếm từ một đến ${readNumber(n)}. Có ${n} ${noun}.`,
     };
   },
 };
@@ -57,7 +43,7 @@ export const readSkill = {
   label: 'Đọc, viết số',
   make(rand) {
     const n = int(rand, 0, 10);
-    const word = NUMBER_WORDS[n];
+    const word = readNumber(n);
     const solution = `Số ${n} đọc là "${word}".`;
     if (rand() < 0.5) {
       const others = shuffle(
@@ -69,7 +55,7 @@ export const readSkill = {
         ...mixOptions(
           rand,
           word,
-          others.map((v) => NUMBER_WORDS[v]),
+          others.map((v) => readNumber(v)),
         ),
         hint: 'Em đếm từ không và chỉ vào từng số: không, một, hai, ...',
         solution,
@@ -122,7 +108,7 @@ export const compareSkill = {
   make(rand) {
     const a = int(rand, 0, 10);
     const b = rand() < 0.25 ? a : int(rand, 0, 10);
-    const sign = signOf(a, b);
+    const sign = compareSign(a, b);
     return {
       prompt: `Chọn dấu đúng: ${a} ... ${b}`,
       ...signOptions(sign),

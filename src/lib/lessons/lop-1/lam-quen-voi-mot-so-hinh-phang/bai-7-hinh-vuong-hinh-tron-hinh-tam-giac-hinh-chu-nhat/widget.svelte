@@ -1,8 +1,8 @@
 <script>
   import CardSorter from '#lib/core/card-sorter.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
-  import ObjectFigure from '../_shared/object-figure.svelte';
-  import ShapeFigure from '../_shared/shape-figure.svelte';
+  import ObjectFigure from '#lib/core/kid/object-figure.svelte';
+  import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import { BINS, FIGURE_CARDS, OBJECT_CARDS, figureOf, objectOf } from './engine.js';
 
   /** `do-vat`: sort everyday objects; `hinh`: sort drawn shapes. */

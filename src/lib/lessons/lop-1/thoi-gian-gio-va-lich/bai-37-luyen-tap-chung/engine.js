@@ -252,16 +252,3 @@ export function buildRound(seed) {
   for (let tries = 0; tries < 200 && hasRepeat(order); tries++) order = shuffle(rand, list);
   return order;
 }
-
-/**
- * Kinds to review: those missed at the first try.
- * @param {Question[]} round
- * @param {Array<boolean | null>} firstTry
- */
-export function weakKinds(round, firstTry) {
-  const weak = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) weak.add(KIND_LABELS[q.kind]);
-  });
-  return [...weak];
-}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { estimateStars } from '../_shared/length.js';
+import { estimateStars } from '#lib/core/kid/length.js';
 import { GUESS_MAX, GUESS_MIN, ROUNDS, gameSummary, makeGame, startGuess } from './engine.js';
 
 describe('guess-then-measure game', () => {

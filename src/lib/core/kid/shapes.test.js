@@ -4,10 +4,14 @@ import {
   OBJECTS,
   SHAPES,
   circleRadius,
+  FIGURE_NAMES,
   figureCorners,
   figureLabel,
+  isSolid,
   objectSentence,
+  plainFigure,
   shapeTitle,
+  solidFaces,
 } from './shapes.js';
 
 describe('chapter shapes', () => {
@@ -63,5 +67,29 @@ describe('chapter shapes', () => {
     expect(OBJECTS.filter((o) => o.shape === 'tron')).toHaveLength(3);
     const flag = OBJECTS.find((o) => o.id === 'la-co');
     expect(flag && objectSentence(flag)).toBe('Lá cờ Tổ quốc có dạng hình chữ nhật.');
+  });
+});
+
+describe('solids and plain figures', () => {
+  it('names the solids with the shapes', () => {
+    expect(FIGURE_NAMES['lap-phuong']).toBe('khối lập phương');
+    expect(FIGURE_NAMES.vuong).toBe('hình vuông');
+    expect(isSolid('hop-chu-nhat')).toBe(true);
+    expect(isSolid('tron')).toBe(false);
+  });
+
+  it('draws a solid with faces and no corners', () => {
+    const cube = plainFigure('lap-phuong');
+    expect(cube.size).toBe(1);
+    expect(figureCorners(cube)).toBeNull();
+    expect(solidFaces(cube)?.front).toBe('14,34 70,34 70,90 14,90');
+    expect(solidFaces(plainFigure('vuong'))).toBeNull();
+    expect(figureLabel(cube)).toBe('khối lập phương màu tím');
+  });
+
+  it('gives a plain shape its own colour and no turn', () => {
+    const square = plainFigure('vuong');
+    expect(square).toEqual({ kind: 'vuong', color: '#60a5fa', size: 1.1, turn: 0, variant: 0 });
+    expect(figureCorners(square)?.[0]).toEqual({ x: 50 - 31 * 1.1, y: 50 - 31 * 1.1 });
   });
 });

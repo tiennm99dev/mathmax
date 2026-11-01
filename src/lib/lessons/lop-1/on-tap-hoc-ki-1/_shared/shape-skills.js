@@ -7,12 +7,13 @@
  */
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
-import { capitalize, mixOptions, numberOptions } from './quiz.js';
+import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
+import { FIGURE_NAMES, SHAPE_LOOKS } from '#lib/core/kid/shapes.js';
 
-/** @typedef {import('./quiz.js').KidSkill} KidSkill */
-/** @typedef {import('./quiz.js').ShapeKind} ShapeKind */
-/** @typedef {import('./quiz.js').SolidKind} SolidKind */
-/** @typedef {import('./quiz.js').FigureKind} FigureKind */
+/** @typedef {import('#lib/core/kid/quiz.js').KidSkill<import('./visual.js').Visual>} KidSkill */
+/** @typedef {import('#lib/core/kid/shapes.js').ShapeKind} ShapeKind */
+/** @typedef {import('#lib/core/kid/shapes.js').SolidKind} SolidKind */
+/** @typedef {import('#lib/core/kid/shapes.js').FigureKind} FigureKind */
 
 /** The four plane shapes, in the book's order. */
 export const SHAPES = /** @type {const} */ (['vuong', 'tron', 'tam-giac', 'chu-nhat']);
@@ -20,22 +21,11 @@ export const SHAPES = /** @type {const} */ (['vuong', 'tron', 'tam-giac', 'chu-n
 /** The two solids, in the book's order. */
 export const SOLIDS = /** @type {const} */ (['lap-phuong', 'hop-chu-nhat']);
 
-/** Names as the book writes them. */
-export const FIGURE_NAMES = /** @type {const} */ ({
-  vuong: 'hình vuông',
-  tron: 'hình tròn',
-  'tam-giac': 'hình tam giác',
-  'chu-nhat': 'hình chữ nhật',
-  'lap-phuong': 'khối lập phương',
-  'hop-chu-nhat': 'khối hộp chữ nhật',
-});
+export { FIGURE_NAMES };
 
 /** One sentence a child hears about each shape and solid. */
 export const FIGURE_LOOKS = /** @type {const} */ ({
-  vuong: 'Hình vuông có 4 cạnh dài bằng nhau.',
-  tron: 'Hình tròn tròn đều, không có cạnh nào.',
-  'tam-giac': 'Hình tam giác có 3 cạnh.',
-  'chu-nhat': 'Hình chữ nhật có 2 cạnh dài và 2 cạnh ngắn.',
+  ...SHAPE_LOOKS,
   'lap-phuong': 'Khối lập phương có 6 mặt đều là hình vuông to bằng nhau.',
   'hop-chu-nhat': 'Khối hộp chữ nhật có 6 mặt, có mặt là hình chữ nhật.',
 });

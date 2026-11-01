@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { FIRST, moveMessage } from './engine.js';
-import { isNoCarry } from '../_shared/column.js';
+import { isNoCarry } from '#lib/core/kid/column.js';
 
 describe('adding loose sticks to a two-digit number', () => {
   it('starts on a no-carry calculation', () => {

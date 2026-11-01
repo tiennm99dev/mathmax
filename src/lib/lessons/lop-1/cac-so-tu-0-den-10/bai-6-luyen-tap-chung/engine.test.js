@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { KINDS, buildRound, makeQuestion, numberOptions, weakKinds } from './engine.js';
+import { numberOptions, weakLabels } from '#lib/core/kid/quiz.js';
+import { KIND_LABELS, KINDS, buildRound, makeQuestion } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 
 /** @param {import('./engine.js').Question} q */
 function expected(q) {

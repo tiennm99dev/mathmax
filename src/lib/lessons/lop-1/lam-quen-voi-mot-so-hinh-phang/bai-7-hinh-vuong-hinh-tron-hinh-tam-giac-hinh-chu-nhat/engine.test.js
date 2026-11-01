@@ -8,7 +8,7 @@ import {
   figureWhy,
   objectOf,
 } from './engine.js';
-import { OBJECTS, SHAPES, SHAPE_NAMES } from '../_shared/shapes.js';
+import { OBJECTS, SHAPES, SHAPE_NAMES } from '#lib/core/kid/shapes.js';
 
 describe('shape sorting decks', () => {
   it('has one bin per shape', () => {

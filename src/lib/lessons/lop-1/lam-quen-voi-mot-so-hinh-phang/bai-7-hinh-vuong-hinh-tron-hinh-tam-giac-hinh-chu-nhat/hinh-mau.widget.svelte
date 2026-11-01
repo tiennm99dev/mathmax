@@ -1,15 +1,15 @@
 <script>
   import { focusRing } from '#lib/core/ui.js';
-  import ShapeFigure from '../_shared/shape-figure.svelte';
-  import { COLORS, SHAPES, SHAPE_LOOKS, SHAPE_NAMES, shapeTitle } from '../_shared/shapes.js';
+  import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
+  import { COLORS, SHAPES, SHAPE_LOOKS, SHAPE_NAMES, shapeTitle } from '#lib/core/kid/shapes.js';
 
-  /** @type {import('../_shared/shapes.js').ShapeKind | null} */
+  /** @type {import('#lib/core/kid/shapes.js').ShapeKind | null} */
   let chosen = $state(null);
 
   /**
    * The big model of each shape on its button.
-   * @param {import('../_shared/shapes.js').ShapeKind} kind
-   * @returns {import('../_shared/shapes.js').Figure}
+   * @param {import('#lib/core/kid/shapes.js').ShapeKind} kind
+   * @returns {import('#lib/core/kid/shapes.js').Figure}
    */
   const model = (kind) => ({
     kind,
@@ -21,8 +21,8 @@
 
   /**
    * The same shape drawn three other ways: smaller, another colour, turned.
-   * @param {import('../_shared/shapes.js').ShapeKind} kind
-   * @returns {import('../_shared/shapes.js').Figure[]}
+   * @param {import('#lib/core/kid/shapes.js').ShapeKind} kind
+   * @returns {import('#lib/core/kid/shapes.js').Figure[]}
    */
   const others = (kind) => [
     { kind, color: COLORS[4], size: 0.55, turn: 0, variant: 1 },

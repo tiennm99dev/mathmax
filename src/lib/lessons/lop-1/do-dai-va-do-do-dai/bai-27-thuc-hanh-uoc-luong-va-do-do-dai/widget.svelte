@@ -1,7 +1,7 @@
 <script>
   import { button, focusRing } from '#lib/core/ui.js';
-  import RulerBoard from '../_shared/ruler-board.svelte';
-  import { estimateMessage, estimateStars, inSentence } from '../_shared/length.js';
+  import RulerBoard from '#lib/core/kid/ruler-board.svelte';
+  import { estimateMessage, estimateStars, inSentence } from '#lib/core/kid/length.js';
   import { GUESS_MAX, GUESS_MIN, ROUNDS, gameSummary, makeGame, startGuess } from './engine.js';
 
   // The first game is fixed so the prerendered page and the browser agree.

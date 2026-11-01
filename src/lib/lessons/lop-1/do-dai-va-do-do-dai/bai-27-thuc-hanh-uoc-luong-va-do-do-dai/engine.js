@@ -5,7 +5,7 @@
  * close guess. Pure and DOM-free.
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
-import { LONGEST, THINGS } from '../_shared/length.js';
+import { LONGEST, THINGS } from '#lib/core/kid/length.js';
 
 /** Things per game. */
 export const ROUNDS = 5;
@@ -15,7 +15,7 @@ export const GUESS_MAX = 15;
 
 /**
  * @typedef {{
- *   thing: import('../_shared/length.js').Thing;
+ *   thing: import('#lib/core/kid/length.js').Thing;
  *   length: number;
  *   shift: number;
  * }} Item

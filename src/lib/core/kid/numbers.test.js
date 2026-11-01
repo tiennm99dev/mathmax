@@ -1,11 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import {
+  addText,
+  addWords,
   capitalReading,
+  clampInt,
   compareReason,
   compareSign,
+  freshInt,
   placeText,
   readNumber,
   readings,
+  relatedSubtractions,
+  sticksWords,
+  subText,
+  subWords,
   tensOnes,
 } from './numbers.js';
 
@@ -41,6 +49,13 @@ describe('reading numbers to 100', () => {
 
   it('capitalises a reading to start a sentence', () => {
     expect(capitalReading(36)).toBe('Ba mươi sáu');
+    expect(capitalReading(5)).toBe('Năm');
+  });
+
+  it('writes a number outside 0 to 100 in digits', () => {
+    expect(readNumber(101)).toBe('101');
+    expect(readNumber(-1)).toBe('-1');
+    expect(readNumber(2.5)).toBe('2.5');
   });
 });
 
@@ -72,5 +87,50 @@ describe('comparing two-digit numbers', () => {
       'Hàng chục bằng nhau (3 chục). Hàng đơn vị: 6 bé hơn 9. Vậy 36 < 39.',
     );
     expect(compareReason(58, 58)).toContain('58 = 58');
+  });
+});
+
+describe('counting sticks in words', () => {
+  it('names bundles and loose sticks', () => {
+    expect(sticksWords(41)).toBe('4 chục và 1 que rời');
+    expect(sticksWords(70)).toBe('7 chục');
+    expect(sticksWords(5)).toBe('5 que rời');
+  });
+});
+
+describe('addition and subtraction text', () => {
+  it('prints and reads an addition', () => {
+    expect(addText(3, 2)).toBe('3 + 2 = 5');
+    expect(addWords(3, 2)).toBe('ba cộng hai bằng năm');
+    expect(addWords(20, 15)).toBe('hai mươi cộng mười lăm bằng ba mươi lăm');
+  });
+
+  it('prints and reads a subtraction with the book minus sign', () => {
+    expect(subText(5, 2)).toBe('5 − 2 = 3');
+    expect(subWords(4, 4)).toBe('bốn trừ bốn bằng không');
+  });
+
+  it('lists the subtractions that undo an addition', () => {
+    expect(relatedSubtractions(3, 2)).toEqual(['5 − 2 = 3', '5 − 3 = 2']);
+    expect(relatedSubtractions(4, 4)).toEqual(['8 − 4 = 4']);
+  });
+});
+
+describe('whole-number helpers', () => {
+  it('clamps whole numbers', () => {
+    expect(clampInt(12, 0, 10)).toBe(10);
+    expect(clampInt(-1, 0, 10)).toBe(0);
+  });
+
+  it('picks a fresh number in range', () => {
+    const bad = [];
+    for (let prev = 6; prev <= 10; prev++) {
+      for (const r of [0, 0.3, 0.7, 0.999999]) {
+        const n = freshInt(6, 10, prev, () => r);
+        if (n === prev || n < 6 || n > 10) bad.push([prev, r, n]);
+      }
+    }
+    expect(bad).toEqual([]);
+    expect(freshInt(3, 3, 3)).toBe(3);
   });
 });

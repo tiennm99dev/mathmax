@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { SCENES, fits } from '../_shared/positions.js';
 import { OBJECTS, kindOf, solidTitle } from '../_shared/solids.js';
-import { KINDS, WALLS, buildRound, numberOptions, weakKinds } from './engine.js';
+import { weakLabels } from '#lib/core/kid/quiz.js';
+import { KIND_LABELS, KINDS, WALLS, buildRound, numberOptions } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 import { rng } from '#lib/core/drill.js';
 
 describe('mixed solids and positions practice', () => {

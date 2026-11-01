@@ -1,9 +1,9 @@
 <script>
   import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import ColumnQuiz from '../_shared/column-quiz.svelte';
-  import StickPile from '../_shared/stick-pile.svelte';
-  import { freshProblem } from '../_shared/column.js';
+  import ColumnQuiz from '#lib/core/kid/column-quiz.svelte';
+  import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
+  import { freshProblem } from '#lib/core/kid/column.js';
   import { FIRST, crossedCount, freshRow, takeMessage, toggle } from './engine.js';
 
   let a = $state(FIRST.a);
@@ -43,7 +43,7 @@
   >
     <div>
       <p class="text-lg font-bold text-slate-700">Chục</p>
-      <StickPile tens={Math.floor(a / 10)} ones={0} />
+      <CountingSticks tens={Math.floor(a / 10)} ones={0} />
     </div>
     <div>
       <p class="text-lg font-bold text-slate-700">Đơn vị</p>

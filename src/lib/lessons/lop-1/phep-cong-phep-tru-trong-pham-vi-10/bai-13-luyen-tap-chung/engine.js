@@ -6,9 +6,13 @@
  * same on the server and in the browser. Pure and DOM-free.
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
+import { numberOptions } from '#lib/core/kid/quiz.js';
 import { pictureGroups, pictures } from '#lib/core/kid/pictures/index.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { TOP, addText, subText } from '../_shared/arith.js';
+import { addText, SIGNS, subText } from '#lib/core/kid/numbers.js';
+
+/** Largest number of the chapter. */
+const TOP = 10;
 
 /** @typedef {'add' | 'sub' | 'missing' | 'compare' | 'story' | 'picture'} Kind */
 
@@ -46,26 +50,6 @@ export const KIND_LABELS = /** @type {const} */ ({
 });
 
 const COUNTABLE = [...pictureGroups.fruit, ...pictureGroups.things];
-
-/** Comparison signs in the order the buttons show them. */
-export const SIGNS = /** @type {const} */ (['>', '<', '=']);
-
-/**
- * Up to four number options that include `right`, drawn from 0..10 near it,
- * in increasing order so a child can scan them.
- * @param {() => number} rand
- * @param {number} right
- * @returns {{ options: string[], answer: number }}
- */
-export function numberOptions(rand, right) {
-  const near = [];
-  for (let d = -3; d <= 3; d++) {
-    const v = right + d;
-    if (d !== 0 && v >= 0 && v <= TOP) near.push(v);
-  }
-  const values = [right, ...shuffle(rand, near).slice(0, 3)].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
-}
 
 /**
  * A sum a + b within 10 with both parts at least 1.
@@ -205,18 +189,4 @@ export function buildRound(seed) {
   const rand = rng(seed);
   const kinds = shuffle(rand, [...KINDS, ...KINDS]);
   return kinds.map((k) => makeQuestion(k, rand));
-}
-
-/**
- * Kinds the child missed at the first try, to suggest what to review.
- * @param {readonly Question[]} round
- * @param {ReadonlyArray<boolean | null>} firstTry
- * @returns {string[]}
- */
-export function weakKinds(round, firstTry) {
-  const missed = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) missed.add(q.kind);
-  });
-  return KINDS.filter((k) => missed.has(k)).map((k) => KIND_LABELS[k]);
 }

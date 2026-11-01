@@ -14,10 +14,10 @@ import {
   SHAPE_NAMES,
   objectSentence,
   shapeTitle,
-} from '../_shared/shapes.js';
+} from '#lib/core/kid/shapes.js';
 
-/** @typedef {import('../_shared/shapes.js').ShapeKind} ShapeKind */
-/** @typedef {import('../_shared/shapes.js').Figure} Figure */
+/** @typedef {import('#lib/core/kid/shapes.js').ShapeKind} ShapeKind */
+/** @typedef {import('#lib/core/kid/shapes.js').Figure} Figure */
 /** @typedef {'name' | 'find' | 'object' | 'count' | 'sticks'} Kind */
 /** @typedef {{ x1: number, y1: number, x2: number, y2: number }} Stick */
 /** @typedef {{ label: string, figure?: Figure }} Option */
@@ -27,7 +27,7 @@ import {
  *   kind: Kind;
  *   prompt: string;
  *   figure?: Figure;
- *   object?: import('../_shared/shapes.js').ObjectId;
+ *   object?: import('#lib/core/kid/shapes.js').ObjectId;
  *   scene?: Figure[];
  *   sticks?: Stick[];
  *   options: Option[];
@@ -273,18 +273,4 @@ export function buildRound(seed) {
   const rand = rng(seed);
   const kinds = shuffle(rand, [...KINDS, ...KINDS]);
   return kinds.map((k) => makeQuestion(k, rand));
-}
-
-/**
- * Kinds the child missed at the first try, to suggest what to review.
- * @param {readonly Question[]} round
- * @param {ReadonlyArray<boolean | null>} firstTry
- * @returns {string[]}
- */
-export function weakKinds(round, firstTry) {
-  const missed = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) missed.add(q.kind);
-  });
-  return KINDS.filter((k) => missed.has(k)).map((k) => KIND_LABELS[k]);
 }

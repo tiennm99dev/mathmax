@@ -3,8 +3,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { clientToSvg } from '#lib/utils/svg.js';
-  import KidFigure from '../_shared/kid-figure.svelte';
-  import ThingShape from '../_shared/thing-shape.svelte';
+  import KidFigure from '#lib/core/kid/kid-figure.svelte';
+  import ThingShape from '#lib/core/kid/thing-shape.svelte';
   import { SPAN, landStart, makeRound, questionOf, roundMessage } from './engine.js';
 
   /** SVG units per board unit, and where the start line or the floor is. */
@@ -16,7 +16,7 @@
   const ROW_Y = [55, 120];
   const COL_X = [130, 300];
 
-  /** @type {import('../_shared/length.js').Dimension} */
+  /** @type {import('#lib/core/kid/length.js').Dimension} */
   let dim = $state('length');
   let seed = $state(1);
   /** @type {[number, number]} */
@@ -136,7 +136,7 @@
       { value: 'height', label: 'Cao hơn, thấp hơn' },
     ]}
     onchange={(v) => {
-      dim = /** @type {import('../_shared/length.js').Dimension} */ (v);
+      dim = /** @type {import('#lib/core/kid/length.js').Dimension} */ (v);
       reset();
     }}
   />

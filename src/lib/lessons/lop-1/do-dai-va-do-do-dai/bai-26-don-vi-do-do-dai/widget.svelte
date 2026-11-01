@@ -2,8 +2,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { hopPath } from '#lib/core/visuals/svg-math.js';
   import { button, focusRing } from '#lib/core/ui.js';
-  import RulerBoard from '../_shared/ruler-board.svelte';
-  import { spansToCover } from '../_shared/length.js';
+  import RulerBoard from '#lib/core/kid/ruler-board.svelte';
+  import { spansToCover } from '#lib/core/kid/length.js';
   import { HANDS, TABLE, answerCards, makeTask, measureMessage, spanMessage } from './engine.js';
 
   /** `span`: measure with hand spans. `ruler`: measure in cm with a ruler. */

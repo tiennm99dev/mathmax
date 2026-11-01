@@ -3,30 +3,12 @@
  * DOM-free. The crocodile picture opens its mouth towards the larger number,
  * so its jaws draw the sign.
  */
-import { TOP, capitalWord, wordOf } from '../_shared/number-words.js';
+import { SIGN_WORDS, capitalReading, compareSign, readNumber } from '#lib/core/kid/numbers.js';
 
-/** @typedef {'>' | '<' | '='} Sign */
+/** Largest number of the chapter. */
+export const TOP = 10;
 
-/** The three signs, in the order the buttons show them. */
-export const SIGNS = /** @type {const} */ (['>', '<', '=']);
-
-/** How each sign is read. */
-export const SIGN_WORDS = /** @type {const} */ ({
-  '>': 'lớn hơn',
-  '<': 'bé hơn',
-  '=': 'bằng',
-});
-
-/**
- * The sign that goes between a and b.
- * @param {number} a
- * @param {number} b
- * @returns {Sign}
- */
-export function compare(a, b) {
-  if (a === b) return '=';
-  return a > b ? '>' : '<';
-}
+/** @typedef {import('#lib/core/kid/numbers.js').Sign} Sign */
 
 /**
  * The comparison read aloud, such as "7 > 4. Bảy lớn hơn bốn."
@@ -34,8 +16,8 @@ export function compare(a, b) {
  * @param {number} b
  */
 export function sentence(a, b) {
-  const s = compare(a, b);
-  return `${a} ${s} ${b}. ${capitalWord(a)} ${SIGN_WORDS[s]} ${wordOf(b)}.`;
+  const s = compareSign(a, b);
+  return `${a} ${s} ${b}. ${capitalReading(a)} ${SIGN_WORDS[s]} ${readNumber(b)}.`;
 }
 
 /**
@@ -46,7 +28,7 @@ export function sentence(a, b) {
  * @returns {'left' | 'right' | 'closed'}
  */
 export function mouthFacing(a, b) {
-  const s = compare(a, b);
+  const s = compareSign(a, b);
   if (s === '=') return 'closed';
   return s === '>' ? 'left' : 'right';
 }
@@ -58,7 +40,7 @@ export function mouthFacing(a, b) {
  * @param {Sign} picked
  */
 export function checkSign(a, b, picked) {
-  const right = compare(a, b);
+  const right = compareSign(a, b);
   if (picked === right) return { ok: true, text: `Đúng rồi! ${sentence(a, b)}` };
   if (right === '=') {
     return { ok: false, text: 'Chưa đúng. Hai số giống nhau thì dùng dấu nào?' };

@@ -1,11 +1,10 @@
 /**
- * Numbers to 100 as a grade 1 child meets them: how a two-digit number is
- * read aloud, its tens and ones, and how two such numbers compare. Pure and
- * DOM-free.
+ * Numbers to 100 as a grade 1-2 child meets them: how a number is read aloud,
+ * its tens and ones, counting sticks, how two numbers compare, and additions
+ * and subtractions written and read the book's way ("3 + 2 = 5", read "ba
+ * cộng hai bằng năm", with the book's minus sign "−"). Pure and DOM-free.
  */
-
-/** Largest number of the chapter. */
-export const TOP = 100;
+import { MINUS } from '#lib/core/number-format.js';
 
 /** Words for the digits 0 to 9. */
 export const DIGIT_WORDS = /** @type {const} */ ([
@@ -23,11 +22,13 @@ export const DIGIT_WORDS = /** @type {const} */ ([
 
 /**
  * How the book reads a number from 0 to 100: 15 is "mười lăm", 21 is
- * "hai mươi mốt", 24 is "hai mươi tư", 100 is "một trăm".
+ * "hai mươi mốt", 24 is "hai mươi tư", 100 is "một trăm". Any other value is
+ * written in digits.
  * @param {number} n
  * @returns {string}
  */
 export function readNumber(n) {
+  if (!Number.isInteger(n) || n < 0 || n > 100) return String(n);
   if (n === 100) return 'một trăm';
   if (n < 10) return DIGIT_WORDS[n];
   const t = Math.floor(n / 10);
@@ -81,6 +82,18 @@ export function placeText(tens, ones) {
   return `${tens} chục và ${ones} đơn vị`;
 }
 
+/**
+ * "4 chục và 1 que rời", "4 chục" or "5 que rời": the counting sticks of a
+ * number from 0 to 99.
+ * @param {number} n
+ */
+export function sticksWords(n) {
+  const { tens, ones } = tensOnes(n);
+  if (tens === 0) return `${ones} que rời`;
+  if (ones === 0) return `${tens} chục`;
+  return `${tens} chục và ${ones} que rời`;
+}
+
 /** Comparison signs in the order the buttons show them. */
 export const SIGNS = /** @type {const} */ (['>', '<', '=']);
 
@@ -120,4 +133,79 @@ export function compareReason(a, b) {
     return `Hàng chục bằng nhau (${x.tens} chục). Hàng đơn vị: ${x.ones} ${SIGN_WORDS[s]} ${y.ones}. Vậy ${result}.`;
   }
   return `Hàng chục và hàng đơn vị đều bằng nhau. Vậy ${result}.`;
+}
+
+/**
+ * An addition as printed: "3 + 2 = 5".
+ * @param {number} a
+ * @param {number} b
+ */
+export function addText(a, b) {
+  return `${a} + ${b} = ${a + b}`;
+}
+
+/**
+ * A subtraction as printed: "5 − 2 = 3".
+ * @param {number} a
+ * @param {number} b
+ */
+export function subText(a, b) {
+  return `${a} ${MINUS} ${b} = ${a - b}`;
+}
+
+/**
+ * How an addition is read aloud: "ba cộng hai bằng năm".
+ * @param {number} a
+ * @param {number} b
+ */
+export function addWords(a, b) {
+  return `${readNumber(a)} cộng ${readNumber(b)} bằng ${readNumber(a + b)}`;
+}
+
+/**
+ * How a subtraction is read aloud: "năm trừ hai bằng ba".
+ * @param {number} a
+ * @param {number} b
+ */
+export function subWords(a, b) {
+  return `${readNumber(a)} trừ ${readNumber(b)} bằng ${readNumber(a - b)}`;
+}
+
+/**
+ * The two subtractions that undo an addition a + b = c: c − b = a and
+ * c − a = b (one only when a and b are equal).
+ * @param {number} a
+ * @param {number} b
+ * @returns {string[]}
+ */
+export function relatedSubtractions(a, b) {
+  const c = a + b;
+  const facts = [subText(c, b)];
+  if (a !== b) facts.push(subText(c, a));
+  return facts;
+}
+
+/**
+ * Keeps a whole number within lo..hi.
+ * @param {number} v
+ * @param {number} lo
+ * @param {number} hi
+ */
+export function clampInt(v, lo, hi) {
+  return Math.max(lo, Math.min(hi, Math.round(v)));
+}
+
+/**
+ * Picks a whole number from lo to hi that differs from `previous`, so a
+ * "Bài khác" button always changes the round.
+ * @param {number} lo
+ * @param {number} hi
+ * @param {number | null} previous
+ * @param {() => number} [random] Returns a number in [0, 1).
+ */
+export function freshInt(lo, hi, previous, random = Math.random) {
+  const pool = [];
+  for (let n = lo; n <= hi; n++) if (n !== previous) pool.push(n);
+  if (pool.length === 0) return lo;
+  return pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
 }

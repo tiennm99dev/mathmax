@@ -4,7 +4,7 @@
  * n − k = r follows every tap, with the two cases the book points out,
  * n − 0 = n and n − n = 0. Pure and DOM-free.
  */
-import { subText, subWords } from '../_shared/arith.js';
+import { subText, subWords } from '#lib/core/kid/numbers.js';
 
 /** @typedef {'bot' | 'tach'} Mode */
 

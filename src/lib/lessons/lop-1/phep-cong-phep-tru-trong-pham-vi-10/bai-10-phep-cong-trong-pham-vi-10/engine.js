@@ -5,7 +5,10 @@
  * thêm vào (more join a group), and the swap rule 3 + 2 = 2 + 3. Pure and
  * DOM-free.
  */
-import { TOP, addText, clampInt } from '../_shared/arith.js';
+import { addText, clampInt } from '#lib/core/kid/numbers.js';
+
+/** Largest number of the chapter. */
+const TOP = 10;
 
 /** @typedef {'gop' | 'them'} Mode */
 

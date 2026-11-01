@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { KINDS, buildRound, spreadSizes, weakKinds } from './engine.js';
+import { weakLabels } from '#lib/core/kid/quiz.js';
+import { KIND_LABELS, KINDS, buildRound, spreadSizes } from './engine.js';
+
+/**
+ * @param {import('#lib/core/kid/quiz.js').KidQuestion[]} round
+ * @param {Array<boolean | null>} firstTry
+ */
+const weakKinds = (round, firstTry) => weakLabels(round, firstTry, KIND_LABELS);
 
 /**
  * The right option worked out from the question's picture or numbers,

@@ -4,11 +4,8 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import { clientToSvg, pointsAttr } from '#lib/utils/svg.js';
   import {
-    BOARD_H,
-    BOARD_W,
     PIECE_SHAPES,
-    PUZZLES,
-    TRAY_ROW,
+    TANGRAM_BOARD,
     boardStatus,
     boardTarget,
     clampPose,
@@ -18,7 +15,10 @@
     startPoses,
     statusMessage,
     turned,
-  } from './engine.js';
+  } from '#lib/core/kid/tangram.js';
+  import { PUZZLES } from './engine.js';
+
+  const { w: BOARD_W, h: BOARD_H, tray: TRAY_ROW } = TANGRAM_BOARD;
 
   /** Size of one grid cell in SVG units. */
   const CELL = 40;
@@ -89,7 +89,7 @@
 
   /**
    * @param {number} i
-   * @param {import('./engine.js').Pose} pose
+   * @param {import('#lib/core/kid/tangram.js').Pose} pose
    */
   function setPose(i, pose) {
     poses[i] = clampPose(cornersOf(i), pose);

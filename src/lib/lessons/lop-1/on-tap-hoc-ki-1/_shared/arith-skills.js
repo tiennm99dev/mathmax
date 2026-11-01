@@ -9,9 +9,10 @@ import { int, pick } from '#lib/core/drill.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { MINUS } from '#lib/core/number-format.js';
 import { COUNTABLE } from './number-skills.js';
-import { SIGN_WORDS, mixOptions, numberOptions, signOf, signOptions } from './quiz.js';
+import { SIGN_WORDS, compareSign } from '#lib/core/kid/numbers.js';
+import { mixOptions, numberOptions, signOptions } from '#lib/core/kid/quiz.js';
 
-/** @typedef {import('./quiz.js').KidSkill} KidSkill */
+/** @typedef {import('#lib/core/kid/quiz.js').KidSkill<import('./visual.js').Visual>} KidSkill */
 
 /**
  * "3 + 2" or, with `result`, "3 + 2 = 5".
@@ -130,7 +131,7 @@ export const compareResultSkill = {
     const value = add ? x + y : x;
     const left = add ? plus(x, y) : minus(x + y, y);
     const other = rand() < 0.3 ? value : int(rand, Math.max(0, value - 2), Math.min(10, value + 2));
-    const sign = signOf(value, other);
+    const sign = compareSign(value, other);
     return {
       prompt: `Chọn dấu đúng: ${left} ... ${other}`,
       ...signOptions(sign),

@@ -2,8 +2,9 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Stepper from '#lib/core/stepper.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { TOP } from '../_shared/number-words.js';
-  import { SIGNS, SIGN_WORDS, checkSign, mouthFacing, newPair, sentence } from './engine.js';
+
+  import { SIGNS, SIGN_WORDS } from '#lib/core/kid/numbers.js';
+  import { TOP, checkSign, mouthFacing, newPair, sentence } from './engine.js';
 
   /** @typedef {import('./engine.js').Sign} Sign */
 

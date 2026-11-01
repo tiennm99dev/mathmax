@@ -1,5 +1,6 @@
 <script>
-  import ReviewQuiz from '../_shared/review-quiz.svelte';
+  import AdaptiveQuiz from '#lib/core/kid/adaptive-quiz.svelte';
+  import QuizVisual from '../_shared/quiz-visual.svelte';
   import { countSkill, compareSkill, rowSkill } from '../_shared/number-skills.js';
   import { addSkill, missingSkill, storySkill, subtractSkill } from '../_shared/arith-skills.js';
   import { rowPositionSkill, shapeNameSkill, solidSkill } from '../_shared/shape-skills.js';
@@ -19,4 +20,8 @@
   ];
 </script>
 
-<ReviewQuiz {skills} length={12} allGood="Tuyệt vời! Em đã nắm chắc kiến thức học kì 1." />
+<AdaptiveQuiz {skills} length={12} allGood="Tuyệt vời! Em đã nắm chắc kiến thức học kì 1.">
+  {#snippet visual(q)}
+    {#if q.visual}<QuizVisual visual={q.visual} />{/if}
+  {/snippet}
+</AdaptiveQuiz>

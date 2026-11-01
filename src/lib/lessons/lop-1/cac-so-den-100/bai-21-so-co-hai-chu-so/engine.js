@@ -3,7 +3,7 @@
  * tens, loose sticks for the ones, and the step of tying ten loose sticks
  * into one more bundle. The board shows numbers up to 99. Pure and DOM-free.
  */
-import { placeText, readNumber } from '../_shared/numbers.js';
+import { placeText, readNumber } from '#lib/core/kid/numbers.js';
 
 /** Largest number on the board. */
 export const MAX = 99;

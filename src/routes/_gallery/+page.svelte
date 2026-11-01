@@ -25,12 +25,15 @@
   import { formatTime, toMinutes } from '#lib/units-engine/clock.js';
   import { formatNumber } from '#lib/core/number-format.js';
 
-  // A sister site's subject components each ship a `<name>.gallery.svelte` demo
-  // in src/lib/domain/, exporting its section `title` from a module script, so
-  // the gallery lists them without an edit to this synced page.
+  // The kid visuals in src/lib/core/kid/ and a sister site's subject components
+  // in src/lib/domain/ each ship a `<name>.gallery.svelte` demo, exporting its
+  // section `title` from a module script, so the gallery lists them without an
+  // edit to this synced page.
   const domainModules =
     /** @type {Record<string, { default: import('svelte').Component, title?: string }>} */ (
-      import.meta.glob('/src/lib/domain/*.gallery.svelte', { eager: true })
+      import.meta.glob(['/src/lib/core/kid/*.gallery.svelte', '/src/lib/domain/*.gallery.svelte'], {
+        eager: true,
+      })
     );
   const domainDemos = Object.entries(domainModules)
     .map(([file, mod]) => {
@@ -141,10 +144,10 @@
   <header class="mb-6 space-y-2">
     <h1 class="text-3xl font-bold text-slate-900">Thư viện hình minh hoạ</h1>
     <p class="text-slate-600">
-      Trang nội bộ để rà soát mọi hình trong <code>src/lib/core/visuals/</code>
-      {#if domainDemos.length}và thành phần riêng của môn trong <code>src/lib/domain/</code>{/if}:
-      kéo bằng chuột hoặc ngón tay, và thử bằng bàn phím (Tab rồi phím mũi tên). Trang này không
-      được lập chỉ mục.
+      Trang nội bộ để rà soát mọi hình trong <code>src/lib/core/visuals/</code>,
+      <code>src/lib/core/kid/</code> và thành phần riêng của môn trong
+      <code>src/lib/domain/</code>: kéo bằng chuột hoặc ngón tay, và thử bằng bàn phím (Tab rồi phím
+      mũi tên). Trang này không được lập chỉ mục.
     </p>
     <nav aria-label="Các hình">
       <ul class="flex flex-wrap gap-2 text-sm">

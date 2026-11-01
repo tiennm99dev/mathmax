@@ -1,7 +1,7 @@
 <script>
   import { focusRing } from '#lib/core/ui.js';
   import ColumnBoard from './column-board.svelte';
-  import StickPile from './stick-pile.svelte';
+  import CountingSticks from './counting-sticks.svelte';
   import { columnSteps, equationText } from './column.js';
 
   /**
@@ -70,11 +70,11 @@
   {#if sticks}
     <div class="space-y-2 rounded-3xl bg-amber-50 p-3">
       {#if op === '+'}
-        <StickPile tens={Math.floor(a / 10)} ones={a % 10} highlight={active} />
+        <CountingSticks tens={Math.floor(a / 10)} ones={a % 10} highlight={active} />
         <p class="text-2xl font-bold text-slate-500" aria-hidden="true">+</p>
-        <StickPile tens={Math.floor(b / 10)} ones={b % 10} tone="sky" highlight={active} />
+        <CountingSticks tens={Math.floor(b / 10)} ones={b % 10} tone="sky" highlight={active} />
       {:else}
-        <StickPile
+        <CountingSticks
           tens={Math.floor(a / 10)}
           ones={a % 10}
           crossOnes={step > 0 ? b % 10 : 0}

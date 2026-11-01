@@ -2,8 +2,18 @@ import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { ARITH_SKILLS } from './arith-skills.js';
-import { MORE_FEWER, NUMBER_SKILLS, NUMBER_WORDS } from './number-skills.js';
-import { drawFresh, numberOptions, pickSkill, questionKey, skillMap, toReview } from './quiz.js';
+import { readNumber } from '#lib/core/kid/numbers.js';
+import { MORE_FEWER, NUMBER_SKILLS } from './number-skills.js';
+
+import {
+  drawFresh,
+  numberOptions,
+  optionText,
+  pickSkill,
+  questionKey,
+  skillMap,
+  toReview,
+} from '#lib/core/kid/quiz.js';
 import {
   FIGURE_NAMES,
   SHAPE_OBJECTS,
@@ -12,7 +22,9 @@ import {
   SOLIDS,
 } from './shape-skills.js';
 
-/** @typedef {import('./quiz.js').KidQuestion} KidQuestion */
+const NUMBER_WORDS = Array.from({ length: 11 }, (_, n) => readNumber(n));
+
+/** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<import('./visual.js').Visual>} KidQuestion */
 
 /**
  * Evaluates "a + b", "a − b" or a lone number.
@@ -46,7 +58,7 @@ function recompute(id, q) {
     case 'doc-so': {
       if (p.startsWith('Số nào')) {
         const word = p.match(/"(.+)"/)?.[1] ?? '';
-        return String(NUMBER_WORDS.indexOf(/** @type {never} */ (word)));
+        return String(NUMBER_WORDS.indexOf(word));
       }
       return NUMBER_WORDS[nums[0]];
     }
@@ -98,7 +110,7 @@ function recompute(id, q) {
       return String(p.includes('Thêm') ? nums[0] + nums[1] : nums[0] - nums[1]);
     case 'ket-qua': {
       const k = nums[0];
-      const hits = q.options.filter((o) => evaluate(o) === k);
+      const hits = q.options.map(optionText).filter((o) => evaluate(o) === k);
       return hits.length === 1 ? hits[0] : null;
     }
     case 'hinh-phang':
@@ -226,7 +238,7 @@ describe('number options', () => {
 describe('adaptive choice', () => {
   it('asks every part once before repeating one', () => {
     const rand = rng(5);
-    /** @type {import('./quiz.js').Attempt[]} */
+    /** @type {import('#lib/core/kid/quiz.js').Attempt[]} */
     const attempts = [];
     for (let i = 0; i < NUMBER_SKILLS.length; i++) {
       const { skill, reason } = pickSkill(NUMBER_SKILLS, attempts, rand);
@@ -239,7 +251,7 @@ describe('adaptive choice', () => {
   it('comes back to a part answered wrong more often', () => {
     const rand = rng(8);
     const [weak, ...rest] = ARITH_SKILLS;
-    /** @type {import('./quiz.js').Attempt[]} */
+    /** @type {import('#lib/core/kid/quiz.js').Attempt[]} */
     const base = [{ skill: weak.id, ok: false }, ...rest.map((s) => ({ skill: s.id, ok: true }))];
     let hits = 0;
     for (let i = 0; i < 200; i++) if (pickSkill(ARITH_SKILLS, base, rand).skill === weak) hits++;

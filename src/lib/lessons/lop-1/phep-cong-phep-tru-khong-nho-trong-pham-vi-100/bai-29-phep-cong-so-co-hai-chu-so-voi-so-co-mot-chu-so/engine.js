@@ -4,7 +4,7 @@
  * the loose sticks of the two-digit number; the bundles of ten stay as they
  * are. Pure and DOM-free.
  */
-import { sticksWords } from '../_shared/sticks-text.js';
+import { sticksWords } from '#lib/core/kid/numbers.js';
 
 /** The first calculation, fixed so the prerendered page and the browser agree. */
 export const FIRST = { a: 41, b: 5 };

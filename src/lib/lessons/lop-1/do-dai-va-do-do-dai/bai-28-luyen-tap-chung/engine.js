@@ -16,15 +16,15 @@ import {
   largestIndex,
   pairWords,
   smallestIndex,
-} from '../_shared/length.js';
+} from '#lib/core/kid/length.js';
 
 /** @typedef {'pair' | 'three' | 'kids' | 'ruler' | 'cm' | 'unit'} Kind */
 
 /**
  * @typedef {(
- *   | { type: 'things', items: { thing: import('../_shared/length.js').Thing, length: number }[] }
- *   | { type: 'kids', items: { kid: import('../_shared/length.js').Kid, height: number }[] }
- *   | { type: 'ruler', thing: import('../_shared/length.js').Thing, length: number }
+ *   | { type: 'things', items: { thing: import('#lib/core/kid/length.js').Thing, length: number }[] }
+ *   | { type: 'kids', items: { kid: import('#lib/core/kid/length.js').Kid, height: number }[] }
+ *   | { type: 'ruler', thing: import('#lib/core/kid/length.js').Thing, length: number }
  * )} Scene
  */
 
@@ -224,17 +224,4 @@ export function buildRound(seed) {
     if (j > 0) [mixed[i], mixed[j]] = [mixed[j], mixed[i]];
   }
   return mixed;
-}
-
-/**
- * Kinds to review: those missed at the first try.
- * @param {Question[]} round
- * @param {Array<boolean | null>} firstTry
- */
-export function weakKinds(round, firstTry) {
-  const weak = new Set();
-  round.forEach((q, i) => {
-    if (firstTry[i] === false) weak.add(KIND_LABELS[q.kind]);
-  });
-  return [...weak];
 }

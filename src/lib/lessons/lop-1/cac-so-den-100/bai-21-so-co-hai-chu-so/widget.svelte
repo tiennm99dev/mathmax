@@ -1,8 +1,8 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import StickBundles from '../_shared/stick-bundles.svelte';
-  import { readNumber } from '../_shared/numbers.js';
+  import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
+  import { readNumber } from '#lib/core/kid/numbers.js';
   import { apply, can, describe, guide, nextTarget, valueOf } from './engine.js';
 
   /** @typedef {'bundle+' | 'bundle-' | 'stick+' | 'stick-' | 'tie'} Action */
@@ -74,7 +74,7 @@
       </p>
       <div class="min-h-20">
         {#if sticks.tens > 0}
-          <StickBundles tens={sticks.tens} ones={0} />
+          <CountingSticks tens={sticks.tens} ones={0} />
         {:else}
           <span class="text-lg text-slate-500">Chưa có bó nào</span>
         {/if}
@@ -102,7 +102,7 @@
       </p>
       <div class="min-h-20">
         {#if sticks.ones > 0}
-          <StickBundles tens={0} ones={sticks.ones} />
+          <CountingSticks tens={0} ones={sticks.ones} />
         {:else}
           <span class="text-lg text-slate-500">Chưa có que rời</span>
         {/if}

@@ -1,9 +1,9 @@
 <script>
   import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import ColumnQuiz from '../_shared/column-quiz.svelte';
-  import StickPile from '../_shared/stick-pile.svelte';
-  import { freshProblem } from '../_shared/column.js';
+  import ColumnQuiz from '#lib/core/kid/column-quiz.svelte';
+  import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
+  import { freshProblem } from '#lib/core/kid/column.js';
   import { FIRST, moveMessage } from './engine.js';
 
   let a = $state(FIRST.a);
@@ -53,12 +53,17 @@
     <div class="flex flex-wrap items-end gap-x-6 gap-y-3">
       <div>
         <p class="text-lg font-bold text-slate-700">Chục</p>
-        <StickPile tens={Math.floor(a / 10)} ones={0} />
+        <CountingSticks tens={Math.floor(a / 10)} ones={0} />
       </div>
       <div>
         <p class="text-lg font-bold text-slate-700">Đơn vị</p>
         {#if (a % 10) + moved > 0}
-          <StickPile tens={0} ones={a % 10} extraOnes={moved} highlight={allIn ? null : 'ones'} />
+          <CountingSticks
+            tens={0}
+            ones={a % 10}
+            extraOnes={moved}
+            highlight={allIn ? null : 'ones'}
+          />
         {:else}
           <p class="min-h-16 text-lg text-slate-500">Chưa có que rời</p>
         {/if}

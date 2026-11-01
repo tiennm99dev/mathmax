@@ -6,7 +6,10 @@
  * facts tied to it, which shows how addition and subtraction undo each other.
  * Pure and DOM-free.
  */
-import { TOP, addText, relatedSubtractions, subText } from '../_shared/arith.js';
+import { addText, relatedSubtractions, subText } from '#lib/core/kid/numbers.js';
+
+/** Largest number of the chapter. */
+const TOP = 10;
 
 /** @typedef {'cong' | 'tru'} Mode */
 

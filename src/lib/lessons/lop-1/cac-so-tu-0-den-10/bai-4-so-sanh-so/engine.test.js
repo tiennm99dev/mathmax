@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { checkSign, compare, mouthFacing, newPair, sentence } from './engine.js';
+import { compareSign as compare } from '#lib/core/kid/numbers.js';
+import { checkSign, mouthFacing, newPair, sentence } from './engine.js';
 
 describe('comparing numbers engine', () => {
   it('puts the right sign between two numbers', () => {

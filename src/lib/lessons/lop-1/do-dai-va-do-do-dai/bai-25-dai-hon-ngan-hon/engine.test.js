@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { SPAN, answerOf, landStart, makeRound, questionOf, roundMessage } from './engine.js';
 
-/** @type {import('../_shared/length.js').Dimension[]} */
+/** @type {import('#lib/core/kid/length.js').Dimension[]} */
 const DIMS = ['length', 'height'];
 
 describe('start-line rounds', () => {

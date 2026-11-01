@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { FIRST, crossedCount, freshRow, takeMessage, toggle } from './engine.js';
-import { isNoCarry } from '../_shared/column.js';
+import { isNoCarry } from '#lib/core/kid/column.js';
 
 describe('taking loose sticks away from a two-digit number', () => {
   it('starts on a no-borrow calculation', () => {

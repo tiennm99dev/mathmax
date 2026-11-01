@@ -3,7 +3,7 @@
  * ten cells; a tap fills or empties one cell, and the number shown is how many
  * cells hold a dot.
  */
-import { wordOf } from '../_shared/number-words.js';
+import { readNumber } from '#lib/core/kid/numbers.js';
 
 /** Cells in a ten-frame. */
 export const CELLS = 10;
@@ -43,7 +43,7 @@ export function freeMessage(count) {
   if (count === 0) return 'Khung chưa có chấm nào: số 0. Em chạm vào ô để thêm chấm.';
   if (count === CELLS)
     return 'Đủ cả 10 ô: số 10, đọc là "mười". Số 10 viết bằng hai chữ số 1 và 0.';
-  return `Có ${count} chấm: số ${count}, đọc là "${wordOf(count)}". Thêm 1 chấm nữa là ${count + 1}.`;
+  return `Có ${count} chấm: số ${count}, đọc là "${readNumber(count)}". Thêm 1 chấm nữa là ${count + 1}.`;
 }
 
 /**
@@ -53,7 +53,7 @@ export function freeMessage(count) {
  */
 export function targetMessage(count, target) {
   if (count === target)
-    return `Đúng rồi! Khung có ${target} chấm, số ${target} đọc là "${wordOf(target)}".`;
+    return `Đúng rồi! Khung có ${target} chấm, số ${target} đọc là "${readNumber(target)}".`;
   const diff = Math.abs(target - count);
   return count < target
     ? `Khung có ${count} chấm. Em thêm ${diff} chấm nữa nhé.`

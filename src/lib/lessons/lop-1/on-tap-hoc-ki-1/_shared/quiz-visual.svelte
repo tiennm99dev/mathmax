@@ -1,15 +1,15 @@
 <script>
   import Picture from '#lib/core/kid/picture.svelte';
   import { pictures } from '#lib/core/kid/pictures/index.js';
-  import Figure from './figure.svelte';
-  import { FIGURE_NAMES } from './shape-skills.js';
+  import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
+  import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
 
   /**
    * The picture above a review question: groups of pictures to count, a
    * group with some pictures crossed out, a row of shapes (with a "?" box
    * for a pattern), animals standing in a row, or a table with one thing on
    * it and one under it. Each picture has one text label for screen readers.
-   * @type {{ visual: import('./quiz.js').Visual }}
+   * @type {{ visual: import('./visual.js').Visual }}
    */
   let { visual } = $props();
 
@@ -75,7 +75,11 @@
     </div>
   {:else if visual.type === 'figures'}
     {#each visual.figures as kind, i (i)}
-      <Figure {kind} size={visual.figures.length > 1 ? 48 : 120} decorative />
+      <ShapeFigure
+        figure={plainFigure(kind)}
+        size={visual.figures.length > 1 ? 48 : 120}
+        decorative
+      />
     {/each}
     {#if visual.blank}
       <span

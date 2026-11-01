@@ -1,7 +1,7 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { freshInt, wordOf, TOP } from '../_shared/number-words.js';
+  import { freshInt, readNumber } from '#lib/core/kid/numbers.js';
   import {
     CELLS,
     countDots,
@@ -10,6 +10,9 @@
     targetMessage,
     toggleCell,
   } from './engine.js';
+
+  /** Largest number of the chapter. */
+  const TOP = 10;
 
   /** `free`: tap to add dots and see the number. `target`: make a given number. */
   let mode = $state(/** @type {'free' | 'target'} */ ('free'));
@@ -61,9 +64,9 @@
     </div>
     <p class="text-xl font-semibold text-slate-800">
       {#if mode === 'free'}
-        Số {count}, đọc là "{wordOf(count)}".
+        Số {count}, đọc là "{readNumber(count)}".
       {:else}
-        Em tạo số {target} ("{wordOf(target)}") trong khung.
+        Em tạo số {target} ("{readNumber(target)}") trong khung.
       {/if}
     </p>
   </div>

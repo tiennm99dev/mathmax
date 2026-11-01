@@ -12,7 +12,7 @@ import {
   inSentence,
   rulerAdvice,
   spansToCover,
-} from '../_shared/length.js';
+} from '#lib/core/kid/length.js';
 
 /** The table both hands measure, in board units. */
 export const TABLE = 12;
@@ -48,7 +48,7 @@ export function spanMessage(hand, placed, done) {
 
 /**
  * @typedef {{
- *   thing: import('../_shared/length.js').Thing;
+ *   thing: import('#lib/core/kid/length.js').Thing;
  *   length: number;
  *   shift: number;
  * }} Task

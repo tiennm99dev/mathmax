@@ -4,7 +4,7 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { reducedMotion } from '#lib/core/motion.js';
   import { button } from '#lib/core/ui.js';
-  import { addWords } from '../_shared/arith.js';
+  import { addWords } from '#lib/core/kid/numbers.js';
   import { fitGroup, storyAfter, storyBefore, swapNote, tokens } from './engine.js';
 
   const MODES = [

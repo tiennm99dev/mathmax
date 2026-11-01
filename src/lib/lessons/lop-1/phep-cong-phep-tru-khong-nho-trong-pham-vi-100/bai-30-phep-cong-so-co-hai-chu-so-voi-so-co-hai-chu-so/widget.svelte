@@ -1,7 +1,7 @@
 <script>
   import { button } from '#lib/core/ui.js';
-  import ColumnQuiz from '../_shared/column-quiz.svelte';
-  import { freshProblem } from '../_shared/column.js';
+  import ColumnQuiz from '#lib/core/kid/column-quiz.svelte';
+  import { freshProblem } from '#lib/core/kid/column.js';
 
   // The first calculation is fixed so the prerendered page and the browser agree.
   let a = $state(21);

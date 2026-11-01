@@ -1,8 +1,8 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import StickBundles from '../_shared/stick-bundles.svelte';
-  import { SIGNS, SIGN_WORDS } from '../_shared/numbers.js';
+  import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
+  import { SIGNS, SIGN_WORDS } from '#lib/core/kid/numbers.js';
   import { bump, compare, decidingPlace, randomPair, valueOf } from './engine.js';
 
   /** `see`: change the numbers and watch the sign. `guess`: pick the sign. */
@@ -87,7 +87,7 @@
             : ''}"
         >
           <p class="text-sm font-semibold text-slate-600">{side.tens} chục</p>
-          <StickBundles tens={side.tens} ones={0} small />
+          <CountingSticks tens={side.tens} ones={0} small />
         </div>
         <div
           class="rounded-xl p-1 {revealed && place === 'ones'
@@ -96,7 +96,7 @@
         >
           <p class="text-sm font-semibold text-slate-600">{side.ones} đơn vị</p>
           {#if side.ones > 0}
-            <StickBundles tens={0} ones={side.ones} small />
+            <CountingSticks tens={0} ones={side.ones} small />
           {:else}
             <span class="text-sm text-slate-500">không có que rời</span>
           {/if}
