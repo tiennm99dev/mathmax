@@ -176,10 +176,10 @@ export default {
     {
       type: 'choice',
       prompt: 'Phép tính nào có tổng là 69?',
-      options: ['63 + 6', '36 + 6', '60 + 3'],
+      options: ['63 + 6', '36 + 3', '60 + 3'],
       answer: 0,
       hints: ['Em tính từng phép cộng.', 'Hàng đơn vị của tổng phải là 9.'],
-      solution: '63 + 6 = 69. Còn 36 + 6 = 42 và 60 + 3 = 63.',
+      solution: '63 + 6 = 69. Còn 36 + 3 = 39 và 60 + 3 = 63.',
     },
   ],
   takeaways: [

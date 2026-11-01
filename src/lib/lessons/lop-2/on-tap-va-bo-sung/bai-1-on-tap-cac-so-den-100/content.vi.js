@@ -213,10 +213,10 @@ export default {
     {
       type: 'multi',
       prompt: 'Chọn tất cả các số tròn chục.',
-      options: ['30', '33', '50', '100', '65'],
+      options: ['30', '33', '50', '80', '65'],
       answers: [0, 2, 3],
-      hints: ['Số tròn chục có chữ số 0 ở hàng đơn vị.', '100 là 10 chục.'],
-      solution: '30, 50 và 100 là các số tròn chục.',
+      hints: ['Số tròn chục có chữ số 0 ở hàng đơn vị.'],
+      solution: '30, 50 và 80 là các số tròn chục: hàng đơn vị là chữ số 0.',
     },
   ],
   takeaways: [

@@ -32,6 +32,9 @@
     if (solved) return `Đúng rồi! ${explain(top, bottom)}`;
     if (wrong.length > 1) return `Em xem nhé: ${explain(top, bottom)}`;
     if (wrong.length === 1) {
+      if (paired && cmp.diff === 0) {
+        return 'Chưa đúng. Hai hàng có số khối bằng nhau, không còn khối nào thừa.';
+      }
       return paired
         ? 'Chưa đúng. Em đếm các khối màu cam: đó là phần hơn.'
         : 'Chưa đúng. Em chạm "Ghép cặp" để thấy phần hơn rồi đếm nhé.';
@@ -109,7 +112,7 @@
       {#each { length: n } as _, i (i)}
         {@const isExtra = paired && extra.includes(i)}
         <span
-          class="flex h-7 w-[18px] shrink-0 items-center justify-center rounded-sm border-2 text-xs font-bold {isExtra
+          class="flex h-7 w-4 shrink-0 items-center justify-center rounded-sm border-2 text-xs font-bold {isExtra
             ? 'border-orange-600 bg-orange-400 text-white'
             : which === 'top'
               ? 'border-sky-700 bg-sky-400'
@@ -127,7 +130,7 @@
     <div class="flex h-4 gap-[3px] pl-0" aria-hidden="true">
       {#if paired}
         {#each { length: Math.min(top, bottom) } as _, i (i)}
-          <span class="flex w-[18px] shrink-0 justify-center"
+          <span class="flex w-4 shrink-0 justify-center"
             ><span class="h-4 w-0.5 bg-slate-500"></span></span
           >
         {/each}

@@ -118,7 +118,7 @@ export default {
     {
       type: 'match',
       prompt: 'Nối mỗi cặp số với phần hơn, kém của chúng.',
-      left: ['9 và 4', '20 và 16', '37 và 30', '58 và 56'],
+      left: ['9 và 4', '29 và 25', '37 và 30', '58 và 56'],
       right: ['5', '4', '7', '2', '3'],
       pairs: [
         [0, 0],
@@ -126,8 +126,8 @@ export default {
         [2, 2],
         [3, 3],
       ],
-      hints: ['Với mỗi cặp, lấy số lớn trừ số bé.', '20 − 16: đếm thêm từ 16 đến 20.'],
-      solution: '9 − 4 = 5. 20 − 16 = 4. 37 − 30 = 7. 58 − 56 = 2.',
+      hints: ['Với mỗi cặp, lấy số lớn trừ số bé.', '29 − 25: hàng đơn vị 9 − 5, hàng chục 2 − 2.'],
+      solution: '9 − 4 = 5. 29 − 25 = 4. 37 − 30 = 7. 58 − 56 = 2.',
     },
     {
       type: 'choice',

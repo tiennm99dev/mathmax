@@ -42,7 +42,7 @@ function recompute(id, q) {
     case 'so-sanh':
       return sign(calc(String(nums[0]), op, String(nums[1])), nums[2]);
     case 'bai-toan': {
-      // "Tổ Hai ... ít hơn" and "bớt đi" subtract; "thêm" adds.
+      // "Tổ Hai ... ít hơn" and things going away subtract; "thêm" adds.
       if (p.includes('thêm')) return String(nums[0] + nums[1]);
       return String(nums[0] - nums[1]);
     }

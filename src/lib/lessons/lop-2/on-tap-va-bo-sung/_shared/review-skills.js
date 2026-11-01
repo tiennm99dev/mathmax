@@ -259,12 +259,25 @@ export const compareSkill = {
   },
 };
 
-/** Things in the word problems: where they are, and what they are called. */
+/**
+ * Things in the word problems: where they are, what they are called, how
+ * more of them come and how some of them go.
+ */
 const THINGS = [
-  { what: 'quyển sách', where: 'Thư viện lớp có' },
-  { what: 'cây', where: 'Vườn trường có' },
-  { what: 'con gà', where: 'Nhà bác Ba có' },
-  { what: 'quả bóng', where: 'Cửa hàng có' },
+  {
+    what: 'quyển sách',
+    where: 'Thư viện lớp có',
+    add: 'Cô giáo mang thêm',
+    take: 'Các bạn mượn về nhà',
+  },
+  {
+    what: 'chậu hoa',
+    where: 'Sân trường có',
+    add: 'Các bạn mang thêm',
+    take: 'Các bạn chuyển vào lớp',
+  },
+  { what: 'con gà', where: 'Nhà bác Ba có', add: 'Bác Ba mua thêm', take: 'Bác Ba bán đi' },
+  { what: 'quả bóng', where: 'Cửa hàng có', add: 'Cửa hàng nhập thêm', take: 'Cửa hàng bán đi' },
 ];
 
 /** Two groups that collected something, for "ít hơn bao nhiêu" problems. */
@@ -284,7 +297,7 @@ export const storySkill = {
     if (roll < 0.35) {
       const { a, b, c } = calc(rand, '+');
       return {
-        prompt: `${t.where} ${a} ${t.what}. Có thêm ${b} ${t.what} nữa. Hỏi có tất cả bao nhiêu ${t.what}?`,
+        prompt: `${t.where} ${a} ${t.what}. ${t.add} ${b} ${t.what}. Hỏi có tất cả bao nhiêu ${t.what}?`,
         ...nearOptions(rand, c, [a - b]),
         hint: 'Thêm vào thì em làm phép cộng.',
         solution: `${expr(a, b, '+')} = ${c}. Có tất cả ${c} ${t.what}.`,
@@ -293,7 +306,7 @@ export const storySkill = {
     if (roll < 0.7) {
       const { a, b, c } = calc(rand, '-');
       return {
-        prompt: `${t.where} ${a} ${t.what}. Đã bớt đi ${b} ${t.what}. Hỏi còn lại bao nhiêu ${t.what}?`,
+        prompt: `${t.where} ${a} ${t.what}. ${t.take} ${b} ${t.what}. Hỏi còn lại bao nhiêu ${t.what}?`,
         ...nearOptions(rand, c, [a + b]),
         hint: 'Bớt đi thì em làm phép trừ.',
         solution: `${expr(a, b, '-')} = ${c}. Còn lại ${c} ${t.what}.`,
