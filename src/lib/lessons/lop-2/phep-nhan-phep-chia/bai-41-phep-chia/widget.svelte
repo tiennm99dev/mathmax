@@ -11,6 +11,7 @@
     SHARE_TASKS,
     WIDTH,
     counts,
+    leftTap,
     nextPlate,
     pictureHeight,
     plateAt,
@@ -83,12 +84,12 @@
     moveTo(id, where[id] === null ? nextPlate(task, where) : null);
   }
 
-  /** Where the current press started, so a tap without a drag can toggle. */
-  let press = { id: -1, x: 0, y: 0 };
+  /** The current press in screen pixels, so a tap can toggle and a drag can drop. */
+  let press = { id: -1, x: 0, y: 0, dragged: false };
 
   /** @param {Item} it */
   function drop(it) {
-    if (press.id === it.id && Math.hypot(it.x - press.x, it.y - press.y) < 6) {
+    if (press.id === it.id && !press.dragged) {
       press.id = -1;
       toggle(it.id);
       return;
@@ -207,7 +208,12 @@
             : `của ${NAMES[where[it.id] ?? 0]}`}"
           style="cursor:grab; outline:none"
           use:draggable={dragFor(it)}
-          onpointerdown={() => (press = { id: it.id, x: it.x, y: it.y })}
+          onpointerdown={(e) => (press = { id: it.id, x: e.clientX, y: e.clientY, dragged: false })}
+          onpointermove={(e) => {
+            if (press.id === it.id && leftTap(e.clientX - press.x, e.clientY - press.y)) {
+              press.dragged = true;
+            }
+          }}
           onkeydown={(e) => onKey(e, it.id)}
         >
           <g transform="translate({it.x} {it.y}) scale({CANDY / 32})">

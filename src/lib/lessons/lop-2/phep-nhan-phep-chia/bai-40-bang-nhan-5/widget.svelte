@@ -27,7 +27,7 @@
 
 {#snippet handRow(/** @type {number} */ shown)}
   <ul
-    class="grid grid-cols-5 gap-1 rounded-2xl bg-amber-50 p-2"
+    class="mx-auto grid w-full max-w-md grid-cols-5 gap-1 rounded-2xl bg-amber-50 p-2"
     aria-label="{shown} bàn tay, tất cả {BASE * shown} ngón"
   >
     {#each { length: 10 } as _, i (i)}
@@ -80,9 +80,7 @@
   {:else}
     <ChoiceRound build={round} labels={KIND_LABELS} allGood="Em đã thuộc bảng nhân 5 rồi!">
       {#snippet visual(/** @type {{ visual?: { n: number } }} */ q, /** @type {boolean} */ settled)}
-        {#if settled}
-          {@render handRow(q.visual?.n ?? 0)}
-        {/if}
+        {@render handRow(settled ? (q.visual?.n ?? 0) : 0)}
       {/snippet}
     </ChoiceRound>
   {/if}

@@ -124,6 +124,17 @@ export function status(task, where) {
   return { done: true, text: `Đúng rồi! ${s.result} ${s.division}, vì ${s.multiplication}.` };
 }
 
+/** How far, in screen pixels, a press may wander and still count as a tap. */
+export const TAP_SLOP = 8;
+
+/**
+ * Whether a pointer that moved this far from where it pressed has left a tap
+ * behind. A finger always wobbles a little, so any movement at all is too strict.
+ * @param {number} dx
+ * @param {number} dy
+ */
+export const leftTap = (dx, dy) => Math.hypot(dx, dy) >= TAP_SLOP;
+
 /* Drawing: the bowl on top, the plates below, in a 360-wide picture. */
 
 export const WIDTH = 360;

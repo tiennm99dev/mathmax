@@ -126,10 +126,10 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Toa tàu nào có kết quả lớn nhất?',
+      prompt: 'Phép nhân nào có tích lớn nhất?',
       options: ['5 × 3', '5 × 4', '2 × 9', '2 × 6'],
       answer: 1,
-      hints: ['Em tính kết quả của từng toa rồi so sánh.'],
+      hints: ['Em tính tích của từng phép nhân rồi so sánh.'],
       solution: '5 × 3 = 15, 5 × 4 = 20, 2 × 9 = 18, 2 × 6 = 12. Lớn nhất là 20.',
     },
     {

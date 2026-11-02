@@ -143,7 +143,8 @@ export default {
     },
     {
       type: 'order',
-      prompt: 'Mỗi xe đạp có 2 bánh. 4 xe đạp có 8 bánh. Em xếp các thẻ thành phép nhân đúng.',
+      prompt:
+        'Mỗi xe đạp có 2 bánh. 4 xe đạp có 8 bánh. Số 2 được lấy 4 lần. Em xếp các thẻ thành phép nhân đúng.',
       items: ['8', '×', '2', '=', '4'],
       answer: [2, 1, 4, 3, 0],
       hints: ['Số bánh của mỗi xe đứng trước dấu nhân.'],

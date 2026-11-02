@@ -124,6 +124,14 @@ export default {
       solution: 'Đổi chỗ hai thừa số thì tích không đổi. Cả hai phép nhân đều bằng 20.',
     },
     {
+      type: 'choice',
+      prompt: 'Em chọn dấu đúng: 2 × 4 ... 7',
+      options: ['>', '<', '='],
+      answer: 0,
+      hints: ['Em tính tích của 2 × 4 trước.', 'Rồi so sánh tích đó với 7.'],
+      solution: '2 × 4 = 8. Vì 8 > 7 nên 2 × 4 > 7.',
+    },
+    {
       type: 'count',
       prompt: 'Có 4 lọ hoa, mỗi lọ 2 bông. Cô gộp hết như hình. Tích của 2 × 4 là mấy?',
       picture: 'flower',

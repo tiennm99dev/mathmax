@@ -8,6 +8,7 @@ import {
   WIDTH,
   bowlSpot,
   counts,
+  leftTap,
   nextPlate,
   pictureHeight,
   plateAt,
@@ -113,5 +114,14 @@ describe('the picture', () => {
   it('places a candy by its order on the plate', () => {
     expect(spotOf([null, 1, 1], 2)).toEqual(plateSpot(1, 1));
     expect(spotOf([null, 1, 1], 0)).toEqual(bowlSpot(0));
+  });
+});
+
+describe('leftTap', () => {
+  it('keeps a wobbling finger a tap and lets a real move become a drag', () => {
+    expect(leftTap(0, 0)).toBe(false);
+    expect(leftTap(3, -4)).toBe(false);
+    expect(leftTap(6, 8)).toBe(true);
+    expect(leftTap(0, 40)).toBe(true);
   });
 });

@@ -89,7 +89,7 @@ export default {
       prompt: 'Có 20 hạt dẻ, chia đều cho 4 bạn. Mỗi bạn được mấy hạt?',
       options: ['4', '5', '10', '16'],
       answer: 1,
-      hints: ['Em đếm thêm 5 cho đủ 4 lần xem có đến 20 không.'],
+      hints: ['Em chia lần lượt cho từng bạn, mỗi lượt 1 hạt.', 'Số nào nhân với 4 thì được 20?'],
       solution: '20 : 4 = 5, vì 5 × 4 = 20. Mỗi bạn được 5 hạt dẻ.',
     },
     {
@@ -142,11 +142,12 @@ export default {
     },
     {
       type: 'order',
-      prompt: 'Có 10 bông hoa, cắm đều vào 2 lọ, mỗi lọ 5 bông. Em xếp thẻ thành phép chia đúng.',
+      prompt:
+        'Có 10 bông hoa, cắm đều vào 2 lọ thì mỗi lọ có 5 bông. Em xếp thẻ thành phép chia tìm số bông mỗi lọ.',
       items: ['5', '=', ':', '10', '2'],
       answer: [3, 2, 4, 1, 0],
-      hints: ['Số hoa cần chia đứng đầu tiên.'],
-      solution: '10 : 2 = 5.',
+      hints: ['Số hoa cần chia đứng đầu tiên, rồi đến số lọ.'],
+      solution: 'Chia đều 10 bông vào 2 lọ: 10 : 2 = 5 (bông).',
     },
     {
       type: 'choice',
