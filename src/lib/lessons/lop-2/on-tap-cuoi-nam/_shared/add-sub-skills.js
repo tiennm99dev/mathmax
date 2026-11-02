@@ -618,6 +618,9 @@ export const ADD_SUB_100_SKILLS = [
   storySkill(STORIES_100),
 ];
 
+/** The word problems of the review within 1000. */
+export const story1000Skill = storySkill(STORIES_1000);
+
 /** The parts of the review within 1000. */
 export const ADD_SUB_1000_SKILLS = [
   mentalHundredsSkill,
@@ -629,5 +632,5 @@ export const ADD_SUB_1000_SKILLS = [
   chainSkill(RANGE_1000),
   compareCalcSkill(RANGE_1000),
   hiddenDigitSkill(RANGE_1000),
-  storySkill(STORIES_1000),
+  story1000Skill,
 ];

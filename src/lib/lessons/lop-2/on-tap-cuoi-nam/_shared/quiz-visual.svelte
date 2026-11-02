@@ -9,6 +9,7 @@
   import PlaceBlock from './place-block.svelte';
   import SolidFigure from './solid-figure.svelte';
   import { SOLID_LOOKS } from './solids.js';
+  import MeasureSurveyVisual from './measure-survey-visual.svelte';
 
   /**
    * The picture above a review question (`Visual` in `visual.js`). Numbers the
@@ -199,4 +200,6 @@
       </div>
     {/each}
   </div>
+{:else}
+  <MeasureSurveyVisual {visual} {settled} />
 {/if}
