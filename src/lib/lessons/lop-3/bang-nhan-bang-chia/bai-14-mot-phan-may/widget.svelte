@@ -206,7 +206,6 @@
       labels={KIND_LABELS}
       allGood="Tuyệt vời! Em đã biết đọc và tìm một phần mấy."
       pictureOption={(o) => typeof o !== 'string' && Boolean(o.figure)}
-      listOptions={(q) => q.options.every((o) => typeof o === 'string' && o.length > 12)}
     >
       {#snippet visual(q, settled)}
         {#if q.visual}

@@ -159,11 +159,16 @@ export function partPaths({ shape, sizes }) {
   });
 }
 
-const SHAPE_NAMES = /** @type {const} */ ({
-  circle: 'Hình tròn',
-  bar: 'Hình chữ nhật',
-  grid: 'Hình chữ nhật',
-});
+/**
+ * The name of a figure's shape; a grid with as many rows as columns is a square.
+ * @param {Figure} figure
+ */
+function shapeName({ shape, sizes }) {
+  if (shape === 'circle') return 'Hình tròn';
+  if (shape === 'bar') return 'Hình chữ nhật';
+  const [cols, rows] = GRIDS[sizes.length];
+  return cols === rows ? 'Hình vuông' : 'Hình chữ nhật';
+}
 
 /**
  * What a screen reader hears for a figure. It names each part once, so the
@@ -180,5 +185,5 @@ export function figureLabel(figure) {
     return `phần ${size > smallest ? 'to' : 'nhỏ'}${coloured ? ' tô màu' : ''}`;
   });
   const kind = equal ? 'các phần bằng nhau' : 'các phần không bằng nhau';
-  return `${SHAPE_NAMES[figure.shape]}, ${kind}: ${parts.join(', ')}.`;
+  return `${shapeName(figure)}, ${kind}: ${parts.join(', ')}.`;
 }

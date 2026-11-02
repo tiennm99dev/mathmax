@@ -43,7 +43,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Có 18 con ếch. $\\dfrac{1}{6}$ số con ếch là 18 : 6 = 3 con.',
+          text: 'Có 12 con gà. $\\dfrac{1}{6}$ số con gà là 12 : 6 = 2 con.',
         },
       ],
     },
@@ -55,19 +55,19 @@ export default {
   },
   examples: [
     {
-      problem: 'Việt xếp 5 bàn, mỗi bàn 6 cái li. Việt xếp tất cả bao nhiêu cái li?',
-      steps: ['6 cái li được lấy 5 lần.', 'Em làm phép nhân: 6 × 5 = 30.'],
-      answer: 'Việt xếp tất cả 30 cái li.',
+      problem: 'Lan xếp 4 khay, mỗi khay 7 cái đĩa. Lan xếp tất cả bao nhiêu cái đĩa?',
+      steps: ['7 cái đĩa được lấy 4 lần.', 'Em làm phép nhân: 7 × 4 = 28.'],
+      answer: 'Lan xếp tất cả 28 cái đĩa.',
     },
     {
-      problem: 'Mai có 45 bông hoa, cắm vào các lọ, mỗi lọ 9 bông. Mai cắm được mấy lọ?',
-      steps: ['Chia 45 bông thành từng nhóm 9 bông.', 'Em làm phép chia: 45 : 9 = 5.'],
-      answer: 'Mai cắm được 5 lọ.',
+      problem: 'Nam có 56 quả táo, xếp vào các đĩa, mỗi đĩa 8 quả. Nam xếp được mấy đĩa?',
+      steps: ['Chia 56 quả thành từng nhóm 8 quả.', 'Em làm phép chia: 56 : 8 = 7.'],
+      answer: 'Nam xếp được 7 đĩa.',
     },
     {
-      problem: 'Có 18 con ếch. $\\dfrac{1}{9}$ số con ếch là mấy con?',
-      steps: ['Chia 18 con thành 9 phần bằng nhau.', '18 : 9 = 2.'],
-      answer: '$\\dfrac{1}{9}$ số con ếch là 2 con.',
+      problem: 'Có 24 con cá. $\\dfrac{1}{8}$ số con cá là mấy con?',
+      steps: ['Chia 24 con thành 8 phần bằng nhau.', '24 : 8 = 3.'],
+      answer: '$\\dfrac{1}{8}$ số con cá là 3 con.',
     },
   ],
   practice: [
@@ -98,6 +98,19 @@ export default {
       ],
       hints: ['Đổi chỗ các thừa số, tích không đổi.'],
       solution: '8 × 7 = 56. 3 × 9 = 27. 5 × 6 = 30. 4 × 8 = 32.',
+    },
+    {
+      type: 'match',
+      prompt: 'Biết 8 × 5 = 40. Nối mỗi phép tính với kết quả đúng.',
+      left: ['5 × 8', '40 : 8', '40 : 5'],
+      right: ['8', '40', '5'],
+      pairs: [
+        [0, 1],
+        [1, 2],
+        [2, 0],
+      ],
+      hints: ['Từ một phép nhân, em có hai phép chia.'],
+      solution: '5 × 8 = 40. 40 : 8 = 5. 40 : 5 = 8.',
     },
     {
       type: 'multi',

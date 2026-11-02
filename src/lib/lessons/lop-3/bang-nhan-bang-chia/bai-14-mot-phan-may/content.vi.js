@@ -54,7 +54,7 @@ export default {
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Nếu các phần không bằng nhau, em không gọi được phần tô màu là một phần mấy.',
+          text: 'Các phần phải bằng nhau thì em mới đếm số phần để gọi một phần mấy.',
         },
         {
           type: 'p',
@@ -65,12 +65,12 @@ export default {
     {
       heading: 'Một phần mấy của một nhóm đồ vật',
       blocks: [
-        { type: 'p', text: 'Có 12 quả cam. Em chia đều thành 3 phần. Mỗi phần có 4 quả cam.' },
-        { type: 'p', text: 'Mỗi phần là $\\dfrac{1}{3}$ số quả cam.' },
+        { type: 'p', text: 'Có 15 quả táo. Em chia đều thành 3 phần. Mỗi phần có 5 quả táo.' },
+        { type: 'p', text: 'Mỗi phần là $\\dfrac{1}{3}$ số quả táo.' },
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Muốn tìm $\\dfrac{1}{3}$ số quả cam, em lấy số quả cam chia cho 3: 12 : 3 = 4.',
+          text: 'Muốn tìm $\\dfrac{1}{3}$ số quả táo, em lấy số quả táo chia cho 3: 15 : 3 = 5.',
         },
       ],
     },
@@ -88,9 +88,9 @@ export default {
       answer: 'Đã tô màu $\\dfrac{1}{6}$ hình, đọc là một phần sáu.',
     },
     {
-      problem: 'Có 12 quả cam. Chia thành 3 phần bằng nhau. Mỗi phần có mấy quả cam?',
-      steps: ['Em làm phép chia: 12 : 3 = 4.', 'Mỗi phần là $\\dfrac{1}{3}$ số quả cam.'],
-      answer: 'Mỗi phần có 4 quả cam.',
+      problem: 'Có 16 cái kẹo. Chia thành 4 phần bằng nhau. Mỗi phần có mấy cái kẹo?',
+      steps: ['Em làm phép chia: 16 : 4 = 4.', 'Mỗi phần là $\\dfrac{1}{4}$ số cái kẹo.'],
+      answer: 'Mỗi phần có 4 cái kẹo.',
     },
   ],
   practice: [
@@ -129,11 +129,11 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Một hình được chia thành 3 phần không bằng nhau, tô màu 1 phần. Đã tô màu $\\dfrac{1}{3}$ hình, đúng hay sai?',
+        'Một hình được chia thành 3 phần: một phần to và hai phần nhỏ bằng nhau. Tô màu 1 phần. Đã tô màu $\\dfrac{1}{3}$ hình, đúng hay sai?',
       options: ['Đúng', 'Sai'],
       answer: 1,
       hints: ['Các phần có bằng nhau không?'],
-      solution: 'Sai. Các phần phải bằng nhau thì mới là $\\dfrac{1}{3}$.',
+      solution: 'Sai. Ba phần không bằng nhau, nên phần tô màu không phải là $\\dfrac{1}{3}$ hình.',
     },
     {
       type: 'choice',
@@ -173,6 +173,16 @@ export default {
       choices: [3, 4, 5, 6],
       hints: ['Em đếm từng quả.'],
       solution: '20 : 5 = 4. Vậy $\\dfrac{1}{5}$ số quả dâu tây là 4 quả.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Có 8 hạt dẻ, chia đều thành 4 phần. Em khoanh vào 1 phần. Em đã khoanh vào một phần mấy số hạt dẻ?',
+      options: ['$\\dfrac{1}{2}$', '$\\dfrac{1}{4}$', '$\\dfrac{1}{6}$', '$\\dfrac{1}{8}$'],
+      answer: 1,
+      hints: ['Em đếm số phần được chia, không đếm số hạt dẻ.'],
+      solution:
+        'Chia đều thành 4 phần, khoanh vào 1 phần: đó là $\\dfrac{1}{4}$ số hạt dẻ. Mỗi phần có 8 : 4 = 2 hạt.',
     },
     {
       type: 'number',

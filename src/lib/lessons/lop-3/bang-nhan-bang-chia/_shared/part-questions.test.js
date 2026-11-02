@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { isEqual, isOneOver, partPaths, partWords, sliceAngles, unevenSizes } from './parts.js';
+import {
+  equalFigure,
+  figureLabel,
+  isEqual,
+  isOneOver,
+  partPaths,
+  partWords,
+  sliceAngles,
+  unevenSizes,
+} from './parts.js';
 import {
   equalParts,
   pickPart,
@@ -57,6 +66,12 @@ describe('how the book writes and reads a part', () => {
     expect(partPaths({ shape: 'circle', sizes: [1, 1, 1], shaded: 0 })).toHaveLength(3);
     expect(partPaths({ shape: 'bar', sizes: [2, 1], shaded: 0 })).toHaveLength(2);
     expect(partPaths({ shape: 'grid', sizes: Array(9).fill(1), shaded: 0 })).toHaveLength(9);
+  });
+
+  it('names a square grid as a square and a wider grid as a rectangle', () => {
+    expect(figureLabel(equalFigure('grid', 4))).toMatch(/^Hình vuông/);
+    expect(figureLabel(equalFigure('grid', 9))).toMatch(/^Hình vuông/);
+    expect(figureLabel(equalFigure('grid', 6))).toMatch(/^Hình chữ nhật/);
   });
 
   it('keeps uneven sizes uneven in every pattern', () => {
