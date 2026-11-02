@@ -166,7 +166,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Mỗi ngày, con bò nhà bác An cho 20 l sữa. Con bò nhà bác Bình cho ít hơn 5 l. Hỏi con bò nhà bác Bình cho bao nhiêu lít sữa mỗi ngày?',
+        'Mỗi ngày, con bò nhà bác An cho 20 l sữa. Con bò nhà bác Bình cho ít hơn con bò nhà bác An 5 l. Hỏi con bò nhà bác Bình cho bao nhiêu lít sữa mỗi ngày?',
       options: ['15 l', '25 l', '5 l'],
       answer: 0,
       hints: ['Ít hơn thì em làm phép trừ.'],

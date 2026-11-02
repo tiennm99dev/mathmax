@@ -105,11 +105,12 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Một hình chữ nhật được chia thành 2 phần bởi một đoạn thẳng. Có tất cả mấy hình tứ giác?',
+        'Một đoạn thẳng chia một hình chữ nhật thành 2 hình chữ nhật nhỏ. Có tất cả mấy hình tứ giác?',
       options: ['2 hình', '3 hình', '4 hình'],
       answer: 1,
       hints: ['Em đếm 2 phần nhỏ, rồi đừng quên hình chữ nhật lớn.'],
-      solution: 'Có 2 hình nhỏ và 1 hình lớn: 2 + 1 = 3 hình tứ giác.',
+      solution:
+        'Hình chữ nhật cũng là hình tứ giác. Có 2 hình nhỏ và 1 hình lớn: 2 + 1 = 3 hình tứ giác.',
     },
     {
       type: 'match',

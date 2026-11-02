@@ -429,7 +429,13 @@ export function compareCalcSkill(range) {
         };
       }
       const whole = Math.max(a, b);
-      const [m, n] = [int(rand, 2, whole - 1), int(rand, 2, whole - 1)];
+      const taken = () => {
+        for (;;) {
+          const t = int(rand, 2, whole - 1);
+          if (carryCount(whole, t, '-') <= 1) return t;
+        }
+      };
+      const [m, n] = [taken(), taken()];
       const [x, y] = [whole - m, whole - n];
       const sign = compareSign(x, y);
       return {
@@ -505,7 +511,7 @@ const STORIES_100 = [
     const a = int(rand, 18, 30);
     const b = int(rand, 3, 9);
     return {
-      prompt: `Mỗi ngày, con bò nhà bác An cho ${a} l sữa. Con bò nhà bác Bình cho ít hơn ${b} l. Hỏi con bò nhà bác Bình cho bao nhiêu lít sữa mỗi ngày?`,
+      prompt: `Mỗi ngày, con bò nhà bác An cho ${a} l sữa. Con bò nhà bác Bình cho ít hơn con bò nhà bác An ${b} l. Hỏi con bò nhà bác Bình cho bao nhiêu lít sữa mỗi ngày?`,
       ...unitOptions(rand, a - b, 'l', [a + b, a - b + 1], 100),
       hint: 'Ít hơn thì em làm phép trừ.',
       solution: `Con bò nhà bác Bình cho số lít sữa là: ${a} ${MINUS} ${b} = ${a - b} (l). Đáp số: ${a - b} l.`,
@@ -524,12 +530,28 @@ const STORIES_100 = [
   },
 ];
 
+/**
+ * Two numbers from their ranges whose calculation carries at most once, as the
+ * book's calculations do.
+ * @param {() => number} rand
+ * @param {[number, number]} rangeA
+ * @param {[number, number]} rangeB
+ * @param {Op} op
+ * @returns {[number, number]}
+ */
+function storyNumbers(rand, rangeA, rangeB, op) {
+  for (;;) {
+    const a = int(rand, ...rangeA);
+    const b = int(rand, ...rangeB);
+    if (carryCount(a, b, op) <= 1) return [a, b];
+  }
+}
+
 /** Word problems within 1000, from the book's shapes. */
 const STORIES_1000 = [
   /** @param {() => number} rand */
   (rand) => {
-    const a = int(rand, 120, 480);
-    const b = int(rand, 110, 450);
+    const [a, b] = storyNumbers(rand, [120, 480], [110, 450], '+');
     return {
       prompt: `Trường Lê Lợi trồng được ${a} cây. Trường Nguyễn Trãi trồng được ${b} cây. Hỏi cả hai trường trồng được bao nhiêu cây?`,
       ...unitOptions(rand, a + b, 'cây', [a + b - 10, a + b + 10, a + b - 100]),
@@ -539,10 +561,9 @@ const STORIES_1000 = [
   },
   /** @param {() => number} rand */
   (rand) => {
-    const a = int(rand, 350, 750);
-    const b = int(rand, 18, 180);
+    const [a, b] = storyNumbers(rand, [350, 750], [18, 180], '-');
     return {
-      prompt: `Trường Lê Lợi trồng được ${a} cây. Trường Nguyễn Trãi trồng được ít hơn ${b} cây. Hỏi Trường Nguyễn Trãi trồng được bao nhiêu cây?`,
+      prompt: `Trường Lê Lợi trồng được ${a} cây. Trường Nguyễn Trãi trồng được ít hơn Trường Lê Lợi ${b} cây. Hỏi Trường Nguyễn Trãi trồng được bao nhiêu cây?`,
       ...unitOptions(rand, a - b, 'cây', [a + b, a - b + 10]),
       hint: 'Ít hơn thì em làm phép trừ.',
       solution: `Trường Nguyễn Trãi trồng được số cây là: ${a} ${MINUS} ${b} = ${a - b} (cây). Đáp số: ${a - b} cây.`,
@@ -550,8 +571,7 @@ const STORIES_1000 = [
   },
   /** @param {() => number} rand */
   (rand) => {
-    const a = int(rand, 110, 480);
-    const b = int(rand, 120, 450);
+    const [a, b] = storyNumbers(rand, [110, 480], [120, 450], '+');
     return {
       prompt: `Từ thành phố A đến thành phố B dài ${a} km. Từ thành phố B đến thành phố C dài ${b} km. Hỏi đi từ A đến C, qua B, dài bao nhiêu ki-lô-mét?`,
       ...unitOptions(rand, a + b, 'km', [a + b - 10, a + b + 100]),
@@ -561,8 +581,7 @@ const STORIES_1000 = [
   },
   /** @param {() => number} rand */
   (rand) => {
-    const a = int(rand, 112, 132);
-    const b = int(rand, 92, 108);
+    const [a, b] = storyNumbers(rand, [112, 132], [92, 108], '-');
     return {
       prompt: `Chị Mai cao ${a} cm. Em Mi cao ${b} cm. Hỏi chị Mai cao hơn em Mi bao nhiêu xăng-ti-mét?`,
       ...unitOptions(rand, a - b, 'cm', [a + b, a - b + 10]),

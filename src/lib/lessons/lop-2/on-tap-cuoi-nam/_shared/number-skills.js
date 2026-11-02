@@ -41,7 +41,16 @@ function swapEnds(n) {
  */
 function mixUps(rand, n) {
   const { hundreds, tens, ones } = placesOf(n);
-  const near = [swapEnds(n), tens * 100 + hundreds * 10 + ones, n + 10, n - 10, n + 1, n + 100];
+  const near = [
+    swapEnds(n),
+    tens * 100 + hundreds * 10 + ones,
+    n + 10,
+    n - 10,
+    n + 1,
+    n - 1,
+    n + 100,
+    n - 100,
+  ];
   const kept = [...new Set(near)].filter((v) => v !== n && v >= 100 && v <= 999);
   return shuffle(rand, kept).slice(0, 3);
 }

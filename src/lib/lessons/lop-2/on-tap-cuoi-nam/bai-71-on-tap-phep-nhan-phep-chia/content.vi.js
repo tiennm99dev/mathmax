@@ -143,7 +143,7 @@ export default {
     },
     {
       type: 'match',
-      prompt: 'Mỗi chú ong đậu vào bông hoa có cùng kết quả. Em nối phép nhân với phép chia.',
+      prompt: 'Nối mỗi phép nhân với phép chia có cùng kết quả.',
       left: ['2 × 3', '2 × 5', '2 × 2', '2 × 4'],
       right: ['12 : 2', '20 : 2', '8 : 2', '16 : 2', '14 : 2'],
       pairs: [
@@ -202,7 +202,9 @@ export default {
         'Rô-bốt đếm được 8 cái chân trong một chuồng có cả gà và thỏ. Trong chuồng có mấy con thỏ?',
       options: ['1 con', '2 con', '3 con'],
       answer: 0,
-      hints: ['Mỗi con gà có 2 chân, mỗi con thỏ có 4 chân. Em thử với 1 con thỏ.'],
+      hints: [
+        'Mỗi con gà có 2 chân, mỗi con thỏ có 4 chân. Em thử từng đáp án, nhớ rằng chuồng có cả gà và thỏ.',
+      ],
       solution:
         'Có 1 con thỏ thì còn 8 − 4 = 4 chân, đó là 2 con gà. Có 2 con thỏ thì hết 8 chân, không còn con gà nào. Vậy có 1 con thỏ.',
     },

@@ -324,6 +324,43 @@ describe('review skills of the year', () => {
     expect(bad).toEqual([]);
   });
 
+  it('never writes a calculation with two carries in the review within 1000', () => {
+    const bad = [];
+    for (const skill of ADD_SUB_1000_SKILLS) {
+      for (const seed of SEEDS) {
+        const q = skill.make(rng(seed));
+        for (const [text, a, sign, b] of q.solution.matchAll(/(\d+) ([+−]) (\d+)/g)) {
+          if (carryCount(Number(a), Number(b), sign === '+' ? '+' : '-') > 1) {
+            bad.push(`${skill.id} ${seed}: ${text}`);
+          }
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('says who a story of "fewer" compares with', () => {
+    const bad = [];
+    for (const skill of [...ADD_SUB_100_SKILLS, ...ADD_SUB_1000_SKILLS]) {
+      if (skill.id !== 'bai-toan') continue;
+      for (const seed of SEEDS) {
+        const { prompt } = skill.make(rng(seed));
+        if (/ít hơn \d/.test(prompt)) bad.push(prompt);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('always offers at least three readings or numbers to choose from', () => {
+    const skill = NUMBER_SKILLS.find((s) => s.id === 'doc-viet');
+    const bad = [];
+    for (let seed = 1; seed <= 3000; seed++) {
+      const q = skill?.make(rng(seed));
+      if (q && q.options.length < 3) bad.push(q.prompt);
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('never asks a table question outside the tables of 2 and 5', () => {
     const skill = MUL_DIV_SKILLS.find((s) => s.id === 'bang');
     const bad = [];
