@@ -62,6 +62,7 @@ export function signNote(pair, picked) {
     return { tone: 'info', text: 'Em đếm các khối hai bên rồi chọn dấu.' };
   }
   if (picked === compareSign(a, b)) return { tone: 'ok', text: `Đúng rồi! ${compareWhy(a, b)}` };
+  if (a === b) return { tone: 'warn', text: 'Chưa đúng. Hai bên có số khối như nhau.' };
   return pair.left.hundreds === pair.right.hundreds
     ? {
         tone: 'warn',

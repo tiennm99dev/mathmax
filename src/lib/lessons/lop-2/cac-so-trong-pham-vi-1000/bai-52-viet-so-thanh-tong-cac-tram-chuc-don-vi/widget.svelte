@@ -3,7 +3,7 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import BlockPile from '../_shared/block-pile.svelte';
   import { PLACES, placesOf } from '../_shared/place-value.js';
-  import { NUMBERS, allOpen, digitText, doneText, sumSoFar } from './engine.js';
+  import { NUMBERS, allOpen, sumSoFar, tapNote } from './engine.js';
 
   /** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
 
@@ -19,11 +19,7 @@
   const number = $derived(NUMBERS[round % NUMBERS.length]);
   const digits = $derived(placesOf(number));
   const done = $derived(allOpen(number, opened));
-  const note = $derived.by(() => {
-    if (done) return { tone: /** @type {const} */ ('ok'), text: doneText(number) };
-    if (last) return { tone: /** @type {const} */ ('info'), text: digitText(number, last) };
-    return { tone: /** @type {const} */ ('info'), text: 'Em chạm vào từng chữ số nhé.' };
-  });
+  const note = $derived(tapNote(number, opened, last));
 
   /** @param {PlaceKey} key */
   function tap(key) {

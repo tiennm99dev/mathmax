@@ -64,5 +64,8 @@ describe('judging the sign', () => {
   it('accepts equal numbers', () => {
     const same = { left: { hundreds: 4, tens: 0 }, right: { hundreds: 4, tens: 0 } };
     expect(signNote(same, '=').tone).toBe('ok');
+    const wrong = signNote(same, '>');
+    expect(wrong.tone).toBe('warn');
+    expect(wrong.text).not.toContain('thanh chục');
   });
 });

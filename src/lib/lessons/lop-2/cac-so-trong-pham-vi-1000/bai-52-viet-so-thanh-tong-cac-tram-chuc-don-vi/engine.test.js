@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { sumParts } from '../_shared/place-value.js';
-import { NUMBERS, allOpen, digitText, doneText, sumSoFar } from './engine.js';
+import { NUMBERS, allOpen, digitText, doneText, sumSoFar, tapNote } from './engine.js';
 
 describe('tapping the digits', () => {
   it('says what a digit stands for', () => {
@@ -29,6 +29,29 @@ describe('tapping the digits', () => {
   it('closes with the book sums', () => {
     expect(doneText(814)).toContain('814 = 800 + 10 + 4');
     expect(doneText(607)).toContain('607 = 600 + 7');
+  });
+});
+
+describe('the line after a tap', () => {
+  it('leads the child before the first tap', () => {
+    expect(tapNote(408, [], null).tone).toBe('info');
+  });
+
+  it('explains a digit while the sum is open', () => {
+    expect(tapNote(345, ['tens'], 'tens').text).toBe('Chữ số 4 ở hàng chục: 4 chục là 40.');
+  });
+
+  it('closes the sum once every part is open', () => {
+    const note = tapNote(408, ['hundreds', 'ones'], 'ones');
+    expect(note.tone).toBe('ok');
+    expect(note.text).toBe(doneText(408));
+  });
+
+  it('still explains a zero digit tapped after the sum is finished', () => {
+    const note = tapNote(408, ['hundreds', 'ones', 'tens'], 'tens');
+    expect(note.tone).toBe('ok');
+    expect(note.text).toContain('không viết vào tổng');
+    expect(note.text).toContain('408 = 400 + 8');
   });
 });
 

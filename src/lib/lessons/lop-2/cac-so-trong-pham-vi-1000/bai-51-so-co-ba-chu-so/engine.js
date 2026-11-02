@@ -86,6 +86,6 @@ export function challengeNote(table, target) {
   const more = table[off.key] < want[off.key];
   return {
     tone: 'info',
-    text: `Cột ${off.title} ${more ? 'còn thiếu khối' : 'đang thừa khối'}. Em nghe lại tên số nhé.`,
+    text: `Cột ${off.title} ${more ? 'còn thiếu khối' : 'đang thừa khối'}. Em đọc lại tên số nhé.`,
   };
 }

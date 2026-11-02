@@ -40,13 +40,13 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Chữ số 0 ở hàng chục',
-          text: 'Hàng chục là 0 thì đọc "linh": 205 đọc là hai trăm linh năm, 803 đọc là tám trăm linh ba.',
+          text: 'Hàng chục là 0, hàng đơn vị khác 0 thì đọc "linh": 205 đọc là hai trăm linh năm, 803 đọc là tám trăm linh ba.',
         },
         {
           type: 'callout',
           tone: 'note',
           title: 'Chữ số 0 ở hàng đơn vị',
-          text: 'Hàng đơn vị là 0 thì không đọc: 560 đọc là năm trăm sáu mươi.',
+          text: 'Hàng đơn vị là 0 thì không đọc: 560 đọc là năm trăm sáu mươi, 300 đọc là ba trăm.',
         },
         {
           type: 'callout',
@@ -167,6 +167,6 @@ export default {
   ],
   takeaways: [
     'Viết và đọc số từ hàng trăm, đến hàng chục, rồi hàng đơn vị.',
-    'Hàng chục là 0 thì đọc "linh": 205 là hai trăm linh năm.',
+    'Hàng chục là 0, hàng đơn vị khác 0 thì đọc "linh": 205 là hai trăm linh năm.',
   ],
 };

@@ -54,5 +54,23 @@ export function allOpen(n, opened) {
  * @param {number} n
  */
 export function doneText(n) {
-  return `Đúng rồi! ${n} gồm ${sumParts(n).length} phần: ${n} = ${sumParts(n).join(' + ')}.`;
+  return `Xong rồi! ${n} gồm ${sumParts(n).length} phần: ${n} = ${sumParts(n).join(' + ')}.`;
+}
+
+/**
+ * The live line after a tap. A zero digit is explained even once the sum is
+ * finished, because the child is invited to try it.
+ * @param {number} n
+ * @param {readonly PlaceKey[]} opened
+ * @param {PlaceKey | null} last The digit tapped last.
+ * @returns {{ tone: 'ok' | 'info', text: string }}
+ */
+export function tapNote(n, opened, last) {
+  if (allOpen(n, opened)) {
+    const done = doneText(n);
+    const zero = last && placesOf(n)[last] === 0 ? `${digitText(n, last)} ` : '';
+    return { tone: 'ok', text: `${zero}${done}` };
+  }
+  if (last) return { tone: 'info', text: digitText(n, last) };
+  return { tone: 'info', text: 'Em chạm vào từng chữ số nhé.' };
 }
