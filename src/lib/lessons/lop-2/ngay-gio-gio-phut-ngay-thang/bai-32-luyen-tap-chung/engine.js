@@ -16,9 +16,9 @@ import {
   dialText,
   handsText,
   partText,
-  upperFirst,
   weekdayOf,
-} from '../_shared/time.js';
+} from '#lib/core/kid/time.js';
+import { capitalize } from '#lib/core/kid/quiz.js';
 
 /** @typedef {{ clock?: number, month?: number, marks?: number[] }} Visual */
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<Visual>} Asked */
@@ -77,10 +77,10 @@ export function nameQuestion(rand) {
   const reverse = rand() < 0.5;
   if (reverse) {
     return {
-      prompt: `${upperFirst(named)} còn gọi là mấy giờ?`,
+      prompt: `${capitalize(named)} còn gọi là mấy giờ?`,
       ...mixOptions(rand, day, [`${hour - 2} giờ`, `${hour + 1} giờ`, `${hour - 1} giờ`]),
       hint: 'Lấy số giờ cộng thêm 12.',
-      solution: `${dial} + 12 = ${hour}. ${upperFirst(named)} còn gọi là ${day}.`,
+      solution: `${dial} + 12 = ${hour}. ${capitalize(named)} còn gọi là ${day}.`,
     };
   }
   const part = named.split(' ').at(-1);
@@ -137,8 +137,8 @@ export function lengthQuestion(rand) {
 function weekdayOptions(rand, day) {
   return mixOptions(
     rand,
-    upperFirst(WEEKDAYS[day]),
-    [(day + 1) % 7, (day + 6) % 7, (day + 3) % 7].map((d) => upperFirst(WEEKDAYS[d])),
+    capitalize(WEEKDAYS[day]),
+    [(day + 1) % 7, (day + 6) % 7, (day + 3) % 7].map((d) => capitalize(WEEKDAYS[d])),
   );
 }
 
@@ -173,7 +173,7 @@ export function weekQuestion(rand) {
   const name = WEEKDAYS[weekdayOf(month, date)];
   const { options, answer } = numberOptions(rand, right, 1, MONTH_DAYS[month - 1]);
   return {
-    prompt: `${upperFirst(name)} tuần này là ngày ${date} tháng ${month}. ${upperFirst(name)} tuần ${later ? 'sau' : 'trước'} là ngày mấy?`,
+    prompt: `${capitalize(name)} tuần này là ngày ${date} tháng ${month}. ${capitalize(name)} tuần ${later ? 'sau' : 'trước'} là ngày mấy?`,
     visual: { month, marks: [date] },
     options,
     answer,

@@ -10,19 +10,16 @@
  * - 62 − 37: "2 không trừ được 7, lấy 12 trừ 7 bằng 5, viết 5, nhớ 1. 3 thêm
  *   1 bằng 4, 6 trừ 4 bằng 2, viết 2."
  *
- * Also builds random carrying problems for the widgets and drills. Pure and
+ * Also builds random carrying problems for the widgets and drills, on top of
+ * `column.js`, which holds what carrying and no-carrying share. Pure and
  * DOM-free.
  */
 import { int } from '#lib/core/drill.js';
-import { numberOptions } from '#lib/core/kid/quiz.js';
-import { MINUS } from '#lib/core/number-format.js';
+import { equationText, resultOf } from './column.js';
+import { numberOptions } from './quiz.js';
 
-/** @typedef {'+' | '-'} Op */
-
-/** Kinds of problem, one per theory lesson of the chapter. */
-export const KINDS = /** @type {const} */ (['add-one', 'add-two', 'sub-one', 'sub-two']);
-
-/** @typedef {typeof KINDS[number]} Kind */
+/** @typedef {import('./column.js').Op} Op */
+/** @typedef {import('./column.js').Kind} Kind */
 
 /**
  * One column of a carrying calculation.
@@ -34,35 +31,6 @@ export const KINDS = /** @type {const} */ (['add-one', 'add-two', 'sub-one', 'su
  *   text: string;
  * }} CarryStep
  */
-
-/**
- * @param {number} a
- * @param {number} b
- * @param {Op} op
- */
-export function resultOf(a, b, op) {
-  return op === '+' ? a + b : a - b;
-}
-
-/**
- * "35 + 7" or "42 − 7".
- * @param {number} a
- * @param {number} b
- * @param {Op} op
- */
-export function exprText(a, b, op) {
-  return `${a} ${op === '+' ? '+' : MINUS} ${b}`;
-}
-
-/**
- * "35 + 7 = 42".
- * @param {number} a
- * @param {number} b
- * @param {Op} op
- */
-export function equationText(a, b, op) {
-  return `${exprText(a, b, op)} = ${resultOf(a, b, op)}`;
-}
 
 /**
  * Whether a calculation of a two-digit number with a one- or two-digit
@@ -227,5 +195,22 @@ export function sumOptions(rand, right) {
     .filter((v) => v !== right)
     .slice(0, 2);
   const values = [...near, right - 10, right].sort((x, y) => x - y);
+  return { options: values.map(String), answer: values.indexOf(right) };
+}
+
+/**
+ * Answer options for a carrying difference: two numbers near it, a slip and the
+ * difference, in increasing order. By default the slip forgets the carry in the
+ * tens column (62 − 37 written 35); pass another when the lesson has its own.
+ * @param {() => number} rand
+ * @param {number} right the difference
+ * @param {number} [slip]
+ */
+export function differenceOptions(rand, right, slip = right + 10) {
+  const near = numberOptions(rand, right, right - 3, right + 3)
+    .options.map(Number)
+    .filter((v) => v !== right && v !== slip)
+    .slice(0, 2);
+  const values = [...near, slip, right].sort((x, y) => x - y);
   return { options: values.map(String), answer: values.indexOf(right) };
 }

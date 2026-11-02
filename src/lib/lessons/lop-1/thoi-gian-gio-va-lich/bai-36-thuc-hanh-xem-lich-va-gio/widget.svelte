@@ -2,7 +2,7 @@
   import ClockFace from '#lib/core/visuals/clock-face.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { toMinutes } from '#lib/units-engine/clock.js';
-  import ClockPicture from '../_shared/clock-picture.svelte';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import { ROUTINES, hourOfDay } from '../_shared/time.js';
   import { checkRoutine } from './engine.js';
 
@@ -104,7 +104,7 @@
       <ol class="space-y-2">
         {#each schedule as r (r.id)}
           <li class="flex items-center gap-3 text-lg">
-            <ClockPicture hour={r.hour} size="w-14" />
+            <ClockPicture minutes={r.hour * 60} size="w-14" />
             <span><b>{hourOfDay(r.hour)}</b>: {r.label.toLowerCase()}</span>
           </li>
         {/each}

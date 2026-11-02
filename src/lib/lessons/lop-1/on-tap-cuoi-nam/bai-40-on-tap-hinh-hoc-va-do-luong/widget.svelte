@@ -9,7 +9,7 @@
   length={14}
   allGood="Tuyệt vời! Em đã nắm chắc hình học và đo lường."
 >
-  {#snippet visual(q)}
-    {#if q.visual}<QuizVisual visual={q.visual} />{/if}
+  {#snippet visual(q, settled)}
+    {#if q.visual}<QuizVisual visual={q.visual} {settled} />{/if}
   {/snippet}
 </AdaptiveQuiz>

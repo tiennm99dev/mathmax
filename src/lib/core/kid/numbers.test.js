@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { rng } from '#lib/core/drill.js';
 import {
   addText,
   addWords,
@@ -15,6 +16,9 @@ import {
   subText,
   subWords,
   tensOnes,
+  minus,
+  partsWithin10,
+  plus,
 } from './numbers.js';
 
 describe('reading numbers to 100', () => {
@@ -132,5 +136,24 @@ describe('whole-number helpers', () => {
     }
     expect(bad).toEqual([]);
     expect(freshInt(3, 3, 3)).toBe(3);
+  });
+});
+
+describe('plus, minus and partsWithin10', () => {
+  it('write a sum or difference, with or without its result', () => {
+    expect(plus(5, 2)).toBe('5 + 2');
+    expect(plus(5, 2, 7)).toBe('5 + 2 = 7');
+    expect(minus(5, 2)).toBe('5 − 2');
+    expect(minus(5, 2, 3)).toBe('5 − 2 = 3');
+  });
+
+  it('draws parts that stay within 10', () => {
+    const rand = rng(5);
+    const bad = [];
+    for (let i = 0; i < 200; i++) {
+      const [a, b] = partsWithin10(rand, 2);
+      if (a < 2 || b < 2 || a + b > 10) bad.push([a, b]);
+    }
+    expect(bad).toEqual([]);
   });
 });

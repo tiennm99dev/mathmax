@@ -3,8 +3,8 @@
   import { rng } from '#lib/core/drill.js';
   import { button, focusRing } from '#lib/core/ui.js';
   import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
-  import CarryBoard from '../_shared/carry-board.svelte';
-  import { carryText, freshCarry } from '../_shared/carry.js';
+  import ColumnBoard from '#lib/core/kid/column-board.svelte';
+  import { carryText, freshCarry } from '#lib/core/kid/carry.js';
   import { sumOptions, table, tableMessage } from './engine.js';
 
   // A fixed seed so the prerendered page and the browser agree.
@@ -136,7 +136,7 @@
 
   {#if ended}
     <div class="flex justify-center">
-      <CarryBoard
+      <ColumnBoard
         {a}
         {b}
         op="+"

@@ -1,6 +1,6 @@
 <script>
   import { button } from '#lib/core/ui.js';
-  import ClockPicture from '../_shared/clock-picture.svelte';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import { WALK_START, WALK_STEP, walkMessage } from './engine.js';
 
   let walked = $state(0);

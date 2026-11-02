@@ -31,6 +31,16 @@ export const callout = {
   warning: 'Lưu ý',
 };
 
+/**
+ * The heading of a callout. Grades 1-5 (`kid`) never meet the word "Định lí": the
+ * block a lesson marks `theorem` is what the child has to remember.
+ * @param {keyof typeof callout} tone
+ * @param {boolean} [kid]
+ */
+export function calloutLabel(tone, kid = false) {
+  return kid && tone === 'theorem' ? 'Ghi nhớ' : callout[tone];
+}
+
 export const steps = {
   problem: 'Đề bài',
   step: 'Bước',

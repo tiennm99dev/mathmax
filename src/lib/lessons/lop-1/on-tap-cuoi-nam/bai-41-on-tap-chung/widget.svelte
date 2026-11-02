@@ -35,7 +35,7 @@
 </script>
 
 <AdaptiveQuiz {skills} length={16} allGood="Tuyệt vời! Em đã nắm chắc kiến thức Toán lớp 1.">
-  {#snippet visual(q)}
-    {#if q.visual}<QuizVisual visual={q.visual} />{/if}
+  {#snippet visual(q, settled)}
+    {#if q.visual}<QuizVisual visual={q.visual} {settled} />{/if}
   {/snippet}
 </AdaptiveQuiz>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { optionText, weakLabels } from '#lib/core/kid/quiz.js';
-import { isCarry } from '../_shared/carry.js';
+import { isCarry } from '#lib/core/kid/carry.js';
 import { KINDS, KIND_LABELS, buildRound } from './engine.js';
 
 /** @param {string} text a sum or a number */

@@ -10,14 +10,20 @@
 import { int, rng, shuffle } from '#lib/core/drill.js';
 import { capitalize, numberOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { CUPS, newVesselTask, vessel } from '../_shared/capacity.js';
-import { fewestWeights, massThing, newPair, newWeighTask, weightsText } from '../_shared/mass.js';
+import { CUPS, newVesselTask, vessel } from '#lib/core/kid/capacity.js';
+import {
+  fewestWeights,
+  massThing,
+  newPair,
+  newWeighTask,
+  weightsText,
+} from '#lib/core/kid/mass.js';
 
 /**
  * What the widget draws above the options: a balance with its loads, or a
  * container poured out into full 1 l mugs.
- * @typedef {{ type: 'scale', left: import('../_shared/mass.js').Load[], right: import('../_shared/mass.js').Load[] }
- *   | { type: 'cups', id: import('../_shared/capacity.js').VesselId, l: number }} Visual
+ * @typedef {{ type: 'scale', left: import('#lib/core/kid/mass.js').Load[], right: import('#lib/core/kid/mass.js').Load[] }
+ *   | { type: 'cups', id: import('#lib/core/kid/capacity.js').VesselId, l: number }} Visual
  */
 
 /** @typedef {'nang-nhe' | 'doc-can' | 'tinh-kg' | 'doc-lit' | 'tinh-lit' | 'bai-toan'} Kind */

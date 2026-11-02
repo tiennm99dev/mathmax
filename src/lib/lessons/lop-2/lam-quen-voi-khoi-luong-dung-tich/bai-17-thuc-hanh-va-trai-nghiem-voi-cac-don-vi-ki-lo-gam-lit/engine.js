@@ -7,8 +7,8 @@
  */
 import { int, rng, shuffle } from '#lib/core/drill.js';
 import { capitalize } from '#lib/core/kid/quiz.js';
-import { vessel } from '../_shared/capacity.js';
-import { massThing } from '../_shared/mass.js';
+import { vessel } from '#lib/core/kid/capacity.js';
+import { massThing } from '#lib/core/kid/mass.js';
 
 /** Things per game, half weighed and half poured. */
 export const ROUNDS = 6;
@@ -17,8 +17,8 @@ export const GUESS_MIN = 1;
 export const GUESS_MAX = 10;
 
 /**
- * @typedef {{ kind: 'mass', id: import('../_shared/mass.js').ThingId, amount: number }
- *   | { kind: 'capacity', id: import('../_shared/capacity.js').VesselId, amount: number }} Item
+ * @typedef {{ kind: 'mass', id: import('#lib/core/kid/mass.js').ThingId, amount: number }
+ *   | { kind: 'capacity', id: import('#lib/core/kid/capacity.js').VesselId, amount: number }} Item
  */
 
 /** Things weighed, with a usual mass in kilograms. */

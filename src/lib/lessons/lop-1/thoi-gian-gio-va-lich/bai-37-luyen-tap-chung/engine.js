@@ -6,15 +6,8 @@
  * on the server and in the browser. Pure and DOM-free.
  */
 import { int, rng, shuffle } from '#lib/core/drill.js';
-import {
-  ROUTINES,
-  WEEKDAYS,
-  dayAfter,
-  dayTitle,
-  dialHour,
-  hourOfDay,
-  hourOptions,
-} from '../_shared/time.js';
+import { WEEKDAYS, dayAfter, dayTitle, dialHour, hourOptions } from '#lib/core/kid/time.js';
+import { ROUTINES, hourOfDay } from '../_shared/time.js';
 
 /** @typedef {'read' | 'hands' | 'week' | 'sheet' | 'routine' | 'fact'} Kind */
 

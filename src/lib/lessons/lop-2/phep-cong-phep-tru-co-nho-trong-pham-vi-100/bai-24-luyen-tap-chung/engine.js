@@ -9,11 +9,12 @@
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
-import { carryText, equationText, exprText, makeCarry, sumOptions } from '../_shared/carry.js';
+import { equationText, exprText } from '#lib/core/kid/column.js';
+import { carryText, differenceOptions, makeCarry, sumOptions } from '#lib/core/kid/carry.js';
 
 /**
  * A carrying calculation set out in columns.
- * @typedef {{ a: number, b: number, op: import('../_shared/carry.js').Op }} Visual
+ * @typedef {{ a: number, b: number, op: import('#lib/core/kid/column.js').Op }} Visual
  */
 
 /** @typedef {'cong' | 'tru-mot' | 'tru-hai' | 'ba-so' | 'so-sanh' | 'bai-toan'} Kind */
@@ -39,22 +40,6 @@ export const KIND_LABELS = /** @type {const} */ ({
   'so-sanh': 'So sánh kết quả phép trừ',
   'bai-toan': 'Bài toán có lời văn',
 });
-
-/**
- * Answer options for a carrying difference: two numbers near it, the slip of
- * forgetting the carry in the tens column (62 − 37 written 35) and the
- * difference, in increasing order.
- * @param {() => number} rand
- * @param {number} right the difference
- */
-export function differenceOptions(rand, right) {
-  const near = numberOptions(rand, right, right - 3, right + 3)
-    .options.map(Number)
-    .filter((v) => v !== right)
-    .slice(0, 2);
-  const values = [...near, right + 10, right].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
-}
 
 /**
  * A carrying subtraction with a given result, whose ones digit is not 0: a
@@ -109,7 +94,7 @@ function subtractionQuestion(rand, kind) {
 function threeQuestion(rand) {
   const adds = rand() < 0.5;
   const oneDigit = rand() < 0.5;
-  /** @type {import('../_shared/carry.js').Op} */
+  /** @type {import('#lib/core/kid/column.js').Op} */
   const op = adds ? '+' : '-';
   const { a, b } = makeCarry(
     rand,
@@ -182,7 +167,7 @@ function betweenQuestion(rand) {
  * sentence ("Số bậc sóc còn phải leo là: ...").
  * @type {ReadonlyArray<{
  *   story: (a: number, b: number) => string;
- *   kind: import('../_shared/carry.js').Kind;
+ *   kind: import('#lib/core/kid/column.js').Kind;
  *   lead: string;
  *   unit: string;
  *   name: string;

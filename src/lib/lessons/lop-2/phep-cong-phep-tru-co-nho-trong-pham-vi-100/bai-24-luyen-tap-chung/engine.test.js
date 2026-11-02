@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { optionText, weakLabels } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { isCarry } from '../_shared/carry.js';
-import { KINDS, KIND_LABELS, buildRound, differenceOptions } from './engine.js';
+import { isCarry } from '#lib/core/kid/carry.js';
+import { KINDS, KIND_LABELS, buildRound } from './engine.js';
 
 /**
  * A calculation worked from left to right.
@@ -111,12 +111,6 @@ describe('the mixed practice round of the chapter', () => {
     }
     expect(prompts.some((q) => q.prompt.includes('□'))).toBe(true);
     expect(prompts.some((q) => q.prompt.startsWith('Phép trừ nào'))).toBe(true);
-  });
-
-  it('offers the forgotten carry among the options', () => {
-    const { options, answer } = differenceOptions(() => 0.5, 25);
-    expect(options[answer]).toBe('25');
-    expect(options).toContain('35');
   });
 
   it('builds the same first round on server and browser, and names weak parts', () => {

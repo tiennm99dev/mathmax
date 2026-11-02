@@ -5,8 +5,10 @@ import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
 import { cross } from '#lib/geom-engine/plane.js';
 import { fromMinutes } from '#lib/units-engine/clock.js';
 import { ARITH_SKILLS, carryWords, makeCarry, towerRows } from './arith-skills.js';
-import { GENERAL_SKILLS, WEEKDAYS, handsText } from './general-skills.js';
-import { MEASURE_SKILLS, fewestWeights } from './measure-skills.js';
+import { WEEKDAYS, handsText } from '#lib/core/kid/time.js';
+import { GENERAL_SKILLS } from './general-skills.js';
+import { fewestWeights, loadName } from '#lib/core/kid/mass.js';
+import { MEASURE_SKILLS } from './measure-skills.js';
 import { SHAPE_SKILLS, fourPoints } from './shape-skills.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<import('./visual.js').Visual>} Question */
@@ -138,7 +140,7 @@ function agrees(id, q) {
     case 'nang-nhe': {
       if (v?.type !== 'scales') return false;
       const things = v.scales.flatMap((sc) => [...sc.left, ...sc.right]);
-      const mass = new Map(things.map((t) => [t.kind === 'thing' ? t.name : '', t.kg]));
+      const mass = new Map(things.map((t) => [t.kind === 'thing' ? loadName(t) : '', t.kg]));
       /** @param {string} text */
       const massOf = (text) => mass.get(text.toLowerCase()) ?? -1;
       const all = [...mass.values()];

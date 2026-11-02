@@ -1,5 +1,5 @@
 <script>
-  import { dayTitle } from './time.js';
+  import { dayTitle } from '#lib/core/kid/time.js';
 
   /**
    * One page of a tear-off wall calendar (tờ lịch): the month on top, the

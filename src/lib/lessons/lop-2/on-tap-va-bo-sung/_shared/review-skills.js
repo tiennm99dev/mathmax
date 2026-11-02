@@ -7,7 +7,7 @@
  * Pure and DOM-free; each skill is a `KidSkill` for `adaptive-quiz.svelte`.
  */
 import { int, pick, shuffle } from '#lib/core/drill.js';
-import { makeProblem } from '#lib/core/kid/column.js';
+import { exprText, makeProblem } from '#lib/core/kid/column.js';
 import { compareSign, tensOnes } from '#lib/core/kid/numbers.js';
 import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 
@@ -20,16 +20,6 @@ import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 /** @typedef {import('#lib/core/kid/quiz.js').KidSkill<Visual>} KidSkill */
 
 const MINUS = '−';
-
-/**
- * "32 + 15" or "47 − 15".
- * @param {number} a
- * @param {number} b
- * @param {'+' | '-'} op
- */
-export function expr(a, b, op) {
-  return `${a} ${op === '+' ? '+' : MINUS} ${b}`;
-}
 
 /**
  * Up to four number options in increasing order: the right one and the
@@ -66,7 +56,7 @@ export function columnWords(a, b, op) {
   const c = op === '+' ? a + b : a - b;
   const tensPart =
     y.tens === 0 ? `Hàng chục: hạ ${x.tens}.` : `Hàng chục: ${x.tens} ${s} ${y.tens} = ${tens}.`;
-  return `Hàng đơn vị: ${x.ones} ${s} ${y.ones} = ${ones}. ${tensPart} Vậy ${expr(a, b, op)} = ${c}.`;
+  return `Hàng đơn vị: ${x.ones} ${s} ${y.ones} = ${ones}. ${tensPart} Vậy ${exprText(a, b, op)} = ${c}.`;
 }
 
 /**
@@ -92,18 +82,18 @@ export const tensSkill = {
     const y = int(rand, 1, 9 - x);
     if (rand() < 0.5) {
       return {
-        prompt: `${expr(10 * x, 10 * y, '+')} = ?`,
+        prompt: `${exprText(10 * x, 10 * y, '+')} = ?`,
         ...nearOptions(rand, 10 * (x + y), [10 * Math.abs(x - y)]),
         hint: `${x} chục cộng ${y} chục bằng mấy chục?`,
-        solution: `${x} chục + ${y} chục = ${x + y} chục. Vậy ${expr(10 * x, 10 * y, '+')} = ${10 * (x + y)}.`,
+        solution: `${x} chục + ${y} chục = ${x + y} chục. Vậy ${exprText(10 * x, 10 * y, '+')} = ${10 * (x + y)}.`,
       };
     }
     const n = x + y;
     return {
-      prompt: `${expr(10 * n, 10 * x, '-')} = ?`,
+      prompt: `${exprText(10 * n, 10 * x, '-')} = ?`,
       ...nearOptions(rand, 10 * y, [10 * (n + x)]),
       hint: `${n} chục bớt ${x} chục thì còn mấy chục?`,
-      solution: `${n} chục ${MINUS} ${x} chục = ${y} chục. Vậy ${expr(10 * n, 10 * x, '-')} = ${10 * y}.`,
+      solution: `${n} chục ${MINUS} ${x} chục = ${y} chục. Vậy ${exprText(10 * n, 10 * x, '-')} = ${10 * y}.`,
     };
   },
 };
@@ -115,7 +105,7 @@ export const addSkill = {
   make(rand) {
     const { a, b, c } = calc(rand, '+');
     return {
-      prompt: `${expr(a, b, '+')} = ?`,
+      prompt: `${exprText(a, b, '+')} = ?`,
       ...nearOptions(rand, c, [a - b]),
       hint: 'Em cộng đơn vị với đơn vị, rồi cộng chục với chục.',
       solution: columnWords(a, b, '+'),
@@ -130,7 +120,7 @@ export const subtractSkill = {
   make(rand) {
     const { a, b, c } = calc(rand, '-');
     return {
-      prompt: `${expr(a, b, '-')} = ?`,
+      prompt: `${exprText(a, b, '-')} = ?`,
       ...nearOptions(rand, c, [a + b]),
       hint: 'Em trừ đơn vị cho đơn vị, rồi trừ chục cho chục.',
       solution: columnWords(a, b, '-'),
@@ -150,7 +140,7 @@ export const columnSkill = {
     const misplaced =
       b < 10 ? (op === '+' ? a + 10 * ones : a - 10 * ones) : op === '+' ? a - b : a + b;
     return {
-      prompt: `Đặt tính rồi tính: ${expr(a, b, op)}. Kết quả là bao nhiêu?`,
+      prompt: `Đặt tính rồi tính: ${exprText(a, b, op)}. Kết quả là bao nhiêu?`,
       visual: { type: 'column', a, b, op },
       ...nearOptions(rand, c, [misplaced]),
       hint: 'Đơn vị thẳng cột đơn vị, chục thẳng cột chục. Em tính từ phải sang trái.',
@@ -171,7 +161,7 @@ export const partsSkill = {
         prompt: `Các số hạng là ${a} và ${b}. Tổng là bao nhiêu?`,
         ...nearOptions(rand, c, [a - b]),
         hint: 'Muốn tính tổng, em cộng các số hạng.',
-        solution: `${expr(a, b, '+')} = ${c}. Tổng là ${c}.`,
+        solution: `${exprText(a, b, '+')} = ${c}. Tổng là ${c}.`,
       };
     }
     if (roll < 0.7) {
@@ -180,7 +170,7 @@ export const partsSkill = {
         prompt: `Số bị trừ là ${a}, số trừ là ${b}. Hiệu là bao nhiêu?`,
         ...nearOptions(rand, c, [a + b]),
         hint: 'Muốn tính hiệu, em lấy số bị trừ trừ đi số trừ.',
-        solution: `${expr(a, b, '-')} = ${c}. Hiệu là ${c}.`,
+        solution: `${exprText(a, b, '-')} = ${c}. Hiệu là ${c}.`,
       };
     }
     const op = rand() < 0.5 ? '+' : '-';
@@ -194,7 +184,7 @@ export const partsSkill = {
     const wrong =
       op === '+' ? ['Số hạng', 'Tổng', 'Hiệu'] : ['Số bị trừ', 'Số trừ', 'Hiệu', 'Tổng'];
     return {
-      prompt: `Trong phép tính ${expr(a, b, op)} = ${c}, số ${value} gọi là gì?`,
+      prompt: `Trong phép tính ${exprText(a, b, op)} = ${c}, số ${value} gọi là gì?`,
       ...mixOptions(
         rand,
         right,
@@ -207,7 +197,7 @@ export const partsSkill = {
         op === '+'
           ? 'Hai số được cộng là số hạng, kết quả là tổng.'
           : 'Số đứng đầu là số bị trừ, số sau dấu trừ là số trừ, kết quả là hiệu.',
-      solution: `Trong ${expr(a, b, op)} = ${c}: ${names
+      solution: `Trong ${exprText(a, b, op)} = ${c}: ${names
         .map((n, i) => `${[a, b, c][i]} là ${n.toLowerCase()}`)
         .join(', ')}.`,
     };
@@ -225,14 +215,14 @@ export const moreLessSkill = {
         prompt: `Số ${a} hơn số ${b} là bao nhiêu?`,
         ...nearOptions(rand, c, [a + b]),
         hint: 'Muốn biết hơn bao nhiêu, em lấy số lớn trừ số bé.',
-        solution: `${expr(a, b, '-')} = ${c}. ${a} hơn ${b} là ${c}.`,
+        solution: `${exprText(a, b, '-')} = ${c}. ${a} hơn ${b} là ${c}.`,
       };
     }
     return {
       prompt: `Số ${b} kém số ${a} là bao nhiêu?`,
       ...nearOptions(rand, c, [a + b]),
       hint: 'Số nào lớn hơn? Em lấy số lớn trừ số bé.',
-      solution: `${expr(a, b, '-')} = ${c}. ${b} kém ${a} là ${c}.`,
+      solution: `${exprText(a, b, '-')} = ${c}. ${b} kém ${a} là ${c}.`,
     };
   },
 };
@@ -251,10 +241,10 @@ export const compareSkill = {
     if (n === c && roll < 0.8) n = c + 1;
     const sign = compareSign(c, n);
     return {
-      prompt: `Chọn dấu đúng: ${expr(a, b, op)} ... ${n}`,
+      prompt: `Chọn dấu đúng: ${exprText(a, b, op)} ... ${n}`,
       ...signOptions(sign),
-      hint: `Em tính ${expr(a, b, op)} trước, rồi so sánh với ${n}.`,
-      solution: `${expr(a, b, op)} = ${c}. ${c} ${sign} ${n}, nên ${expr(a, b, op)} ${sign} ${n}.`,
+      hint: `Em tính ${exprText(a, b, op)} trước, rồi so sánh với ${n}.`,
+      solution: `${exprText(a, b, op)} = ${c}. ${c} ${sign} ${n}, nên ${exprText(a, b, op)} ${sign} ${n}.`,
     };
   },
 };
@@ -300,7 +290,7 @@ export const storySkill = {
         prompt: `${t.where} ${a} ${t.what}. ${t.add} ${b} ${t.what}. Hỏi có tất cả bao nhiêu ${t.what}?`,
         ...nearOptions(rand, c, [a - b]),
         hint: 'Thêm vào thì em làm phép cộng.',
-        solution: `${expr(a, b, '+')} = ${c}. Có tất cả ${c} ${t.what}.`,
+        solution: `${exprText(a, b, '+')} = ${c}. Có tất cả ${c} ${t.what}.`,
       };
     }
     if (roll < 0.7) {
@@ -309,7 +299,7 @@ export const storySkill = {
         prompt: `${t.where} ${a} ${t.what}. ${t.take} ${b} ${t.what}. Hỏi còn lại bao nhiêu ${t.what}?`,
         ...nearOptions(rand, c, [a + b]),
         hint: 'Bớt đi thì em làm phép trừ.',
-        solution: `${expr(a, b, '-')} = ${c}. Còn lại ${c} ${t.what}.`,
+        solution: `${exprText(a, b, '-')} = ${c}. Còn lại ${c} ${t.what}.`,
       };
     }
     const g = pick(rand, GROUPS);
@@ -318,7 +308,7 @@ export const storySkill = {
       prompt: `Tổ Một ${g.verb} ${a} ${g.what}, tổ Hai ${g.verb} ${b} ${g.what}. Tổ Hai ${g.verb} ít hơn tổ Một bao nhiêu ${g.what}?`,
       ...nearOptions(rand, c, [a + b]),
       hint: 'Muốn biết ít hơn bao nhiêu, em lấy số lớn trừ số bé.',
-      solution: `${expr(a, b, '-')} = ${c}. Tổ Hai ${g.verb} ít hơn tổ Một ${c} ${g.what}.`,
+      solution: `${exprText(a, b, '-')} = ${c}. Tổ Hai ${g.verb} ít hơn tổ Một ${c} ${g.what}.`,
     };
   },
 };

@@ -2,7 +2,8 @@
  * Logic of the month calendar of "Ngày - tháng": what a tapped date says and
  * the questions answered by reading a sheet. Pure and DOM-free.
  */
-import { WEEKDAYS, daysIn, upperFirst, weekdayOf } from '../_shared/time.js';
+import { WEEKDAYS, daysIn, weekdayOf } from '#lib/core/kid/time.js';
+import { capitalize } from '#lib/core/kid/quiz.js';
 
 /**
  * The sentence for a date on the sheet.
@@ -42,7 +43,7 @@ export const MISSIONS = [
     month: 5,
     prompt: 'Ngày 19 tháng 5 là thứ mấy?',
     way: 'pick',
-    options: [...WEEKDAYS].map(upperFirst),
+    options: [...WEEKDAYS].map(capitalize),
     answer: 3,
     hint: 'Tìm số 19, rồi nhìn thẳng lên đầu cột.',
     why: 'Số 19 ở cột T5. Ngày 19 tháng 5 là thứ Năm.',
@@ -86,7 +87,7 @@ export const MISSIONS = [
     month: 11,
     prompt: 'Ngày Nhà giáo Việt Nam 20 tháng 11 là thứ mấy?',
     way: 'pick',
-    options: [...WEEKDAYS].map(upperFirst),
+    options: [...WEEKDAYS].map(capitalize),
     answer: 6,
     hint: 'Tìm số 20, rồi nhìn thẳng lên đầu cột.',
     why: 'Số 20 ở cột CN. Ngày 20 tháng 11 là Chủ nhật.',

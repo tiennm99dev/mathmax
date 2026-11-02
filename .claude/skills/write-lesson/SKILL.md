@@ -143,8 +143,8 @@ Exercises all have `prompt`, `hints` (one or more, revealed one at a time) and
 | --- | --- | --- |
 | `number` | `answer`, `tolerance?`, `unit?` | `3,5` and `3.5` both parse; unit compared when set |
 | `fraction` | `answer: [p, q]`, `simplest?` | equal value; `simplest` demands lowest terms |
-| `choice` | `options` (2+), `answer` index | single choice |
-| `multi` | `options`, `answers` indices | exact set |
+| `choice` | `options` (2+), `answer` index | single choice; the page shows the options in a seeded order, so list them in any order and name an option in hints and solutions by its content, never by its place ("Lựa chọn cuối") |
+| `multi` | `options`, `answers` indices | exact set, shown in a seeded order like `choice` |
 | `text` | `accept: string[]` | ignores case, diacritics, extra spaces, final `.` |
 | `order` | `items`, `answer` (item indices in correct order) | drag to sort |
 | `match` | `left`, `right` (at least as many), `pairs: [[l, r]]` | each left once; the page shows `right` in a seeded order, so list it in any order and never scramble it by hand |
@@ -175,10 +175,16 @@ The page picks the layout from the grade; there is no flag to set.
   block with a "Nghe" read-aloud button, 48 px touch targets and a 20 px base
   font. Write short sentences a child can hear read aloud, addressed to "em".
   Keep each block to one idea, prefer `p`, `callout` and small `table` blocks,
-  and keep TeX out except plain numbers and signs. Exercises favour `count`,
+  and keep TeX out except plain numbers and signs. A `callout` of tone `theorem`
+  is headed "Ghi nhớ" here, never "Định lí": set the tone as usual, with no
+  per-lesson override. Exercises favour `count`,
   `choice`, `match` and `order`; use pictures, not long word problems. Widgets
   use large buttons and kid pictures (`#lib/core/kid/picture.svelte`), and
-  the kid building blocks in `#lib/core/kid/` (section 6).
+  the kid building blocks in `#lib/core/kid/` (section 6). In a how-many
+  question the picture's screen-reader label must let the child count and never
+  state the total while the question is open: name the item once per item
+  (`countLabel` and `takeawayLabel` in `quiz.js`: 'con bướm, con bướm, con bướm')
+  and give the number only once the question has ended (`settled`).
 - **Normal** (`lesson-page.svelte`): intro, objectives, sections, the explore
   widget, step-by-step examples, practice and takeaways. Use proper TeX for every
   formula and unit expression, textbook terminology, and full worked solutions.
@@ -328,11 +334,14 @@ Other shared pieces:
 - `#lib/core/motion.js`: `frameLoop` (per-frame callback with elapsed seconds;
   the `stop` it returns may be called from inside the callback),
   `reducedMotion()` and `wrap` for animated widgets.
-- `#lib/core/tex-text.js`: `texText` turns TeX into the linear text screen
-  readers hear (`√144`, `3/4`); prerendered content and `tex.svelte` already
-  use it, so TeX in options, labels and buttons keeps a distinct accessible
-  name. `htmlText` reads rendered rich text back as plain text for an
-  `aria-label`.
+- `#lib/core/tex-text.js`: `texText` turns TeX into the words screen readers
+  hear (`căn bậc hai của 144`, `x mũ 2`, `nhỏ hơn hoặc bằng`, `trừ 1`, `3/4`);
+  prerendered content and `tex.svelte` already use it, so TeX in options, labels
+  and buttons keeps a distinct accessible name. `htmlText` reads rendered rich
+  text back as plain text for an `aria-label`. KaTeX stays `output: 'html'` with
+  this hidden Vietnamese text, and MathML is deliberately not restored:
+  name-from-content over MathML reads `√144` as `144`, and TalkBack and stock
+  NVDA have no MathML speech. Do not change `katex-options.js` to bring it back.
 - `#lib/core/card-sorter.svelte` with `#lib/core/card-sorter.js`: sort cards
   (`{ id, label, bin, why }`) into bins by tap, keyboard or drag, checked per
   move, with take-back and "Gỡ thẻ sai". `shuffled(cards, seed)` mixes the deck
@@ -353,7 +362,8 @@ Other shared pieces:
     `readings`, `capitalReading`, `tensOnes`, `placeText`, `sticksWords`, the
     signs `SIGNS`/`SIGN_WORDS`/`compareSign`/`compareReason`, the sentences
     `addText`/`subText` ("5 − 2 = 3"), `addWords`/`subWords` (read aloud),
-    `relatedSubtractions`, `clampInt` and `freshInt`.
+    `relatedSubtractions`, `clampInt`, `freshInt`, `plus`/`minus` ("5 − 2" or
+    "5 − 2 = 3") and `partsWithin10`.
   - `quiz.js` with `choice-round.svelte` and `adaptive-quiz.svelte`: kid
     tap-the-answer questions (`KidQuestion`: `prompt`, `options`, `answer`,
     `hint`, `solution`, `kind?`, `optionLabels?`, `visual?`). A "Luyện tập
@@ -364,23 +374,38 @@ Other shared pieces:
     hint, second try and focus handling of `choice-question.svelte`; an
     `option` snippet with `pictureOption` draws picture options, and
     `listOptions` stacks sentence options. Build options with `numberOptions`,
-    `mixOptions`, `signOptions`; `weakLabels` and `tapOption` are the round
-    logic, so an engine never re-implements them.
+    `bigOptions` (numbers to 100, with the mistakes one off, ten off and digits
+    swapped), `mixOptions`, `signOptions`; `weakLabels` and `tapOption` are the
+    round logic, so an engine never re-implements them.
   - `shapes.js` with `shape-figure.svelte` and `object-figure.svelte`: the
     four plane shapes and two solids (`FIGURE_NAMES`, `plainFigure(kind)` for
     a picture-card look, or a full `Figure` with colour, size, turn and
-    variant) and everyday objects (`OBJECTS`).
-  - `tangram.js`: the shape-building board (pieces `PIECE_SHAPES`, quarter
-    turns, `boardStatus`, `solve`, `statusMessage`) on a `TANGRAM_BOARD` or any
-    `{ w, h, tray }`; a lesson only writes its `PUZZLES`.
-  - `length.js` with `ruler.svelte`, `ruler-board.svelte` (a sliding cm
-    ruler), `thing-shape.svelte` (pencil, crayon, ribbon, straw) and
+    variant) and everyday objects (`OBJECTS`). `shape-options.js`: `figureTitle`,
+    `shapeOptions` (tap the name of a shape).
+  - `tangram.js` with `tangram-board.svelte`: the shape-building game (pieces
+    `PIECE_SHAPES`, quarter turns, `boardStatus`, `solve`, `statusMessage`) on a
+    `TANGRAM_BOARD` or any `{ w, h, tray }`; a lesson only writes its `PUZZLES`
+    and renders `<TangramBoard puzzles={PUZZLES} />`.
+  - `length.js` with `ruler.svelte` (`fontSize` keeps its numbers near 14 px at
+    390 px), `ruler-board.svelte` (a sliding cm ruler), `thing-shape.svelte`
+    (pencil, crayon, ribbon, straw) and
     `kid-figure.svelte` (a child of a given height): `THINGS`, `KIDS`,
     `compareSentences`, `rulerAdvice`, `estimateStars`, `spansToCover`.
   - `column.js` with `column-board.svelte` and `column-quiz.svelte`: no-carry
     column addition and subtraction ("đặt tính rồi tính"), `makeProblem` and
     `freshProblem`; `counting-sticks.svelte` draws que tính bundles and loose
     sticks (cross-out, extra and ringed columns, `small`).
+  - `carry.js` with `carry-quiz.svelte` (and `column-board.svelte` with
+    `carried`): the same with carrying, `carrySteps`, `carryText`, `makeCarry`,
+    `freshCarry`, `sumOptions` and `differenceOptions` (the slip of a forgotten
+    carry among the options).
+  - `time.js` with `clock-picture.svelte` (a still clock at any time) and
+    `month-sheet.svelte`: `WEEKDAYS`, `DAY_PARTS`, `namesOf`, `handsText`,
+    `dayAfter`, `dayTitle`, `dialHour`, `hourOptions`, `monthRows` and
+    `weekdayOf`/`weekdayFrom`. `clock-face` (section 6) is the draggable one.
+  - `mass.js` with `balance-scale.svelte` (a pan balance; `Load` is a drawn
+    thing, a labelled box or a weight), and `capacity.js` with `vessel.svelte`
+    and `cup.svelte` (the 1 l mug).
   Kid tap targets are at least 48 px at 390 px wide; a grid too wide for
   that (the 1-100 board) scrolls sideways inside its card.
 - Engines, pure and tested: `#lib/geom-engine/index.js`, `#lib/algebra-engine/index.js`
@@ -466,8 +491,8 @@ with zero warnings; fix the cause, never weaken a test.
    given only some lessons of a chapter that has later parts, the gate is
    checked for your lessons, not the whole chapter: none of them may appear in
    the stub list the command prints, and the later parts' stubs remain.
-6. `git diff --name-only main...HEAD` (and `git status --short`) lists only paths
-   under `src/lib/lessons/lop-N/<chuong-slug>/`.
+6. `git status --short` lists only paths under
+   `src/lib/lessons/lop-N/<chuong-slug>/`.
 7. Spot check one lesson in the browser (`npm run preview`, agent-browser where
    the host has it). `vite preview` caches the file list of `build/` when it
    starts, so stop and restart the preview after every rebuild before any
@@ -478,7 +503,9 @@ with zero warnings; fix the cause, never weaken a test.
 
 ## 9. Commit
 
-- Work in your own git worktree and branch. Commit only your chapter folder.
+- Work on `main` in the shared checkout: one writer or reviewer per repo at a
+  time, so no worktree or branch is needed. These repos are not production, and
+  verified work goes straight to `main`. Stage only your lesson folders.
 - Conventional commits, one per lesson or one per chapter, for example
   `feat(lessons): add the lessons of chapter <chuong-slug> for lop-N`. Describe
   the change itself; no plan names, batch or phase numbers in messages, comments
@@ -490,8 +517,9 @@ with zero warnings; fix the cause, never weaken a test.
   someone else's work), so a deletion or rename left staged is not swept into
   an earlier commit. Each commit must build on its own: lint, check, tests and
   build pass at that commit, not only at the last one.
-- Rebase on `main` before merging; paths are disjoint from other chapters, so a
-  conflict means you touched a file you do not own. Do not push unless told to.
+- Paths are disjoint from other chapters, so if `git status` shows anything
+  outside your lesson folders, it is not yours: leave it unstaged. Do not push
+  unless told to.
 
 End with a short report: lessons written, any `_shared/` helper worth promoting
 to core, anything in the curriculum that looked wrong, and the check results.

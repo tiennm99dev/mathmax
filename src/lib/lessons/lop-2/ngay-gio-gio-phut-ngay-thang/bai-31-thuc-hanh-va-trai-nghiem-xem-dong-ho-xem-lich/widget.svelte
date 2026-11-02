@@ -3,8 +3,8 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import ClockFace from '#lib/core/visuals/clock-face.svelte';
   import { toMinutes } from '#lib/units-engine/clock.js';
-  import MonthSheet from '../_shared/month-sheet.svelte';
-  import { upperFirst } from '../_shared/time.js';
+  import MonthSheet from '#lib/core/kid/month-sheet.svelte';
+  import { capitalize } from '#lib/core/kid/quiz.js';
   import { ACTIVITIES, PLAN_MONTH, WEEK, checkPlacement, planLine, planOf } from './engine.js';
 
   const START = 'Em chọn một việc, chạm vào ngày trên lịch, đặt đồng hồ rồi bấm "Ghi vào lịch".';
@@ -117,7 +117,7 @@
       <p class="mb-2 text-lg font-bold text-slate-800">Lịch tuần của em</p>
       <ol class="space-y-2 text-lg text-slate-800">
         {#each plan as a (a.id)}
-          <li><b>{a.label}:</b> {upperFirst(planLine(a))}</li>
+          <li><b>{a.label}:</b> {capitalize(planLine(a))}</li>
         {/each}
       </ol>
     </div>

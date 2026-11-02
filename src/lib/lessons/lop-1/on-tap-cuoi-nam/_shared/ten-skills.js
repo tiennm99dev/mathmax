@@ -8,7 +8,14 @@
  */
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { pictureGroups, pictures } from '#lib/core/kid/pictures/index.js';
-import { SIGN_WORDS, compareSign, readNumber } from '#lib/core/kid/numbers.js';
+import {
+  compareSign,
+  minus,
+  partsWithin10,
+  plus,
+  readNumber,
+  SIGN_WORDS,
+} from '#lib/core/kid/numbers.js';
 import { mixOptions, numberOptions, signOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
 
@@ -20,38 +27,6 @@ export const COUNTABLE = /** @type {const} */ ([
   ...pictureGroups.animals,
   ...pictureGroups.things,
 ]);
-
-/**
- * "3 + 2" or, with `result`, "3 + 2 = 5".
- * @param {number} a
- * @param {number} b
- * @param {number} [result]
- */
-export function plus(a, b, result) {
-  return result === undefined ? `${a} + ${b}` : `${a} + ${b} = ${result}`;
-}
-
-/**
- * "5 − 2" or, with `result`, "5 − 2 = 3".
- * @param {number} a
- * @param {number} b
- * @param {number} [result]
- */
-export function minus(a, b, result) {
-  return result === undefined ? `${a} ${MINUS} ${b}` : `${a} ${MINUS} ${b} = ${result}`;
-}
-
-/**
- * Two parts a and b with a + b at most 10, each part at least `least`.
- * @param {() => number} rand
- * @param {number} [least]
- * @returns {[number, number]}
- */
-function parts(rand, least = 1) {
-  const c = int(rand, 2 * least, 10);
-  const a = int(rand, least, c - least);
-  return [a, c - a];
-}
 
 /** @type {KidSkill} */
 export const countSkill = {
@@ -134,7 +109,7 @@ export const addSkill = {
   id: 'cong',
   label: 'Phép cộng',
   make(rand) {
-    const [a, b] = parts(rand, rand() < 0.15 ? 0 : 1);
+    const [a, b] = partsWithin10(rand, rand() < 0.15 ? 0 : 1);
     const hint =
       b === 0
         ? 'Một số cộng với 0 thì bằng chính số đó.'
@@ -155,7 +130,7 @@ export const subtractSkill = {
   id: 'tru',
   label: 'Phép trừ',
   make(rand) {
-    const [b, r] = parts(rand, rand() < 0.15 ? 0 : 1);
+    const [b, r] = partsWithin10(rand, rand() < 0.15 ? 0 : 1);
     const n = b + r;
     let hint = `Em nghĩ: ${b} cộng mấy thì bằng ${n}?`;
     let solution = `${plus(b, r, n)}, nên ${minus(n, b, r)}.`;
@@ -175,7 +150,7 @@ export const missingSkill = {
   id: 'so-thieu',
   label: 'Tìm số còn thiếu',
   make(rand) {
-    const [a, b] = parts(rand);
+    const [a, b] = partsWithin10(rand);
     const c = a + b;
     if (rand() < 0.5) {
       return {
@@ -202,7 +177,7 @@ export const pictureSkill = {
     const picture = pick(rand, COUNTABLE);
     const noun = pictures[picture];
     if (rand() < 0.5) {
-      const [a, b] = parts(rand);
+      const [a, b] = partsWithin10(rand);
       const c = a + b;
       return {
         prompt: 'Phép tính nào đúng với hình?',
@@ -218,7 +193,7 @@ export const pictureSkill = {
         solution: `Nhóm thứ nhất có ${a} ${noun}, nhóm thứ hai có ${b} ${noun}. Gộp lại: ${plus(a, b, c)}.`,
       };
     }
-    const [gone, rest] = parts(rand);
+    const [gone, rest] = partsWithin10(rand);
     const total = gone + rest;
     return {
       prompt: 'Phép tính nào đúng với hình?',
@@ -240,7 +215,7 @@ export const storySkill = {
   make(rand) {
     const picture = pick(rand, COUNTABLE);
     const noun = pictures[picture];
-    const [a, b] = parts(rand);
+    const [a, b] = partsWithin10(rand);
     if (rand() < 0.5) {
       return {
         prompt: `Có ${a} ${noun}. Thêm ${b} ${noun} nữa. Có tất cả mấy ${noun}?`,

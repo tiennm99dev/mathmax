@@ -7,11 +7,11 @@ import {
   MONTH_DAYS,
   WEEKDAYS,
   dialHour,
-  hourOfDay,
   isWholeHour,
   mod,
-  weekdayOf,
-} from '../_shared/time.js';
+  weekdayFrom,
+} from '#lib/core/kid/time.js';
+import { hourOfDay } from '../_shared/time.js';
 
 /**
  * Whether the clock set to `minutes` shows the hour of `routine`.
@@ -46,7 +46,7 @@ export const FIRST_DAY = 4;
  * @param {number} date
  */
 export function weekdayOn(date) {
-  return weekdayOf(date, FIRST_DAY);
+  return weekdayFrom(date, FIRST_DAY);
 }
 
 /**
@@ -56,7 +56,7 @@ export function weekdayOn(date) {
  */
 export function sheetSentences(date) {
   const day = weekdayOn(date);
-  const next = weekdayOf(date + 1, FIRST_DAY);
+  const next = weekdayFrom(date + 1, FIRST_DAY);
   const after =
     date < MONTH_LENGTH ? `ngày ${date + 1} tháng ${MONTH}` : `ngày 1 tháng ${MONTH + 1}`;
   return [

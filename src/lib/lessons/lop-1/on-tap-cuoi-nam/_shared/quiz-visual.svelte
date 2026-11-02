@@ -1,4 +1,5 @@
 <script>
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
   import Picture from '#lib/core/kid/picture.svelte';
   import { pictures } from '#lib/core/kid/pictures/index.js';
@@ -6,8 +7,8 @@
   import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import ThingShape from '#lib/core/kid/thing-shape.svelte';
   import { THINGS, inSentence } from '#lib/core/kid/length.js';
+  import { countLabel, takeawayLabel } from '#lib/core/kid/quiz.js';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
-  import { polar } from '#lib/core/visuals/svg-math.js';
   import { RULER_TO } from './measure-skills.js';
 
   /**
@@ -16,10 +17,11 @@
    * "?" box for a pattern), counting sticks, a whole-hour clock, things
    * lying from one left end (on a centimetre ruler or not), or animals in a
    * row. Each picture has one text label for screen readers that describes
-   * what is drawn (how many pictures, where the clock hands point).
-   * @type {{ visual: import('./visual.js').Visual }}
+   * what is drawn (where the clock hands point). Pictures to count are named
+   * one by one until the question ends, so the label never states the answer.
+   * @type {{ visual: import('./visual.js').Visual, settled?: boolean }}
    */
-  let { visual } = $props();
+  let { visual, settled = false } = $props();
 
   /** SVG units per centimetre, and where the 0 mark of the strips is. */
   const UNIT = 22;
@@ -34,11 +36,9 @@
   const label = $derived.by(() => {
     switch (visual.type) {
       case 'groups':
-        return visual.groups.map((g) => `${g.n} ${pictures[g.picture]}`).join(' và ');
-      case 'takeaway': {
-        const noun = pictures[visual.picture];
-        return `${visual.total} ${noun}, ${visual.gone} ${noun} bị gạch đi`;
-      }
+        return visual.groups.map((g) => countLabel(pictures[g.picture], g.n, settled)).join(' và ');
+      case 'takeaway':
+        return takeawayLabel(pictures[visual.picture], visual.total, visual.gone, settled);
       case 'figures': {
         const names = visual.figures.map((k) => FIGURE_NAMES[k]).join(', ');
         return visual.blank ? `${names}, dấu hỏi` : names;
@@ -62,14 +62,6 @@
   const stripsHeight = $derived(
     visual.type === 'strips' ? visual.strips.length * STRIP_GAP + (visual.ruler ? 54 : 6) : 0,
   );
-
-  /** The clock: centre and radius on a 200 × 200 canvas. */
-  const C = 100;
-  const R = 92;
-  const hourTip = $derived(
-    polar(C, C, R * 0.5, visual.type === 'clock' ? (visual.hour % 12) * 30 : 0),
-  );
-  const minuteTip = polar(C, C, R * 0.8, 0);
 </script>
 
 <div
@@ -132,42 +124,7 @@
       <CountingSticks tens={visual.tens} ones={visual.ones} />
     </div>
   {:else if visual.type === 'clock'}
-    <svg viewBox="0 0 200 200" class="block w-40 shrink-0 select-none" aria-hidden="true">
-      <circle cx={C} cy={C} r={R} fill="#fff" stroke="#334155" stroke-width="5" />
-      {#each { length: 12 } as _, h (h)}
-        {@const a = polar(C, C, R - 4, h * 30)}
-        {@const b = polar(C, C, R - 12, h * 30)}
-        {@const t = polar(C, C, R - 27, h * 30)}
-        <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#334155" stroke-width="3" />
-        <text
-          x={t.x}
-          y={t.y + 7}
-          text-anchor="middle"
-          font-size="19"
-          font-weight="700"
-          fill="#1e293b">{h === 0 ? 12 : h}</text
-        >
-      {/each}
-      <line
-        x1={C}
-        y1={C}
-        x2={hourTip.x}
-        y2={hourTip.y}
-        stroke="#1e293b"
-        stroke-width="8"
-        stroke-linecap="round"
-      />
-      <line
-        x1={C}
-        y1={C}
-        x2={minuteTip.x}
-        y2={minuteTip.y}
-        stroke="#D7263D"
-        stroke-width="5"
-        stroke-linecap="round"
-      />
-      <circle cx={C} cy={C} r="6" fill="#1e293b" />
-    </svg>
+    <ClockPicture minutes={visual.hour * 60} size="w-40" decorative />
   {:else if visual.type === 'strips'}
     <div class="w-full space-y-1">
       <svg

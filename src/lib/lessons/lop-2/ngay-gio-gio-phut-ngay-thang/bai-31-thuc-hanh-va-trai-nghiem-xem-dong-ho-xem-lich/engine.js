@@ -4,7 +4,7 @@
  * the clock. Pure and DOM-free.
  */
 import { toMinutes } from '#lib/units-engine/clock.js';
-import { WEEKDAYS, handsText, namesOf, sameOnDial, weekdayOf } from '../_shared/time.js';
+import { WEEKDAYS, handsText, namesOf, sameOnDial, weekdayOf } from '#lib/core/kid/time.js';
 
 /** The calendar sheet of the planner and the week being planned. */
 export const PLAN_MONTH = 5;

@@ -1,11 +1,10 @@
 /**
  * Capacity in litres, the grade 2 way: containers (can, xô, bình, chai)
  * full of water are poured into 1 l mugs (ca 1 l), and the full mugs are
- * counted. Shared by the lessons of the chapter "Làm quen với khối lượng,
- * dung tích". Pure and DOM-free.
+ * counted. `vessel.svelte` and `cup.svelte` draw them. Pure and DOM-free.
  */
 import { int } from '#lib/core/drill.js';
-import { capitalize } from '#lib/core/kid/quiz.js';
+import { capitalize } from './quiz.js';
 
 /** @typedef {'bottle' | 'jar' | 'can' | 'bucket'} VesselId */
 

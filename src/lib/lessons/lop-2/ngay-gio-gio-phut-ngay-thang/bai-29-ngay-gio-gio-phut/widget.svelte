@@ -3,7 +3,7 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import ClockFace from '#lib/core/visuals/clock-face.svelte';
   import { formatDigital, fromMinutes, toMinutes } from '#lib/units-engine/clock.js';
-  import { DAY_PARTS, dialNumber, namesOf, partOf } from '../_shared/time.js';
+  import { DAY_PARTS, dialNumber, namesOf, partOf } from '#lib/core/kid/time.js';
   import { TARGETS, checkTarget } from './engine.js';
 
   /** Colour of each row of hours, from morning to night. */

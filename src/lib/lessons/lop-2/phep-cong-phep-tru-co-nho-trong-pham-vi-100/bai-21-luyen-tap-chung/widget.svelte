@@ -1,6 +1,6 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import CarryBoard from '../_shared/carry-board.svelte';
+  import ColumnBoard from '#lib/core/kid/column-board.svelte';
   import { KIND_LABELS, buildRound } from './engine.js';
 
   /**
@@ -21,7 +21,7 @@
   {#snippet visual(q, settled)}
     {#if q.visual}
       <div class="flex justify-center">
-        <CarryBoard
+        <ColumnBoard
           a={q.visual.a}
           b={q.visual.b}
           op="+"

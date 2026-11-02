@@ -6,7 +6,7 @@
  * DOM-free.
  */
 import { capitalize, numberOptions } from '#lib/core/kid/quiz.js';
-import { CUPS, litres, vessel } from '../_shared/capacity.js';
+import { CUPS, litres, vessel } from '#lib/core/kid/capacity.js';
 
 /**
  * Answer options for "how many litres", written with the unit.
@@ -20,7 +20,7 @@ export function litreOptions(rand, l) {
 
 /**
  * The two sentences to choose from for two containers, and the right one.
- * @param {[{ id: import('../_shared/capacity.js').VesselId, l: number }, { id: import('../_shared/capacity.js').VesselId, l: number }]} pair
+ * @param {[{ id: import('#lib/core/kid/capacity.js').VesselId, l: number }, { id: import('#lib/core/kid/capacity.js').VesselId, l: number }]} pair
  */
 export function moreOptions(pair) {
   const [a, b] = pair.map((p) => capitalize(vessel(p.id).name));

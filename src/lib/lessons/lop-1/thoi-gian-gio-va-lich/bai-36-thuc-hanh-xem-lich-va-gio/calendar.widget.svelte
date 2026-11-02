@@ -1,7 +1,7 @@
 <script>
   import { button, focusRing } from '#lib/core/ui.js';
   import CalendarSheet from '../_shared/calendar-sheet.svelte';
-  import { dayTitle, WEEKDAYS } from '../_shared/time.js';
+  import { dayTitle, WEEKDAYS } from '#lib/core/kid/time.js';
   import {
     MONTH,
     MONTH_LENGTH,

@@ -6,6 +6,7 @@
  * problems. Pure and DOM-free; each skill is a `KidSkill` for
  * `adaptive-quiz.svelte`.
  */
+import { exprText } from '#lib/core/kid/column.js';
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
@@ -14,16 +15,6 @@ import { MINUS } from '#lib/core/number-format.js';
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
 /** @typedef {'+' | '-'} Op */
 /** @typedef {'add-one' | 'add-two' | 'sub-one' | 'sub-two'} CarryKind */
-
-/**
- * "35 + 7" or "42 − 7".
- * @param {number} a
- * @param {number} b
- * @param {Op} op
- */
-export function expr(a, b, op) {
-  return `${a} ${op === '+' ? '+' : MINUS} ${b}`;
-}
 
 /**
  * @param {number} a
@@ -135,7 +126,7 @@ export function carryWords(a, b, op) {
         ? `${tb} thêm 1 bằng ${tb + 1}, ${ta} trừ ${tb + 1} bằng ${tr}${write}`
         : `${ta} trừ 1 bằng ${tr}${write}`;
   }
-  return `${ones} ${tens} Vậy ${expr(a, b, op)} = ${r}.`;
+  return `${ones} ${tens} Vậy ${exprText(a, b, op)} = ${r}.`;
 }
 
 /**
@@ -163,20 +154,20 @@ export const mental20Skill = {
       const b = int(rand, 11 - a, 9);
       const c = a + b;
       return {
-        prompt: `${expr(a, b, '+')} = ?`,
+        prompt: `${exprText(a, b, '+')} = ?`,
         ...nearOptions(rand, c, [c - 10, c + 1], 20),
         hint: `Em tách số để ${a} cộng thành 10 trước, rồi cộng tiếp phần còn lại.`,
-        solution: `${a} + ${10 - a} = 10, 10 + ${c - 10} = ${c}. Vậy ${expr(a, b, '+')} = ${c}.`,
+        solution: `${a} + ${10 - a} = 10, 10 + ${c - 10} = ${c}. Vậy ${exprText(a, b, '+')} = ${c}.`,
       };
     }
     const c = int(rand, 11, 18);
     const b = int(rand, c - 9, 9);
     const r = c - b;
     return {
-      prompt: `${expr(c, b, '-')} = ?`,
+      prompt: `${exprText(c, b, '-')} = ?`,
       ...nearOptions(rand, r, [r + 10, r - 1], 20),
       hint: `Em bớt ${c - 10} để được 10, rồi bớt tiếp phần còn lại.`,
-      solution: `${c} ${MINUS} ${c - 10} = 10, 10 ${MINUS} ${b - (c - 10)} = ${r}. Vậy ${expr(c, b, '-')} = ${r}.`,
+      solution: `${c} ${MINUS} ${c - 10} = 10, 10 ${MINUS} ${b - (c - 10)} = ${r}. Vậy ${exprText(c, b, '-')} = ${r}.`,
     };
   },
 };
@@ -208,10 +199,10 @@ export const compare20Skill = {
     const y = resultOf(c, d, op);
     const sign = compareSign(x, y);
     return {
-      prompt: `Chọn dấu đúng: ${expr(a, b, op)} ... ${expr(c, d, op)}`,
+      prompt: `Chọn dấu đúng: ${exprText(a, b, op)} ... ${exprText(c, d, op)}`,
       ...signOptions(sign),
       hint: 'Em tính kết quả của từng phép tính, rồi so sánh hai kết quả.',
-      solution: `${expr(a, b, op)} = ${x}, ${expr(c, d, op)} = ${y}. ${x} ${sign} ${y}, nên ${expr(a, b, op)} ${sign} ${expr(c, d, op)}.`,
+      solution: `${exprText(a, b, op)} = ${x}, ${exprText(c, d, op)} = ${y}. ${x} ${sign} ${y}, nên ${exprText(a, b, op)} ${sign} ${exprText(c, d, op)}.`,
     };
   },
 };
@@ -253,18 +244,18 @@ export const wholeTensSkill = {
     const y = int(rand, 1, 10 - x);
     if (rand() < 0.5) {
       return {
-        prompt: `${expr(10 * x, 10 * y, '+')} = ?`,
+        prompt: `${exprText(10 * x, 10 * y, '+')} = ?`,
         ...nearOptions(rand, 10 * (x + y), [10 * Math.abs(x - y)]),
         hint: `${x} chục cộng ${y} chục bằng mấy chục?`,
-        solution: `${x} chục + ${y} chục = ${x + y} chục. Vậy ${expr(10 * x, 10 * y, '+')} = ${10 * (x + y)}.`,
+        solution: `${x} chục + ${y} chục = ${x + y} chục. Vậy ${exprText(10 * x, 10 * y, '+')} = ${10 * (x + y)}.`,
       };
     }
     const n = x + y;
     return {
-      prompt: `${expr(10 * n, 10 * x, '-')} = ?`,
+      prompt: `${exprText(10 * n, 10 * x, '-')} = ?`,
       ...nearOptions(rand, 10 * y, [10 * (n + x)]),
       hint: `${n} chục bớt ${x} chục thì còn mấy chục?`,
-      solution: `${n} chục ${MINUS} ${x} chục = ${y} chục. Vậy ${expr(10 * n, 10 * x, '-')} = ${10 * y}.`,
+      solution: `${n} chục ${MINUS} ${x} chục = ${y} chục. Vậy ${exprText(10 * n, 10 * x, '-')} = ${10 * y}.`,
     };
   },
 };
@@ -279,7 +270,7 @@ export const columnSkill = {
     // Forgetting the carried 1 moves the tens by one.
     const forgot = op === '+' ? c - 10 : c + 10;
     return {
-      prompt: `Đặt tính rồi tính: ${expr(a, b, op)}. Kết quả là bao nhiêu?`,
+      prompt: `Đặt tính rồi tính: ${exprText(a, b, op)}. Kết quả là bao nhiêu?`,
       visual: { type: 'column', a, b, op },
       ...nearOptions(rand, c, [forgot]),
       hint: 'Em tính từ phải sang trái. Tính hàng đơn vị trước, đừng quên nhớ 1 sang hàng chục.',
@@ -326,7 +317,7 @@ export const chainSkill = {
       visual: { type: 'chain', start, steps },
       ...nearOptions(rand, last, [before, flipped]),
       hint: 'Em tính từng phép tính từ trái sang phải. Kết quả của phép trước là số đầu của phép sau.',
-      solution: `${steps.map((s, i) => `${expr(values[i], s.n, s.op)} = ${values[i + 1]}`).join('. ')}. Ô cuối cùng là ${last}.`,
+      solution: `${steps.map((s, i) => `${exprText(values[i], s.n, s.op)} = ${values[i + 1]}`).join('. ')}. Ô cuối cùng là ${last}.`,
     };
   },
 };

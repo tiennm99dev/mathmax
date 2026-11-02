@@ -1,12 +1,11 @@
 /**
  * Mass with a pan balance (cân đĩa), the grade 2 way: things to weigh, the
  * 1 kg, 2 kg and 5 kg weights (quả cân), which pan goes down, how the loads
- * sit on a pan, and the sentences a child hears while weighing. Shared by
- * the lessons of the chapter "Làm quen với khối lượng, dung tích". Pure and
- * DOM-free.
+ * sit on a pan, and the sentences a child hears while weighing.
+ * `balance-scale.svelte` draws it. Pure and DOM-free.
  */
 import { int } from '#lib/core/drill.js';
-import { capitalize } from '#lib/core/kid/quiz.js';
+import { capitalize } from './quiz.js';
 
 /**
  * Things to put on the balance, with the range of whole kilograms they may
@@ -40,8 +39,13 @@ const WEIGHT_SIZE = /** @type {Record<number, [number, number]>} */ ({
 });
 
 /**
- * One thing on a pan: a thing of a known mass, or a weight.
- * @typedef {{ kind: 'thing', id: ThingId, kg: number } | { kind: 'weight', kg: number }} Load
+ * One thing on a pan: a drawn thing of a known mass (`id`), a labelled box of a
+ * known mass for anything else (`name`), or a weight.
+ * @typedef {(
+ *   | { kind: 'thing', id: ThingId, kg: number }
+ *   | { kind: 'thing', name: string, kg: number }
+ *   | { kind: 'weight', kg: number }
+ * )} Load
  */
 
 /**
@@ -53,6 +57,48 @@ export function massThing(id) {
   const t = MASS_THINGS.find((m) => m.id === id);
   if (!t) throw new Error(`unknown thing ${id}`);
   return t;
+}
+
+/** Size on a pan of a labelled box (a thing given by `name`). */
+const NAMED_BOX = /** @type {[number, number]} */ ([86, 36]);
+
+/**
+ * The size of one load on a pan.
+ * @param {Load} load
+ * @returns {[number, number]} width and height in SVG units
+ */
+function sizeOnPan(load) {
+  if (load.kind === 'weight') return WEIGHT_SIZE[load.kg] ?? WEIGHT_SIZE[1];
+  if ('name' in load) return NAMED_BOX;
+  const { w, h } = massThing(load.id);
+  return [w, h];
+}
+
+/**
+ * The name of a load: 'quả dưa hấu', the name it was given, or 'quả cân 2 kg'.
+ * @param {Load} load
+ */
+export function loadName(load) {
+  if (load.kind === 'weight') return `quả cân ${load.kg} kg`;
+  return 'name' in load ? load.name : massThing(load.id).name;
+}
+
+/**
+ * What a screen reader says for a balance: both pans, then which pan is lower.
+ * @param {readonly Load[]} left
+ * @param {readonly Load[]} right
+ */
+export function balanceText(left, right) {
+  /** @param {readonly Load[]} loads */
+  const side = (loads) => loads.map(loadName).join(', ') || 'trống';
+  const low = heavierSide(totalKg(left), totalKg(right));
+  const tilt =
+    low === 'level'
+      ? 'Cân thăng bằng.'
+      : low === 'left'
+        ? 'Đĩa bên trái thấp hơn.'
+        : 'Đĩa bên phải thấp hơn.';
+  return `Cân đĩa. Đĩa bên trái: ${side(left)}. Đĩa bên phải: ${side(right)}. ${tilt}`;
 }
 
 /**
@@ -193,10 +239,7 @@ export function panLayout(loads, width) {
   const rows = [[]];
   let used = 0;
   for (const load of loads) {
-    const [w, h] =
-      load.kind === 'thing'
-        ? [massThing(load.id).w, massThing(load.id).h]
-        : (WEIGHT_SIZE[load.kg] ?? WEIGHT_SIZE[1]);
+    const [w, h] = sizeOnPan(load);
     const row = rows[rows.length - 1];
     if (row.length > 0 && used + gap + w > width) {
       rows.push([{ load, w, h }]);

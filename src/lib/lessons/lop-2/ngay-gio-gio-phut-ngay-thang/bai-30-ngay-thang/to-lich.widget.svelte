@@ -1,5 +1,5 @@
 <script>
-  import MonthSheet from '../_shared/month-sheet.svelte';
+  import MonthSheet from '#lib/core/kid/month-sheet.svelte';
 </script>
 
 <div class="space-y-2">

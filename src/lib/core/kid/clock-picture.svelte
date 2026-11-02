@@ -5,28 +5,32 @@
 
   /**
    * A still analog clock at any time: the short hand moves on between two
-   * numbers as the minutes pass. Screen readers hear where the two hands
-   * point, which is what a child reads off the dial.
+   * numbers as the minutes pass, and both hands stop short of the numerals.
+   * Screen readers hear where the two hands point, which is what a child reads
+   * off the dial, so the picture never gives the time away.
    *
-   * - `minutes`: the time as minutes since 0:00.
+   * - `minutes`: the time as minutes since 0:00 (a whole hour is `hour * 60`).
    * - `size`: CSS width class of the picture.
-   * @type {{ minutes: number, size?: string }}
+   * - `label`: overrides the spoken description.
+   * - `decorative`: hidden from screen readers, when the parent names it.
+   * @type {{ minutes: number, size?: string, label?: string, decorative?: boolean }}
    */
-  let { minutes, size = 'w-44' } = $props();
+  let { minutes, size = 'w-44', label, decorative = false } = $props();
 
   const S = 200;
   const C = S / 2;
   const R = 92;
   const angles = $derived(handAngles(minutes));
-  const hourTip = $derived(polar(C, C, R * 0.5, angles.hour));
-  const minuteTip = $derived(polar(C, C, R * 0.8, angles.minute));
+  const hourTip = $derived(polar(C, C, R * 0.38, angles.hour));
+  const minuteTip = $derived(polar(C, C, R * 0.58, angles.minute));
 </script>
 
 <svg
   viewBox="0 0 {S} {S}"
   class="{size} mx-auto block shrink-0 select-none"
-  role="img"
-  aria-label="Đồng hồ: {handsText(minutes)}."
+  role={decorative ? undefined : 'img'}
+  aria-hidden={decorative ? 'true' : undefined}
+  aria-label={decorative ? undefined : (label ?? `Đồng hồ: ${handsText(minutes)}.`)}
 >
   <circle cx={C} cy={C} r={R} fill="#fff" stroke="#334155" stroke-width="5" />
   {#each { length: 12 } as _, h (h)}

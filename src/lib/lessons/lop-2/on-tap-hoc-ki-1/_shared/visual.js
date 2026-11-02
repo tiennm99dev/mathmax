@@ -14,7 +14,7 @@
  * @typedef {import('./figures.js').Figure} Figure
  * @typedef {import('#lib/core/kid/shapes.js').ShapeKind} ShapeKind
  * @typedef {import('./arith-skills.js').Op} Op
- * @typedef {{ kind: 'thing', name: string, kg: number } | { kind: 'weight', kg: number }} Load
+ * @typedef {import('#lib/core/kid/mass.js').Load} Load
  * @typedef {{ left: Load[], right: Load[] }} Scale
  * @typedef {(
  *   | { type: 'column', a: number, b: number, op: Op }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { daysIn, monthRows, weekdayOf } from '../_shared/time.js';
+import { daysIn, monthRows, weekdayOf } from '#lib/core/kid/time.js';
 import { MISSIONS, checkMission, dateSentence, monthSentence } from './engine.js';
 
 /**

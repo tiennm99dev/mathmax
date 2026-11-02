@@ -4,13 +4,15 @@
 
   /**
    * One rendered content block. Widget blocks look up their component in
-   * `widgets` by name (`<name>.widget.svelte`).
+   * `widgets` by name (`<name>.widget.svelte`). `kid` is set by the layout of
+   * grades 1-5, so a callout is labelled for a child.
    * @type {{
    *   block: import('./content-schema.js').RenderedBlock;
    *   widgets?: Record<string, import('svelte').Component<any>>;
+   *   kid?: boolean;
    * }}
    */
-  let { block, widgets = {} } = $props();
+  let { block, widgets = {}, kid = false } = $props();
 </script>
 
 {#if block.type === 'p'}
@@ -29,7 +31,7 @@
     {/each}
   </svelte:element>
 {:else if block.type === 'callout'}
-  <Callout tone={block.tone} title={block.title} html={block.html} />
+  <Callout tone={block.tone} title={block.title} html={block.html} {kid} />
 {:else if block.type === 'table'}
   <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
     <table class="w-full border-collapse text-left tabular-nums">

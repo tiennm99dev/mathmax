@@ -98,7 +98,7 @@
               {copy.project}
             </p>
           {/if}
-          <ContentBlock {block} {widgets} />
+          <ContentBlock {block} {widgets} kid />
         </KidCard>
       {/each}
     {/each}

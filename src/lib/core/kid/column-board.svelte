@@ -7,6 +7,9 @@
    * left, a line, and the result digits written so far. Static: the parent
    * changes the props.
    *
+   * With `carried`, the small carried 1 ("nhớ 1") shows beside the tens of the
+   * second number, once the ones column of a carrying calculation is done.
+   *
    * - `a`, `b`, `op`: the calculation (`op` is '+' or '-').
    * - `written`: result digits written so far, `null` while still empty.
    * - `active`: the column being worked on, tinted, or null.
@@ -15,10 +18,11 @@
    *   b: number;
    *   op: import('./column.js').Op;
    *   written: { tens: number | null; ones: number | null };
+   *   carried?: boolean;
    *   active?: import('./column.js').Place | null;
    * }}
    */
-  let { a, b, op, written, active = null } = $props();
+  let { a, b, op, written, carried = false, active = null } = $props();
 
   /** @param {number} n */
   const tensOf = (n) => (n >= 10 ? String(Math.floor(n / 10)) : '');
@@ -28,7 +32,8 @@
   const label = $derived.by(() => {
     const t = written.tens === null ? '?' : String(written.tens);
     const o = written.ones === null ? '?' : String(written.ones);
-    return `Đặt tính: ${a} ${signWord(op)} ${b}. Hàng chục của kết quả: ${t}. Hàng đơn vị của kết quả: ${o}.`;
+    const carry = carried ? ' Đã nhớ 1 sang hàng chục.' : '';
+    return `Đặt tính: ${a} ${signWord(op)} ${b}.${carry} Hàng chục của kết quả: ${t}. Hàng đơn vị của kết quả: ${o}.`;
   });
 
   /** @param {import('./column.js').Place} place */
@@ -51,7 +56,15 @@
   <span class="py-1 text-slate-800 {tint('ones')}">{onesOf(a)}</span>
 
   <span class="self-start bg-white text-3xl text-slate-600">{signOf(op)}</span>
-  <span class="py-1 text-slate-800 {tint('tens')}">{tensOf(b)}</span>
+  <span class="relative py-1 text-slate-800 {tint('tens')}">
+    {tensOf(b)}
+    {#if carried}
+      <span
+        class="absolute left-1 top-0 rounded-full bg-rose-100 px-1.5 text-lg leading-6 text-rose-700"
+        >1</span
+      >
+    {/if}
+  </span>
   <span class="py-1 text-slate-800 {tint('ones')}">{onesOf(b)}</span>
 
   <span class="col-span-3 mx-2 h-1 rounded bg-slate-700"></span>

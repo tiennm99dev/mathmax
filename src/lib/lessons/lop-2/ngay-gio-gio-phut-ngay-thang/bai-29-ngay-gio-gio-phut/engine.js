@@ -14,7 +14,7 @@ import {
   mod,
   partText,
   sameOnDial,
-} from '../_shared/time.js';
+} from '#lib/core/kid/time.js';
 
 /**
  * Times to set on the clock, each named one of the ways the lesson teaches.

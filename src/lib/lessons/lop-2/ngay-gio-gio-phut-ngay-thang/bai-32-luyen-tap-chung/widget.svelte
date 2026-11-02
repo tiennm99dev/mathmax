@@ -1,7 +1,7 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import ClockPicture from '../_shared/clock-picture.svelte';
-  import MonthSheet from '../_shared/month-sheet.svelte';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
+  import MonthSheet from '#lib/core/kid/month-sheet.svelte';
   import { KIND_LABELS, buildRound } from './engine.js';
 </script>
 

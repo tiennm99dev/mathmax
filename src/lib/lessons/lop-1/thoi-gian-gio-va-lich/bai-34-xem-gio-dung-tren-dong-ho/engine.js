@@ -3,7 +3,7 @@
  * to ask for next, and what to tell the child about the hands they set.
  * Pure and DOM-free.
  */
-import { dialHour, isWholeHour, mod } from '../_shared/time.js';
+import { dialHour, isWholeHour, mod } from '#lib/core/kid/time.js';
 
 /** The hours asked for, in turn, so each round differs from the last. */
 export const TARGETS = /** @type {const} */ ([3, 9, 6, 12, 1, 8, 4, 11, 2, 7, 10, 5]);

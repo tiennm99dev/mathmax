@@ -3,7 +3,7 @@
   import { rng } from '#lib/core/drill.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import BalanceScale from '../_shared/balance-scale.svelte';
+  import BalanceScale from '#lib/core/kid/balance-scale.svelte';
   import {
     MAX_WEIGHTS,
     WEIGHTS,
@@ -13,7 +13,7 @@
     newWeighTask,
     sortedWeights,
     weighMessage,
-  } from '../_shared/mass.js';
+  } from '#lib/core/kid/mass.js';
   import { compareOptions, scaleLabel } from './engine.js';
 
   // Fixed seeds so the prerendered page and the browser agree.
@@ -49,13 +49,13 @@
   const level = $derived(sum === task.kg);
   const thingName = $derived(massThing(task.id).name);
 
-  /** @type {import('../_shared/mass.js').Load[]} */
+  /** @type {import('#lib/core/kid/mass.js').Load[]} */
   const left = $derived(
     mode === 'compare'
       ? [{ kind: 'thing', ...pair[0] }]
       : [{ kind: 'thing', id: task.id, kg: task.kg }],
   );
-  /** @type {import('../_shared/mass.js').Load[]} */
+  /** @type {import('#lib/core/kid/mass.js').Load[]} */
   const right = $derived(
     mode === 'compare'
       ? [{ kind: 'thing', ...pair[1] }]

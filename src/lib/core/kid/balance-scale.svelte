@@ -1,21 +1,30 @@
 <script>
-  import { heavierSide, panLayout, totalKg } from './mass.js';
+  import { balanceText, heavierSide, panLayout, totalKg } from './mass.js';
 
   /**
    * A pan balance (cân đĩa) drawn in SVG. The heavier pan goes down and the
    * beam tips towards it; when both pans weigh the same the beam is level.
    * Things are drawn without their mass, so the child has to read the
-   * balance. A drawing only: the widget around it holds the controls.
+   * balance: a known thing (`id`) as its picture, anything else (`name`) as a
+   * labelled box. A drawing only: the widget around it holds the controls.
    *
    * - `left`, `right`: the loads on each pan (`Load` in `mass.js`).
-   * - `label`: what a screen reader hears for the whole drawing.
+   * - `label`: what a screen reader hears, by default both pans and the lower
+   *   one (`balanceText`).
    * @type {{
    *   left: readonly import('./mass.js').Load[];
    *   right: readonly import('./mass.js').Load[];
-   *   label: string;
+   *   label?: string;
    * }}
    */
   let { left, right, label } = $props();
+
+  const NAMED_COLORS = ['#fde68a', '#bbf7d0', '#fecaca', '#bfdbfe', '#ddd6fe'];
+
+  /** @param {string} name */
+  function colorOf(name) {
+    return NAMED_COLORS[[...name].reduce((s, c) => s + c.charCodeAt(0), 0) % NAMED_COLORS.length];
+  }
 
   const PIVOT = { x: 170, y: 64 };
   const ARM = 118;
@@ -51,11 +60,30 @@
           x={x + it.w / 2}
           y={y + it.h / 2 + 5}
           text-anchor="middle"
-          font-size="11"
+          font-size="13"
           font-weight="700"
           fill="#fff">{it.load.kg} kg</text
         >
       </g>
+    {:else if 'name' in it.load}
+      <rect
+        {x}
+        {y}
+        width={it.w}
+        height={it.h}
+        rx="10"
+        fill={colorOf(it.load.name)}
+        stroke="#475569"
+        stroke-width="1.5"
+      />
+      <text
+        x={x + it.w / 2}
+        y={y + it.h / 2 + 4}
+        text-anchor="middle"
+        font-size="13"
+        font-weight="700"
+        fill="#1e293b">{it.load.name}</text
+      >
     {:else}
       {@const id = it.load.id}
       {#if id === 'pomelo'}
@@ -172,7 +200,12 @@
   />
 {/snippet}
 
-<svg viewBox="0 0 340 240" class="mx-auto block w-full max-w-md" role="img" aria-label={label}>
+<svg
+  viewBox="0 0 340 240"
+  class="mx-auto block w-full max-w-md"
+  role="img"
+  aria-label={label ?? balanceText(left, right)}
+>
   <rect x="120" y="222" width="100" height="12" rx="4" fill="#64748b" />
   <path
     d="M{PIVOT.x - 10} 222 L{PIVOT.x - 4} {PIVOT.y} H{PIVOT.x + 4} L{PIVOT.x + 10} 222 Z"

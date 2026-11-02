@@ -35,12 +35,15 @@
     onmove,
   } = $props();
 
-  const U = 22;
+  // Wide centimetres and big numbers: this SVG shrinks to about 0.57 at 390 px,
+  // where the numbers still read near 14 px.
+  const U = 30;
+  const RULER_FONT = 24;
   const ITEM_X = 30 + 2 * U;
-  const ITEM_Y = 44;
-  const RULER_Y = 58;
-  const W = ITEM_X + 2 * U + RULER_CM * U + 48;
-  const H = 110;
+  const ITEM_Y = 52;
+  const RULER_Y = 66;
+  const W = ITEM_X + 2 * U + RULER_CM * U + 60;
+  const H = RULER_Y + RULER_FONT + 24 + 10;
 
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
@@ -100,15 +103,15 @@
 >
   {#if showUnit}
     <rect
-      x={W - 70}
-      y="8"
+      x={W - 110}
+      y="6"
       width={U}
       height={U}
       fill="#c7d2fe"
       stroke="#4338ca"
       stroke-width="1.5"
     />
-    <text x={W - 42} y="24" font-size="13" fill="#3730a3">1 cm</text>
+    <text x={W - 72} y="28" font-size="22" fill="#3730a3">1 cm</text>
   {/if}
   <ThingShape shape={thing.shape} x={ITEM_X} y={ITEM_Y} length={length * U} color={thing.color} />
   {#if showRuler}
@@ -132,13 +135,13 @@
       onpointerdown={grabRuler}
       use:draggable={drag}
     >
-      <Ruler x={zeroX} y={RULER_Y} cm={RULER_CM} unit={U} />
+      <Ruler x={zeroX} y={RULER_Y} cm={RULER_CM} unit={U} fontSize={RULER_FONT} />
       <rect
         class="drag-knob"
         x={zeroX - 14}
         y={RULER_Y}
-        width={RULER_CM * U + 50}
-        height="40"
+        width={RULER_CM * U + 50 + RULER_FONT / 2}
+        height={RULER_FONT + 24}
         rx="4"
         fill="none"
       />

@@ -10,33 +10,17 @@ import { pictures } from '#lib/core/kid/pictures/index.js';
 import {
   compareReason,
   compareSign,
+  minus,
   placeText,
+  plus,
   readNumber,
   tensOnes,
 } from '#lib/core/kid/numbers.js';
-import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
+import { bigOptions, mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { COUNTABLE, minus, plus } from './ten-skills.js';
+import { COUNTABLE } from './ten-skills.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidSkill<import('./visual.js').Visual>} KidSkill */
-
-/**
- * Up to four number options for a two-digit answer, in increasing order:
- * the right one and the mistakes a child makes there (one off, ten off,
- * the digits swapped), all from `lo` to `hi`.
- * @param {() => number} rand
- * @param {number} right
- * @param {number} [lo]
- * @param {number} [hi]
- * @returns {{ options: string[], answer: number }}
- */
-export function bigOptions(rand, right, lo = 0, hi = 99) {
-  const near = [right - 1, right + 1, right - 10, right + 10];
-  if (right >= 10 && right < 100) near.push((right % 10) * 10 + Math.floor(right / 10));
-  const others = [...new Set(near)].filter((v) => v !== right && v >= lo && v <= hi);
-  const values = [right, ...shuffle(rand, others).slice(0, 3)].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
-}
 
 /** @type {KidSkill} */
 export const readSkill = {

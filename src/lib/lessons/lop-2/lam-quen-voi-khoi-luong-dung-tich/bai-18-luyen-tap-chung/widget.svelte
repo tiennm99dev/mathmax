@@ -1,11 +1,11 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
   import { capitalize } from '#lib/core/kid/quiz.js';
-  import BalanceScale from '../_shared/balance-scale.svelte';
-  import Cup from '../_shared/cup.svelte';
-  import Vessel from '../_shared/vessel.svelte';
-  import { vessel } from '../_shared/capacity.js';
-  import { massThing, weightsText } from '../_shared/mass.js';
+  import BalanceScale from '#lib/core/kid/balance-scale.svelte';
+  import Cup from '#lib/core/kid/cup.svelte';
+  import Vessel from '#lib/core/kid/vessel.svelte';
+  import { vessel } from '#lib/core/kid/capacity.js';
+  import { weightsText, loadName } from '#lib/core/kid/mass.js';
   import { KIND_LABELS, buildRound } from './engine.js';
 
   /**
@@ -13,11 +13,11 @@
    * @param {import('./engine.js').Visual & { type: 'scale' }} v
    */
   function scaleText(v) {
-    /** @param {import('../_shared/mass.js').Load[]} loads */
+    /** @param {import('#lib/core/kid/mass.js').Load[]} loads */
     const side = (loads) => {
       const weights = loads.flatMap((l) => (l.kind === 'weight' ? [l.kg] : []));
       if (weights.length > 0) return `quả cân ${weightsText(weights)}`;
-      return loads.map((l) => (l.kind === 'thing' ? massThing(l.id).name : '')).join(' và ');
+      return loads.map((l) => (l.kind === 'thing' ? loadName(l) : '')).join(' và ');
     };
     const l = v.left.reduce((s, x) => s + x.kg, 0);
     const r = v.right.reduce((s, x) => s + x.kg, 0);

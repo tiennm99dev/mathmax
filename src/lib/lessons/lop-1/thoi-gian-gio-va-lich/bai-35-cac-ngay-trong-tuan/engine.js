@@ -3,7 +3,7 @@
  * wheel turns so that "hôm nay" is on top, and the days either side of it
  * are "hôm qua" and "ngày mai". Pure and DOM-free.
  */
-import { WEEKDAYS, dayAfter, dayTitle, mod } from '../_shared/time.js';
+import { WEEKDAYS, dayAfter, dayTitle, mod } from '#lib/core/kid/time.js';
 
 /** Degrees between two neighbouring days on the wheel. */
 export const STEP = 360 / 7;

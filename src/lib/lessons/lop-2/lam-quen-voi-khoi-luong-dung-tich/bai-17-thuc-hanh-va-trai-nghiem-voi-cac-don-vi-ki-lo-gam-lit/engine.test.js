@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { CUPS } from '../_shared/capacity.js';
-import { massThing } from '../_shared/mass.js';
+import { CUPS } from '#lib/core/kid/capacity.js';
+import { massThing } from '#lib/core/kid/mass.js';
 import {
   CAPACITY_ITEMS,
   GUESS_MAX,

@@ -6,7 +6,7 @@
  * (1 chục = 10 đơn vị) before the rest can go: 42 − 7 leaves 3 bundles and 5
  * loose sticks, 35. Pure and DOM-free.
  */
-import { numberOptions } from '#lib/core/kid/quiz.js';
+import { differenceOptions as carryDifferenceOptions } from '#lib/core/kid/carry.js';
 
 /**
  * Sticks on the table: bundles, loose sticks (crossed-out ones included),
@@ -75,12 +75,5 @@ export function tableMessage(a, b, untied, taken) {
  * @param {number} b
  */
 export function differenceOptions(rand, a, b) {
-  const right = a - b;
-  const slip = Math.floor(a / 10) * 10 + (b - (a % 10));
-  const near = numberOptions(rand, right, right - 3, right + 3)
-    .options.map(Number)
-    .filter((v) => v !== right && v !== slip)
-    .slice(0, 2);
-  const values = [...near, slip, right].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
+  return carryDifferenceOptions(rand, a - b, Math.floor(a / 10) * 10 + (b - (a % 10)));
 }

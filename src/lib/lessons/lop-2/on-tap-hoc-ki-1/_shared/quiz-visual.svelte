@@ -1,13 +1,14 @@
 <script>
+  import BalanceScale from '#lib/core/kid/balance-scale.svelte';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import ColumnBoard from '#lib/core/kid/column-board.svelte';
+  import Cup from '#lib/core/kid/cup.svelte';
   import Ruler from '#lib/core/kid/ruler.svelte';
   import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
   import { MINUS } from '#lib/core/number-format.js';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
   import { resultOf, towerRows } from './arith-skills.js';
-  import Balance from './balance.svelte';
-  import ClockPicture from './clock-picture.svelte';
   import Figure from './figure.svelte';
 
   /**
@@ -102,7 +103,7 @@
       role="img"
       aria-label="Đoạn thẳng {visual.name} đặt trên thước: đầu {p} ở vạch {visual.from}, đầu {q} ở vạch {visual.to}."
     >
-      <Ruler x={RULER_X} y={60} cm={RULER_CM} unit={UNIT} />
+      <Ruler x={RULER_X} y={60} cm={RULER_CM} unit={UNIT} fontSize={18} />
       <line x1={x0} y1="48" x2={x1} y2="48" stroke="#3730a3" stroke-width="4" />
       {#each [{ x: x0, name: p }, { x: x1, name: q }] as d (d.name)}
         <circle cx={d.x} cy="48" r="5" fill="#1e293b" />
@@ -130,7 +131,7 @@
 {:else if visual.type === 'scales'}
   <div class="space-y-2 rounded-2xl bg-sky-50 p-2">
     {#each visual.scales as scale, i (i)}
-      <Balance {scale} />
+      <BalanceScale left={scale.left} right={scale.right} />
     {/each}
   </div>
 {:else if visual.type === 'cups'}
@@ -140,23 +141,7 @@
         <p class="mb-1 text-lg font-bold text-slate-800">{group.name}</p>
         <div class="flex flex-wrap gap-1">
           {#each { length: group.n } as _, i (i)}
-            <svg viewBox="0 0 40 48" width="36" height="43" aria-hidden="true" class="shrink-0">
-              <path
-                d="M30 14 Q39 16 37 26 Q35 34 29 34"
-                fill="none"
-                stroke="#475569"
-                stroke-width="3"
-              />
-              <path d="M6 10 H30 L28 44 H8 Z" fill="#38bdf8" stroke="#475569" stroke-width="2" />
-              <text
-                x="18"
-                y="31"
-                text-anchor="middle"
-                font-size="12"
-                font-weight="700"
-                fill="#0c4a6e">1 l</text
-              >
-            </svg>
+            <Cup full size={36} />
           {/each}
         </div>
       </div>

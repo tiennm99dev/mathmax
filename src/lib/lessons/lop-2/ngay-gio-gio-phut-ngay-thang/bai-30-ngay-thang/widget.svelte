@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import MonthSheet from '../_shared/month-sheet.svelte';
+  import MonthSheet from '#lib/core/kid/month-sheet.svelte';
   import { MISSIONS, checkMission, dateSentence, monthSentence } from './engine.js';
 
   let mode = $state('look');

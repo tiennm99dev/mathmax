@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { WEEKDAYS, daysIn, upperFirst, weekdayOf } from '../_shared/time.js';
+import { WEEKDAYS, daysIn, weekdayOf } from '#lib/core/kid/time.js';
+import { capitalize } from '#lib/core/kid/quiz.js';
 import { KINDS, KIND_LABELS, buildRound } from './engine.js';
 
 /**
@@ -31,7 +32,7 @@ function recompute(q) {
       if (q.prompt.startsWith('Một ngày')) return '24 giờ';
       return nums[2] ? `${nums[2]} phút` : `${(nums[1] - nums[0]) * 60} phút`;
     case 'thu-ngay':
-      return upperFirst(WEEKDAYS[weekdayOf(nums[1], nums[0])]);
+      return capitalize(WEEKDAYS[weekdayOf(nums[1], nums[0])]);
     case 'tuan':
       return String(q.prompt.includes('tuần sau') ? nums[0] + 7 : nums[0] - 7);
     case 'so-ngay':

@@ -6,7 +6,8 @@
  */
 import { int, pick } from '#lib/core/drill.js';
 import { mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
-import { fromMinutes, toMinutes } from '#lib/units-engine/clock.js';
+import { WEEKDAYS, handsText } from '#lib/core/kid/time.js';
+import { toMinutes } from '#lib/units-engine/clock.js';
 import { chainSkill, columnSkill, nearOptions, numberStory } from './arith-skills.js';
 import { readScaleSkill, countLitresSkill, measureStory } from './measure-skills.js';
 import { countShapesSkill, polylineSkill } from './shape-skills.js';
@@ -34,17 +35,6 @@ export const numberLineSkill = {
     };
   },
 };
-
-/** The days of one week, thứ Hai first. */
-export const WEEKDAYS = /** @type {const} */ ([
-  'thứ Hai',
-  'thứ Ba',
-  'thứ Tư',
-  'thứ Năm',
-  'thứ Sáu',
-  'thứ Bảy',
-  'Chủ nhật',
-]);
 
 /** Months with at least 30 days, so a date up to 30 is always in the month. */
 const LONG_MONTHS = /** @type {const} */ ([1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
@@ -95,20 +85,6 @@ export function clockText(hour, minute) {
 export function afternoonPart(hour) {
   if (hour <= 18) return 'chiều';
   return hour <= 21 ? 'tối' : 'đêm';
-}
-
-/**
- * Where the two hands of a clock point: what a screen reader says for the
- * picture, so it never gives the time away.
- * @param {number} total minutes since 0:00
- */
-export function handsText(total) {
-  const { hours, minutes } = fromMinutes(total);
-  const dial = hours % 12 || 12;
-  const next = (hours + 1) % 12 || 12;
-  const hourHand =
-    minutes === 0 ? `kim ngắn chỉ số ${dial}` : `kim ngắn ở giữa số ${dial} và số ${next}`;
-  return `${hourHand}, kim dài chỉ số ${minutes / 5 || 12}`;
 }
 
 /** The minutes the book reads off a dial: long hand at 12, 3 or 6. */

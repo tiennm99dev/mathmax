@@ -10,7 +10,7 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { compareSign, SIGN_WORDS } from '#lib/core/kid/numbers.js';
 import { mixOptions, numberOptions, signOptions } from '#lib/core/kid/quiz.js';
-import { carryText, makeCarry, sumOptions } from '../_shared/carry.js';
+import { carryText, makeCarry, sumOptions } from '#lib/core/kid/carry.js';
 
 /** A carrying addition set out in columns. */
 /** @typedef {{ a: number, b: number, op: '+' }} Visual */

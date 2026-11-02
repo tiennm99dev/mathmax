@@ -1,6 +1,7 @@
 <script>
   import Picture from '#lib/core/kid/picture.svelte';
   import { pictures } from '#lib/core/kid/pictures/index.js';
+  import { countLabel, takeawayLabel } from '#lib/core/kid/quiz.js';
   import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
 
@@ -8,18 +9,19 @@
    * The picture above a review question: groups of pictures to count, a
    * group with some pictures crossed out, a row of shapes (with a "?" box
    * for a pattern), animals standing in a row, or a table with one thing on
-   * it and one under it. Each picture has one text label for screen readers.
-   * @type {{ visual: import('./visual.js').Visual }}
+   * it and one under it. Each picture has one text label for screen readers;
+   * pictures to count are named one by one until the question ends, so the
+   * label never states the answer.
+   * @type {{ visual: import('./visual.js').Visual, settled?: boolean }}
    */
-  let { visual } = $props();
+  let { visual, settled = false } = $props();
 
   const label = $derived.by(() => {
     if (visual.type === 'groups') {
-      return visual.groups.map((g) => `${g.n} ${pictures[g.picture]}`).join(' và ');
+      return visual.groups.map((g) => countLabel(pictures[g.picture], g.n, settled)).join(' và ');
     }
     if (visual.type === 'takeaway') {
-      const noun = pictures[visual.picture];
-      return `${visual.total} ${noun}, ${visual.gone} ${noun} bị gạch đi`;
+      return takeawayLabel(pictures[visual.picture], visual.total, visual.gone, settled);
     }
     if (visual.type === 'figures') {
       const names = visual.figures.map((k) => FIGURE_NAMES[k]).join(', ');

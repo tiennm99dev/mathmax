@@ -1,6 +1,6 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import ClockPicture from '../_shared/clock-picture.svelte';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import { CLOCK_LABELS, buildClockRound } from './engine.js';
 </script>
 

@@ -4,6 +4,7 @@
  * and subtractions written and read the book's way ("3 + 2 = 5", read "ba
  * cộng hai bằng năm", with the book's minus sign "−"). Pure and DOM-free.
  */
+import { int } from '#lib/core/drill.js';
 import { MINUS } from '#lib/core/number-format.js';
 
 /** Words for the digits 0 to 9. */
@@ -208,4 +209,36 @@ export function freshInt(lo, hi, previous, random = Math.random) {
   for (let n = lo; n <= hi; n++) if (n !== previous) pool.push(n);
   if (pool.length === 0) return lo;
   return pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
+}
+
+/**
+ * "5 + 2" or, with `result`, "5 + 2 = 7".
+ * @param {number} a
+ * @param {number} b
+ * @param {number} [result]
+ */
+export function plus(a, b, result) {
+  return result === undefined ? `${a} + ${b}` : `${a} + ${b} = ${result}`;
+}
+
+/**
+ * "5 − 2" or, with `result`, "5 − 2 = 3".
+ * @param {number} a
+ * @param {number} b
+ * @param {number} [result]
+ */
+export function minus(a, b, result) {
+  return result === undefined ? `${a} ${MINUS} ${b}` : `${a} ${MINUS} ${b} = ${result}`;
+}
+
+/**
+ * Two parts a and b with a + b at most 10, each part at least `least`.
+ * @param {() => number} rand
+ * @param {number} [least]
+ * @returns {[number, number]}
+ */
+export function partsWithin10(rand, least = 1) {
+  const c = int(rand, 2 * least, 10);
+  const a = int(rand, least, c - least);
+  return [a, c - a];
 }

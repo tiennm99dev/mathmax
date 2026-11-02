@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { newVesselPair } from '../_shared/capacity.js';
+import { newVesselPair } from '#lib/core/kid/capacity.js';
 import { litreOptions, moreOptions, vesselLabel } from './engine.js';
 
 describe('litres', () => {

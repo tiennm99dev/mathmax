@@ -9,7 +9,7 @@
   length={10}
   allGood="Tuyệt vời! Em đã nắm chắc phép cộng, phép trừ trong phạm vi 10."
 >
-  {#snippet visual(q)}
-    {#if q.visual}<QuizVisual visual={q.visual} />{/if}
+  {#snippet visual(q, settled)}
+    {#if q.visual}<QuizVisual visual={q.visual} {settled} />{/if}
   {/snippet}
 </AdaptiveQuiz>

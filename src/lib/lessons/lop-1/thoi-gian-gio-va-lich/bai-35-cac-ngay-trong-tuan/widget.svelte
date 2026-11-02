@@ -2,7 +2,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import { polar, sectorPath } from '#lib/core/visuals/svg-math.js';
-  import { WEEKDAYS, dayTitle, mod } from '../_shared/time.js';
+  import { WEEKDAYS, dayTitle, mod } from '#lib/core/kid/time.js';
   import {
     ROLE_WORDS,
     STEP,

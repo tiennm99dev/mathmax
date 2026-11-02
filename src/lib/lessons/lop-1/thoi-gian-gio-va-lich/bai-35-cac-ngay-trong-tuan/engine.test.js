@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dayAfter } from '../_shared/time.js';
+import { dayAfter } from '#lib/core/kid/time.js';
 import { answerFeedback, dayAngle, daySentences, questionOf, roleOf, turnTo } from './engine.js';
 
 describe('week wheel', () => {

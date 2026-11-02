@@ -2,17 +2,17 @@
   import { tick } from 'svelte';
   import { capitalize } from '#lib/core/kid/quiz.js';
   import { button, focusRing } from '#lib/core/ui.js';
-  import BalanceScale from '../_shared/balance-scale.svelte';
-  import Cup from '../_shared/cup.svelte';
-  import Vessel from '../_shared/vessel.svelte';
-  import { CUPS, pourMessage } from '../_shared/capacity.js';
+  import BalanceScale from '#lib/core/kid/balance-scale.svelte';
+  import Cup from '#lib/core/kid/cup.svelte';
+  import Vessel from '#lib/core/kid/vessel.svelte';
+  import { CUPS, pourMessage } from '#lib/core/kid/capacity.js';
   import {
     MAX_WEIGHTS,
     WEIGHTS,
     sortedWeights,
     weighMessage,
     weightsText,
-  } from '../_shared/mass.js';
+  } from '#lib/core/kid/mass.js';
   import {
     GUESS_MAX,
     GUESS_MIN,
@@ -56,11 +56,11 @@
   const won = $derived(guessStars(guess, item.amount));
   const total = $derived(stars.reduce((a, b) => a + b, 0));
 
-  /** @type {import('../_shared/mass.js').Load[]} */
+  /** @type {import('#lib/core/kid/mass.js').Load[]} */
   const left = $derived(
     item.kind === 'mass' ? [{ kind: 'thing', id: item.id, kg: item.amount }] : [],
   );
-  /** @type {import('../_shared/mass.js').Load[]} */
+  /** @type {import('#lib/core/kid/mass.js').Load[]} */
   const right = $derived(sortedWeights(weights).map((kg) => ({ kind: 'weight', kg })));
 
   const scaleText = $derived(

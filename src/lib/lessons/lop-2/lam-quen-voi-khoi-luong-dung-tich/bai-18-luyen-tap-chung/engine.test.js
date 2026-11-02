@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { optionText, weakLabels } from '#lib/core/kid/quiz.js';
-import { totalKg } from '../_shared/mass.js';
+import { totalKg } from '#lib/core/kid/mass.js';
 import { KINDS, KIND_LABELS, buildRound } from './engine.js';
 
 /**

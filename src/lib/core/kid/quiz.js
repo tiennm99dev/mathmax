@@ -128,12 +128,15 @@ export function pickSkill(skills, attempts, rand) {
 }
 
 /**
- * What tells two questions apart: the same prompt with another picture is
- * another question.
+ * What tells two questions apart: the same prompt with another picture or
+ * other choices is another question, while the same choices in another order
+ * are the same question. The options are sorted, so a redraw that only
+ * reshuffles them still counts as a repeat.
  * @param {KidQuestion<any>} q
  */
 export function questionKey(q) {
-  return `${q.prompt}|${JSON.stringify(q.visual ?? null)}|${q.options.map(optionText).join('/')}`;
+  const options = q.options.map(optionText).sort();
+  return `${q.prompt}|${JSON.stringify(q.visual ?? null)}|${options.join('/')}`;
 }
 
 /**
@@ -196,6 +199,24 @@ export function numberOptions(rand, right, lo = 0, hi = 10) {
 }
 
 /**
+ * Up to four number options for a two-digit answer, in increasing order:
+ * the right one and the mistakes a child makes there (one off, ten off,
+ * the digits swapped), all from `lo` to `hi`.
+ * @param {() => number} rand
+ * @param {number} right
+ * @param {number} [lo]
+ * @param {number} [hi]
+ * @returns {{ options: string[], answer: number }}
+ */
+export function bigOptions(rand, right, lo = 0, hi = 99) {
+  const near = [right - 1, right + 1, right - 10, right + 10];
+  if (right >= 10 && right < 100) near.push((right % 10) * 10 + Math.floor(right / 10));
+  const others = [...new Set(near)].filter((v) => v !== right && v >= lo && v <= hi);
+  const values = [right, ...shuffle(rand, others).slice(0, 3)].sort((x, y) => x - y);
+  return { options: values.map(String), answer: values.indexOf(right) };
+}
+
+/**
  * The right option among distinct wrong ones, shuffled.
  * @param {() => number} rand
  * @param {string} right
@@ -225,4 +246,30 @@ export function signOptions(sign) {
  */
 export function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+/**
+ * What a screen reader says for `n` pictures to count. Until the question has
+ * ended it repeats the name once per picture, as a child counts them, and never
+ * states the total: 'con bướm, con bướm, con bướm'. Afterwards: '3 con bướm'.
+ * @param {string} noun
+ * @param {number} n
+ * @param {boolean} [settled]
+ */
+export function countLabel(noun, n, settled = false) {
+  return settled ? `${n} ${noun}` : Array.from({ length: n }, () => noun).join(', ');
+}
+
+/**
+ * The same for `total` pictures of which the last `gone` are crossed out.
+ * @param {string} noun
+ * @param {number} total
+ * @param {number} gone
+ * @param {boolean} [settled]
+ */
+export function takeawayLabel(noun, total, gone, settled = false) {
+  if (settled) return `${total} ${noun}, ${gone} ${noun} bị gạch đi`;
+  const left = Array.from({ length: total - gone }, () => noun);
+  const crossed = Array.from({ length: gone }, () => `${noun} bị gạch đi`);
+  return [...left, ...crossed].join(', ');
 }

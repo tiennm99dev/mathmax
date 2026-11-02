@@ -6,12 +6,12 @@
  * Pure and DOM-free.
  */
 import { capitalize } from '#lib/core/kid/quiz.js';
-import { heavierSide, massThing, totalKg, weightsText } from '../_shared/mass.js';
+import { heavierSide, massThing, totalKg, weightsText, loadName } from '#lib/core/kid/mass.js';
 
 /**
  * The three sentences to choose from for a pair on the balance, always in
  * the same order, and the right one.
- * @param {[{ id: import('../_shared/mass.js').ThingId, kg: number }, { id: import('../_shared/mass.js').ThingId, kg: number }]} pair
+ * @param {[{ id: import('#lib/core/kid/mass.js').ThingId, kg: number }, { id: import('#lib/core/kid/mass.js').ThingId, kg: number }]} pair
  */
 export function compareOptions(pair) {
   const [a, b] = pair.map((p) => massThing(p.id).name);
@@ -28,13 +28,13 @@ export function compareOptions(pair) {
 
 /**
  * What a screen reader hears for the balance.
- * @param {readonly import('../_shared/mass.js').Load[]} left
- * @param {readonly import('../_shared/mass.js').Load[]} right
+ * @param {readonly import('#lib/core/kid/mass.js').Load[]} left
+ * @param {readonly import('#lib/core/kid/mass.js').Load[]} right
  */
 export function scaleLabel(left, right) {
-  /** @param {readonly import('../_shared/mass.js').Load[]} loads */
+  /** @param {readonly import('#lib/core/kid/mass.js').Load[]} loads */
   const names = (loads) => {
-    const things = loads.flatMap((l) => (l.kind === 'thing' ? [massThing(l.id).name] : []));
+    const things = loads.flatMap((l) => (l.kind === 'thing' ? [loadName(l)] : []));
     const weights = loads.flatMap((l) => (l.kind === 'weight' ? [l.kg] : []));
     const parts = [...things];
     if (weights.length > 0) parts.push(`quả cân ${weightsText(weights)}`);

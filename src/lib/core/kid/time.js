@@ -1,11 +1,13 @@
 /**
- * Shared facts for the chapter on days, hours and months: the parts of a day
- * as the book names them, the two ways of saying a time ("13 giờ" and "1 giờ
- * chiều"), where the hands of a clock point, and the wall calendar sheets of
- * one common year. Times are minutes since 0:00, as in
- * `#lib/units-engine/clock.js`. Pure and DOM-free.
+ * Days, hours and months for grades 1 and 2: the days of the week in the order
+ * the book counts them (thứ Hai first), the parts of a day as the book names
+ * them, the two ways of saying a time ("13 giờ" and "1 giờ chiều"), where the
+ * hands of a clock point, and the wall calendar sheets of one common year.
+ * `clock-picture.svelte` and `month-sheet.svelte` draw them. Times are minutes
+ * since 0:00, as in `#lib/units-engine/clock.js`. Pure and DOM-free.
  */
 import { fromMinutes } from '#lib/units-engine/clock.js';
+import { capitalize } from './quiz.js';
 
 /** The days of one week as written inside a sentence, thứ Hai first. */
 export const WEEKDAYS = /** @type {const} */ ([
@@ -180,9 +182,56 @@ export function monthRows(month) {
 }
 
 /**
- * First letter in upper case, for a weekday that starts a sentence.
- * @param {string} text
+ * The day `k` days after `day` (0 = thứ Hai); a negative `k` goes back.
+ * @param {number} day
+ * @param {number} [k]
  */
-export function upperFirst(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+export function dayAfter(day, k = 1) {
+  return mod(day + k, 7);
+}
+
+/**
+ * A day name for the start of a sentence: 'Thứ Hai', 'Chủ nhật'.
+ * @param {number} day
+ */
+export function dayTitle(day) {
+  return capitalize(WEEKDAYS[mod(day, 7)]);
+}
+
+/**
+ * The number the hour hand points at, 1 to 12, for a time in minutes since
+ * 0:00 (the hand points exactly at it on a whole hour).
+ * @param {number} minutes
+ */
+export function dialHour(minutes) {
+  return Math.floor(mod(minutes, 720) / 60) || 12;
+}
+
+/**
+ * True when the minute hand points at 12.
+ * @param {number} minutes
+ */
+export function isWholeHour(minutes) {
+  return mod(minutes, 60) === 0;
+}
+
+/**
+ * Three different hours to pick from for a clock at `hour` (1 to 12): the
+ * right one, the next hour (a miscount) and 12 (reading the minute hand),
+ * or 6 when the answer is 12 itself. Sorted, so the right one moves around.
+ * @param {number} hour
+ */
+export function hourOptions(hour) {
+  const next = (hour % 12) + 1;
+  const swap = hour === 12 ? 6 : next === 12 ? 6 : 12;
+  return [hour, next, swap].sort((a, b) => a - b);
+}
+
+/**
+ * The weekday of `date` in a month whose first day is `firstDay`.
+ * @param {number} date 1 to 31
+ * @param {number} firstDay 0 = thứ Hai
+ */
+export function weekdayFrom(date, firstDay) {
+  return mod(firstDay + date - 1, 7);
 }

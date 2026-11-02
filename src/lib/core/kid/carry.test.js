@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { KINDS, carrySteps, carryText, freshCarry, isCarry, makeCarry, opOf } from './carry.js';
+import { KINDS } from './column.js';
+import {
+  carrySteps,
+  carryText,
+  freshCarry,
+  isCarry,
+  makeCarry,
+  opOf,
+  differenceOptions,
+} from './carry.js';
 
 describe('carrying in columns', () => {
   it('reads the columns the way the book does', () => {
@@ -47,5 +56,20 @@ describe('carrying in columns', () => {
     }
     expect(bad).toEqual([]);
     expect(makeCarry(rng(1), 'add-one').op).toBe('+');
+  });
+});
+
+describe('differenceOptions', () => {
+  it('offers the forgotten carry among the options, by default', () => {
+    const { options, answer } = differenceOptions(() => 0.5, 25);
+    expect(options[answer]).toBe('25');
+    expect(options).toContain('35');
+  });
+
+  it('takes the slip a lesson expects, and never repeats a number', () => {
+    const { options, answer } = differenceOptions(() => 0.5, 35, 45);
+    expect(options[answer]).toBe('35');
+    expect(options).toContain('45');
+    expect(new Set(options).size).toBe(options.length);
   });
 });

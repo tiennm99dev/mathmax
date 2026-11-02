@@ -5,8 +5,8 @@
   import { readNumber } from '#lib/core/kid/numbers.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import Cup from '../_shared/cup.svelte';
-  import Vessel from '../_shared/vessel.svelte';
+  import Cup from '#lib/core/kid/cup.svelte';
+  import Vessel from '#lib/core/kid/vessel.svelte';
   import {
     CUPS,
     compareCapacity,
@@ -16,7 +16,7 @@
     newVesselTask,
     pourMessage,
     vessel,
-  } from '../_shared/capacity.js';
+  } from '#lib/core/kid/capacity.js';
   import { litreOptions, moreOptions, vesselLabel } from './engine.js';
 
   // Fixed seeds so the prerendered page and the browser agree.

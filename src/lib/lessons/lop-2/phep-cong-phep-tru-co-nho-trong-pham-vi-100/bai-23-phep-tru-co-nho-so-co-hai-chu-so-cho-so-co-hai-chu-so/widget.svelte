@@ -1,8 +1,8 @@
 <script>
   import { rng } from '#lib/core/drill.js';
   import { button } from '#lib/core/ui.js';
-  import CarryQuiz from '../_shared/carry-quiz.svelte';
-  import { freshCarry } from '../_shared/carry.js';
+  import CarryQuiz from '#lib/core/kid/carry-quiz.svelte';
+  import { freshCarry } from '#lib/core/kid/carry.js';
 
   // A fixed seed so the prerendered page and the browser agree.
   const rand = rng(23);

@@ -5,7 +5,7 @@ import { readNumber } from '#lib/core/kid/numbers.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { FIGURE_NAMES, OBJECTS } from '#lib/core/kid/shapes.js';
-import { HUNDRED_SKILLS, bigOptions, noBorrowPair, noCarryAddends } from './hundred-skills.js';
+import { HUNDRED_SKILLS, noBorrowPair, noCarryAddends } from './hundred-skills.js';
 import { MEASURE_SKILLS, SOLIDS, SOLID_OBJECTS, WEEKDAYS, hourChoices } from './measure-skills.js';
 import { TEN_SKILLS } from './ten-skills.js';
 
@@ -259,19 +259,6 @@ describe('two-digit calculations', () => {
       if (a < 10 || (a % 10) + (b % 10) > 9 || a + b > 99) failures.push(['+', a, b]);
       const [c, d] = noBorrowPair(rand);
       if (c < 10 || d < 1 || c % 10 < d % 10 || d > c) failures.push(['−', c, d]);
-    }
-    expect(failures).toEqual([]);
-  });
-
-  it('offer the answer among increasing options in range', () => {
-    const rand = rng(9);
-    const failures = [];
-    for (const right of [0, 9, 10, 11, 45, 90, 99]) {
-      const { options, answer } = bigOptions(rand, right, 0, 99);
-      const values = options.map(Number);
-      const sorted = [...values].sort((a, b) => a - b);
-      if (values[answer] !== right || values.some((x) => x < 0 || x > 99)) failures.push(right);
-      if (values.join() !== sorted.join() || values.length < 3) failures.push(right);
     }
     expect(failures).toEqual([]);
   });

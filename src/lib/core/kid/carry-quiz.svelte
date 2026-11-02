@@ -1,9 +1,10 @@
 <script>
   import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import CountingSticks from '#lib/core/kid/counting-sticks.svelte';
-  import CarryBoard from './carry-board.svelte';
-  import { carrySteps, equationText } from './carry.js';
+  import ColumnBoard from './column-board.svelte';
+  import CountingSticks from './counting-sticks.svelte';
+  import { equationText } from './column.js';
+  import { carrySteps } from './carry.js';
 
   /**
    * The child works a carrying calculation in columns, step by step: the
@@ -21,7 +22,7 @@
    * @type {{
    *   a: number;
    *   b: number;
-   *   op: import('./carry.js').Op;
+   *   op: import('./column.js').Op;
    *   sticks?: boolean;
    * }}
    */
@@ -133,7 +134,7 @@
   {/if}
 
   <div class="flex flex-wrap items-start gap-4">
-    <CarryBoard {a} {b} {op} {written} carried={step > 0} {active} />
+    <ColumnBoard {a} {b} {op} {written} carried={step > 0} {active} />
     <p
       bind:this={feedback}
       tabindex="-1"

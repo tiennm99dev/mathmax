@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { WEEKDAYS } from '../_shared/time.js';
+import { WEEKDAYS } from '#lib/core/kid/time.js';
 import { weakLabels } from '#lib/core/kid/quiz.js';
 import { KIND_LABELS, KINDS, buildRound } from './engine.js';
 

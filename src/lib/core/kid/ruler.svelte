@@ -10,18 +10,20 @@
    * - `y`: the ruler's top edge, where the marks start.
    * - `cm`: the last number on the ruler.
    * - `unit`: SVG units per centimetre.
-   * @type {{ x: number; y: number; cm: number; unit: number }}
+   * - `fontSize`: of the numbers, in SVG units. A 6-year-old needs them near
+   *   14 px on a 390 px screen: pick it from how far the parent SVG shrinks.
+   * @type {{ x: number; y: number; cm: number; unit: number; fontSize?: number }}
    */
-  let { x, y, cm, unit } = $props();
+  let { x, y, cm, unit, fontSize = 16 } = $props();
 
   const PAD = 14;
-  const H = 40;
+  const H = $derived(fontSize + 24);
 </script>
 
 <rect
   x={x - PAD}
   {y}
-  width={cm * unit + PAD * 2 + 22}
+  width={cm * unit + PAD * 2 + 22 + fontSize / 2}
   height={H}
   rx="4"
   fill="#fde68a"
@@ -41,11 +43,17 @@
 {#each { length: cm + 1 } as _, n (n)}
   <text
     x={x + n * unit}
-    y={y + 31}
+    y={y + H - 9}
     text-anchor="middle"
-    font-size="16"
+    font-size={fontSize}
     font-weight={n === 0 ? 700 : 500}
     fill={n === 0 ? '#b91c1c' : '#451a03'}>{n}</text
   >
 {/each}
-<text x={x + cm * unit + 22} y={y + 31} text-anchor="middle" font-size="12" fill="#451a03">cm</text>
+<text
+  x={x + cm * unit + 22}
+  y={y + H - 9}
+  text-anchor="middle"
+  font-size={fontSize - 4}
+  fill="#451a03">cm</text
+>

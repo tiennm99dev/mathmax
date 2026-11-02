@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { freshCarry } from '../_shared/carry.js';
+import { freshCarry } from '#lib/core/kid/carry.js';
 import { canTake, differenceOptions, table, tableMessage } from './engine.js';
 
 describe('taking sticks away with one bundle untied', () => {

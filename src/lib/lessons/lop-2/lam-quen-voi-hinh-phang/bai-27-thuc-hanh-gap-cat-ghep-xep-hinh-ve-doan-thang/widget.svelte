@@ -142,7 +142,7 @@
       onpointerdown={grabRuler}
       use:draggable={rulerDrag}
     >
-      <Ruler x={zeroX} y={RULER_Y} cm={RULER_MAX} unit={U} />
+      <Ruler x={zeroX} y={RULER_Y} cm={RULER_MAX} unit={U} fontSize={19} />
       <rect
         class="drag-knob"
         x={zeroX - 14}

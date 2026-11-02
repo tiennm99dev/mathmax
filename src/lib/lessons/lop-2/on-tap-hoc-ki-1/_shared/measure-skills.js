@@ -5,10 +5,12 @@
  * problems. Pure and DOM-free; each skill is a `KidSkill` for
  * `adaptive-quiz.svelte`.
  */
+import { exprText } from '#lib/core/kid/column.js';
+import { fewestWeights } from '#lib/core/kid/mass.js';
 import { int, partition, pick, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { anyCarry, expr, makeCarry, resultOf, unitOptions } from './arith-skills.js';
+import { anyCarry, makeCarry, resultOf, unitOptions } from './arith-skills.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
 /** @typedef {import('./visual.js').Load} Load */
@@ -24,23 +26,6 @@ const GOODS = /** @type {const} */ ([
   { name: 'thùng sách', lo: 4, hi: 10 },
   { name: 'bao gạo', lo: 5, hi: 10 },
 ]);
-
-/**
- * The fewest 5 kg, 2 kg and 1 kg weights that make `kg`, biggest first.
- * @param {number} kg
- * @returns {number[]}
- */
-export function fewestWeights(kg) {
-  const out = [];
-  let left = kg;
-  for (const w of [5, 2, 1]) {
-    while (left >= w) {
-      out.push(w);
-      left -= w;
-    }
-  }
-  return out;
-}
 
 /**
  * A thing on a pan, its mass known only to the drawing.
@@ -151,7 +136,7 @@ function unitSum(rand, unit) {
     prompt: `${shown} = ?`,
     ...unitOptions(rand, c, unit, [op === '+' ? c - 10 : c + 10]),
     hint: `Em tính như với các số, rồi viết ${unit} sau kết quả. Đừng quên nhớ 1.`,
-    solution: `${expr(a, b, op)} = ${c}, nên ${shown} = ${c} ${unit}.`,
+    solution: `${exprText(a, b, op)} = ${c}, nên ${shown} = ${c} ${unit}.`,
   };
 }
 

@@ -1,16 +1,19 @@
 <script>
   import RichText from './rich-text.svelte';
-  import { callout as copy } from './copy.vi.js';
+  import { calloutLabel } from './copy.vi.js';
 
   /**
    * @type {{
    *   tone: import('./content-schema.js').CalloutTone;
    *   title?: string | null;
    *   html?: string;
+   *   kid?: boolean;
    *   children?: import('svelte').Snippet;
    * }}
    */
-  let { tone, title = null, html = '', children } = $props();
+  let { tone, title = null, html = '', kid = false, children } = $props();
+
+  const label = $derived(calloutLabel(tone, kid));
 
   const id = $props.id();
 
@@ -24,8 +27,8 @@
 
 <aside class="rounded-r-xl border-l-4 px-4 py-3 {tones[tone]}" aria-labelledby={id}>
   <p {id} class="mb-1 font-bold">
-    <span class="text-sm uppercase tracking-wide">{copy[tone]}</span>
-    {#if title}
+    <span class="text-sm uppercase tracking-wide">{label}</span>
+    {#if title && title !== label}
       <span class="text-slate-900">· <RichText html={title} /></span>
     {/if}
   </p>

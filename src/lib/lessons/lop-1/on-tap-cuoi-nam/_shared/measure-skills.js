@@ -7,6 +7,7 @@
  * of the week. Left and right are as the child sees the picture. Pure and
  * DOM-free.
  */
+import { figureTitle, shapeOptions } from '#lib/core/kid/shape-options.js';
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { RULER_CM, THINGS, inSentence } from '#lib/core/kid/length.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
@@ -57,27 +58,6 @@ export const WEEKDAYS = /** @type {const} */ ([
 
 /** Animals that stand in a row. */
 const ROW_ANIMALS = /** @type {const} */ (['cat', 'chick', 'rabbit', 'butterfly']);
-
-/**
- * The name of a figure with a capital letter, for options.
- * @param {FigureKind} kind
- */
-export function figureTitle(kind) {
-  return capitalize(FIGURE_NAMES[kind]);
-}
-
-/**
- * Options naming the right plane shape and two other shapes.
- * @param {() => number} rand
- * @param {ShapeKind} right
- */
-function shapeOptions(rand, right) {
-  const others = shuffle(
-    rand,
-    SHAPES.filter((s) => s !== right),
-  ).slice(0, 2);
-  return mixOptions(rand, figureTitle(right), others.map(figureTitle));
-}
 
 /**
  * "7 cm".

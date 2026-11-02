@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { heavierSide, newPair } from '../_shared/mass.js';
+import { heavierSide, newPair } from '#lib/core/kid/mass.js';
 import { compareOptions, scaleLabel } from './engine.js';
 
 describe('reading the pan balance', () => {

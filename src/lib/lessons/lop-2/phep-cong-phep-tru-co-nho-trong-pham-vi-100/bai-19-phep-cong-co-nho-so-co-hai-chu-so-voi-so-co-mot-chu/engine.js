@@ -5,7 +5,7 @@
  * are ten loose sticks they are tied into one more bundle, so 35 + 7 reads as
  * 4 bundles and 2 loose sticks, 42. Pure and DOM-free.
  */
-import { sumOptions as carrySumOptions } from '../_shared/carry.js';
+import { sumOptions as carrySumOptions } from '#lib/core/kid/carry.js';
 
 /**
  * Sticks on the table after `added` of the `b` new sticks went in.

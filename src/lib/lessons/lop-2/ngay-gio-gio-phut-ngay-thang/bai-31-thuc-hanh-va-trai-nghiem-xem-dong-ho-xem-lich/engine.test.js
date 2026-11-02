@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { WEEKDAYS, weekdayOf } from '../_shared/time.js';
+import { WEEKDAYS, weekdayOf } from '#lib/core/kid/time.js';
 import { toMinutes } from '#lib/units-engine/clock.js';
 import { ACTIVITIES, PLAN_MONTH, WEEK, checkPlacement, planLine, planOf } from './engine.js';
 

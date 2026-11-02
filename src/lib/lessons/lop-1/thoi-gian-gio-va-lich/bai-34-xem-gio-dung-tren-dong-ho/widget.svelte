@@ -3,8 +3,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { toMinutes } from '#lib/units-engine/clock.js';
-  import ClockPicture from '../_shared/clock-picture.svelte';
-  import { hourOptions } from '../_shared/time.js';
+  import ClockPicture from '#lib/core/kid/clock-picture.svelte';
+  import { hourOptions } from '#lib/core/kid/time.js';
   import { judgeClock, readFeedback, targetHour } from './engine.js';
 
   /** `set`: drag the hands to the asked hour. `read`: read a clock, pick the hour. */
@@ -63,7 +63,7 @@
   {:else}
     <p class="text-xl font-semibold text-slate-800">Đồng hồ chỉ mấy giờ?</p>
     <div class="flex justify-center">
-      <ClockPicture hour={target} size="w-56 max-w-full" />
+      <ClockPicture minutes={target * 60} size="w-56 max-w-full" />
     </div>
     <div role="group" aria-label="Chọn giờ" class="flex flex-wrap justify-center gap-3">
       {#each options as value (value)}

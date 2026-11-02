@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import {
+  balanceText,
   MASS_THINGS,
   compareSentence,
   fewestWeights,
@@ -12,6 +13,25 @@ import {
   weighMessage,
   weightsText,
 } from './mass.js';
+
+describe('balanceText', () => {
+  it('names both pans and the lower one', () => {
+    expect(
+      balanceText([{ kind: 'thing', name: 'Túi A', kg: 3 }], [{ kind: 'weight', kg: 2 }]),
+    ).toBe('Cân đĩa. Đĩa bên trái: Túi A. Đĩa bên phải: quả cân 2 kg. Đĩa bên trái thấp hơn.');
+    expect(balanceText([{ kind: 'thing', id: 'melon', kg: 3 }], [{ kind: 'weight', kg: 3 }])).toBe(
+      'Cân đĩa. Đĩa bên trái: quả dưa hấu. Đĩa bên phải: quả cân 3 kg. Cân thăng bằng.',
+    );
+    expect(balanceText([], [{ kind: 'weight', kg: 1 }])).toBe(
+      'Cân đĩa. Đĩa bên trái: trống. Đĩa bên phải: quả cân 1 kg. Đĩa bên phải thấp hơn.',
+    );
+  });
+
+  it('gives a labelled box its own size on the pan', () => {
+    const [box] = panLayout([{ kind: 'thing', name: 'Túi A', kg: 3 }], 104);
+    expect([box.w, box.h]).toEqual([86, 36]);
+  });
+});
 
 describe('the pan balance', () => {
   it('lets the heavier pan go down', () => {
