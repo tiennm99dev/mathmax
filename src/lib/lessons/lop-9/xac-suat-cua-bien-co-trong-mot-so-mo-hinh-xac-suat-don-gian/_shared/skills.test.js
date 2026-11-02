@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import katex from 'katex';
 import { countOrProbabilityText, readProbability } from '#lib/core/fractions.js';
 import { readNatural } from '#lib/core/number-format.js';
 import { rng } from '#lib/core/drill.js';
+import { strictTexFailures } from '#lib/core/tex-check.js';
 import { CHAPTER_SKILLS, PRACTICE_SKILLS, coinWords, pairs, pairsText } from './skills.js';
 
 /** @param {import('#lib/core/drill.js').Skill} skill */
@@ -145,9 +145,6 @@ function solve(p) {
   throw new Error(`unknown prompt: ${p}`);
 }
 
-/** Every `$...$` span of a rich text. @param {string} text */
-const texSpans = (text) => [...text.matchAll(/\$([^$]+)\$/g)].map((x) => x[1]);
-
 describe('chapter skills', () => {
   for (const skill of CHAPTER_SKILLS) {
     it(`${skill.id}: answers match a brute-force solution of the prompt`, () => {
@@ -167,17 +164,9 @@ describe('chapter skills', () => {
     });
 
     it(`${skill.id}: TeX parses in strict mode`, () => {
-      for (const q of sample(skill, 200)) {
-        for (const text of [q.prompt, ...q.steps, ...(q.hints ?? [])]) {
-          expect(text.split('$').length % 2, text).toBe(1);
-          for (const tex of texSpans(text)) {
-            expect(
-              () => katex.renderToString(tex, { strict: 'error', throwOnError: true }),
-              tex,
-            ).not.toThrow();
-          }
-        }
-      }
+      const texts = sample(skill, 200).flatMap((q) => [q.prompt, ...q.steps, ...(q.hints ?? [])]);
+      expect(texts.filter((text) => text.split('$').length % 2 !== 1)).toEqual([]);
+      expect(strictTexFailures(texts)).toEqual([]);
     });
   }
 

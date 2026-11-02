@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { grades, lessonPath, strands } from '#lib/curriculum/index.js';
 import { legacyRedirects } from '#lib/curriculum/legacy-redirects.js';
 import * as gradeRoute from './[grade=grade]/+page.js';
@@ -9,6 +9,25 @@ import * as strandRoute from './[strand=strand]/+page.js';
 import * as legacyRoute from './[strand=strand]/[slug]/+page.js';
 import { grade as matchGrade } from '../params/grade.js';
 import { strand as matchStrand } from '../params/strand.js';
+
+/** A curriculum lesson that can never have a content file. */
+const UNWRITTEN = vi.hoisted(() => ({
+  grade: 'lop-0',
+  chapter: 'chuong-chua-soan',
+  lesson: 'bai-chua-soan',
+}));
+
+vi.mock('#lib/curriculum/index.js', async (importOriginal) => {
+  const actual = /** @type {typeof import('#lib/curriculum/index.js')} */ (await importOriginal());
+  return {
+    ...actual,
+    /** @type {typeof actual.lesson} */
+    lesson: (g, c, b) =>
+      g === UNWRITTEN.grade && c === UNWRITTEN.chapter && b === UNWRITTEN.lesson
+        ? /** @type {any} */ ({ slug: b })
+        : actual.lesson(g, c, b),
+  };
+});
 
 /**
  * Calls a load function with only the fields these routes read.
@@ -90,11 +109,7 @@ describe('lesson loads', () => {
   const params = { grade: `lop-${g.grade}`, chapter: c.slug, lesson: l.slug };
 
   it('returns null content for an unwritten lesson and 404s outside the curriculum', () => {
-    const stub = allLessons.find((x) => {
-      const key = { grade: `lop-${x.g.grade}`, chapter: x.c.slug, lesson: x.l.slug };
-      return run(lessonServer.load, key)?.content === null;
-    });
-    expect(stub).toBeDefined();
+    expect(run(lessonServer.load, UNWRITTEN)).toEqual({ content: null });
     expect(statusOf(() => run(lessonServer.load, { ...params, lesson: 'missing' }))).toBe(404);
   });
 

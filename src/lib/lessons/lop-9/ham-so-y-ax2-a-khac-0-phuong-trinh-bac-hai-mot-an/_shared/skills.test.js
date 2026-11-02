@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import katex from 'katex';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { rng } from '#lib/core/drill.js';
+import { strictTexFailures } from '#lib/core/tex-check.js';
 import { hoursText } from '#lib/core/number-format.js';
 import { CHAPTER_SKILLS, SKILLS_TRANG_18, SKILLS_TRANG_28 } from './skills.js';
 
@@ -194,9 +194,6 @@ function bisect(f, lo, hi) {
   return (lo + hi) / 2;
 }
 
-/** Every `$...$` span of a rich text. @param {string} text */
-const texSpans = (text) => [...text.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]);
-
 describe('chapter skills', () => {
   for (const skill of CHAPTER_SKILLS) {
     it(`${skill.id}: answers match a fresh solution of the prompt`, () => {
@@ -213,16 +210,8 @@ describe('chapter skills', () => {
     });
 
     it(`${skill.id}: TeX parses in strict mode`, () => {
-      for (const q of sample(skill, 200)) {
-        for (const text of [q.prompt, ...q.steps, ...(q.hints ?? [])]) {
-          for (const tex of texSpans(text)) {
-            expect(
-              () => katex.renderToString(tex, { strict: 'error', throwOnError: true }),
-              tex,
-            ).not.toThrow();
-          }
-        }
-      }
+      const texts = sample(skill, 200).flatMap((q) => [q.prompt, ...q.steps, ...(q.hints ?? [])]);
+      expect(strictTexFailures(texts)).toEqual([]);
     });
   }
 
