@@ -126,6 +126,14 @@ export default {
     },
     {
       type: 'choice',
+      prompt: 'Số 599 là số liền trước của số nào?',
+      options: ['598', '600', '610'],
+      answer: 1,
+      hints: ['Số em cần tìm lớn hơn 599 đúng 1 đơn vị.'],
+      solution: '599 thêm 1 là 600. Vậy 599 là số liền trước của 600.',
+    },
+    {
+      type: 'choice',
       prompt: 'Trên tia số có các vạch 360, 361, 362, ?, 364. Số bị che là số nào?',
       options: ['363', '365', '373'],
       answer: 0,
@@ -147,6 +155,15 @@ export default {
       answer: 0,
       hints: ['Hàng trăm bằng nhau. Em nhìn hàng chục.'],
       solution: 'Hàng trăm bằng nhau. 9 chục lớn hơn 0 chục, nên 790 > 709.',
+    },
+    {
+      type: 'multi',
+      prompt: 'Em thay dấu ? bằng chữ số nào để có 2?3 > 263? Em chọn tất cả chữ số đúng.',
+      options: ['5', '6', '7', '8', '9'],
+      answers: [2, 3, 4],
+      hints: ['Hàng trăm và hàng đơn vị giống nhau. Em so sánh hàng chục với 6.'],
+      solution:
+        'Hàng trăm đều là 2, hàng đơn vị đều là 3, nên hàng chục phải lớn hơn 6. Đó là 7, 8, 9. Nếu là 6 thì hai số bằng nhau.',
     },
     {
       type: 'order',
