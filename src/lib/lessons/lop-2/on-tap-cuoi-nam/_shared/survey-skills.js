@@ -67,7 +67,7 @@ export const countShapesSkill = {
       options: SHAPE_KINDS.map((k) => capitalize(FIGURE_NAMES[k])),
       answer: at,
       hint: 'Em đếm từng loại hình, rồi so sánh ba số.',
-      solution: SHAPE_KINDS.map((k, i) => `${counts[i]} ${FIGURE_NAMES[k]}`).join(', ') + '.',
+      solution: `Có ${SHAPE_KINDS.map((k, i) => `${counts[i]} ${FIGURE_NAMES[k]}`).join(', ')}. ${capitalize(FIGURE_NAMES[SHAPE_KINDS[at]])} ${most ? 'nhiều' : 'ít'} nhất.`,
     };
   },
 };
@@ -225,12 +225,14 @@ export const chartSumSkill = {
     const [i, j] = shuffle(rand, [0, 1, 2]);
     const [more, less] = counts[i] > counts[j] ? [i, j] : [j, i];
     const diff = counts[more] - counts[less];
+    const [word, otherWord] = [nouns[more], nouns[less]].map((n) => n.split(' ')[0]);
+    const unit = word === otherWord ? word : 'hình';
     return {
-      prompt: `Số ${nouns[more]} nhiều hơn số ${nouns[less]} bao nhiêu ${nouns[more].split(' ')[0]}?`,
+      prompt: `Số ${nouns[more]} nhiều hơn số ${nouns[less]} bao nhiêu ${unit}?`,
       visual,
       ...numberOptions(rand, diff, 1, 12),
       hint: 'Em đếm hai hàng đó, rồi lấy số lớn trừ số bé.',
-      solution: `${counts[more]} − ${counts[less]} = ${diff}.`,
+      solution: `${counts[more]} − ${counts[less]} = ${diff} (${unit}).`,
     };
   },
 };
@@ -255,13 +257,13 @@ export const mostFewestSkill = {
       options: theme.map((t) => t.label),
       answer: at,
       hint: `Em so sánh ba số và tìm số ${most ? 'lớn' : 'bé'} nhất.`,
-      solution: `${best} là số ${most ? 'lớn' : 'bé'} nhất, nên ${theme[at].label} có số lượng ${most ? 'nhiều' : 'ít'} nhất.`,
+      solution: `${best} là số ${most ? 'lớn' : 'bé'} nhất, nên ${theme[at].label.toLowerCase()} có số lượng ${most ? 'nhiều' : 'ít'} nhất.`,
     };
   },
 };
 
 /**
- * A box of two to six balls, of one colour or two.
+ * A box of two to seven balls, of one colour or two.
  * @param {() => number} rand
  * @param {number} [least] fewest balls
  * @returns {BallColor[]}
@@ -313,8 +315,9 @@ function whyHas(balls, color) {
   const n = balls.filter((b) => b === color).length;
   const others = balls.length - n;
   if (n === 0) return `Trong hộp không có bóng ${name}, nên không thể.`;
-  if (others < 2)
-    return `Chỉ có ${others} bóng khác màu ${name}, nên 2 quả lấy ra luôn có bóng ${name}. Chắc chắn.`;
+  if (others === 0) return `Trong hộp toàn bóng ${name}, nên chắc chắn.`;
+  if (others === 1)
+    return `Chỉ có 1 bóng khác màu ${name}, nên 2 quả lấy ra luôn có bóng ${name}. Chắc chắn.`;
   return `Hai quả lấy ra có thể đều khác màu ${name}, cũng có thể có bóng ${name}, nên có thể.`;
 }
 

@@ -8,7 +8,7 @@ export default {
     'Đọc, viết, so sánh và sắp xếp các số đến 1000.',
     'Đặt tính, tính từ trái sang phải, nhớ bảng nhân và bảng chia 2, 5.',
     'Giải bài toán có lời văn.',
-    'Nhận dạng hình, tính độ dài đường gấp khúc, xem giờ, xem lịch, đọc kiểm đếm.',
+    'Nhận dạng hình và khối, tính độ dài đường gấp khúc, xem giờ, xem lịch, đọc kiểm đếm.',
     'Biết phần nào mình còn cần luyện thêm.',
   ],
   sections: [
@@ -35,6 +35,7 @@ export default {
           type: 'list',
           items: [
             'Hình tứ giác có 4 cạnh, 4 đỉnh.',
+            'Quả bóng có dạng khối cầu. Lon sữa có dạng khối trụ.',
             'Độ dài đường gấp khúc là tổng các đoạn thẳng.',
             'Kim dài chỉ số 3 là 15 phút, chỉ số 6 là 30 phút.',
             'Cứ 5 vạch kiểm đếm bó lại một bó.',
@@ -144,6 +145,14 @@ export default {
       answer: 1,
       hints: ['Em tìm nhóm màu lặp đi lặp lại.'],
       solution: 'Nhóm lặp lại là đỏ, vàng, xanh. Sau đỏ là vàng.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Lon sữa có dạng khối nào?',
+      options: ['Khối trụ', 'Khối cầu', 'Khối lập phương'],
+      answer: 0,
+      hints: ['Lon sữa lăn được, có hai mặt đáy tròn.'],
+      solution: 'Lon sữa có dạng khối trụ.',
     },
     {
       type: 'number',

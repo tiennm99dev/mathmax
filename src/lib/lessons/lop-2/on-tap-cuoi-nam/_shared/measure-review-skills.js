@@ -77,7 +77,7 @@ export const balanceSkill = {
       return {
         prompt: `Cân thăng bằng. ${capitalize(thing.name)} nặng mấy ki-lô-gam?`,
         visual: { type: 'balance', left: [load], right },
-        ...unitOptions(rand, kg, 'kg', [kg + 1, kg - 1], 20),
+        ...unitOptions(rand, kg, 'kg', [kg + 1, kg - 1], 20, 1),
         hint: 'Cân thăng bằng thì hai đĩa nặng bằng nhau. Em cộng các quả cân.',
         solution:
           right.length > 1
@@ -94,7 +94,7 @@ export const balanceSkill = {
         left: [load, { kind: 'weight', kg: extra }],
         right: weightLoads(total),
       },
-      ...unitOptions(rand, kg, 'kg', [total, total + extra], 20),
+      ...unitOptions(rand, kg, 'kg', [total, total + extra], 20, 1),
       hint: `Đĩa bên phải nặng bằng cả hai thứ ở đĩa bên trái. Em lấy số ki-lô-gam ở đĩa phải trừ đi quả cân ${extra} kg.`,
       solution: `Đĩa bên phải nặng ${total} kg. ${total} − ${extra} = ${kg}. ${capitalize(thing.name)} nặng ${kg} kg.`,
     };
@@ -127,7 +127,10 @@ export function canChoices(cans, k) {
 const canSum = (cans) => cans.reduce((s, n) => s + n, 0);
 
 /** @param {readonly number[]} cans */
-const canWords = (cans) => cans.map((n) => `can ${n} l`).join(' và ');
+const canWords = (cans) => {
+  const names = cans.map((n) => `can ${n} l`);
+  return `${names.slice(0, -1).join(', ')} và ${names[names.length - 1]}`;
+};
 
 /** @type {ReviewSkill} */
 export const cansSkill = {
@@ -179,7 +182,7 @@ export const lengthUnitSkill = {
       prompt: `${have} ${from} = ? ${to}`,
       options: values.map(String),
       answer: values.indexOf(want),
-      hint: `Em nhớ: ${why}.`,
+      hint: worked === why ? 'Em nhớ lại: đơn vị lớn bằng bao nhiêu đơn vị bé?' : `Em nhớ: ${why}.`,
       solution: worked === why ? `${why}.` : `${why}, nên ${worked}.`,
     };
   },
@@ -278,7 +281,7 @@ export const dayHourSkill = {
     const asDial = rand() < 0.5;
     if (asDial) {
       const wrong = [hour - 10, hour - 11, hour - 13]
-        .filter((h) => h >= 1)
+        .filter((h) => h >= 1 && h <= 12)
         .map((h) => `${h} giờ ${part}`);
       return {
         prompt: `${hour} giờ còn gọi là mấy giờ?`,
@@ -449,7 +452,7 @@ export const measureStorySkill = {
             : `Con đường có đoạn đầu dài ${x} km, đoạn sau dài ${y} km. Con đường dài bao nhiêu ki-lô-mét?`,
         ...unitOptions(rand, r, unit, [r + 10, r - 10], 100),
         hint: 'Em gộp hai số lại, làm phép cộng.',
-        solution: `${story === 'dau' ? 'Thùng có tất cả' : 'Con đường dài'} là: ${x} + ${y} = ${r} (${unit}).`,
+        solution: `${story === 'dau' ? 'Thùng có tất cả số lít dầu' : 'Con đường dài'} là: ${x} + ${y} = ${r} (${unit}).`,
       };
     }
     return {
@@ -459,7 +462,7 @@ export const measureStorySkill = {
           : `Sợi dây dài ${a} m. Người ta cắt đi ${b} m. Sợi dây còn lại dài bao nhiêu mét?`,
       ...unitOptions(rand, r, unit, [r + 10, r - 10], 100),
       hint: 'Phần còn lại ít đi. Em làm phép trừ.',
-      solution: `${story === 'dau' ? 'Thùng còn lại' : 'Sợi dây còn lại dài'} là: ${a} − ${b} = ${r} (${unit}).`,
+      solution: `${story === 'dau' ? 'Thùng còn lại số lít dầu' : 'Sợi dây còn lại dài'} là: ${a} − ${b} = ${r} (${unit}).`,
     };
   },
 };

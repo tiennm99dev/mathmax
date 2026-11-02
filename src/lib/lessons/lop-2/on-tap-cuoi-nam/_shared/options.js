@@ -6,16 +6,17 @@ import { shuffle } from '#lib/core/drill.js';
 
 /**
  * Up to four number options in increasing order: the right one and the slips
- * a child makes (the given ones first, then one, ten or a hundred off), from 0
- * to `hi`.
+ * a child makes (the given ones first, then one, ten or a hundred off), from
+ * `lo` to `hi`.
  * @param {() => number} rand
  * @param {number} right
  * @param {number[]} [slips]
  * @param {number} [hi]
+ * @param {number} [lo]
  * @returns {{ options: string[], answer: number }}
  */
-export function nearOptions(rand, right, slips = [], hi = 1000) {
-  const ok = (/** @type {number} */ v) => v !== right && v >= 0 && v <= hi;
+export function nearOptions(rand, right, slips = [], hi = 1000, lo = 0) {
+  const ok = (/** @type {number} */ v) => v !== right && v >= lo && v <= hi;
   const first = [...new Set(slips.filter(ok))];
   const steps = [1, -1, 10, -10, 2, ...(right >= 100 ? [100, -100] : [])];
   const rest = shuffle(
@@ -33,8 +34,9 @@ export function nearOptions(rand, right, slips = [], hi = 1000) {
  * @param {string} unit
  * @param {number[]} [slips]
  * @param {number} [hi]
+ * @param {number} [lo]
  */
-export function unitOptions(rand, right, unit, slips = [], hi = 1000) {
-  const { options, answer } = nearOptions(rand, right, slips, hi);
+export function unitOptions(rand, right, unit, slips = [], hi = 1000, lo = 0) {
+  const { options, answer } = nearOptions(rand, right, slips, hi, lo);
   return { options: options.map((o) => `${o} ${unit}`), answer };
 }

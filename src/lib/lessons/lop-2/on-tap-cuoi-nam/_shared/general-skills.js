@@ -91,7 +91,7 @@ export const massTableSkill = {
       return {
         prompt: `Bò ${COWS[big]} nặng hơn bò ${COWS[small]} bao nhiêu ki-lô-gam?`,
         visual,
-        ...unitOptions(rand, r, 'kg', [r + 10, r - 10]),
+        ...unitOptions(rand, r, 'kg', [r + 10, r - 10], 1000, 1),
         hint: 'Em tìm hai số trong bảng, rồi lấy số lớn trừ số bé.',
         solution: `${masses[big]} − ${masses[small]} = ${r} (kg).`,
       };

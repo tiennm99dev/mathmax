@@ -313,6 +313,40 @@ describe('review skills of measures, counting data and the whole year', () => {
     expect(tallyWords(4)).toBe('4 vạch');
   });
 
+  it('keeps slips and working sensible for a child', () => {
+    const bad = [];
+    /** @param {string} id */
+    const skillOf = (id) => LISTS.flat().find((s) => s.id === id);
+    for (const seed of SEEDS) {
+      const balance = skillOf('can-dia')?.make(rng(seed));
+      if (balance?.options.map(optionText).includes('0 kg')) bad.push(`no weight ${seed}`);
+
+      const hour = skillOf('gio-chieu')?.make(rng(seed));
+      for (const t of hour?.options.map(optionText) ?? []) {
+        if (/^\d+ giờ \D/.test(t) && nums(t)[0] > 12) bad.push(`dial hour ${t}`);
+      }
+
+      const convert = skillOf('doi-don-vi')?.make(rng(seed));
+      if (convert) {
+        const worked = convert.prompt.replace('?', optionText(convert.options[convert.answer]));
+        if (convert.hint.includes(worked)) bad.push(`hint gives away ${worked}`);
+      }
+
+      const box = skillOf('kha-nang-bong')?.make(rng(seed));
+      if (box?.solution.includes(' 0 ')) bad.push(`no balls ${box.solution}`);
+
+      const more = skillOf('hon-kem')?.make(rng(seed));
+      const asked = more?.prompt.match(/^Số (\S+) [^?]+ số (\S+) [^?]+ bao nhiêu (\S+)\?$/);
+      if (asked && asked[3] !== 'hình' && (asked[3] !== asked[1] || asked[1] !== asked[2])) {
+        bad.push(more?.prompt);
+      }
+
+      const cans = skillOf('lay-can')?.make(rng(seed));
+      if (cans?.solution.split(' và ').length !== 2) bad.push(`cans ${cans?.solution}`);
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('names a dial hour with no leading zero', () => {
     expect(clockWords(13 * 60)).toBe(`${dialNumber(13)} giờ`);
     expect(clockWords(7 * 60 + 15)).toBe('7 giờ 15 phút');
