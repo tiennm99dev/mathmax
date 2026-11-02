@@ -14,9 +14,9 @@ import {
 } from '../_shared/shape-questions.js';
 import { rightCorners } from '../_shared/scene.js';
 
-/** SVG units per grid cell, the space round the grid and its size. */
+/** SVG units per grid cell, the space round the grid (it holds a corner's name) and its size. */
 export const CELL = 40;
-export const PAD = 24;
+export const PAD = 32;
 export const COLS = 8;
 export const ROWS = 6;
 

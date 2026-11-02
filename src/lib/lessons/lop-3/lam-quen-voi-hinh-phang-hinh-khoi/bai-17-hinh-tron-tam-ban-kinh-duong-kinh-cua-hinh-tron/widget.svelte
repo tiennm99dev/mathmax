@@ -204,8 +204,8 @@
         color="#e11d48"
       />
       <text
-        x={nameAway(tip, CENTRE, 24).x}
-        y={nameAway(tip, CENTRE, 24).y}
+        x={nameAway(tip, CENTRE, 20).x}
+        y={nameAway(tip, CENTRE, 20).y}
         text-anchor="middle"
         dominant-baseline="middle"
         font-size="20"

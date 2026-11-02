@@ -214,7 +214,11 @@ export const COUNT_SHAPES = [
  * @returns {SceneQuestion}
  */
 export function countRightAngles(rand, given = pick(rand, COUNT_SHAPES)) {
-  const count = rightCorners(given.points).length;
+  const right = rightCorners(given.points);
+  const count = right.length;
+  const corners = given.points
+    .map((_, i) => (right.includes(i) ? 'góc vuông' : 'góc không vuông'))
+    .join(', ');
   const unit = 40;
   const points = given.points.map((p) => ({ x: 40 + p.x * unit, y: 20 + p.y * unit }));
   const options = [0, 1, 2, 3, 4];
@@ -230,7 +234,7 @@ export function countRightAngles(rand, given = pick(rand, COUNT_SHAPES)) {
     visual: {
       w: 320,
       h: 200,
-      label: `Một ${given.name} có ${given.points.length} góc.`,
+      label: `Một ${given.name} có ${given.points.length} góc: ${corners}.`,
       settledLabel: `Một ${given.name} có ${count} góc vuông.`,
       polygons: [{ points }],
       reveal: { corners: cornerMarks(points) },

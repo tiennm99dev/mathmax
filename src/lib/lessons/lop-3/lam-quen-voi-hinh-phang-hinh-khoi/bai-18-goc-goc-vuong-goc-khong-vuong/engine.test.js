@@ -143,6 +143,17 @@ describe('the round', () => {
     expect([...counts].map(String).sort()).toEqual(['0', '1', '2', '3', '4']);
   });
 
+  it('lets a screen reader count the right angles, corner by corner, without the total', () => {
+    const bad = COUNT_SHAPES.filter((shape) => {
+      const q = countRightAngles(rng(1), shape);
+      const label = q.visual?.label ?? '';
+      const named = label.match(/góc không vuông|góc vuông/g) ?? [];
+      const right = named.filter((word) => word === 'góc vuông').length;
+      return named.length !== shape.points.length || String(right) !== q.options[q.answer];
+    });
+    expect(bad).toEqual([]);
+  });
+
   it('marks the right angles only when the question has ended', () => {
     const bad = buildRound(5)
       .filter((q) => q.kind === 'dem' && (q.visual?.corners ?? []).length > 0)

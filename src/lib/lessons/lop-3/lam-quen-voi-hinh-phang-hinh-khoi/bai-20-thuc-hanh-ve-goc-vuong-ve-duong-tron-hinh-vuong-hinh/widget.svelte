@@ -211,7 +211,7 @@
         />
       {:else if draft.kind === 'tron'}
         {@const pin = toBoard(draft.centre)}
-        {@const tip = toBoard({ x: draft.centre.x + draft.radius, y: draft.centre.y })}
+        {@const tip = toBoard(b)}
         <polyline
           points={pointsAttr([pin, { x: (pin.x + tip.x) / 2, y: Math.max(8, pin.y - 70) }, tip])}
           fill="none"

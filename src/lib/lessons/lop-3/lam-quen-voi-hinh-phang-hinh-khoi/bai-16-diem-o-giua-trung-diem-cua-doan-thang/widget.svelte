@@ -133,8 +133,8 @@
         color={isMiddle ? '#059669' : '#e11d48'}
       />
       <text
-        x={m.x + 18}
-        y={m.y - 18}
+        x={cell.col === COLS ? m.x - 18 : m.x + 18}
+        y={cell.row === 0 ? m.y + 18 : m.y - 18}
         text-anchor="middle"
         dominant-baseline="middle"
         font-size="20"

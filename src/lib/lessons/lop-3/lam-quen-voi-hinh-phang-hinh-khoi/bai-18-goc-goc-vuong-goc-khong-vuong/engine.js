@@ -33,7 +33,7 @@ export const ANGLES = [
   { vertex: 'A', p: 'B', q: 'C', deg: 90, turn: -90, at: { x: 90, y: 190 } },
   { vertex: 'M', p: 'N', q: 'P', deg: 60, turn: -60, at: { x: 90, y: 200 } },
   { vertex: 'G', p: 'H', q: 'K', deg: 90, turn: -60, at: { x: 90, y: 180 } },
-  { vertex: 'Q', p: 'R', q: 'S', deg: 120, turn: -120, at: { x: 190, y: 190 } },
+  { vertex: 'P', p: 'Q', q: 'R', deg: 120, turn: -120, at: { x: 190, y: 190 } },
   { vertex: 'I', p: 'L', q: 'T', deg: 45, turn: -45, at: { x: 90, y: 200 } },
   { vertex: 'E', p: 'X', q: 'Y', deg: 135, turn: -150, at: { x: 200, y: 170 } },
 ];

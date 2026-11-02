@@ -181,7 +181,8 @@ const REASONS = /** @type {const} */ ({
   vuong: 'Hình có 4 góc vuông và 4 cạnh dài bằng nhau, nên là hình vuông.',
   'chu-nhat':
     'Hình có 4 góc vuông, 2 cạnh dài bằng nhau và 2 cạnh ngắn bằng nhau, nên là hình chữ nhật.',
-  'tu-giac': 'Hình có 4 cạnh nhưng không đủ 4 góc vuông, nên là hình tứ giác.',
+  'tu-giac':
+    'Hình có 4 đỉnh, 4 cạnh nhưng không đủ 4 góc vuông, nên chỉ là hình tứ giác, không phải hình chữ nhật hay hình vuông.',
   'tam-giac': 'Hình có 3 đỉnh và 3 cạnh, nên là hình tam giác.',
 });
 
@@ -208,7 +209,7 @@ export function nameShape(rand, given = pick(rand, NAMED)) {
   const names = ['Hình tam giác', 'Hình tứ giác', 'Hình chữ nhật', 'Hình vuông'];
   const right = capitalize(KIND_NAMES[given.kind]);
   return {
-    prompt: 'Đây là hình gì?',
+    prompt: 'Đây là hình gì? Em chọn tên gọi đúng nhất.',
     options: names,
     answer: names.indexOf(right),
     hint: 'Đếm số cạnh. Với hình có 4 cạnh, em xem các góc và độ dài các cạnh.',
