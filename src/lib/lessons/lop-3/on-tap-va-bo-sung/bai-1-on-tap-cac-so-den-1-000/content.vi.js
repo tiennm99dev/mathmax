@@ -120,7 +120,7 @@ export default {
       type: 'match',
       prompt: 'Nối mỗi số với cách đọc.',
       left: ['405', '450', '415', '504'],
-      right: ['bốn trăm năm mươi', 'năm trăm linh tư', 'bốn trăm linh năm', 'bốn trăm mười lăm'],
+      right: ['bốn trăm năm mươi', 'năm trăm linh bốn', 'bốn trăm linh năm', 'bốn trăm mười lăm'],
       pairs: [
         [0, 2],
         [1, 0],
@@ -129,7 +129,7 @@ export default {
       ],
       hints: ['Hàng chục là 0 thì đọc "linh".'],
       solution:
-        '405: bốn trăm linh năm. 450: bốn trăm năm mươi. 415: bốn trăm mười lăm. 504: năm trăm linh tư.',
+        '405: bốn trăm linh năm. 450: bốn trăm năm mươi. 415: bốn trăm mười lăm. 504: năm trăm linh bốn.',
     },
     {
       type: 'number',

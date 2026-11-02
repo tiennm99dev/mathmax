@@ -123,17 +123,9 @@ const mentalSkill = {
     const r = resultOf(a, b, op);
     const word = scale === 100 ? 'trăm' : 'chục';
     const count = (/** @type {number} */ v) => `${v / scale} ${word}`;
-    const { options, answer } = nearOptions(
-      rand,
-      r,
-      [r + scale, r - scale, a + b, Math.abs(a - b)],
-      1000,
-      10,
-    );
     return {
       prompt: `${exprText(a, b, op).replace(String(a), fmt(a))} = ?`,
-      options: options.map((o) => fmt(Number(o))),
-      answer,
+      ...nearOptions(rand, r, [r + scale, r - scale, a + b, Math.abs(a - b)], 1000, 10),
       hint: `Em tính theo số ${word}.`,
       solution: `${count(a)} ${op === '+' ? 'cộng' : 'trừ'} ${count(b)} bằng ${count(r)}. Vậy kết quả là ${fmt(r)}.`,
     };

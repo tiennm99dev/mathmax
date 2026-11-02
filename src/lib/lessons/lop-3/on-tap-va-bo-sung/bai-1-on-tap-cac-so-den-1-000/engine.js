@@ -190,13 +190,16 @@ const sumSkill = {
         [hundreds * 100, ones * 10, tens],
         [hundreds * 10, tens * 100, ones],
         [hundreds * 100, tens, ones * 10],
-        [hundreds * 100 + 100, tens * 10, ones],
+        [(hundreds === 9 ? 8 : hundreds + 1) * 100, tens * 10, ones],
+        [hundreds * 100, (tens === 9 ? 8 : tens + 1) * 10, ones],
+        [hundreds * 100, tens * 10, ones === 9 ? 8 : ones + 1],
       ]
         .filter((parts) => parts[0] + parts[1] + parts[2] !== n)
         .map((parts) => parts.filter((v) => v > 0).join(' + '));
+      const distinct = [...new Set(wrong)].filter((w) => w !== right).slice(0, 3);
       return {
         prompt: `${n} viết thành tổng các trăm, chục, đơn vị là:`,
-        ...mixOptions(rand, right, wrong),
+        ...mixOptions(rand, right, distinct),
         hint: `Em tìm chữ số hàng trăm của ${n}, rồi hàng chục, rồi hàng đơn vị.`,
         solution: `${n} gồm ${hundreds} trăm, ${tens} chục, ${ones} đơn vị. ${sumText(n)}.`,
       };
@@ -264,7 +267,7 @@ const compareSkill = {
       const n = threeDigit(rand);
       const parts = sumParts(n);
       if (parts.length > 1) {
-        const m = pick(rand, [n, n, n - 1, n + 1]);
+        const m = pick(rand, [n, n, n - 1, Math.min(n + 1, 999)]);
         const sign = compareSign(n, m);
         return {
           prompt: `Điền dấu: ${parts.join(' + ')} ? ${m}`,

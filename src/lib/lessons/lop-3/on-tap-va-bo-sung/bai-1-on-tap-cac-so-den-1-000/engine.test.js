@@ -99,6 +99,30 @@ describe('review questions', () => {
     expect(bad).toEqual([]);
   });
 
+  it('offers at least two wrong sums, each made of real places', () => {
+    const bad = [];
+    for (const seed of [...SEEDS, 777, 111, 999]) {
+      for (let tries = 0; tries < 20; tries++) {
+        const q = skill('cau-tao').make(rng(seed * 31 + tries));
+        if (!/viết thành tổng/.test(q.prompt)) continue;
+        const texts = q.options.map(optionText);
+        if (texts.length < 3 || texts.some((t) => t.includes('1000'))) bad.push(q.prompt);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('writes one thousand with its space in every option', () => {
+    const bad = [];
+    for (const s of SKILLS) {
+      for (let seed = 1; seed <= 2000; seed++) {
+        const q = s.make(rng(seed));
+        if (q.options.map(optionText).some((o) => /\d{4}/.test(o))) bad.push(q.prompt);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('finds neighbours and missing numbers', () => {
     const bad = [];
     for (const seed of SEEDS) {

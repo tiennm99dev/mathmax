@@ -79,7 +79,7 @@ export default {
   },
   examples: [
     {
-      problem: 'Mỗi bàn cờ vua có 3 người. 6 bàn như vậy có bao nhiêu người?',
+      problem: 'Mỗi bàn đấu cờ vua có 3 người. 6 bàn như vậy có bao nhiêu người?',
       steps: ['3 được lấy 6 lần.', '3 × 6 = 18.'],
       answer: '6 bàn có 18 người.',
     },

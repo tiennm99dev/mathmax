@@ -3,9 +3,10 @@
  * and DOM-free.
  */
 import { shuffle } from '#lib/core/drill.js';
+import { fmt } from '#lib/core/number-format.js';
 
 /**
- * Up to four number options in increasing order: the right one and the slips
+ * Up to four number options in increasing order, written the book's way (1 000): the right one and the slips
  * a child makes (the given ones first, then one, ten or a hundred off), from
  * `lo` to `hi`.
  * @param {() => number} rand
@@ -24,7 +25,7 @@ export function nearOptions(rand, right, slips = [], hi = 1000, lo = 0) {
     steps.map((d) => right + d).filter((v) => ok(v) && !first.includes(v)),
   );
   const values = [right, ...[...first, ...rest].slice(0, 3)].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
+  return { options: values.map(fmt), answer: values.indexOf(right) };
 }
 
 /**
