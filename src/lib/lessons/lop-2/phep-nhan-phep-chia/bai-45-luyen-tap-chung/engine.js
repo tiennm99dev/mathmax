@@ -61,7 +61,7 @@ export function divQuestion(rand) {
   return {
     prompt: `${total} : ${base} = ?`,
     visual: { each: base, groups: n, loose: true },
-    ...divisionOptions(base, n),
+    ...divisionOptions(rand, n),
     hint: `${base} nhân với số nào thì bằng ${total}?`,
     solution: `${base} × ${n} = ${total}, nên ${divLine(total, base)}.`,
   };
@@ -231,11 +231,13 @@ export function wordProblem(rand) {
       prompt: `Bà có ${2 * n} quả vải, chia đều cho 2 cháu. Mỗi cháu được mấy quả?`,
       div: 2,
       unit: 'quả',
+      shared: true,
     },
     {
       prompt: `Có ${5 * n} bạn chia đều thành 5 nhóm. Mỗi nhóm có mấy bạn?`,
       div: 5,
       unit: 'bạn',
+      shared: true,
     },
     {
       prompt: `Có ${2 * n} chiếc đũa, mỗi người một đôi. Đủ cho mấy người?`,
@@ -257,8 +259,10 @@ export function wordProblem(rand) {
   const total = base * n;
   return {
     prompt: story.prompt,
-    visual: { each: base, groups: n, loose: true },
-    ...divisionOptions(base, n),
+    visual: story.shared
+      ? { each: n, groups: base, loose: true }
+      : { each: base, groups: n, loose: true },
+    ...divisionOptions(rand, n),
     hint: `Em viết phép chia ${total} : ${base}.`,
     solution: `${divLine(total, base)} (${story.unit}).`,
   };

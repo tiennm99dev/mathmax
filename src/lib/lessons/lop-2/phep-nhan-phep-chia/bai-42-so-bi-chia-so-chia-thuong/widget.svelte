@@ -4,6 +4,7 @@
   import PictureGroups from '../_shared/picture-groups.svelte';
   import {
     FACTS,
+    PARTS,
     PART_NAMES,
     TASKS,
     askOrder,
@@ -59,7 +60,6 @@
   const cards = $derived(cardsOf(fact));
   const product = $derived(fact.a * fact.b);
   const allFound = $derived(found.length === 2);
-  const NAMES_IN_SENTENCE = /** @type {const} */ (['dividend', 'divisor', 'quotient']);
 
   /** @param {number} card */
   function place(card) {
@@ -165,7 +165,7 @@
             null
               ? 'border-slate-300 bg-slate-50 text-slate-400'
               : 'border-indigo-400 bg-indigo-50 text-indigo-900'} {focusRing}"
-            aria-label="{PART_NAMES[NAMES_IN_SENTENCE[s]]}: {value === null
+            aria-label="{PART_NAMES[PARTS[s]]}: {value === null
               ? 'còn trống'
               : `số ${value}, chạm để lấy lại`}"
             onclick={() => takeBack(s)}
@@ -173,7 +173,7 @@
             {value ?? '?'}
           </button>
           <span class="text-center text-base leading-tight font-semibold text-slate-700">
-            {PART_NAMES[NAMES_IN_SENTENCE[s]]}
+            {PART_NAMES[PARTS[s]]}
           </span>
         </div>
         {#if s < 2}

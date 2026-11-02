@@ -6,11 +6,12 @@ export const BASE = 2;
 
 /** @type {readonly import('../_shared/divide.js').Story[]} */
 const STORIES = [
-  (n) => ({ prompt: `Đàn gà có ${BASE * n} cái chân. Đàn gà có mấy con?`, unit: 'con' }),
+  (n) => ({ prompt: `Em đếm được ${BASE * n} cái chân gà. Có mấy con gà?`, unit: 'con' }),
   (n) => ({ prompt: `Có ${BASE * n} chiếc đũa, xếp thành từng đôi. Có mấy đôi đũa?`, unit: 'đôi' }),
   (n) => ({
     prompt: `Bà có ${BASE * n} quả vải, chia đều cho 2 cháu. Mỗi cháu được mấy quả?`,
     unit: 'quả',
+    shared: true,
   }),
 ];
 

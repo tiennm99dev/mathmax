@@ -10,7 +10,11 @@ const STORIES = [
     prompt: `Nam có ${BASE * n} hình tròn. Mỗi đèn ông sao cần 5 hình. Nam làm được mấy đèn?`,
     unit: 'đèn',
   }),
-  (n) => ({ prompt: `${BASE * n} bạn chia đều thành 5 nhóm. Mỗi nhóm có mấy bạn?`, unit: 'bạn' }),
+  (n) => ({
+    prompt: `${BASE * n} bạn chia đều thành 5 nhóm. Mỗi nhóm có mấy bạn?`,
+    unit: 'bạn',
+    shared: true,
+  }),
 ];
 
 /** @param {number} seed */

@@ -3,7 +3,7 @@
  * of the table lessons. A division table is read off the multiplication table
  * of the same number: 2 × 4 = 8 gives 8 : 2 = 4.
  */
-import { countLabel } from '#lib/core/kid/quiz.js';
+import { countLabel, numberOptions } from '#lib/core/kid/quiz.js';
 import { pick, rng, shuffle } from '#lib/core/drill.js';
 
 /**
@@ -14,17 +14,12 @@ import { pick, rng, shuffle } from '#lib/core/drill.js';
 export const divLine = (dividend, divisor) => `${dividend} : ${divisor} = ${dividend / divisor}`;
 
 /**
- * Four options around the quotient `n`, the mistakes being a neighbouring row
- * and the difference a child gets by subtracting instead of dividing.
- * @param {number} base
+ * Four options around the quotient `n`, drawn at random so the right one does
+ * not sit in the same place on every row.
+ * @param {() => number} rand
  * @param {number} n
  */
-export function divisionOptions(base, n) {
-  const wrong = [n + 1, n - 1, base * n - base, n + 2, n + 3];
-  const picked = [...new Set(wrong)].filter((v) => v > 0 && v !== n).slice(0, 3);
-  const values = [n, ...picked].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(n) };
-}
+export const divisionOptions = (rand, n) => numberOptions(rand, n, 1, n + 3);
 
 /**
  * What a screen reader says for a picture of `groups` groups of `each`. Loose,
@@ -49,16 +44,19 @@ export const KIND_LABELS = /** @type {const} */ ({
 
 /**
  * A word problem whose answer is `total : base`, written for `n` as the answer.
- * @typedef {(n: number) => { prompt: string, unit: string }} Story
+ * `shared` marks a story that shares out among `base` people or groups, so the
+ * picture has `base` groups of `n` and not `n` groups of `base`.
+ * @typedef {(n: number) => { prompt: string, unit: string, shared?: boolean }} Story
  */
 
 /**
  * A round of seven questions on one division table, each on a different row.
- * `visual.n` is the quotient, which a widget may draw once a question ends.
+ * `visual` is the quotient `n` and the groups a widget may draw once a question
+ * ends, matching what the question shares out.
  * @param {number} base
  * @param {readonly Story[]} stories
  * @param {number} seed
- * @returns {import('#lib/core/kid/quiz.js').KidQuestion<{ n: number }>[]}
+ * @returns {import('#lib/core/kid/quiz.js').KidQuestion<{ n: number, each: number, groups: number }>[]}
  */
 export function buildDivisionRound(base, stories, seed) {
   const rand = rng(seed);
@@ -67,7 +65,11 @@ export function buildDivisionRound(base, stories, seed) {
   return kinds.map((kind, i) => {
     const n = rows[i];
     const total = base * n;
-    const common = { kind, ...divisionOptions(base, n), visual: { n } };
+    const common = {
+      kind,
+      ...divisionOptions(rand, n),
+      visual: { n, each: base, groups: n },
+    };
     if (kind === 'parts') {
       return {
         ...common,
@@ -77,9 +79,10 @@ export function buildDivisionRound(base, stories, seed) {
       };
     }
     if (kind === 'story') {
-      const { prompt, unit } = pick(rand, stories)(n);
+      const { prompt, unit, shared } = pick(rand, stories)(n);
       return {
         ...common,
+        visual: shared ? { n, each: n, groups: base } : common.visual,
         prompt,
         hint: `Em viết phép chia ${total} : ${base}.`,
         solution: `${divLine(total, base)} (${unit}).`,

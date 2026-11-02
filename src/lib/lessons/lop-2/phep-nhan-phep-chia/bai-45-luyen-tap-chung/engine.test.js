@@ -102,9 +102,15 @@ describe('the mixed round', () => {
     const bad = [];
     for (let seed = 1; seed <= 40; seed++) {
       for (const q of buildRound(seed).filter((x) => x.kind === 'bai-toan')) {
-        const { each = 0, groups = 0 } = q.visual ?? {};
-        const want = q.visual?.loose ? groups : each * groups;
+        const { each = 0, groups = 0, loose = false } = q.visual ?? {};
+        const total = Number(q.prompt.match(/\d+/)?.[0]);
+        const divisor = q.prompt.includes('bạn') ? 5 : 2;
+        const want = loose ? total / divisor : each * groups;
         if (q.options[q.answer] !== String(want)) bad.push(q.prompt);
+        if (loose && each * groups !== total) bad.push(`picture ${q.prompt}`);
+        if (/chia đều/.test(q.prompt) && (groups !== divisor || each !== want)) {
+          bad.push(`groups ${q.prompt}`);
+        }
         if (!q.solution.includes(String(want))) bad.push(q.solution);
       }
     }

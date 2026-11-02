@@ -121,6 +121,14 @@ export default {
       solution: 'Trong 15 : 5 = 3, số bị chia là 15, số chia là 5, thương là 3.',
     },
     {
+      type: 'multi',
+      prompt: 'Trong phép nhân 2 × 8 = 16, những số nào là thừa số?',
+      options: ['2', '8', '16'],
+      answers: [0, 1],
+      hints: ['Hai số được nhân với nhau là thừa số.', 'Kết quả của phép nhân là tích.'],
+      solution: '2 và 8 là thừa số, 16 là tích.',
+    },
+    {
       type: 'number',
       prompt: 'Em viết 6 × 5 thành tổng rồi tính. Kết quả là bao nhiêu?',
       answer: 30,

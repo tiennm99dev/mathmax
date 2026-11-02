@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { rng } from '#lib/core/drill.js';
 import { buildDivisionRound, divLine, divisionOptions, groupsLabel } from './divide.js';
 
 describe('division sentences', () => {
@@ -18,7 +19,7 @@ describe('division options', () => {
     const bad = [];
     for (const base of [2, 5]) {
       for (let n = 1; n <= 10; n++) {
-        const { options, answer } = divisionOptions(base, n);
+        const { options, answer } = divisionOptions(rng(base * n), n);
         const values = options.map(Number);
         if (values[answer] !== n) bad.push(['answer', base, n]);
         if (new Set(values).size !== 4) bad.push(['size', base, n, options]);
@@ -31,6 +32,31 @@ describe('division options', () => {
 
 describe('division rounds', () => {
   const stories = [(/** @type {number} */ n) => ({ prompt: `${n} con`, unit: 'con' })];
+
+  it('does not keep the right option in one place', () => {
+    for (const base of [2, 5]) {
+      const places = new Set();
+      for (let seed = 1; seed <= 20; seed++) {
+        for (const q of buildDivisionRound(base, stories, seed)) places.add(q.answer);
+      }
+      expect(places.size).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  it('draws a shared-out story as base groups and a grouping story as n groups', () => {
+    const shared = [(/** @type {number} */ n) => ({ prompt: `${n}`, unit: 'quả', shared: true })];
+    const bad = [];
+    for (const base of [2, 5]) {
+      for (let seed = 1; seed <= 20; seed++) {
+        for (const q of buildDivisionRound(base, shared, seed)) {
+          const { n = 0, each = 0, groups = 0 } = q.visual ?? {};
+          if (each * groups !== base * n) bad.push(['total', base, seed, q.prompt]);
+          if (groups !== (q.kind === 'story' ? base : n)) bad.push(['groups', base, seed, q.kind]);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
 
   it('asks each row once and stores the right quotient', () => {
     const bad = [];

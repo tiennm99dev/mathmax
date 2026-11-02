@@ -64,10 +64,13 @@
     </p>
   {:else}
     <ChoiceRound build={round} labels={KIND_LABELS} allGood="Em đã thuộc bảng chia 5 rồi!">
-      {#snippet visual(/** @type {{ visual?: { n: number } }} */ q, /** @type {boolean} */ settled)}
+      {#snippet visual(
+        /** @type {{ visual?: { each: number, groups: number } }} */ q,
+        /** @type {boolean} */ settled,
+      )}
         <PictureGroups
-          each={BASE}
-          groups={q.visual?.n ?? 1}
+          each={q.visual?.each ?? BASE}
+          groups={q.visual?.groups ?? 1}
           grouped={settled}
           picture="flower"
           noun="bông hoa"
