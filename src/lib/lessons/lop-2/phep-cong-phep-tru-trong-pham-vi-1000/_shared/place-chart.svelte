@@ -31,7 +31,7 @@
       return `${row}: ${c.top} ${block}${c.bottom > 0 ? `, phải bớt ${c.bottom}` : ''}.`;
     }
     if (c.joined) return `${row}: ${countLabel(block, c.top, c.written)}.`;
-    const parts = [`${c.top} ${block}`];
+    const parts = c.top > 0 ? [`${c.top} ${block}`] : [];
     if (c.bottom > 0) parts.push(`${c.bottom} ${block}`);
     if (c.extra > 0) parts.push(`${c.extra} ${block} vừa đổi được`);
     return `${row}: ${parts.join(' và ')}.`;

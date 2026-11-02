@@ -97,15 +97,15 @@ export default {
   practice: [
     {
       type: 'choice',
-      prompt: '427 + 246 = ?',
-      options: ['673', '663', '683', '773'],
+      prompt: '538 + 227 = ?',
+      options: ['765', '755', '775', '865'],
       answer: 0,
       hints: [
-        '7 cộng 6 được hơn 10. Em viết chữ số đơn vị và nhớ 1.',
+        '8 cộng 7 được hơn 10. Em viết chữ số đơn vị và nhớ 1.',
         'Đừng quên thêm 1 ở hàng chục.',
       ],
       solution:
-        '7 cộng 6 bằng 13, viết 3, nhớ 1. 2 cộng 4 bằng 6, thêm 1 bằng 7, viết 7. 4 cộng 2 bằng 6, viết 6.',
+        '8 cộng 7 bằng 15, viết 5, nhớ 1. 3 cộng 2 bằng 5, thêm 1 bằng 6, viết 6. 5 cộng 2 bằng 7, viết 7.',
     },
     {
       type: 'number',

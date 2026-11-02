@@ -41,11 +41,23 @@ export default {
         },
         {
           type: 'table',
-          head: ['Phép trừ', 'Đơn vị', 'Chục', 'Trăm', 'Kết quả'],
+          head: ['Phép trừ', 'Từ phải sang trái', 'Kết quả'],
           rows: [
-            ['543 − 403', '3 − 3 = 0', '4 − 0 = 4', '5 − 4 = 1', '140'],
-            ['347 − 120', '7 − 0 = 7', '4 − 2 = 2', '3 − 1 = 2', '227'],
-            ['835 − 30', '5 − 0 = 5', '3 − 3 = 0', 'Hạ 8', '805'],
+            [
+              '543\u00a0−\u00a0403',
+              '3\u00a0−\u00a03\u00a0=\u00a00, 4\u00a0−\u00a00\u00a0=\u00a04, 5\u00a0−\u00a04\u00a0=\u00a01',
+              '140',
+            ],
+            [
+              '268\u00a0−\u00a0135',
+              '8\u00a0−\u00a05\u00a0=\u00a03, 6\u00a0−\u00a03\u00a0=\u00a03, 2\u00a0−\u00a01\u00a0=\u00a01',
+              '133',
+            ],
+            [
+              '947\u00a0−\u00a020',
+              '7\u00a0−\u00a00\u00a0=\u00a07, 4\u00a0−\u00a02\u00a0=\u00a02, hạ 9',
+              '927',
+            ],
           ],
         },
         {
@@ -108,10 +120,10 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Em tính: 758 − 727 = ?',
-      answer: 31,
+      prompt: 'Em tính: 648 − 625 = ?',
+      answer: 23,
       hints: ['Em trừ từng hàng từ phải sang trái.', 'Hàng trăm được 0 thì không viết số 0 ở đầu.'],
-      solution: '8 trừ 7 bằng 1. 5 trừ 2 bằng 3. 7 trừ 7 bằng 0. Vậy 758 − 727 = 31.',
+      solution: '8 trừ 5 bằng 3. 4 trừ 2 bằng 2. 6 trừ 6 bằng 0. Vậy 648 − 625 = 23.',
     },
     {
       type: 'match',

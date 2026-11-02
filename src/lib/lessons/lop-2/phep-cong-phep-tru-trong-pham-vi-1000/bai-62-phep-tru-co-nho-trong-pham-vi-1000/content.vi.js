@@ -90,12 +90,12 @@ export default {
   practice: [
     {
       type: 'choice',
-      prompt: '485 − 128 = ?',
-      options: ['357', '367', '257', '347'],
+      prompt: '574 − 136 = ?',
+      options: ['438', '448', '338', '428'],
       answer: 0,
-      hints: ['5 không trừ được 8. Em lấy 15 trừ 8 rồi nhớ 1.', 'Hàng chục: 2 thêm 1 bằng 3.'],
+      hints: ['4 không trừ được 6. Em lấy 14 trừ 6 rồi nhớ 1.', 'Hàng chục: 3 thêm 1 bằng 4.'],
       solution:
-        '5 không trừ được 8, lấy 15 trừ 8 bằng 7, viết 7, nhớ 1. 2 thêm 1 bằng 3, 8 trừ 3 bằng 5, viết 5. 4 trừ 1 bằng 3, viết 3.',
+        '4 không trừ được 6, lấy 14 trừ 6 bằng 8, viết 8, nhớ 1. 3 thêm 1 bằng 4, 7 trừ 4 bằng 3, viết 3. 5 trừ 1 bằng 4, viết 4.',
     },
     {
       type: 'number',
@@ -134,7 +134,7 @@ export default {
     {
       type: 'match',
       prompt: 'Em tìm địa chỉ cho mỗi bức thư: nối phép trừ với kết quả.',
-      left: ['382 − 190', '364 − 126', '560 − 226', '900 − 700'],
+      left: ['473 − 281', '364 − 126', '560 − 226', '900 − 700'],
       right: ['192', '238', '334', '200'],
       pairs: [
         [0, 0],
@@ -143,7 +143,7 @@ export default {
         [3, 3],
       ],
       hints: ['Em tính từng hàng. Thiếu thì lấy thêm 10 và nhớ 1.'],
-      solution: '382 − 190 = 192. 364 − 126 = 238. 560 − 226 = 334. 900 − 700 = 200.',
+      solution: '473 − 281 = 192. 364 − 126 = 238. 560 − 226 = 334. 900 − 700 = 200.',
     },
     {
       type: 'number',

@@ -46,11 +46,19 @@ export default {
         },
         {
           type: 'table',
-          head: ['Phép cộng', 'Đơn vị', 'Chục', 'Trăm', 'Kết quả'],
+          head: ['Phép cộng', 'Từ phải sang trái', 'Kết quả'],
           rows: [
-            ['526 + 32', '6 + 2 = 8', '2 + 3 = 5', 'Hạ 5', '558'],
-            ['815 + 60', '5 + 0 = 5', '1 + 6 = 7', 'Hạ 8', '875'],
-            ['923 + 6', '3 + 6 = 9', 'Hạ 2', 'Hạ 9', '929'],
+            [
+              '526\u00a0+\u00a032',
+              '6\u00a0+\u00a02\u00a0=\u00a08, 2\u00a0+\u00a03\u00a0=\u00a05, hạ 5',
+              '558',
+            ],
+            [
+              '815\u00a0+\u00a060',
+              '5\u00a0+\u00a00\u00a0=\u00a05, 1\u00a0+\u00a06\u00a0=\u00a07, hạ 8',
+              '875',
+            ],
+            ['923\u00a0+\u00a06', '3\u00a0+\u00a06\u00a0=\u00a09, hạ 2, hạ 9', '929'],
           ],
         },
         {
@@ -123,16 +131,16 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Em tính: 923 + 6 = ?',
-      answer: 929,
-      hints: ['Em viết 6 thẳng cột với hàng đơn vị của 923.'],
-      solution: '3 cộng 6 bằng 9. Hạ 2. Hạ 9. Vậy 923 + 6 = 929.',
+      prompt: 'Em tính: 412 + 7 = ?',
+      answer: 419,
+      hints: ['Em viết 7 thẳng cột với hàng đơn vị của 412.'],
+      solution: '2 cộng 7 bằng 9. Hạ 1. Hạ 4. Vậy 412 + 7 = 419.',
     },
     {
       type: 'match',
       prompt: 'Em nối mỗi phép cộng với kết quả đúng.',
-      left: ['658 + 221', '850 + 130', '245 + 233', '150 + 307'],
-      right: ['879', '980', '478', '457'],
+      left: ['658 + 221', '850 + 130', '345 + 233', '150 + 307'],
+      right: ['879', '980', '578', '457'],
       pairs: [
         [0, 0],
         [1, 1],
@@ -140,7 +148,7 @@ export default {
         [3, 3],
       ],
       hints: ['Em cộng từng hàng cho mỗi phép tính rồi tìm kết quả.'],
-      solution: '658 + 221 = 879. 850 + 130 = 980. 245 + 233 = 478. 150 + 307 = 457.',
+      solution: '658 + 221 = 879. 850 + 130 = 980. 345 + 233 = 578. 150 + 307 = 457.',
     },
     {
       type: 'order',

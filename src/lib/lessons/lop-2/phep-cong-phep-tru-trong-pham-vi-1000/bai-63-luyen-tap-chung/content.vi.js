@@ -20,16 +20,11 @@ export default {
           text: 'Đặt tính thẳng cột. Tính từ phải sang trái. Cộng đủ 10 thì nhớ 1. Trừ không đủ thì lấy thêm 10 và nhớ 1.',
         },
         {
-          type: 'table',
-          head: ['Phép tính', 'Cách tính', 'Kết quả'],
-          rows: [
-            ['267 + 731', '7 + 1 = 8, 6 + 3 = 9, 2 + 7 = 9', '998'],
-            ['328 + 56', '8 + 6 = 14, viết 4, nhớ 1. 2 + 5 = 7, thêm 1 bằng 8. Hạ 3', '384'],
-            [
-              '721 − 350',
-              '1 − 0 = 1. 2 không trừ được 5, lấy 12 − 5 = 7, nhớ 1. 3 thêm 1 bằng 4, 7 − 4 = 3',
-              '371',
-            ],
+          type: 'list',
+          items: [
+            '415 + 263 = 678. Em tính: 5 + 3 = 8, 1 + 6 = 7, 4 + 2 = 6.',
+            '247 + 36 = 283. Em tính: 7 + 6 = 13, viết 3, nhớ 1. 4 + 3 = 7, thêm 1 bằng 8. Hạ 2.',
+            '634 − 260 = 374. Em tính: 4 − 0 = 4. 3 không trừ được 6, lấy 13 − 6 = 7, nhớ 1. 2 thêm 1 bằng 3, 6 − 3 = 3.',
           ],
         },
       ],
@@ -43,7 +38,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Tính từ trái sang phải',
-          text: '800 − 200 + 135: em tính 800 − 200 = 600, rồi 600 + 135 = 735.',
+          text: '700 − 300 + 125: em tính 700 − 300 = 400, rồi 400 + 125 = 525.',
         },
       ],
     },
@@ -55,20 +50,20 @@ export default {
   },
   examples: [
     {
-      problem: 'Đặt tính rồi tính: 698 − 47.',
-      steps: ['8 trừ 7 bằng 1, viết 1.', '9 trừ 4 bằng 5, viết 5.', 'Hạ 6, viết 6.'],
-      answer: '698 − 47 = 651.',
+      problem: 'Đặt tính rồi tính: 586 − 34.',
+      steps: ['6 trừ 4 bằng 2, viết 2.', '8 trừ 3 bằng 5, viết 5.', 'Hạ 5, viết 5.'],
+      answer: '586 − 34 = 552.',
     },
     {
       problem:
-        'Một cửa hàng buổi sáng bán được 250 kg gạo, buổi chiều bán được 175 kg gạo. Cả hai buổi bán được bao nhiêu ki-lô-gam gạo?',
+        'Thư viện có 340 quyển truyện, mua thêm 185 quyển truyện. Thư viện có tất cả bao nhiêu quyển truyện?',
       steps: [
-        'Tìm cả hai buổi nên em làm phép cộng: 250 + 175.',
+        'Tìm tất cả nên em làm phép cộng: 340 + 185.',
         '0 cộng 5 bằng 5, viết 5.',
-        '5 cộng 7 bằng 12, viết 2, nhớ 1.',
-        '2 cộng 1 bằng 3, thêm 1 bằng 4, viết 4.',
+        '4 cộng 8 bằng 12, viết 2, nhớ 1.',
+        '3 cộng 1 bằng 4, thêm 1 bằng 5, viết 5.',
       ],
-      answer: '250 + 175 = 425. Cả hai buổi bán được 425 kg gạo.',
+      answer: '340 + 185 = 525. Thư viện có tất cả 525 quyển truyện.',
     },
   ],
   practice: [
@@ -105,8 +100,8 @@ export default {
     {
       type: 'match',
       prompt: 'Em nối mỗi phép tính với kết quả đúng.',
-      left: ['523 + 365', '572 − 416', '250 + 175', '850 − 70'],
-      right: ['888', '156', '425', '780'],
+      left: ['523 + 365', '572 − 416', '256 + 163', '640 − 60'],
+      right: ['888', '156', '419', '580'],
       pairs: [
         [0, 0],
         [1, 1],
@@ -114,7 +109,7 @@ export default {
         [3, 3],
       ],
       hints: ['Em đặt tính rồi tính từng phép tính.'],
-      solution: '523 + 365 = 888. 572 − 416 = 156. 250 + 175 = 425. 850 − 70 = 780.',
+      solution: '523 + 365 = 888. 572 − 416 = 156. 256 + 163 = 419. 640 − 60 = 580.',
     },
     {
       type: 'choice',
@@ -152,10 +147,10 @@ export default {
     {
       type: 'order',
       prompt: 'Em xếp các phép tính theo kết quả, từ bé đến lớn.',
-      items: ['914 − 372', '341 + 250', '689 − 357'],
-      answer: [2, 0, 1],
+      items: ['624 + 135', '978 − 416', '485 − 230'],
+      answer: [2, 1, 0],
       hints: ['Em tính kết quả của mỗi phép tính trước.'],
-      solution: '689 − 357 = 332. 914 − 372 = 542. 341 + 250 = 591. Vậy 332 < 542 < 591.',
+      solution: '485 − 230 = 255. 978 − 416 = 562. 624 + 135 = 759. Vậy 255 < 562 < 759.',
     },
     {
       type: 'number',

@@ -43,7 +43,7 @@
       y1="0.5"
       x2={0.5 + (i + 1) * look.cell}
       y2={0.5 + h}
-      stroke={look.line}
+      stroke={fresh ? '#be185d' : look.line}
       stroke-width="0.4"
     />
   {/each}
