@@ -24,6 +24,9 @@ import {
 /** @typedef {import('../_shared/two-step.js').Story} Story */
 /** @typedef {'need' | 'first' | 'total' | 'done'} Stage */
 
+/** Why step 2 adds, in words that also fit a broken line of two segments. */
+const JOIN_HINT = 'Bước 2 gộp hai số lại: em làm phép cộng.';
+
 /**
  * What the child answers at a stage.
  * @typedef {object} Step
@@ -71,7 +74,7 @@ export function stepOf(s, stage) {
       options,
       answer,
       optionLabels: options.map(spoken),
-      slip: `Đề bài hỏi cả hai: em cộng hai số lại.`,
+      slip: JOIN_HINT,
       right: `Đúng rồi! ${totalCalc(s)} = ${s.total}. ${answerLine(s)}`,
       next: 'done',
     };
@@ -147,7 +150,7 @@ export function buildRound(seed) {
         options,
         answer,
         optionLabels: options.map(spoken),
-        hint: 'Đề bài hỏi cả hai: em cộng hai số lại.',
+        hint: JOIN_HINT,
         solution: `${totalCalc(s)} = ${s.total} (${s.unit}).`,
       };
     }

@@ -40,7 +40,7 @@ export default {
             ['ít hơn', 'trừ'],
           ],
         },
-        { type: 'p', text: 'Đề bài hỏi "cả hai" thì bước 2 em làm phép cộng.' },
+        { type: 'p', text: 'Đề bài hỏi gộp cả hai số thì bước 2 em làm phép cộng.' },
       ],
     },
   ],

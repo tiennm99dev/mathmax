@@ -14,8 +14,8 @@ export default {
     {
       heading: 'Tính nhẩm số tròn chục',
       blocks: [
-        { type: 'p', text: '20 × 4: 2 chục nhân 4 bằng 8 chục. Vậy 20 × 4 = 80.' },
-        { type: 'p', text: '60 : 2: 6 chục chia 2 bằng 3 chục. Vậy 60 : 2 = 30.' },
+        { type: 'p', text: '40 × 2: 4 chục nhân 2 bằng 8 chục. Vậy 40 × 2 = 80.' },
+        { type: 'p', text: '80 : 4: 8 chục chia 4 bằng 2 chục. Vậy 80 : 4 = 20.' },
       ],
     },
     {
@@ -53,9 +53,9 @@ export default {
   examples: [
     {
       problem:
-        'Mỗi ngày Rô-bốt làm được 27 tấm thiệp. Hỏi trong 3 ngày Rô-bốt làm được bao nhiêu tấm thiệp?',
+        'Mai làm được 27 tấm thiệp. Số tấm thiệp Rô-bốt làm được gấp 3 lần của Mai. Hỏi Rô-bốt làm được bao nhiêu tấm thiệp?',
       steps: [
-        '27 tấm thiệp được lấy 3 lần.',
+        'Gấp 3 lần thì em làm phép nhân: 27 × 3.',
         '3 nhân 7 bằng 21, viết 1, nhớ 2.',
         '3 nhân 2 bằng 6, thêm 2 bằng 8, viết 8.',
         'Em được 27 × 3 = 81.',
@@ -64,13 +64,15 @@ export default {
     },
     {
       problem:
-        'Có 35 m vải. Mỗi bộ quần áo may hết 3 m vải. Hỏi may được nhiều nhất bao nhiêu bộ quần áo và còn thừa mấy mét vải?',
+        'Rô-bốt dùng 35 m vải để may quần áo công nhân. Mỗi bộ quần áo hết 3 m vải. Hỏi Rô-bốt may được nhiều nhất bao nhiêu bộ quần áo và còn thừa mấy mét vải?',
       steps: [
         'Em chia 35 cho 3.',
-        '35 : 3 = 11 (dư 2).',
+        '3 chia 3 được 1, viết 1. Hạ 5, được 5.',
+        '5 chia 3 được 1, viết 1. 5 trừ 3 bằng 2.',
+        'Vậy 35 : 3 = 11 (dư 2).',
         'Số dư 2 bé hơn 3, không may thêm được bộ nào.',
       ],
-      answer: 'May được nhiều nhất 11 bộ quần áo, còn thừa 2 m vải.',
+      answer: 'Rô-bốt may được nhiều nhất 11 bộ quần áo, còn thừa 2 m vải.',
     },
     {
       problem:
@@ -91,7 +93,7 @@ export default {
         [2, 3],
         [3, 1],
       ],
-      hints: ['Em nhẩm theo chục: 2 chục × 4 = 8 chục.'],
+      hints: ['Em nhẩm theo chục, như 4 chục × 2 = 8 chục.'],
       solution: '10 × 7 = 70. 20 × 4 = 80. 30 × 3 = 90. 60 : 2 = 30.',
     },
     {
@@ -105,16 +107,16 @@ export default {
         [2, 0],
         [3, 1],
       ],
-      hints: ['Em nhẩm theo chục: 9 chục : 3 = 3 chục.'],
+      hints: ['Em nhẩm theo chục, như 8 chục : 4 = 2 chục.'],
       solution: '90 : 3 = 30. 70 : 7 = 10. 40 : 2 = 20. 80 : 2 = 40.',
     },
     {
       type: 'number',
       prompt:
-        'Mỗi ngày Rô-bốt làm được 27 tấm thiệp. Trong 3 ngày, Rô-bốt làm được bao nhiêu tấm thiệp?',
-      answer: 81,
-      hints: ['27 được lấy 3 lần. Em làm phép nhân.', '3 nhân 7 bằng 21, viết 1, nhớ 2.'],
-      solution: '27 × 3 = 81. Rô-bốt làm được 81 tấm thiệp.',
+        'Mai làm được 19 tấm thiệp. Số tấm thiệp Rô-bốt làm được gấp 4 lần của Mai. Rô-bốt làm được bao nhiêu tấm thiệp?',
+      answer: 76,
+      hints: ['Gấp 4 lần thì em làm phép nhân.', '4 nhân 9 bằng 36, viết 6, nhớ 3.'],
+      solution: '19 × 4 = 76. Rô-bốt làm được 76 tấm thiệp.',
     },
     {
       type: 'number',
@@ -133,11 +135,11 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Đặt tính rồi tính: 35 : 3 = ?',
-      options: ['11 (dư 2)', '10 (dư 5)', '12 (dư 1)', '11 (dư 1)'],
+      prompt: 'Đặt tính rồi tính: 58 : 5 = ?',
+      options: ['11 (dư 3)', '10 (dư 8)', '12 (dư 3)', '11 (dư 2)'],
       answer: 0,
-      hints: ['Số dư phải bé hơn số chia.', 'Em thử lại: thương nhân với 3, rồi cộng số dư.'],
-      solution: '35 : 3 = 11 (dư 2). Thử lại: 11 × 3 + 2 = 35.',
+      hints: ['Số dư phải bé hơn số chia.', 'Em thử lại: thương nhân với 5, rồi cộng số dư.'],
+      solution: '58 : 5 = 11 (dư 3). Thử lại: 11 × 5 + 3 = 58.',
     },
     {
       type: 'multi',
@@ -158,7 +160,7 @@ export default {
         [2, 0],
         [3, 1],
       ],
-      hints: ['Giảm là chia, gấp là nhân.', 'Bớt đi mấy đơn vị là trừ.'],
+      hints: ['Giảm đi mấy lần là chia, gấp lên mấy lần là nhân.', 'Bớt đi mấy đơn vị là trừ.'],
       solution: '32 : 2 = 16. 27 × 3 = 81. 24 : 2 = 12. 24 − 2 = 22.',
     },
     {
@@ -171,7 +173,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Buổi sáng cửa hàng bán được 30 kg gạo. Số gạo bán buổi chiều giảm đi 2 lần so với buổi sáng. Buổi chiều bán được bao nhiêu ki-lô-gam gạo?',
+        'Buổi sáng cửa hàng bán được 30 kg gạo. Số gạo buổi chiều bán được bằng số gạo buổi sáng giảm đi 2 lần. Buổi chiều bán được bao nhiêu ki-lô-gam gạo?',
       answer: 15,
       hints: ['Giảm đi 2 lần thì em làm phép chia.'],
       solution: '30 : 2 = 15. Buổi chiều bán được 15 kg gạo.',
@@ -179,19 +181,19 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Có 35 m vải. Mỗi bộ quần áo may hết 3 m vải. May được nhiều nhất bao nhiêu bộ và còn thừa mấy mét vải?',
-      options: ['11 bộ, thừa 2 m', '10 bộ, thừa 5 m', '12 bộ, thừa 1 m', '11 bộ, thừa 1 m'],
+        'Có 47 m vải. Mỗi bộ quần áo may hết 3 m vải. May được nhiều nhất bao nhiêu bộ và còn thừa mấy mét vải?',
+      options: ['15 bộ, thừa 2 m', '14 bộ, thừa 5 m', '16 bộ, thừa 2 m', '15 bộ, thừa 1 m'],
       answer: 0,
-      hints: ['Em tính 35 : 3.', 'Phần còn thừa phải bé hơn 3.'],
-      solution: '35 : 3 = 11 (dư 2). May được 11 bộ, còn thừa 2 m vải.',
+      hints: ['Em tính 47 : 3.', 'Phần còn thừa phải bé hơn 3.'],
+      solution: '47 : 3 = 15 (dư 2). May được 15 bộ, còn thừa 2 m vải.',
     },
     {
       type: 'number',
       prompt:
-        'Việt trồng được 5 cây. Rô-bốt trồng được số cây gấp 3 lần của Việt. Cả hai bạn trồng được bao nhiêu cây?',
-      answer: 20,
+        'Việt trồng được 6 cây. Rô-bốt trồng được số cây gấp 4 lần của Việt. Cả hai bạn trồng được bao nhiêu cây?',
+      answer: 30,
       hints: ['Bước 1: tìm số cây Rô-bốt trồng.', 'Bước 2: cộng số cây của hai bạn.'],
-      solution: 'Rô-bốt: 5 × 3 = 15 (cây). Cả hai bạn: 5 + 15 = 20 (cây).',
+      solution: 'Rô-bốt: 6 × 4 = 24 (cây). Cả hai bạn: 6 + 24 = 30 (cây).',
     },
     {
       type: 'order',
@@ -203,7 +205,7 @@ export default {
     },
   ],
   takeaways: [
-    'Gấp lên là nhân, giảm đi là chia. Thêm là cộng, bớt là trừ.',
+    'Gấp lên mấy lần là nhân, giảm đi mấy lần là chia. Thêm là cộng, bớt là trừ.',
     'Số dư luôn bé hơn số chia.',
     'Bài toán hai bước: tìm số còn thiếu trước, rồi trả lời câu hỏi.',
   ],

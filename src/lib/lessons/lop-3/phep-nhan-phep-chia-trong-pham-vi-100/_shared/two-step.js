@@ -23,7 +23,7 @@ import { pick, rng, shuffle } from '#lib/core/drill.js';
  * @property {string} both the two together ("Cả hai can")
  * @property {string} otherMid `other` in the middle of a sentence
  * @property {string} bothMid `both` in the middle of a sentence
- * @property {string} verb "đựng", "dài", "nặng"…
+ * @property {string} verb "đựng", "dài", "gấp được"…
  * @property {string} link the comparison after `other` ("đựng gấp 3 lần can thứ nhất")
  * @property {string} given the sentences of the problem, without the question
  * @property {string} text the whole problem
@@ -89,8 +89,8 @@ export const SCENES = [
     other: 'Nam',
     named: true,
     both: 'Cả hai bạn',
-    verb: 'gấp',
-    link: (k) => `gấp ít hơn Mai ${k} cái`,
+    verb: 'gấp được',
+    link: (k) => `gấp được ít hơn Mai ${k} cái`,
     given: (a, k) => `Mai gấp được ${a} cái thuyền. Nam gấp được ít hơn Mai ${k} cái thuyền.`,
   },
   {
@@ -107,8 +107,8 @@ export const SCENES = [
     first: 'Buổi sáng',
     other: 'Buổi chiều',
     both: 'Cả hai buổi',
-    verb: 'bán',
-    link: (k) => `bán ít hơn buổi sáng ${k} máy tính`,
+    verb: 'bán được',
+    link: (k) => `bán được ít hơn buổi sáng ${k} máy tính`,
     given: (a, k) =>
       `Buổi sáng cửa hàng bán được ${a} máy tính. Buổi chiều bán được ít hơn buổi sáng ${k} máy tính.`,
   },
@@ -163,8 +163,8 @@ export const SCENES = [
     first: 'Buổi sáng',
     other: 'Buổi chiều',
     both: 'Cả hai buổi',
-    verb: 'bán',
-    link: (k) => `bán số gạo giảm đi ${k} lần so với buổi sáng`,
+    verb: 'bán được',
+    link: (k) => `bán được số gạo giảm đi ${k} lần so với buổi sáng`,
     given: (a, k) =>
       `Buổi sáng cửa hàng bán được ${a} kg gạo. Buổi chiều bán được số gạo giảm đi ${k} lần so với buổi sáng.`,
   },
@@ -182,8 +182,8 @@ export const SCENES = [
     first: 'Lớp 3A',
     other: 'Lớp 3B',
     both: 'Cả hai lớp',
-    verb: 'trồng',
-    link: (k) => `trồng nhiều hơn lớp 3A ${k} cây`,
+    verb: 'trồng được',
+    link: (k) => `trồng được nhiều hơn lớp 3A ${k} cây`,
     given: (a, k) => `Lớp 3A trồng được ${a} cây. Lớp 3B trồng được nhiều hơn lớp 3A ${k} cây.`,
   },
   {

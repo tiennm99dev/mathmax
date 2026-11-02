@@ -39,9 +39,17 @@ describe('the steps of a problem', () => {
   });
 });
 
+describe('the second step', () => {
+  it('explains adding without asking about two when the problem asks about a broken line', () => {
+    const slip = stepOf(makeStory(SCENES[3]), 'total')?.slip;
+    expect(slip).toContain('phép cộng');
+    expect(slip).not.toContain('cả hai');
+  });
+});
+
 describe('names in the middle of a sentence', () => {
   it('keep the capitals of a person and of points', () => {
-    expect(stepOf(makeStory(SCENES[1]), 'need')?.right).toContain('biết Nam gấp');
+    expect(stepOf(makeStory(SCENES[1]), 'need')?.right).toContain('biết Nam gấp được');
     expect(stepOf(makeStory(SCENES[3]), 'need')?.right).toContain('đoạn thẳng BC dài');
     expect(stepOf(makeStory(SCENES[3]), 'need')?.ask).toContain('đường gấp khúc ABC dài');
     expect(stepOf(makeStory(SCENES[0]), 'need')?.ask).toContain('cả hai can đựng');
