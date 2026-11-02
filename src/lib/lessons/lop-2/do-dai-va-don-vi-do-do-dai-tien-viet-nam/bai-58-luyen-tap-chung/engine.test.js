@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { optionText, questionKey, weakLabels } from '#lib/core/kid/quiz.js';
 import { sumNotes } from '../_shared/money.js';
-import { FIT_UNITS, KINDS, KIND_LABELS, TAPE_LABELS, TAPE_MAX, buildRound } from './engine.js';
+import {
+  FIT_UNITS,
+  KINDS,
+  KIND_LABELS,
+  TAPE_LABELS,
+  TAPE_MAX,
+  buildRound,
+  moneyQuestion,
+} from './engine.js';
+import { rng } from '#lib/core/drill.js';
 
 /**
  * The right option worked out again from the prompt and the picture alone.
@@ -67,6 +76,19 @@ describe('the mixed practice round', () => {
         if (inHint) bad.push([seed, q.hint]);
         if (q.kind === 'bai-toan' && !q.solution.includes('Đáp số:')) bad.push(q.solution);
       }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('puts a wrong count on each side of the right one when swapping notes', () => {
+    const bad = [];
+    const rand = rng(7);
+    for (let i = 0; i < 200; i++) {
+      const q = moneyQuestion(rand);
+      if (!q.prompt.includes('đổi được')) continue;
+      const counts = q.options.map((o) => parseInt(optionText(o), 10));
+      const right = counts[q.answer];
+      if (Math.min(...counts) === right || Math.max(...counts) === right) bad.push(q.prompt);
     }
     expect(bad).toEqual([]);
   });

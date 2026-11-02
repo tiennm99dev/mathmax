@@ -224,7 +224,7 @@ export function moneyQuestion(rand) {
     const right = big / small;
     return {
       prompt: `1 tờ ${big} đồng đổi được mấy tờ ${small} đồng?`,
-      ...mixOptions(rand, `${right} tờ`, [`${right + 1} tờ`, `${right + 3} tờ`]),
+      ...mixOptions(rand, `${right} tờ`, [`${right - 1} tờ`, `${right + 1} tờ`]),
       hint: `Em đếm thêm từng ${small} đồng cho đến ${big} đồng.`,
       solution: `${Array.from({ length: right }, () => small).join(' + ')} = ${big}. Vậy đổi được ${right} tờ ${small} đồng.`,
     };

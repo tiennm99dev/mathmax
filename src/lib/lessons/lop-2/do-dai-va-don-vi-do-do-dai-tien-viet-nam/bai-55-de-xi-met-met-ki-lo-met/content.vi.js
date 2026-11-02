@@ -139,7 +139,9 @@ export default {
         [2, 2],
         [3, 3],
       ],
-      hints: ['Nhớ lại: 1 dm = 10 cm, 1 m = 100 cm, 1 km = 1000 m.'],
+      hints: [
+        '1 dm có mấy xăng-ti-mét? 1 m có mấy xăng-ti-mét? 1 km có mấy mét? Với 5 dm, em đếm 5 lần 10 cm.',
+      ],
       solution: '1 dm = 10 cm; 1 m = 100 cm; 1 km = 1000 m; 5 dm = 50 cm.',
     },
     {
@@ -175,12 +177,18 @@ export default {
       solution: 'Quãng đường dài giữa hai thành phố được đo bằng ki-lô-mét (km).',
     },
     {
-      type: 'choice',
-      prompt: 'Việt nói cái bàn học dài 2 m, Nam nói cái bàn dài 2 dm. Ai nói đúng?',
-      options: ['Việt', 'Nam'],
-      answer: 0,
-      hints: ['2 dm chỉ dài bằng 2 gang tay. Cái bàn có ngắn như vậy không?'],
-      solution: '2 dm = 20 cm, quá ngắn cho cái bàn học. Việt nói đúng.',
+      type: 'multi',
+      prompt:
+        'Cái bảng lớp dài bằng 2 sải tay của Việt, mỗi sải tay dài khoảng 1 m. Bạn nào nói đúng?',
+      options: [
+        'Mai: "Bảng dài khoảng 2 m."',
+        'Nam: "Bảng dài khoảng 2 dm."',
+        'Rô-bốt: "Bảng dài khoảng 200 cm."',
+      ],
+      answers: [0, 2],
+      hints: ['2 sải tay dài khoảng mấy mét? Rồi đổi số đó ra đề-xi-mét và xăng-ti-mét.'],
+      solution:
+        '2 sải tay dài khoảng 2 m. 2 m = 20 dm = 200 cm. Mai và Rô-bốt nói đúng. Nam nói sai, vì 2 dm chỉ bằng 20 cm.',
     },
     {
       type: 'choice',
@@ -197,6 +205,24 @@ export default {
       answer: 2,
       hints: ['Trừ 10 − 4, rồi giữ nguyên đơn vị km.'],
       solution: '10 − 4 = 6, nên 10 km − 4 km = 6 km.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Từ chỗ Rô-bốt đứng đến cầu trượt là 30 m, từ cầu trượt đến bập bênh là 15 m. Rô-bốt đi đến cầu trượt rồi ra bập bênh, phải đi bao nhiêu mét?',
+      options: ['15 m', '35 m', '45 m'],
+      answer: 2,
+      hints: ['Rô-bốt đi cả hai đoạn nên em làm phép cộng.'],
+      solution: '30 m + 15 m = 45 m. Rô-bốt phải đi 45 m.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Đường bộ từ Hà Nội đến Hà Nam dài 54 km, đến Cao Bằng dài 280 km. Tỉnh nào xa Hà Nội hơn?',
+      options: ['Hà Nam', 'Cao Bằng'],
+      answer: 1,
+      hints: ['So sánh hai số đo: 54 và 280, số nào lớn hơn?'],
+      solution: '54 km < 280 km, nên Cao Bằng xa Hà Nội hơn.',
     },
     {
       type: 'order',

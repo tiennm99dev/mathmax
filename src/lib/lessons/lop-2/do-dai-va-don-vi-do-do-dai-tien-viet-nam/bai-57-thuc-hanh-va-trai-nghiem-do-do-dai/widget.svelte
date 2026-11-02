@@ -32,6 +32,10 @@
   let handleEl = $state();
   /** @type {HTMLElement | undefined} */
   let nextEl = $state();
+  /** @type {HTMLElement | undefined} */
+  let measureEl = $state();
+  /** @type {HTMLElement | undefined} */
+  let againEl = $state();
 
   const game = $derived(makeGame(seed));
   const finished = $derived(index >= ROUNDS);
@@ -100,20 +104,25 @@
     },
   });
 
-  function next() {
+  // Each of these removes the button just pressed, so focus moves to the next step.
+  async function next() {
     index += 1;
     phase = 'guess';
     pulled = 1;
     if (index < ROUNDS) guess = startGuess(game[index]);
+    await tick();
+    (index < ROUNDS ? measureEl : againEl)?.focus();
   }
 
-  function again() {
+  async function again() {
     seed += 1;
     index = 0;
     stars = [];
     phase = 'guess';
     pulled = 1;
     guess = startGuess(game[0]);
+    await tick();
+    measureEl?.focus();
   }
 
   const stepButton = `h-14 w-14 rounded-2xl border-4 border-indigo-300 bg-white text-3xl font-bold text-indigo-700 hover:bg-indigo-50 disabled:opacity-40 ${focusRing}`;
@@ -264,8 +273,11 @@
           onclick={() => bump(1)}>+</button
         >
       </div>
-      <button type="button" class="min-h-12 text-lg {button.primary}" onclick={startMeasure}
-        >Đo thử</button
+      <button
+        type="button"
+        bind:this={measureEl}
+        class="min-h-12 text-lg {button.primary}"
+        onclick={startMeasure}>Đo thử</button
       >
     {:else}
       <p class="text-lg text-slate-700">Em đoán: <strong>{guess} {item.unit}</strong></p>
@@ -282,7 +294,11 @@
   </p>
 
   {#if finished}
-    <button type="button" class="min-h-12 text-lg {button.primary}" onclick={again}>Chơi lại</button
+    <button
+      type="button"
+      bind:this={againEl}
+      class="min-h-12 text-lg {button.primary}"
+      onclick={again}>Chơi lại</button
     >
   {:else if phase === 'done'}
     <button

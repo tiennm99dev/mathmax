@@ -36,7 +36,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Mẹo nhỏ',
-          text: 'Một gang tay của em dài khoảng 1 dm. Một bước chân dài của em dài khoảng 5 dm. Hai tay em dang rộng dài khoảng 1 m.',
+          text: 'Một gang tay của em dài khoảng 1 dm. Một bước chân dài của em dài khoảng 5 dm. Một sải tay (hai tay em dang rộng) dài khoảng 1 m.',
         },
         {
           type: 'table',

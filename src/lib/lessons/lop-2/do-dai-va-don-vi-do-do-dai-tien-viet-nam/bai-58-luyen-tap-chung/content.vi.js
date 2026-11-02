@@ -79,16 +79,18 @@ export default {
         [2, 2],
         [3, 3],
       ],
-      hints: ['1 m = 10 dm. 1 dm = 10 cm. 1 km = 1000 m.'],
+      hints: [
+        'Nhớ: 1 m = 10 dm, 1 dm = 10 cm. Với số đo ki-lô-mét, em nhớ lại 1 km bằng bao nhiêu mét.',
+      ],
       solution: '2 m = 20 dm; 3 dm = 30 cm; 60 cm = 6 dm; 1 km = 1000 m.',
     },
     {
       type: 'choice',
-      prompt: '4 m = ? cm',
-      options: ['4 cm', '40 cm', '400 cm'],
-      answer: 2,
-      hints: ['1 m = 100 cm. Em đếm 100, 200, ... đủ 4 lần.'],
-      solution: '1 m = 100 cm, nên 4 m = 400 cm.',
+      prompt: '100 cm = ? m',
+      options: ['1 m', '10 m', '100 m'],
+      answer: 0,
+      hints: ['1 m bằng bao nhiêu xăng-ti-mét?'],
+      solution: '1 m = 100 cm, nên 100 cm = 1 m.',
     },
     {
       type: 'choice',
@@ -126,11 +128,11 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Cây cầu là đường gấp khúc ABCD: AB dài 6 m, BC dài 8 m, CD dài 5 m. Cây cầu dài bao nhiêu mét?',
-      options: ['14 m', '19 m', '21 m'],
-      answer: 1,
-      hints: ['Em cộng độ dài cả ba đoạn thẳng.'],
-      solution: '6 + 8 + 5 = 19. Cây cầu dài 19 m.',
+        'Vườn hoa được rào ba đoạn dài 18 m, 35 m và 18 m. Hàng rào dài tất cả bao nhiêu mét?',
+      options: ['53 m', '61 m', '71 m'],
+      answer: 2,
+      hints: ['Em cộng hai đoạn đầu, rồi cộng tiếp đoạn thứ ba. Nhớ phép cộng có nhớ.'],
+      solution: '18 + 35 = 53. 53 + 18 = 71. Hàng rào dài 71 m.',
     },
     {
       type: 'choice',

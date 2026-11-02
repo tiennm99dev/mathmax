@@ -71,7 +71,7 @@ export function barFeedback(task, dm) {
   if (dm === task.dm) {
     const { cm, m } = barParts(dm);
     const inM = m === null ? '' : ` = ${m} m`;
-    return { done: true, text: `Đúng rồi! ${task.text}: ${dm} dm = ${cm} cm${inM}.` };
+    return { done: true, text: `Đúng rồi! Thanh đo dài ${task.text}: ${dm} dm = ${cm} cm${inM}.` };
   }
   if (dm === 0) return { done: false, text: barSentence(0) };
   const way = dm < task.dm ? 'Thanh đo còn ngắn, kéo dài thêm.' : 'Thanh đo dài quá, kéo ngắn lại.';
