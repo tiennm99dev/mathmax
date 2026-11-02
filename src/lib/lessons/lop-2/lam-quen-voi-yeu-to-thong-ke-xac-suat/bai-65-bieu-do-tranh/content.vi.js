@@ -27,6 +27,7 @@ export default {
           type: 'p',
           text: 'Cột nào cao hơn, hàng nào dài hơn thì loại đó nhiều hơn.',
         },
+        { type: 'widget', name: 'san-nha-bac-ba' },
       ],
     },
     {
@@ -92,7 +93,7 @@ export default {
         'Biểu đồ về sân nhà bác Ba. Gà: 🐔🐔🐔🐔🐔🐔🐔🐔. Ngỗng: 🦢🦢🦢🦢🦢. Vịt: 🦆🦆🦆🦆🦆🦆. Con vật nào nhiều nhất?',
       options: ['Gà', 'Ngỗng', 'Vịt'],
       answer: 0,
-      hints: ['Hàng nào dài nhất?'],
+      hints: ['Em đếm số hình của mỗi con vật. Số nào lớn nhất?'],
       solution: 'Có 8 con gà, 5 con ngỗng, 6 con vịt. Gà nhiều nhất.',
     },
     {
@@ -120,10 +121,10 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Búp bê: 🎎🎎🎎🎎🎎🎎🎎. Gấu bông: 🧸🧸🧸🧸🧸. Sóc bông: 🐿️🐿️🐿️🐿️🐿️🐿️🐿️. Hai loại nào có số lượng bằng nhau?',
+        'Búp bê: 🪆🪆🪆🪆🪆🪆🪆. Gấu bông: 🧸🧸🧸🧸🧸. Sóc bông: 🐿️🐿️🐿️🐿️🐿️🐿️🐿️. Hai loại nào có số lượng bằng nhau?',
       options: ['Búp bê và sóc bông', 'Búp bê và gấu bông', 'Gấu bông và sóc bông'],
       answer: 0,
-      hints: ['Em đếm mỗi hàng. Hai hàng nào có cùng số hình?'],
+      hints: ['Em đếm mỗi loại. Hai loại nào có cùng số hình?'],
       solution: 'Búp bê có 7, sóc bông có 7, gấu bông có 5. Số búp bê bằng số sóc bông.',
     },
     {
@@ -131,7 +132,7 @@ export default {
       prompt:
         'Biểu đồ về quả trong giỏ. Táo: 🍎🍎🍎. Cam: 🍊🍊🍊🍊🍊. Chuối: 🍌🍌. Có tất cả mấy quả?',
       answer: 10,
-      hints: ['Em đếm mỗi hàng rồi cộng các số lại.'],
+      hints: ['Em đếm mỗi loại rồi cộng các số lại.'],
       solution: '3 + 5 + 2 = 10. Có tất cả 10 quả.',
     },
     {

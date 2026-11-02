@@ -153,11 +153,12 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Có 7 con hạc đỏ, 8 con hạc vàng, 5 con hạc xanh. Màu nào có ít hạc nhất?',
+      prompt:
+        'Hạc giấy của Mai. Đỏ: 1 bó 5 vạch và 2 vạch. Vàng: 1 bó 5 vạch và 3 vạch. Xanh: 1 bó 5 vạch. Màu nào có ít hạc nhất?',
       options: ['Đỏ', 'Vàng', 'Xanh'],
       answer: 2,
-      hints: ['Em tìm số bé nhất trong ba số 7, 8, 5.'],
-      solution: '5 < 7 < 8. Hạc màu xanh ít nhất.',
+      hints: ['Màu nào có ít vạch nhất?'],
+      solution: 'Đỏ có 7 con, vàng có 8 con, xanh có 5 con. 5 < 7 < 8. Hạc màu xanh ít nhất.',
     },
     {
       type: 'number',

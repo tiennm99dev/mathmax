@@ -127,7 +127,7 @@ export default {
     {
       type: 'match',
       prompt:
-        'Rô-bốt có 5 quả táo trong giỏ. Rô-bốt tặng cả 4 bạn, bạn nào cũng được ít nhất 1 quả. Nối mỗi việc với từ đúng.',
+        'Rô-bốt có 5 quả táo trong giỏ. Rô-bốt tặng cả 4 bạn, trong đó có bạn Mi. Bạn nào cũng được ít nhất 1 quả. Nối mỗi việc với từ đúng.',
       left: ['Mỗi bạn đều có táo', 'Trong giỏ còn lại 1 quả', 'Bạn Mi được 4 quả'],
       right: ['Không thể', 'Chắc chắn', 'Có thể'],
       pairs: [

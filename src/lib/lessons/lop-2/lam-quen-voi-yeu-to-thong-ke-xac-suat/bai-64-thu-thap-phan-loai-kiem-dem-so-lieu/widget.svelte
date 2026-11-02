@@ -19,6 +19,8 @@
   let message = $state('Em chạm vào từng đồ vật. Mỗi lần chạm, em ghi một vạch vào đúng hàng.');
   /** @type {ReturnType<typeof ChoiceQuestion> | undefined} */
   let question = $state();
+  /** @type {HTMLParagraphElement | undefined} */
+  let note = $state();
 
   const scene = $derived(makeScene(seed));
   const tally = $derived(strokes(scene, counted));
@@ -65,6 +67,8 @@
     if (index + 1 >= questions.length) {
       stage = 'done';
       message = 'Em đã thu thập, phân loại và kiểm đếm xong! Em viết được số của mỗi loại.';
+      await tick();
+      note?.focus();
       return;
     }
     index += 1;
@@ -153,7 +157,10 @@
     />
   {:else}
     <p
-      class="rounded-2xl px-4 py-3 text-xl font-semibold {stage === 'done' || allCounted
+      bind:this={note}
+      tabindex="-1"
+      class="rounded-2xl px-4 py-3 text-xl font-semibold outline-none {stage === 'done' ||
+      allCounted
         ? 'bg-emerald-100 text-emerald-900'
         : 'bg-slate-100 text-slate-800'}"
       aria-live="polite"
