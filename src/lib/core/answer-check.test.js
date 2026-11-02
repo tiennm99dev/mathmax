@@ -75,6 +75,21 @@ describe('normalizeUnit', () => {
     expect(normalizeUnit('m ³')).toBe('m3');
     expect(normalizeUnit('km/h')).toBe('km/h');
   });
+
+  it('accepts ohm and ôm for the ohm sign, in any case', () => {
+    for (const word of ['ohm', 'OHM', 'ôm', 'Ôm', 'om']) {
+      expect(normalizeUnit(word), word).toBe(normalizeUnit('Ω'));
+    }
+    expect(normalizeUnit('\u2126')).toBe(normalizeUnit('\u03a9'));
+    expect(normalizeUnit('m')).not.toBe(normalizeUnit('Ω'));
+  });
+
+  it('compares unit words without diacritics or case', () => {
+    expect(normalizeUnit('te bao')).toBe(normalizeUnit('tế bào'));
+    expect(normalizeUnit('TẾ BÀO')).toBe(normalizeUnit('tế bào'));
+    expect(normalizeUnit('don vi')).toBe(normalizeUnit('đơn vị'));
+    expect(normalizeUnit('tế bào')).not.toBe(normalizeUnit('con'));
+  });
 });
 
 describe('parseFraction', () => {
@@ -487,5 +502,31 @@ describe('checkAnswer: count', () => {
   it('reports no tap and junk', () => {
     expect(reason(ex, null)).toBe('empty');
     expect(reason(ex, '7')).toBe('invalid');
+  });
+});
+
+describe('checkAnswer with a word or ohm unit', () => {
+  /** @param {string} unit */
+  const number = (unit) =>
+    /** @type {import('./content-schema.js').NumberExercise} */ ({
+      type: 'number',
+      prompt: 'p',
+      answer: 40,
+      unit,
+      hints: ['h'],
+      solution: 's',
+    });
+
+  it.each(['40 te bao', '40 tế bào', '40 TE BAO', '40'])('%s answers tế bào', (typed) => {
+    expect(checkAnswer(number('tế bào'), typed).correct).toBe(true);
+  });
+
+  it.each(['40 ohm', '40 ôm', '40 Ω', '40 OHM'])('%s answers Ω', (typed) => {
+    expect(checkAnswer(number('Ω'), typed).correct).toBe(true);
+  });
+
+  it('still tells a different unit apart', () => {
+    expect(checkAnswer(number('tế bào'), '40 con').reason).toBe('unit');
+    expect(checkAnswer(number('Ω'), '40 V').reason).toBe('unit');
   });
 });

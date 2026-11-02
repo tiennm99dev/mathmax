@@ -166,7 +166,7 @@ export default {
       answer: 1,
       hints: ['Điều đã cho là gì? Điều phải suy ra là gì?'],
       solution:
-        'Giả thiết là "hai góc đối đỉnh", kết luận là "hai góc đó bằng nhau": Nếu hai góc đối đỉnh thì hai góc đó bằng nhau. Phương án đầu đảo ngược giả thiết và kết luận, nên là một khẳng định sai.',
+        'Giả thiết là "hai góc đối đỉnh", kết luận là "hai góc đó bằng nhau": Nếu hai góc đối đỉnh thì hai góc đó bằng nhau. Câu "Nếu hai góc bằng nhau thì chúng đối đỉnh" đảo ngược giả thiết và kết luận, nên là một khẳng định sai.',
     },
     {
       type: 'choice',

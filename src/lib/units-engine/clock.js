@@ -70,13 +70,15 @@ export function dragHourHand(total, angle) {
 }
 
 /**
- * Vietnamese reading such as '7 giờ 15 phút' or '7 giờ' on the hour.
+ * Vietnamese reading such as '7 giờ 15 phút' or '7 giờ' on the hour. Midnight
+ * is the end of the day, as in the book: '24 giờ'.
  * `twelveHour` reads 19:15 as '7 giờ 15 phút' with 'tối' after it.
  * @param {number} total minutes since 0:00
  * @param {{ twelveHour?: boolean }} [opts]
  */
 export function formatTime(total, opts = {}) {
   const { hours, minutes } = fromMinutes(total);
+  if (!opts.twelveHour && hours === 0 && minutes === 0) return '24 giờ';
   const h = opts.twelveHour ? hours % 12 || 12 : hours;
   const text = minutes === 0 ? `${h} giờ` : `${h} giờ ${minutes} phút`;
   if (!opts.twelveHour) return text;

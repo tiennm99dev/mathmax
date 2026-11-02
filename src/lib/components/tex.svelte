@@ -5,7 +5,7 @@
 
   /**
    * Live KaTeX for TeX that changes with interaction. Screen readers hear the
-   * formula as linear text (`√144`, `3/4`) derived from its source, or
+   * formula in words (`căn bậc hai của 144`, `3/4`) derived from its source, or
    * `ariaLabel` when it is given.
    * @type {{
    *   math: string;

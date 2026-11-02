@@ -1,9 +1,13 @@
 /**
  * Accessible text for TeX. Rendered TeX is shown to the eye only; screen
- * readers get a linear Unicode form of the same source instead, such as
- * `√144`, `10×` or `−1`. The browser computes a radio's, button's or
- * textbox label's name from that text, so options that differ only in their
- * formula keep distinct names, and the read-aloud button speaks it too.
+ * readers get a spoken form of the same source instead, such as
+ * `căn bậc hai của 144`, `10×` or `trừ 1`. The browser computes a radio's,
+ * button's or textbox label's name from that text, so options that differ only
+ * in their formula keep distinct names, and the read-aloud button speaks it too.
+ *
+ * KaTeX stays `output: 'html'` with this text beside it, on purpose. MathML is
+ * not restored: name-from-content over MathML reads `√144` as `144`, and TalkBack
+ * and stock NVDA have no MathML speech.
  *
  * `texText` turns TeX source into that text; `texHtml` wraps KaTeX markup
  * with it; `htmlText` reads the text back out of rendered rich text, for an
@@ -61,7 +65,6 @@ const SYMBOLS = {
   leftrightarrow: '↔',
   longrightarrow: '⟶',
   rightleftharpoons: '⇌',
-  xrightarrow: '→',
   uparrow: '↑',
   downarrow: '↓',
   angle: '∠',
@@ -155,6 +158,9 @@ const SYMBOLS = {
 /** Commands whose one argument is shown as it is. */
 const KEEP_ARG = new Set([
   'mathrm',
+  'mathcal',
+  'mathscr',
+  'mathfrak',
   'mathbf',
   'mathit',
   'mathsf',
@@ -215,6 +221,14 @@ const DROP = new Set([
 
 /** Commands dropped together with their one argument. */
 const DROP_ARG = new Set(['phantom', 'hphantom', 'vphantom', 'color', 'label', 'tag']);
+
+/** Long arrows that carry their conditions above and below. */
+const LONG_ARROWS = /** @type {Record<string, string>} */ ({
+  xrightarrow: '→',
+  xleftarrow: '←',
+  xleftrightarrow: '↔',
+  xrightleftharpoons: '⇌',
+});
 
 /** @type {Record<string, string>} */
 const BLACKBOARD = { N: 'ℕ', Z: 'ℤ', Q: 'ℚ', R: 'ℝ', C: 'ℂ', P: 'ℙ' };
@@ -356,7 +370,7 @@ class Reader {
 
   /** Text of the next argument. */
   arg() {
-    return texText(this.rawArg());
+    return linearText(this.rawArg());
   }
 
   /** @returns {string} */
@@ -404,7 +418,7 @@ class Reader {
    * @param {boolean} up
    */
   script(raw, up) {
-    const body = texText(raw);
+    const body = linearText(raw);
     if (up && (body === '°' || body === '∘')) return '°';
     if (up && /^′+$/.test(body)) return body;
     const mapped = mapAll(body, up ? SUPER : SUB);
@@ -449,7 +463,7 @@ class Reader {
       const index = this.optArg();
       const body = atom(this.arg());
       if (index === null) return `√${body}`;
-      const n = texText(index);
+      const n = linearText(index);
       if (n === '3') return `∛${body}`;
       if (n === '4') return `∜${body}`;
       return `${mapAll(n, SUPER) ?? n}√${body}`;
@@ -457,6 +471,13 @@ class Reader {
     if (name === 'mathbb') {
       const body = this.arg();
       return mapAll(body, BLACKBOARD) ?? body;
+    }
+    if (name in LONG_ARROWS) {
+      const below = this.optArg();
+      const above = this.arg();
+      const conditions = [above, below === null ? '' : linearText(below)].filter(Boolean);
+      const arrow = LONG_ARROWS[name];
+      return conditions.length ? ` ${arrow} (${conditions.join(', ')}) ` : ` ${arrow} `;
     }
     if (name === 'widehat') return `góc ${this.arg()}`;
     if (name in ACCENTS) {
@@ -488,17 +509,70 @@ class Reader {
 }
 
 /**
- * A linear Unicode form of TeX source for screen readers and speech:
- * `\sqrt{144}` → `√144`, `\frac{3}{4}` → `3/4`, `x^2` → `x²`, `-1` → `−1`,
- * `10\times` → `10×`, `90^\circ` → `90°`, `3{,}5` → `3,5`,
- * `\widehat{ABC}` → `góc ABC`, `\frac{1}{6x^2}` → `1/(6x²)`,
- * `\square` → `ô trống` (a blank to fill). Spacing commands become spaces; layout-only
- * commands (`\left`, `\displaystyle`) are dropped.
+ * A linear Unicode form of TeX source, kept for the steps above: its `√` and
+ * `²` tell `atom` where brackets are needed.
+ * @param {string} tex
+ * @returns {string}
+ */
+function linearText(tex) {
+  return new Reader(tex).read().replace(/\s+/g, ' ').trim();
+}
+
+/** Superscript characters back to what they stand for. */
+const UNSUPER = /** @type {Record<string, string>} */ (
+  Object.fromEntries(Object.entries(SUPER).map(([plain, up]) => [up, plain]))
+);
+
+/** @param {string} s */
+const unsuper = (s) => [...s].map((c) => UNSUPER[c] ?? c).join('');
+
+const SUPER_ROOT = /([⁰¹²³⁴⁵⁶⁷⁸⁹ⁿⁱ]+)√/g;
+// An exponent: a charge such as the ²⁻ of SO₄²⁻ ends in a sign and stays as it is.
+const SUPER_POWER = /([⁺⁻]?)([⁰¹²³⁴⁵⁶⁷⁸⁹ⁿⁱ]+)(?![⁺⁻⁰¹²³⁴⁵⁶⁷⁸⁹ⁿⁱ])/g;
+
+/** @type {Record<string, string>} */
+const SPOKEN = {
+  '√': ' căn bậc hai của ',
+  '∛': ' căn bậc ba của ',
+  '∜': ' căn bậc bốn của ',
+  '≤': ' nhỏ hơn hoặc bằng ',
+  '≥': ' lớn hơn hoặc bằng ',
+  '≠': ' khác ',
+  '−': ' trừ ',
+};
+
+/**
+ * Math signs a screen reader skips or reads in English, as Vietnamese words.
+ * @param {string} linear
+ */
+function spokenWords(linear) {
+  return linear
+    .replace(SUPER_ROOT, (_, n) => ` căn bậc ${unsuper(n)} của `)
+    .replace(
+      SUPER_POWER,
+      (_, sign, power) => ` mũ ${sign ? `${SPOKEN['−']}` : ''}${unsuper(power)} `,
+    )
+    .replace(/[√∛∜≤≥≠−]/g, (c) => SPOKEN[c])
+    .replace(/\s+/g, ' ')
+    .replace(/\( /g, '(')
+    .replace(/ \)/g, ')')
+    .trim();
+}
+
+/**
+ * The spoken form of TeX source for screen readers and read-aloud:
+ * `\sqrt{144}` → `căn bậc hai của 144`, `\frac{3}{4}` → `3/4`, `x^2` → `x mũ 2`,
+ * `-1` → `trừ 1`, `a \le b` → `a nhỏ hơn hoặc bằng b`, `10\times` → `10×`,
+ * `90^\circ` → `90°`, `3{,}5` → `3,5`, `\widehat{ABC}` → `góc ABC`,
+ * `\frac{1}{6x^2}` → `1/(6x mũ 2)`, `\mathcal{P}` → `P`,
+ * `\xrightleftharpoons[b]{a}` → `⇌ (a, b)`, `\square` → `ô trống` (a blank to
+ * fill). Spacing commands become spaces; layout-only commands (`\left`,
+ * `\displaystyle`) are dropped.
  * @param {string} tex
  * @returns {string}
  */
 export function texText(tex) {
-  return new Reader(tex).read().replace(/\s+/g, ' ').trim();
+  return spokenWords(linearText(tex));
 }
 
 /** @type {Record<string, string>} */

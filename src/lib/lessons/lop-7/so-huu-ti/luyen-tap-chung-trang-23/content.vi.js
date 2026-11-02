@@ -165,7 +165,7 @@ export default {
       answer: 1,
       hints: ['Tính giá trị từng phương án; trong ngoặc làm trước.'],
       solution:
-        '$3{,}3 + 4{,}4 - 5{,}5 = 2{,}2$, nên $2{,}2 - (3{,}3 + 4{,}4 - 5{,}5) = 2{,}2 - 2{,}2 = 0$. Ba phương án còn lại lần lượt bằng $-2{,}2$; $-2{,}2$ và $-11$.',
+        '$3{,}3 + 4{,}4 - 5{,}5 = 2{,}2$, nên $2{,}2 - (3{,}3 + 4{,}4 - 5{,}5) = 2{,}2 - 2{,}2 = 0$. Các cách đặt ngoặc còn lại cho $-2{,}2$ hoặc $-11$.',
     },
     {
       type: 'fraction',

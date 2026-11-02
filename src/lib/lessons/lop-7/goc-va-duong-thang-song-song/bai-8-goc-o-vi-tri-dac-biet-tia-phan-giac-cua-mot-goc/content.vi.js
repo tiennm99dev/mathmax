@@ -200,7 +200,7 @@ export default {
       answer: 2,
       hints: ['Nhớ lại định nghĩa: điều kiện nói về các cạnh của hai góc, không nói về số đo.'],
       solution:
-        'Hai góc đối đỉnh là hai góc mà mỗi cạnh của góc này là tia đối của một cạnh của góc kia. Phương án thứ hai là định nghĩa hai góc kề bù; hai góc bằng nhau hoặc có tổng $180^\\circ$ chưa chắc là đối đỉnh.',
+        'Hai góc đối đỉnh là hai góc mà mỗi cạnh của góc này là tia đối của một cạnh của góc kia. Câu nói về một cạnh chung và hai tia đối nhau là định nghĩa hai góc kề bù; hai góc bằng nhau hoặc có tổng $180^\\circ$ chưa chắc là đối đỉnh.',
     },
     {
       type: 'multi',

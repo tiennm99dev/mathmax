@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest';
+import { checkAnswer } from './answer-check.js';
 import {
+  afterCheck,
+  afterRetry,
+  choiceOrder,
   exerciseSeed,
+  isAttempt,
   loadSolved,
   matchOrder,
   saveSolved,
@@ -159,5 +164,88 @@ describe('matchOrder', () => {
       [0, 0],
       [1, 1],
     ]);
+  });
+});
+
+describe('choiceOrder', () => {
+  /** @param {number} i */
+  const exercise = (i) =>
+    /** @type {import('./content-schema.js').ChoiceExercise} */ ({
+      type: 'choice',
+      prompt: `Câu ${i}`,
+      options: ['a', 'b', 'c', 'd'],
+      answer: 0,
+      hints: ['h'],
+      solution: 's',
+    });
+
+  it('is a stable permutation of the authored indices', () => {
+    const order = choiceOrder(exercise(1));
+    expect([...order].sort()).toEqual([0, 1, 2, 3]);
+    expect(choiceOrder(exercise(1))).toEqual(order);
+  });
+
+  it('leaves the stored answer key and options untouched', () => {
+    const ex = exercise(2);
+    choiceOrder(ex);
+    expect(ex.answer).toBe(0);
+    expect(ex.options).toEqual(['a', 'b', 'c', 'd']);
+    const shown = choiceOrder(ex).map((i) => ex.options[i]);
+    const row = shown.indexOf('a');
+    expect(checkAnswer(ex, choiceOrder(ex)[row]).correct).toBe(true);
+  });
+
+  it('gives a multi exercise the same treatment and depends on its options', () => {
+    const multi = /** @type {import('./content-schema.js').MultiExercise} */ ({
+      type: 'multi',
+      prompt: 'Câu',
+      options: ['a', 'b', 'c', 'd', 'e'],
+      answers: [0, 1],
+      hints: ['h'],
+      solution: 's',
+    });
+    expect([...choiceOrder(multi)].sort()).toEqual([0, 1, 2, 3, 4]);
+    expect(exerciseSeed(multi)).not.toBe(exerciseSeed({ ...multi, options: ['a', 'b'] }));
+  });
+
+  it('moves an answer written first away from the first row about 3 times in 4', () => {
+    const count = 400;
+    let first = 0;
+    for (let i = 0; i < count; i++) if (choiceOrder(exercise(i))[0] === 0) first += 1;
+    expect(first / count).toBeGreaterThan(0.17);
+    expect(first / count).toBeLessThan(0.33);
+  });
+});
+
+describe('an empty answer', () => {
+  const number = /** @type {import('./content-schema.js').NumberExercise} */ ({
+    type: 'number',
+    prompt: 'p',
+    answer: 25,
+    unit: 'ATP',
+    hints: ['h'],
+    solution: 's',
+  });
+
+  it('is not an attempt, and a real answer is', () => {
+    expect(isAttempt(null)).toBe(false);
+    expect(isAttempt(checkAnswer(number, ''))).toBe(false);
+    expect(isAttempt(checkAnswer(number, '   '))).toBe(false);
+    expect(isAttempt(checkAnswer(number, '3'))).toBe(true);
+    expect(isAttempt(checkAnswer(number, '25'))).toBe(true);
+  });
+
+  it('does not mark the exercise done, and a right answer does', () => {
+    const none = [1];
+    expect(afterCheck(none, 0, checkAnswer(number, ''))).toBe(none);
+    expect(afterCheck(none, 0, checkAnswer(number, '3'))).toBe(none);
+    expect(afterCheck(none, 0, checkAnswer(number, '25'))).toEqual([0, 1]);
+    expect(afterCheck([0], 0, checkAnswer(number, '25'))).toEqual([0]);
+  });
+
+  it('never shows the tick on a card the learner blanked with retry', () => {
+    expect(afterRetry([0, 1], 0)).toEqual([1]);
+    const solved = [1];
+    expect(afterRetry(solved, 0)).toBe(solved);
   });
 });

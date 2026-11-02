@@ -19,6 +19,10 @@ const svelteFiles = Object.keys(import.meta.glob('/src/lib/lessons/*/*/*/*.svelt
 
 const PREFIX = '/src/lib/lessons/';
 
+/** Words that name an option by where it sits ("Lựa chọn cuối", "Hai phương án đầu"). */
+const OPTION_BY_PLACE =
+  /(?:lựa chọn|phương án|đáp án)\s+(?:thứ\s+(?:nhất|hai|ba|tư|năm)|đầu|cuối)|(?:hai|ba|bốn)\s+(?:lựa chọn|phương án|nguyên nhân)\s+(?:đầu|cuối)|(?:lựa chọn|phương án)\s+còn lại\s+lần lượt/iu;
+
 /** @param {string} path */
 const lessonDir = (path) => path.slice(PREFIX.length, path.lastIndexOf('/'));
 
@@ -81,6 +85,15 @@ describe('lesson content', () => {
       expect(strict, 'TeX that KaTeX strict mode warns about').toEqual([]);
       const broken = [...rendered.matchAll(/katex-error[^>]*title=\\"([^"\\]*)/g)].map((m) => m[1]);
       expect(broken, 'TeX that KaTeX cannot parse').toEqual([]);
+      // Choice options are shown in a seeded order, so nothing may name one by its place.
+      const placed = content.practice.flatMap((ex, i) =>
+        ex.type === 'choice' || ex.type === 'multi'
+          ? [ex.prompt, ...ex.hints, ex.solution]
+              .filter((text) => OPTION_BY_PLACE.test(text))
+              .map((text) => `practice[${i}]: ${text}`)
+          : [],
+      );
+      expect(placed, 'text that names an option by its position').toEqual([]);
       // The right column is shown in a seeded order taken from the rendered
       // exercise; no left item may sit level with its partner.
       page.practice.forEach((ex, i) => {

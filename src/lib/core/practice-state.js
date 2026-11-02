@@ -79,6 +79,7 @@ export function scrambledOrder(answer) {
 export function exerciseSeed(exercise) {
   const parts = [exercise.type, exercise.prompt];
   if (exercise.type === 'match') parts.push(...exercise.left, ...exercise.right);
+  if (exercise.type === 'choice' || exercise.type === 'multi') parts.push(...exercise.options);
   let h = 0x811c9dc5;
   for (const ch of parts.join('\u0000')) {
     h ^= /** @type {number} */ (ch.codePointAt(0));
@@ -106,4 +107,54 @@ export function matchOrder(exercise) {
   let order = shuffle(rand, ids);
   for (let tries = 0; straight(order) && tries < 50; tries++) order = shuffle(rand, ids);
   return order;
+}
+
+/**
+ * Display order of a choice or multi exercise: `order[row]` is the authored
+ * option index shown on that row. Shuffled with a seed from the exercise, so
+ * the prerendered HTML and the hydrated page agree, the answer does not sit
+ * where the author happened to write it, and the stored answer indices stay
+ * as authored. Hints and solutions must name an option by its content, never
+ * by its place.
+ * @param {import('./content-schema.js').ChoiceExercise | import('./content-schema.js').MultiExercise} exercise
+ * @returns {number[]}
+ */
+export function choiceOrder(exercise) {
+  return shuffle(
+    rng(exerciseSeed(exercise)),
+    exercise.options.map((_, i) => i),
+  );
+}
+
+/**
+ * Whether a checked answer was a real attempt: pressing the check button with
+ * nothing filled in only asks the learner to answer.
+ * @param {import('./answer-check.js').CheckResult | null} result
+ */
+export function isAttempt(result) {
+  return result !== null && result.reason !== 'empty';
+}
+
+/**
+ * The solved list after exercise `index` was checked: only a correct answer
+ * marks it done.
+ * @param {number[]} solved
+ * @param {number} index
+ * @param {import('./answer-check.js').CheckResult} result
+ * @returns {number[]}
+ */
+export function afterCheck(solved, index, result) {
+  if (!result.correct || solved.includes(index)) return solved;
+  return [...solved, index].sort((a, b) => a - b);
+}
+
+/**
+ * The solved list after the learner chose to redo exercise `index`: its blank
+ * card no longer says it is done.
+ * @param {number[]} solved
+ * @param {number} index
+ * @returns {number[]}
+ */
+export function afterRetry(solved, index) {
+  return solved.includes(index) ? solved.filter((i) => i !== index) : solved;
 }

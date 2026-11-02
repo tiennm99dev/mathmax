@@ -14,7 +14,8 @@
    * can be dragged around the dial; the minute hand snaps to `step` minutes
    * and carries the hour across 12 as a real clock does. Arrow keys on the
    * minute knob move `step` minutes (Shift: 15), on the hour knob one hour.
-   * The time reads aloud in Vietnamese ('7 giờ 15 phút').
+   * The time reads aloud in Vietnamese ('7 giờ 15 phút', midnight '24 giờ'), and
+   * the knobs are named 'Kim ngắn' and 'Kim dài', the words the lessons use.
    *
    * - `minutes` (bindable): the time as minutes since 0:00 (0-1439); build it
    *   with `toMinutes(h, m)` from `#lib/units-engine/clock.js`.
@@ -150,7 +151,7 @@
         class="drag-handle"
         role="slider"
         tabindex="0"
-        aria-label="Kim giờ"
+        aria-label="Kim ngắn"
         aria-valuemin={0}
         aria-valuemax={1439}
         aria-valuenow={minutes}
@@ -173,7 +174,7 @@
         class="drag-handle"
         role="slider"
         tabindex="0"
-        aria-label="Kim phút"
+        aria-label="Kim dài"
         aria-valuemin={0}
         aria-valuemax={1439}
         aria-valuenow={minutes}

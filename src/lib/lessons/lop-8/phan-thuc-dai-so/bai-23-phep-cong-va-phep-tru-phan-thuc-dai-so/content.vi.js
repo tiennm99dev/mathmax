@@ -118,7 +118,7 @@ export default {
       answer: 0,
       hints: ['Cùng mẫu: cộng các tử, giữ nguyên mẫu.', 'Phân tích tử $3x + 6$ thành nhân tử.'],
       solution:
-        '$\\dfrac{3x + 6}{x + 2} = \\dfrac{3(x + 2)}{x + 2} = 3$. Lựa chọn thứ hai sai vì đã cộng cả hai mẫu.',
+        '$\\dfrac{3x + 6}{x + 2} = \\dfrac{3(x + 2)}{x + 2} = 3$. Kết quả $\\dfrac{3x + 6}{2x + 4}$ sai vì đã cộng cả hai mẫu.',
     },
     {
       type: 'multi',

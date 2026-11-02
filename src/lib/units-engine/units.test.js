@@ -174,6 +174,8 @@ describe('clock', () => {
   it('reads the time aloud and digitally', () => {
     expect(formatTime(toMinutes(7, 15))).toBe('7 giờ 15 phút');
     expect(formatTime(toMinutes(9, 0))).toBe('9 giờ');
+    expect(formatTime(toMinutes(0, 0))).toBe('24 giờ');
+    expect(formatTime(toMinutes(0, 30))).toBe('0 giờ 30 phút');
     expect(formatTime(toMinutes(19, 30), { twelveHour: true })).toBe('7 giờ 30 phút tối');
     expect(formatTime(toMinutes(0, 0), { twelveHour: true })).toBe('12 giờ sáng');
     expect(formatDigital(toMinutes(7, 5))).toBe('07:05');

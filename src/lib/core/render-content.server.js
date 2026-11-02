@@ -26,7 +26,7 @@ export function escapeHtml(s) {
 /**
  * Renders TeX with the shared options (see `katex-options.js`), so the markup
  * is safe to inject, wrapped with its accessible text (see `tex-text.js`) so
- * screen readers and accessible names hear `√144`, not a bare `144`.
+ * screen readers and accessible names hear `căn bậc hai của 144`, not a bare `144`.
  * @param {string} tex
  * @param {boolean} display
  */

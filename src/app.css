@@ -17,6 +17,13 @@
     font-family: 'Be Vietnam Pro', system-ui, sans-serif;
   }
 
+  /* The spoken text of a formula is an absolutely positioned .sr-only span.
+     Without a positioned parent it escapes an overflow-x-auto table wrapper and
+     widens the page. */
+  .tex {
+    position: relative;
+  }
+
   /* A focused <g> slider would also get the browser's default outline around
      the bounding box of the whole group, ruler and labels included; the ring
      below on its knob or shapes marks the focus instead. */

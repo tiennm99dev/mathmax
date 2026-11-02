@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import ExerciseCard from './exercise-card.svelte';
-  import { loadSolved, saveSolved } from './practice-state.js';
+  import { afterCheck, afterRetry, loadSolved, saveSolved } from './practice-state.js';
   import { practice as copy } from './copy.vi.js';
 
   /**
@@ -22,10 +22,10 @@
     solved = loadSolved(storageKey, exercises.length);
   });
 
-  /** @param {number} i */
-  function markSolved(i) {
-    if (solved.includes(i)) return;
-    solved = [...solved, i].sort((a, b) => a - b);
+  /** @param {number[]} next */
+  function update(next) {
+    if (next === solved) return;
+    solved = next;
     saveSolved(storageKey, solved);
   }
 </script>
@@ -35,6 +35,12 @@
     {copy.progress(solved.length, exercises.length)}
   </p>
   {#each exercises as exercise, i (i)}
-    <ExerciseCard {exercise} n={i + 1} solved={solved.includes(i)} onsolved={() => markSolved(i)} />
+    <ExerciseCard
+      {exercise}
+      n={i + 1}
+      solved={solved.includes(i)}
+      oncheck={(result) => update(afterCheck(solved, i, result))}
+      onretry={() => update(afterRetry(solved, i))}
+    />
   {/each}
 </div>

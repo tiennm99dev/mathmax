@@ -160,7 +160,7 @@ export default {
       answer: 2,
       hints: ['Trong mọi tam giác vuông, tổng hai góc nhọn bằng bao nhiêu?'],
       solution:
-        'Đẳng thức $\\widehat{B} + \\widehat{C} = \\widehat{E} + \\widehat{F} = 90^\\circ$ luôn đúng với mọi cặp tam giác vuông nên không cho thêm thông tin. Hai phương án đầu cho một góc nhọn bằng nhau, phương án cuối cho hai cạnh góc vuông tỉ lệ: đều suy ra hai tam giác vuông đồng dạng.',
+        'Đẳng thức $\\widehat{B} + \\widehat{C} = \\widehat{E} + \\widehat{F} = 90^\\circ$ luôn đúng với mọi cặp tam giác vuông nên không cho thêm thông tin. Một góc nhọn bằng nhau, hoặc hai cạnh góc vuông tỉ lệ, đều suy ra hai tam giác vuông đồng dạng.',
     },
     {
       type: 'choice',

@@ -6,7 +6,7 @@
   import Picture from './kid/picture.svelte';
   import { pictures } from './kid/pictures/index.js';
   import { checkAnswer } from './answer-check.js';
-  import { matchOrder, scrambledOrder } from './practice-state.js';
+  import { choiceOrder, isAttempt, matchOrder, scrambledOrder } from './practice-state.js';
   import { practice as copy } from './copy.vi.js';
   import { button, card, focusRing, textInput } from './ui.js';
 
@@ -19,10 +19,11 @@
    *   exercise: import('./content-schema.js').Exercise;
    *   n: number;
    *   solved?: boolean;
-   *   onsolved?: () => void;
+   *   oncheck?: (result: CheckResult) => void;
+   *   onretry?: () => void;
    * }}
    */
-  let { exercise, n, solved = false, onsolved } = $props();
+  let { exercise, n, solved = false, oncheck, onretry } = $props();
 
   const id = $props.id();
   const promptId = `${id}-prompt`;
@@ -41,6 +42,7 @@
   let result = $state(/** @type {CheckResult | null} */ (null));
 
   const correct = $derived(result?.correct ?? false);
+  const attempted = $derived(isAttempt(result));
 
   /**
    * Number cards for a count exercise: the authored choices, else 0-10, else
@@ -73,7 +75,7 @@
 
   function check() {
     result = checkAnswer(exercise, response());
-    if (result.correct) onsolved?.();
+    oncheck?.(result);
   }
 
   function retry() {
@@ -83,6 +85,7 @@
     arrangement = initialOrder();
     pairs = [];
     result = null;
+    onretry?.();
   }
 
   /** Drops stale feedback as soon as the learner changes a wrong answer. */
@@ -131,7 +134,7 @@
           class="{textInput} max-w-xs"
           aria-labelledby={promptId}
           aria-describedby={feedbackId}
-          aria-invalid={result !== null && !correct}
+          aria-invalid={attempted && !correct}
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
@@ -157,7 +160,8 @@
         aria-describedby={feedbackId}
         class="grid gap-2 sm:grid-cols-2"
       >
-        {#each exercise.options as html, i (i)}
+        {#each choiceOrder(exercise) as i (i)}
+          {@const html = exercise.options[i]}
           <label class={option}>
             {#if exercise.type === 'choice'}
               <input
@@ -236,7 +240,7 @@
       {#if exercise.type !== 'count'}
         <button type="submit" class={button.primary} disabled={correct}>{copy.check}</button>
       {/if}
-      {#if result}
+      {#if attempted}
         <button type="button" class={button.quiet} onclick={retry}>{copy.retry}</button>
       {/if}
     </div>

@@ -203,7 +203,7 @@ export default {
       answer: 0,
       hints: ['Phân tích $x^2 - 9 = (x - 3)(x + 3)$ rồi rút gọn trước khi nhân.'],
       solution:
-        '$\\dfrac{4x^2(x + 3)}{(x - 3)(x + 3) \\cdot 2x} = \\dfrac{2x}{x - 3}$. Lựa chọn cuối quên chia cả tử và mẫu cho $2x$, chỉ chia cho $2$.',
+        '$\\dfrac{4x^2(x + 3)}{(x - 3)(x + 3) \\cdot 2x} = \\dfrac{2x}{x - 3}$. Kết quả $\\dfrac{2x^2}{x - 3}$ quên chia cả tử và mẫu cho $2x$, chỉ chia cho $2$.',
     },
     {
       type: 'choice',

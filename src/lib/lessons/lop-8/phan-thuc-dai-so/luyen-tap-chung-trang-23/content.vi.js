@@ -181,7 +181,7 @@ export default {
         'Nhân phân thức bị chia với phân thức nghịch đảo của $\\dfrac{x + 1}{x^2}$, tức là $\\dfrac{x^2}{x + 1}$.',
       ],
       solution:
-        '$\\dfrac{(x - 1)(x + 1)}{x} \\cdot \\dfrac{x^2}{x + 1} = x(x - 1)$. Lựa chọn cuối là kết quả khi nhân thay vì chia.',
+        '$\\dfrac{(x - 1)(x + 1)}{x} \\cdot \\dfrac{x^2}{x + 1} = x(x - 1)$. Biểu thức $\\dfrac{(x^2 - 1)(x + 1)}{x^3}$ là kết quả khi nhân thay vì chia.',
     },
     {
       type: 'match',

@@ -143,7 +143,7 @@ export default {
         '$x^2 - 9 = (x - 3)(x + 3)$.',
       ],
       solution:
-        '$\\dfrac{(x - 3)(x + 3) \\cdot 4x}{2x(x + 3)} = 2(x - 3) = 2x - 6$. Lựa chọn thứ ba là kết quả của phép nhân, không phải phép chia.',
+        '$\\dfrac{(x - 3)(x + 3) \\cdot 4x}{2x(x + 3)} = 2(x - 3) = 2x - 6$. Biểu thức $\\dfrac{(x - 3)(x + 3)^2}{8x^2}$ là kết quả của phép nhân, không phải phép chia.',
     },
     {
       type: 'fraction',

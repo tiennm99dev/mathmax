@@ -86,15 +86,19 @@ const UNIT_WORDS = {
   kilomettrengio: 'km/h',
   mgiay: 'm/s',
   mettrengiay: 'm/s',
+  ohm: 'ω',
+  om: 'ω',
 };
 
 /**
  * Normalises a unit for comparison: case, spaces, `^` and superscript digits
  * are ignored, so `cm²`, `cm^2` and `CM2` match, and a Vietnamese unit word
  * stands for its symbol (`độ` for `°`, `đồng` or `VND` for `đ`, `phần trăm`
- * for `%`, `xăng-ti-mét` for `cm`, `mét vuông` for `m²`). A dot, star or dot
- * operator between the factors of a compound unit reads as the middle dot, so
- * `N.m` matches `N·m`, and a trailing full stop is dropped (`35 %.`).
+ * for `%`, `xăng-ti-mét` for `cm`, `mét vuông` for `m²`, `ohm` or `ôm` for
+ * `Ω`). A dot, star or dot operator between the factors of a compound unit
+ * reads as the middle dot, so `N.m` matches `N·m`, and a trailing full stop is
+ * dropped (`35 %.`). Any other unit word is compared without its diacritics, so
+ * `te bao` matches `tế bào`.
  * @param {string} unit
  */
 export function normalizeUnit(unit) {
@@ -104,8 +108,8 @@ export function normalizeUnit(unit) {
     .replace(/[.!?;]+$/, '')
     .replace(/\^/g, '')
     .replace(/[²³¹]/g, (c) => SUPERSCRIPTS[c]);
-  const word = u.normalize('NFD').replace(/\p{M}/gu, '').replace(/đ/g, 'd').replace(/[-./]/g, '');
-  return UNIT_WORDS[word] ?? u.replace(UNIT_PRODUCT_RE, '·');
+  const folded = u.normalize('NFD').replace(/\p{M}/gu, '').replace(/đ/g, 'd');
+  return UNIT_WORDS[folded.replace(/[-./]/g, '')] ?? folded.replace(UNIT_PRODUCT_RE, '·');
 }
 
 /**
