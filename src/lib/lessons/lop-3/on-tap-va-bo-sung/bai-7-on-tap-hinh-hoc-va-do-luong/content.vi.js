@@ -44,7 +44,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Đường gấp khúc có các đoạn 125 cm, 380 cm, 300 cm dài: 125 + 380 + 300 = 805 (cm).',
+          text: 'Đường gấp khúc có các đoạn 100 cm, 250 cm, 300 cm dài: 100 + 250 + 300 = 650 (cm).',
         },
         {
           type: 'callout',
@@ -74,7 +74,7 @@ export default {
       blocks: [
         {
           type: 'table',
-          head: ['Buổi', 'Còn gọi là'],
+          head: ['Giờ theo buổi', 'Còn gọi là'],
           rows: [
             ['2 giờ 15 phút chiều', '14 giờ 15 phút'],
             ['5 giờ 30 phút chiều', '17 giờ 30 phút'],
@@ -99,14 +99,15 @@ export default {
   examples: [
     {
       problem:
-        'Ốc sên bò theo đường gấp khúc ABCD. AB = 125 cm, BC = 380 cm, CD = 300 cm. Ốc sên bò bao nhiêu xăng-ti-mét?',
-      steps: ['Em cộng độ dài ba đoạn thẳng.', '125 + 380 + 300 = 805.'],
-      answer: 'Ốc sên bò 805 cm.',
+        'Ốc sên bò theo đường gấp khúc ABCD. AB = 215 cm, BC = 340 cm, CD = 200 cm. Ốc sên bò bao nhiêu xăng-ti-mét?',
+      steps: ['Em cộng độ dài ba đoạn thẳng.', '215 + 340 + 200 = 755.'],
+      answer: 'Ốc sên bò 755 cm.',
     },
     {
-      problem: 'Mỗi tuần nhà An ăn hết 5 kg gạo. Nhà An mua 20 kg gạo. Số gạo đó ăn được mấy tuần?',
-      steps: ['Mỗi tuần ăn 5 kg, nên em làm phép chia.', '20 : 5 = 4.'],
-      answer: 'Số gạo đó ăn được 4 tuần.',
+      problem:
+        'Mỗi tuần nhà Bình ăn hết 4 kg gạo. Nhà Bình mua 12 kg gạo. Số gạo đó ăn được mấy tuần?',
+      steps: ['Mỗi tuần ăn 4 kg, nên em làm phép chia.', '12 : 4 = 3.'],
+      answer: 'Số gạo đó ăn được 3 tuần.',
     },
   ],
   practice: [
@@ -170,7 +171,7 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Kim ngắn ở giữa số 6 và số 7. Kim dài chỉ số 3. Đồng hồ chỉ mấy giờ?',
+      prompt: 'Kim ngắn đã qua số 6, chưa đến số 7. Kim dài chỉ số 3. Đồng hồ chỉ mấy giờ?',
       options: ['3 giờ 30 phút', '6 giờ 15 phút', '7 giờ 15 phút', '6 giờ 30 phút'],
       answer: 1,
       hints: ['Kim ngắn chỉ giờ. Kim dài chỉ số 3 là 15 phút.'],

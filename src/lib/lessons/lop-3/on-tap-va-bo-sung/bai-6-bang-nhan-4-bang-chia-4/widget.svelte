@@ -4,6 +4,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import DotGrid from '../_shared/dot-grid.svelte';
+  import { passFocus } from '../_shared/pass-focus.js';
   import TableGrid from '../_shared/table-grid.svelte';
   import { divLine, mulLine } from '../_shared/times.js';
   import { BASE, KIND_LABELS, MAX_ROWS, buildRound, divMessage, mulMessage } from './engine.js';
@@ -21,6 +22,11 @@
 
   const arrived = $derived(ringed >= row);
 
+  let moreRows = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
+  let fewerRows = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
+  let ringButton = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
+  let resetButton = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
+
   /** @param {number} n */
   function pickRow(n) {
     row = n;
@@ -31,6 +37,7 @@
     if (arrived) return;
     ringed += 1;
     if (ringed === row && !done.includes(row)) done = [...done, row];
+    passFocus(ringButton, resetButton);
   }
 
   const big = 'min-h-12 text-lg disabled:cursor-not-allowed disabled:opacity-50';
@@ -63,13 +70,21 @@
         type="button"
         class="{big} {button.primary}"
         disabled={rows >= MAX_ROWS}
-        onclick={() => (rows += 1)}>Thêm 1 hàng</button
+        bind:this={moreRows}
+        onclick={() => {
+          rows += 1;
+          passFocus(moreRows, fewerRows);
+        }}>Thêm 1 hàng</button
       >
       <button
         type="button"
         class="{big} {button.quiet}"
         disabled={rows <= 1}
-        onclick={() => (rows -= 1)}>Bớt 1 hàng</button
+        bind:this={fewerRows}
+        onclick={() => {
+          rows -= 1;
+          passFocus(fewerRows, moreRows);
+        }}>Bớt 1 hàng</button
       >
     </div>
 
@@ -96,14 +111,22 @@
     />
 
     <div class="flex flex-wrap justify-center gap-3">
-      <button type="button" class="{big} {button.primary}" disabled={arrived} onclick={ring}
-        >Khoanh 4 chấm</button
+      <button
+        type="button"
+        class="{big} {button.primary}"
+        disabled={arrived}
+        bind:this={ringButton}
+        onclick={ring}>Khoanh 4 chấm</button
       >
       <button
         type="button"
         class="{big} {button.quiet}"
         disabled={ringed === 0}
-        onclick={() => (ringed = 0)}>Làm lại</button
+        bind:this={resetButton}
+        onclick={() => {
+          ringed = 0;
+          passFocus(resetButton, ringButton);
+        }}>Làm lại</button
       >
     </div>
 

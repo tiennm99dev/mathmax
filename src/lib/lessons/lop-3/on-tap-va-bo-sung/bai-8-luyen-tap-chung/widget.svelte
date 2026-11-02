@@ -7,6 +7,7 @@
   import BrokenLine from '../_shared/broken-line.svelte';
   import ColumnBoard from '../_shared/column-board.svelte';
   import { columnSteps } from '../_shared/columns.js';
+  import { passFocus } from '../_shared/pass-focus.js';
   import { resultOf } from '#lib/core/kid/column.js';
   import { KIND_LABELS, MAX_N, MIN_N, RULES, buildRound, platesFor } from './engine.js';
 
@@ -15,6 +16,9 @@
   let n = $state(3);
 
   const view = $derived(platesFor(rule, n));
+
+  let moreButton = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
+  let fewerButton = $state(/** @type {HTMLButtonElement | undefined} */ (undefined));
 
   const big = 'min-h-12 text-lg disabled:cursor-not-allowed disabled:opacity-50';
 </script>
@@ -56,13 +60,21 @@
         type="button"
         class="{big} {button.primary}"
         disabled={n >= MAX_N}
-        onclick={() => (n += 1)}>Thêm 1 {rule === 'chia-1' ? 'quả' : 'đĩa'}</button
+        bind:this={moreButton}
+        onclick={() => {
+          n += 1;
+          passFocus(moreButton, fewerButton);
+        }}>Thêm 1 {rule === 'chia-1' ? 'quả' : 'đĩa'}</button
       >
       <button
         type="button"
         class="{big} {button.quiet}"
         disabled={n <= MIN_N}
-        onclick={() => (n -= 1)}>Bớt 1 {rule === 'chia-1' ? 'quả' : 'đĩa'}</button
+        bind:this={fewerButton}
+        onclick={() => {
+          n -= 1;
+          passFocus(fewerButton, moreButton);
+        }}>Bớt 1 {rule === 'chia-1' ? 'quả' : 'đĩa'}</button
       >
     </div>
 

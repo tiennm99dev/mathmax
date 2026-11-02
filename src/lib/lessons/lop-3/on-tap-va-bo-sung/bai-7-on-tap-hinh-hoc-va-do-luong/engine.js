@@ -217,7 +217,7 @@ const quadSkill = {
       const cells = int(rand, 2, 4);
       const right = stripCount(cells);
       return {
-        prompt: 'Hình bên có bao nhiêu hình tứ giác?',
+        prompt: 'Trong hình có bao nhiêu hình tứ giác?',
         visual: { type: 'strip', cells },
         ...nearOptions(rand, right, [cells, cells + 1], 20, 1),
         hint: 'Em đếm hình 1 ô, rồi hình ghép 2 ô, rồi hình ghép nhiều ô hơn.',
@@ -362,7 +362,7 @@ const calendarSkill = {
         dayTitle(dayAfter(day, k + 2)),
       ]),
       hint: `Em đếm thêm từng ngày từ ngày ${date} đến ngày ${later}. Cứ 7 ngày lại về thứ cũ.`,
-      solution: `Từ ngày ${date} đến ngày ${later} là ${k} ngày. ${dayTitle(day)} thêm ${k} ngày là ${WEEKDAYS[dayAfter(day, k)]}.`,
+      solution: `Ngày ${later} cách ngày ${date} là ${k} ngày. ${dayTitle(day)} thêm ${k} ngày là ${WEEKDAYS[dayAfter(day, k)]}.`,
     };
   },
 };

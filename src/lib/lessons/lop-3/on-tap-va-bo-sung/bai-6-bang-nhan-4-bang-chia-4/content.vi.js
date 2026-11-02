@@ -166,11 +166,11 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Mỗi ô tô có 4 bánh xe. 8 ô tô như vậy có bao nhiêu bánh xe?',
-      options: ['12 bánh xe', '28 bánh xe', '32 bánh xe', '36 bánh xe'],
+      prompt: 'Mỗi ô tô có 4 bánh xe. 7 ô tô như vậy có bao nhiêu bánh xe?',
+      options: ['11 bánh xe', '24 bánh xe', '28 bánh xe', '32 bánh xe'],
       answer: 2,
-      hints: ['4 được lấy 8 lần.'],
-      solution: '4 × 8 = 32 (bánh xe).',
+      hints: ['4 được lấy 7 lần.'],
+      solution: '4 × 7 = 28 (bánh xe).',
     },
     {
       type: 'number',

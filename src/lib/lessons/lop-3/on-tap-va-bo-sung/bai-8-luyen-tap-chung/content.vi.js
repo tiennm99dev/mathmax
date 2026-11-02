@@ -79,14 +79,14 @@ export default {
   examples: [
     {
       problem:
-        'Trường Quang Trung có 563 học sinh. Trường Lê Lợi có nhiều hơn Trường Quang Trung 29 học sinh. Trường Lê Lợi có bao nhiêu học sinh?',
-      steps: ['Nhiều hơn: em làm phép cộng.', '563 + 29 = 592.'],
-      answer: 'Trường Lê Lợi có 592 học sinh.',
+        'Trường Kim Đồng có 428 học sinh. Trường Hòa Bình có nhiều hơn Trường Kim Đồng 35 học sinh. Trường Hòa Bình có bao nhiêu học sinh?',
+      steps: ['Nhiều hơn: em làm phép cộng.', '428 + 35 = 463.'],
+      answer: 'Trường Hòa Bình có 463 học sinh.',
     },
     {
-      problem: 'Đường gấp khúc ABCDE có 4 đoạn, mỗi đoạn dài 3 cm. Đường gấp khúc dài bao nhiêu?',
-      steps: ['Các đoạn dài bằng nhau: 3 được lấy 4 lần.', '3 × 4 = 12.'],
-      answer: 'Đường gấp khúc dài 12 cm.',
+      problem: 'Đường gấp khúc ABCDEG có 5 đoạn, mỗi đoạn dài 2 cm. Đường gấp khúc dài bao nhiêu?',
+      steps: ['Các đoạn dài bằng nhau: 2 được lấy 5 lần.', '2 × 5 = 10.'],
+      answer: 'Đường gấp khúc dài 10 cm.',
     },
   ],
   practice: [
