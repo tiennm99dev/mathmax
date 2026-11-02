@@ -422,18 +422,25 @@ Other shared pieces:
   `thermometer`, `meter-dial` (ammeter or voltmeter dial), `boundary-view`
   (a laser meeting a flat boundary, with `light.js`: `MEDIA`, `boundary`,
   `reflectance`), `prism.js` (`SPECTRUM`, `prismCorners`, `traceThrough`),
-  `energy.js` (the grade 9 P = 10m, `kinetic`, `potential`) and
+  `energy.js` (the grade 9 P = 10m, `kinetic`, `potential`),
   `materials.js` (the book's density table, `material`, `qty` for quantities
-  written the book's way); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
+  written the book's way), `xy-plot` (a small graph from the origin) with
+  `ticks.js` (`ticksUpTo`), `force-arrow`, `push-motion.js` (`pushState`),
+  `scatter.js` (seeded measuring noise), `galvanometer` (centre-zero, drawn inside
+  an SVG) and `current-trace` (current against time, with `pushSample`); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
   `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
   book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
   with `reaction.js` (`terms`, `isBalancedText`, which also checks condensed
   structural formulas such as "CH2=CH2 + Br2 → BrCH2–CH2Br") and
   `elements.js` (`electronConfiguration`, `outerElectrons`,
-  `unpairedElectrons`, `configTex`); BioMax has
+  `unpairedElectrons`, `configTex`), `main-group.js` (radius and ionisation
+  energy), `compounds.js` (highest oxides and hydroxides), `bond-energy.js`
+  (`BOND_ENERGY`, the book's values) and `test-tube`; BioMax has
   `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
   opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`,
-  `pea` (a garden-pea seed, flower or plant picture for Mendel's traits). Use
+  `pea` (a garden-pea seed, flower or plant picture for Mendel's traits),
+  `frames.js` with `cell-scene` and `phase-player` (mitosis and meiosis stage by
+  stage). Use
   what `ls src/lib/domain/` actually shows; each component has a
   `<name>.gallery.svelte` demo that `/_gallery/` lists. When two chapters need
   the same subject helper, it belongs in `src/lib/domain/`, not in two
