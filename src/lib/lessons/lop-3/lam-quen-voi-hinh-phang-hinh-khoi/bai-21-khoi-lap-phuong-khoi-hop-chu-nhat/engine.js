@@ -6,6 +6,7 @@
 import { rng } from '#lib/core/drill.js';
 import { capitalize } from '#lib/core/kid/quiz.js';
 import { clamp } from '#lib/core/visuals/svg-math.js';
+import { clampPitch, turnByKey, wrapYaw } from '#lib/geom-engine/solid.js';
 import { FACE_SHAPES, SOLID_NAMES } from '../_shared/box.js';
 import {
   antOnFrame,
@@ -35,6 +36,34 @@ export const PARTS = /** @type {Readonly<Record<PartKind, { name: string, total:
  */
 export function countPart(list, id) {
   return list.includes(id) ? [...list] : [...list, id];
+}
+
+/** Lowest tilt: far enough below the ground to see the bottom face. */
+const MIN_PITCH = -45;
+
+/**
+ * The view after a drag, with the near side of the solid following the pointer.
+ * @param {import('../_shared/box.js').View} view
+ * @param {number} dx
+ * @param {number} dy
+ */
+export function dragView(view, dx, dy) {
+  return {
+    yaw: wrapYaw(view.yaw + dx * 0.7),
+    pitch: clampPitch(view.pitch + dy * 0.5, MIN_PITCH),
+  };
+}
+
+/**
+ * The view after a turn button named by its arrow. Left and right name the way
+ * the near side moves, the opposite of the way `turnByKey` moves the eye.
+ * @param {import('../_shared/box.js').View} view
+ * @param {'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown'} key
+ */
+export function turnView(view, key) {
+  /** @type {Record<string, string>} */
+  const swap = { ArrowLeft: 'ArrowRight', ArrowRight: 'ArrowLeft' };
+  return turnByKey(view, swap[key] ?? key, true, MIN_PITCH) ?? view;
 }
 
 /** How far from a vertex or an edge a press still reaches it, in board units. */

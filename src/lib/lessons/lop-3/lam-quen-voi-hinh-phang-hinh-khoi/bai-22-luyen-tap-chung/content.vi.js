@@ -17,13 +17,19 @@ export default {
           type: 'table',
           head: ['Điều cần nhớ', 'Ví dụ'],
           rows: [
-            ['Trung điểm chia đoạn thẳng thành hai phần bằng nhau', 'AB = 8 cm thì AM = 4 cm'],
+            [
+              'Trung điểm chia đoạn thẳng thành hai phần bằng nhau',
+              'M là trung điểm của AB, AB = 8 cm thì AM = 4 cm',
+            ],
             ['Đường kính gấp 2 lần bán kính', 'Bán kính 3 cm thì đường kính 6 cm'],
             [
               'Hình chữ nhật có 4 góc vuông, 2 cạnh dài bằng nhau, 2 cạnh ngắn bằng nhau',
-              'AB = CD, BC = DA',
+              'Hình chữ nhật ABCD: AB = CD, BC = DA',
             ],
-            ['Hình vuông có 4 góc vuông, 4 cạnh dài bằng nhau', 'MN = NP = PQ = QM'],
+            [
+              'Hình vuông có 4 góc vuông, 4 cạnh dài bằng nhau',
+              'Hình vuông MNPQ: MN = NP = PQ = QM',
+            ],
           ],
         },
       ],

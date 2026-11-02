@@ -86,7 +86,7 @@ export function circlesInSquare(rand) {
     prompt: `Bốn hình tròn bằng nhau, bán kính ${r} cm, xếp khít trong một hình vuông. Cạnh hình vuông dài mấy xăng-ti-mét?`,
     ...numberOptions(rand, right, 1, right + 3),
     hint: 'Một cạnh hình vuông dài bằng hai đường kính. Em tính một đường kính trước.',
-    solution: `Đường kính dài ${r} × 2 = ${2 * r} (cm). Cạnh hình vuông dài ${r} × 4 = ${right} (cm).`,
+    solution: `Đường kính dài ${r} × 2 = ${2 * r} (cm). Cạnh hình vuông dài ${2 * r} × 2 = ${right} (cm).`,
     visual: {
       w: 320,
       h: 196,
@@ -105,7 +105,7 @@ export function circlesInSquare(rand) {
       circles: centres.map((c) => ({ c, r: size })),
       lines: [{ a: centres[0], b: { x: centres[0].x + size, y: centres[0].y }, color: '#dc2626' }],
       dots: [{ at: centres[0], color: '#dc2626' }],
-      texts: [{ x: centres[0].x + size / 2, y: centres[0].y - 14, text: `${r} cm` }],
+      texts: [{ x: centres[0].x + 15, y: centres[0].y - 14, text: `${r} cm` }],
     },
   };
 }

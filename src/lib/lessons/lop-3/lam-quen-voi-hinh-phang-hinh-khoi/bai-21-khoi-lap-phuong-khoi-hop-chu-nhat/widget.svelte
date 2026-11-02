@@ -4,7 +4,6 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
-  import { clampPitch, turnByKey, wrapYaw } from '#lib/geom-engine/solid.js';
   import { pointsAttr } from '#lib/utils/svg.js';
   import { SOLID_DIMS, SOLID_NAMES, START_VIEW, faceFill, projectBox } from '../_shared/box.js';
   import SceneFigure from '../_shared/scene-figure.svelte';
@@ -16,7 +15,9 @@
     compareMessage,
     countMessage,
     countPart,
+    dragView,
     nearestPart,
+    turnView,
   } from './engine.js';
 
   /** @typedef {import('../_shared/box.js').SolidKind} SolidKind */
@@ -24,8 +25,6 @@
 
   const W = 320;
   const H = 300;
-  /** Lowest tilt: far enough below the ground to see the bottom face. */
-  const MIN_PITCH = -45;
   /** A press that moves further than this turns the solid instead of tapping. */
   const TAP_SLOP = 6;
   const COUNTED = '#34d399';
@@ -50,8 +49,6 @@
   let press = null;
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
-  /** A drag just ended, so the click some browsers fire after it is not a tap. */
-  let dragged = false;
 
   const shape = $derived(projectBox(SOLID_DIMS[solid], view, W, H));
   const list = $derived(listOf(solid, part));
@@ -96,12 +93,14 @@
   }
 
   /**
-   * A click reaching a part: from a screen reader, which sends no press.
+   * A click reaching a part counts only from a screen reader, which sends no
+   * press (detail 0). The click after a real press may land on another part
+   * than the nearest one the press already counted.
+   * @param {MouseEvent} e
    * @param {string} id
    */
-  function clicked(id) {
-    if (!dragged) tap(id);
-    dragged = false;
+  function clicked(e, id) {
+    if (e.detail === 0) tap(id);
   }
 
   /** @param {KeyboardEvent} e @param {string} id */
@@ -150,10 +149,7 @@
       press.moved = true;
     }
     if (press.moved) {
-      view = {
-        yaw: wrapYaw(view.yaw - (e.clientX - press.x) * 0.7),
-        pitch: clampPitch(view.pitch + (e.clientY - press.y) * 0.5, MIN_PITCH),
-      };
+      view = dragView(view, e.clientX - press.x, e.clientY - press.y);
     }
     press.x = e.clientX;
     press.y = e.clientY;
@@ -161,17 +157,11 @@
 
   function up() {
     if (press && !press.moved && press.id) tap(press.id);
-    dragged = press?.moved ?? false;
     press = null;
   }
 
   function cancel() {
     press = null;
-  }
-
-  /** @param {string} key */
-  function turn(key) {
-    view = turnByKey(view, key, true, MIN_PITCH) ?? view;
   }
 
   function recount() {
@@ -239,7 +229,7 @@
               aria-pressed={order !== -1}
               aria-label={partLabel(face.id)}
               data-part={face.id}
-              onclick={() => clicked(face.id)}
+              onclick={(e) => clicked(e, face.id)}
               onkeydown={(e) => keyOn(e, face.id)}
             >
               <polygon
@@ -284,6 +274,7 @@
               stroke={INK}
               stroke-width="2.5"
               stroke-dasharray="7 6"
+              pointer-events="none"
             />
           {/each}
         {:else}
@@ -296,7 +287,7 @@
               aria-pressed={order !== -1}
               aria-label={partLabel(edge.id, edge.front)}
               data-part={edge.id}
-              onclick={() => clicked(edge.id)}
+              onclick={(e) => clicked(e, edge.id)}
               onkeydown={(e) => keyOn(e, edge.id)}
             >
               <line
@@ -348,7 +339,7 @@
               aria-pressed={order !== -1}
               aria-label={partLabel(vertex.id, vertex.front)}
               data-part={vertex.id}
-              onclick={() => clicked(vertex.id)}
+              onclick={(e) => clicked(e, vertex.id)}
               onkeydown={(e) => keyOn(e, vertex.id)}
             >
               <circle class="mark" cx={vertex.at.x} cy={vertex.at.y} r="22" fill="transparent" />
@@ -381,7 +372,11 @@
 
     <div class="mx-auto grid max-w-md grid-cols-2 gap-2 sm:grid-cols-4">
       {#each TURNS as t (t.key)}
-        <button type="button" class="min-h-12 text-base {button.quiet}" onclick={() => turn(t.key)}>
+        <button
+          type="button"
+          class="min-h-12 text-base {button.quiet}"
+          onclick={() => (view = turnView(view, t.key))}
+        >
           {t.label}
         </button>
       {/each}
@@ -425,11 +420,13 @@
       </tbody>
     </table>
 
-    {#if comparison}
-      <p class="rounded-2xl bg-indigo-50 px-4 py-3 text-lg font-semibold text-indigo-900">
-        {comparison}
-      </p>
-    {/if}
+    <div aria-live="polite">
+      {#if comparison}
+        <p class="rounded-2xl bg-indigo-50 px-4 py-3 text-lg font-semibold text-indigo-900">
+          {comparison}
+        </p>
+      {/if}
+    </div>
 
     <div class="flex justify-center">
       <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={recount}>
@@ -462,6 +459,6 @@
     stroke-width: 6;
   }
   .part:focus-visible line.mark {
-    stroke-width: 36;
+    stroke-width: 14;
   }
 </style>

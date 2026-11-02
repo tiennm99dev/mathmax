@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { viewPoint } from '#lib/geom-engine/solid.js';
 import { SOLID_DIMS, START_VIEW, projectBox } from '../_shared/box.js';
 import {
   KIND_LABELS,
@@ -8,7 +9,9 @@ import {
   compareMessage,
   countMessage,
   countPart,
+  dragView,
   nearestPart,
+  turnView,
 } from './engine.js';
 
 describe('counting the parts of a solid', () => {
@@ -43,6 +46,45 @@ describe('counting the parts of a solid', () => {
     expect(compareMessage(() => 0)).toBeNull();
     expect(compareMessage((s, p) => (s === 'lap-phuong' ? PARTS[p].total : 0))).toBeNull();
     expect(compareMessage((_, p) => PARTS[p].total)).toContain('khác nhau');
+  });
+});
+
+describe('turning the solid', () => {
+  /** The point of the solid nearest the viewer on the ground. */
+  const near = { x: 0, y: -1, z: 0 };
+  const flat = { yaw: 0, pitch: 0 };
+
+  it('moves the near side the way the pointer drags', () => {
+    expect(viewPoint(near, dragView(flat, 20, 0)).x).toBeGreaterThan(0);
+    expect(viewPoint(near, dragView(flat, -20, 0)).x).toBeLessThan(0);
+    expect(viewPoint(near, dragView(flat, 0, 20)).y).toBeGreaterThan(0);
+  });
+
+  it('moves the near side the way a button says', () => {
+    expect(viewPoint(near, turnView(flat, 'ArrowLeft')).x).toBeLessThan(0);
+    expect(viewPoint(near, turnView(flat, 'ArrowRight')).x).toBeGreaterThan(0);
+    expect(turnView(flat, 'ArrowUp').pitch).toBeGreaterThan(0);
+    expect(turnView(flat, 'ArrowDown').pitch).toBeLessThan(0);
+  });
+
+  it('can show all six faces with the buttons alone', () => {
+    const seen = new Set();
+    /** @type {import('../_shared/box.js').View} */
+    let view = START_VIEW;
+    const look = () => {
+      for (const f of projectBox(SOLID_DIMS['lap-phuong'], view, 320, 300).faces)
+        if (f.front) seen.add(f.id);
+    };
+    look();
+    for (let i = 0; i < 6; i++) {
+      view = turnView(view, 'ArrowLeft');
+      look();
+    }
+    for (let i = 0; i < 3; i++) {
+      view = turnView(view, 'ArrowDown');
+      look();
+    }
+    expect(seen.size).toBe(6);
   });
 });
 
