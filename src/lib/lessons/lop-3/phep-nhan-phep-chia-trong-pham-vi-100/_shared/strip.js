@@ -6,6 +6,17 @@
 
 /** @typedef {'main' | 'copy' | 'extra' | 'plus' | 'faded'} StripTone */
 
+/** The smallest share of a strip that still holds its number at 390 px wide. */
+const MIN_LABELLED_SHARE = 0.06;
+
+/**
+ * Whether a piece is wide enough to print its number. A narrower piece stays to
+ * scale and goes unlabelled, since half a digit would read as another number.
+ * @param {number} size
+ * @param {number} scale
+ */
+export const holdsText = (size, scale) => size / scale >= MIN_LABELLED_SHARE;
+
 /**
  * Up to four number options in increasing order: the right one and the slips
  * that are not the right value, then its neighbours, so a question always has

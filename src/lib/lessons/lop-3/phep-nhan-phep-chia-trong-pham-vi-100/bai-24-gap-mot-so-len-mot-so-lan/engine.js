@@ -47,14 +47,16 @@ export function copyMessage({ n, times }, copies) {
 }
 
 /**
- * A new task, different from `not`, with a result within 90.
+ * A new task, different from `not`, with a result within 90. The number is at
+ * least 3, so multiplying up never gives the same result as adding units
+ * (2 × 2 and 2 + 2 are both 4), which the strip goes on to compare.
  * @param {() => number} rand
  * @param {Task} [not]
  * @returns {Task}
  */
 export function makeTask(rand, not) {
   for (;;) {
-    const task = { n: int(rand, 2, 15), times: int(rand, 2, 6) };
+    const task = { n: int(rand, 3, 15), times: int(rand, 2, 6) };
     if (!not || task.n !== not.n || task.times !== not.times) return task;
   }
 }

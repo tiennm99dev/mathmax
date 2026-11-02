@@ -1,4 +1,6 @@
 <script>
+  import { holdsText } from './strip.js';
+
   /**
    * A paper strip (băng giấy): pieces side by side, each as long as its `size`
    * against `scale`, so two strips drawn with one scale compare by eye.
@@ -25,7 +27,8 @@
       class="flex items-center justify-center overflow-hidden border-2 text-lg font-bold tabular-nums text-slate-900 {TONES[
         part.tone
       ]} {part.tone === 'faded' ? 'text-slate-500' : ''}"
-      style="width: {(part.size / scale) * 100}%">{part.text ?? ''}</span
+      style="width: {(part.size / scale) * 100}%"
+      >{holdsText(part.size, scale) ? (part.text ?? '') : ''}</span
     >
   {/each}
 </div>

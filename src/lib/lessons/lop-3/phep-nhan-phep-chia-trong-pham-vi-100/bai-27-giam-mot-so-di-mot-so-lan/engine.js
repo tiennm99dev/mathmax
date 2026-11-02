@@ -70,7 +70,7 @@ const STORIES = [
     n: 60,
     times: 5,
     unit: 'quả',
-    text: 'Cửa hàng có 60 quả dưa. Bán xong, số dưa giảm đi 5 lần. Cửa hàng còn bao nhiêu quả dưa?',
+    text: 'Cửa hàng có 60 quả dưa. Sau khi bán, số dưa giảm đi 5 lần. Cửa hàng còn bao nhiêu quả dưa?',
   },
   {
     n: 36,

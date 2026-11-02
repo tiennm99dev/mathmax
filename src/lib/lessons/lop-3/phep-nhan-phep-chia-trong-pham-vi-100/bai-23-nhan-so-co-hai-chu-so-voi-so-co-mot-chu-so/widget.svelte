@@ -158,7 +158,7 @@
         x2={LEFT + i * box.cell}
         y2={TOP + box.height}
         stroke="#1e293b"
-        stroke-width={i % 10 === 0 ? 2 : 0.5}
+        stroke-width={i % 10 === 0 || i === task.a ? 2 : 0.5}
       />
     {/each}
     {#each { length: task.b + 1 } as _, i (i)}

@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { slipOptions } from './strip.js';
+import { holdsText, slipOptions } from './strip.js';
+
+describe('numbers on strip pieces', () => {
+  it('prints a number only on a piece wide enough for it', () => {
+    expect(holdsText(3, 30)).toBe(true);
+    expect(holdsText(2, 60)).toBe(false);
+  });
+});
 
 describe('options from real slips', () => {
   it('holds the right answer once, among different numbers in order', () => {

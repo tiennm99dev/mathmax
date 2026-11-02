@@ -51,7 +51,7 @@ export default {
         {
           type: 'table',
           head: ['Phép chia', 'Thương', 'Số dư'],
-          caption: 'Chia cho 3, số dư chỉ có thể là 1 hoặc 2.',
+          caption: 'Chia cho 3, số dư chỉ có thể là 0, 1 hoặc 2.',
           rows: [
             ['12 : 3', '4', '0'],
             ['13 : 3', '4', '1'],

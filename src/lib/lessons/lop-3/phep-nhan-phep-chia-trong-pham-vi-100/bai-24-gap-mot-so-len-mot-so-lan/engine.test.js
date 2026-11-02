@@ -30,12 +30,13 @@ describe('the copied strip', () => {
     expect(stripScale(FIRST_TASK)).toBe(FIRST_TASK.n * maxCopies(FIRST_TASK));
   });
 
-  it('makes tasks in range and different from the one on screen', () => {
+  it('makes tasks in range, where multiplying and adding differ, unlike the one on screen', () => {
     const rand = rng(5);
     const bad = [];
     for (let i = 0; i < 100; i++) {
       const t = makeTask(rand, FIRST_TASK);
-      if (t.n * t.times > 90 || (t.n === FIRST_TASK.n && t.times === FIRST_TASK.times)) bad.push(t);
+      if (t.n * t.times > 90 || t.n * t.times === t.n + t.times) bad.push(t);
+      if (t.n === FIRST_TASK.n && t.times === FIRST_TASK.times) bad.push(t);
     }
     expect(bad).toEqual([]);
   });

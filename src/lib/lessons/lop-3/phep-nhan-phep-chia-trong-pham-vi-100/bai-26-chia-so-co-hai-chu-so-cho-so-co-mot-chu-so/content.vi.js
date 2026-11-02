@@ -133,8 +133,12 @@ export default {
         [2, 2],
         [3, 3],
       ],
-      hints: ['Em đặt tính từng phép chia ra giấy nháp.'],
-      solution: '74 : 3 = 24 (dư 2). 53 : 5 = 10 (dư 3). 65 : 5 = 13. 72 : 4 = 18.',
+      hints: [
+        'Em đặt tính từng phép chia ra giấy nháp.',
+        'Số vừa hạ bé hơn số chia thì em viết 0 vào thương.',
+      ],
+      solution:
+        '74 : 3 = 24 (dư 2). 53 : 5 = 10 (dư 3): hạ 3, 3 chia 5 được 0, viết 0. 65 : 5 = 13. 72 : 4 = 18.',
     },
     {
       type: 'order',
