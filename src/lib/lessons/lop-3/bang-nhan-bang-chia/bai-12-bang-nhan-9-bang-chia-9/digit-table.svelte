@@ -33,7 +33,7 @@
         <span class="flex w-14 shrink-0 justify-center gap-0.5" aria-hidden="true">
           <span
             class="w-6 rounded text-center {tens === 0
-              ? 'bg-sky-50 text-sky-300'
+              ? 'bg-sky-50 text-sky-800'
               : 'bg-sky-200 text-sky-950'}">{tens}</span
           >
           <span class="w-6 rounded bg-orange-200 text-center text-orange-950">{ones}</span>

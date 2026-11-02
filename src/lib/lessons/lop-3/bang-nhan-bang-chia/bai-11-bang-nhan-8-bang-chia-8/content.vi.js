@@ -96,7 +96,7 @@ export default {
       picture: 'fish',
       answer: 24,
       choices: [16, 20, 24, 28, 32],
-      hints: ['Em khoanh từng nhóm 8 con rồi đếm thêm 8.'],
+      hints: ['Em đếm lần lượt từng con. Cứ đủ 8 con, em đọc một số: 8, 16, ...'],
       solution: '8, 16, 24. Có 24 con cá. 8 × 3 = 24.',
     },
     {

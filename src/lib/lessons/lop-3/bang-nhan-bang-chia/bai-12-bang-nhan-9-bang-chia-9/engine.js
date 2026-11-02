@@ -3,7 +3,7 @@
  * by one and the ones digit down by one, so the two digits always add up to 9.
  * Pure and DOM-free.
  */
-import { pick, rng } from '#lib/core/drill.js';
+import { pick, rng, shuffle } from '#lib/core/drill.js';
 import { divLine, mulLine } from '../_shared/times.js';
 import { buildTableRound, tableKindLabels } from '../_shared/table-round.js';
 
@@ -88,15 +88,17 @@ export const KIND_LABELS = {
 };
 
 /**
- * Tell a result of the table from its neighbours by the sum of its digits. One
- * more, one less or ten more never gives a digit sum of 9 here.
+ * Tell a result of the table from its neighbours by the sum of its digits. A
+ * number 1, 2 or 10 away from a result of the table never has a digit sum of 9.
+ * The wrong options are drawn from both sides, so the right one has no fixed place.
  * @param {() => number} rand
  * @returns {import('#lib/core/kid/quiz.js').KidQuestion<import('../_shared/table-round.js').RoundVisual>}
  */
 function patternQuestion(rand) {
   const n = pick(rand, [2, 3, 4, 5, 6, 7, 8, 9]);
   const right = BASE * n;
-  const values = [right, right - 1, right + 1, right + 10].sort((x, y) => x - y);
+  const near = [right - 10, right - 2, right - 1, right + 1, right + 2, right + 10];
+  const values = [right, ...shuffle(rand, near).slice(0, 3)].sort((x, y) => x - y);
   const { tens, ones } = digitsOf(n);
   return {
     kind: 'pattern',

@@ -96,7 +96,7 @@ export default {
       picture: 'star',
       answer: 21,
       choices: [14, 18, 21, 24, 28],
-      hints: ['Em khoanh từng nhóm 7 ngôi sao rồi đếm thêm 7.'],
+      hints: ['Em đếm lần lượt từng ngôi sao. Cứ đủ 7 ngôi sao, em đọc một số: 7, 14, ...'],
       solution: '7, 14, 21. Có 21 ngôi sao. 7 × 3 = 21.',
     },
     {

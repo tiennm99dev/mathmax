@@ -52,4 +52,12 @@ describe('the quiz round', () => {
     }
     expect(bad).toEqual([]);
   });
+
+  it('has no fixed place for the right number on the pattern question', () => {
+    const places = new Set();
+    for (let seed = 1; seed <= 40; seed++) {
+      places.add(buildRound(seed).find((q) => q.kind === 'pattern')?.answer);
+    }
+    expect(places.size).toBeGreaterThanOrEqual(3);
+  });
 });

@@ -97,7 +97,7 @@ export default {
       picture: 'flower',
       answer: 18,
       choices: [12, 16, 18, 20, 24],
-      hints: ['Em khoanh từng nhóm 6 bông rồi đếm thêm 6.'],
+      hints: ['Em đếm lần lượt từng bông. Cứ đủ 6 bông, em đọc một số: 6, 12, ...'],
       solution: '6, 12, 18. Có 18 bông hoa. 6 × 3 = 18.',
     },
     {

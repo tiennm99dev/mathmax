@@ -153,10 +153,11 @@
       allGood="Em đã thuộc bảng nhân 7, bảng chia 7 rồi!"
     >
       {#snippet visual(
-        /** @type {{ visual?: { n: number, open: boolean } }} */ q,
+        /** @type {{ kind?: string, visual?: { n: number, open: boolean } }} */ q,
         /** @type {boolean} */ settled,
       )}
-        {#if q.visual && (q.visual.open || settled)}
+        <!-- A story about cups or teams is not a calendar, so it draws none. -->
+        {#if q.visual && (q.visual.open || (settled && q.kind !== 'story'))}
           <WeekCalendar
             weeks={q.visual.n}
             ringed={settled ? q.visual.n : 0}

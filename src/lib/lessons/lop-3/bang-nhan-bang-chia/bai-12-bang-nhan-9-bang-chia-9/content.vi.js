@@ -112,7 +112,7 @@ export default {
       picture: 'orange',
       answer: 27,
       choices: [18, 24, 27, 30, 36],
-      hints: ['Em khoanh từng nhóm 9 quả rồi đếm thêm 9.'],
+      hints: ['Em đếm lần lượt từng quả. Cứ đủ 9 quả, em đọc một số: 9, 18, ...'],
       solution: '9, 18, 27. Có 27 quả cam. 9 × 3 = 27.',
     },
     {

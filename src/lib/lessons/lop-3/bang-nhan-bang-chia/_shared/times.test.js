@@ -24,4 +24,25 @@ describe('table sentences', () => {
     }
     expect(bad).toEqual([]);
   });
+
+  it('moves the right answer around, so tapping one place does not pay', () => {
+    for (const base of [6, 7, 8, 9]) {
+      const rows = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+      for (const make of [productOptions, quotientOptions]) {
+        const places = rows.map((n) => make(base, n).answer);
+        const most = Math.max(...places.map((p) => places.filter((q) => q === p).length));
+        expect(new Set(places).size).toBeGreaterThanOrEqual(3);
+        expect(most).toBeLessThanOrEqual(5);
+      }
+    }
+  });
+
+  it('always offers four options', () => {
+    for (const base of [6, 7, 8, 9]) {
+      for (let n = 1; n <= 10; n++) {
+        expect(productOptions(base, n).options).toHaveLength(4);
+        expect(quotientOptions(base, n).options).toHaveLength(4);
+      }
+    }
+  });
 });
