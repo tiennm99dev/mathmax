@@ -22,7 +22,8 @@
 
   const W = 260;
   const H = 240;
-  const START = { yaw: -20, pitch: 28 };
+  /** Tilt steps of 10° from here pass through exactly side on. */
+  const START = { yaw: -20, pitch: 30 };
 
   /** @param {{ x: number, y: number }} p */
   const toScreen = (p) => ({ x: W / 2 + p.x, y: H / 2 + p.y });
@@ -40,11 +41,19 @@
   const done = $derived(seen[kind].length === DIRECTIONS.length);
   const name = $derived(SOLID_NAMES[kind]);
 
+  /**
+   * @param {import('./engine.js').RoundSolid} solid
+   * @param {{ yaw: number, pitch: number }} at
+   */
+  function look(solid, at) {
+    const direction = directionOf(at);
+    if (direction && !seen[solid].includes(direction)) seen[solid].push(direction);
+  }
+
   /** @param {{ yaw: number, pitch: number }} next */
   function turnTo(next) {
     view = next;
-    const direction = directionOf(next);
-    if (direction && !seen[kind].includes(direction)) seen[kind].push(direction);
+    look(kind, next);
   }
 
   /** @type {{ x: number, y: number } | null} */
@@ -92,6 +101,7 @@
     label="Chọn khối"
     hideLabel
     bind:value={kind}
+    onchange={(next) => look(/** @type {import('./engine.js').RoundSolid} */ (next), view)}
     options={[
       { value: 'tru', label: 'Khối trụ' },
       { value: 'cau', label: 'Khối cầu' },

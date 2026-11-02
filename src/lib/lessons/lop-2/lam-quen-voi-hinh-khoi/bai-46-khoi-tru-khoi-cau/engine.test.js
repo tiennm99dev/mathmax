@@ -131,6 +131,8 @@ describe('what the child sees', () => {
 
   it('describes the views and what was found', () => {
     expect(viewNote('tru', { yaw: 0, pitch: 70 })).toContain('mặt tròn');
+    expect(viewNote('tru', { yaw: 0, pitch: 8 })).toContain('gần giống hình chữ nhật');
+    expect(viewNote('tru', { yaw: 0, pitch: 8 })).not.toContain('chỉ thấy');
     expect(viewNote('tru', { yaw: 0, pitch: -70 })).toContain('ở dưới');
     expect(viewNote('tru', { yaw: 0, pitch: 30 })).toContain('ở trên');
     expect(viewNote('tru', { yaw: 0, pitch: -30 })).toContain('ở dưới');

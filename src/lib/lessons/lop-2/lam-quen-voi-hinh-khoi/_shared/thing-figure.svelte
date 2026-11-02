@@ -82,6 +82,9 @@
   {:else if id === 'qua-bong'}
     {@render ball('#fff', 40)}
     <polygon points="50,38 61,46 57,59 43,59 39,46" fill={ink} />
+    {#each [0, 72, 144, 216, 288] as turn (turn)}
+      <polygon points="42,11 58,11 55,19 45,19" fill={ink} transform="rotate({turn} 50 50)" />
+    {/each}
     <path
       d="M50 38 V14 M61 46 L84 38 M57 59 L72 80 M43 59 L28 80 M39 46 L16 38"
       stroke={ink}

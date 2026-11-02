@@ -272,7 +272,7 @@ export function viewNote(kind, view) {
     return 'Xoay thế nào, khối cầu cũng tròn đều. Nó không có mặt phẳng nào.';
   }
   if (from === 'ngang')
-    return 'Nhìn ngang: em chỉ thấy mặt cong bao quanh, trông giống hình chữ nhật.';
+    return 'Nhìn ngang: em thấy mặt cong bao quanh, trông gần giống hình chữ nhật.';
   if (from === 'tren') return 'Nhìn từ trên: em thấy mặt tròn màu vàng ở trên.';
   if (from === 'duoi') return 'Nhìn từ dưới: em thấy mặt tròn màu vàng ở dưới.';
   return view.pitch > 0
