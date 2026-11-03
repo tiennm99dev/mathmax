@@ -125,6 +125,14 @@ export default {
       solution: 'Một cái cốc chứa được khoảng 200 ml.',
     },
     {
+      type: 'choice',
+      prompt: 'Trời mùa đông rét, em phải mặc áo ấm. Nhiệt kế ngoài trời có thể chỉ bao nhiêu?',
+      options: ['10 °C', '37 °C', '50 °C'],
+      answer: 0,
+      hints: ['Số độ càng bé thì trời càng lạnh.'],
+      solution: 'Trời rét nên nhiệt độ thấp: 10 °C.',
+    },
+    {
       type: 'number',
       prompt: 'Có quả cân 500 g và 200 g trên đĩa. Em cần thêm bao nhiêu gam nữa để đủ 1 kg?',
       answer: 300,

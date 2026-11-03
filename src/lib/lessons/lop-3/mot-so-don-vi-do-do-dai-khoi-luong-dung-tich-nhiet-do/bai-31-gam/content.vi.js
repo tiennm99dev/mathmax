@@ -149,10 +149,11 @@ export default {
     {
       type: 'order',
       prompt: 'Xếp các khối lượng theo thứ tự từ nhẹ đến nặng.',
-      items: ['1 kg', '750 g', '150 g', '2 kg'],
-      answer: [2, 1, 0, 3],
+      items: ['1 kg', '750 g', '150 g', '900 g'],
+      answer: [2, 1, 3, 0],
       hints: ['Em đổi hết ra gam rồi so sánh.'],
-      solution: '150 g < 750 g < 1 000 g < 2 000 g. Thứ tự: 150 g, 750 g, 1 kg, 2 kg.',
+      solution:
+        '1 kg = 1 000 g. 150 g < 750 g < 900 g < 1 000 g. Thứ tự: 150 g, 750 g, 900 g, 1 kg.',
     },
     {
       type: 'number',
@@ -164,11 +165,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Có 3 quả cam như nhau, mỗi quả nặng 200 g. Cả 3 quả nặng bao nhiêu gam?',
-      answer: 600,
+      prompt: 'Có 4 quả mận như nhau, mỗi quả nặng 20 g. Cả 4 quả nặng bao nhiêu gam?',
+      answer: 80,
       unit: 'g',
-      hints: ['3 quả bằng nhau: em làm phép nhân.'],
-      solution: '200 × 3 = 600. Cả 3 quả nặng 600 g.',
+      hints: ['4 quả bằng nhau: em làm phép nhân.'],
+      solution: '20 × 4 = 80. Cả 4 quả nặng 80 g.',
     },
   ],
   takeaways: [

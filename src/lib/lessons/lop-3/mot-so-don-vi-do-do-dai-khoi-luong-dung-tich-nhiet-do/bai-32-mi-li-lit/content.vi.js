@@ -98,11 +98,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: '3 l bằng bao nhiêu mi-li-lít?',
-      answer: 3000,
-      unit: 'ml',
-      hints: ['Mỗi lít bằng 1 000 ml. Em nhân với 3.'],
-      solution: '1 000 × 3 = 3 000. Vậy 3 l = 3 000 ml.',
+      prompt: '1 000 ml bằng bao nhiêu lít?',
+      answer: 1,
+      unit: 'l',
+      hints: ['Em nhớ lại: lít và mi-li-lít liên hệ với nhau thế nào?'],
+      solution: '1 000 ml = 1 l.',
     },
     {
       type: 'number',
@@ -146,10 +146,11 @@ export default {
     {
       type: 'order',
       prompt: 'Xếp các lượng nước theo thứ tự từ ít đến nhiều.',
-      items: ['2 l', '500 ml', '1 l', '900 ml'],
-      answer: [1, 3, 2, 0],
+      items: ['300 ml', '500 ml', '1 l', '900 ml'],
+      answer: [0, 1, 3, 2],
       hints: ['Em đổi hết ra mi-li-lít rồi so sánh.'],
-      solution: '500 ml < 900 ml < 1 000 ml < 2 000 ml. Thứ tự: 500 ml, 900 ml, 1 l, 2 l.',
+      solution:
+        '1 l = 1 000 ml. 300 ml < 500 ml < 900 ml < 1 000 ml. Thứ tự: 300 ml, 500 ml, 900 ml, 1 l.',
     },
     {
       type: 'number',

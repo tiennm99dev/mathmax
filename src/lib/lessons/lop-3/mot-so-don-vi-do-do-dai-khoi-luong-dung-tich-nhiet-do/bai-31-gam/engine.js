@@ -3,6 +3,7 @@
  * given mass, and a practice round of dial readings, kilogram conversions and
  * sums in grams. Pure and DOM-free.
  */
+import { fmt } from '#lib/core/number-format.js';
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { DIAL_MAX, gramText, sortedOptions } from '../_shared/measure.js';
 
@@ -20,6 +21,12 @@ export const THINGS = [
   { id: 'grapes', name: 'Chùm nho', picture: 'grapes', g: 300 },
   { id: 'block', name: 'Gói đường', picture: 'block', g: 500 },
 ];
+
+/**
+ * The readings the dial can show, for wrong options on a dial question.
+ * @param {number[]} slips
+ */
+const onDial = (slips) => slips.filter((g) => g >= 0 && g <= DIAL_MAX);
 
 /** The first target of the widget. */
 export const FIRST_TARGET = 350;
@@ -113,16 +120,16 @@ const STORIES = [
     hint: 'Em lấy số gam ban đầu trừ dần từng lần mẹ dùng.',
   },
   {
-    text: 'Mỗi gói kẹo nặng 125 g. Hỏi 4 gói kẹo như thế nặng bao nhiêu gam?',
-    right: 500,
-    slips: [129, 400, 600],
-    work: '125 × 4 = 500 (g).',
+    text: 'Mỗi gói kẹo nặng 25 g. Hỏi 4 gói kẹo như thế nặng bao nhiêu gam?',
+    right: 100,
+    slips: [29, 80, 125],
+    work: '25 × 4 = 100 (g).',
     hint: '4 gói bằng nhau: em lấy số gam một gói nhân với 4.',
   },
   {
     text: 'Quả dưa nặng 800 g, quả xoài nhẹ hơn quả dưa 450 g. Quả xoài nặng bao nhiêu gam?',
     right: 350,
-    slips: [1250, 450, 250],
+    slips: [450, 250, 650],
     work: '800 − 450 = 350 (g).',
     hint: 'Nhẹ hơn thì em làm phép trừ.',
   },
@@ -151,19 +158,20 @@ export function buildRound(seed) {
         kind,
         visual: { g },
         prompt: 'Cân chỉ bao nhiêu gam?',
-        ...sortedOptions(gramText, g, [g + 50, g + 100, Math.abs(g - 50), g + 150]),
+        ...sortedOptions(gramText, g, onDial([g + 50, g - 50, g + 100, g - 100, g + 150])),
         hint: 'Các vạch có ghi số cách nhau một trăm gam. Vạch nhỏ ở giữa là thêm năm mươi gam.',
         solution: `Kim chỉ ${gramText(g)}.`,
       };
     }
     if (kind === 'convert') {
-      const kg = int(rand, 2, 5);
+      const have = int(rand, 3, 17) * 50;
+      const right = DIAL_MAX - have;
       return {
         kind,
-        prompt: `${kg} kg bằng bao nhiêu gam?`,
-        ...sortedOptions(gramText, kg * 1000, [kg * 10, kg * 100, kg * 10000]),
-        hint: 'Mỗi ki-lô-gam bằng một nghìn gam.',
-        solution: `${kg} kg = ${gramText(kg * 1000)}.`,
+        prompt: `Đĩa cân có ${gramText(have)}. Cần thêm bao nhiêu gam nữa để đủ 1 kg?`,
+        ...sortedOptions(gramText, right, [have, right + 100, right - 100, right + 50]),
+        hint: 'Em đổi 1 kg ra gam, rồi trừ đi số gam đã có.',
+        solution: `1 kg = ${gramText(DIAL_MAX)}. ${fmt(DIAL_MAX)} − ${have} = ${right}. Cần thêm ${gramText(right)}.`,
       };
     }
     if (kind === 'balance') {
@@ -179,7 +187,7 @@ export function buildRound(seed) {
       };
     }
     if (kind === 'calc') {
-      const a = int(rand, 4, 9) * 100 - 40;
+      const a = int(rand, 4, 6) * 100 - 40;
       const b = int(rand, 1, 2) * 100 + 60;
       const op = pick(rand, ['+', '−', '×']);
       if (op === '×') {

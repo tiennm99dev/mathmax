@@ -68,7 +68,7 @@ const STORIES = [
   {
     text: 'Chai dầu ăn có 800 ml. Mẹ dùng hết 350 ml. Trong chai còn lại bao nhiêu mi-li-lít dầu?',
     right: 450,
-    slips: [1150, 550, 350],
+    slips: [550, 350, 650],
     work: '800 − 350 = 450 (ml).',
     hint: 'Dùng hết thì lượng dầu ít đi. Em làm phép trừ.',
   },
@@ -82,16 +82,16 @@ const STORIES = [
   {
     text: 'Phích có 1 l nước. Rót ra hai cốc, mỗi cốc 250 ml. Phích còn lại bao nhiêu mi-li-lít nước?',
     right: 500,
-    slips: [750, 250, 1250],
-    work: '1 l = 1 000 ml; 250 × 2 = 500; 1 000 − 500 = 500 (ml).',
+    slips: [750, 250, 600],
+    work: '1 l = 1 000 ml; 250 + 250 = 500; 1 000 − 500 = 500 (ml).',
     hint: 'Em đổi 1 l ra mi-li-lít, rồi trừ đi số nước đã rót.',
   },
   {
-    text: 'Mỗi chai nhỏ chứa 120 ml nước cam. Hỏi 3 chai như thế chứa bao nhiêu mi-li-lít?',
-    right: 360,
-    slips: [123, 240, 460],
-    work: '120 × 3 = 360 (ml).',
-    hint: '3 chai bằng nhau: em làm phép nhân.',
+    text: 'Mỗi lọ nhỏ chứa 32 ml nước cam. Hỏi 3 lọ như thế chứa bao nhiêu mi-li-lít?',
+    right: 96,
+    slips: [35, 66, 86],
+    work: '32 × 3 = 96 (ml).',
+    hint: '3 lọ bằng nhau: em làm phép nhân.',
   },
 ];
 
@@ -118,19 +118,24 @@ export function buildRound(seed) {
         kind,
         visual: { ml },
         prompt: 'Trong ống đong có bao nhiêu mi-li-lít nước?',
-        ...sortedOptions(mlText, ml, [ml + 50, ml - 50, ml + 100, ml + 150]),
+        ...sortedOptions(
+          mlText,
+          ml,
+          [ml + 50, ml - 50, ml + 100, ml - 100].filter((v) => v <= CYLINDER_MAX),
+        ),
         hint: 'Các vạch có ghi số cách nhau một trăm mi-li-lít. Vạch ngắn ở giữa là thêm năm mươi mi-li-lít.',
         solution: `Mặt nước ở vạch ${mlText(ml)}.`,
       };
     }
     if (kind === 'convert') {
-      const l = int(rand, 2, 5);
+      const out = int(rand, 3, 17) * 50;
+      const right = CYLINDER_MAX - out;
       return {
         kind,
-        prompt: `${l} l bằng bao nhiêu mi-li-lít?`,
-        ...sortedOptions(mlText, l * 1000, [l * 10, l * 100, l * 10000]),
-        hint: 'Mỗi lít bằng một nghìn mi-li-lít.',
-        solution: `${l} l = ${mlText(l * 1000)}.`,
+        prompt: `Chai có 1 l nước. Em rót ra ${mlText(out)}. Trong chai còn lại bao nhiêu mi-li-lít nước?`,
+        ...sortedOptions(mlText, right, [out, right + 100, right - 100, right + 50]),
+        hint: 'Em đổi 1 l ra mi-li-lít, rồi trừ đi số nước đã rót.',
+        solution: `1 l = ${mlText(CYLINDER_MAX)}. ${fmt(CYLINDER_MAX)} − ${out} = ${right}. Trong chai còn ${mlText(right)}.`,
       };
     }
     if (kind === 'calc') {
@@ -146,7 +151,7 @@ export function buildRound(seed) {
           solution: `${n} × ${k} = ${n * k}. Kết quả là ${mlText(n * k)}.`,
         };
       }
-      const a = int(rand, 3, 9) * 100 + 20;
+      const a = int(rand, 3, 6) * 100 + 20;
       const b = int(rand, 1, 2) * 100 + 50;
       const right = op === '+' ? a + b : a - b;
       return {

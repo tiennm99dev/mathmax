@@ -63,7 +63,7 @@
   />
 
   {#if mode === 'scale'}
-    <p class="text-center text-2xl font-bold text-slate-800">
+    <p class="text-center text-2xl font-bold text-balance text-slate-800">
       Đặt đồ lên cân để kim chỉ {gramText(target)}
     </p>
 

@@ -53,7 +53,7 @@
 <svg
   bind:this={svgEl}
   viewBox="0 0 {W} {H}"
-  class="w-full max-w-xl touch-none rounded-2xl border border-slate-200 bg-sky-50 select-none"
+  class="mx-auto block w-full max-w-xl touch-none rounded-2xl border border-slate-200 bg-sky-50 select-none"
   role={onchange ? 'group' : 'img'}
   aria-label={label}
 >

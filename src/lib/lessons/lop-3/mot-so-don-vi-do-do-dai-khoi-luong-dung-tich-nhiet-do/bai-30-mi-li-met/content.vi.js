@@ -117,8 +117,8 @@ export default {
     {
       type: 'match',
       prompt: 'Nối mỗi độ dài với số đo bằng nó.',
-      left: ['5 cm', '9 cm', '1 cm', '2 m'],
-      right: ['50 mm', '90 mm', '10 mm', '2 000 mm'],
+      left: ['5 cm', '9 cm', '1 cm', '1 m'],
+      right: ['50 mm', '90 mm', '10 mm', '1 000 mm'],
       pairs: [
         [0, 0],
         [1, 1],
@@ -126,7 +126,7 @@ export default {
         [3, 3],
       ],
       hints: ['1 cm = 10 mm, 1 m = 1 000 mm.'],
-      solution: '5 cm = 50 mm. 9 cm = 90 mm. 1 cm = 10 mm. 2 m = 2 000 mm.',
+      solution: '5 cm = 50 mm. 9 cm = 90 mm. 1 cm = 10 mm. 1 m = 1 000 mm.',
     },
     {
       type: 'order',

@@ -5,7 +5,8 @@
   /**
    * A dial scale (cân đồng hồ) from 0 to 1 000 g: a number at every 100 g, a
    * small mark at every 50 g, and a needle that turns smoothly unless reduced
-   * motion is asked for. A drawing only: the widget around it holds the controls.
+   * motion is asked for. The numbers sit on top of the needle, so a reading on a
+   * numbered mark stays legible. A drawing only: the widget holds the controls.
    *
    * - `g`: what lies on the plate, in grams.
    * - `label`: what a screen reader hears.
@@ -26,12 +27,6 @@
     {@const a = dialPoint(mark, 100, CENTER)}
     {@const b = dialPoint(mark, big ? 86 : 92, CENTER)}
     <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#334155" stroke-width={big ? 2.5 : 1.2} />
-    {#if big}
-      {@const t = dialPoint(mark, 68, CENTER)}
-      <text x={t.x} y={t.y + 5} text-anchor="middle" font-size="14" font-weight="700" fill="#1e293b"
-        >{fmt(mark)}</text
-      >
-    {/if}
   {/each}
   <text x={CENTER.x} y={CENTER.y + 62} text-anchor="middle" font-size="18" fill="#334155">g</text>
   <line
@@ -46,4 +41,18 @@
     style="transform-origin: {CENTER.x}px {CENTER.y}px; transform: rotate({dialAngle(g)}deg)"
   />
   <circle cx={CENTER.x} cy={CENTER.y} r="7" fill="#dc2626" />
+  {#each MARKS.filter((mark) => mark % 100 === 0) as mark (mark)}
+    {@const t = dialPoint(mark, 68, CENTER)}
+    <text
+      x={t.x}
+      y={t.y + 5}
+      text-anchor="middle"
+      font-size="14"
+      font-weight="700"
+      fill="#1e293b"
+      stroke="#fff"
+      stroke-width="3"
+      paint-order="stroke">{fmt(mark)}</text
+    >
+  {/each}
 </svg>

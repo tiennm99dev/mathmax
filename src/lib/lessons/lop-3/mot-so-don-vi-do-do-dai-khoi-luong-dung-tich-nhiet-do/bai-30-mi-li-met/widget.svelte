@@ -43,7 +43,7 @@
   />
 
   {#if mode === 'ruler'}
-    <p class="text-center text-2xl font-bold text-slate-800">{taskText(task)}</p>
+    <p class="text-center text-2xl font-bold text-balance text-slate-800">{taskText(task)}</p>
 
     <MmRuler {mm} overview label={rulerLabel(mm, true)} onchange={(v) => (mm = v)} />
 

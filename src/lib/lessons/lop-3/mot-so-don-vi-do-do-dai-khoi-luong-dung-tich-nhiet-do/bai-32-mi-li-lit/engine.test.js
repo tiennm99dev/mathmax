@@ -53,6 +53,18 @@ describe('the practice round', () => {
     expect(bad).toEqual([]);
   });
 
+  it('stays within the numbers up to 1 000 this grade has met', () => {
+    const bad = [];
+    for (let seed = 1; seed <= 40; seed++) {
+      for (const q of buildRound(seed)) {
+        const text = [q.prompt, q.solution, ...q.options.map(optionText)].join(' ');
+        const numbers = text.replaceAll(GROUP, '').match(/\d+/g) ?? [];
+        if (numbers.some((v) => Number(v) > 1000)) bad.push(q);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('keeps every stored answer right', () => {
     const bad = [];
     for (let seed = 1; seed <= 40; seed++) {
@@ -60,8 +72,8 @@ describe('the practice round', () => {
         const right = optionText(q.options[q.answer]).replaceAll(GROUP, '');
         const n = parseInt(right, 10);
         if (q.visual && n !== q.visual.ml) bad.push(q);
-        const l = /^(\d) l bằng/.exec(q.prompt);
-        if (l && n !== Number(l[1]) * 1000) bad.push(q);
+        const out = /Em rót ra (\d+) ml\./.exec(q.prompt);
+        if (out && n !== 1000 - Number(out[1])) bad.push(q);
         const sum = /^(\d+) ml ([+−×]) (\d+)( ml)? = /.exec(q.prompt);
         if (sum) {
           const [a, b] = [Number(sum[1]), Number(sum[3])];
