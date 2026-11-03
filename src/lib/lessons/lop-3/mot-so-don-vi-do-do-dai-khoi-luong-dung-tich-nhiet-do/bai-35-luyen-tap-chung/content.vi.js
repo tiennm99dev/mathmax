@@ -19,8 +19,8 @@ export default {
           head: ['Em đo', 'Dụng cụ', 'Đơn vị'],
           rows: [
             ['Độ dài', 'Thước kẻ', '1 cm = 10 mm'],
-            ['Khối lượng', 'Cân', '1 kg = 1 000 g'],
-            ['Dung tích', 'Ống đong', '1 l = 1 000 ml'],
+            ['Khối lượng', 'Cân', '1 kg = 1 000 g'],
+            ['Dung tích', 'Ống đong', '1 l = 1 000 ml'],
             ['Nhiệt độ', 'Nhiệt kế', '°C'],
           ],
         },
@@ -251,7 +251,7 @@ export default {
     },
   ],
   takeaways: [
-    '1 cm = 10 mm, 1 kg = 1 000 g, 1 l = 1 000 ml.',
+    '1 cm = 10 mm, 1 kg = 1 000 g, 1 l = 1 000 ml.',
     'Tính với số đo: em tính như với các số, rồi viết đơn vị ở kết quả.',
     'Cân thăng bằng thì hai đĩa nặng bằng nhau. Đĩa thấp hơn thì nặng hơn.',
   ],

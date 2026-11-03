@@ -91,19 +91,28 @@
         <div class="grid gap-2" role="group" aria-label="Việc làm với cốc {mlText(size)}">
           <button
             type="button"
-            class="min-h-12 rounded-xl border-2 border-sky-500 bg-white px-1 font-semibold text-slate-800 {focusRing}"
+            class="min-h-12 rounded-xl border-2 border-sky-500 bg-white px-1 font-semibold text-slate-800 {focusRing} {solved
+              ? 'opacity-50'
+              : ''}"
+            aria-disabled={solved}
             aria-label="Múc đầy cốc {mlText(size)}"
             onclick={() => act('fill', id)}>Múc đầy</button
           >
           <button
             type="button"
-            class="min-h-12 rounded-xl border-2 border-indigo-500 bg-white px-1 font-semibold text-slate-800 {focusRing}"
+            class="min-h-12 rounded-xl border-2 border-indigo-500 bg-white px-1 font-semibold text-slate-800 {focusRing} {solved
+              ? 'opacity-50'
+              : ''}"
+            aria-disabled={solved}
             aria-label="Rót cốc {mlText(size)} sang cốc kia"
             onclick={() => act('pour', id)}>Rót sang cốc kia</button
           >
           <button
             type="button"
-            class="min-h-12 rounded-xl border-2 border-slate-400 bg-white px-1 font-semibold text-slate-800 {focusRing}"
+            class="min-h-12 rounded-xl border-2 border-slate-400 bg-white px-1 font-semibold text-slate-800 {focusRing} {solved
+              ? 'opacity-50'
+              : ''}"
+            aria-disabled={solved}
             aria-label="Đổ hết cốc {mlText(size)}"
             onclick={() => act('empty', id)}>Đổ hết</button
           >

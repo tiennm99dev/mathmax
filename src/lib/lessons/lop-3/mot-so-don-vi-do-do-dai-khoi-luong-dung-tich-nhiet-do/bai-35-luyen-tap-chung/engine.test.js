@@ -85,6 +85,13 @@ describe('the round', () => {
     expect(bad).toEqual([]);
   });
 
+  it('reads the ruler by the centimetre numbers it prints', () => {
+    const bad = allQuestions().filter(
+      ({ q }) => q.visual?.type === 'ruler' && /vạch( số)? \d\d/.test(q.solution),
+    );
+    expect(bad).toEqual([]);
+  });
+
   it('keeps every wrong reading on the tool', () => {
     const max = { ruler: 30, dial: 1000, cylinder: 1000, thermometer: 50 };
     const bad = allQuestions().filter(({ q }) => {

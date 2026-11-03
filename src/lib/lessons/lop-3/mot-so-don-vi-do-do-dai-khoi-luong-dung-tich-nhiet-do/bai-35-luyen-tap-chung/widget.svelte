@@ -26,7 +26,7 @@
     {:else if q.visual?.type === 'balance'}
       <BalanceScale left={q.visual.left} right={q.visual.right} />
     {:else if q.visual?.type === 'bags'}
-      <div class="grid gap-2 sm:grid-cols-3">
+      <div class="mx-auto grid max-w-80 gap-2">
         {#each q.visual.scales as scale, i (i)}
           <BalanceScale left={scale.left} right={scale.right} />
         {/each}

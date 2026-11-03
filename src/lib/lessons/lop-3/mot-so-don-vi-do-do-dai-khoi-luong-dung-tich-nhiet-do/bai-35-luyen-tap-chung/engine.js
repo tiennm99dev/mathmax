@@ -192,6 +192,22 @@ function drawChain(rand) {
   }
 }
 
+/**
+ * How to read a strip on the ruler, whose numbers count centimetres.
+ * @param {number} mm
+ */
+function rulerWork(mm) {
+  const cm = Math.floor(mm / 10);
+  const rest = mm % 10;
+  const reading =
+    cm === 0
+      ? `Đầu băng màu qua ${rest} khoảng nhỏ.`
+      : rest === 0
+        ? `Đầu băng màu ở vạch số ${cm}. ${cm} cm = ${mmText(mm)}.`
+        : `Vạch số ${cm} là ${mmText(cm * 10)}, thêm ${rest} khoảng nhỏ nữa.`;
+  return `${reading} Băng màu dài ${mmText(mm)}.`;
+}
+
 /** @type {Record<keyof typeof KIND_LABELS, (rand: () => number) => Question>} */
 const MAKERS = {
   'doc-thuoc': (rand) => {
@@ -201,7 +217,7 @@ const MAKERS = {
       prompt: 'Băng màu dài bao nhiêu mi-li-mét?',
       ...sortedOptions(mmText, mm, onScale(RULER_CM * 10, [mm + 1, mm - 1, mm + 10, mm - 10])),
       hint: 'Giữa hai vạch có số là 10 khoảng nhỏ. Mỗi khoảng nhỏ dài 1 mi-li-mét.',
-      solution: `Đầu băng màu ở vạch ${mm}. Băng màu dài ${mmText(mm)}.`,
+      solution: rulerWork(mm),
     };
   },
   'doc-can': (rand) => {
