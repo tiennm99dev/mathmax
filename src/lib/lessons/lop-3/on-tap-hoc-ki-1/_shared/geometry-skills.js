@@ -280,7 +280,7 @@ export const solidFacts = {
     return {
       prompt: fact.ask,
       ...numberOptions(rand, fact.right, 4, 14),
-      hint: 'Em cầm một hộp giấy hoặc nhìn hình vẽ rồi đếm.',
+      hint: 'Em cầm một hộp giấy rồi đếm.',
       solution: fact.say,
     };
   },

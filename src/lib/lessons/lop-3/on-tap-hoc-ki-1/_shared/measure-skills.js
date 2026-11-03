@@ -59,6 +59,25 @@ export const brokenLines = {
 const weight = (g) => ({ kind: 'thing', name: `${g} g`, kg: g });
 
 /**
+ * The weights on a pan, drawn as boxes. Only two rows of boxes fit under the
+ * beam, so the first two of three weights share the bottom box.
+ * @param {number[]} grams
+ * @returns {Load[]}
+ */
+function panWeights(grams) {
+  if (grams.length <= 2) return grams.map(weight);
+  const [first, second, ...rest] = grams;
+  return [
+    {
+      kind: 'thing',
+      name: first === second ? `2 quả ${first} g` : `${first} g, ${second} g`,
+      kg: first + second,
+    },
+    ...rest.map(weight),
+  ];
+}
+
+/**
  * What a thing weighs on a level balance. Its mass goes in the `kg` field the
  * drawing compares by, as grams.
  * @param {string} name
@@ -74,9 +93,9 @@ export function balanceQuestion(name, right, extra = 0) {
     visual: {
       type: 'balance',
       left: [{ kind: 'thing', name, kg: mass }, ...(extra ? [weight(extra)] : [])],
-      right: right.map(weight),
+      right: panWeights(right),
     },
-    ...valueOptions(mass, [sum, sum + extra, mass - 100], inUnit('g')),
+    ...valueOptions(mass, [sum, sum + extra, mass - 100, mass + 100, mass + 200], inUnit('g')),
     hint: extra
       ? 'Hai đĩa nặng bằng nhau. Em cộng các quả cân ở đĩa bên phải, rồi trừ quả cân ở đĩa bên trái.'
       : 'Hai đĩa nặng bằng nhau. Em cộng các quả cân.',
@@ -198,7 +217,7 @@ export const measureWork = {
       prompt: `${write(n)} : ${d} = ?`,
       ...valueOptions(q, [n - d, q + 10, q * 2], write),
       hint: 'Em tính như với số, rồi viết thêm đơn vị.',
-      solution: `${n} : ${d} = ${q}. Vậy ${write(n)} : ${d} = ${write(q)}.`,
+      solution: `${fmt(n)} : ${d} = ${q}. Vậy ${write(n)} : ${d} = ${write(q)}.`,
     };
   },
 };
@@ -237,7 +256,7 @@ export const conversions = {
     return {
       prompt: `${fact.from} = ? ${fact.unit}`,
       ...valueOptions(fact.right, [10, 100, 500], inUnit(fact.unit)),
-      hint: 'Em nhớ lại bảng đơn vị đo đã học.',
+      hint: 'Em xem lại phần Đơn vị đo của bài này.',
       solution: `${fact.from} = ${fmt(fact.right)} ${fact.unit}.`,
     };
   },

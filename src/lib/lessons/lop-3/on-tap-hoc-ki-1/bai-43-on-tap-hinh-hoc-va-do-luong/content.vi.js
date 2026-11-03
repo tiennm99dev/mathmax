@@ -64,7 +64,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Tính với số đo',
-          text: 'Em tính như với số, rồi viết thêm đơn vị. Ví dụ: 840 mm : 3 = 280 mm.',
+          text: 'Em tính như với số, rồi viết thêm đơn vị. Ví dụ: 600 mm : 3 = 200 mm.',
         },
       ],
     },
@@ -92,6 +92,14 @@ export default {
     },
   ],
   practice: [
+    {
+      type: 'choice',
+      prompt: 'Hình nào sau đây luôn có 4 góc vuông?',
+      options: ['Hình chữ nhật', 'Hình tam giác', 'Hình tròn'],
+      answer: 0,
+      hints: ['Em đặt ê ke vào từng góc của hình.'],
+      solution: 'Hình chữ nhật có 4 góc vuông. Hình tam giác chỉ có 3 góc. Hình tròn không có góc.',
+    },
     {
       type: 'number',
       prompt:
@@ -202,17 +210,17 @@ export default {
       prompt: '1 kg = ? g',
       answer: 1000,
       unit: 'g',
-      hints: ['Em nhớ lại bảng đơn vị đo khối lượng.'],
+      hints: ['Em xem lại phần Đơn vị đo của bài này.'],
       solution: '1 kg = 1 000 g.',
     },
     {
       type: 'number',
       prompt:
-        'Mỗi gói mì tôm cân nặng 80 g, một hộp sữa cân nặng 455 g. Hỏi 3 gói mì tôm và 1 hộp sữa cân nặng bao nhiêu gam?',
-      answer: 695,
+        'Mỗi gói mì tôm cân nặng 75 g, một hộp sữa cân nặng 380 g. Hỏi 4 gói mì tôm và 1 hộp sữa cân nặng bao nhiêu gam?',
+      answer: 680,
       unit: 'g',
-      hints: ['Em tính cân nặng 3 gói mì tôm trước.'],
-      solution: '80 × 3 = 240 (g). 240 + 455 = 695 (g).',
+      hints: ['Em tính cân nặng 4 gói mì tôm trước.'],
+      solution: '75 × 4 = 300 (g). 300 + 380 = 680 (g).',
     },
   ],
   takeaways: [

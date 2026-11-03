@@ -44,7 +44,7 @@ export default {
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Số dư luôn bé hơn số chia. Ví dụ: 95 : 8 = 11 (dư 7), vì 7 bé hơn 8.',
+          text: 'Số dư luôn bé hơn số chia. Ví dụ: 87 : 8 = 10 (dư 7), vì 7 bé hơn 8.',
         },
       ],
     },
@@ -55,9 +55,9 @@ export default {
           type: 'table',
           head: ['Muốn tìm', 'Em làm', 'Ví dụ'],
           rows: [
-            ['Thừa số', 'Tích : thừa số kia', '? × 6 = 186, ? = 186 : 6 = 31'],
-            ['Số bị chia', 'Thương × số chia', '? : 7 = 105, ? = 105 × 7 = 735'],
-            ['Số chia', 'Số bị chia : thương', '72 : ? = 8, ? = 72 : 8 = 9'],
+            ['Thừa số', 'Tích : thừa số kia', '? × 4 = 128, ? = 128 : 4 = 32'],
+            ['Số bị chia', 'Thương × số chia', '? : 6 = 112, ? = 112 × 6 = 672'],
+            ['Số chia', 'Số bị chia : thương', '56 : ? = 7, ? = 56 : 7 = 8'],
           ],
         },
       ],
@@ -135,11 +135,10 @@ export default {
     },
     {
       type: 'number',
-      prompt: '107 × 9 = ?',
-      answer: 963,
-      hints: ['Em nhân từ hàng đơn vị. 9 nhân 7 bằng 63, viết 3, nhớ 6.'],
-      solution:
-        '9 nhân 7 bằng 63, viết 3, nhớ 6. 9 nhân 0 bằng 0, thêm 6 bằng 6, viết 6. 9 nhân 1 bằng 9, viết 9. Kết quả là 963.',
+      prompt: '91 × 8 = ?',
+      answer: 728,
+      hints: ['Em nhân từ hàng đơn vị. 8 nhân 1 bằng 8, viết 8.'],
+      solution: '8 nhân 1 bằng 8, viết 8. 8 nhân 9 bằng 72, viết 72. Kết quả là 728.',
     },
     {
       type: 'choice',
@@ -169,6 +168,13 @@ export default {
       answer: 735,
       hints: ['Muốn tìm số bị chia, em lấy thương nhân với số chia.'],
       solution: '? = 105 × 7 = 735.',
+    },
+    {
+      type: 'number',
+      prompt: 'Tìm số thích hợp: 72 : ? = 8. Số đó là bao nhiêu?',
+      answer: 9,
+      hints: ['Muốn tìm số chia, em lấy số bị chia chia cho thương.'],
+      solution: '? = 72 : 8 = 9.',
     },
     {
       type: 'number',

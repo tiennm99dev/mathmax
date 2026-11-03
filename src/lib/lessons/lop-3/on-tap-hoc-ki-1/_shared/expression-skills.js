@@ -247,7 +247,7 @@ function signOptions(right) {
 /** @type {ReviewSkill} */
 export const chooseSign = {
   id: 'chon-dau',
-  label: 'Chọn dấu phép tính',
+  label: 'Chọn dấu, chọn biểu thức',
   make(rand) {
     const shape = int(rand, 0, 2);
     if (shape === 0) {

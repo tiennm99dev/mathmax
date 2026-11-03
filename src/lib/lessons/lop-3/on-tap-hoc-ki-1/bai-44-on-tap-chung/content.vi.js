@@ -100,6 +100,23 @@ export default {
     },
     {
       type: 'number',
+      prompt: 'Đặt tính rồi tính: 847 : 7 = ?',
+      answer: 121,
+      hints: ['Em chia từ trái sang phải. 8 chia 7 được 1, dư 1.'],
+      solution:
+        '8 chia 7 được 1, dư 1. Hạ 4, được 14. 14 chia 7 được 2, dư 0. Hạ 7, 7 chia 7 được 1. Kết quả là 121.',
+    },
+    {
+      type: 'choice',
+      prompt: '95 : 4 = ?',
+      options: ['23 (dư 3)', '22 (dư 7)', '24', '23 (dư 1)'],
+      answer: 0,
+      hints: ['Số dư phải bé hơn 4.'],
+      solution:
+        '9 chia 4 được 2, dư 1. Hạ 5, được 15. 15 chia 4 được 3, dư 3. Vậy 95 : 4 = 23 (dư 3).',
+    },
+    {
+      type: 'number',
       prompt: 'Tính giá trị của biểu thức: 175 + 42 − 75.',
       answer: 142,
       hints: ['Chỉ có cộng, trừ: em tính từ trái sang phải.'],
@@ -164,10 +181,10 @@ export default {
     {
       type: 'number',
       prompt:
-        'Tuần trước trường em góp được 20 thùng đồ dùng học tập. Tuần sau góp được số thùng gấp 3 lần tuần trước. Cả hai tuần góp được bao nhiêu thùng?',
-      answer: 80,
+        'Tuần trước trường em góp được 30 thùng đồ dùng học tập. Tuần sau góp được số thùng gấp 2 lần tuần trước. Cả hai tuần góp được bao nhiêu thùng?',
+      answer: 90,
       hints: ['Em tìm số thùng của tuần sau trước.'],
-      solution: '20 × 3 = 60 (thùng). 20 + 60 = 80 (thùng).',
+      solution: '30 × 2 = 60 (thùng). 30 + 60 = 90 (thùng).',
     },
   ],
   takeaways: [
