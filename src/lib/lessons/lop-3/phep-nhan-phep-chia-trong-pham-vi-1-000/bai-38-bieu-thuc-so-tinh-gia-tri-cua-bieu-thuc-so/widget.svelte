@@ -33,6 +33,8 @@
   let nextId = 10;
   /** @type {HTMLDivElement | undefined} */
   let panel = $state();
+  /** @type {HTMLDivElement | undefined} */
+  let choices = $state();
   /** @type {HTMLButtonElement | undefined} */
   let nextButton = $state();
 
@@ -83,7 +85,8 @@
   /** The buttons just pressed are gone, so focus moves to what replaced them. */
   async function moveFocus() {
     await tick();
-    (done ? nextButton : panel?.querySelector('button'))?.focus();
+    if (done) nextButton?.focus();
+    else (picked === null ? panel : choices)?.querySelector('button')?.focus();
   }
 
   /** @param {number} i */
@@ -188,7 +191,12 @@
   <KidNote {tone} text={message} />
 
   {#if parts}
-    <div class="flex flex-wrap justify-center gap-3" role="group" aria-label="Chọn kết quả">
+    <div
+      bind:this={choices}
+      class="flex flex-wrap justify-center gap-3"
+      role="group"
+      aria-label="Chọn kết quả"
+    >
       {#each options as value (value)}
         <button
           type="button"

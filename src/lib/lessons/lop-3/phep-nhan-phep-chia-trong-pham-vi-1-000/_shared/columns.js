@@ -6,6 +6,7 @@
  */
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { int } from '#lib/core/drill.js';
+import { fmt } from '#lib/core/number-format.js';
 
 /** What each column of a three-digit number is called, from the left. */
 export const PLACES = /** @type {const} */ (['trăm', 'chục', 'đơn vị']);
@@ -166,7 +167,8 @@ export function checkText(n, d) {
 /**
  * Up to four number options in increasing order: the right one and the slips
  * that are whole numbers and not the right value, then its neighbours, so a
- * question always has four different choices.
+ * question always has four different choices. A wrong one can pass 999, so
+ * they are written the way the book groups digits.
  * @param {number} right
  * @param {number[]} slips
  * @returns {{ options: string[], answer: number }}
@@ -177,5 +179,5 @@ export function slipOptions(right, slips) {
     (v) => v !== right && v >= 0 && Number.isInteger(v),
   );
   const values = [right, ...others.slice(0, 3)].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
+  return { options: values.map(fmt), answer: values.indexOf(right) };
 }

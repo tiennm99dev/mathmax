@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { rng } from '#lib/core/drill.js';
+import { fmt } from '#lib/core/number-format.js';
 import {
   carriesOf,
   checkText,
@@ -92,5 +93,10 @@ describe('options from real slips', () => {
     expect(options).toEqual(['9', '12', '18', '24']);
     expect(options[answer]).toBe('18');
     expect(slipOptions(4, [4, -1, 1.5]).options).toEqual(['4', '5', '6', '7']);
+  });
+
+  it('groups the digits of an option past 999 like the book', () => {
+    expect(slipOptions(999, [1099]).options).toContain(fmt(1099));
+    expect(fmt(1099)).not.toBe('1099');
   });
 });
