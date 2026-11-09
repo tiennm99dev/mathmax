@@ -305,6 +305,22 @@ export function extremeQuestion(rand) {
 }
 
 /**
+ * Two wrong roundings of `n`: the other round neighbour, the rounding to
+ * the other place, then the round numbers one step further out, so a
+ * question always has three options.
+ * @param {number} n
+ * @param {RoundUnit} unit
+ * @returns {number[]}
+ */
+export function roundingSlips(n, unit) {
+  const right = roundTo(n, unit);
+  const low = Math.floor(n / unit) * unit;
+  const other = /** @type {RoundUnit} */ (unit === 1000 ? 10000 : 1000);
+  const pool = [low, low + unit, roundTo(n, other), low - unit, low + 2 * unit];
+  return [...new Set(pool.filter((v) => v > 0 && v <= TOP && v !== right))].slice(0, 2);
+}
+
+/**
  * Rounding a number to thousands or ten thousands.
  * @param {() => number} rand
  * @returns {Asked}
@@ -314,13 +330,9 @@ export function roundQuestion(rand) {
   let n = int(rand, 10001, 99899);
   if (n % unit === 0) n += unit === 1000 ? 340 : 4210;
   if (rand() < 0.3) n = Math.floor(n / unit) * unit + unit / 2 + int(rand, 0, 9) * (unit / 100);
-  const right = roundTo(n, unit);
-  const low = Math.floor(n / unit) * unit;
-  const other = /** @type {RoundUnit} */ (unit === 1000 ? 10000 : 1000);
-  const wrong = [low, low + unit, roundTo(n, other)];
   return {
     prompt: `Làm tròn số ${fmt(n)} đến hàng ${unit === 1000 ? 'nghìn' : 'chục nghìn'} được số nào?`,
-    ...sortedOptions(right, wrong),
+    ...sortedOptions(roundTo(n, unit), roundingSlips(n, unit)),
     hint:
       unit === 1000
         ? 'Em nhìn chữ số hàng trăm và so sánh với 5.'
@@ -391,10 +403,9 @@ export function storyQuestion(rand) {
     let n = int(rand, 10001, 98999);
     if (n % 1000 === 0) n += 370;
     const right = roundTo(n, 1000);
-    const low = Math.floor(n / 1000) * 1000;
     return {
       prompt: `Sân vận động có ${fmt(n)} chỗ ngồi. Làm tròn đến hàng nghìn, sân có khoảng bao nhiêu chỗ ngồi?`,
-      ...sortedOptions(right, [low, low + 1000, roundTo(n, 10000)]),
+      ...sortedOptions(right, roundingSlips(n, 1000)),
       hint: 'Làm tròn đến hàng nghìn thì nhìn chữ số hàng trăm.',
       solution: `${roundWhy(n, 1000)} Sân có khoảng ${fmt(right)} chỗ ngồi.`,
     };

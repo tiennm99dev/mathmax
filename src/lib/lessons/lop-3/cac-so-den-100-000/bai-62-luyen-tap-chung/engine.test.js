@@ -11,6 +11,7 @@ import {
   buildRound,
   closePair,
   digitSlips,
+  roundingSlips,
   sumSlips,
   withZeros,
 } from './engine.js';
@@ -131,11 +132,12 @@ describe('the mixed round', () => {
     expect(seen).toBeGreaterThan(0);
   });
 
-  it('offers a choice of numbers when rounding', () => {
+  it('offers three numbers when rounding', () => {
     const bad = [];
     for (const seed of SEEDS) {
       for (const q of buildRound(seed)) {
-        if (q.kind === 'lam-tron' && q.options.length < 2) bad.push(q.prompt);
+        const rounding = q.kind === 'lam-tron' || q.prompt.includes('Làm tròn');
+        if (rounding && q.options.length !== 3) bad.push(q.prompt);
       }
     }
     expect(bad).toEqual([]);
@@ -147,6 +149,13 @@ describe('the mixed round', () => {
 });
 
 describe('number helpers', () => {
+  it('gives two wrong roundings even when the other place rounds the same way', () => {
+    expect(roundingSlips(69216, 1000)).toEqual([70000, 68000]);
+    expect(roundingSlips(49580, 1000)).toEqual([49000, 48000]);
+    expect(roundingSlips(95900, 10000)).toEqual([90000, 96000]);
+    expect(roundingSlips(12000, 10000)).toEqual([20000, 12000]);
+  });
+
   it('writes numbers of five digits, often with a zero', () => {
     const rand = rng(7);
     const bad = [];
