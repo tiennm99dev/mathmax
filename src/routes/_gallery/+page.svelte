@@ -13,6 +13,7 @@
   import AreaGrid from '#lib/core/visuals/area-grid.svelte';
   import BarChart from '#lib/core/visuals/bar-chart.svelte';
   import Pictograph from '#lib/core/visuals/pictograph.svelte';
+  import DoubleBarChart from '#lib/core/visuals/double-bar-chart.svelte';
   import PieChart from '#lib/core/visuals/pie-chart.svelte';
   import LineChart from '#lib/core/visuals/line-chart.svelte';
   import DataTable from '#lib/core/visuals/data-table.svelte';
@@ -287,6 +288,38 @@
         icon={10}
         unit="cây"
         title="Số cây mỗi lớp trồng được"
+      />
+      <Pictograph
+        labels={['Táo', 'Cam']}
+        values={[4, 6]}
+        icon={2}
+        unit="quả"
+        item="apple"
+        title="Biểu tượng là hình (item)"
+      />
+      <Pictograph
+        labels={['Thứ Hai', 'Thứ Ba']}
+        values={[3, 5]}
+        icon={1}
+        unit="bạn"
+        item="dot"
+        title="Biểu tượng là chấm (item)"
+      />
+    </section>
+
+    <section id="double-bar-chart" class={box}>
+      <h2 class="text-xl font-bold">
+        Biểu đồ cột kép <code class="text-sm">double-bar-chart</code>
+      </h2>
+      <DoubleBarChart
+        categories={['Tháng 1', 'Tháng 2', 'Tháng 3']}
+        series={[
+          { name: 'Năm 2023', color: '#4f46e5', values: [2.5, 3.25, 4] },
+          { name: 'Năm 2024', color: '#f59e0b', values: [3.1, 2.75, 4.6] },
+        ]}
+        unit="Tấn"
+        format={(v) => formatNumber(v, 1)}
+        title="Số liệu thập phân (format)"
       />
     </section>
 

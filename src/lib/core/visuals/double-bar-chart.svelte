@@ -1,13 +1,15 @@
 <script>
   import { niceAxis } from '#lib/stats-engine/ticks.js';
   import { linear } from '#lib/core/visuals/svg-math.js';
+  import { formatNumber } from '#lib/core/number-format.js';
 
   /**
    * A double bar chart (biểu đồ cột kép): two bars per category, one per
    * series, with a legend. Series can be hidden to look at one data set at a
    * time; a hidden series keeps its place so the categories do not move. With
    * `onselect`, each category group is a button (pointer, Enter or Space) that
-   * picks the category to compare.
+   * picks the category to compare. `format` writes each value on the bars,
+   * the axis and the spoken label (default `formatNumber`: 2,5 and 1 200).
    *
    * @type {{
    *   categories: string[];
@@ -17,6 +19,7 @@
    *   onselect?: (i: number) => void;
    *   max?: number;
    *   unit?: string;
+   *   format?: (value: number) => string;
    *   title: string;
    *   width?: number;
    *   height?: number;
@@ -30,6 +33,7 @@
     onselect,
     max,
     unit = '',
+    format = (v) => formatNumber(v),
     title,
     width = 480,
     height = 300,
@@ -56,7 +60,7 @@
             `${c}: ` +
             series
               .filter((_, s) => visible[s])
-              .map((s) => `${s.name} ${s.values[i]}`)
+              .map((s) => `${s.name} ${format(s.values[i])}`)
               .join(', '),
         )
         .join('; '),
@@ -81,7 +85,9 @@
   >
     {#each axis.ticks as t (t)}
       <line x1={LEFT} y1={y.map(t)} x2={width - RIGHT} y2={y.map(t)} stroke="#e2e8f0" />
-      <text x={LEFT - 6} y={y.map(t) + 4} text-anchor="end" font-size="12" fill="#64748b">{t}</text>
+      <text x={LEFT - 6} y={y.map(t) + 4} text-anchor="end" font-size="12" fill="#64748b"
+        >{format(t)}</text
+      >
     {/each}
     {#if unit}
       <text x={LEFT - 6} y={TOP - 14} font-size="12" font-weight="600" fill="#334155">{unit}</text>
@@ -131,7 +137,7 @@
             text-anchor="middle"
             font-size="12"
             font-weight="700"
-            fill="#1e293b">{s.values[c]}</text
+            fill="#1e293b">{format(s.values[c])}</text
           >
         {/if}
       {/each}

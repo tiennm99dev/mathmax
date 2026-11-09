@@ -1,15 +1,25 @@
 <script>
   import { formatNumber } from '#lib/core/number-format.js';
   import { iconRow } from '#lib/stats-engine/frequency.js';
+  import Picture from '#lib/core/kid/picture.svelte';
 
   /**
    * A picture chart (biểu đồ tranh): one row per category, each icon standing
    * for `icon` of `unit` (such as 'cây'); a remainder is drawn as the matching
    * part of an icon, so 35 with `icon` 10 shows three and a half icons. The
-   * key under the chart says what one icon stands for.
-   * @type {{ labels: string[], values: number[], icon: number, unit: string, title: string }}
+   * key under the chart says what one icon stands for. `item` picks the icon:
+   * a green `'circle'` (the default), a small `'dot'`, or a kid picture by
+   * name (`'apple'`, `'flower'`, see `kid/pictures/index.js`).
+   * @type {{
+   *   labels: string[];
+   *   values: number[];
+   *   icon: number;
+   *   unit: string;
+   *   title: string;
+   *   item?: 'circle' | 'dot' | import('#lib/core/kid/pictures/index.js').PictureName;
+   * }}
    */
-  let { labels, values, icon, unit, title } = $props();
+  let { labels, values, icon, unit, title, item = 'circle' } = $props();
 
   const uid = $props.id();
   const SIZE = 26;
@@ -22,6 +32,17 @@
   const ROW_H = SIZE + 10;
   const height = $derived(rows.length * ROW_H + 8);
 </script>
+
+{#snippet icon1(/** @type {number} */ x, /** @type {number} */ y)}
+  {#if item === 'circle'}
+    <circle cx={x + SIZE / 2} cy={y + SIZE / 2} r={SIZE / 2} fill="#16a34a" />
+    <circle cx={x + SIZE / 2 - 4} cy={y + SIZE / 2 - 4} r="4" fill="#bbf7d0" />
+  {:else if item === 'dot'}
+    <circle cx={x + SIZE / 2} cy={y + SIZE / 2} r={SIZE / 4} fill="#334155" />
+  {:else}
+    <Picture name={item} size={SIZE} {x} {y} decorative />
+  {/if}
+{/snippet}
 
 <figure class="mx-auto w-full max-w-xl">
   <svg
@@ -47,18 +68,7 @@
         stroke-width="1"
       />
       {#each Array.from({ length: r.whole }) as _, k (k)}
-        <circle
-          cx={LABEL_W + k * (SIZE + GAP) + SIZE / 2}
-          cy={y + SIZE / 2}
-          r={SIZE / 2}
-          fill="#16a34a"
-        />
-        <circle
-          cx={LABEL_W + k * (SIZE + GAP) + SIZE / 2 - 4}
-          cy={y + SIZE / 2 - 4}
-          r="4"
-          fill="#bbf7d0"
-        />
+        {@render icon1(LABEL_W + k * (SIZE + GAP), y)}
       {/each}
       {#if r.part > 0}
         {@const x0 = LABEL_W + r.whole * (SIZE + GAP)}
@@ -73,19 +83,20 @@
           stroke="#86efac"
           stroke-dasharray="3 3"
         />
-        <circle
-          cx={x0 + SIZE / 2}
-          cy={y + SIZE / 2}
-          r={SIZE / 2}
-          fill="#16a34a"
-          clip-path="url(#{uid}-clip-{i})"
-        />
+        <g clip-path="url(#{uid}-clip-{i})">{@render icon1(x0, y)}</g>
       {/if}
     {/each}
   </svg>
   <figcaption class="mt-2 text-center text-sm text-slate-600">
-    <span aria-hidden="true" class="inline-block h-3 w-3 rounded-full bg-green-600 align-middle"
-    ></span>
+    {#if item === 'circle'}
+      <span aria-hidden="true" class="inline-block h-3 w-3 rounded-full bg-green-600 align-middle"
+      ></span>
+    {:else if item === 'dot'}
+      <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full bg-slate-700 align-middle"
+      ></span>
+    {:else}
+      <span class="inline-block align-middle"><Picture name={item} size={18} decorative /></span>
+    {/if}
     = {icon}
     {unit}
   </figcaption>
