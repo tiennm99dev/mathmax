@@ -121,6 +121,7 @@ export const practice = {
   /** @param {number} n @param {string} noun */
   countLabel: (n, noun) => `${n} ${noun}`,
   countCards: 'Chọn số',
+  countGroup: 'Nhóm',
   feedback: {
     correct: 'Đúng rồi!',
     wrong: 'Chưa đúng, thử lại nhé.',

@@ -95,6 +95,7 @@ export default {
       prompt: 'Có mấy quả táo? Em đếm thêm 4: 4, 8, 12, ...',
       picture: 'apple',
       answer: 20,
+      groups: 5,
       choices: [16, 18, 20, 22, 24],
       hints: ['Em khoanh từng nhóm 4 quả rồi đếm thêm 4.'],
       solution: '4, 8, 12, 16, 20. Có 20 quả táo. 4 × 5 = 20.',

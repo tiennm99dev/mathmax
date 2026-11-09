@@ -95,6 +95,7 @@ export default {
       prompt: 'Có mấy con cá? Em đếm thêm 8: 8, 16, ...',
       picture: 'fish',
       answer: 24,
+      groups: 3,
       choices: [16, 20, 24, 28, 32],
       hints: ['Em đếm lần lượt từng con. Cứ đủ 8 con, em đọc một số: 8, 16, ...'],
       solution: '8, 16, 24. Có 24 con cá. 8 × 3 = 24.',

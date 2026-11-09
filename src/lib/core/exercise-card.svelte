@@ -207,15 +207,32 @@
       />
     {:else if exercise.type === 'count'}
       {@const ex = exercise}
-      <div
-        class="flex flex-wrap gap-2 rounded-xl bg-slate-50 p-3"
-        role="group"
-        aria-label={pictures[ex.picture]}
-      >
-        {#each { length: ex.answer } as _, i (i)}
-          <Picture name={ex.picture} size={48} />
-        {/each}
-      </div>
+      {#if ex.groups}
+        {@const each = ex.answer / ex.groups}
+        <div class="flex flex-wrap gap-3" role="group" aria-label={pictures[ex.picture]}>
+          {#each { length: ex.groups } as _, g (g)}
+            <div
+              class="flex max-w-full flex-wrap gap-1 rounded-full border-2 border-slate-300 bg-slate-50 px-4 py-3"
+              role="group"
+              aria-label="{copy.countGroup} {g + 1}"
+            >
+              {#each { length: each } as _, i (i)}
+                <Picture name={ex.picture} size={36} />
+              {/each}
+            </div>
+          {/each}
+        </div>
+      {:else}
+        <div
+          class="flex flex-wrap gap-2 rounded-xl bg-slate-50 p-3"
+          role="group"
+          aria-label={pictures[ex.picture]}
+        >
+          {#each { length: ex.answer } as _, i (i)}
+            <Picture name={ex.picture} size={48} />
+          {/each}
+        </div>
+      {/if}
       <div role="group" aria-label={copy.countCards} class="flex flex-wrap gap-2">
         {#each ex.choices ?? decade(ex.answer) as value (value)}
           <button

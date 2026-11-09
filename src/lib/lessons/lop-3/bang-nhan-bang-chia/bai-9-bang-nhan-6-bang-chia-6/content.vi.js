@@ -96,6 +96,7 @@ export default {
       prompt: 'Có mấy bông hoa? Em đếm thêm 6: 6, 12, ...',
       picture: 'flower',
       answer: 18,
+      groups: 3,
       choices: [12, 16, 18, 20, 24],
       hints: ['Em đếm lần lượt từng bông. Cứ đủ 6 bông, em đọc một số: 6, 12, ...'],
       solution: '6, 12, 18. Có 18 bông hoa. 6 × 3 = 18.',

@@ -50,7 +50,11 @@ import { findClose } from './rich-parts.js';
 /** @typedef {ExerciseBase & { type: 'text', accept: string[] }} TextExercise */
 /** @typedef {ExerciseBase & { type: 'order', items: string[], answer: number[] }} OrderExercise `answer` lists item indices in the correct order. */
 /** @typedef {ExerciseBase & { type: 'match', left: string[], right: string[], pairs: Array<[number, number]> }} MatchExercise `pairs` holds `[leftIndex, rightIndex]`. */
-/** @typedef {ExerciseBase & { type: 'count', picture: PictureName, answer: number, choices?: number[] }} CountExercise */
+/**
+ * @typedef {ExerciseBase & { type: 'count', picture: PictureName, answer: number, choices?: number[], groups?: number }} CountExercise
+ * `groups` splits the picture into that many equal groups, each in its own
+ * frame ("3 đĩa, mỗi đĩa 6 quả" is `answer: 18, groups: 3`).
+ */
 
 /**
  * @typedef {NumberExercise | FractionExercise | ChoiceExercise | MultiExercise | TextExercise
@@ -151,7 +155,7 @@ const EXERCISE_KEYS = {
   text: ['accept'],
   order: ['items', 'answer'],
   match: ['left', 'right', 'pairs'],
-  count: ['picture', 'answer', 'choices'],
+  count: ['picture', 'answer', 'choices', 'groups'],
 };
 
 const WIDGET_NAME_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -442,6 +446,14 @@ function validateExercise(r, ex, path) {
           if (new Set(c).size !== c.length) r.add(`${path}.choices`, 'must not repeat a number');
           if (!c.includes(/** @type {number} */ (ex.answer)))
             r.add(`${path}.choices`, 'must include the answer');
+        }
+      }
+      if (ex.groups !== undefined) {
+        const g = ex.groups;
+        if (!isIndex(g) || /** @type {number} */ (g) < 2) {
+          r.add(`${path}.groups`, 'must be a whole number from 2');
+        } else if (isIndex(ex.answer) && /** @type {number} */ (ex.answer) % g !== 0) {
+          r.add(`${path}.groups`, 'must split the answer into equal groups');
         }
       }
       break;

@@ -111,6 +111,7 @@ export default {
       prompt: 'Có mấy quả cam? Em đếm thêm 9: 9, 18, ...',
       picture: 'orange',
       answer: 27,
+      groups: 3,
       choices: [18, 24, 27, 30, 36],
       hints: ['Em đếm lần lượt từng quả. Cứ đủ 9 quả, em đọc một số: 9, 18, ...'],
       solution: '9, 18, 27. Có 27 quả cam. 9 × 3 = 27.',

@@ -70,6 +70,7 @@ export default {
       prompt: 'Em đếm số bông hoa trong hình. Mỗi bó có 5 bông.',
       picture: 'flower',
       answer: 15,
+      groups: 3,
       choices: [10, 14, 15, 16, 20],
       hints: ['Em đếm thêm 5: 5, 10, ...', 'Mỗi 5 bông là một bó.'],
       solution: 'Có 15 bông hoa. 15 : 5 = 3, được 3 bó.',

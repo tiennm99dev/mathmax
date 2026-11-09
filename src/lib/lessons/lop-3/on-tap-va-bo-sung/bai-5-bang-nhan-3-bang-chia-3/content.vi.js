@@ -95,6 +95,7 @@ export default {
       prompt: 'Có mấy quả táo? Em đếm thêm 3: 3, 6, 9, ...',
       picture: 'apple',
       answer: 15,
+      groups: 5,
       choices: [12, 14, 15, 16, 18],
       hints: ['Em khoanh từng nhóm 3 quả rồi đếm thêm 3.'],
       solution: '3, 6, 9, 12, 15. Có 15 quả táo. 3 × 5 = 15.',

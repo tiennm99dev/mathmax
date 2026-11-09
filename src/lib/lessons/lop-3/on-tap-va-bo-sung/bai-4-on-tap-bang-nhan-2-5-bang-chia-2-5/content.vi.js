@@ -106,6 +106,7 @@ export default {
       prompt: 'Có mấy cái bút chì? Em đếm thêm 2: 2, 4, 6, ...',
       picture: 'pencil',
       answer: 12,
+      groups: 6,
       choices: [10, 11, 12, 13, 14],
       hints: ['Em đếm từng đôi: 2, 4, 6, 8, ...'],
       solution: '2, 4, 6, 8, 10, 12. Có 12 cái bút chì. 2 × 6 = 12.',

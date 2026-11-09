@@ -95,6 +95,7 @@ export default {
       prompt: 'Có mấy ngôi sao? Em đếm thêm 7: 7, 14, ...',
       picture: 'star',
       answer: 21,
+      groups: 3,
       choices: [14, 18, 21, 24, 28],
       hints: ['Em đếm lần lượt từng ngôi sao. Cứ đủ 7 ngôi sao, em đọc một số: 7, 14, ...'],
       solution: '7, 14, 21. Có 21 ngôi sao. 7 × 3 = 21.',

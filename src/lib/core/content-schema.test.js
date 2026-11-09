@@ -82,6 +82,7 @@ describe('validateLesson', () => {
         ],
       },
       { ...base, type: 'count', picture: 'apple', answer: 4, choices: [3, 4, 5] },
+      { ...base, type: 'count', picture: 'apple', answer: 18, groups: 3 },
     ];
     expect(validateLesson(lesson)).toEqual([]);
   });
@@ -155,6 +156,16 @@ describe('validateLesson', () => {
       'must pair each of the 2 left items once',
     ],
     ['count picture', { type: 'count', picture: 'dragon', answer: 3 }, 'must name a kid picture'],
+    [
+      'count groups',
+      { type: 'count', picture: 'apple', answer: 7, groups: 3 },
+      'must split the answer into equal groups',
+    ],
+    [
+      'count one group',
+      { type: 'count', picture: 'apple', answer: 6, groups: 1 },
+      'must be a whole number from 2',
+    ],
     [
       'count choices',
       { type: 'count', picture: 'star', answer: 3, choices: [1, 2] },

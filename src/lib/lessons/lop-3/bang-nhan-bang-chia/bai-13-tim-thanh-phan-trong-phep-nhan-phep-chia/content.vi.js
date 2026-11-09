@@ -176,6 +176,7 @@ export default {
       prompt: 'Có 3 đĩa, mỗi đĩa 6 quả dâu tây. Em đếm xem có mấy quả.',
       picture: 'strawberry',
       answer: 18,
+      groups: 3,
       choices: [9, 15, 18, 21],
       hints: ['Em đếm thêm 6: 6, 12, ...'],
       solution: '6, 12, 18. Có 18 quả. Đúng với ? : 3 = 6, vì 6 × 3 = 18.',
