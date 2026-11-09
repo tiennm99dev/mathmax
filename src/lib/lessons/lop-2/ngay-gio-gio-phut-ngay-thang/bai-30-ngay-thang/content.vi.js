@@ -31,8 +31,7 @@ export default {
       blocks: [
         {
           type: 'callout',
-          tone: 'definition',
-          title: 'Ghi nhớ',
+          tone: 'theorem',
           text: 'Số cuối cùng trên tờ lịch cho biết tháng đó có bao nhiêu ngày.',
         },
         {

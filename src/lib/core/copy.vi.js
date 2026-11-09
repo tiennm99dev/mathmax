@@ -32,13 +32,17 @@ export const callout = {
 };
 
 /**
- * The heading of a callout. Grades 1-5 (`kid`) never meet the word "Định lí": the
- * block a lesson marks `theorem` is what the child has to remember.
+ * The heading of a callout. Grades 1-5 (`kid`) never meet the words "Định lí"
+ * or "Định nghĩa": the block a lesson marks `theorem` is what the child has to
+ * remember ("Ghi nhớ"), and a `definition` is what the child needs to know
+ * ("Em cần biết").
  * @param {keyof typeof callout} tone
  * @param {boolean} [kid]
  */
 export function calloutLabel(tone, kid = false) {
-  return kid && tone === 'theorem' ? 'Ghi nhớ' : callout[tone];
+  if (kid && tone === 'theorem') return 'Ghi nhớ';
+  if (kid && tone === 'definition') return 'Em cần biết';
+  return callout[tone];
 }
 
 export const steps = {

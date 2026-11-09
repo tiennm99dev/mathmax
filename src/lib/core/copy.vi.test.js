@@ -9,6 +9,7 @@ describe('calloutLabel', () => {
 
   it('gives a child a word to remember by, with the other tones unchanged', () => {
     expect(calloutLabel('theorem', true)).toBe('Ghi nhớ');
+    expect(calloutLabel('definition', true)).toBe('Em cần biết');
     expect(calloutLabel('note', true)).toBe('Ghi chú');
     expect(calloutLabel('warning', true)).toBe('Lưu ý');
   });

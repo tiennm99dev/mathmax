@@ -17,8 +17,7 @@ export default {
       blocks: [
         {
           type: 'callout',
-          tone: 'definition',
-          title: 'Ghi nhớ',
+          tone: 'theorem',
           text: 'Một ngày có 24 giờ. Một ngày tính từ 12 giờ đêm hôm trước đến 12 giờ đêm hôm sau.',
         },
         {
@@ -70,8 +69,7 @@ export default {
       blocks: [
         {
           type: 'callout',
-          tone: 'definition',
-          title: 'Ghi nhớ',
+          tone: 'theorem',
           text: 'Một giờ có 60 phút. Kim dài đi hết một vòng là 60 phút, kim ngắn đi được một số.',
         },
         { type: 'widget', name: 'phut' },

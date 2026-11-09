@@ -19,8 +19,7 @@ export default {
         },
         {
           type: 'callout',
-          tone: 'definition',
-          title: 'Ghi nhớ',
+          tone: 'theorem',
           text: '10 đơn vị là 1 chục. 1 chục là 10.',
         },
         {
