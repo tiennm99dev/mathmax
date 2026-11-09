@@ -47,7 +47,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Nếu tại $x = a$ mà mẫu bằng $0$ thì phân thức không xác định tại $x = a$. Nếu tại những giá trị của biến thỏa mãn điều kiện xác định, ta thay vào phân thức và tính được một số: đó là giá trị của phân thức tại các giá trị đã cho của biến.',
+          text: 'Nếu tại $x = a$ mà mẫu bằng $0$ thì phân thức không xác định tại $x = a$. Nếu tại những giá trị của biến thoả mãn điều kiện xác định, ta thay vào phân thức và tính được một số: đó là giá trị của phân thức tại các giá trị đã cho của biến.',
         },
         {
           type: 'table',
@@ -108,7 +108,7 @@ export default {
         'a) $P$ xác định khi mẫu khác $0$: $x^2 - 9 \\ne 0$.',
         'Ta có $x^2 - 9 = (x - 3)(x + 3)$, bằng $0$ khi $x = 3$ hoặc $x = -3$.',
         'Vậy điều kiện xác định của $P$ là $x \\ne 3$ và $x \\ne -3$.',
-        'b) $x = 1$ thỏa mãn điều kiện xác định. Thay vào: $P = \\dfrac{3 \\cdot 1 + 1}{1^2 - 9} = \\dfrac{4}{-8}$.',
+        'b) $x = 1$ thoả mãn điều kiện xác định. Thay vào: $P = \\dfrac{3 \\cdot 1 + 1}{1^2 - 9} = \\dfrac{4}{-8}$.',
       ],
       answer: 'a) $x \\ne 3$ và $x \\ne -3$; b) $P = -\\dfrac{1}{2}$.',
     },
@@ -123,7 +123,7 @@ export default {
       answer: 'Có: $\\dfrac{x - 1}{x + 1} = \\dfrac{x^2 - 2x + 1}{x^2 - 1}$.',
     },
     {
-      problem: 'Tìm đa thức $A$ thỏa mãn $\\dfrac{A}{x - 2} = \\dfrac{x^2 + 2x}{x^2 - 4}$.',
+      problem: 'Tìm đa thức $A$ thoả mãn $\\dfrac{A}{x - 2} = \\dfrac{x^2 + 2x}{x^2 - 4}$.',
       steps: [
         'Theo định nghĩa hai phân thức bằng nhau: $A \\cdot (x^2 - 4) = (x - 2)(x^2 + 2x)$.',
         'Phân tích: $(x - 2)(x^2 + 2x) = (x - 2) \\cdot x(x + 2) = x(x^2 - 4)$.',
@@ -202,12 +202,12 @@ export default {
         'Phân tích $x^2 - 1 = (x - 1)(x + 1)$ và $x^2 + x = x(x + 1)$.',
       ],
       solution:
-        '$(x - 1)(x^2 + x) = x(x - 1)(x + 1) = x(x^2 - 1)$, nên $\\dfrac{x - 1}{x} = \\dfrac{x^2 - 1}{x^2 + x}$. Với $\\dfrac{x^2 - x}{x}$: $(x - 1) \\cdot x \\ne x(x^2 - x) = x^2(x - 1)$; hai lựa chọn còn lại cũng không thỏa mãn.',
+        '$(x - 1)(x^2 + x) = x(x - 1)(x + 1) = x(x^2 - 1)$, nên $\\dfrac{x - 1}{x} = \\dfrac{x^2 - 1}{x^2 + x}$. Với $\\dfrac{x^2 - x}{x}$: $(x - 1) \\cdot x \\ne x(x^2 - x) = x^2(x - 1)$; hai lựa chọn còn lại cũng không thoả mãn.',
     },
     {
       type: 'text',
       prompt:
-        'Tìm đa thức $A$ thỏa mãn $\\dfrac{A}{x + 3} = \\dfrac{x^2 - 3x}{x^2 - 9}$. Gõ đa thức $A$.',
+        'Tìm đa thức $A$ thoả mãn $\\dfrac{A}{x + 3} = \\dfrac{x^2 - 3x}{x^2 - 9}$. Gõ đa thức $A$.',
       accept: ['x', 'A = x', 'A=x'],
       hints: [
         'Hai phân thức bằng nhau: $A \\cdot (x^2 - 9) = (x + 3)(x^2 - 3x)$.',
@@ -240,7 +240,7 @@ export default {
   takeaways: [
     'Phân thức $\\dfrac{A}{B}$: $A$, $B$ là đa thức, $B$ khác đa thức $0$. Mỗi đa thức, mỗi số thực là một phân thức.',
     'Điều kiện xác định: giá trị của mẫu khác $0$. Phân thức không xác định tại giá trị làm mẫu bằng $0$.',
-    'Giá trị của phân thức: thay giá trị của biến (thỏa mãn điều kiện xác định) vào rồi tính.',
+    'Giá trị của phân thức: thay giá trị của biến (thoả mãn điều kiện xác định) vào rồi tính.',
     '$\\dfrac{A}{B} = \\dfrac{C}{D}$ nếu $A \\cdot D = B \\cdot C$.',
   ],
 };

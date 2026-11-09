@@ -65,7 +65,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Khi phép thử gồm hai bước, ta có thể kẻ bảng: mỗi hàng ứng với một kết quả của bước thứ nhất, mỗi cột ứng với một kết quả của bước thứ hai, mỗi ô là một kết quả của phép thử. Ví dụ, Lan gieo một con xúc xắc, Hòa tung một đồng xu:',
+          text: 'Khi phép thử gồm hai bước, ta có thể kẻ bảng: mỗi hàng ứng với một kết quả của bước thứ nhất, mỗi cột ứng với một kết quả của bước thứ hai, mỗi ô là một kết quả của phép thử. Ví dụ, Lan gieo một con xúc xắc, Hoà tung một đồng xu:',
         },
         {
           type: 'table',

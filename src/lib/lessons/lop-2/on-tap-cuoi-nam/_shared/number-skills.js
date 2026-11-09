@@ -341,7 +341,7 @@ export const blocksSkill = {
 };
 
 /** The schools of the book's table. */
-const SCHOOLS = /** @type {const} */ (['Thành Công', 'Chiến Thắng', 'Hòa Bình', 'Đoàn Kết']);
+const SCHOOLS = /** @type {const} */ (['Thành Công', 'Chiến Thắng', 'Hoà Bình', 'Đoàn Kết']);
 
 /** @type {ReviewSkill} */
 export const tableSkill = {

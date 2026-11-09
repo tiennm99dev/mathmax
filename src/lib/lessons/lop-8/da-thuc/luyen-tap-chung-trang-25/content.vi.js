@@ -43,7 +43,7 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Lỗi hay gặp',
-          text: 'Nhân lũy thừa thì cộng số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$. Chia một hạng tử cho chính nó được $1$, không phải $0$: $(x^2y + xy) : xy = x + 1$.',
+          text: 'Nhân luỹ thừa thì cộng số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$. Chia một hạng tử cho chính nó được $1$, không phải $0$: $(x^2y + xy) : xy = x + 1$.',
         },
         {
           type: 'callout',

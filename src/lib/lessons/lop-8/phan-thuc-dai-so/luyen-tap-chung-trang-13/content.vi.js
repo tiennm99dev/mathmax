@@ -69,7 +69,7 @@ export default {
       steps: [
         'a) $x^2 - 4 = (x - 2)(x + 2) \\ne 0$ khi $x \\ne 2$ và $x \\ne -2$.',
         'b) $P = \\dfrac{x(x - 2)}{(x - 2)(x + 2)} = \\dfrac{x}{x + 2}$.',
-        'c) $x = 3$ thỏa mãn điều kiện xác định: $P = \\dfrac{3}{3 + 2} = \\dfrac{3}{5}$.',
+        'c) $x = 3$ thoả mãn điều kiện xác định: $P = \\dfrac{3}{3 + 2} = \\dfrac{3}{5}$.',
         'Tại $x = 2$ mẫu $x^2 - 4$ bằng $0$, nên $P$ không xác định, dù biểu thức rút gọn $\\dfrac{x}{x + 2}$ vẫn tính được. Luôn tìm điều kiện xác định từ phân thức ban đầu.',
       ],
       answer:

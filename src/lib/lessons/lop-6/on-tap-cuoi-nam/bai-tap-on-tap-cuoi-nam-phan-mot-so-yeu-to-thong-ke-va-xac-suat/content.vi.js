@@ -58,7 +58,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Một sự kiện có thể xảy ra hoặc không xảy ra, tùy vào kết quả nhận được. Chẳng hạn khi gieo xúc xắc được mặt $4$ chấm thì sự kiện "Số chấm là số chẵn" xảy ra, còn sự kiện "Số chấm lớn hơn $5$" không xảy ra.',
+          text: 'Một sự kiện có thể xảy ra hoặc không xảy ra, tuỳ vào kết quả nhận được. Chẳng hạn khi gieo xúc xắc được mặt $4$ chấm thì sự kiện "Số chấm là số chẵn" xảy ra, còn sự kiện "Số chấm lớn hơn $5$" không xảy ra.',
         },
         {
           type: 'callout',
@@ -261,7 +261,7 @@ export default {
   takeaways: [
     'Dữ liệu là số (số liệu) hoặc không phải là số; dữ liệu phải nằm trong phạm vi hợp lí.',
     'Biểu đồ tranh, biểu đồ cột biểu diễn một bộ dữ liệu; biểu đồ cột kép so sánh hai bộ dữ liệu cùng loại.',
-    'Liệt kê đủ các kết quả có thể; một sự kiện xảy ra hay không tùy vào kết quả nhận được.',
+    'Liệt kê đủ các kết quả có thể; một sự kiện xảy ra hay không tuỳ vào kết quả nhận được.',
     'Xác suất thực nghiệm của $A$: $\\dfrac{n(A)}{n}$, với $n$ là tổng số lần thực hiện.',
   ],
 };

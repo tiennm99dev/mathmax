@@ -33,7 +33,7 @@ export const EXPERIMENTS = [
   {
     id: 'xuc-xac-dong-xu',
     title: 'Gieo xúc xắc và tung đồng xu',
-    story: 'Lan gieo một con xúc xắc, Hòa tung một đồng xu; ghi số chấm và mặt của đồng xu.',
+    story: 'Lan gieo một con xúc xắc, Hoà tung một đồng xu; ghi số chấm và mặt của đồng xu.',
     stages: [
       { name: 'Xúc xắc', short: 'Xúc xắc', labels: ['1', '2', '3', '4', '5', '6'] },
       { name: 'Đồng xu', short: 'Đồng xu', labels: ['S', 'N'] },

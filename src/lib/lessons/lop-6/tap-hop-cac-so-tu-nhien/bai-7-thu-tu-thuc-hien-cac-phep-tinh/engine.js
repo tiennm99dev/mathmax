@@ -145,7 +145,7 @@ export function whyNot(tokens, index) {
   const bestOp = /** @type {{ op: Op }} */ (tokens[/** @type {number} */ (best)]).op;
   if (level(bestOp) > level(t.op)) {
     return bestOp === '^'
-      ? 'Phải nâng lên lũy thừa trước, rồi mới đến nhân, chia, cộng, trừ.'
+      ? 'Phải nâng lên luỹ thừa trước, rồi mới đến nhân, chia, cộng, trừ.'
       : 'Nhân và chia trước, cộng và trừ sau.';
   }
   return 'Các phép tính cùng thứ tự được thực hiện lần lượt từ trái sang phải.';

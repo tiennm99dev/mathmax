@@ -164,7 +164,7 @@ export const tapHopSoHuuTi = {
       const count = last - first + 1;
       const list = Array.from({ length: count }, (_, i) => intText(first + i));
       return {
-        prompt: `Có bao nhiêu số nguyên x thỏa mãn ${writtenText(lo)} < x < ${writtenText(hi)}?`,
+        prompt: `Có bao nhiêu số nguyên x thoả mãn ${writtenText(lo)} < x < ${writtenText(hi)}?`,
         answer: count,
         hints: [
           'Đổi mỗi phân số ra hỗn số hoặc số thập phân để biết nó nằm giữa hai số nguyên nào.',
@@ -305,7 +305,7 @@ const DEC_BASES = [5, -5, 2, -2, 3, -3, 1, -1, 12, -12, 15, -15];
 /** @type {Skill} */
 export const tinhLuyThua = {
   id: 'tinh-luy-thua',
-  label: 'Bài 3. Tính lũy thừa',
+  label: 'Bài 3. Tính luỹ thừa',
   make(rand) {
     const v = int(rand, 0, 2);
     if (v === 0) {
@@ -319,7 +319,7 @@ export const tinhLuyThua = {
         prompt: `Tính ${baseText(w)}${sup(k)}.`,
         answer: val(r),
         hints: [
-          'Lũy thừa của một thương: (a/b)ⁿ = aⁿ/bⁿ.',
+          'Luỹ thừa của một thương: (a/b)ⁿ = aⁿ/bⁿ.',
           w.f.n < 0
             ? `Cơ số âm, số mũ ${k} là số ${k % 2 === 0 ? 'chẵn' : 'lẻ'}, nên kết quả ${k % 2 === 0 ? 'dương' : 'âm'}.`
             : 'Cơ số dương nên kết quả dương.',
@@ -343,7 +343,7 @@ export const tinhLuyThua = {
         hints: [
           `${baseText(w)}${sup(k)} là tích của ${k} thừa số bằng ${writtenText(w)}.`,
           f.n < 0
-            ? 'Lũy thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.'
+            ? 'Luỹ thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.'
             : 'Đếm số chữ số thập phân: mỗi thừa số góp thêm các chữ số thập phân của nó.',
         ],
         steps: [`${baseText(w)}${sup(k)} = ${factors}.`, `= ${decText(r)}.`],
@@ -369,7 +369,7 @@ export const tinhLuyThua = {
     return {
       prompt: `Tính nhanh ${baseText(x)}${sup(k)} · ${y}${sup(k)}.`,
       answer: r,
-      hints: ['Hai lũy thừa cùng số mũ: xⁿ · yⁿ = (x · y)ⁿ.'],
+      hints: ['Hai luỹ thừa cùng số mũ: xⁿ · yⁿ = (x · y)ⁿ.'],
       steps: [
         `${baseText(x)}${sup(k)} · ${y}${sup(k)} = (${writtenText(x)} · ${y})${sup(k)}.`,
         `${writtenText(x)} · ${y} = ${intText(p)}, nên kết quả là ${bracket(intText(p))}${sup(k)} = ${intText(r)}.`,
@@ -395,7 +395,7 @@ const RULE_BASES = /** @type {Written[]} */ ([
 /** @type {Skill} */
 export const quyTacLuyThua = {
   id: 'quy-tac-luy-thua',
-  label: 'Bài 3. Quy tắc lũy thừa',
+  label: 'Bài 3. Quy tắc luỹ thừa',
   make(rand) {
     const w = pick(rand, RULE_BASES);
     const b = baseText(w);
@@ -404,9 +404,9 @@ export const quyTacLuyThua = {
       b.startsWith('(') ? `[${b}${sup(m)}]${sup(n)}` : `(${b}${sup(m)})${sup(n)}`;
     const v = int(rand, 0, 4);
     const rules = {
-      nhan: 'Nhân hai lũy thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.',
-      chia: 'Chia hai lũy thừa cùng cơ số: giữ nguyên cơ số, lấy số mũ của số bị chia trừ số mũ của số chia.',
-      luyThua: 'Lũy thừa của lũy thừa: giữ nguyên cơ số, nhân hai số mũ.',
+      nhan: 'Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.',
+      chia: 'Chia hai luỹ thừa cùng cơ số: giữ nguyên cơ số, lấy số mũ của số bị chia trừ số mũ của số chia.',
+      luyThua: 'Luỹ thừa của luỹ thừa: giữ nguyên cơ số, nhân hai số mũ.',
     };
     let expr;
     let k;
@@ -461,7 +461,7 @@ export const quyTacLuyThua = {
       ];
     }
     return {
-      prompt: `Viết ${expr} dưới dạng một lũy thừa của ${writtenText(w)}. Số mũ của lũy thừa đó bằng bao nhiêu?`,
+      prompt: `Viết ${expr} dưới dạng một luỹ thừa của ${writtenText(w)}. Số mũ của luỹ thừa đó bằng bao nhiêu?`,
       answer: k,
       hints,
       steps,
@@ -590,10 +590,10 @@ export const thuTuPhepTinh = {
     return {
       prompt: `Tính ${writtenText(a)} · ${baseText(base)}${sup(k)} ${op} ${opdW(c)}.`,
       answer: val(r),
-      hints: ['Thứ tự: lũy thừa → nhân và chia → cộng và trừ.'],
+      hints: ['Thứ tự: luỹ thừa → nhân và chia → cộng và trừ.'],
       steps: [
         ...fractionStep([a, base, c]),
-        `Lũy thừa trước: ${baseText(base)}${sup(k)} = ${fracText(pk)}.`,
+        `Luỹ thừa trước: ${baseText(base)}${sup(k)} = ${fracText(pk)}.`,
         `Nhân: ${fracText(x)} · ${opd(pk)} = ${fracText(t)}.`,
         `${op === '+' ? 'Cộng' : 'Trừ'}: ${fracText(t)} ${op} ${opd(z)} = ${fracText(r)}.`,
       ],

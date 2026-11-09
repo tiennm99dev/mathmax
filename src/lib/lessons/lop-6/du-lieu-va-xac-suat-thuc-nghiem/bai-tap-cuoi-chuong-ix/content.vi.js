@@ -36,7 +36,7 @@ export default {
             ],
             [
               'Bài 42. Kết quả có thể và sự kiện',
-              'Không biết trước kết quả, nhưng liệt kê được tất cả các kết quả có thể. Sự kiện xảy ra hay không xảy ra tùy vào kết quả nhận được.',
+              'Không biết trước kết quả, nhưng liệt kê được tất cả các kết quả có thể. Sự kiện xảy ra hay không xảy ra tuỳ vào kết quả nhận được.',
             ],
             [
               'Bài 43. Xác suất thực nghiệm',
@@ -204,7 +204,7 @@ export default {
   takeaways: [
     'Thu thập, phân loại và kiểm tra tính hợp lí của dữ liệu trước khi lập bảng hay vẽ biểu đồ.',
     'Biểu đồ tranh cho số liệu nhỏ, tròn; biểu đồ cột cho một bộ dữ liệu; biểu đồ cột kép để so sánh hai bộ dữ liệu cùng loại.',
-    'Liệt kê các kết quả có thể; một sự kiện xảy ra hay không tùy vào kết quả nhận được.',
+    'Liệt kê các kết quả có thể; một sự kiện xảy ra hay không tuỳ vào kết quả nhận được.',
     'Xác suất thực nghiệm $\\dfrac{n(A)}{n}$ đo khả năng xảy ra của sự kiện qua nhiều lần thử và ổn định dần khi số lần thử lớn.',
   ],
 };

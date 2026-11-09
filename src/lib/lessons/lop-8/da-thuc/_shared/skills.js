@@ -117,7 +117,7 @@ export const donThuc = {
           prompt: `Thu gọn đơn thức ${shown} rồi cho biết bậc của nó.`,
           answer: d,
           hints: [
-            'Nhân các hệ số với nhau và nhân các lũy thừa cùng cơ số (cộng số mũ).',
+            'Nhân các hệ số với nhau và nhân các luỹ thừa cùng cơ số (cộng số mũ).',
             'Bậc là tổng số mũ của các biến trong đơn thức thu gọn.',
           ],
           steps: [reduce, `Bậc của ${monoText(p)} là tổng các số mũ: ${d}.`],
@@ -162,7 +162,7 @@ export const donThuc = {
       answer: evalMono(m, val),
       hints: [
         'Thay giá trị của từng biến vào đơn thức.',
-        'Lũy thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.',
+        'Luỹ thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.',
       ],
       steps: [`Thay ${at(val)}: ${evalLine(m, val)}.`],
     };

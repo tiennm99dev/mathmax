@@ -29,7 +29,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Mỗi số thực $a$ có một số đối là $-a$; chẳng hạn số đối của $\\sqrt{2}$ là $-\\sqrt{2}$, số đối của $-\\pi$ là $\\pi$. Các phép tính cộng, trừ, nhân, chia, lũy thừa trong $\\mathbb{R}$ có các tính chất như trong $\\mathbb{Q}$.',
+          text: 'Mỗi số thực $a$ có một số đối là $-a$; chẳng hạn số đối của $\\sqrt{2}$ là $-\\sqrt{2}$, số đối của $-\\pi$ là $\\pi$. Các phép tính cộng, trừ, nhân, chia, luỹ thừa trong $\\mathbb{R}$ có các tính chất như trong $\\mathbb{Q}$.',
         },
       ],
     },

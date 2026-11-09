@@ -15,7 +15,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Nhắc lại: muốn nhân hai đơn thức, ta nhân hai hệ số với nhau và nhân hai lũy thừa của biến với nhau: $ax^m \\cdot bx^n = (a \\cdot b)x^{m + n}$. Ví dụ: $2x \\cdot 3x^2 = 6x^3$; $\\;(-3x^2) \\cdot 2x^3 = -6x^5$.',
+          text: 'Nhắc lại: muốn nhân hai đơn thức, ta nhân hai hệ số với nhau và nhân hai luỹ thừa của biến với nhau: $ax^m \\cdot bx^n = (a \\cdot b)x^{m + n}$. Ví dụ: $2x \\cdot 3x^2 = 6x^3$; $\\;(-3x^2) \\cdot 2x^3 = -6x^5$.',
         },
         {
           type: 'callout',
@@ -31,7 +31,7 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Chú ý',
-          text: 'Khi nhân hai lũy thừa của biến, ta cộng các số mũ chứ không nhân: $x^2 \\cdot x^3 = x^5$, không phải $x^6$. Dấu của từng hạng tử đi theo hạng tử đó khi nhân.',
+          text: 'Khi nhân hai luỹ thừa của biến, ta cộng các số mũ chứ không nhân: $x^2 \\cdot x^3 = x^5$, không phải $x^6$. Dấu của từng hạng tử đi theo hạng tử đó khi nhân.',
         },
       ],
     },
@@ -50,7 +50,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Ta cũng có thể đặt tính theo cột: sắp xếp hai đa thức theo lũy thừa giảm dần; nhân lần lượt từng hạng tử của đa thức thứ hai với đa thức thứ nhất, viết mỗi kết quả trên một dòng sao cho các hạng tử cùng bậc thẳng cột; rồi cộng theo cột.',
+          text: 'Ta cũng có thể đặt tính theo cột: sắp xếp hai đa thức theo luỹ thừa giảm dần; nhân lần lượt từng hạng tử của đa thức thứ hai với đa thức thứ nhất, viết mỗi kết quả trên một dòng sao cho các hạng tử cùng bậc thẳng cột; rồi cộng theo cột.',
         },
         {
           type: 'table',
@@ -111,7 +111,7 @@ export default {
       type: 'number',
       prompt: 'Tìm hệ số của $x^3$ trong tích $2x \\cdot (3x^2 - x + 5)$.',
       answer: 6,
-      hints: ['Hạng tử nào của đa thức nhân với $2x$ cho ra lũy thừa $x^3$?'],
+      hints: ['Hạng tử nào của đa thức nhân với $2x$ cho ra luỹ thừa $x^3$?'],
       solution: '$2x \\cdot 3x^2 = 6x^3$, nên hệ số của $x^3$ là $6$.',
     },
     {
@@ -126,7 +126,7 @@ export default {
       answer: 0,
       hints: [
         'Nhân $-3x^2$ với cả ba hạng tử, kể cả hạng tử $4$.',
-        'Cộng các số mũ khi nhân hai lũy thừa; $(-3x^2) \\cdot (-x)$ mang dấu cộng.',
+        'Cộng các số mũ khi nhân hai luỹ thừa; $(-3x^2) \\cdot (-x)$ mang dấu cộng.',
       ],
       solution:
         '$(-3x^2) \\cdot 2x^3 = -6x^5$; $\\;(-3x^2) \\cdot (-x) = 3x^3$; $\\;(-3x^2) \\cdot 4 = -12x^2$.',

@@ -51,9 +51,9 @@ export default {
         {
           type: 'list',
           items: [
-            'Nhân hai lũy thừa thì cộng số mũ, chia thì trừ số mũ: $x^2 \\cdot x^3 = x^5$, $x^5 : x^3 = x^2$.',
+            'Nhân hai luỹ thừa thì cộng số mũ, chia thì trừ số mũ: $x^2 \\cdot x^3 = x^5$, $x^5 : x^3 = x^2$.',
             'Trước dấu trừ là một tích thì tính tích trong ngoặc trước, rồi đổi dấu mọi hạng tử khi bỏ ngoặc.',
-            'Khi đặt tính chia, sắp xếp cả hai đa thức theo lũy thừa giảm dần và để trống cột của bậc bị khuyết.',
+            'Khi đặt tính chia, sắp xếp cả hai đa thức theo luỹ thừa giảm dần và để trống cột của bậc bị khuyết.',
             'Dừng phép chia khi dư bằng $0$ hoặc có bậc nhỏ hơn bậc của đa thức chia, không dừng sớm hơn.',
             'Kiểm tra phép chia bằng phép nhân: đa thức chia nhân thương, cộng dư, phải được đa thức bị chia.',
           ],

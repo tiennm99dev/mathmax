@@ -61,7 +61,7 @@ export const daThuc = {
         display: intText(value),
         hints: [
           'Thay x và y vào từng hạng tử; đặt số âm trong ngoặc.',
-          'Tính lũy thừa trước, rồi nhân, cuối cùng cộng các kết quả.',
+          'Tính luỹ thừa trước, rồi nhân, cuối cùng cộng các kết quả.',
         ],
         steps: [
           `P = ${intText(a)} · ${operand(x)}² · ${operand(y)} + ${operand(b)} · ${operand(x)} · ${operand(y)} + ${operand(c)}.`,
@@ -579,7 +579,7 @@ export const phuongTrinh = {
         steps: [
           `Gọi chiều rộng là x (m), x > 0; chiều dài là x + ${d} (m).`,
           `2(x + x + ${d}) = ${p}, tức là 2x + ${d} = ${p / 2}, nên 2x = ${p / 2 - d}.`,
-          `x = ${w} (thỏa mãn). Chiều rộng là ${w} m.`,
+          `x = ${w} (thoả mãn). Chiều rộng là ${w} m.`,
         ],
       };
     }
@@ -625,8 +625,8 @@ export const hamSo = {
         answer: whole(a),
         display: intText(a),
         hints: [
-          'Điểm M thuộc đồ thị khi tọa độ của M thỏa mãn công thức của hàm số.',
-          'Thay x và y bằng tọa độ của M, rồi giải phương trình ẩn a.',
+          'Điểm M thuộc đồ thị khi toạ độ của M thoả mãn công thức của hàm số.',
+          'Thay x và y bằng toạ độ của M, rồi giải phương trình ẩn a.',
         ],
         steps: [
           `${intText(y0)} = a · ${operand(x0)} ${b < 0 ? '−' : '+'} ${Math.abs(b)}, nên ${linText(x0, 0, 'a')} = ${intText(y0 - b)}.`,
@@ -647,7 +647,7 @@ export const hamSo = {
         display: intText(b),
         hints: [
           "Hai đường thẳng y = ax + b và y = a'x + b' song song khi a = a' và b ≠ b'.",
-          `Vậy a = ${intText(k)}; thay tọa độ của A để tìm b.`,
+          `Vậy a = ${intText(k)}; thay toạ độ của A để tìm b.`,
         ],
         steps: [
           `Song song nên a = ${intText(k)} (và b ≠ ${intText(c)}).`,

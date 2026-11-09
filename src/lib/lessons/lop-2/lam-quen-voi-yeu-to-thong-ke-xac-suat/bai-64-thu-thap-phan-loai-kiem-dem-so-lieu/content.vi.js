@@ -133,7 +133,7 @@ export default {
     {
       type: 'choice',
       prompt: 'Em đã có 4 vạch. Em đếm thêm một đồ vật nữa. Em ghi thế nào?',
-      options: ['Gạch chéo qua 4 vạch', 'Xóa hết các vạch', 'Không ghi gì thêm'],
+      options: ['Gạch chéo qua 4 vạch', 'Xoá hết các vạch', 'Không ghi gì thêm'],
       answer: 0,
       hints: ['Một bó có mấy vạch?'],
       solution: 'Vạch thứ năm gạch chéo qua 4 vạch trước, thành một bó 5 vạch.',

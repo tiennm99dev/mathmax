@@ -1,11 +1,11 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Luyện tập chung về lũy thừa với số mũ tự nhiên của một số hữu tỉ, các quy tắc lũy thừa, thứ tự thực hiện các phép tính và quy tắc chuyển vế để tìm x.',
+    'Luyện tập chung về luỹ thừa với số mũ tự nhiên của một số hữu tỉ, các quy tắc luỹ thừa, thứ tự thực hiện các phép tính và quy tắc chuyển vế để tìm x.',
   intro:
-    'Bài luyện tập này ôn lại hai bài vừa học: Lũy thừa với số mũ tự nhiên của một số hữu tỉ (Bài 3) và Thứ tự thực hiện các phép tính, quy tắc chuyển vế (Bài 4). Em sẽ tính lũy thừa, rút gọn biểu thức bằng các quy tắc lũy thừa, tính giá trị biểu thức theo đúng thứ tự và tìm $x$.',
+    'Bài luyện tập này ôn lại hai bài vừa học: Luỹ thừa với số mũ tự nhiên của một số hữu tỉ (Bài 3) và Thứ tự thực hiện các phép tính, quy tắc chuyển vế (Bài 4). Em sẽ tính luỹ thừa, rút gọn biểu thức bằng các quy tắc luỹ thừa, tính giá trị biểu thức theo đúng thứ tự và tìm $x$.',
   objectives: [
-    'Tính lũy thừa của một số hữu tỉ, dùng đúng quy tắc nhân, chia hai lũy thừa cùng cơ số và lũy thừa của lũy thừa.',
+    'Tính luỹ thừa của một số hữu tỉ, dùng đúng quy tắc nhân, chia hai luỹ thừa cùng cơ số và luỹ thừa của luỹ thừa.',
     'Tính giá trị biểu thức với số hữu tỉ theo đúng thứ tự thực hiện các phép tính.',
     'Dùng quy tắc chuyển vế để tìm $x$, rồi thử lại kết quả.',
   ],
@@ -18,21 +18,21 @@ export default {
           head: ['Nội dung', 'Ghi nhớ'],
           rows: [
             [
-              'Lũy thừa',
+              'Luỹ thừa',
               '$x^n$ là tích của $n$ thừa số $x$ ($n > 1$); $x^1 = x$, $x^0 = 1$ ($x \\ne 0$); $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$',
             ],
             [
               'Nhân, chia cùng cơ số',
               '$x^m \\cdot x^n = x^{m+n}$; $\\;x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$)',
             ],
-            ['Lũy thừa của lũy thừa', '$\\left(x^m\\right)^n = x^{m \\cdot n}$'],
+            ['Luỹ thừa của luỹ thừa', '$\\left(x^m\\right)^n = x^{m \\cdot n}$'],
             [
               'Cùng số mũ',
               '$(x \\cdot y)^n = x^n \\cdot y^n$; $\\;(x : y)^n = x^n : y^n$ ($y \\ne 0$)',
             ],
             [
               'Thứ tự phép tính',
-              'Không có ngoặc: lũy thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ. Có ngoặc: $(\\ ) \\rightarrow [\\ ] \\rightarrow \\{\\ \\}$',
+              'Không có ngoặc: luỹ thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ. Có ngoặc: $(\\ ) \\rightarrow [\\ ] \\rightarrow \\{\\ \\}$',
             ],
             [
               'Quy tắc chuyển vế',
@@ -52,14 +52,14 @@ export default {
   explore: {
     title: 'Bộ bài luyện ngẫu nhiên',
     instruction:
-      'Mỗi lượt có 12 câu trộn từ Bài 3 và Bài 4: tính lũy thừa, tìm số mũ, tính giá trị biểu thức và tìm $x$. Nhập số nguyên (ví dụ −7), phân số dạng a/b (ví dụ −3/4) hoặc số thập phân có dấu phẩy (ví dụ −0,75); mọi cách viết bằng nhau đều được chấp nhận. Sai lần đầu, em được xem gợi ý và làm lại; sai lần hai, lời giải từng bước sẽ hiện ra. Bản đồ kĩ năng cho biết phần nào cần ôn thêm.',
+      'Mỗi lượt có 12 câu trộn từ Bài 3 và Bài 4: tính luỹ thừa, tìm số mũ, tính giá trị biểu thức và tìm $x$. Nhập số nguyên (ví dụ −7), phân số dạng a/b (ví dụ −3/4) hoặc số thập phân có dấu phẩy (ví dụ −0,75); mọi cách viết bằng nhau đều được chấp nhận. Sai lần đầu, em được xem gợi ý và làm lại; sai lần hai, lời giải từng bước sẽ hiện ra. Bản đồ kĩ năng cho biết phần nào cần ôn thêm.',
   },
   examples: [
     {
       problem:
         'Tính giá trị biểu thức $A = \\left(\\frac{-2}{3}\\right)^2 \\cdot \\frac{9}{8} - (0{,}5)^3 : \\frac{1}{4}$.',
       steps: [
-        'Lũy thừa trước: $\\left(\\frac{-2}{3}\\right)^2 = \\frac{4}{9}$ và $(0{,}5)^3 = 0{,}125 = \\frac{1}{8}$.',
+        'Luỹ thừa trước: $\\left(\\frac{-2}{3}\\right)^2 = \\frac{4}{9}$ và $(0{,}5)^3 = 0{,}125 = \\frac{1}{8}$.',
         'Nhân, chia: $\\frac{4}{9} \\cdot \\frac{9}{8} = \\frac{1}{2}$ và $\\frac{1}{8} : \\frac{1}{4} = \\frac{1}{8} \\cdot 4 = \\frac{1}{2}$.',
         'Trừ sau cùng: $A = \\frac{1}{2} - \\frac{1}{2} = 0$.',
       ],
@@ -68,8 +68,8 @@ export default {
     {
       problem: 'Tính $B = \\frac{4^5 \\cdot 9^4}{6^9 \\cdot 2}$.',
       steps: [
-        'Đưa về lũy thừa của $2$ và $3$: $4^5 = \\left(2^2\\right)^5 = 2^{10}$, $9^4 = \\left(3^2\\right)^4 = 3^8$.',
-        'Lũy thừa của một tích: $6^9 = (2 \\cdot 3)^9 = 2^9 \\cdot 3^9$, nên $6^9 \\cdot 2 = 2^{10} \\cdot 3^9$.',
+        'Đưa về luỹ thừa của $2$ và $3$: $4^5 = \\left(2^2\\right)^5 = 2^{10}$, $9^4 = \\left(3^2\\right)^4 = 3^8$.',
+        'Luỹ thừa của một tích: $6^9 = (2 \\cdot 3)^9 = 2^9 \\cdot 3^9$, nên $6^9 \\cdot 2 = 2^{10} \\cdot 3^9$.',
         '$B = \\frac{2^{10} \\cdot 3^8}{2^{10} \\cdot 3^9} = \\frac{1}{3}$.',
       ],
       answer: '$B = \\frac{1}{3}$.',
@@ -93,7 +93,7 @@ export default {
       answer: 0,
       hints: ['$\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$; số mũ lẻ nên kết quả âm.'],
       solution:
-        '$\\left(\\frac{-2}{3}\\right)^3 = \\frac{(-2)^3}{3^3} = \\frac{-8}{27}$. Các đáp án khác nhầm dấu, nhầm lũy thừa với phép nhân ($3 \\cdot 3 = 9$) hoặc quên lũy thừa mẫu số.',
+        '$\\left(\\frac{-2}{3}\\right)^3 = \\frac{(-2)^3}{3^3} = \\frac{-8}{27}$. Các đáp án khác nhầm dấu, nhầm luỹ thừa với phép nhân ($3 \\cdot 3 = 9$) hoặc quên luỹ thừa mẫu số.',
     },
     {
       type: 'fraction',
@@ -106,18 +106,18 @@ export default {
       type: 'number',
       prompt: 'Tính nhanh $(-0{,}25)^5 \\cdot 4^5$.',
       answer: -1,
-      hints: ['Hai lũy thừa cùng số mũ: $x^n \\cdot y^n = (x \\cdot y)^n$.'],
+      hints: ['Hai luỹ thừa cùng số mũ: $x^n \\cdot y^n = (x \\cdot y)^n$.'],
       solution: '$(-0{,}25)^5 \\cdot 4^5 = [(-0{,}25) \\cdot 4]^5 = (-1)^5 = -1$.',
     },
     {
       type: 'choice',
       prompt:
-        'Viết $\\left[(0{,}2)^3\\right]^2 \\cdot (0{,}2)^4$ dưới dạng một lũy thừa của $0{,}2$.',
+        'Viết $\\left[(0{,}2)^3\\right]^2 \\cdot (0{,}2)^4$ dưới dạng một luỹ thừa của $0{,}2$.',
       options: ['$(0{,}2)^9$', '$(0{,}2)^{24}$', '$(0{,}2)^{10}$', '$(0{,}2)^{20}$'],
       answer: 2,
       hints: [
-        'Lũy thừa của lũy thừa: nhân hai số mũ.',
-        'Sau đó nhân hai lũy thừa cùng cơ số: cộng số mũ.',
+        'Luỹ thừa của luỹ thừa: nhân hai số mũ.',
+        'Sau đó nhân hai luỹ thừa cùng cơ số: cộng số mũ.',
       ],
       solution:
         '$\\left[(0{,}2)^3\\right]^2 = (0{,}2)^6$; $\\;(0{,}2)^6 \\cdot (0{,}2)^4 = (0{,}2)^{10}$.',
@@ -126,7 +126,7 @@ export default {
       type: 'number',
       prompt: 'Tìm số tự nhiên $n$, biết $\\left(\\frac{-1}{2}\\right)^n = \\frac{1}{16}$.',
       answer: 4,
-      hints: ['$16$ là lũy thừa của $2$.', 'Kết quả dương, nên số mũ phải là số chẵn.'],
+      hints: ['$16$ là luỹ thừa của $2$.', 'Kết quả dương, nên số mũ phải là số chẵn.'],
       solution:
         '$\\frac{1}{16} = \\frac{1}{2^4} = \\left(\\frac{-1}{2}\\right)^4$ (số mũ chẵn nên dấu âm mất đi). Vậy $n = 4$.',
     },
@@ -146,7 +146,7 @@ export default {
       prompt: 'Tính $\\left(\\frac{-1}{2}\\right)^3 + \\frac{3}{4} : 1{,}5 - (0{,}5)^2$.',
       answer: [1, 8],
       hints: [
-        'Lũy thừa trước, rồi đến phép chia, cuối cùng là cộng, trừ.',
+        'Luỹ thừa trước, rồi đến phép chia, cuối cùng là cộng, trừ.',
         '$1{,}5 = \\frac{3}{2}$ và $(0{,}5)^2 = \\frac{1}{4}$.',
       ],
       solution:
@@ -208,9 +208,9 @@ export default {
     },
   ],
   takeaways: [
-    'Lũy thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm; $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
-    'Cùng cơ số: nhân thì cộng số mũ, chia thì trừ số mũ; lũy thừa của lũy thừa thì nhân số mũ.',
-    'Tính theo thứ tự: ngoặc, lũy thừa, nhân và chia, rồi mới cộng và trừ.',
+    'Luỹ thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm; $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
+    'Cùng cơ số: nhân thì cộng số mũ, chia thì trừ số mũ; luỹ thừa của luỹ thừa thì nhân số mũ.',
+    'Tính theo thứ tự: ngoặc, luỹ thừa, nhân và chia, rồi mới cộng và trừ.',
     'Chuyển vế phải đổi dấu số hạng; tìm được $x$ thì thay lại để thử.',
   ],
 };

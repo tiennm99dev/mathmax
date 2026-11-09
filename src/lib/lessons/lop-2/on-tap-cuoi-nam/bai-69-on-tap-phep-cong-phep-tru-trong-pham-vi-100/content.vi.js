@@ -91,7 +91,7 @@ export default {
     },
     {
       problem:
-        'Từ Hà Nội đến Nam Định dài 90 km. Từ Hà Nội đến Hòa Bình dài 76 km. Quãng đường từ Hà Nội đến Nam Định dài hơn quãng đường từ Hà Nội đến Hòa Bình bao nhiêu ki-lô-mét?',
+        'Từ Hà Nội đến Nam Định dài 90 km. Từ Hà Nội đến Hoà Bình dài 76 km. Quãng đường từ Hà Nội đến Nam Định dài hơn quãng đường từ Hà Nội đến Hoà Bình bao nhiêu ki-lô-mét?',
       steps: [
         'Muốn biết dài hơn bao nhiêu, em lấy số lớn trừ số bé: 90 − 76.',
         'Bài giải: Quãng đường dài hơn số ki-lô-mét là: 90 − 76 = 14 (km).',

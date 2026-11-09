@@ -3,7 +3,7 @@ export default {
   summary:
     'Công thức tính độ dài cung tròn n độ, diện tích hình quạt tròn và diện tích hình vành khuyên, cùng các bài toán thực tế.',
   intro:
-    'Một chiếc quạt giấy xòe ra, một miếng bánh pizza cắt từ tâm, hay mặt một chiếc đĩa CD có lỗ ở giữa: đó là hình quạt tròn và hình vành khuyên. Muốn tính viền cong của miếng bánh hay diện tích mặt đĩa, ta chỉ cần biết chúng chiếm bao nhiêu phần của cả hình tròn.',
+    'Một chiếc quạt giấy xoè ra, một miếng bánh pizza cắt từ tâm, hay mặt một chiếc đĩa CD có lỗ ở giữa: đó là hình quạt tròn và hình vành khuyên. Muốn tính viền cong của miếng bánh hay diện tích mặt đĩa, ta chỉ cần biết chúng chiếm bao nhiêu phần của cả hình tròn.',
   objectives: [
     'Tính độ dài cung tròn $n^\\circ$ của đường tròn bán kính $R$.',
     'Nhận biết hình quạt tròn, hình vành khuyên và tính diện tích của chúng.',
@@ -92,7 +92,7 @@ export default {
     },
     {
       problem:
-        'Một chiếc quạt giấy khi xòe ra là hình quạt tròn bán kính $10$ cm, cung $72^\\circ$. Tính diện tích mặt quạt (làm tròn đến hàng phần trăm).',
+        'Một chiếc quạt giấy khi xoè ra là hình quạt tròn bán kính $10$ cm, cung $72^\\circ$. Tính diện tích mặt quạt (làm tròn đến hàng phần trăm).',
       steps: [
         'Áp dụng $S = \\dfrac{\\pi R^2 n}{360}$ với $R = 10$, $n = 72$.',
         '$S = \\dfrac{\\pi \\cdot 100 \\cdot 72}{360} = 20\\pi$.',

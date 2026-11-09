@@ -23,7 +23,7 @@ export default {
           rows: [
             [
               'Số hữu tỉ',
-              'Số viết được dưới dạng $\\dfrac{a}{b}$ với $a, b \\in \\mathbb{Z}$, $b \\ne 0$. Lũy thừa: $x^m \\cdot x^n = x^{m+n}$; $x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$); $(x^m)^n = x^{m \\cdot n}$. Quy tắc chuyển vế: chuyển một số hạng sang vế kia thì đổi dấu số hạng đó.',
+              'Số viết được dưới dạng $\\dfrac{a}{b}$ với $a, b \\in \\mathbb{Z}$, $b \\ne 0$. Luỹ thừa: $x^m \\cdot x^n = x^{m+n}$; $x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$); $(x^m)^n = x^{m \\cdot n}$. Quy tắc chuyển vế: chuyển một số hạng sang vế kia thì đổi dấu số hạng đó.',
             ],
             [
               'Số thực',
@@ -278,7 +278,7 @@ export default {
       answer: 2,
       hints: ['Chỉ cần kiểm tra: cạnh lớn nhất có nhỏ hơn tổng hai cạnh còn lại không.'],
       solution:
-        '$2 + 3 < 6$; $3 + 4 = 7$; $1 + 2 = 3$ nên ba bộ đó không thỏa mãn bất đẳng thức tam giác. $4 + 5 = 9 > 8$ nên $4$ cm, $5$ cm, $8$ cm là ba cạnh của một tam giác.',
+        '$2 + 3 < 6$; $3 + 4 = 7$; $1 + 2 = 3$ nên ba bộ đó không thoả mãn bất đẳng thức tam giác. $4 + 5 = 9 > 8$ nên $4$ cm, $5$ cm, $8$ cm là ba cạnh của một tam giác.',
     },
     {
       type: 'choice',

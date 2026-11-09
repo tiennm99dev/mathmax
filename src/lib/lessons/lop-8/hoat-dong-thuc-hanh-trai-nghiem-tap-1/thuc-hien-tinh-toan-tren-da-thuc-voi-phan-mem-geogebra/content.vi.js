@@ -5,7 +5,7 @@ export default {
   intro:
     'Ở chương I và chương II, em đã cộng, trừ, nhân, chia đa thức, học các hằng đẳng thức đáng nhớ và phân tích đa thức thành nhân tử. Những phép biến đổi dài rất dễ nhầm dấu hay sót hạng tử. Cửa sổ CAS (hệ đại số máy tính) của GeoGebra làm các phép biến đổi đó chính xác chỉ sau một dòng lệnh, nên là công cụ tốt để kiểm tra bài làm của em.',
   objectives: [
-    'Mở cửa sổ CAS của GeoGebra và nhập đúng một đa thức (lũy thừa, phép nhân, phân số).',
+    'Mở cửa sổ CAS của GeoGebra và nhập đúng một đa thức (luỹ thừa, phép nhân, phân số).',
     'Thực hiện cộng, trừ, nhân đa thức và khai triển bằng lệnh Expand.',
     'Phân tích đa thức thành nhân tử bằng lệnh Factor.',
     'Tìm thương và dư của phép chia đa thức bằng các lệnh Division, Div, Mod; dùng CAS để kiểm tra kết quả tính tay.',
@@ -22,9 +22,9 @@ export default {
           type: 'table',
           head: ['Muốn viết', 'Gõ vào CAS', 'Ghi chú'],
           rows: [
-            ['$x^2$', 'x^2', 'dấu ^ cho lũy thừa'],
+            ['$x^2$', 'x^2', 'dấu ^ cho luỹ thừa'],
             ['$3x^2y$', '3x^2y hoặc 3*x^2*y', 'phép nhân có thể bỏ dấu *'],
-            ['$(5x - y)^2$', '(5x - y)^2', 'luôn đặt ngoặc quanh tổng trước khi lấy lũy thừa'],
+            ['$(5x - y)^2$', '(5x - y)^2', 'luôn đặt ngoặc quanh tổng trước khi lấy luỹ thừa'],
             ['$\\dfrac{1}{3}x$', '1/3x hoặc (1/3)*x', 'phân số viết bằng dấu /'],
           ],
         },
@@ -244,7 +244,7 @@ export default {
       ],
       answers: [0, 2],
       hints: [
-        'Lũy thừa chỉ áp dụng cho phần đứng ngay trước dấu ^.',
+        'Luỹ thừa chỉ áp dụng cho phần đứng ngay trước dấu ^.',
         'Factor làm ngược với Expand.',
       ],
       solution:
@@ -266,7 +266,7 @@ export default {
     },
   ],
   takeaways: [
-    'Cửa sổ CAS: gõ biểu thức hoặc lệnh vào một dòng, nhấn Enter để có kết quả; gõ x^2 cho $x^2$ và đặt ngoặc quanh tổng trước khi lấy lũy thừa.',
+    'Cửa sổ CAS: gõ biểu thức hoặc lệnh vào một dòng, nhấn Enter để có kết quả; gõ x^2 cho $x^2$ và đặt ngoặc quanh tổng trước khi lấy luỹ thừa.',
     'Expand khai triển, Factor phân tích thành nhân tử (trên số hữu tỉ), Division cho cả thương và dư, Div cho thương, Mod cho số dư.',
     'Dùng CAS để kiểm tra bài làm tay: Expand một tích để thử phép phân tích; thương nhân đa thức chia cộng dư phải bằng đa thức bị chia.',
   ],

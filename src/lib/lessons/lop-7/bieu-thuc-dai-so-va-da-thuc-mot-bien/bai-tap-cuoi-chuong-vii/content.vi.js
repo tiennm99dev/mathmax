@@ -57,7 +57,7 @@ export default {
             'Tìm bậc khi chưa thu gọn: $2x^4 + x - 2x^4$ có bậc $1$, không phải $4$.',
             'Thay số âm mà quên ngoặc: tại $x = -3$, $x^2 = (-3)^2 = 9$, còn $-x^2 = -9$.',
             'Trừ đa thức mà chỉ đổi dấu hạng tử đầu: $-(x^2 - 2x + 1) = -x^2 + 2x - 1$.',
-            'Nhân lũy thừa mà nhân số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$.',
+            'Nhân luỹ thừa mà nhân số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$.',
             'Bỏ sót tích khi nhân hai đa thức: $(x + 2)(x + 3)$ có $2 \\cdot 2 = 4$ tích hạng tử.',
             'Dừng phép chia quá sớm hoặc quá muộn: chỉ dừng khi dư bằng $0$ hoặc có bậc nhỏ hơn bậc của đa thức chia.',
           ],

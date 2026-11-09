@@ -175,8 +175,8 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Trường Thành Công có 689 học sinh, Trường Chiến Thắng có 695 học sinh, Trường Hòa Bình có 820 học sinh, Trường Đoàn Kết có 853 học sinh. Trường nào có ít học sinh nhất?',
-      options: ['Trường Thành Công', 'Trường Chiến Thắng', 'Trường Hòa Bình', 'Trường Đoàn Kết'],
+        'Trường Thành Công có 689 học sinh, Trường Chiến Thắng có 695 học sinh, Trường Hoà Bình có 820 học sinh, Trường Đoàn Kết có 853 học sinh. Trường nào có ít học sinh nhất?',
+      options: ['Trường Thành Công', 'Trường Chiến Thắng', 'Trường Hoà Bình', 'Trường Đoàn Kết'],
       answer: 0,
       hints: ['Em tìm số bé nhất trong bốn số.'],
       solution: '689 là số bé nhất. Trường Thành Công có ít học sinh nhất.',

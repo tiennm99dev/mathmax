@@ -17,7 +17,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Phân số thập phân',
-          text: 'Phân số thập phân là phân số mà mẫu là lũy thừa của $10$ (mẫu là $10$, $100$, $1\\,000$, ...). Chẳng hạn $\\frac{3}{10}$, $\\frac{-15}{100}$, $\\frac{2\\,025}{1\\,000}$ là các phân số thập phân.',
+          text: 'Phân số thập phân là phân số mà mẫu là luỹ thừa của $10$ (mẫu là $10$, $100$, $1\\,000$, ...). Chẳng hạn $\\frac{3}{10}$, $\\frac{-15}{100}$, $\\frac{2\\,025}{1\\,000}$ là các phân số thập phân.',
         },
         {
           type: 'p',
@@ -155,9 +155,9 @@ export default {
       prompt: 'Phân số nào dưới đây là phân số thập phân?',
       options: ['$\\frac{3}{5}$', '$\\frac{7}{1\\,000}$', '$\\frac{10}{3}$', '$\\frac{1}{20}$'],
       answer: 1,
-      hints: ['Phân số thập phân có mẫu là $10$, $100$, $1\\,000$, ... (lũy thừa của $10$).'],
+      hints: ['Phân số thập phân có mẫu là $10$, $100$, $1\\,000$, ... (luỹ thừa của $10$).'],
       solution:
-        'Chỉ $\\frac{7}{1\\,000}$ có mẫu là lũy thừa của $10$ ($1\\,000 = 10^3$). Phân số $\\frac{3}{5}$ bằng $\\frac{6}{10}$ nhưng như đã viết thì mẫu $5$ không phải lũy thừa của $10$; $20$ và $3$ cũng vậy.',
+        'Chỉ $\\frac{7}{1\\,000}$ có mẫu là luỹ thừa của $10$ ($1\\,000 = 10^3$). Phân số $\\frac{3}{5}$ bằng $\\frac{6}{10}$ nhưng như đã viết thì mẫu $5$ không phải luỹ thừa của $10$; $20$ và $3$ cũng vậy.',
     },
     {
       type: 'number',
@@ -226,7 +226,7 @@ export default {
     },
   ],
   takeaways: [
-    'Phân số thập phân có mẫu là lũy thừa của $10$; nó viết được dưới dạng số thập phân, kể cả khi âm: $\\frac{-15}{100} = -0{,}15$.',
+    'Phân số thập phân có mẫu là luỹ thừa của $10$; nó viết được dưới dạng số thập phân, kể cả khi âm: $\\frac{-15}{100} = -0{,}15$.',
     'Số thập phân gồm phần số nguyên (bên trái dấu phẩy) và phần thập phân (bên phải dấu phẩy).',
     'Hai số thập phân đối nhau có tổng bằng $0$: số đối của $a$ là $-a$.',
     'Số âm $<$ $0$ $<$ số dương; nếu $a > b > 0$ thì $-a < -b$. Số dương so sánh phần số nguyên trước, rồi từng hàng phần mười, phần trăm, ...',

@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Bài tập cuối chương I: hệ thống hoá kiến thức về tập hợp các số tự nhiên, các phép tính, lũy thừa và thứ tự thực hiện phép tính, kèm bài kiểm tra có bản đồ kĩ năng.',
+    'Bài tập cuối chương I: hệ thống hoá kiến thức về tập hợp các số tự nhiên, các phép tính, luỹ thừa và thứ tự thực hiện phép tính, kèm bài kiểm tra có bản đồ kĩ năng.',
   intro:
-    'Chương I đã đưa em đi từ khái niệm tập hợp đến tập hợp các số tự nhiên $\\mathbb{N}$, cách ghi số, thứ tự, bốn phép tính, lũy thừa và thứ tự thực hiện các phép tính. Bài này hệ thống lại toàn bộ chương và cho em một bài kiểm tra tổng hợp: bản đồ kĩ năng sẽ chỉ ra bài nào em đã vững và bài nào cần ôn lại.',
+    'Chương I đã đưa em đi từ khái niệm tập hợp đến tập hợp các số tự nhiên $\\mathbb{N}$, cách ghi số, thứ tự, bốn phép tính, luỹ thừa và thứ tự thực hiện các phép tính. Bài này hệ thống lại toàn bộ chương và cho em một bài kiểm tra tổng hợp: bản đồ kĩ năng sẽ chỉ ra bài nào em đã vững và bài nào cần ôn lại.',
   objectives: [
     'Hệ thống hoá các kiến thức chính của chương Tập hợp các số tự nhiên.',
-    'Làm các bài tập trắc nghiệm và tự luận tổng hợp: tập hợp, ghi số, tính toán, lũy thừa, thứ tự phép tính.',
+    'Làm các bài tập trắc nghiệm và tự luận tổng hợp: tập hợp, ghi số, tính toán, luỹ thừa, thứ tự phép tính.',
     'Vận dụng các phép tính với số tự nhiên để giải bài toán thực tế.',
   ],
   sections: [
@@ -39,12 +39,12 @@ export default {
               'Giao hoán, kết hợp, phân phối; $a = b \\cdot q + r$ với $0 \\le r < b$.',
             ],
             [
-              'Lũy thừa',
+              'Luỹ thừa',
               '$a^n$ là tích $n$ thừa số $a$; $a^m \\cdot a^n = a^{m+n}$; $a^m : a^n = a^{m-n}$; $a^0 = 1$ ($a \\ne 0$).',
             ],
             [
               'Thứ tự phép tính',
-              'Lũy thừa $\\to$ nhân, chia $\\to$ cộng, trừ; ngoặc $(\\ ) \\to [\\ ] \\to \\{\\ \\}$.',
+              'Luỹ thừa $\\to$ nhân, chia $\\to$ cộng, trừ; ngoặc $(\\ ) \\to [\\ ] \\to \\{\\ \\}$.',
             ],
           ],
         },
@@ -73,7 +73,7 @@ export default {
     {
       problem: 'Tính giá trị của biểu thức $5 \\cdot \\{[(3^2 + 1) \\cdot 4 - 25] : 3\\}$.',
       steps: [
-        'Ngoặc tròn: lũy thừa trước, $3^2 + 1 = 9 + 1 = 10$.',
+        'Ngoặc tròn: luỹ thừa trước, $3^2 + 1 = 9 + 1 = 10$.',
         'Ngoặc vuông: $10 \\cdot 4 - 25 = 40 - 25 = 15$.',
         'Ngoặc nhọn: $15 : 3 = 5$.',
         'Cuối cùng: $5 \\cdot 5 = 25$.',
@@ -149,7 +149,7 @@ export default {
       type: 'number',
       prompt: 'Tính: $2^3 \\cdot 3^2 - 5 \\cdot (17 - 3^2)$.',
       answer: 32,
-      hints: ['Ngoặc trước: $17 - 3^2 = 17 - 9$.', 'Sau đó lũy thừa, nhân, rồi trừ.'],
+      hints: ['Ngoặc trước: $17 - 3^2 = 17 - 9$.', 'Sau đó luỹ thừa, nhân, rồi trừ.'],
       solution:
         '$2^3 \\cdot 3^2 - 5 \\cdot (17 - 9) = 2^3 \\cdot 3^2 - 5 \\cdot 8 = 8 \\cdot 9 - 40 = 72 - 40 = 32$.',
     },
@@ -166,7 +166,7 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Viết kết quả của $3^{10} : 3^5 \\cdot 3^2$ dưới dạng một lũy thừa.',
+      prompt: 'Viết kết quả của $3^{10} : 3^5 \\cdot 3^2$ dưới dạng một luỹ thừa.',
       options: ['$3^7$', '$3^3$', '$3^{17}$', '$9^7$'],
       answer: 0,
       hints: ['Chia và nhân cùng thứ tự: làm từ trái sang phải.'],
@@ -191,8 +191,8 @@ export default {
       type: 'match',
       prompt: 'Nối mỗi kiến thức với công thức tương ứng.',
       left: [
-        'Nhân hai lũy thừa cùng cơ số',
-        'Chia hai lũy thừa cùng cơ số',
+        'Nhân hai luỹ thừa cùng cơ số',
+        'Chia hai luỹ thừa cùng cơ số',
         'Phép chia có dư',
         'Tính chất phân phối',
       ],
@@ -208,7 +208,7 @@ export default {
         [2, 0],
         [3, 1],
       ],
-      hints: ['Nhân lũy thừa thì cộng số mũ, chia thì trừ số mũ.'],
+      hints: ['Nhân luỹ thừa thì cộng số mũ, chia thì trừ số mũ.'],
       solution:
         'Nhân: $a^m \\cdot a^n = a^{m+n}$; chia: $a^m : a^n = a^{m-n}$; chia có dư: $a = b \\cdot q + r$ với $0 < r < b$; phân phối: $a \\cdot (b + c) = a \\cdot b + a \\cdot c$.',
     },
@@ -239,7 +239,7 @@ export default {
   takeaways: [
     '$\\mathbb{N} = \\{0; 1; 2; \\ldots\\}$, $\\mathbb{N}^* = \\{1; 2; 3; \\ldots\\}$; một tập hợp viết được bằng liệt kê hoặc tính chất đặc trưng.',
     'Vận dụng giao hoán, kết hợp, phân phối để tính nhanh; phép chia có dư $a = b \\cdot q + r$, $0 \\le r < b$.',
-    '$a^m \\cdot a^n = a^{m+n}$, $a^m : a^n = a^{m-n}$; thứ tự: ngoặc, lũy thừa, nhân chia, cộng trừ.',
+    '$a^m \\cdot a^n = a^{m+n}$, $a^m : a^n = a^{m-n}$; thứ tự: ngoặc, luỹ thừa, nhân chia, cộng trừ.',
     'Bài toán thực tế: viết một biểu thức cho cả quá trình rồi tính theo đúng thứ tự.',
   ],
 };

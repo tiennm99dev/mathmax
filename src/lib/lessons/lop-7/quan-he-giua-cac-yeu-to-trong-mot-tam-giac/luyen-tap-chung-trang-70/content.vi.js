@@ -51,7 +51,7 @@ export default {
             'Muốn so sánh hai góc, tìm hai cạnh đối diện với chúng rồi so sánh hai cạnh đó (và ngược lại).',
             'Khi chỉ biết hai góc, tính góc thứ ba bằng định lí tổng ba góc trước khi so sánh.',
             'Muốn tìm khoảng cách từ một điểm đến một đường thẳng, tìm đoạn vuông góc kẻ từ điểm đó.',
-            'Với bài tìm cạnh nguyên, viết khoảng $|b - c| < a < b + c$ rồi đếm hoặc chọn số nguyên thỏa mãn thêm điều kiện của đề.',
+            'Với bài tìm cạnh nguyên, viết khoảng $|b - c| < a < b + c$ rồi đếm hoặc chọn số nguyên thoả mãn thêm điều kiện của đề.',
           ],
         },
         {
@@ -191,7 +191,7 @@ export default {
       prompt: 'Một tam giác cân có hai cạnh dài $5$ cm và $11$ cm. Tính chu vi của tam giác đó.',
       answer: 27,
       unit: 'cm',
-      hints: ['Bộ $5$, $5$, $11$ có thỏa mãn bất đẳng thức tam giác không?'],
+      hints: ['Bộ $5$, $5$, $11$ có thoả mãn bất đẳng thức tam giác không?'],
       solution:
         '$11 > 5 + 5$ nên cạnh bên không thể dài $5$ cm. Ba cạnh là $11$, $11$, $5$ và chu vi bằng $11 + 11 + 5 = 27$ cm.',
     },

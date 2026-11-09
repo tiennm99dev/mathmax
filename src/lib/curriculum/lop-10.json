@@ -40,7 +40,7 @@
           "slug": "bai-tap-cuoi-chuong-i",
           "kind": "review",
           "keyIdeas": ["Ôn mệnh đề và điều kiện cần, đủ", "Ôn phép toán tập hợp và khoảng số"],
-          "interactiveIdea": "Bộ câu hỏi trắc nghiệm có biểu đồ Ven và trục số minh họa đáp án sau mỗi câu."
+          "interactiveIdea": "Bộ câu hỏi trắc nghiệm có biểu đồ Ven và trục số minh hoạ đáp án sau mỗi câu."
         }
       ]
     },
@@ -59,9 +59,9 @@
           "kind": "theory",
           "keyIdeas": [
             "Nghiệm của bất phương trình bậc nhất hai ẩn",
-            "Biểu diễn miền nghiệm trên mặt phẳng tọa độ"
+            "Biểu diễn miền nghiệm trên mặt phẳng toạ độ"
           ],
-          "interactiveIdea": "Mặt phẳng tọa độ tương tác: chỉnh hệ số a, b, c để đường thẳng dịch chuyển, nhấp điểm thử để tô nửa mặt phẳng nghiệm."
+          "interactiveIdea": "Mặt phẳng toạ độ tương tác: chỉnh hệ số a, b, c để đường thẳng dịch chuyển, nhấp điểm thử để tô nửa mặt phẳng nghiệm."
         },
         {
           "no": 2,
@@ -103,7 +103,7 @@
             "sin, cos, tan, cot của góc từ 0° đến 180°",
             "Hai góc bù nhau, phụ nhau"
           ],
-          "interactiveIdea": "Nửa đường tròn đơn vị có điểm M kéo được, hiển thị trực tiếp tọa độ (cos α, sin α) và tan, cot."
+          "interactiveIdea": "Nửa đường tròn đơn vị có điểm M kéo được, hiển thị trực tiếp toạ độ (cos α, sin α) và tan, cot."
         },
         {
           "no": 2,
@@ -119,7 +119,7 @@
           "slug": "bai-tap-cuoi-chuong-iii",
           "kind": "review",
           "keyIdeas": ["Ôn giải tam giác", "Ứng dụng đo đạc thực tế"],
-          "interactiveIdea": "Mô phỏng đo chiều cao tòa nhà và khoảng cách qua sông bằng giác kế ảo."
+          "interactiveIdea": "Mô phỏng đo chiều cao toà nhà và khoảng cách qua sông bằng giác kế ảo."
         }
       ]
     },
@@ -149,7 +149,7 @@
           "slug": "bai-8-tong-va-hieu-cua-hai-vecto",
           "kind": "theory",
           "keyIdeas": ["Quy tắc ba điểm", "Quy tắc hình bình hành", "Hiệu hai vectơ và vectơ đối"],
-          "interactiveIdea": "Kéo hai vectơ để xem vectơ tổng theo quy tắc ba điểm và hình bình hành, kèm minh họa hợp lực."
+          "interactiveIdea": "Kéo hai vectơ để xem vectơ tổng theo quy tắc ba điểm và hình bình hành, kèm minh hoạ hợp lực."
         },
         {
           "no": 3,
@@ -161,19 +161,19 @@
             "Điều kiện hai vectơ cùng phương",
             "Trung điểm, trọng tâm"
           ],
-          "interactiveIdea": "Thanh trượt k co giãn, đổi hướng vectơ; minh họa ba điểm thẳng hàng và hệ thức trọng tâm."
+          "interactiveIdea": "Thanh trượt k co giãn, đổi hướng vectơ; minh hoạ ba điểm thẳng hàng và hệ thức trọng tâm."
         },
         {
           "no": 4,
-          "title": "Bài 10. Vectơ trong mặt phẳng tọa độ",
+          "title": "Bài 10. Vectơ trong mặt phẳng toạ độ",
           "slug": "bai-10-vecto-trong-mat-phang-toa-do",
           "kind": "theory",
           "keyIdeas": [
-            "Tọa độ của vectơ và của điểm",
-            "Biểu thức tọa độ của các phép toán vectơ",
-            "Tọa độ trung điểm, trọng tâm"
+            "Toạ độ của vectơ và của điểm",
+            "Biểu thức toạ độ của các phép toán vectơ",
+            "Toạ độ trung điểm, trọng tâm"
           ],
-          "interactiveIdea": "Lưới tọa độ để kéo vectơ, các thành phần x, y và phép cộng, nhân số hiển thị tức thì."
+          "interactiveIdea": "Lưới toạ độ để kéo vectơ, các thành phần x, y và phép cộng, nhân số hiển thị tức thì."
         },
         {
           "no": 5,
@@ -182,7 +182,7 @@
           "kind": "theory",
           "keyIdeas": [
             "Góc giữa hai vectơ",
-            "Định nghĩa và biểu thức tọa độ tích vô hướng",
+            "Định nghĩa và biểu thức toạ độ tích vô hướng",
             "Điều kiện vuông góc"
           ],
           "interactiveIdea": "Kéo hai vectơ để thấy hình chiếu và giá trị tích vô hướng đổi dấu theo góc, kèm ví dụ công của lực."
@@ -192,8 +192,8 @@
           "title": "Bài tập cuối chương IV",
           "slug": "bai-tap-cuoi-chuong-iv",
           "kind": "review",
-          "keyIdeas": ["Ôn phép toán vectơ", "Ôn tọa độ và tích vô hướng"],
-          "interactiveIdea": "Trò chơi đi tìm điểm bằng tổ hợp vectơ trên lưới tọa độ."
+          "keyIdeas": ["Ôn phép toán vectơ", "Ôn toạ độ và tích vô hướng"],
+          "interactiveIdea": "Trò chơi đi tìm điểm bằng tổ hợp vectơ trên lưới toạ độ."
         }
       ]
     },
@@ -334,7 +334,7 @@
     {
       "no": 7,
       "label": "Chương VII",
-      "title": "Phương pháp tọa độ trong mặt phẳng",
+      "title": "Phương pháp toạ độ trong mặt phẳng",
       "slug": "phuong-phap-toa-do-trong-mat-phang",
       "strand": "hinh-hoc",
       "volume": "Tập 2",
@@ -365,7 +365,7 @@
         },
         {
           "no": 3,
-          "title": "Bài 21. Đường tròn trong mặt phẳng tọa độ",
+          "title": "Bài 21. Đường tròn trong mặt phẳng toạ độ",
           "slug": "bai-21-duong-tron-trong-mat-phang-toa-do",
           "kind": "theory",
           "keyIdeas": ["Phương trình đường tròn", "Tâm và bán kính", "Tiếp tuyến của đường tròn"],
@@ -385,7 +385,7 @@
           "slug": "bai-tap-cuoi-chuong-vii",
           "kind": "review",
           "keyIdeas": ["Ôn đường thẳng và đường tròn", "Ôn ba đường conic"],
-          "interactiveIdea": "Câu đố hình học tọa độ: dựng đúng đường cần tìm trên lưới."
+          "interactiveIdea": "Câu đố hình học toạ độ: dựng đúng đường cần tìm trên lưới."
         }
       ]
     },
@@ -482,7 +482,7 @@
           "title": "Một số nội dung cho hoạt động trải nghiệm hình học",
           "slug": "mot-so-noi-dung-cho-hoat-dong-trai-nghiem-hinh-hoc",
           "kind": "activity",
-          "keyIdeas": ["Vẽ hình và đo đạc bằng phần mềm", "Ứng dụng tọa độ và conic"],
+          "keyIdeas": ["Vẽ hình và đo đạc bằng phần mềm", "Ứng dụng toạ độ và conic"],
           "interactiveIdea": "Bảng vẽ hình học động để dựng hình, đo đạc và kiểm chứng tính chất."
         },
         {

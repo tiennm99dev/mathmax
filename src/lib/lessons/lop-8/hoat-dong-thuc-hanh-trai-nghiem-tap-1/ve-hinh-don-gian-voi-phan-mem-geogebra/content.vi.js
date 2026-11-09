@@ -338,7 +338,7 @@ export default {
       answer: 1,
       hints: ['Hình bình hành có các cạnh đối song song: $AD \\parallel BC$, $CD \\parallel AB$.'],
       solution:
-        '$D$ phải thỏa mãn $AD \\parallel BC$ và $CD \\parallel AB$, nên $D$ là giao điểm của đường thẳng qua $A$ song song với $BC$ và đường thẳng qua $C$ song song với $AB$.',
+        '$D$ phải thoả mãn $AD \\parallel BC$ và $CD \\parallel AB$, nên $D$ là giao điểm của đường thẳng qua $A$ song song với $BC$ và đường thẳng qua $C$ song song với $AB$.',
     },
   ],
   takeaways: [

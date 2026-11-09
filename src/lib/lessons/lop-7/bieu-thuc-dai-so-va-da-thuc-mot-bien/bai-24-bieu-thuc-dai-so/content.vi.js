@@ -17,13 +17,13 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Biểu thức số',
-          text: 'Các số nối với nhau bởi dấu các phép tính (cộng, trừ, nhân, chia, nâng lên lũy thừa) tạo thành một biểu thức số. Ví dụ: $29 + 6 \\cdot 7$; $\\;45 : 5 - 3 \\cdot (6 + 4)$.',
+          text: 'Các số nối với nhau bởi dấu các phép tính (cộng, trừ, nhân, chia, nâng lên luỹ thừa) tạo thành một biểu thức số. Ví dụ: $29 + 6 \\cdot 7$; $\\;45 : 5 - 3 \\cdot (6 + 4)$.',
         },
         {
           type: 'callout',
           tone: 'definition',
           title: 'Biểu thức đại số',
-          text: 'Biểu thức gồm các số, các chữ nối với nhau bởi dấu các phép tính gọi là biểu thức đại số. Các chữ trong biểu thức đại số đại diện cho những số tùy ý, gọi là các biến số (gọi tắt là biến). Ví dụ: $x^2 - xy + 2y - 1$ là biểu thức đại số với hai biến $x$, $y$; $\\;y^3 + 1$ có một biến $y$.',
+          text: 'Biểu thức gồm các số, các chữ nối với nhau bởi dấu các phép tính gọi là biểu thức đại số. Các chữ trong biểu thức đại số đại diện cho những số tuỳ ý, gọi là các biến số (gọi tắt là biến). Ví dụ: $x^2 - xy + 2y - 1$ là biểu thức đại số với hai biến $x$, $y$; $\\;y^3 + 1$ có một biến $y$.',
         },
         {
           type: 'p',
@@ -63,7 +63,7 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Chú ý',
-          text: 'Khi thay một số âm vào biến, hãy đặt số đó trong dấu ngoặc: tại $x = -3$ thì $x^2 = (-3)^2 = 9$, còn viết $-3^2$ lại bằng $-9$. Thực hiện các phép tính theo đúng thứ tự: lũy thừa trước, rồi nhân chia, cuối cùng cộng trừ.',
+          text: 'Khi thay một số âm vào biến, hãy đặt số đó trong dấu ngoặc: tại $x = -3$ thì $x^2 = (-3)^2 = 9$, còn viết $-3^2$ lại bằng $-9$. Thực hiện các phép tính theo đúng thứ tự: luỹ thừa trước, rồi nhân chia, cuối cùng cộng trừ.',
         },
         {
           type: 'table',
@@ -172,7 +172,7 @@ export default {
       type: 'number',
       prompt: 'Tính giá trị của biểu thức $3x^2 - 5x + 1$ tại $x = 2$.',
       answer: 3,
-      hints: ['Tính lũy thừa trước: $2^2 = 4$.'],
+      hints: ['Tính luỹ thừa trước: $2^2 = 4$.'],
       solution: '$3 \\cdot 2^2 - 5 \\cdot 2 + 1 = 12 - 10 + 1 = 3$.',
     },
     {

@@ -21,7 +21,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Nhóm số liệu',
-          text: 'Nhóm $[a; b)$ gồm các giá trị $x$ thỏa mãn $a \\le x < b$: chứa đầu mút trái $a$, không chứa đầu mút phải $b$. Hiệu $b - a$ là độ dài của nhóm. Số dữ liệu của mẫu thuộc nhóm $[a_i; a_{i+1})$ là tần số $m_i$ của nhóm đó.',
+          text: 'Nhóm $[a; b)$ gồm các giá trị $x$ thoả mãn $a \\le x < b$: chứa đầu mút trái $a$, không chứa đầu mút phải $b$. Hiệu $b - a$ là độ dài của nhóm. Số dữ liệu của mẫu thuộc nhóm $[a_i; a_{i+1})$ là tần số $m_i$ của nhóm đó.',
         },
         {
           type: 'p',

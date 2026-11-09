@@ -155,7 +155,7 @@
       </p>
     {:else}
       <p class="font-semibold text-emerald-700">
-        Đã thu gọn và sắp xếp theo lũy thừa giảm dần của biến.
+        Đã thu gọn và sắp xếp theo luỹ thừa giảm dần của biến.
       </p>
       <ul class="mt-2 space-y-1 text-slate-700">
         <li>Bậc của đa thức: <strong>{info.degree}</strong> (số mũ cao nhất).</li>

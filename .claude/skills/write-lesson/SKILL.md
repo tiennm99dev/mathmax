@@ -474,6 +474,14 @@ into a list checked by one `expect` instead of calling `expect` per case.
   notation and scope for that grade (for example "định lí", "số hữu tỉ",
   "phân số tối giản"; decimal comma `3,5` in text). Spell the drawing tools
   "compa" and "ê ke" (two words, never "êke").
+- **New-style tone marks.** In an open syllable ending in `oa`, `oe` or `uy`
+  the mark sits on the last vowel: hoá, hoà, hoả, toả, khoá, thoả, toạ,
+  khoẻ, thuỷ, luỹ, tuỳ, nhuỵ, tuỵ (never hóa, thủy). Closed syllables
+  (khoảng, hoàn, thuyền, toán) and `qu` syllables (quý, quả) do not change;
+  slugs and ids stay unaccented. `src/lib/core/tone-marks.test.js` rejects
+  old-style words in lessons, curriculum, domain and core copy. Cover every `keyIdeas` entry;
+  do not teach content from a later grade. Write natural Vietnamese with full
+  diacritics, no machine-translation phrasing.
 - **Correct.** Every formula, number, unit, chemical equation, physical law or
   biological fact must be right. Work each example and exercise out yourself and
   check each answer twice; a wrong answer key is the worst defect a lesson can have.

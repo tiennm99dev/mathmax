@@ -86,7 +86,7 @@
           "slug": "bai-6-cap-so-cong",
           "kind": "theory",
           "keyIdeas": ["Công sai, số hạng tổng quát", "Tổng n số hạng đầu"],
-          "interactiveIdea": "Cầu thang khối vuông minh họa cấp số cộng và cách ghép đôi Gauss để tính tổng."
+          "interactiveIdea": "Cầu thang khối vuông minh hoạ cấp số cộng và cách ghép đôi Gauss để tính tổng."
         },
         {
           "no": 3,
@@ -292,10 +292,10 @@
       "lessons": [
         {
           "no": 1,
-          "title": "Bài 18. Lũy thừa với số mũ thực",
+          "title": "Bài 18. Luỹ thừa với số mũ thực",
           "slug": "bai-18-luy-thua-voi-so-mu-thuc",
           "kind": "theory",
-          "keyIdeas": ["Lũy thừa số mũ nguyên, hữu tỉ, thực", "Tính chất của lũy thừa"],
+          "keyIdeas": ["Luỹ thừa số mũ nguyên, hữu tỉ, thực", "Tính chất của luỹ thừa"],
           "interactiveIdea": "Thanh trượt số mũ liên tục từ nguyên sang hữu tỉ sang thực, xem giá trị aˣ thay đổi."
         },
         {
@@ -308,7 +308,7 @@
             "Tính chất và quy tắc tính",
             "Lôgarit thập phân, tự nhiên"
           ],
-          "interactiveIdea": "Máy đổi lũy thừa ↔ lôgarit và thước trượt lôgarit minh họa log(ab) = log a + log b."
+          "interactiveIdea": "Máy đổi luỹ thừa ↔ lôgarit và thước trượt lôgarit minh hoạ log(ab) = log a + log b."
         },
         {
           "no": 3,
@@ -331,7 +331,7 @@
           "title": "Bài tập cuối chương VI",
           "slug": "bai-tap-cuoi-chuong-vi",
           "kind": "review",
-          "keyIdeas": ["Ôn lũy thừa, lôgarit và phương trình"],
+          "keyIdeas": ["Ôn luỹ thừa, lôgarit và phương trình"],
           "interactiveIdea": "Bài toán tăng dân số, phân rã phóng xạ có đồ thị tương tác."
         }
       ]
@@ -435,7 +435,7 @@
           "slug": "bai-29-cong-thuc-cong-xac-suat",
           "kind": "theory",
           "keyIdeas": ["Công thức cộng cho biến cố xung khắc", "Công thức cộng tổng quát"],
-          "interactiveIdea": "Hai vùng Ven chồng nhau có diện tích tỉ lệ xác suất, minh họa trừ phần giao."
+          "interactiveIdea": "Hai vùng Ven chồng nhau có diện tích tỉ lệ xác suất, minh hoạ trừ phần giao."
         },
         {
           "no": 3,
@@ -576,7 +576,7 @@
           "title": "Bài 2. Phép tịnh tiến",
           "slug": "cd-bai-2-phep-tinh-tien",
           "kind": "chuyen-de",
-          "keyIdeas": ["Định nghĩa phép tịnh tiến", "Biểu thức tọa độ và tính chất"],
+          "keyIdeas": ["Định nghĩa phép tịnh tiến", "Biểu thức toạ độ và tính chất"],
           "interactiveIdea": "Kéo vectơ tịnh tiến để thấy toàn bộ hình trượt theo."
         },
         {
@@ -584,7 +584,7 @@
           "title": "Bài 3. Phép đối xứng trục",
           "slug": "cd-bai-3-phep-doi-xung-truc",
           "kind": "chuyen-de",
-          "keyIdeas": ["Định nghĩa, biểu thức tọa độ", "Trục đối xứng của hình"],
+          "keyIdeas": ["Định nghĩa, biểu thức toạ độ", "Trục đối xứng của hình"],
           "interactiveIdea": "Gương ảo: vẽ một nửa hình, phần đối xứng qua trục tự xuất hiện."
         },
         {

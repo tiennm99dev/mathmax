@@ -187,7 +187,7 @@
       type="button"
       class="min-h-12 text-lg {button.secondary}"
       disabled={path.length === 0}
-      onclick={undo}>Xóa đoạn cuối</button
+      onclick={undo}>Xoá đoạn cuối</button
     >
     <button
       type="button"

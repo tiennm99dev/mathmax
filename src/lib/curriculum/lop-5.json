@@ -48,7 +48,7 @@
           "slug": "bai-5-on-tap-cac-phep-tinh-voi-phan-so",
           "kind": "review",
           "keyIdeas": ["cộng, trừ, nhân, chia phân số"],
-          "interactiveIdea": "Thanh băng phân số minh họa từng phép tính."
+          "interactiveIdea": "Thanh băng phân số minh hoạ từng phép tính."
         },
         {
           "no": 6,
@@ -224,7 +224,7 @@
           "slug": "bai-22-phep-chia-so-thap-phan",
           "kind": "theory",
           "keyIdeas": ["chia số thập phân cho số tự nhiên", "chia cho số thập phân"],
-          "interactiveIdea": "Phép chia dọc có bước dời dấu phẩy minh họa."
+          "interactiveIdea": "Phép chia dọc có bước dời dấu phẩy minh hoạ."
         },
         {
           "no": 23,

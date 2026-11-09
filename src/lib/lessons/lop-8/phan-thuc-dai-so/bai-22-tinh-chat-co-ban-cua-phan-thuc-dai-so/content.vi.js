@@ -75,7 +75,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Mẫu thức chung đơn giản nhất thường được chọn là tích của nhân tử bằng số (bội chung nhỏ nhất của các hệ số nguyên dương) với các lũy thừa của mỗi nhân tử có trong các mẫu, mỗi lũy thừa lấy số mũ cao nhất.',
+          text: 'Mẫu thức chung đơn giản nhất thường được chọn là tích của nhân tử bằng số (bội chung nhỏ nhất của các hệ số nguyên dương) với các luỹ thừa của mỗi nhân tử có trong các mẫu, mỗi luỹ thừa lấy số mũ cao nhất.',
         },
         {
           type: 'table',
@@ -204,10 +204,10 @@ export default {
       answer: 0,
       hints: [
         'Phần số: bội chung nhỏ nhất của $6$ và $4$.',
-        'Phần biến: lũy thừa của $x$ với số mũ cao nhất.',
+        'Phần biến: luỹ thừa của $x$ với số mũ cao nhất.',
       ],
       solution:
-        'BCNN$(6, 4) = 12$; lũy thừa cao nhất của $x$ là $x^3$. MTC $= 12x^3$. ($24x^5$ và $24x^3$ cũng chia hết cho hai mẫu nhưng không đơn giản nhất; $12x^2$ không chia hết cho $4x^3$.)',
+        'BCNN$(6, 4) = 12$; luỹ thừa cao nhất của $x$ là $x^3$. MTC $= 12x^3$. ($24x^5$ và $24x^3$ cũng chia hết cho hai mẫu nhưng không đơn giản nhất; $12x^2$ không chia hết cho $4x^3$.)',
     },
     {
       type: 'text',

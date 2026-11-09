@@ -183,10 +183,10 @@ export const baCanh = {
         answer: 2 * y + x,
         unit: 'cm',
         hints: [
-          `Thử cạnh bên dài ${x} cm: bộ ${x}, ${x}, ${y} có thỏa mãn bất đẳng thức tam giác không?`,
+          `Thử cạnh bên dài ${x} cm: bộ ${x}, ${x}, ${y} có thoả mãn bất đẳng thức tam giác không?`,
         ],
         steps: [
-          `Nếu cạnh bên dài ${x} cm thì ${y} ≥ ${x} + ${x} = ${2 * x}: không thỏa mãn bất đẳng thức tam giác.`,
+          `Nếu cạnh bên dài ${x} cm thì ${y} ≥ ${x} + ${x} = ${2 * x}: không thoả mãn bất đẳng thức tam giác.`,
           `Vậy ba cạnh là ${y}, ${y}, ${x} (${y} < ${y} + ${x}).`,
           `Chu vi bằng ${y} + ${y} + ${x} = ${2 * y + x} cm.`,
         ],
@@ -201,7 +201,7 @@ export const baCanh = {
       hints: ['BC < AB + AC.', 'BC là số nguyên nhỏ hơn tổng đó.'],
       steps: [
         `Bất đẳng thức tam giác: BC < AB + AC = ${p + q} cm.`,
-        `BC là số nguyên nên BC lớn nhất bằng ${p + q - 1} cm (và ${p + q - 1} > ${Math.abs(p - q)}, thỏa mãn cả hệ quả).`,
+        `BC là số nguyên nên BC lớn nhất bằng ${p + q - 1} cm (và ${p + q - 1} > ${Math.abs(p - q)}, thoả mãn cả hệ quả).`,
       ],
     };
   },

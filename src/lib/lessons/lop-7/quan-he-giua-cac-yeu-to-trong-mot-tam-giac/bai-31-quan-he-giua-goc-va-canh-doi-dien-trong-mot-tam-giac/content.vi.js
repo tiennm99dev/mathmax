@@ -173,10 +173,10 @@ export default {
       answers: [0, 1],
       hints: [
         'Trong tam giác vuông, góc nào lớn nhất?',
-        'Hai góc nhọn $B$, $C$ có thể lớn nhỏ tùy tam giác.',
+        'Hai góc nhọn $B$, $C$ có thể lớn nhỏ tuỳ tam giác.',
       ],
       solution:
-        '$\\widehat{A} = 90^\\circ$ là góc lớn nhất nên cạnh huyền $BC$ là cạnh lớn nhất: $BC > AB$, $BC > AC$. Còn $AB$ và $AC$ thì tùy tam giác, và $\\widehat{B} < 90^\\circ = \\widehat{A}$.',
+        '$\\widehat{A} = 90^\\circ$ là góc lớn nhất nên cạnh huyền $BC$ là cạnh lớn nhất: $BC > AB$, $BC > AC$. Còn $AB$ và $AC$ thì tuỳ tam giác, và $\\widehat{B} < 90^\\circ = \\widehat{A}$.',
     },
     {
       type: 'number',

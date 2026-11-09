@@ -23,7 +23,7 @@ export default {
           rows: [
             [
               'Hệ hai phương trình bậc nhất hai ẩn',
-              'Giải bằng phương pháp thế hoặc phương pháp cộng đại số. Mỗi phương trình $ax + by = c$ có đồ thị là một đường thẳng; nghiệm của hệ là tọa độ giao điểm của hai đường thẳng.',
+              'Giải bằng phương pháp thế hoặc phương pháp cộng đại số. Mỗi phương trình $ax + by = c$ có đồ thị là một đường thẳng; nghiệm của hệ là toạ độ giao điểm của hai đường thẳng.',
             ],
             [
               'Phương trình, bất phương trình bậc nhất một ẩn',
@@ -51,7 +51,7 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Lỗi hay gặp',
-          text: '$\\sqrt{(1 - \\sqrt{3})^2}$ bằng $\\sqrt{3} - 1$, không phải $1 - \\sqrt{3}$, vì căn bậc hai số học không âm. Khi giải bài toán bằng cách lập phương trình bậc hai, phải loại nghiệm không thỏa mãn điều kiện của ẩn (ví dụ vận tốc âm, độ dài âm).',
+          text: '$\\sqrt{(1 - \\sqrt{3})^2}$ bằng $\\sqrt{3} - 1$, không phải $1 - \\sqrt{3}$, vì căn bậc hai số học không âm. Khi giải bài toán bằng cách lập phương trình bậc hai, phải loại nghiệm không thoả mãn điều kiện của ẩn (ví dụ vận tốc âm, độ dài âm).',
         },
       ],
     },
@@ -130,7 +130,7 @@ export default {
       steps: [
         'Mẫu thức chung là $(\\sqrt{x} - 1)(\\sqrt{x} + 1) = x - 1$.',
         '$P = \\dfrac{(\\sqrt{x} + 1)^2 - (\\sqrt{x} - 1)^2}{x - 1} = \\dfrac{(x + 2\\sqrt{x} + 1) - (x - 2\\sqrt{x} + 1)}{x - 1} = \\dfrac{4\\sqrt{x}}{x - 1}$.',
-        '$x = 9$ thỏa mãn điều kiện, $\\sqrt{9} = 3$, nên $P = \\dfrac{4 \\cdot 3}{9 - 1} = \\dfrac{12}{8} = \\dfrac{3}{2}$.',
+        '$x = 9$ thoả mãn điều kiện, $\\sqrt{9} = 3$, nên $P = \\dfrac{4 \\cdot 3}{9 - 1} = \\dfrac{12}{8} = \\dfrac{3}{2}$.',
       ],
       answer: '$P = \\dfrac{4\\sqrt{x}}{x - 1}$; tại $x = 9$ thì $P = \\dfrac{3}{2}$.',
     },
@@ -150,7 +150,7 @@ export default {
         'Gọi vận tốc ca nô khi nước yên lặng là $x$ (km/h), $x > 3$. Vận tốc xuôi dòng $x + 3$, ngược dòng $x - 3$.',
         'Ta có phương trình $\\dfrac{36}{x + 3} + \\dfrac{36}{x - 3} = \\dfrac{75}{x}$.',
         'Khử mẫu: $36x(x - 3) + 36x(x + 3) = 75(x^2 - 9)$, tức là $72x^2 = 75x^2 - 675$, nên $x^2 = 225$.',
-        '$x = 15$ hoặc $x = -15$; chỉ $x = 15$ thỏa mãn điều kiện $x > 3$.',
+        '$x = 15$ hoặc $x = -15$; chỉ $x = 15$ thoả mãn điều kiện $x > 3$.',
       ],
       answer: 'Vận tốc của ca nô khi nước yên lặng là $15$ km/h.',
     },

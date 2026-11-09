@@ -56,7 +56,7 @@ export default {
           items: [
             'Tìm bậc khi chưa thu gọn: $x^4y + xy - x^4y$ có bậc $2$, không phải $5$.',
             'Trừ đa thức mà chỉ đổi dấu hạng tử đầu: $-(x^2 - 2xy + 1) = -x^2 + 2xy - 1$.',
-            'Nhân lũy thừa mà nhân số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$.',
+            'Nhân luỹ thừa mà nhân số mũ: $x^2 \\cdot x^3 = x^5$, không phải $x^6$.',
             'Coi $xy^2$ và $x^2y$ là đồng dạng: số mũ của từng biến phải bằng nhau.',
             'Kết luận đa thức chia hết khi mới kiểm tra một hạng tử: $x^2y + 3x$ không chia hết cho $xy$ vì $3x$ không chứa $y$.',
           ],
@@ -124,7 +124,7 @@ export default {
       prompt: 'Đơn thức nào đồng dạng với đơn thức $2x^2y$?',
       options: ['$2xy^2$', '$-5x^2y$', '$2x^2y^2$', '$x^2$'],
       answer: 1,
-      hints: ['Đồng dạng: cùng phần biến $x^2y$, hệ số khác $0$ tùy ý.'],
+      hints: ['Đồng dạng: cùng phần biến $x^2y$, hệ số khác $0$ tuỳ ý.'],
       solution:
         '$-5x^2y$ có phần biến $x^2y$ nên đồng dạng với $2x^2y$. Các đơn thức kia khác phần biến.',
     },

@@ -27,7 +27,7 @@ export default {
             ],
             [
               'Thu gọn, sắp xếp',
-              'Cộng các hạng tử cùng bậc; viết theo lũy thừa giảm dần (hoặc tăng dần) của biến.',
+              'Cộng các hạng tử cùng bậc; viết theo luỹ thừa giảm dần (hoặc tăng dần) của biến.',
             ],
             [
               'Bậc, hệ số',
@@ -136,7 +136,7 @@ export default {
     {
       type: 'order',
       prompt:
-        'Sắp xếp các hạng tử của đa thức $3x^2 - 1 + x^4 - 2x$ theo lũy thừa tăng dần của biến.',
+        'Sắp xếp các hạng tử của đa thức $3x^2 - 1 + x^4 - 2x$ theo luỹ thừa tăng dần của biến.',
       items: ['$3x^2$', '$-1$', '$x^4$', '$-2x$'],
       answer: [1, 3, 0, 2],
       hints: ['Tăng dần: bắt đầu từ hạng tử bậc $0$.'],
@@ -185,7 +185,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Cho $P(x) = x^2 + 2x - 1$ và $Q(x) = 3x - 4$. Đa thức $R(x)$ thỏa mãn $P(x) - R(x) = Q(x)$ là',
+        'Cho $P(x) = x^2 + 2x - 1$ và $Q(x) = 3x - 4$. Đa thức $R(x)$ thoả mãn $P(x) - R(x) = Q(x)$ là',
       options: ['$x^2 + 5x - 5$', '$x^2 - x + 3$', '$x^2 - x - 5$', '$-x^2 + x - 3$'],
       answer: 1,
       hints: ['Từ $P - R = Q$ suy ra $R = P - Q$.'],
@@ -193,7 +193,7 @@ export default {
     },
   ],
   takeaways: [
-    'Thay số âm vào biến thì đặt trong ngoặc, tính lũy thừa trước rồi đến nhân chia, cộng trừ.',
+    'Thay số âm vào biến thì đặt trong ngoặc, tính luỹ thừa trước rồi đến nhân chia, cộng trừ.',
     'Thu gọn đa thức trước khi tìm bậc, hệ số cao nhất và hệ số tự do.',
     '$a$ là nghiệm của $P(x)$ khi $P(a) = 0$; tìm tham số để $a$ là nghiệm bằng cách giải $P(a) = 0$.',
     'Cộng, trừ đa thức: nhóm các hạng tử cùng bậc; khi trừ, đổi dấu mọi hạng tử của đa thức bị trừ.',

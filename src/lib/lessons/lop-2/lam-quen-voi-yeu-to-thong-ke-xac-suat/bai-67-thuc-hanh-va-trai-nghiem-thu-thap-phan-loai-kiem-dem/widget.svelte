@@ -98,7 +98,7 @@
       type="button"
       class="min-h-12 text-lg {button.quiet}"
       disabled={votes.length === 0}
-      onclick={() => setVotes([])}>Xóa hết</button
+      onclick={() => setVotes([])}>Xoá hết</button
     >
     <button
       type="button"

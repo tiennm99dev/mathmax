@@ -109,7 +109,7 @@ export default {
     {
       type: 'choice',
       prompt: 'Muốn so sánh độ dài hai cây bút, em đặt hai cây bút thế nào?',
-      options: ['Cạnh nhau, một đầu thẳng hàng', 'Mỗi cây một nơi', 'Chồng lên nhau, lệch tùy ý'],
+      options: ['Cạnh nhau, một đầu thẳng hàng', 'Mỗi cây một nơi', 'Chồng lên nhau, lệch tuỳ ý'],
       answer: 0,
       hints: ['Hai đồ vật phải bắt đầu từ cùng một chỗ.'],
       solution: 'Em đặt hai cây bút cạnh nhau, một đầu thẳng hàng, rồi nhìn đầu bên kia.',

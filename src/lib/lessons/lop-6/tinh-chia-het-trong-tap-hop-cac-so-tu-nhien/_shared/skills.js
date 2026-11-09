@@ -113,7 +113,7 @@ export const dauHieuChiaHet = {
           answer: best,
           steps: [
             `Tổng các chữ số là ${known} + *. Số chia hết cho 9 khi tổng này chia hết cho 9.`,
-            `Với * từ 0 đến 9, các giá trị thỏa mãn là ${ds.join(', ')}.`,
+            `Với * từ 0 đến 9, các giá trị thoả mãn là ${ds.join(', ')}.`,
             `Chữ số lớn nhất là ${best}; khi đó tổng các chữ số là ${known + best}.`,
           ],
         };
@@ -129,7 +129,7 @@ export const dauHieuChiaHet = {
           steps: [
             `Tổng các chữ số là ${known} + *; số chia hết cho 3 khi tổng này chia hết cho 3.`,
             pattern[0] === null ? 'Chữ số đầu tiên phải khác 0.' : 'Thử * lần lượt từ 0 đến 9.',
-            `Các chữ số thỏa mãn: ${ds.join(', ')}. Có ${ds.length} chữ số.`,
+            `Các chữ số thoả mãn: ${ds.join(', ')}. Có ${ds.length} chữ số.`,
           ],
         };
       }
@@ -151,7 +151,7 @@ export const dauHieuChiaHet = {
         steps: [
           `Chữ số tận cùng * phải là ${tail}.`,
           `Tổng các chữ số ${known} + * phải chia hết cho ${sumBy}.`,
-          `Chỉ * = ${ds[0]} thỏa mãn cả hai điều kiện: ${known} + ${ds[0]} = ${known + ds[0]}.`,
+          `Chỉ * = ${ds[0]} thoả mãn cả hai điều kiện: ${known} + ${ds[0]} = ${known + ds[0]}.`,
         ],
       };
     }

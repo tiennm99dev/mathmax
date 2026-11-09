@@ -21,7 +21,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Biểu thức không có dấu ngoặc',
-          text: 'Nếu chỉ có phép cộng, trừ hoặc chỉ có phép nhân, chia, ta thực hiện từ trái sang phải. Nếu có cả cộng, trừ, nhân, chia, nâng lên lũy thừa, ta thực hiện: lũy thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ.',
+          text: 'Nếu chỉ có phép cộng, trừ hoặc chỉ có phép nhân, chia, ta thực hiện từ trái sang phải. Nếu có cả cộng, trừ, nhân, chia, nâng lên luỹ thừa, ta thực hiện: luỹ thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ.',
         },
         {
           type: 'callout',
@@ -94,7 +94,7 @@ export default {
     {
       problem: 'Tính $\\frac{3}{4} - \\frac{1}{2} \\cdot \\left(\\frac{-2}{3}\\right)^2 : 0{,}5$.',
       steps: [
-        'Lũy thừa trước: $\\left(\\frac{-2}{3}\\right)^2 = \\frac{4}{9}$.',
+        'Luỹ thừa trước: $\\left(\\frac{-2}{3}\\right)^2 = \\frac{4}{9}$.',
         'Nhân, chia từ trái sang phải: $\\frac{1}{2} \\cdot \\frac{4}{9} = \\frac{2}{9}$; $\\;\\frac{2}{9} : 0{,}5 = \\frac{2}{9} \\cdot 2 = \\frac{4}{9}$.',
         'Trừ sau cùng: $\\frac{3}{4} - \\frac{4}{9} = \\frac{27}{36} - \\frac{16}{36} = \\frac{11}{36}$.',
       ],
@@ -106,7 +106,7 @@ export default {
       steps: [
         'Ngoặc tròn: $\\frac{1}{2} - \\frac{5}{6} = \\frac{3}{6} - \\frac{5}{6} = \\frac{-1}{3}$.',
         'Ngoặc vuông: $\\frac{-1}{3} : \\frac{2}{3} = \\frac{-1}{3} \\cdot \\frac{3}{2} = \\frac{-1}{2}$.',
-        'Lũy thừa: $\\left(\\frac{-1}{2}\\right)^2 = \\frac{1}{4}$; cộng: $\\frac{1}{4} + 0{,}75 = 0{,}25 + 0{,}75 = 1$.',
+        'Luỹ thừa: $\\left(\\frac{-1}{2}\\right)^2 = \\frac{1}{4}$; cộng: $\\frac{1}{4} + 0{,}75 = 0{,}25 + 0{,}75 = 1$.',
       ],
       answer: 'Kết quả bằng $1$.',
     },
@@ -132,16 +132,16 @@ export default {
     {
       type: 'order',
       prompt: 'Sắp xếp thứ tự thực hiện các phép tính trong một biểu thức không có dấu ngoặc.',
-      items: ['Cộng và trừ', 'Nâng lên lũy thừa', 'Nhân và chia'],
+      items: ['Cộng và trừ', 'Nâng lên luỹ thừa', 'Nhân và chia'],
       answer: [1, 2, 0],
       hints: ['Phép tính "mạnh" hơn được làm trước.'],
-      solution: 'Lũy thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ.',
+      solution: 'Luỹ thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ.',
     },
     {
       type: 'number',
       prompt: 'Tính $2{,}5 - 1{,}5 \\cdot 2^2$.',
       answer: -3.5,
-      hints: ['Lũy thừa trước, rồi nhân, rồi mới trừ.'],
+      hints: ['Luỹ thừa trước, rồi nhân, rồi mới trừ.'],
       solution: '$2^2 = 4$; $\\;1{,}5 \\cdot 4 = 6$; $\\;2{,}5 - 6 = -3{,}5$.',
     },
     {
@@ -236,7 +236,7 @@ export default {
     },
   ],
   takeaways: [
-    'Không có ngoặc: lũy thừa $\\rightarrow$ nhân, chia $\\rightarrow$ cộng, trừ; cùng loại thì từ trái sang phải.',
+    'Không có ngoặc: luỹ thừa $\\rightarrow$ nhân, chia $\\rightarrow$ cộng, trừ; cùng loại thì từ trái sang phải.',
     'Có ngoặc: $(\\ )$ $\\rightarrow$ $[\\ ]$ $\\rightarrow$ $\\{\\ \\}$.',
     'Chuyển một số hạng sang vế kia thì đổi dấu số hạng đó: $x + a = b \\Rightarrow x = b - a$.',
     'Tìm xong $x$, hãy thay lại vào đẳng thức để kiểm tra.',

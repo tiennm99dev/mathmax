@@ -27,7 +27,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Quy tắc',
-          text: 'Muốn chia đơn thức $A$ cho đơn thức $B$ (trường hợp $A$ chia hết cho $B$), ta làm như sau: chia hệ số của $A$ cho hệ số của $B$; chia lũy thừa của từng biến trong $A$ cho lũy thừa của cùng biến đó trong $B$; nhân các kết quả vừa tìm được với nhau.',
+          text: 'Muốn chia đơn thức $A$ cho đơn thức $B$ (trường hợp $A$ chia hết cho $B$), ta làm như sau: chia hệ số của $A$ cho hệ số của $B$; chia luỹ thừa của từng biến trong $A$ cho luỹ thừa của cùng biến đó trong $B$; nhân các kết quả vừa tìm được với nhau.',
         },
         {
           type: 'tex',
@@ -96,7 +96,7 @@ export default {
     {
       problem: 'Thực hiện phép chia: a) $15x^3y^4z : 5xy^2$; b) $2x^3y^2 : (-4xy^2)$.',
       steps: [
-        'a) Chia hệ số: $15 : 5 = 3$; chia lũy thừa: $x^3 : x = x^2$, $y^4 : y^2 = y^2$; biến $z$ không có trong $B$ nên giữ nguyên.',
+        'a) Chia hệ số: $15 : 5 = 3$; chia luỹ thừa: $x^3 : x = x^2$, $y^4 : y^2 = y^2$; biến $z$ không có trong $B$ nên giữ nguyên.',
         'Vậy $15x^3y^4z : 5xy^2 = 3x^2y^2z$.',
         'b) Chia hệ số: $2 : (-4) = -\\frac{1}{2}$; $x^3 : x = x^2$; $y^2 : y^2 = 1$.',
       ],
@@ -129,7 +129,7 @@ export default {
       answer: 0,
       hints: [
         'Chia hệ số: $12 : (-4)$.',
-        'Chia lũy thừa cùng cơ số thì trừ số mũ: $x^4 : x^3$, $y^3 : y$.',
+        'Chia luỹ thừa cùng cơ số thì trừ số mũ: $x^4 : x^3$, $y^3 : y$.',
       ],
       solution: '$12 : (-4) = -3$; $x^4 : x^3 = x$; $y^3 : y = y^2$. Vậy thương là $-3xy^2$.',
     },
@@ -226,7 +226,7 @@ export default {
   ],
   takeaways: [
     'Đơn thức $A$ chia hết cho đơn thức $B \\ne 0$ khi mỗi biến của $B$ là biến của $A$ với số mũ không lớn hơn số mũ trong $A$.',
-    'Chia đơn thức: chia hệ số, chia lũy thừa của từng biến (trừ số mũ), rồi nhân các kết quả.',
+    'Chia đơn thức: chia hệ số, chia luỹ thừa của từng biến (trừ số mũ), rồi nhân các kết quả.',
     'Đa thức chia hết cho đơn thức khi mọi hạng tử chia hết; khi đó chia từng hạng tử rồi cộng các kết quả.',
     'Thử lại phép chia bằng phép nhân: $B \\cdot (A : B) = A$.',
   ],

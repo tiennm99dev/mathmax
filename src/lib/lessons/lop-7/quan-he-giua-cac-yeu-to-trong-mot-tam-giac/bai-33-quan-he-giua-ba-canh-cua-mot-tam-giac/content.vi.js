@@ -49,13 +49,13 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Ba độ dài là độ dài ba cạnh của một tam giác khi và chỉ khi chúng thỏa mãn cả ba bất đẳng thức tam giác. Khi đó ta vẽ được tam giác bằng thước và compa như đã học (trường hợp cạnh – cạnh – cạnh).',
+          text: 'Ba độ dài là độ dài ba cạnh của một tam giác khi và chỉ khi chúng thoả mãn cả ba bất đẳng thức tam giác. Khi đó ta vẽ được tam giác bằng thước và compa như đã học (trường hợp cạnh – cạnh – cạnh).',
         },
         {
           type: 'callout',
           tone: 'note',
           title: 'Chú ý',
-          text: 'Khi xét ba độ dài có thỏa mãn bất đẳng thức tam giác hay không, ta chỉ cần so sánh độ dài lớn nhất với tổng hai độ dài còn lại. Nếu độ dài lớn nhất nhỏ hơn tổng đó thì hai bất đẳng thức kia tự động đúng.',
+          text: 'Khi xét ba độ dài có thoả mãn bất đẳng thức tam giác hay không, ta chỉ cần so sánh độ dài lớn nhất với tổng hai độ dài còn lại. Nếu độ dài lớn nhất nhỏ hơn tổng đó thì hai bất đẳng thức kia tự động đúng.',
         },
         {
           type: 'table',
@@ -103,8 +103,8 @@ export default {
     {
       problem: 'Một tam giác cân có hai cạnh dài $3$ cm và $7$ cm. Tính chu vi của tam giác đó.',
       steps: [
-        'Nếu cạnh bên dài $3$ cm thì ba cạnh là $3$, $3$, $7$; nhưng $7 > 3 + 3 = 6$, không thỏa mãn bất đẳng thức tam giác.',
-        'Vậy cạnh bên dài $7$ cm, ba cạnh là $7$, $7$, $3$; kiểm tra: $7 < 7 + 3$, thỏa mãn.',
+        'Nếu cạnh bên dài $3$ cm thì ba cạnh là $3$, $3$, $7$; nhưng $7 > 3 + 3 = 6$, không thoả mãn bất đẳng thức tam giác.',
+        'Vậy cạnh bên dài $7$ cm, ba cạnh là $7$, $7$, $3$; kiểm tra: $7 < 7 + 3$, thoả mãn.',
         'Chu vi bằng $7 + 7 + 3 = 17$ (cm).',
       ],
       answer: 'Chu vi bằng $17$ cm.',
@@ -131,7 +131,7 @@ export default {
       answer: 2,
       hints: ['Cạnh thứ ba lớn hơn hiệu và nhỏ hơn tổng hai cạnh đã biết.'],
       solution:
-        'Cạnh thứ ba $x$ thỏa mãn $6 - 2 < x < 6 + 2$, tức $4 < x < 8$. Trong các đáp án chỉ có $7$ cm thỏa mãn ($4$ cm và $8$ cm bằng đúng hai đầu mút nên bị loại).',
+        'Cạnh thứ ba $x$ thoả mãn $6 - 2 < x < 6 + 2$, tức $4 < x < 8$. Trong các đáp án chỉ có $7$ cm thoả mãn ($4$ cm và $8$ cm bằng đúng hai đầu mút nên bị loại).',
     },
     {
       type: 'number',
@@ -161,10 +161,10 @@ export default {
       unit: 'cm',
       hints: [
         'Thử hai khả năng: cạnh bên dài $4$ cm hoặc cạnh bên dài $9$ cm.',
-        'Bộ $4$, $4$, $9$ có thỏa mãn bất đẳng thức tam giác không?',
+        'Bộ $4$, $4$, $9$ có thoả mãn bất đẳng thức tam giác không?',
       ],
       solution:
-        'Bộ $4$, $4$, $9$ không thỏa mãn vì $9 > 4 + 4$. Vậy ba cạnh là $9$, $9$, $4$ ($9 < 9 + 4$) và chu vi bằng $9 + 9 + 4 = 22$ cm.',
+        'Bộ $4$, $4$, $9$ không thoả mãn vì $9 > 4 + 4$. Vậy ba cạnh là $9$, $9$, $4$ ($9 < 9 + 4$) và chu vi bằng $9 + 9 + 4 = 22$ cm.',
     },
     {
       type: 'choice',
@@ -179,7 +179,7 @@ export default {
       answer: 1,
       hints: ['So sánh $AB + BC$ với $AC$.'],
       solution:
-        '$AB + BC = 3 + 5 = 8 = AC$: không thỏa mãn bất đẳng thức tam giác, nên $A$, $B$, $C$ thẳng hàng và $B$ nằm giữa $A$ và $C$.',
+        '$AB + BC = 3 + 5 = 8 = AC$: không thoả mãn bất đẳng thức tam giác, nên $A$, $B$, $C$ thẳng hàng và $B$ nằm giữa $A$ và $C$.',
     },
     {
       type: 'text',

@@ -15,7 +15,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Em xòe bàn tay, đặt ngón cái ở mép bàn. Khoảng từ ngón cái đến ngón giữa là một gang tay.',
+          text: 'Em xoè bàn tay, đặt ngón cái ở mép bàn. Khoảng từ ngón cái đến ngón giữa là một gang tay.',
         },
         {
           type: 'p',

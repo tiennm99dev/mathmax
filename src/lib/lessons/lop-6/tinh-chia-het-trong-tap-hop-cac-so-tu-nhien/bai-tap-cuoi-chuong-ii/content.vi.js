@@ -102,7 +102,7 @@ export default {
         'Xếp hàng $7$ vừa đủ nên số vịt là bội của $7$: $7, 14, 21, \\ldots, 196$.',
         'Hàng $5$ thiếu $1$ con nên số vịt có chữ số tận cùng là $4$ hoặc $9$: còn $14, 49, 84, 119, 154, 189$.',
         'Hàng $2$ chưa vừa nên số vịt là số lẻ: còn $49, 119, 189$.',
-        'Hàng $3$ thừa $1$: $49 = 3 \\cdot 16 + 1$ thỏa mãn; $119 = 3 \\cdot 39 + 2$ và $189 = 3 \\cdot 63$ không thỏa mãn.',
+        'Hàng $3$ thừa $1$: $49 = 3 \\cdot 16 + 1$ thoả mãn; $119 = 3 \\cdot 39 + 2$ và $189 = 3 \\cdot 63$ không thoả mãn.',
         'Kiểm tra hàng $4$: $49 = 4 \\cdot 12 + 1$, chưa tròn, đúng.',
       ],
       answer: 'Có $49$ con vịt.',

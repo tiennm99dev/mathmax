@@ -23,7 +23,7 @@ export default {
             ],
             [
               'Sự kiện',
-              'Một sự kiện có thể xảy ra hoặc không xảy ra tùy thuộc vào kết quả nhận được.',
+              'Một sự kiện có thể xảy ra hoặc không xảy ra tuỳ thuộc vào kết quả nhận được.',
             ],
             [
               'Xác suất thực nghiệm',

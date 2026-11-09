@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Bài tập cuối chương I: hệ thống hoá tập hợp số hữu tỉ, bốn phép tính, lũy thừa, thứ tự thực hiện phép tính và quy tắc chuyển vế, kèm bài kiểm tra có bản đồ kĩ năng theo từng bài.',
+    'Bài tập cuối chương I: hệ thống hoá tập hợp số hữu tỉ, bốn phép tính, luỹ thừa, thứ tự thực hiện phép tính và quy tắc chuyển vế, kèm bài kiểm tra có bản đồ kĩ năng theo từng bài.',
   intro:
     'Chương I mở rộng tập hợp số từ số nguyên sang số hữu tỉ $\\mathbb{Q}$: những số viết được dưới dạng phân số $\\frac{a}{b}$, kể cả số thập phân như $-0{,}75$. Bài này hệ thống lại toàn chương và cho em một bài kiểm tra tổng hợp; bản đồ kĩ năng sẽ chỉ ra bài nào em đã vững và bài nào cần ôn lại.',
   objectives: [
     'Hệ thống hoá kiến thức chương Số hữu tỉ.',
-    'Làm bài tập trắc nghiệm và tự luận tổng hợp: so sánh, tính giá trị biểu thức, tính lũy thừa, tìm $x$.',
+    'Làm bài tập trắc nghiệm và tự luận tổng hợp: so sánh, tính giá trị biểu thức, tính luỹ thừa, tìm $x$.',
     'Vận dụng số hữu tỉ để giải các bài toán thực tế về tiền, thời gian và đo lường.',
   ],
   sections: [
@@ -27,12 +27,12 @@ export default {
               'Viết các số dưới dạng phân số (hoặc cùng dạng số thập phân) rồi tính như phân số. Phép cộng, phép nhân có tính chất giao hoán, kết hợp; phép nhân phân phối với phép cộng. Số nghịch đảo của $a \\ne 0$ là $\\frac{1}{a}$; $\\;a : b = a \\cdot \\frac{1}{b}$.',
             ],
             [
-              'Bài 3. Lũy thừa với số mũ tự nhiên',
+              'Bài 3. Luỹ thừa với số mũ tự nhiên',
               '$x^n = x \\cdot x \\cdot \\ldots \\cdot x$ ($n$ thừa số); $x^0 = 1$ ($x \\ne 0$). $x^m \\cdot x^n = x^{m+n}$; $\\;x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$); $\\;\\left(x^m\\right)^n = x^{m \\cdot n}$; $\\;\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
             ],
             [
               'Bài 4. Thứ tự thực hiện các phép tính. Quy tắc chuyển vế',
-              'Không có ngoặc: lũy thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ; có ngoặc: $(\\ ) \\rightarrow [\\ ] \\rightarrow \\{\\ \\}$. Chuyển một số hạng sang vế kia của đẳng thức thì đổi dấu số hạng đó.',
+              'Không có ngoặc: luỹ thừa $\\rightarrow$ nhân và chia $\\rightarrow$ cộng và trừ; có ngoặc: $(\\ ) \\rightarrow [\\ ] \\rightarrow \\{\\ \\}$. Chuyển một số hạng sang vế kia của đẳng thức thì đổi dấu số hạng đó.',
             ],
           ],
         },
@@ -52,8 +52,8 @@ export default {
           items: [
             'So sánh hai số âm như so sánh hai số dương: thật ra $-0{,}5 < -0{,}4$ vì điểm $-0{,}5$ nằm bên trái điểm $-0{,}4$ trên trục số.',
             'Nhầm số đối với số nghịch đảo: số đối của $\\frac{2}{3}$ là $\\frac{-2}{3}$, còn số nghịch đảo là $\\frac{3}{2}$.',
-            'Nhân số mũ khi nhân hai lũy thừa cùng cơ số: $3^2 \\cdot 3^4 = 3^6$, không phải $3^8$.',
-            'Quên dấu ngoặc khi lũy thừa số âm: $(-3)^2 = 9$ nhưng $-3^2 = -9$.',
+            'Nhân số mũ khi nhân hai luỹ thừa cùng cơ số: $3^2 \\cdot 3^4 = 3^6$, không phải $3^8$.',
+            'Quên dấu ngoặc khi luỹ thừa số âm: $(-3)^2 = 9$ nhưng $-3^2 = -9$.',
             'Cộng trước nhân sau: $1 + 2 \\cdot \\frac{1}{4} = 1 + \\frac{1}{2} = \\frac{3}{2}$, không phải $3 \\cdot \\frac{1}{4}$.',
             'Chuyển vế mà quên đổi dấu: từ $x + \\frac{1}{3} = 1$ phải được $x = 1 - \\frac{1}{3}$.',
           ],
@@ -70,7 +70,7 @@ export default {
     {
       problem: 'Tính giá trị biểu thức $A = \\frac{3^{12} + 3^{15}}{1 + 3^3}$.',
       steps: [
-        'Viết $3^{15} = 3^{12} \\cdot 3^3$ (nhân hai lũy thừa cùng cơ số).',
+        'Viết $3^{15} = 3^{12} \\cdot 3^3$ (nhân hai luỹ thừa cùng cơ số).',
         'Đặt thừa số chung: $3^{12} + 3^{12} \\cdot 3^3 = 3^{12} \\cdot \\left(1 + 3^3\\right)$.',
         '$A = \\frac{3^{12} \\cdot \\left(1 + 3^3\\right)}{1 + 3^3} = 3^{12} = 531\\,441$.',
       ],
@@ -226,8 +226,8 @@ export default {
   ],
   takeaways: [
     'Mọi phép tính với số hữu tỉ quy về phép tính với phân số hoặc số thập phân; $\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q}$.',
-    'Ba quy tắc lũy thừa cùng cơ số: nhân thì cộng số mũ, chia thì trừ số mũ, lũy thừa của lũy thừa thì nhân số mũ.',
-    'Tính đúng thứ tự (ngoặc, lũy thừa, nhân chia, cộng trừ) và tìm thừa số chung để tính hợp lí.',
+    'Ba quy tắc luỹ thừa cùng cơ số: nhân thì cộng số mũ, chia thì trừ số mũ, luỹ thừa của luỹ thừa thì nhân số mũ.',
+    'Tính đúng thứ tự (ngoặc, luỹ thừa, nhân chia, cộng trừ) và tìm thừa số chung để tính hợp lí.',
     'Tìm $x$ bằng quy tắc chuyển vế, nhớ đổi dấu và thử lại.',
   ],
 };

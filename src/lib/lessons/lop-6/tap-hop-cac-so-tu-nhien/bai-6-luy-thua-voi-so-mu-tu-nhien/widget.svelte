@@ -8,8 +8,8 @@
 
   const MODES = [
     { value: 'may', label: 'Máy nhân' },
-    { value: 'nhan', label: 'Nhân hai lũy thừa' },
-    { value: 'chia', label: 'Chia hai lũy thừa' },
+    { value: 'nhan', label: 'Nhân hai luỹ thừa' },
+    { value: 'chia', label: 'Chia hai luỹ thừa' },
   ];
   const BASES = [
     { value: 2, label: 'a = 2' },
@@ -92,7 +92,7 @@
       {/each}
     </div>
 
-    <ol class="flex flex-wrap gap-2 text-sm tabular-nums" aria-label="Các lũy thừa đã qua">
+    <ol class="flex flex-wrap gap-2 text-sm tabular-nums" aria-label="Các luỹ thừa đã qua">
       {#each Array.from({ length: n + 1 }, (_, k) => k) as k (k)}
         <li
           class="rounded-lg border px-2 py-1 {k === n

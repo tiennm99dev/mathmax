@@ -43,15 +43,15 @@
         },
         {
           "no": 4,
-          "title": "Bài 3. Lũy thừa với số mũ tự nhiên của một số hữu tỉ",
+          "title": "Bài 3. Luỹ thừa với số mũ tự nhiên của một số hữu tỉ",
           "slug": "bai-3-luy-thua-voi-so-mu-tu-nhien-cua-mot-so-huu-ti",
           "kind": "theory",
           "keyIdeas": [
-            "Lũy thừa của số hữu tỉ",
-            "Tích, thương hai lũy thừa cùng cơ số",
-            "Lũy thừa của lũy thừa"
+            "Luỹ thừa của số hữu tỉ",
+            "Tích, thương hai luỹ thừa cùng cơ số",
+            "Luỹ thừa của luỹ thừa"
           ],
-          "interactiveIdea": "Thẻ quy tắc lũy thừa kéo ghép, mỗi bước biến đổi được kiểm tra bằng giá trị số."
+          "interactiveIdea": "Thẻ quy tắc luỹ thừa kéo ghép, mỗi bước biến đổi được kiểm tra bằng giá trị số."
         },
         {
           "no": 5,
@@ -67,10 +67,10 @@
           "slug": "luyen-tap-chung-trang-23",
           "kind": "practice",
           "keyIdeas": [
-            "Củng cố: Lũy thừa với số mũ tự nhiên của một số hữu tỉ",
+            "Củng cố: Luỹ thừa với số mũ tự nhiên của một số hữu tỉ",
             "Củng cố: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế"
           ],
-          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về lũy thừa với số mũ tự nhiên của một số hữu tỉ; thứ tự thực hiện các phép tính. Quy tắc chuyển vế, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về luỹ thừa với số mũ tự nhiên của một số hữu tỉ; thứ tự thực hiện các phép tính. Quy tắc chuyển vế, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
         },
         {
           "no": 7,
@@ -503,7 +503,7 @@
           "slug": "bai-25-da-thuc-mot-bien",
           "kind": "theory",
           "keyIdeas": ["Đơn thức và đa thức một biến", "Bậc, hệ số", "Nghiệm của đa thức"],
-          "interactiveIdea": "Thẻ đơn thức kéo sắp xếp theo lũy thừa giảm dần, đồ thị cho thấy nghiệm."
+          "interactiveIdea": "Thẻ đơn thức kéo sắp xếp theo luỹ thừa giảm dần, đồ thị cho thấy nghiệm."
         },
         {
           "no": 3,

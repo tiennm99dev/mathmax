@@ -44,7 +44,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Thứ tự thực hiện phép tính',
-          text: 'Với số nguyên, thứ tự thực hiện phép tính như với số tự nhiên: trong ngoặc trước; không có ngoặc thì lũy thừa, rồi nhân và chia, cuối cùng cộng và trừ.',
+          text: 'Với số nguyên, thứ tự thực hiện phép tính như với số tự nhiên: trong ngoặc trước; không có ngoặc thì luỹ thừa, rồi nhân và chia, cuối cùng cộng và trừ.',
         },
       ],
     },
@@ -117,7 +117,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Tính tổng các số nguyên $x$ thỏa mãn $-6 < x < 4$.',
+      prompt: 'Tính tổng các số nguyên $x$ thoả mãn $-6 < x < 4$.',
       answer: -9,
       hints: [
         'Liệt kê: $x \\in \\{-5; -4; \\ldots; 2; 3\\}$.',

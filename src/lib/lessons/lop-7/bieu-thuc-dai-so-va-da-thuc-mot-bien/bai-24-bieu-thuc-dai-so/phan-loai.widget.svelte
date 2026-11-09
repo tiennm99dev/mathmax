@@ -40,7 +40,7 @@
         id: 'c7',
         label: '3,5 · 2² − 1',
         bin: 'so',
-        why: 'Không có chữ nào; 2² là lũy thừa của một số.',
+        why: 'Không có chữ nào; 2² là luỹ thừa của một số.',
       },
       {
         id: 'c8',

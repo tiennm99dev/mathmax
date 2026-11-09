@@ -62,7 +62,7 @@
     feedback = {
       tone: 'good',
       text: isDone(res.next)
-        ? `Xong! Biểu thức đã là một lũy thừa duy nhất, giá trị vẫn bằng ${valueText(afterValue)}.`
+        ? `Xong! Biểu thức đã là một luỹ thừa duy nhất, giá trị vẫn bằng ${valueText(afterValue)}.`
         : `Đúng quy tắc: giá trị không đổi.`,
       before,
       after: `${exprTex(res.next)} = ${after}`,

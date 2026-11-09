@@ -49,7 +49,7 @@ export default {
         {
           type: 'list',
           items: [
-            'đổi chỗ tùy ý các số hạng, nhớ mang theo dấu của chúng: $5 - 7 + 3 = 5 + 3 - 7$;',
+            'đổi chỗ tuỳ ý các số hạng, nhớ mang theo dấu của chúng: $5 - 7 + 3 = 5 + 3 - 7$;',
             'đặt các số hạng vào trong ngoặc để nhóm chúng lại; nếu trước ngoặc là dấu "$-$" thì phải đổi dấu các số hạng được đưa vào ngoặc: $a - b - c = a - (b + c)$.',
           ],
         },
@@ -169,7 +169,7 @@ export default {
   takeaways: [
     'Trước ngoặc là "$+$": bỏ ngoặc, giữ nguyên dấu các số hạng.',
     'Trước ngoặc là "$-$": bỏ ngoặc, đổi dấu tất cả các số hạng trong ngoặc.',
-    'Trong một tổng có thể đổi chỗ các số hạng kèm theo dấu và nhóm chúng tùy ý.',
+    'Trong một tổng có thể đổi chỗ các số hạng kèm theo dấu và nhóm chúng tuỳ ý.',
     'Tính nhanh: tìm các số đối nhau, các số có tổng tròn chục, tròn trăm.',
   ],
 };

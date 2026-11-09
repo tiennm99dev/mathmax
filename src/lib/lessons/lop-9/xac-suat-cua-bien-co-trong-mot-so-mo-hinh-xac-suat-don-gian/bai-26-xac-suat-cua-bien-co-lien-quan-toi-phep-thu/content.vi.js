@@ -15,13 +15,13 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Lan gieo một con xúc xắc, Hòa tung một đồng xu. Xét biến cố $E$: "Số chấm xuất hiện là số chẵn và đồng xu xuất hiện mặt sấp". Biến cố $E$ xảy ra hay không tùy thuộc vào kết quả của phép thử: nếu kết quả là $(4, S)$ thì $E$ xảy ra, nếu là $(4, N)$ hay $(3, S)$ thì $E$ không xảy ra.',
+          text: 'Lan gieo một con xúc xắc, Hoà tung một đồng xu. Xét biến cố $E$: "Số chấm xuất hiện là số chẵn và đồng xu xuất hiện mặt sấp". Biến cố $E$ xảy ra hay không tuỳ thuộc vào kết quả của phép thử: nếu kết quả là $(4, S)$ thì $E$ xảy ra, nếu là $(4, N)$ hay $(3, S)$ thì $E$ không xảy ra.',
         },
         {
           type: 'callout',
           tone: 'definition',
           title: 'Kết quả thuận lợi',
-          text: 'Cho phép thử $T$. Biến cố $E$ liên quan tới phép thử $T$ là biến cố mà việc xảy ra hay không xảy ra của $E$ tùy thuộc vào kết quả của phép thử $T$. Mỗi kết quả của phép thử $T$ làm cho biến cố $E$ xảy ra gọi là một kết quả thuận lợi cho $E$.',
+          text: 'Cho phép thử $T$. Biến cố $E$ liên quan tới phép thử $T$ là biến cố mà việc xảy ra hay không xảy ra của $E$ tuỳ thuộc vào kết quả của phép thử $T$. Mỗi kết quả của phép thử $T$ làm cho biến cố $E$ xảy ra gọi là một kết quả thuận lợi cho $E$.',
         },
         {
           type: 'p',
@@ -53,7 +53,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Trong ví dụ của Lan và Hòa, không gian mẫu có $12$ phần tử đồng khả năng (xúc xắc và đồng xu đều cân đối), có $3$ kết quả thuận lợi cho $E$, nên $P(E) = \\dfrac{3}{12} = \\dfrac{1}{4}$.',
+          text: 'Trong ví dụ của Lan và Hoà, không gian mẫu có $12$ phần tử đồng khả năng (xúc xắc và đồng xu đều cân đối), có $3$ kết quả thuận lợi cho $E$, nên $P(E) = \\dfrac{3}{12} = \\dfrac{1}{4}$.',
         },
         {
           type: 'callout',

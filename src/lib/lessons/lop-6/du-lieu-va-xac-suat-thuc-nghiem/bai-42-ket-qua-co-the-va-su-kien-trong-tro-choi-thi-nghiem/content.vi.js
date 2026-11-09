@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Kết quả có thể của một trò chơi, thí nghiệm: không biết trước nhưng liệt kê được; sự kiện xảy ra hay không xảy ra tùy theo kết quả nhận được.',
+    'Kết quả có thể của một trò chơi, thí nghiệm: không biết trước nhưng liệt kê được; sự kiện xảy ra hay không xảy ra tuỳ theo kết quả nhận được.',
   intro:
     'Trước khi gieo một con xúc xắc, không ai biết chắc mặt nào sẽ xuất hiện. Nhưng ai cũng biết mặt xuất hiện chỉ có thể là một trong sáu mặt từ $1$ đến $6$ chấm. Bài này giúp em liệt kê các kết quả có thể của một trò chơi, thí nghiệm và nhận biết một sự kiện đã xảy ra hay không.',
   objectives: [
@@ -56,7 +56,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Sự kiện',
-          text: 'Một sự kiện có thể xảy ra hoặc không xảy ra, tùy thuộc vào kết quả của trò chơi, thí nghiệm. Sự kiện xảy ra khi kết quả nhận được làm cho điều nói trong sự kiện là đúng; ngược lại, sự kiện không xảy ra.',
+          text: 'Một sự kiện có thể xảy ra hoặc không xảy ra, tuỳ thuộc vào kết quả của trò chơi, thí nghiệm. Sự kiện xảy ra khi kết quả nhận được làm cho điều nói trong sự kiện là đúng; ngược lại, sự kiện không xảy ra.',
         },
         {
           type: 'table',
@@ -109,7 +109,7 @@ export default {
         'Một vòng quay chia thành $8$ ô bằng nhau ghi các số từ $1$ đến $8$. Quay một lần, mũi tên chỉ vào ô số $3$. Các sự kiện "Mũi tên chỉ vào ô ghi số $3$ hoặc $5$", "Mũi tên chỉ vào ô ghi số $4$", "Mũi tên chỉ vào ô ghi số lớn hơn $5$" có xảy ra không?',
       steps: [
         'Kết quả nhận được là số $3$.',
-        '"Số $3$ hoặc $5$": kết quả $3$ thỏa mãn, nên xảy ra.',
+        '"Số $3$ hoặc $5$": kết quả $3$ thoả mãn, nên xảy ra.',
         '"Số $4$": $3 \\ne 4$, nên không xảy ra.',
         '"Số lớn hơn $5$": $3 < 5$, nên không xảy ra.',
       ],
@@ -229,7 +229,7 @@ export default {
   ],
   takeaways: [
     'Kết quả của trò chơi, thí nghiệm không đoán trước được, nhưng liệt kê được tập hợp các kết quả có thể.',
-    'Một sự kiện xảy ra hay không xảy ra tùy vào kết quả nhận được.',
+    'Một sự kiện xảy ra hay không xảy ra tuỳ vào kết quả nhận được.',
     'Để xét một sự kiện, tìm các kết quả làm nó xảy ra, rồi xem kết quả nhận được có nằm trong số đó không.',
   ],
 };

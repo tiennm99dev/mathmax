@@ -35,7 +35,7 @@ export const tapHop = {
         prompt: `Cho tập hợp A = {x ∈ ℕ | ${lo} ${loStrict ? '<' : '≤'} x ${hiStrict ? '<' : '≤'} ${hi}}. Tập hợp A có bao nhiêu phần tử?`,
         answer: count,
         steps: [
-          `Các số tự nhiên x thỏa mãn điều kiện là ${elements.join(', ')}.`,
+          `Các số tự nhiên x thoả mãn điều kiện là ${elements.join(', ')}.`,
           `Viết theo cách liệt kê: A = {${elements.join('; ')}}.`,
           `Vậy A có ${count} phần tử.`,
         ],
@@ -266,7 +266,7 @@ const MAX_EXP = /** @type {Record<number, number>} */ ({ 2: 10, 3: 6, 4: 5, 5: 4
 /** @type {Skill} */
 export const luyThua = {
   id: 'luy-thua',
-  label: 'Bài 6. Lũy thừa',
+  label: 'Bài 6. Luỹ thừa',
   make(rand) {
     const v = int(rand, 0, 4);
     if (v === 0) {
@@ -283,10 +283,10 @@ export const luyThua = {
       const m = int(rand, 2, 9);
       const n = int(rand, 2, 9);
       return {
-        prompt: `Viết ${powText(a, m)} · ${powText(a, n)} dưới dạng một lũy thừa của ${a}. Số mũ của lũy thừa đó là bao nhiêu?`,
+        prompt: `Viết ${powText(a, m)} · ${powText(a, n)} dưới dạng một luỹ thừa của ${a}. Số mũ của luỹ thừa đó là bao nhiêu?`,
         answer: m + n,
         steps: [
-          'Nhân hai lũy thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.',
+          'Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số, cộng các số mũ.',
           `${powText(a, m)} · ${powText(a, n)} = ${a}${sup(m)}⁺${sup(n)} = ${powText(a, m + n)}.`,
         ],
       };
@@ -296,10 +296,10 @@ export const luyThua = {
       const m = int(rand, 5, 12);
       const n = int(rand, 2, m - 1);
       return {
-        prompt: `Viết ${powText(a, m)} : ${powText(a, n)} dưới dạng một lũy thừa của ${a}. Số mũ của lũy thừa đó là bao nhiêu?`,
+        prompt: `Viết ${powText(a, m)} : ${powText(a, n)} dưới dạng một luỹ thừa của ${a}. Số mũ của luỹ thừa đó là bao nhiêu?`,
         answer: m - n,
         steps: [
-          'Chia hai lũy thừa cùng cơ số: giữ nguyên cơ số, trừ các số mũ.',
+          'Chia hai luỹ thừa cùng cơ số: giữ nguyên cơ số, trừ các số mũ.',
           `${powText(a, m)} : ${powText(a, n)} = ${a}${sup(m)}⁻${sup(n)} = ${powText(a, m - n)}.`,
         ],
       };

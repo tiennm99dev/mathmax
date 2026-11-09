@@ -254,7 +254,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Có bao nhiêu số nguyên $x$ thỏa mãn $\\frac{-7}{2} < x < 1{,}4$?',
+      prompt: 'Có bao nhiêu số nguyên $x$ thoả mãn $\\frac{-7}{2} < x < 1{,}4$?',
       answer: 5,
       hints: ['$\\frac{-7}{2} = -3{,}5$.', 'Liệt kê các số nguyên nằm giữa $-3{,}5$ và $1{,}4$.'],
       solution:

@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Hoạt động thực hành: dùng máy tính cầm tay để tính giá trị biểu thức có dấu ngoặc và lũy thừa, phân tích một số ra thừa số nguyên tố, tìm ƯCLN, BCNN và kiểm tra số nguyên tố.',
+    'Hoạt động thực hành: dùng máy tính cầm tay để tính giá trị biểu thức có dấu ngoặc và luỹ thừa, phân tích một số ra thừa số nguyên tố, tìm ƯCLN, BCNN và kiểm tra số nguyên tố.',
   intro:
-    'Máy tính cầm tay giúp em tính nhanh và kiểm tra lại kết quả những phép tính dài. Trong bài này em làm quen với các phím của một máy tính cầm tay phổ biến trong trường học (như Casio fx-580VN X) và dùng nó cho các dạng toán của chương I và chương II: biểu thức, lũy thừa, phân tích ra thừa số nguyên tố, ƯCLN và BCNN.',
+    'Máy tính cầm tay giúp em tính nhanh và kiểm tra lại kết quả những phép tính dài. Trong bài này em làm quen với các phím của một máy tính cầm tay phổ biến trong trường học (như Casio fx-580VN X) và dùng nó cho các dạng toán của chương I và chương II: biểu thức, luỹ thừa, phân tích ra thừa số nguyên tố, ƯCLN và BCNN.',
   objectives: [
     'Nhận biết các phím số, phím phép tính, phím ngoặc, phím $=$, AC, DEL và hai phím chuyển SHIFT, ALPHA.',
-    'Tính giá trị biểu thức có dấu ngoặc và lũy thừa bằng máy tính cầm tay.',
+    'Tính giá trị biểu thức có dấu ngoặc và luỹ thừa bằng máy tính cầm tay.',
     'Phân tích một số ra thừa số nguyên tố, kiểm tra số nguyên tố, tìm ƯCLN và BCNN bằng máy.',
   ],
   sections: [
@@ -30,11 +30,11 @@ export default {
       ],
     },
     {
-      heading: 'Tính giá trị biểu thức và lũy thừa',
+      heading: 'Tính giá trị biểu thức và luỹ thừa',
       blocks: [
         {
           type: 'p',
-          text: 'Máy tính tự thực hiện các phép tính theo đúng thứ tự: trong ngoặc trước, rồi lũy thừa, rồi nhân chia, cuối cùng cộng trừ. Em chỉ cần nhập biểu thức đúng như viết trên giấy.',
+          text: 'Máy tính tự thực hiện các phép tính theo đúng thứ tự: trong ngoặc trước, rồi luỹ thừa, rồi nhân chia, cuối cùng cộng trừ. Em chỉ cần nhập biểu thức đúng như viết trên giấy.',
         },
         {
           type: 'table',
@@ -43,7 +43,7 @@ export default {
             ['Bình phương $a^2$', '$a$ rồi $x^2$', '$5^2$: 5 $x^2$'],
             ['Lập phương $a^3$', '$a$ rồi SHIFT $x^2$', '$3^3$: 3 SHIFT $x^2$'],
             [
-              'Lũy thừa $a^n$',
+              'Luỹ thừa $a^n$',
               '$a$ rồi $x^{\\blacksquare}$ rồi $n$',
               '$2^{10}$: 2 $x^{\\blacksquare}$ 1 0',
             ],
@@ -161,7 +161,7 @@ export default {
       type: 'number',
       prompt: 'Dùng máy tính cầm tay tính $(17 + 3)^2 - 4^3 : 2$.',
       answer: 368,
-      hints: ['Máy tự làm lũy thừa trước, rồi phép chia, rồi phép trừ.'],
+      hints: ['Máy tự làm luỹ thừa trước, rồi phép chia, rồi phép trừ.'],
       solution:
         'Bấm ( 1 7 $+$ 3 ) $x^2$ $-$ 4 SHIFT $x^2$ $\\div$ 2 $=$. Ta có $20^2 - 64 : 2 = 400 - 32 = 368$.',
     },
@@ -242,7 +242,7 @@ export default {
   ],
   takeaways: [
     'Máy tính cầm tay tự làm đúng thứ tự phép tính; ngoặc vuông, ngoặc nhọn đều nhập bằng ngoặc tròn.',
-    'Bình phương: $x^2$; lập phương: SHIFT $x^2$; lũy thừa bất kì: $x^{\\blacksquare}$.',
+    'Bình phương: $x^2$; lập phương: SHIFT $x^2$; luỹ thừa bất kì: $x^{\\blacksquare}$.',
     'Nhập số, bấm $=$, rồi SHIFT FACT để phân tích ra thừa số nguyên tố và kiểm tra số nguyên tố.',
     'ƯCLN: ALPHA $\\times$ (GCD); BCNN: ALPHA $\\div$ (LCM); dấu phẩy là SHIFT ).',
   ],

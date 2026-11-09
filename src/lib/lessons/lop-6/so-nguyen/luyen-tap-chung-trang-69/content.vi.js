@@ -98,7 +98,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Tính tổng các số nguyên $x$ thỏa mãn $-5 < x \\le 6$.',
+      prompt: 'Tính tổng các số nguyên $x$ thoả mãn $-5 < x \\le 6$.',
       answer: 11,
       hints: [
         'Liệt kê: $x \\in \\{-4; -3; \\ldots; 5; 6\\}$.',

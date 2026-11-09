@@ -125,7 +125,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Có bao nhiêu số nguyên $x$ thỏa mãn $-2{,}5 < x < \\frac{7}{3}$?',
+      prompt: 'Có bao nhiêu số nguyên $x$ thoả mãn $-2{,}5 < x < \\frac{7}{3}$?',
       answer: 5,
       hints: ['$\\frac{7}{3} = 2\\frac{1}{3}$.'],
       solution:

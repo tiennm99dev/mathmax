@@ -34,14 +34,14 @@ import { writtenTex } from '../_shared/rational.js';
 export const RULES = [
   {
     id: 'nhan',
-    title: 'Nhân hai lũy thừa cùng cơ số',
+    title: 'Nhân hai luỹ thừa cùng cơ số',
     tex: 'x^m \\cdot x^n = x^{m+n}',
     correct: true,
   },
-  { id: 'chia', title: 'Chia hai lũy thừa cùng cơ số', tex: 'x^m : x^n = x^{m-n}', correct: true },
+  { id: 'chia', title: 'Chia hai luỹ thừa cùng cơ số', tex: 'x^m : x^n = x^{m-n}', correct: true },
   {
     id: 'luy-thua',
-    title: 'Lũy thừa của lũy thừa',
+    title: 'Luỹ thừa của luỹ thừa',
     tex: '(x^m)^n = x^{m \\cdot n}',
     correct: true,
   },
@@ -54,7 +54,7 @@ export const RULES = [
   { id: 'chia-sai', title: 'Chia: chia số mũ?', tex: 'x^m : x^n = x^{m : n}', correct: false },
   {
     id: 'luy-thua-sai',
-    title: 'Lũy thừa của lũy thừa: cộng số mũ?',
+    title: 'Luỹ thừa của luỹ thừa: cộng số mũ?',
     tex: '(x^m)^n = x^{m+n}',
     correct: false,
   },
@@ -197,18 +197,18 @@ export function isDone(e) {
 export function apply(e, ruleId) {
   if (ruleId === 'luy-thua' || ruleId === 'luy-thua-sai') {
     const i = e.terms.findIndex((t) => t.n !== undefined);
-    if (i < 0) return { reason: 'Biểu thức không còn lũy thừa của lũy thừa nào.' };
+    if (i < 0) return { reason: 'Biểu thức không còn luỹ thừa của luỹ thừa nào.' };
     const t = e.terms[i];
     const n = /** @type {number} */ (t.n);
     const m = ruleId === 'luy-thua' ? t.m * n : t.m + n;
     const terms = e.terms.map((x, j) => (j === i ? { m } : x));
     return { next: { ...e, terms } };
   }
-  if (e.terms.length < 2) return { reason: 'Chỉ còn một lũy thừa, không còn phép nhân hay chia.' };
+  if (e.terms.length < 2) return { reason: 'Chỉ còn một luỹ thừa, không còn phép nhân hay chia.' };
   const [a, b] = e.terms;
   const op = e.ops[0];
   if (a.n !== undefined || b.n !== undefined) {
-    return { reason: 'Hãy đưa lũy thừa của lũy thừa về một lũy thừa trước đã.' };
+    return { reason: 'Hãy đưa luỹ thừa của luỹ thừa về một luỹ thừa trước đã.' };
   }
   const wantOp = ruleId.startsWith('nhan') ? '·' : ':';
   if (op !== wantOp) {

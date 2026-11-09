@@ -147,7 +147,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Trong mặt phẳng tọa độ $Oxy$, điểm nào dưới đây nằm trên đường tròn tâm $O$ (gốc tọa độ) bán kính $5$?',
+        'Trong mặt phẳng toạ độ $Oxy$, điểm nào dưới đây nằm trên đường tròn tâm $O$ (gốc toạ độ) bán kính $5$?',
       options: ['$P(1; 5)$', '$Q(-2; 4)$', '$S(4; 4)$', '$T(3; -4)$'],
       answer: 3,
       hints: [

@@ -239,7 +239,7 @@ export const phuongTrinhMotAn = {
           steps: [
             `Điều kiện xác định: x ≠ ${intText(b)}.`,
             `Khử mẫu: ${shift(a)} = ${intText(c)}(${shift(-b)}), tức là ${shift(a)} = ${linText(c, -c * b)}.`,
-            `Chuyển vế: ${linText(1 - c, 0)} = ${intText(-c * b - a)}, nên x = ${intText(x)} (thỏa mãn điều kiện xác định).`,
+            `Chuyển vế: ${linText(1 - c, 0)} = ${intText(-c * b - a)}, nên x = ${intText(x)} (thoả mãn điều kiện xác định).`,
           ],
         };
       }
@@ -268,7 +268,7 @@ export const phuongTrinhMotAn = {
       else value = exact ? bound.n : fl + 1;
       const which = largest ? 'lớn nhất' : 'nhỏ nhất';
       return {
-        prompt: `Tìm số nguyên ${which} thỏa mãn bất phương trình ${linText(a, b)} ${rel} ${linText(c, d)}.`,
+        prompt: `Tìm số nguyên ${which} thoả mãn bất phương trình ${linText(a, b)} ${rel} ${linText(c, d)}.`,
         answer: whole(value),
         display: intText(value),
         hints: [
@@ -278,7 +278,7 @@ export const phuongTrinhMotAn = {
         steps: [
           `Chuyển vế: ${linText(k, 0)} ${rel} ${intText(rhs)}.`,
           `Chia hai vế cho ${operand(k)}${flip ? ' (số âm nên đổi chiều)' : ''}: x ${solved} ${show(bound)}.`,
-          `Số nguyên ${which} thỏa mãn là ${intText(value)}.`,
+          `Số nguyên ${which} thoả mãn là ${intText(value)}.`,
         ],
       };
     }
@@ -592,7 +592,7 @@ export const phuongTrinhBacHai = {
         answer: a,
         display: show(a),
         hints: [
-          'Điểm thuộc đồ thị thì tọa độ của nó thỏa mãn công thức của hàm số.',
+          'Điểm thuộc đồ thị thì toạ độ của nó thoả mãn công thức của hàm số.',
           `Thay x = ${intText(x)} và y = ${intText(y)} vào y = ax².`,
         ],
         steps: [

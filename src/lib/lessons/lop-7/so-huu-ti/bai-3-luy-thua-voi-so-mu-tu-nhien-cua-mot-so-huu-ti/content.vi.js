@@ -1,23 +1,23 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Lũy thừa với số mũ tự nhiên của một số hữu tỉ, tích và thương của hai lũy thừa cùng cơ số, lũy thừa của lũy thừa.',
+    'Luỹ thừa với số mũ tự nhiên của một số hữu tỉ, tích và thương của hai luỹ thừa cùng cơ số, luỹ thừa của luỹ thừa.',
   intro:
-    'Một khối lập phương có cạnh $1{,}5$ dm thì thể tích là $1{,}5 \\cdot 1{,}5 \\cdot 1{,}5$ dm³. Tích nhiều thừa số bằng nhau được viết gọn bằng lũy thừa: $(1{,}5)^3$. Ở lớp 6 em đã biết lũy thừa của số tự nhiên; bài này mở rộng cho mọi số hữu tỉ, kể cả phân số và số âm.',
+    'Một khối lập phương có cạnh $1{,}5$ dm thì thể tích là $1{,}5 \\cdot 1{,}5 \\cdot 1{,}5$ dm³. Tích nhiều thừa số bằng nhau được viết gọn bằng luỹ thừa: $(1{,}5)^3$. Ở lớp 6 em đã biết luỹ thừa của số tự nhiên; bài này mở rộng cho mọi số hữu tỉ, kể cả phân số và số âm.',
   objectives: [
-    'Hiểu lũy thừa với số mũ tự nhiên của một số hữu tỉ và tính được lũy thừa.',
-    'Nhân, chia hai lũy thừa cùng cơ số.',
-    'Tính lũy thừa của một lũy thừa.',
+    'Hiểu luỹ thừa với số mũ tự nhiên của một số hữu tỉ và tính được luỹ thừa.',
+    'Nhân, chia hai luỹ thừa cùng cơ số.',
+    'Tính luỹ thừa của một luỹ thừa.',
   ],
   sections: [
     {
-      heading: '1. Lũy thừa với số mũ tự nhiên',
+      heading: '1. Luỹ thừa với số mũ tự nhiên',
       blocks: [
         {
           type: 'callout',
           tone: 'definition',
-          title: 'Lũy thừa',
-          text: 'Lũy thừa bậc $n$ của một số hữu tỉ $x$, kí hiệu $x^n$, là tích của $n$ thừa số $x$ ($n$ là số tự nhiên lớn hơn $1$). Số $x$ gọi là cơ số, $n$ gọi là số mũ.',
+          title: 'Luỹ thừa',
+          text: 'Luỹ thừa bậc $n$ của một số hữu tỉ $x$, kí hiệu $x^n$, là tích của $n$ thừa số $x$ ($n$ là số tự nhiên lớn hơn $1$). Số $x$ gọi là cơ số, $n$ gọi là số mũ.',
         },
         {
           type: 'tex',
@@ -31,7 +31,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Chú ý',
-          text: 'Lũy thừa của một thương: $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$ ($b \\ne 0$). Tương tự, $(x \\cdot y)^n = x^n \\cdot y^n$ và $(x : y)^n = x^n : y^n$ ($y \\ne 0$).',
+          text: 'Luỹ thừa của một thương: $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$ ($b \\ne 0$). Tương tự, $(x \\cdot y)^n = x^n \\cdot y^n$ và $(x : y)^n = x^n : y^n$ ($y \\ne 0$).',
         },
         {
           type: 'tex',
@@ -40,19 +40,19 @@ export default {
         {
           type: 'callout',
           tone: 'warning',
-          title: 'Dấu của lũy thừa',
-          text: 'Lũy thừa bậc chẵn của một số âm là số dương, lũy thừa bậc lẻ của một số âm là số âm: $(-2)^4 = 16$, $(-2)^5 = -32$. Cẩn thận: $-3^2 = -(3^2) = -9$, khác với $(-3)^2 = 9$.',
+          title: 'Dấu của luỹ thừa',
+          text: 'Luỹ thừa bậc chẵn của một số âm là số dương, luỹ thừa bậc lẻ của một số âm là số âm: $(-2)^4 = 16$, $(-2)^5 = -32$. Cẩn thận: $-3^2 = -(3^2) = -9$, khác với $(-3)^2 = 9$.',
         },
       ],
     },
     {
-      heading: '2. Tích và thương của hai lũy thừa cùng cơ số',
+      heading: '2. Tích và thương của hai luỹ thừa cùng cơ số',
       blocks: [
         {
           type: 'callout',
           tone: 'theorem',
           title: 'Quy tắc',
-          text: 'Khi nhân hai lũy thừa cùng cơ số, ta giữ nguyên cơ số và cộng các số mũ. Khi chia hai lũy thừa cùng cơ số (khác $0$), ta giữ nguyên cơ số và lấy số mũ của số bị chia trừ đi số mũ của số chia.',
+          text: 'Khi nhân hai luỹ thừa cùng cơ số, ta giữ nguyên cơ số và cộng các số mũ. Khi chia hai luỹ thừa cùng cơ số (khác $0$), ta giữ nguyên cơ số và lấy số mũ của số bị chia trừ đi số mũ của số chia.',
         },
         {
           type: 'tex',
@@ -66,18 +66,18 @@ export default {
           type: 'callout',
           tone: 'warning',
           title: 'Dễ sai',
-          text: 'Không nhân số mũ khi nhân hai lũy thừa: $2^3 \\cdot 2^2 = 2^5 = 32$, không phải $2^6 = 64$. Quy tắc chỉ dùng cho hai lũy thừa cùng cơ số.',
+          text: 'Không nhân số mũ khi nhân hai luỹ thừa: $2^3 \\cdot 2^2 = 2^5 = 32$, không phải $2^6 = 64$. Quy tắc chỉ dùng cho hai luỹ thừa cùng cơ số.',
         },
       ],
     },
     {
-      heading: '3. Lũy thừa của lũy thừa',
+      heading: '3. Luỹ thừa của luỹ thừa',
       blocks: [
         {
           type: 'callout',
           tone: 'theorem',
           title: 'Quy tắc',
-          text: 'Khi tính lũy thừa của một lũy thừa, ta giữ nguyên cơ số và nhân hai số mũ.',
+          text: 'Khi tính luỹ thừa của một luỹ thừa, ta giữ nguyên cơ số và nhân hai số mũ.',
         },
         { type: 'tex', tex: '\\left(x^m\\right)^n = x^{m \\cdot n}' },
         {
@@ -98,9 +98,9 @@ export default {
     },
   ],
   explore: {
-    title: 'Thẻ quy tắc lũy thừa',
+    title: 'Thẻ quy tắc luỹ thừa',
     instruction:
-      'Chọn một biểu thức, rồi chọn lần lượt các thẻ quy tắc để rút gọn nó thành một lũy thừa duy nhất. Biểu thức được tính từ trái sang phải. Sau mỗi thẻ, máy so sánh giá trị trước và sau: thẻ đúng giữ nguyên giá trị, thẻ sai làm giá trị thay đổi nên bị từ chối. Hãy thử cả các thẻ sai để thấy vì sao chúng sai.',
+      'Chọn một biểu thức, rồi chọn lần lượt các thẻ quy tắc để rút gọn nó thành một luỹ thừa duy nhất. Biểu thức được tính từ trái sang phải. Sau mỗi thẻ, máy so sánh giá trị trước và sau: thẻ đúng giữ nguyên giá trị, thẻ sai làm giá trị thay đổi nên bị từ chối. Hãy thử cả các thẻ sai để thấy vì sao chúng sai.',
   },
   examples: [
     {
@@ -114,18 +114,18 @@ export default {
     },
     {
       problem:
-        'Viết kết quả dưới dạng lũy thừa của $\\frac{2}{5}$: $\\left[\\left(\\frac{2}{5}\\right)^3\\right]^2 \\cdot \\left(\\frac{2}{5}\\right)^4 : \\left(\\frac{2}{5}\\right)^7$.',
+        'Viết kết quả dưới dạng luỹ thừa của $\\frac{2}{5}$: $\\left[\\left(\\frac{2}{5}\\right)^3\\right]^2 \\cdot \\left(\\frac{2}{5}\\right)^4 : \\left(\\frac{2}{5}\\right)^7$.',
       steps: [
-        'Lũy thừa của lũy thừa: $\\left[\\left(\\frac{2}{5}\\right)^3\\right]^2 = \\left(\\frac{2}{5}\\right)^6$.',
-        'Nhân hai lũy thừa cùng cơ số: $\\left(\\frac{2}{5}\\right)^6 \\cdot \\left(\\frac{2}{5}\\right)^4 = \\left(\\frac{2}{5}\\right)^{10}$.',
-        'Chia hai lũy thừa cùng cơ số: $\\left(\\frac{2}{5}\\right)^{10} : \\left(\\frac{2}{5}\\right)^7 = \\left(\\frac{2}{5}\\right)^3$.',
+        'Luỹ thừa của luỹ thừa: $\\left[\\left(\\frac{2}{5}\\right)^3\\right]^2 = \\left(\\frac{2}{5}\\right)^6$.',
+        'Nhân hai luỹ thừa cùng cơ số: $\\left(\\frac{2}{5}\\right)^6 \\cdot \\left(\\frac{2}{5}\\right)^4 = \\left(\\frac{2}{5}\\right)^{10}$.',
+        'Chia hai luỹ thừa cùng cơ số: $\\left(\\frac{2}{5}\\right)^{10} : \\left(\\frac{2}{5}\\right)^7 = \\left(\\frac{2}{5}\\right)^3$.',
       ],
       answer: 'Kết quả là $\\left(\\frac{2}{5}\\right)^3 = \\frac{8}{125}$.',
     },
     {
       problem: 'Tính nhanh $(0{,}125)^3 \\cdot 8^3$.',
       steps: [
-        'Hai lũy thừa cùng số mũ: $x^n \\cdot y^n = (x \\cdot y)^n$.',
+        'Hai luỹ thừa cùng số mũ: $x^n \\cdot y^n = (x \\cdot y)^n$.',
         '$(0{,}125)^3 \\cdot 8^3 = (0{,}125 \\cdot 8)^3$.',
         '$0{,}125 \\cdot 8 = 1$ nên kết quả là $1^3 = 1$.',
       ],
@@ -152,15 +152,15 @@ export default {
       prompt: 'Với $x \\ne 0$, $x^5 \\cdot x^3$ bằng:',
       options: ['$x^{15}$', '$x^8$', '$x^2$', '$(2x)^8$'],
       answer: 1,
-      hints: ['Nhân hai lũy thừa cùng cơ số thì giữ cơ số và cộng số mũ.'],
+      hints: ['Nhân hai luỹ thừa cùng cơ số thì giữ cơ số và cộng số mũ.'],
       solution: '$x^5 \\cdot x^3 = x^{5+3} = x^8$. Đáp án $x^{15}$ là lỗi nhân số mũ.',
     },
     {
       type: 'number',
       prompt:
-        'Viết $\\left(\\frac{-1}{3}\\right)^{12} : \\left(\\frac{-1}{3}\\right)^{4}$ dưới dạng lũy thừa của $\\frac{-1}{3}$. Số mũ của lũy thừa đó là bao nhiêu?',
+        'Viết $\\left(\\frac{-1}{3}\\right)^{12} : \\left(\\frac{-1}{3}\\right)^{4}$ dưới dạng luỹ thừa của $\\frac{-1}{3}$. Số mũ của luỹ thừa đó là bao nhiêu?',
       answer: 8,
-      hints: ['Chia hai lũy thừa cùng cơ số thì trừ số mũ.'],
+      hints: ['Chia hai luỹ thừa cùng cơ số thì trừ số mũ.'],
       solution:
         '$\\left(\\frac{-1}{3}\\right)^{12} : \\left(\\frac{-1}{3}\\right)^{4} = \\left(\\frac{-1}{3}\\right)^{12-4} = \\left(\\frac{-1}{3}\\right)^{8}$. Số mũ là $8$.',
     },
@@ -168,7 +168,7 @@ export default {
       type: 'number',
       prompt: 'Biết $\\left[(0{,}2)^2\\right]^3 = (0{,}2)^k$. Tìm $k$.',
       answer: 6,
-      hints: ['Lũy thừa của lũy thừa: giữ cơ số, nhân hai số mũ.'],
+      hints: ['Luỹ thừa của luỹ thừa: giữ cơ số, nhân hai số mũ.'],
       solution: '$\\left[(0{,}2)^2\\right]^3 = (0{,}2)^{2 \\cdot 3} = (0{,}2)^6$, nên $k = 6$.',
     },
     {
@@ -183,8 +183,8 @@ export default {
       ],
       answers: [0, 2, 3],
       hints: [
-        'Lũy thừa bậc lẻ của số âm là số âm, bậc chẵn là số dương.',
-        'Trong $-3^2$, lũy thừa chỉ áp dụng cho $3$.',
+        'Luỹ thừa bậc lẻ của số âm là số âm, bậc chẵn là số dương.',
+        'Trong $-3^2$, luỹ thừa chỉ áp dụng cho $3$.',
       ],
       solution:
         '$(-2)^3 = -8 < 0$; $\\left(-\\frac{1}{2}\\right)^4 = \\frac{1}{16} > 0$; $(-0{,}1)^5 = -0{,}00001 < 0$; $-3^2 = -9 < 0$; $(-3)^0 = 1 > 0$.',
@@ -209,7 +209,7 @@ export default {
       answer: [1, 16],
       hints: [
         'Số bị chia bằng thương nhân với số chia.',
-        'Nhân hai lũy thừa cùng cơ số $\\frac{-1}{2}$.',
+        'Nhân hai luỹ thừa cùng cơ số $\\frac{-1}{2}$.',
       ],
       solution:
         '$x = \\frac{-1}{2} \\cdot \\left(\\frac{-1}{2}\\right)^3 = \\left(\\frac{-1}{2}\\right)^4 = \\frac{1}{16}$.',
@@ -227,8 +227,8 @@ export default {
   ],
   takeaways: [
     '$x^n$ là tích của $n$ thừa số $x$; $x^1 = x$, $x^0 = 1$ ($x \\ne 0$); $\\left(\\frac{a}{b}\\right)^n = \\frac{a^n}{b^n}$.',
-    'Lũy thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.',
+    'Luỹ thừa bậc chẵn của số âm là số dương, bậc lẻ là số âm.',
     'Cùng cơ số: $x^m \\cdot x^n = x^{m+n}$; $\\;x^m : x^n = x^{m-n}$ ($x \\ne 0$, $m \\ge n$).',
-    'Lũy thừa của lũy thừa: $(x^m)^n = x^{m \\cdot n}$.',
+    'Luỹ thừa của luỹ thừa: $(x^m)^n = x^{m \\cdot n}$.',
   ],
 };

@@ -215,7 +215,7 @@ export default {
       options: [
         'Kẻ đường thẳng $c$ qua $M$ vuông góc với $a$, rồi kẻ đường thẳng $b$ qua $M$ vuông góc với $c$.',
         'Kẻ hai đường thẳng qua $M$ vuông góc với $a$.',
-        'Kẻ đường thẳng qua $M$ cắt $a$ theo một góc tùy ý.',
+        'Kẻ đường thẳng qua $M$ cắt $a$ theo một góc tuỳ ý.',
         'Kẻ đường thẳng $b$ qua $M$ vuông góc với $a$.',
       ],
       answer: 0,

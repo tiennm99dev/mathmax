@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Bài tập cuối chương 8: hệ thống hóa phép thử ngẫu nhiên, không gian mẫu và xác suất của biến cố, kèm bài tập trắc nghiệm, tự luận và bài kiểm tra có bản đồ kĩ năng.',
+    'Bài tập cuối chương 8: hệ thống hoá phép thử ngẫu nhiên, không gian mẫu và xác suất của biến cố, kèm bài tập trắc nghiệm, tự luận và bài kiểm tra có bản đồ kĩ năng.',
   intro:
     'Chương 8 trả lời câu hỏi: khi các kết quả đồng khả năng, khả năng xảy ra của một biến cố là bao nhiêu? Ta mô tả không gian mẫu, đếm kết quả thuận lợi rồi lập tỉ số. Bài này tổng kết cả chương và cho em tự kiểm tra; bản đồ kĩ năng sẽ chỉ ra bài nào cần ôn lại.',
   objectives: [
@@ -11,7 +11,7 @@ export default {
   ],
   sections: [
     {
-      heading: 'Hệ thống hóa kiến thức',
+      heading: 'Hệ thống hoá kiến thức',
       blocks: [
         {
           type: 'list',

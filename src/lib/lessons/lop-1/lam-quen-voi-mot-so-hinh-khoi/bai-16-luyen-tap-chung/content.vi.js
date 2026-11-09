@@ -138,7 +138,7 @@ export default {
     {
       type: 'order',
       prompt:
-        'Tàu hỏa có 3 toa đi về phía trước: toa đỏ đi đầu, toa vàng đi cuối, toa xanh ở giữa. Xếp các toa từ đầu tàu đến cuối tàu.',
+        'Tàu hoả có 3 toa đi về phía trước: toa đỏ đi đầu, toa vàng đi cuối, toa xanh ở giữa. Xếp các toa từ đầu tàu đến cuối tàu.',
       items: ['Toa vàng', 'Toa xanh', 'Toa đỏ'],
       answer: [2, 1, 0],
       hints: ['Toa đi đầu xếp trước tiên.'],

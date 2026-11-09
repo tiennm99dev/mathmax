@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Phép nhân đa thức nhiều biến: nhân hai đơn thức, nhân đơn thức với đa thức và nhân đa thức với đa thức, minh họa bằng mô hình diện tích.',
+    'Phép nhân đa thức nhiều biến: nhân hai đơn thức, nhân đơn thức với đa thức và nhân đa thức với đa thức, minh hoạ bằng mô hình diện tích.',
   intro:
     'Một hình chữ nhật có chiều dài $x + 2y$ và chiều rộng $x - y$. Diện tích của nó là tích $(x + 2y)(x - y)$. Chia hình chữ nhật thành các ô theo từng hạng tử của hai cạnh, diện tích cả hình bằng tổng diện tích các ô. Đó chính là quy tắc nhân đa thức với đa thức.',
   objectives: [
@@ -17,7 +17,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Nhân hai đơn thức',
-          text: 'Để nhân hai đơn thức, ta nhân hai hệ số với nhau và nhân hai phần biến với nhau (nhân các lũy thừa cùng cơ số: $x^m \\cdot x^n = x^{m+n}$).',
+          text: 'Để nhân hai đơn thức, ta nhân hai hệ số với nhau và nhân hai phần biến với nhau (nhân các luỹ thừa cùng cơ số: $x^m \\cdot x^n = x^{m+n}$).',
         },
         {
           type: 'tex',

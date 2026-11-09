@@ -138,7 +138,7 @@ export const CHALLENGES = [
     test: (a, b, c) => analyse(a, b, c).kind === 'none',
   },
   {
-    text: 'Chọn a và c trái dấu (ac < 0), rồi đổi b tùy ý: phương trình có bao nhiêu nghiệm?',
+    text: 'Chọn a và c trái dấu (ac < 0), rồi đổi b tuỳ ý: phương trình có bao nhiêu nghiệm?',
     /** @type {(a: number, b: number, c: number) => boolean} */
     test: (a, b, c) => a * c < 0,
   },

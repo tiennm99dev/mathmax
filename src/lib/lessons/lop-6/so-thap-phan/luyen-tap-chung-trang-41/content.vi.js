@@ -19,7 +19,7 @@ export default {
           rows: [
             [
               'Phân số thập phân',
-              'Mẫu là lũy thừa của $10$; mẫu có bao nhiêu chữ số $0$ thì số thập phân có bấy nhiêu chữ số ở phần thập phân: $\\frac{-2\\,025}{100} = -20{,}25$',
+              'Mẫu là luỹ thừa của $10$; mẫu có bao nhiêu chữ số $0$ thì số thập phân có bấy nhiêu chữ số ở phần thập phân: $\\frac{-2\\,025}{100} = -20{,}25$',
             ],
             [
               'So sánh',

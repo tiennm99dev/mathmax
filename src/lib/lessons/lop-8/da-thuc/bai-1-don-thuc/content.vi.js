@@ -28,11 +28,11 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Đơn thức thu gọn',
-          text: 'Đơn thức thu gọn là đơn thức chỉ gồm một số, hoặc có dạng tích của một số với những biến, mỗi biến chỉ xuất hiện một lần và đã được nâng lên lũy thừa với số mũ nguyên dương. Trong đơn thức thu gọn, phần số gọi là hệ số, phần còn lại gọi là phần biến.',
+          text: 'Đơn thức thu gọn là đơn thức chỉ gồm một số, hoặc có dạng tích của một số với những biến, mỗi biến chỉ xuất hiện một lần và đã được nâng lên luỹ thừa với số mũ nguyên dương. Trong đơn thức thu gọn, phần số gọi là hệ số, phần còn lại gọi là phần biến.',
         },
         {
           type: 'p',
-          text: 'Đơn thức $3x \\cdot 2y \\cdot x$ chưa thu gọn vì biến $x$ xuất hiện hai lần. Nhân các số với nhau và nhân các lũy thừa cùng cơ số, ta được dạng thu gọn:',
+          text: 'Đơn thức $3x \\cdot 2y \\cdot x$ chưa thu gọn vì biến $x$ xuất hiện hai lần. Nhân các số với nhau và nhân các luỹ thừa cùng cơ số, ta được dạng thu gọn:',
         },
         {
           type: 'tex',
@@ -129,7 +129,7 @@ export default {
       problem:
         'Thu gọn đơn thức $A = \\frac{1}{3}x^2y \\cdot (-6)xy^3$. Chỉ ra hệ số, phần biến và bậc của $A$.',
       steps: [
-        'Nhóm các số với nhau và các lũy thừa cùng cơ số với nhau: $A = \\left[\\frac{1}{3} \\cdot (-6)\\right] \\cdot (x^2 \\cdot x) \\cdot (y \\cdot y^3)$.',
+        'Nhóm các số với nhau và các luỹ thừa cùng cơ số với nhau: $A = \\left[\\frac{1}{3} \\cdot (-6)\\right] \\cdot (x^2 \\cdot x) \\cdot (y \\cdot y^3)$.',
         '$\\frac{1}{3} \\cdot (-6) = -2$; $x^2 \\cdot x = x^3$; $y \\cdot y^3 = y^4$. Vậy $A = -2x^3y^4$.',
         'Hệ số là $-2$, phần biến là $x^3y^4$, bậc là $3 + 4 = 7$.',
       ],
@@ -179,7 +179,7 @@ export default {
       answer: 2,
       hints: [
         'Nhân các hệ số với nhau: $2 \\cdot (-3)$.',
-        'Nhân các lũy thừa cùng cơ số bằng cách cộng số mũ: $x^2 \\cdot x = x^{2+1}$.',
+        'Nhân các luỹ thừa cùng cơ số bằng cách cộng số mũ: $x^2 \\cdot x = x^{2+1}$.',
       ],
       solution:
         '$2x^2y \\cdot (-3)xy^3 = [2 \\cdot (-3)] \\cdot (x^2 \\cdot x) \\cdot (y \\cdot y^3) = -6x^3y^4$.',

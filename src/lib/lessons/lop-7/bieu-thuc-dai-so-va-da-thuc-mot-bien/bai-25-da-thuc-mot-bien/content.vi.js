@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Đơn thức một biến là tích của một số với một lũy thừa của biến; đa thức một biến là tổng của những đơn thức của cùng một biến. Thu gọn, sắp xếp đa thức, xác định bậc, hệ số cao nhất, hệ số tự do và nghiệm của đa thức.',
+    'Đơn thức một biến là tích của một số với một luỹ thừa của biến; đa thức một biến là tổng của những đơn thức của cùng một biến. Thu gọn, sắp xếp đa thức, xác định bậc, hệ số cao nhất, hệ số tự do và nghiệm của đa thức.',
   intro:
-    'Một bể nước dạng hình lập phương cạnh $x$ (dm) có thể tích $x^3$ (dm$^3$), diện tích đáy $x^2$ (dm$^2$) và tổng độ dài các cạnh là $12x$ (dm). Các biểu thức $x^3$, $x^2$, $12x$ chỉ chứa một biến $x$ và chỉ dùng phép nhân với lũy thừa của biến. Cộng chúng lại, ta được một đa thức một biến.',
+    'Một bể nước dạng hình lập phương cạnh $x$ (dm) có thể tích $x^3$ (dm$^3$), diện tích đáy $x^2$ (dm$^2$) và tổng độ dài các cạnh là $12x$ (dm). Các biểu thức $x^3$, $x^2$, $12x$ chỉ chứa một biến $x$ và chỉ dùng phép nhân với luỹ thừa của biến. Cộng chúng lại, ta được một đa thức một biến.',
   objectives: [
     'Nhận biết đơn thức một biến, hệ số và bậc của đơn thức; nhận biết đa thức một biến và các hạng tử của nó.',
-    'Thu gọn và sắp xếp đa thức một biến theo lũy thừa giảm dần hoặc tăng dần của biến.',
+    'Thu gọn và sắp xếp đa thức một biến theo luỹ thừa giảm dần hoặc tăng dần của biến.',
     'Xác định bậc, hệ số cao nhất và hệ số tự do của đa thức; tính giá trị và kiểm tra nghiệm của đa thức.',
   ],
   sections: [
@@ -17,7 +17,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Đơn thức một biến',
-          text: 'Đơn thức một biến (gọi tắt là đơn thức) là biểu thức đại số có dạng tích của một số thực với một lũy thừa của biến, trong đó số thực gọi là hệ số, số mũ của lũy thừa của biến gọi là bậc của đơn thức. Ví dụ: $5x^2$ có hệ số $5$, bậc $2$; $\\;-x$ có hệ số $-1$, bậc $1$.',
+          text: 'Đơn thức một biến (gọi tắt là đơn thức) là biểu thức đại số có dạng tích của một số thực với một luỹ thừa của biến, trong đó số thực gọi là hệ số, số mũ của luỹ thừa của biến gọi là bậc của đơn thức. Ví dụ: $5x^2$ có hệ số $5$, bậc $2$; $\\;-x$ có hệ số $-1$, bậc $1$.',
         },
         {
           type: 'p',
@@ -27,7 +27,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Cộng, nhân các đơn thức',
-          text: 'Cộng (trừ) hai đơn thức cùng bậc: cộng (trừ) các hệ số và giữ nguyên lũy thừa của biến, ví dụ $5x^2 - 3x^2 = 2x^2$. Nhân hai đơn thức: nhân các hệ số với nhau và nhân hai lũy thừa của biến với nhau, ví dụ $(-3x^2) \\cdot \\frac{2}{3}x = -2x^3$.',
+          text: 'Cộng (trừ) hai đơn thức cùng bậc: cộng (trừ) các hệ số và giữ nguyên luỹ thừa của biến, ví dụ $5x^2 - 3x^2 = 2x^2$. Nhân hai đơn thức: nhân các hệ số với nhau và nhân hai luỹ thừa của biến với nhau, ví dụ $(-3x^2) \\cdot \\frac{2}{3}x = -2x^3$.',
         },
         {
           type: 'callout',
@@ -58,7 +58,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Sau khi thu gọn, ta thường sắp xếp các hạng tử theo lũy thừa giảm dần (hoặc tăng dần) của biến. Lũy thừa nào bị thiếu có thể viết thêm với hệ số $0$: $\\;x^5 - 2x^4 + 0x^3 - 2x^2 + 0x - 12$.',
+          text: 'Sau khi thu gọn, ta thường sắp xếp các hạng tử theo luỹ thừa giảm dần (hoặc tăng dần) của biến. Luỹ thừa nào bị thiếu có thể viết thêm với hệ số $0$: $\\;x^5 - 2x^4 + 0x^3 - 2x^2 + 0x - 12$.',
         },
       ],
     },
@@ -127,10 +127,10 @@ export default {
   examples: [
     {
       problem:
-        'Thu gọn và sắp xếp đa thức $A(x) = -3x^2 - 12 + x^5 + x^2 - 2x^4$ theo lũy thừa giảm dần của biến. Tìm bậc, hệ số cao nhất và hệ số tự do của $A(x)$.',
+        'Thu gọn và sắp xếp đa thức $A(x) = -3x^2 - 12 + x^5 + x^2 - 2x^4$ theo luỹ thừa giảm dần của biến. Tìm bậc, hệ số cao nhất và hệ số tự do của $A(x)$.',
       steps: [
         'Hai hạng tử cùng bậc $2$ là $-3x^2$ và $x^2$: $-3x^2 + x^2 = -2x^2$.',
-        'Sắp xếp theo lũy thừa giảm dần: $A(x) = x^5 - 2x^4 - 2x^2 - 12$.',
+        'Sắp xếp theo luỹ thừa giảm dần: $A(x) = x^5 - 2x^4 - 2x^2 - 12$.',
         'Hạng tử bậc cao nhất là $x^5$ nên $A(x)$ có bậc $5$, hệ số cao nhất là $1$; hạng tử bậc $0$ là $-12$ nên hệ số tự do là $-12$.',
       ],
       answer: '$A(x) = x^5 - 2x^4 - 2x^2 - 12$; bậc $5$, hệ số cao nhất $1$, hệ số tự do $-12$.',
@@ -161,7 +161,7 @@ export default {
       prompt: 'Những biểu thức nào sau đây là đơn thức một biến $x$?',
       options: ['$-5x^3$', '$x + 2$', '$\\frac{1}{2}x$', '$\\frac{2}{x}$', '$7$'],
       answers: [0, 2, 4],
-      hints: ['Đơn thức một biến là tích của một số với một lũy thừa của biến.'],
+      hints: ['Đơn thức một biến là tích của một số với một luỹ thừa của biến.'],
       solution:
         '$-5x^3$, $\\frac{1}{2}x$ và $7 = 7x^0$ là đơn thức. $x + 2$ là tổng của hai đơn thức (một đa thức), còn $\\frac{2}{x}$ là phép chia cho biến nên không phải đơn thức.',
     },
@@ -191,7 +191,7 @@ export default {
     {
       type: 'order',
       prompt:
-        'Sắp xếp các hạng tử của đa thức $5x - 1 + 4x^3 + x^2$ theo lũy thừa giảm dần của biến.',
+        'Sắp xếp các hạng tử của đa thức $5x - 1 + 4x^3 + x^2$ theo luỹ thừa giảm dần của biến.',
       items: ['$5x$', '$-1$', '$4x^3$', '$x^2$'],
       answer: [2, 3, 0, 1],
       hints: ['Hạng tử nào có số mũ của $x$ lớn nhất? Hạng tử $-1$ có bậc $0$.'],
@@ -247,8 +247,8 @@ export default {
     },
   ],
   takeaways: [
-    'Đơn thức một biến: tích của một số (hệ số) với một lũy thừa của biến (số mũ là bậc). Đa thức một biến: tổng các đơn thức của cùng một biến, mỗi đơn thức là một hạng tử.',
-    'Thu gọn: cộng các hạng tử cùng bậc; sắp xếp theo lũy thừa giảm dần (hoặc tăng dần) của biến.',
+    'Đơn thức một biến: tích của một số (hệ số) với một luỹ thừa của biến (số mũ là bậc). Đa thức một biến: tổng các đơn thức của cùng một biến, mỗi đơn thức là một hạng tử.',
+    'Thu gọn: cộng các hạng tử cùng bậc; sắp xếp theo luỹ thừa giảm dần (hoặc tăng dần) của biến.',
     'Với đa thức thu gọn khác $0$: bậc là số mũ cao nhất, hệ số cao nhất là hệ số của hạng tử bậc cao nhất, hệ số tự do là hệ số của hạng tử bậc $0$. Đa thức không không có bậc.',
     '$a$ là nghiệm của $F(x)$ khi $F(a) = 0$; một đa thức có thể có một, nhiều hoặc không có nghiệm.',
   ],

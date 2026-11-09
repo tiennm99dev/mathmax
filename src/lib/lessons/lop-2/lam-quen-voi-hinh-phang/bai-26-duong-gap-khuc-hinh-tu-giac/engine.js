@@ -71,7 +71,7 @@ export function refusalText(why) {
     touches: 'Đường này chạm vào đoạn đã vẽ. Em chọn chấm khác nhé.',
     straight:
       'Đi tiếp thẳng hướng thì không gấp khúc. Đường gấp khúc phải gấp ở mỗi điểm: em rẽ sang hướng khác nhé.',
-    full: 'Đường gấp khúc đã đủ dài rồi. Em xóa bớt một đoạn để vẽ tiếp.',
+    full: 'Đường gấp khúc đã đủ dài rồi. Em xoá bớt một đoạn để vẽ tiếp.',
   }[why];
 }
 
@@ -134,10 +134,10 @@ export function challengeNote(path, challenge) {
   const parts = partLengths(path);
   const total = parts.reduce((s, x) => s + x, 0);
   if (parts.length > challenge.parts) {
-    return `Thử thách cần ${challenge.parts} đoạn thẳng. Em xóa bớt đoạn nhé.`;
+    return `Thử thách cần ${challenge.parts} đoạn thẳng. Em xoá bớt đoạn nhé.`;
   }
   if (parts.length === challenge.parts || total >= challenge.cm) {
-    return `Thử thách cần ${challenge.parts} đoạn thẳng, dài ${challenge.cm} cm. Em xóa đoạn cuối rồi vẽ lại nhé.`;
+    return `Thử thách cần ${challenge.parts} đoạn thẳng, dài ${challenge.cm} cm. Em xoá đoạn cuối rồi vẽ lại nhé.`;
   }
   return '';
 }

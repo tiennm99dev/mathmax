@@ -78,15 +78,15 @@
         },
         {
           "no": 7,
-          "title": "Bài 6. Lũy thừa với số mũ tự nhiên",
+          "title": "Bài 6. Luỹ thừa với số mũ tự nhiên",
           "slug": "bai-6-luy-thua-voi-so-mu-tu-nhien",
           "kind": "theory",
           "keyIdeas": [
-            "Định nghĩa lũy thừa",
-            "Nhân, chia hai lũy thừa cùng cơ số",
+            "Định nghĩa luỹ thừa",
+            "Nhân, chia hai luỹ thừa cùng cơ số",
             "Số chính phương"
           ],
-          "interactiveIdea": "Máy nhân đôi/nhân ba hiển thị số khối tăng theo lũy thừa và so sánh a^m.a^n với a^(m+n)."
+          "interactiveIdea": "Máy nhân đôi/nhân ba hiển thị số khối tăng theo luỹ thừa và so sánh a^m.a^n với a^(m+n)."
         },
         {
           "no": 8,
@@ -96,7 +96,7 @@
           "keyIdeas": [
             "Thứ tự với biểu thức không có ngoặc",
             "Thứ tự với dấu ngoặc",
-            "Lũy thừa trước nhân chia"
+            "Luỹ thừa trước nhân chia"
           ],
           "interactiveIdea": "Trình tính từng bước: học sinh chọn phép tính kế tiếp và hệ thống báo đúng/sai theo quy tắc."
         },
@@ -106,10 +106,10 @@
           "slug": "luyen-tap-chung-trang-27",
           "kind": "practice",
           "keyIdeas": [
-            "Củng cố: Lũy thừa với số mũ tự nhiên",
+            "Củng cố: Luỹ thừa với số mũ tự nhiên",
             "Củng cố: Thứ tự thực hiện các phép tính"
           ],
-          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về lũy thừa với số mũ tự nhiên; thứ tự thực hiện các phép tính, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
+          "interactiveIdea": "Bộ bài luyện trộn ngẫu nhiên về luỹ thừa với số mũ tự nhiên; thứ tự thực hiện các phép tính, chấm điểm tức thì và hiện lời giải từng bước khi làm sai."
         },
         {
           "no": 10,
@@ -448,7 +448,7 @@
           "title": "Sử dụng máy tính cầm tay",
           "slug": "su-dung-may-tinh-cam-tay",
           "kind": "activity",
-          "keyIdeas": ["Thực hiện phép tính với máy tính cầm tay", "Tìm ƯCLN, BCNN và lũy thừa"],
+          "keyIdeas": ["Thực hiện phép tính với máy tính cầm tay", "Tìm ƯCLN, BCNN và luỹ thừa"],
           "interactiveIdea": "Máy tính cầm tay mô phỏng có hướng dẫn phím bấm cho từng loại phép tính."
         }
       ]

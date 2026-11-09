@@ -66,7 +66,7 @@
     {
       "no": 2,
       "label": "Chương II",
-      "title": "Vectơ và hệ trục tọa độ trong không gian",
+      "title": "Vectơ và hệ trục toạ độ trong không gian",
       "slug": "vecto-va-he-truc-toa-do-trong-khong-gian",
       "strand": "hinh-hoc",
       "volume": "Tập 1",
@@ -84,31 +84,31 @@
         },
         {
           "no": 2,
-          "title": "Bài 7. Hệ trục tọa độ trong không gian",
+          "title": "Bài 7. Hệ trục toạ độ trong không gian",
           "slug": "bai-7-he-truc-toa-do-trong-khong-gian",
           "kind": "theory",
-          "keyIdeas": ["Hệ trục Oxyz", "Tọa độ của điểm và vectơ"],
-          "interactiveIdea": "Hệ trục Oxyz 3D, kéo điểm để xem hình chiếu xuống các mặt tọa độ và bộ ba tọa độ."
+          "keyIdeas": ["Hệ trục Oxyz", "Toạ độ của điểm và vectơ"],
+          "interactiveIdea": "Hệ trục Oxyz 3D, kéo điểm để xem hình chiếu xuống các mặt toạ độ và bộ ba toạ độ."
         },
         {
           "no": 3,
-          "title": "Bài 8. Biểu thức tọa độ của các phép toán vectơ",
+          "title": "Bài 8. Biểu thức toạ độ của các phép toán vectơ",
           "slug": "bai-8-bieu-thuc-toa-do-cua-cac-phep-toan-vecto",
           "kind": "theory",
           "keyIdeas": [
-            "Tọa độ tổng, hiệu, tích với số",
+            "Toạ độ tổng, hiệu, tích với số",
             "Tích vô hướng, độ dài, góc",
             "Tích có hướng"
           ],
-          "interactiveIdea": "Nhập tọa độ hai vectơ, xem vectơ tổng, tích có hướng vuông góc và hình bình hành dựng trên chúng."
+          "interactiveIdea": "Nhập toạ độ hai vectơ, xem vectơ tổng, tích có hướng vuông góc và hình bình hành dựng trên chúng."
         },
         {
           "no": 4,
           "title": "Bài tập cuối chương II",
           "slug": "bai-tap-cuoi-chuong-ii",
           "kind": "review",
-          "keyIdeas": ["Ôn vectơ và tọa độ trong không gian"],
-          "interactiveIdea": "Bài tập định vị điểm trong phòng học 3D bằng tọa độ."
+          "keyIdeas": ["Ôn vectơ và toạ độ trong không gian"],
+          "interactiveIdea": "Bài tập định vị điểm trong phòng học 3D bằng toạ độ."
         }
       ]
     },
@@ -229,7 +229,7 @@
     {
       "no": 5,
       "label": "Chương V",
-      "title": "Phương pháp tọa độ trong không gian",
+      "title": "Phương pháp toạ độ trong không gian",
       "slug": "phuong-phap-toa-do-trong-khong-gian",
       "strand": "hinh-hoc",
       "volume": "Tập 2",
@@ -280,7 +280,7 @@
           "slug": "bai-tap-cuoi-chuong-v",
           "kind": "review",
           "keyIdeas": ["Ôn phương trình mặt phẳng, đường thẳng, mặt cầu"],
-          "interactiveIdea": "Bài toán định vị máy bay, drone trong hệ tọa độ 3D."
+          "interactiveIdea": "Bài toán định vị máy bay, drone trong hệ toạ độ 3D."
         }
       ]
     },
@@ -357,7 +357,7 @@
           "title": "Bài tập ôn tập cuối năm",
           "slug": "bai-tap-on-tap-cuoi-nam",
           "kind": "review",
-          "keyIdeas": ["Tổng hợp giải tích, hình học tọa độ, thống kê, xác suất lớp 12"],
+          "keyIdeas": ["Tổng hợp giải tích, hình học toạ độ, thống kê, xác suất lớp 12"],
           "interactiveIdea": "Đề ôn tổng hợp có bản đồ chủ đề, chỉ ra phần cần ôn lại theo câu sai."
         }
       ]

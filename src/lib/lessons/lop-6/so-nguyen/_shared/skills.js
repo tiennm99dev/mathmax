@@ -20,7 +20,7 @@ export const tapHopSoNguyen = {
       const hi = int(rand, lo + 3, 12);
       const count = hi - lo - 1;
       return {
-        prompt: `Có bao nhiêu số nguyên x thỏa mãn ${intText(lo)} < x < ${intText(hi)}?`,
+        prompt: `Có bao nhiêu số nguyên x thoả mãn ${intText(lo)} < x < ${intText(hi)}?`,
         answer: count,
         hints: [
           'Liệt kê các số nguyên nằm giữa hai số đã cho trên trục số, không lấy hai đầu.',

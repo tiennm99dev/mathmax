@@ -3,7 +3,7 @@ export default {
   summary:
     'Thực hành vẽ góc vuông bằng ê ke, vẽ đường tròn bằng compa, vẽ hình vuông và hình chữ nhật trên lưới ô vuông, gấp ê ke giấy và vẽ trang trí.',
   intro:
-    'Hôm nay em là họa sĩ nhỏ! Em có ê ke, compa và tờ giấy ô vuông. Em cùng vẽ góc vuông, đường tròn, hình vuông, hình chữ nhật rồi tô màu thật đẹp nhé!',
+    'Hôm nay em là hoạ sĩ nhỏ! Em có ê ke, compa và tờ giấy ô vuông. Em cùng vẽ góc vuông, đường tròn, hình vuông, hình chữ nhật rồi tô màu thật đẹp nhé!',
   objectives: [
     'Vẽ được góc vuông bằng ê ke.',
     'Vẽ được đường tròn bằng compa.',

@@ -8,7 +8,7 @@ export default {
     'Thực hiện các phép tính với đa thức, vận dụng hằng đẳng thức để tính nhanh và phân tích đa thức thành nhân tử.',
     'Rút gọn, cộng, trừ, nhân, chia phân thức và tìm điều kiện xác định của phân thức.',
     'Giải phương trình bậc nhất một ẩn và giải bài toán bằng cách lập phương trình.',
-    'Xác định hàm số bậc nhất, hệ số góc, vị trí của hai đường thẳng và tọa độ giao điểm với các trục.',
+    'Xác định hàm số bậc nhất, hệ số góc, vị trí của hai đường thẳng và toạ độ giao điểm với các trục.',
     'Vận dụng tính chất các tứ giác, định lí Thalès, đường trung bình, đường phân giác, tam giác đồng dạng và định lí Pythagore.',
     'Tính diện tích xung quanh và thể tích của hình chóp tam giác đều, hình chóp tứ giác đều.',
     'Phân loại dữ liệu, đọc biểu đồ, tính xác suất bằng tỉ số và ước lượng xác suất bằng xác suất thực nghiệm.',
@@ -148,7 +148,7 @@ export default {
         '$x^2 - 9 = (x - 3)(x + 3)$, nên $P$ xác định khi $x \\ne 3$ và $x \\ne -3$. Mẫu thức chung là $(x - 3)(x + 3)$.',
         '$P = \\dfrac{2(x - 3) + (x + 3) - 6}{(x - 3)(x + 3)} = \\dfrac{2x - 6 + x + 3 - 6}{(x - 3)(x + 3)} = \\dfrac{3x - 9}{(x - 3)(x + 3)}$.',
         '$P = \\dfrac{3(x - 3)}{(x - 3)(x + 3)} = \\dfrac{3}{x + 3}$.',
-        '$x = 1$ thỏa mãn điều kiện, nên $P = \\dfrac{3}{1 + 3} = \\dfrac{3}{4}$.',
+        '$x = 1$ thoả mãn điều kiện, nên $P = \\dfrac{3}{1 + 3} = \\dfrac{3}{4}$.',
       ],
       answer:
         'Điều kiện $x \\ne \\pm 3$; $P = \\dfrac{3}{x + 3}$; tại $x = 1$ thì $P = \\dfrac{3}{4}$.',
@@ -159,13 +159,13 @@ export default {
       steps: [
         'Gọi quãng đường $AB$ là $x$ (km), $x > 0$. Thời gian đi là $\\dfrac{x}{40}$ giờ, thời gian về là $\\dfrac{x}{30}$ giờ; $30$ phút $= \\dfrac{1}{2}$ giờ.',
         'Ta có phương trình $\\dfrac{x}{30} - \\dfrac{x}{40} = \\dfrac{1}{2}$.',
-        'Quy đồng mẫu $120$: $\\dfrac{4x - 3x}{120} = \\dfrac{60}{120}$, nên $x = 60$ (thỏa mãn điều kiện).',
+        'Quy đồng mẫu $120$: $\\dfrac{4x - 3x}{120} = \\dfrac{60}{120}$, nên $x = 60$ (thoả mãn điều kiện).',
       ],
       answer: 'Quãng đường $AB$ dài $60$ km.',
     },
     {
       problem:
-        'Cho hàm số bậc nhất $y = (m - 1)x + 3$. Tìm $m$ để đồ thị của hàm số song song với đường thẳng $y = 2x - 1$. Với $m$ vừa tìm được, tìm tọa độ giao điểm của đồ thị với hai trục tọa độ.',
+        'Cho hàm số bậc nhất $y = (m - 1)x + 3$. Tìm $m$ để đồ thị của hàm số song song với đường thẳng $y = 2x - 1$. Với $m$ vừa tìm được, tìm toạ độ giao điểm của đồ thị với hai trục toạ độ.',
       steps: [
         'Hai đường thẳng song song khi hệ số góc bằng nhau và tung độ gốc khác nhau: $m - 1 = 2$ và $3 \\ne -1$. Vậy $m = 3$.',
         'Khi đó $y = 2x + 3$. Cho $x = 0$ thì $y = 3$: đồ thị cắt trục tung tại $(0; 3)$.',
@@ -262,7 +262,7 @@ export default {
         'Sau khi chuyển: lớp 8A còn $x - 2$, lớp 8B có $80 - x + 2$.',
       ],
       solution:
-        'Ta có phương trình $x - 2 = 80 - x + 2$, nên $2x = 84$, $x = 42$ (thỏa mãn). Lớp 8A có $42$ học sinh.',
+        'Ta có phương trình $x - 2 = 80 - x + 2$, nên $2x = 84$, $x = 42$ (thoả mãn). Lớp 8A có $42$ học sinh.',
     },
     {
       type: 'choice',

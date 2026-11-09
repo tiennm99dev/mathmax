@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Thực hành thu thập, phân loại, kiểm đếm số liệu quanh em: đồ vật trong lớp, thời khóa biểu và câu trả lời của các bạn trong tổ.',
+    'Thực hành thu thập, phân loại, kiểm đếm số liệu quanh em: đồ vật trong lớp, thời khoá biểu và câu trả lời của các bạn trong tổ.',
   intro:
     'Trong lớp em có mấy cái bàn, mấy cái ghế? Các bạn trong tổ thích màu gì? Hôm nay em làm người đi khảo sát, rồi tự vẽ biểu đồ tranh!',
   objectives: [
@@ -41,14 +41,14 @@ export default {
         },
         {
           type: 'p',
-          text: 'Chuẩn bị: giấy, bút chì, thời khóa biểu của lớp.',
+          text: 'Chuẩn bị: giấy, bút chì, thời khoá biểu của lớp.',
         },
         {
           type: 'list',
           ordered: true,
           items: [
             'Đồ vật trong lớp: đếm số bàn, số ghế, số cửa sổ. Ghi vào bảng.',
-            'Thời khóa biểu: đếm số tiết Toán, Tiếng Việt, Hoạt động trải nghiệm trong tuần. Môn nào nhiều tiết nhất, môn nào ít tiết nhất?',
+            'Thời khoá biểu: đếm số tiết Toán, Tiếng Việt, Hoạt động trải nghiệm trong tuần. Môn nào nhiều tiết nhất, môn nào ít tiết nhất?',
             'Hỏi các bạn trong tổ: bạn thích trời nắng, trời mưa hay trời nhiều mây? Kiểm đếm bằng vạch.',
             'Hỏi tiếp: bạn thích màu đỏ, màu vàng hay màu xanh? Kiểm đếm bằng vạch.',
             'Nhập kết quả vào bảng khảo sát trên trang, xem biểu đồ tranh hiện ra.',
@@ -89,7 +89,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Thời khóa biểu của lớp Nam: Toán 5 tiết, Tiếng Việt 10 tiết, Hoạt động trải nghiệm 3 tiết. Môn nào nhiều tiết nhất?',
+        'Thời khoá biểu của lớp Nam: Toán 5 tiết, Tiếng Việt 10 tiết, Hoạt động trải nghiệm 3 tiết. Môn nào nhiều tiết nhất?',
       options: ['Toán', 'Tiếng Việt', 'Hoạt động trải nghiệm'],
       answer: 1,
       hints: ['Em so sánh ba số 5, 10, 3.'],

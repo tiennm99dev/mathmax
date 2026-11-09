@@ -6,7 +6,7 @@ export default {
     'Cho hai đa thức $A = 2x^4 - 3x^3 - 3x^2 + 6x - 2$ và $B = x^2 - 2$. Liệu có đa thức $P$ nào để $A = B \\cdot P$ không? Tìm $P$ chính là thực hiện phép chia $A : B$. Ta sẽ đặt tính chia hai đa thức giống hệt như chia hai số tự nhiên: chia, nhân, trừ, rồi lặp lại.',
   objectives: [
     'Chia một đơn thức cho một đơn thức, một đa thức cho một đơn thức.',
-    'Đặt tính chia hai đa thức một biến đã sắp xếp theo lũy thừa giảm dần.',
+    'Đặt tính chia hai đa thức một biến đã sắp xếp theo luỹ thừa giảm dần.',
     'Phân biệt phép chia hết và phép chia có dư; viết $A = B \\cdot Q + R$ và kiểm tra kết quả bằng phép nhân.',
   ],
   sections: [
@@ -23,7 +23,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Chia đơn thức cho đơn thức',
-          text: 'Với $b \\ne 0$ và $m \\ge n$: $\\;ax^m : bx^n = \\dfrac{a}{b}x^{m - n}$. Ta chia hệ số cho hệ số, lũy thừa của biến cho lũy thừa của biến (trừ số mũ). Khi $m < n$ và $a \\ne 0$ thì $ax^m$ không chia hết cho $bx^n$.',
+          text: 'Với $b \\ne 0$ và $m \\ge n$: $\\;ax^m : bx^n = \\dfrac{a}{b}x^{m - n}$. Ta chia hệ số cho hệ số, luỹ thừa của biến cho luỹ thừa của biến (trừ số mũ). Khi $m < n$ và $a \\ne 0$ thì $ax^m$ không chia hết cho $bx^n$.',
         },
         {
           type: 'p',
@@ -46,7 +46,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Để chia đa thức $A$ cho đa thức $B$ (cả hai đã sắp xếp theo lũy thừa giảm dần của biến), ta đặt tính như chia hai số tự nhiên và lặp lại ba thao tác:',
+          text: 'Để chia đa thức $A$ cho đa thức $B$ (cả hai đã sắp xếp theo luỹ thừa giảm dần của biến), ta đặt tính như chia hai số tự nhiên và lặp lại ba thao tác:',
         },
         {
           type: 'list',

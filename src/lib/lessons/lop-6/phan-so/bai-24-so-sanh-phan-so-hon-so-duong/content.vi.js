@@ -212,7 +212,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Có bao nhiêu số nguyên $x$ thỏa mãn $\\frac{-2}{7} < \\frac{x}{7} < \\frac{3}{7}$?',
+      prompt: 'Có bao nhiêu số nguyên $x$ thoả mãn $\\frac{-2}{7} < \\frac{x}{7} < \\frac{3}{7}$?',
       answer: 4,
       hints: [
         'Ba phân số có cùng mẫu dương $7$, nên chỉ cần so sánh các tử.',

@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Ôn tập cuối năm Toán 6 phần Số và đại số: số tự nhiên, lũy thừa, tính chia hết, ƯCLN và BCNN, số nguyên, phân số, số thập phân và tỉ số phần trăm, kèm đề ôn thích ứng chọn câu theo phần còn yếu.',
+    'Ôn tập cuối năm Toán 6 phần Số và đại số: số tự nhiên, luỹ thừa, tính chia hết, ƯCLN và BCNN, số nguyên, phân số, số thập phân và tỉ số phần trăm, kèm đề ôn thích ứng chọn câu theo phần còn yếu.',
   intro:
     'Cả năm lớp 6, em đã đi từ tập hợp các số tự nhiên đến số nguyên, phân số và số thập phân. Bài ôn tập này nhắc lại những quy tắc quan trọng nhất của phần Số và đại số, giải mẫu các bài toán tổng hợp như trong sách và cho em làm một đề ôn tự điều chỉnh: phần nào em làm sai, đề sẽ hỏi thêm phần đó.',
   objectives: [
@@ -21,7 +21,7 @@ export default {
           rows: [
             [
               'Số tự nhiên',
-              'Thứ tự thực hiện phép tính: trong ngoặc trước; lũy thừa, rồi nhân và chia, rồi cộng và trừ. $a^m \\cdot a^n = a^{m+n}$; $a^m : a^n = a^{m-n}$ ($a \\ne 0$, $m \\ge n$).',
+              'Thứ tự thực hiện phép tính: trong ngoặc trước; luỹ thừa, rồi nhân và chia, rồi cộng và trừ. $a^m \\cdot a^n = a^{m+n}$; $a^m : a^n = a^{m-n}$ ($a \\ne 0$, $m \\ge n$).',
             ],
             [
               'Tính chia hết',
@@ -152,7 +152,7 @@ export default {
       options: ['$2^2 \\cdot 19$', '$4 \\cdot 19$', '$2^3 \\cdot 19$', '$2 \\cdot 38$'],
       answer: 0,
       hints: [
-        'Lũy thừa trước, nhân sau, cộng cuối cùng.',
+        'Luỹ thừa trước, nhân sau, cộng cuối cùng.',
         'Khi phân tích ra thừa số nguyên tố, mọi thừa số phải là số nguyên tố ($4$ và $38$ không phải).',
       ],
       solution:
@@ -251,7 +251,7 @@ export default {
     },
   ],
   takeaways: [
-    'Thứ tự thực hiện phép tính: ngoặc, lũy thừa, nhân chia, cộng trừ.',
+    'Thứ tự thực hiện phép tính: ngoặc, luỹ thừa, nhân chia, cộng trừ.',
     '"Xếp hàng thừa $r$" thì số đó trừ $r$ là bội chung; dùng BCNN để tìm.',
     'Bỏ ngoặc có dấu "$-$" đằng trước thì đổi dấu mọi số hạng trong ngoặc.',
     'Giá trị $\\dfrac{m}{n}$ của $b$ là $b \\cdot \\dfrac{m}{n}$; biết $\\dfrac{m}{n}$ của một số là $a$ thì số đó là $a : \\dfrac{m}{n}$.',

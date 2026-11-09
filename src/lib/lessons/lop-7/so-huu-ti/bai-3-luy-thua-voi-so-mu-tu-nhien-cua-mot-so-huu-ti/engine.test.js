@@ -68,7 +68,7 @@ describe('power rule puzzle', () => {
 
   it('asks for the power of a power first', () => {
     const res = apply(PUZZLES[4], 'nhan');
-    expect('reason' in res && res.reason).toMatch(/lũy thừa của lũy thừa/);
+    expect('reason' in res && res.reason).toMatch(/luỹ thừa của luỹ thừa/);
   });
 
   it('gives the final values of the puzzles', () => {

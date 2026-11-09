@@ -50,8 +50,8 @@ describe('allowedOps', () => {
   it('allows every power before any other operation', () => {
     const t = tokenize('5^2 - 3^2 · 2');
     expect(allowedOps(t)).toEqual([1, 5]);
-    expect(whyNot(t, 3)).toContain('lũy thừa');
-    expect(whyNot(t, 7)).toContain('lũy thừa');
+    expect(whyNot(t, 3)).toContain('luỹ thừa');
+    expect(whyNot(t, 7)).toContain('luỹ thừa');
   });
 
   it('works inside the innermost brackets first', () => {

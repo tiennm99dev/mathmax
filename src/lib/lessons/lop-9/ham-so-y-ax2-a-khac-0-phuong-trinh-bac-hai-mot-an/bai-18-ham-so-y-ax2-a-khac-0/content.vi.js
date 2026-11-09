@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Hàm số y = ax² với a khác 0: tính giá trị, đồ thị là parabol đỉnh O nhận trục Oy làm trục đối xứng, nằm trên hay dưới trục hoành tùy dấu của a.',
+    'Hàm số y = ax² với a khác 0: tính giá trị, đồ thị là parabol đỉnh O nhận trục Oy làm trục đối xứng, nằm trên hay dưới trục hoành tuỳ dấu của a.',
   intro:
     'Thả một hòn bi từ trên cao, quãng đường $s$ (mét) hòn bi rơi được sau $t$ giây được tính gần đúng bởi $s = 5t^2$. Diện tích hình vuông cạnh $x$ là $S = x^2$, diện tích hình tròn bán kính $R$ là $S = \\pi R^2$. Các công thức này có chung một dạng $y = ax^2$. Bài này tìm hiểu hàm số đó và đồ thị của nó, một đường cong gọi là parabol.',
   objectives: [

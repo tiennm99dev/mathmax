@@ -25,7 +25,7 @@ const whole = (n) => fraction(n, 1);
 /** @type {ReviewSkill} */
 export const soTuNhien = {
   id: 'so-tu-nhien',
-  label: 'Số tự nhiên và lũy thừa',
+  label: 'Số tự nhiên và luỹ thừa',
   make(rand) {
     const v = int(rand, 0, 2);
     if (v === 0) {
@@ -40,7 +40,7 @@ export const soTuNhien = {
         answer: whole(answer),
         display: fmt(answer),
         hints: [
-          'Thứ tự thực hiện: lũy thừa trước, rồi đến nhân, cuối cùng là cộng và trừ từ trái sang phải.',
+          'Thứ tự thực hiện: luỹ thừa trước, rồi đến nhân, cuối cùng là cộng và trừ từ trái sang phải.',
           `${powText(a, 2)} = ${a} · ${a}.`,
         ],
         steps: [
@@ -77,10 +77,10 @@ export const soTuNhien = {
     if (division) {
       const top = m + n;
       return {
-        prompt: `Viết kết quả phép tính ${powText(base, top)} : ${powText(base, n)} dưới dạng một lũy thừa của ${base}. Số mũ của lũy thừa đó là bao nhiêu?`,
+        prompt: `Viết kết quả phép tính ${powText(base, top)} : ${powText(base, n)} dưới dạng một luỹ thừa của ${base}. Số mũ của luỹ thừa đó là bao nhiêu?`,
         answer: whole(m),
         display: String(m),
-        hints: ['Chia hai lũy thừa cùng cơ số (khác 0): giữ nguyên cơ số và trừ các số mũ.'],
+        hints: ['Chia hai luỹ thừa cùng cơ số (khác 0): giữ nguyên cơ số và trừ các số mũ.'],
         steps: [
           `${powText(base, top)} : ${powText(base, n)} = ${base}^(${top} − ${n}).`,
           `Số mũ là ${m}.`,
@@ -88,10 +88,10 @@ export const soTuNhien = {
       };
     }
     return {
-      prompt: `Viết kết quả phép tính ${powText(base, m)} · ${powText(base, n)} dưới dạng một lũy thừa của ${base}. Số mũ của lũy thừa đó là bao nhiêu?`,
+      prompt: `Viết kết quả phép tính ${powText(base, m)} · ${powText(base, n)} dưới dạng một luỹ thừa của ${base}. Số mũ của luỹ thừa đó là bao nhiêu?`,
       answer: whole(m + n),
       display: String(m + n),
-      hints: ['Nhân hai lũy thừa cùng cơ số: giữ nguyên cơ số và cộng các số mũ.'],
+      hints: ['Nhân hai luỹ thừa cùng cơ số: giữ nguyên cơ số và cộng các số mũ.'],
       steps: [
         `${powText(base, m)} · ${powText(base, n)} = ${base}^(${m} + ${n}).`,
         `Số mũ là ${m + n}.`,
@@ -183,7 +183,7 @@ export const chiaHet = {
       steps: [
         `Gọi số học sinh là n. Khi đó n − ${r} chia hết cho ${rows.join(', ')}.`,
         `BCNN(${rows.join(', ')}) = ${L}, nên n − ${r} là một bội của ${L}.`,
-        `Trong khoảng đã cho, chỉ có n − ${r} = ${fmt(lo)} thỏa mãn.`,
+        `Trong khoảng đã cho, chỉ có n − ${r} = ${fmt(lo)} thoả mãn.`,
         `n = ${fmt(lo)} + ${r} = ${fmt(n)}.`,
       ],
     };

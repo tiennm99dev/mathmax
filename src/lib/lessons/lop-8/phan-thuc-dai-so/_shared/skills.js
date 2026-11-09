@@ -200,7 +200,7 @@ export const tinhChat = {
         answer: m,
         hints: ['Phần hệ số của MTC là bội chung nhỏ nhất của các hệ số.', `Tìm BCNN(${p}, ${q}).`],
         steps: [
-          `Hệ số: BCNN(${p}, ${q}) = ${m}. Phần biến: lũy thừa cao nhất của x là ${power(n)}.`,
+          `Hệ số: BCNN(${p}, ${q}) = ${m}. Phần biến: luỹ thừa cao nhất của x là ${power(n)}.`,
           `MTC = ${m}${power(n)}, nên m = ${m}.`,
         ],
       };

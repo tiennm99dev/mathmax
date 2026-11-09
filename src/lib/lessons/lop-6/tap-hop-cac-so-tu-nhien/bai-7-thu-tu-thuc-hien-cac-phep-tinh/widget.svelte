@@ -100,7 +100,7 @@
           <button
             type="button"
             class="-ml-1 min-h-11 min-w-9 self-start rounded-lg border-2 border-amber-300 bg-white px-1 text-lg text-amber-700 hover:bg-amber-50 {focusRing}"
-            aria-label="Nâng lên lũy thừa: {powerLabel(p.index)}"
+            aria-label="Nâng lên luỹ thừa: {powerLabel(p.index)}"
             onclick={() => pick(p.index)}>{p.text}</button
           >
         {:else}

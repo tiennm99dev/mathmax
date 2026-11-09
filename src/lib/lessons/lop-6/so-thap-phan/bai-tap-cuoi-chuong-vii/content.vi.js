@@ -20,7 +20,7 @@ export default {
           rows: [
             [
               'Bài 28. Số thập phân',
-              'Phân số thập phân có mẫu là lũy thừa của $10$ và được viết dưới dạng số thập phân: $\\frac{-37}{1\\,000} = -0{,}037$. Số thập phân gồm phần số nguyên (bên trái dấu phẩy) và phần thập phân (bên phải dấu phẩy). Số âm $< 0 <$ số dương; nếu $a > b > 0$ thì $-a < -b$.',
+              'Phân số thập phân có mẫu là luỹ thừa của $10$ và được viết dưới dạng số thập phân: $\\frac{-37}{1\\,000} = -0{,}037$. Số thập phân gồm phần số nguyên (bên trái dấu phẩy) và phần thập phân (bên phải dấu phẩy). Số âm $< 0 <$ số dương; nếu $a > b > 0$ thì $-a < -b$.',
             ],
             [
               'Bài 29. Tính toán với số thập phân',

@@ -107,7 +107,7 @@ export const soHuuTi = {
         display: text(answer),
         simplest: true,
         hints: [
-          'Lũy thừa trước: bình phương cả tử và mẫu; bình phương của một số âm là số dương.',
+          'Luỹ thừa trước: bình phương cả tử và mẫu; bình phương của một số âm là số dương.',
           'Trừ một số hữu tỉ là cộng với số đối của nó.',
         ],
         steps: [
@@ -307,7 +307,7 @@ export const daThuc = {
         display: intText(value),
         hints: [
           `Thay x = ${intText(x)} vào từng hạng tử; nhớ đặt số âm trong ngoặc.`,
-          'Tính lũy thừa trước, rồi nhân, cuối cùng cộng các kết quả.',
+          'Tính luỹ thừa trước, rồi nhân, cuối cùng cộng các kết quả.',
         ],
         steps: [
           `P(${intText(x)}) = ${intText(a)} · ${xs}² + ${fracOperand(b, 1)} · ${xs} + ${fracOperand(c, 1)}.`,

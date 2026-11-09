@@ -28,7 +28,7 @@ import { normalizeUnit } from './answer-check.js';
 /**
  * @typedef {object} Skill
  * @property {string} id
- * @property {string} label shown on the skill map, e.g. 'Bài 6. Lũy thừa'
+ * @property {string} label shown on the skill map, e.g. 'Bài 6. Luỹ thừa'
  * @property {(rand: () => number) => Omit<Question, 'skill'>} make
  */
 

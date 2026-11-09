@@ -190,7 +190,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Có bao nhiêu số nguyên $x$ thỏa mãn $-4 < x < 3$?',
+      prompt: 'Có bao nhiêu số nguyên $x$ thoả mãn $-4 < x < 3$?',
       answer: 6,
       hints: ['Liệt kê các số nguyên nằm giữa $-4$ và $3$ trên trục số (không lấy hai đầu).'],
       solution: '$x \\in \\{-3; -2; -1; 0; 1; 2\\}$, gồm $6$ số.',

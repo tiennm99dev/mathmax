@@ -108,7 +108,7 @@
         {#each EVENTS as e (e.id)}
           <option value={e.id}>"{e.text}"</option>
         {/each}
-        <option value={FREE}>Tự tô một biến cố tùy ý</option>
+        <option value={FREE}>Tự tô một biến cố tuỳ ý</option>
       </select>
     </div>
     <SegmentedControl
@@ -159,7 +159,7 @@
       <button type="button" class={button.primary} onclick={verify}>Kiểm tra</button>
       <button type="button" class={button.quiet} onclick={reveal}>Hiện đáp án</button>
     {/if}
-    <button type="button" class={button.quiet} onclick={reset} disabled={k === 0}>Xóa hết</button>
+    <button type="button" class={button.quiet} onclick={reset} disabled={k === 0}>Xoá hết</button>
   </div>
 
   <FeedbackNote tone={feedback.tone} text={feedback.text} />

@@ -90,7 +90,7 @@ export const bieuThuc = {
         answer: value,
         hints: [
           `Thay x bằng ${br(x)}${x < 0 ? ', nhớ đặt số âm trong ngoặc' : ''}.`,
-          'Tính lũy thừa trước, rồi nhân, cuối cùng cộng trừ.',
+          'Tính luỹ thừa trước, rồi nhân, cuối cùng cộng trừ.',
         ],
         steps: [
           `Thay x = ${intText(x)}: ${intText(p[2])} · ${br(x)}² ${p[1] < 0 ? '−' : '+'} ${Math.abs(p[1])} · ${br(x)} ${p[0] < 0 ? '−' : '+'} ${Math.abs(p[0])}.`,
@@ -303,7 +303,7 @@ export const nhan = {
         answer: r[k],
         hints: [
           'Nhân đơn thức với từng hạng tử của đa thức: nhân các hệ số, cộng các số mũ.',
-          `Chỉ một tích cho lũy thừa ${termText({ c: 1, e: k })}.`,
+          `Chỉ một tích cho luỹ thừa ${termText({ c: 1, e: k })}.`,
         ],
         steps: [
           `(${mt}) · (${polyText(q)}) = ${polyText(r)}.`,
@@ -337,7 +337,7 @@ export const nhan = {
         'Nhân mỗi hạng tử của đa thức này với từng hạng tử của đa thức kia.',
         k === 0
           ? 'Hệ số tự do của tích là tích của hai hệ số tự do.'
-          : `Cộng các tích có cùng lũy thừa ${termText({ c: 1, e: k })}.`,
+          : `Cộng các tích có cùng luỹ thừa ${termText({ c: 1, e: k })}.`,
       ],
       steps: [`${factors} = ${polyText(r)}.`, `Hệ số cần tìm là ${intText(coef(r, k))}.`],
     };

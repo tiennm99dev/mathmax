@@ -120,7 +120,7 @@ export default {
       problem: 'Tìm các bội của $4$ lớn hơn $-20$ và nhỏ hơn $20$.',
       steps: [
         'Các bội của $4$ có dạng $4 \\cdot k$ với $k \\in \\mathbb{Z}$: $\\ldots; -20; -16; -12; -8; -4; 0; 4; 8; 12; 16; 20; \\ldots$',
-        'Chọn các bội thỏa mãn $-20 < x < 20$ (không lấy $-20$ và $20$).',
+        'Chọn các bội thoả mãn $-20 < x < 20$ (không lấy $-20$ và $20$).',
       ],
       answer: '$-16; -12; -8; -4; 0; 4; 8; 12; 16$.',
     },

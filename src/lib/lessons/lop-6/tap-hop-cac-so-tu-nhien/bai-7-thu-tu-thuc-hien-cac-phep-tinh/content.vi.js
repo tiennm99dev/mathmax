@@ -1,11 +1,11 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Thứ tự thực hiện các phép tính: biểu thức không có ngoặc làm lũy thừa, rồi nhân chia, rồi cộng trừ; biểu thức có ngoặc làm ngoặc tròn, ngoặc vuông rồi ngoặc nhọn.',
+    'Thứ tự thực hiện các phép tính: biểu thức không có ngoặc làm luỹ thừa, rồi nhân chia, rồi cộng trừ; biểu thức có ngoặc làm ngoặc tròn, ngoặc vuông rồi ngoặc nhọn.',
   intro:
     'Hai bạn cùng tính $18 - 4 \\cdot 3$. Bạn Mai được $6$, bạn Nam được $42$. Ai đúng? Nam đã trừ trước rồi mới nhân, còn Mai nhân trước. Để mọi người tính một biểu thức đều ra cùng một kết quả, toán học quy định thứ tự thực hiện các phép tính. Theo quy ước đó, Mai đúng: $18 - 4 \\cdot 3 = 18 - 12 = 6$.',
   objectives: [
-    'Thực hiện đúng thứ tự các phép tính trong biểu thức không có dấu ngoặc: lũy thừa, nhân và chia, cộng và trừ.',
+    'Thực hiện đúng thứ tự các phép tính trong biểu thức không có dấu ngoặc: luỹ thừa, nhân và chia, cộng và trừ.',
     'Thực hiện đúng thứ tự các phép tính trong biểu thức có dấu ngoặc: $(\\ )$, rồi $[\\ ]$, rồi $\\{\\ \\}$.',
     'Tính giá trị biểu thức và giải bài toán thực tế bằng một biểu thức.',
   ],
@@ -15,13 +15,13 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Các số được nối với nhau bởi dấu các phép tính (cộng, trừ, nhân, chia, nâng lên lũy thừa) làm thành một biểu thức. Một số cũng được coi là một biểu thức.',
+          text: 'Các số được nối với nhau bởi dấu các phép tính (cộng, trừ, nhân, chia, nâng lên luỹ thừa) làm thành một biểu thức. Một số cũng được coi là một biểu thức.',
         },
         {
           type: 'callout',
           tone: 'theorem',
           title: 'Biểu thức không chứa dấu ngoặc',
-          text: 'Nếu chỉ có phép cộng và phép trừ, hoặc chỉ có phép nhân và phép chia, ta thực hiện các phép tính từ trái sang phải. Nếu có cả cộng, trừ, nhân, chia, nâng lên lũy thừa, ta thực hiện: lũy thừa $\\to$ nhân và chia $\\to$ cộng và trừ.',
+          text: 'Nếu chỉ có phép cộng và phép trừ, hoặc chỉ có phép nhân và phép chia, ta thực hiện các phép tính từ trái sang phải. Nếu có cả cộng, trừ, nhân, chia, nâng lên luỹ thừa, ta thực hiện: luỹ thừa $\\to$ nhân và chia $\\to$ cộng và trừ.',
         },
         {
           type: 'table',
@@ -66,13 +66,13 @@ export default {
   explore: {
     title: 'Trình tính từng bước',
     instruction:
-      'Chọn một biểu thức, rồi bấm vào dấu của phép tính em sẽ làm tiếp theo (với lũy thừa, bấm vào số mũ). Nếu đúng thứ tự, biểu thức được rút gọn một bước; nếu sai, máy giải thích quy tắc em vừa bỏ qua.',
+      'Chọn một biểu thức, rồi bấm vào dấu của phép tính em sẽ làm tiếp theo (với luỹ thừa, bấm vào số mũ). Nếu đúng thứ tự, biểu thức được rút gọn một bước; nếu sai, máy giải thích quy tắc em vừa bỏ qua.',
   },
   examples: [
     {
       problem: 'Tính giá trị của biểu thức $36 : 4 \\cdot 3 + 2^3$.',
       steps: [
-        'Biểu thức không có dấu ngoặc: tính lũy thừa trước, $2^3 = 8$.',
+        'Biểu thức không có dấu ngoặc: tính luỹ thừa trước, $2^3 = 8$.',
         'Tiếp theo là nhân và chia, từ trái sang phải: $36 : 4 = 9$, rồi $9 \\cdot 3 = 27$.',
         'Cuối cùng là phép cộng: $27 + 8 = 35$.',
         'Viết gọn: $36 : 4 \\cdot 3 + 2^3 = 36 : 4 \\cdot 3 + 8 = 9 \\cdot 3 + 8 = 27 + 8 = 35$.',
@@ -83,7 +83,7 @@ export default {
       problem: 'Tính giá trị của biểu thức $80 - [130 - (12 - 4)^2]$.',
       steps: [
         'Tính trong ngoặc tròn trước: $12 - 4 = 8$.',
-        'Trong ngoặc vuông, lũy thừa trước: $8^2 = 64$, rồi $130 - 64 = 66$.',
+        'Trong ngoặc vuông, luỹ thừa trước: $8^2 = 64$, rồi $130 - 64 = 66$.',
         'Cuối cùng: $80 - 66 = 14$.',
         'Viết gọn: $80 - [130 - 8^2] = 80 - [130 - 64] = 80 - 66 = 14$.',
       ],
@@ -130,7 +130,7 @@ export default {
       prompt: 'Tính: $5 \\cdot 2^3 - 18 : 3^2$.',
       answer: 38,
       hints: [
-        'Tính các lũy thừa trước: $2^3$ và $3^2$.',
+        'Tính các luỹ thừa trước: $2^3$ và $3^2$.',
         'Sau đó làm phép nhân và phép chia, cuối cùng là phép trừ.',
       ],
       solution: '$5 \\cdot 2^3 - 18 : 3^2 = 5 \\cdot 8 - 18 : 9 = 40 - 2 = 38$.',
@@ -156,12 +156,12 @@ export default {
       prompt: 'Sắp xếp các bước tính biểu thức $4 + 2 \\cdot (9 - 3)^2$ theo đúng thứ tự.',
       items: [
         'Tính trong ngoặc: $9 - 3 = 6$',
-        'Nâng lên lũy thừa: $6^2 = 36$',
+        'Nâng lên luỹ thừa: $6^2 = 36$',
         'Nhân: $2 \\cdot 36 = 72$',
         'Cộng: $4 + 72 = 76$',
       ],
       answer: [0, 1, 2, 3],
-      hints: ['Ngoặc trước, rồi lũy thừa, rồi nhân, cuối cùng là cộng.'],
+      hints: ['Ngoặc trước, rồi luỹ thừa, rồi nhân, cuối cùng là cộng.'],
       solution: '$4 + 2 \\cdot (9 - 3)^2 = 4 + 2 \\cdot 6^2 = 4 + 2 \\cdot 36 = 4 + 72 = 76$.',
     },
     {
@@ -179,7 +179,7 @@ export default {
       type: 'number',
       prompt: 'Tính giá trị của biểu thức $2x^2 + 3x - 5$ khi $x = 4$.',
       answer: 39,
-      hints: ['Thay $x = 4$: $2 \\cdot 4^2 + 3 \\cdot 4 - 5$.', 'Lũy thừa trước: $4^2 = 16$.'],
+      hints: ['Thay $x = 4$: $2 \\cdot 4^2 + 3 \\cdot 4 - 5$.', 'Luỹ thừa trước: $4^2 = 16$.'],
       solution: '$2 \\cdot 4^2 + 3 \\cdot 4 - 5 = 2 \\cdot 16 + 12 - 5 = 32 + 12 - 5 = 39$.',
     },
     {
@@ -198,7 +198,7 @@ export default {
   ],
   takeaways: [
     'Chỉ có cộng, trừ hoặc chỉ có nhân, chia: làm từ trái sang phải.',
-    'Không có ngoặc: lũy thừa $\\to$ nhân và chia $\\to$ cộng và trừ.',
+    'Không có ngoặc: luỹ thừa $\\to$ nhân và chia $\\to$ cộng và trừ.',
     'Có ngoặc: $(\\ ) \\to [\\ ] \\to \\{\\ \\}$; trong mỗi ngoặc vẫn theo thứ tự trên.',
     'Mỗi bước viết lại cả biểu thức sau dấu "=".',
   ],

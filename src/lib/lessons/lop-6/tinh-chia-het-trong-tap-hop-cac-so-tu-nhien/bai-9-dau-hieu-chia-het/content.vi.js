@@ -237,6 +237,6 @@ export default {
     'Chia hết cho $2$: chữ số tận cùng là $0, 2, 4, 6, 8$. Chia hết cho $5$: chữ số tận cùng là $0$ hoặc $5$.',
     'Chia hết cho $3$ (cho $9$): tổng các chữ số chia hết cho $3$ (cho $9$).',
     'Số chia hết cho $9$ thì chia hết cho $3$; điều ngược lại không đúng.',
-    'Tìm chữ số $*$: điều kiện với $2$, $5$ khóa chữ số tận cùng, điều kiện với $3$, $9$ khóa tổng các chữ số.',
+    'Tìm chữ số $*$: điều kiện với $2$, $5$ khoá chữ số tận cùng, điều kiện với $3$, $9$ khoá tổng các chữ số.',
   ],
 };

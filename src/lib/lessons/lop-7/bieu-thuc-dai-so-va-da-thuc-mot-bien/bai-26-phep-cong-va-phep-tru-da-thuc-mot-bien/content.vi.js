@@ -31,7 +31,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Cách 2: Cộng theo cột dọc',
-          text: 'Sắp xếp hai đa thức theo cùng một thứ tự (thường là lũy thừa giảm dần của biến), đặt các hạng tử cùng bậc ở cùng một cột rồi cộng theo từng cột.',
+          text: 'Sắp xếp hai đa thức theo cùng một thứ tự (thường là luỹ thừa giảm dần của biến), đặt các hạng tử cùng bậc ở cùng một cột rồi cộng theo từng cột.',
         },
         {
           type: 'table',
@@ -94,7 +94,7 @@ export default {
     {
       problem: 'Với $P(x)$, $Q(x)$ như trên, tính $P(x) - Q(x)$ theo cột dọc.',
       steps: [
-        'Hai đa thức đã sắp xếp theo lũy thừa giảm dần. Đặt các hạng tử cùng bậc thẳng cột; $P(x)$ không có hạng tử bậc $3$ (hệ số $0$).',
+        'Hai đa thức đã sắp xếp theo luỹ thừa giảm dần. Đặt các hạng tử cùng bậc thẳng cột; $P(x)$ không có hạng tử bậc $3$ (hệ số $0$).',
         'Cột bậc $4$: $x^4 - 0 = x^4$. Cột bậc $3$: $0 - (-2x^3) = 2x^3$.',
         'Cột bậc $2$: $3x^2 - x^2 = 2x^2$. Cột bậc $1$: $-2x - 2x = -4x$. Cột bậc $0$: $1 - (-4) = 5$.',
       ],

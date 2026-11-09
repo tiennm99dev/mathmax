@@ -79,9 +79,9 @@ export default {
   examples: [
     {
       problem:
-        'Trường Kim Đồng có 428 học sinh. Trường Hòa Bình có nhiều hơn Trường Kim Đồng 35 học sinh. Trường Hòa Bình có bao nhiêu học sinh?',
+        'Trường Kim Đồng có 428 học sinh. Trường Hoà Bình có nhiều hơn Trường Kim Đồng 35 học sinh. Trường Hoà Bình có bao nhiêu học sinh?',
       steps: ['Nhiều hơn: em làm phép cộng.', '428 + 35 = 463.'],
-      answer: 'Trường Hòa Bình có 463 học sinh.',
+      answer: 'Trường Hoà Bình có 463 học sinh.',
     },
     {
       problem: 'Đường gấp khúc ABCDEG có 5 đoạn, mỗi đoạn dài 2 cm. Đường gấp khúc dài bao nhiêu?',
