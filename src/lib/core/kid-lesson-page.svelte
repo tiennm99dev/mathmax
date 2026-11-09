@@ -29,7 +29,7 @@
   const storageKey = $derived(resolve(/** @type {import('$app/types').Path} */ (path)));
 
   /** Blocks a card reads aloud; widgets, display TeX and tables are not spoken. */
-  const SILENT = ['widget', 'tex', 'table'];
+  const SILENT = ['widget', 'tex'];
 
   /**
    * Read-aloud name for one block card: the section label, plus its place among
