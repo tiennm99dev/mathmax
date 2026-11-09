@@ -1,4 +1,5 @@
 <script>
+  import { turnSolid } from '#lib/actions/turn-solid.js';
   import { onDestroy } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
@@ -56,43 +57,6 @@
 
   // The view turns by drag or arrow keys.
   let view = $state({ yaw: -30, pitch: 52 });
-  /** @type {{ x: number, y: number } | null} */
-  let last = null;
-  /** @param {number} v */
-  const clampPitch = (v) => Math.max(5, Math.min(90, v));
-  /** @param {number} v */
-  const wrapYaw = (v) => ((((v + 180) % 360) + 360) % 360) - 180;
-  /** @param {PointerEvent} e */
-  function down(e) {
-    last = { x: e.clientX, y: e.clientY };
-    /** @type {HTMLElement} */ (e.currentTarget).setPointerCapture(e.pointerId);
-  }
-  /** @param {PointerEvent} e */
-  function move(e) {
-    if (!last) return;
-    const dx = e.clientX - last.x;
-    const dy = e.clientY - last.y;
-    last = { x: e.clientX, y: e.clientY };
-    view = { yaw: wrapYaw(view.yaw - dx * 0.6), pitch: clampPitch(view.pitch + dy * 0.5) };
-  }
-  function up() {
-    last = null;
-  }
-  /** @param {KeyboardEvent} e */
-  function key(e) {
-    const step = e.shiftKey ? 30 : 10;
-    /** @type {Record<string, [number, number]>} */
-    const moves = {
-      ArrowLeft: [step, 0],
-      ArrowRight: [-step, 0],
-      ArrowUp: [0, step],
-      ArrowDown: [0, -step],
-    };
-    const m = moves[e.key];
-    if (!m) return;
-    e.preventDefault();
-    view = { yaw: wrapYaw(view.yaw + m[0]), pitch: clampPitch(view.pitch + m[1]) };
-  }
 
   // Drawing: the scale slides from the size that fits the flat net to the
   // size that fits the folded solid, and never lets the shape overflow.
@@ -293,11 +257,11 @@
     aria-valuenow={Math.round(view.yaw)}
     aria-valuetext="Xoay {Math.round(view.yaw)} độ, nhìn từ trên xuống {Math.round(view.pitch)} độ"
     class="mx-auto max-w-md cursor-grab touch-none rounded-xl border border-slate-200 bg-white active:cursor-grabbing {focusRing}"
-    onpointerdown={down}
-    onpointermove={move}
-    onpointerup={up}
-    onpointercancel={up}
-    onkeydown={key}
+    use:turnSolid={{
+      view: () => view,
+      onturn: (v) => (view = v),
+      options: { yawRate: 0.6, minPitch: 5, maxPitch: 90 },
+    }}
   >
     <svg viewBox="0 0 {W} {H}" class="block h-auto w-full select-none" aria-hidden="true">
       {#each drawn as d (d.piece.id)}

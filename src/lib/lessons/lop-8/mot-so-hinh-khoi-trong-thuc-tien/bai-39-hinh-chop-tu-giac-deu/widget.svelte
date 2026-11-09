@@ -1,4 +1,5 @@
 <script>
+  import { turnSolid } from '#lib/actions/turn-solid.js';
   import SliderField from '#lib/core/slider-field.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
@@ -10,7 +11,7 @@
     pyramidLevel,
     squareBox,
   } from '../_shared/pyramid-geometry.js';
-  import { clampPitch, drawOrder, turnByKey, viewPoint, wrapYaw } from '#lib/geom-engine/solid.js';
+  import { drawOrder, viewPoint } from '#lib/geom-engine/solid.js';
 
   /**
    * The "rót nước" experiment: a pyramid container (apex down) and a box with
@@ -128,32 +129,6 @@
       text: `Sau ${pours} lần rót, nước trong hình hộp cao ${num((h * pours) / 3)} cm, bằng ${pours}/3 chiều cao hình hộp (${num(h)} cm).`,
     };
   });
-
-  /** @type {{ x: number, y: number } | null} */
-  let last = null;
-  /** @param {PointerEvent} e */
-  function down(e) {
-    last = { x: e.clientX, y: e.clientY };
-    /** @type {HTMLElement} */ (e.currentTarget).setPointerCapture(e.pointerId);
-  }
-  /** @param {PointerEvent} e */
-  function move(e) {
-    if (!last) return;
-    const dx = e.clientX - last.x;
-    const dy = e.clientY - last.y;
-    last = { x: e.clientX, y: e.clientY };
-    view = { yaw: wrapYaw(view.yaw - dx * 0.6), pitch: clampPitch(view.pitch + dy * 0.5) };
-  }
-  function up() {
-    last = null;
-  }
-  /** @param {KeyboardEvent} e */
-  function key(e) {
-    const next = turnByKey(view, e.key, e.shiftKey);
-    if (!next) return;
-    e.preventDefault();
-    view = next;
-  }
 </script>
 
 {#snippet solid(
@@ -203,11 +178,7 @@
     aria-valuenow={Math.round(view.yaw)}
     aria-valuetext="Hình hộp đầy {pours}/3, xoay {Math.round(view.yaw)} độ"
     class="cursor-grab touch-none rounded-xl border border-slate-200 bg-white active:cursor-grabbing {focusRing}"
-    onpointerdown={down}
-    onpointermove={move}
-    onpointerup={up}
-    onpointercancel={up}
-    onkeydown={key}
+    use:turnSolid={{ view: () => view, onturn: (v) => (view = v), options: { yawRate: 0.6 } }}
   >
     <svg viewBox="0 0 {W} {H}" class="block h-auto w-full select-none" aria-hidden="true">
       {@render solid(pyramidShell, pyramidWaterFaces)}

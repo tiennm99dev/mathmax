@@ -1,6 +1,7 @@
 <script>
+  import { turnSolid } from '#lib/actions/turn-solid.js';
   import { focusRing } from '#lib/core/ui.js';
-  import { clampPitch, turnByKey, wrapYaw } from '#lib/geom-engine/solid.js';
+
   import BoxDrawing from './box-drawing.svelte';
 
   /**
@@ -30,35 +31,6 @@
 
   /** Lowest tilt: a little below the ground, so the bottom face can be seen. */
   const MIN_PITCH = -30;
-
-  /** @type {{ x: number, y: number } | null} */
-  let last = null;
-  /** @param {PointerEvent} e */
-  function down(e) {
-    last = { x: e.clientX, y: e.clientY };
-    /** @type {HTMLElement} */ (e.currentTarget).setPointerCapture(e.pointerId);
-  }
-  /** @param {PointerEvent} e */
-  function move(e) {
-    if (!last) return;
-    const dx = e.clientX - last.x;
-    const dy = e.clientY - last.y;
-    last = { x: e.clientX, y: e.clientY };
-    view = {
-      yaw: wrapYaw(view.yaw - dx * 0.7),
-      pitch: clampPitch(view.pitch + dy * 0.5, MIN_PITCH),
-    };
-  }
-  function up() {
-    last = null;
-  }
-  /** @param {KeyboardEvent} e */
-  function key(e) {
-    const next = turnByKey(view, e.key, e.shiftKey, MIN_PITCH);
-    if (!next) return;
-    e.preventDefault();
-    view = next;
-  }
 </script>
 
 <div
@@ -70,11 +42,7 @@
   aria-valuenow={Math.round(view.yaw)}
   aria-valuetext="Xoay {Math.round(view.yaw)} độ, nhìn từ trên xuống {Math.round(view.pitch)} độ"
   class="cursor-grab touch-none rounded-2xl select-none border-2 border-slate-200 bg-white active:cursor-grabbing {focusRing}"
-  onpointerdown={down}
-  onpointermove={move}
-  onpointerup={up}
-  onpointercancel={up}
-  onkeydown={key}
+  use:turnSolid={{ view: () => view, onturn: (v) => (view = v), options: { minPitch: MIN_PITCH } }}
 >
   <BoxDrawing {boxes} {view} {tone} {width} {height} decorative />
 </div>

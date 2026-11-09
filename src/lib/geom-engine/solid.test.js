@@ -9,6 +9,8 @@ import {
   mul3,
   sub3,
   turnByKey,
+  arrowView,
+  dragView,
   viewPoint,
   wrapYaw,
 } from './solid.js';
@@ -109,5 +111,36 @@ describe('view controls', () => {
       pitch: -10,
     });
     expect(turnByKey({ yaw: 0, pitch: 20 }, 'Enter', false)).toBeNull();
+  });
+});
+
+describe('turning a solid by drag and arrows', () => {
+  /** The middle of the side nearest the eye at the start view. */
+  const NEAR = { x: 0, y: -1, z: 0 };
+  const START = { yaw: 0, pitch: 20 };
+  /** @param {{ yaw: number, pitch: number }} view */
+  const nearX = (view) => viewPoint(NEAR, view).x;
+
+  it('moves the near side the way the pointer drags', () => {
+    expect(nearX(dragView(START, 30, 0))).toBeGreaterThan(0);
+    expect(nearX(dragView(START, -30, 0))).toBeLessThan(0);
+  });
+
+  it('moves the near side the way the arrows point, the yaw rising to the right', () => {
+    const left = arrowView(START, 'ArrowLeft');
+    const right = arrowView(START, 'ArrowRight', true);
+    expect(left && nearX(left)).toBeLessThan(0);
+    expect(right).toEqual({ yaw: 30, pitch: 20 });
+    expect(right && nearX(right)).toBeGreaterThan(0);
+    expect(arrowView(START, 'Enter')).toBeNull();
+  });
+
+  it('tilts with a downward drag and the up arrow, inside the given range', () => {
+    expect(dragView(START, 0, 10).pitch).toBe(25);
+    expect(dragView(START, 0, 10, { pitchRate: 0.6 }).pitch).toBe(26);
+    expect(dragView(START, 0, -1000, { minPitch: -30 }).pitch).toBe(-30);
+    expect(dragView(START, 0, 1000, { maxPitch: 90 }).pitch).toBe(90);
+    expect(arrowView({ yaw: 0, pitch: 75 }, 'ArrowUp')?.pitch).toBe(80);
+    expect(dragView({ yaw: 170, pitch: 0 }, 20, 0).yaw).toBe(-176);
   });
 });

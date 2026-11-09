@@ -7,15 +7,14 @@
  * Model space: z points up and the centre of the solid is the origin.
  */
 import {
-  clampPitch,
+  arrowView as turnByArrow,
   cross3,
   dot3,
+  dragView as turnByDrag,
   drawOrder,
   facesViewer,
   sub3,
-  turnByKey,
   viewPoint,
-  wrapYaw,
 } from '#lib/geom-engine/solid.js';
 import { THINGS, thingSentence } from '../_shared/solids.js';
 
@@ -218,25 +217,20 @@ export const MIN_PITCH = -80;
  * @returns {View}
  */
 export function dragView(view, dx, dy) {
-  return {
-    yaw: wrapYaw(view.yaw + dx * 0.7),
-    pitch: clampPitch(view.pitch + dy * 0.6, MIN_PITCH),
-  };
+  return turnByDrag(view, dx, dy, { pitchRate: 0.6, minPitch: MIN_PITCH });
 }
 
 /**
  * The view after an arrow, or null for any other key. Left and right name the
- * way the near side moves, which is the opposite of the way `turnByKey` moves
- * the eye.
+ * way the near side moves, as every solid view turns (`arrowView` in
+ * `#lib/geom-engine/solid.js`).
  * @param {View} view
  * @param {string} key
  * @param {boolean} [shift]
  * @returns {View | null}
  */
 export function arrowView(view, key, shift = false) {
-  /** @type {Record<string, string>} */
-  const swap = { ArrowLeft: 'ArrowRight', ArrowRight: 'ArrowLeft' };
-  return turnByKey(view, swap[key] ?? key, shift, MIN_PITCH);
+  return turnByArrow(view, key, shift, { minPitch: MIN_PITCH });
 }
 
 /**

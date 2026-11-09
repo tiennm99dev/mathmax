@@ -239,7 +239,11 @@ flat) and `touchPoints` (where the incircle meets the sides).
 `#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
 `add3`, `sub3`, `mul3`, `dot3`, `cross3` on `{ x, y, z }`, `viewPoint`,
 `facesViewer`, `drawOrder` (faces far to near) and the view controls
-`clampPitch`, `wrapYaw`, `turnByKey`. `#lib/geom-engine/grid-triangle.js` is a draggable triangle on
+`clampPitch`, `wrapYaw`, `dragView` and `arrowView` (the near side follows
+the pointer and the arrows). Turn every solid view with
+`use:turnSolid={{ view: () => view, onturn: (v) => (view = v), options }}`
+from `#lib/actions/turn-solid.js` on its focusable `role="slider"` wrapper;
+never write a lesson's own drag or key handler for a solid. `#lib/geom-engine/grid-triangle.js` is a draggable triangle on
 a half-unit grid: `toGrid`, `placeVertex` (never goes flat), `measureTri`
 (exact squared sides, angles), `same`, `OPPOSITE`, `frame` (grid units to SVG
 and back) and `labelOutside`. `#lib/utils/svg.js` has `pointsAttr` for a

@@ -6,7 +6,7 @@
 import { rng } from '#lib/core/drill.js';
 import { capitalize } from '#lib/core/kid/quiz.js';
 import { clamp } from '#lib/core/visuals/svg-math.js';
-import { clampPitch, turnByKey, wrapYaw } from '#lib/geom-engine/solid.js';
+import { arrowView as turnByArrow, dragView as turnByDrag } from '#lib/geom-engine/solid.js';
 import { FACE_SHAPES, SOLID_NAMES } from '../_shared/box.js';
 import {
   antOnFrame,
@@ -48,22 +48,17 @@ const MIN_PITCH = -45;
  * @param {number} dy
  */
 export function dragView(view, dx, dy) {
-  return {
-    yaw: wrapYaw(view.yaw + dx * 0.7),
-    pitch: clampPitch(view.pitch + dy * 0.5, MIN_PITCH),
-  };
+  return turnByDrag(view, dx, dy, { minPitch: MIN_PITCH });
 }
 
 /**
  * The view after a turn button named by its arrow. Left and right name the way
- * the near side moves, the opposite of the way `turnByKey` moves the eye.
+ * the near side moves, as every solid view turns.
  * @param {import('../_shared/box.js').View} view
  * @param {'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown'} key
  */
 export function turnView(view, key) {
-  /** @type {Record<string, string>} */
-  const swap = { ArrowLeft: 'ArrowRight', ArrowRight: 'ArrowLeft' };
-  return turnByKey(view, swap[key] ?? key, true, MIN_PITCH) ?? view;
+  return turnByArrow(view, key, true, { minPitch: MIN_PITCH }) ?? view;
 }
 
 /** How far from a vertex or an edge a press still reaches it, in board units. */

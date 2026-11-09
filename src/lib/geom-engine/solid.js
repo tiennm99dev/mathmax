@@ -88,12 +88,13 @@ export function drawOrder(faces, view, toScreen) {
 }
 
 /**
- * A tilt kept between `min` (a little below the ground) and 80° (almost
+ * A tilt kept between `min` (a little below the ground) and `max` (80°, almost
  * straight down).
  * @param {number} v
  * @param {number} [min]
+ * @param {number} [max]
  */
-export const clampPitch = (v, min = -5) => Math.max(min, Math.min(80, v));
+export const clampPitch = (v, min = -5, max = 80) => Math.max(min, Math.min(max, v));
 
 /**
  * A turn wrapped into [−180°, 180°).
@@ -122,4 +123,58 @@ export function turnByKey(view, key, shift, minPitch = -5) {
   const m = moves[key];
   if (!m) return null;
   return { yaw: wrapYaw(view.yaw + m[0]), pitch: clampPitch(view.pitch + m[1], minPitch) };
+}
+
+/**
+ * How a dragged or arrow-turned view moves: degrees of turn per pixel dragged
+ * sideways (`yawRate`) and of tilt per pixel dragged down (`pitchRate`), and
+ * the tilt range (`minPitch`, `maxPitch`, as in `clampPitch`).
+ * @typedef {{ yawRate?: number, pitchRate?: number, minPitch?: number, maxPitch?: number }} TurnOptions
+ */
+
+/**
+ * The view after a drag by (`dx`, `dy`) screen pixels. The near side of the
+ * solid follows the pointer: drag right and the near side moves right; drag
+ * down and the eye rises to see more of the top.
+ * @param {View} view
+ * @param {number} dx
+ * @param {number} dy
+ * @param {TurnOptions} [options]
+ * @returns {View}
+ */
+export function dragView(view, dx, dy, options = {}) {
+  const { yawRate = 0.7, pitchRate = 0.5, minPitch = -5, maxPitch = 80 } = options;
+  return {
+    yaw: wrapYaw(view.yaw + dx * yawRate),
+    pitch: clampPitch(view.pitch + dy * pitchRate, minPitch, maxPitch),
+  };
+}
+
+/**
+ * The view after an arrow key or turn button, or null for any other key.
+ * Like a drag, the near side moves the way the arrow points (right turns it
+ * right, which raises the yaw a slider reports), up tilts the eye up; 10° a
+ * press, 30° with Shift.
+ * @param {View} view
+ * @param {string} key
+ * @param {boolean} [shift]
+ * @param {TurnOptions} [options]
+ * @returns {View | null}
+ */
+export function arrowView(view, key, shift = false, options = {}) {
+  const { minPitch = -5, maxPitch = 80 } = options;
+  const step = shift ? 30 : 10;
+  /** @type {Record<string, [number, number]>} */
+  const moves = {
+    ArrowLeft: [-step, 0],
+    ArrowRight: [step, 0],
+    ArrowUp: [0, step],
+    ArrowDown: [0, -step],
+  };
+  const m = moves[key];
+  if (!m) return null;
+  return {
+    yaw: wrapYaw(view.yaw + m[0]),
+    pitch: clampPitch(view.pitch + m[1], minPitch, maxPitch),
+  };
 }
