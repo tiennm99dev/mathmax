@@ -83,8 +83,8 @@ export function squareCorners(A, side) {
 /** What each step of the set-square construction draws. */
 export const SQUARE_STEPS = [
   'Bước 1. Vẽ đoạn thẳng AB có độ dài bằng cạnh hình vuông.',
-  'Bước 2. Đặt êke có góc vuông tại A, vẽ đường thẳng vuông góc với AB tại A. Trên đó lấy điểm D sao cho AD = AB.',
-  'Bước 3. Đặt êke có góc vuông tại B, vẽ đường thẳng vuông góc với AB tại B. Trên đó lấy điểm C sao cho BC = AB.',
+  'Bước 2. Đặt ê ke có góc vuông tại A, vẽ đường thẳng vuông góc với AB tại A. Trên đó lấy điểm D sao cho AD = AB.',
+  'Bước 3. Đặt ê ke có góc vuông tại B, vẽ đường thẳng vuông góc với AB tại B. Trên đó lấy điểm C sao cho BC = AB.',
   'Bước 4. Nối D với C. Ta được hình vuông ABCD.',
 ];
 

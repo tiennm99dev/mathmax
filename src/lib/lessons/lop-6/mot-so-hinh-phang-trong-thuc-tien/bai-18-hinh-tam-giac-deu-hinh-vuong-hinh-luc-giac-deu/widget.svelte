@@ -182,7 +182,7 @@
       width={W}
       height={H}
       maxWidth="max-w-md"
-      label="Vẽ hình vuông ABCD bằng thước và êke, bước {step} trên 4"
+      label="Vẽ hình vuông ABCD bằng thước và ê ke, bước {step} trên 4"
     >
       {#if step >= 4}
         <polygon points={polyPoints(sq)} fill="#2E86AB" fill-opacity="0.15" />

@@ -6,7 +6,7 @@ export default {
     'Mặt bàn học hình chữ nhật, con diều hình thoi, cái thang gấp nhìn nghiêng thành hình thang cân, những ô cửa sổ xếp nghiêng thành hình bình hành. Bốn hình này đều có bốn cạnh, nhưng mỗi hình có những đặc điểm riêng về cạnh, góc và đường chéo. Nắm được các đặc điểm đó, em sẽ vẽ được và gọi đúng tên từng hình.',
   objectives: [
     'Nêu được đặc điểm về cạnh, góc, đường chéo của hình chữ nhật, hình thoi, hình bình hành, hình thang cân.',
-    'Vẽ được hình chữ nhật, hình thoi, hình bình hành bằng thước, êke và compa.',
+    'Vẽ được hình chữ nhật, hình thoi, hình bình hành bằng thước, ê ke và compa.',
     'Phân biệt các tứ giác đã học dựa vào đặc điểm của chúng.',
   ],
   sections: [
@@ -30,7 +30,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Vẽ hình chữ nhật $ABCD$ có $AB = 5$ cm, $AD = 3$ cm bằng thước và êke:',
+          text: 'Vẽ hình chữ nhật $ABCD$ có $AB = 5$ cm, $AD = 3$ cm bằng thước và ê ke:',
         },
         {
           type: 'list',
@@ -171,8 +171,8 @@ export default {
       problem: 'Vẽ hình chữ nhật $MNPQ$ có $MN = 6$ cm và $NP = 4$ cm.',
       steps: [
         'Vẽ đoạn thẳng $MN = 6$ cm.',
-        'Dùng êke vẽ đường thẳng vuông góc với $MN$ tại $N$, lấy điểm $P$ trên đó với $NP = 4$ cm.',
-        'Dùng êke vẽ đường thẳng vuông góc với $MN$ tại $M$, lấy điểm $Q$ trên đó (cùng phía với $P$) với $MQ = 4$ cm.',
+        'Dùng ê ke vẽ đường thẳng vuông góc với $MN$ tại $N$, lấy điểm $P$ trên đó với $NP = 4$ cm.',
+        'Dùng ê ke vẽ đường thẳng vuông góc với $MN$ tại $M$, lấy điểm $Q$ trên đó (cùng phía với $P$) với $MQ = 4$ cm.',
         'Nối $P$ với $Q$. Kiểm tra bằng thước: $PQ = 6$ cm và hai đường chéo $MP = NQ$.',
       ],
       answer: 'Ta được hình chữ nhật $MNPQ$ có hai cạnh $6$ cm và $4$ cm.',

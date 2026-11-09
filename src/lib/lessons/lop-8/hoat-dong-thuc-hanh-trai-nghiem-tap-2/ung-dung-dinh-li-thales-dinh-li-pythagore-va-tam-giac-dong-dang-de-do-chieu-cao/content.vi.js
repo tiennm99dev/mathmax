@@ -3,7 +3,7 @@ export default {
   summary:
     'Hoạt động thực hành ngoài trời: dùng tam giác đồng dạng, định lí Thalès và định lí Pythagore để đo chiều cao của cây, toà nhà và khoảng cách tới một điểm không tới được.',
   intro:
-    'Không trèo lên ngọn cây, không bơi qua sông, làm sao biết cây cao bao nhiêu hay sông rộng bao nhiêu? Chỉ cần một chiếc cọc, một thước dây, một chiếc êke và những định lí đã học trong chương Định lí Thalès và Tam giác đồng dạng.',
+    'Không trèo lên ngọn cây, không bơi qua sông, làm sao biết cây cao bao nhiêu hay sông rộng bao nhiêu? Chỉ cần một chiếc cọc, một thước dây, một chiếc ê ke và những định lí đã học trong chương Định lí Thalès và Tam giác đồng dạng.',
   objectives: [
     'Đo gián tiếp chiều cao của cây, toà nhà bằng bóng nắng và tam giác đồng dạng.',
     'Đo chiều cao bằng cách ngắm qua đỉnh một chiếc cọc và áp dụng định lí Thalès.',
@@ -30,7 +30,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Mẹo đo',
-          text: 'Đo bóng cây và bóng cọc gần như cùng một lúc, vì mặt trời di chuyển làm bóng dài ngắn thay đổi. Cọc phải thẳng đứng (dùng dây dọi hoặc êke để kiểm tra) và mặt đất phải bằng phẳng.',
+          text: 'Đo bóng cây và bóng cọc gần như cùng một lúc, vì mặt trời di chuyển làm bóng dài ngắn thay đổi. Cọc phải thẳng đứng (dùng dây dọi hoặc ê ke để kiểm tra) và mặt đất phải bằng phẳng.',
         },
       ],
     },
@@ -66,8 +66,8 @@ export default {
           type: 'list',
           ordered: true,
           items: [
-            'Dùng êke dựng đường thẳng vuông góc với $AB$ tại $A$; trên đó lấy điểm $C$ và đo $AC$.',
-            'Từ $C$ ngắm về $B$; trên đường ngắm $CB$ tìm điểm $D$ sao cho $AD \\perp CB$ (dùng êke). Đo $AD$ và $CD$.',
+            'Dùng ê ke dựng đường thẳng vuông góc với $AB$ tại $A$; trên đó lấy điểm $C$ và đo $AC$.',
+            'Từ $C$ ngắm về $B$; trên đường ngắm $CB$ tìm điểm $D$ sao cho $AD \\perp CB$ (dùng ê ke). Đo $AD$ và $CD$.',
           ],
         },
         {
@@ -98,7 +98,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Dụng cụ: cọc thẳng dài khoảng $1{,}5$ đến $2$ m, thước dây, êke lớn (hoặc giác kế), dây dọi, cọc tiêu, giấy bút.',
+          text: 'Dụng cụ: cọc thẳng dài khoảng $1{,}5$ đến $2$ m, thước dây, ê ke lớn (hoặc giác kế), dây dọi, cọc tiêu, giấy bút.',
         },
         {
           type: 'list',

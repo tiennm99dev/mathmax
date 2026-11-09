@@ -7,7 +7,7 @@ export default {
   objectives: [
     'Nhận biết các cặp góc so le trong, các cặp góc đồng vị tạo bởi một đường thẳng cắt hai đường thẳng.',
     'Nắm và vận dụng dấu hiệu nhận biết hai đường thẳng song song.',
-    'Vẽ được đường thẳng đi qua một điểm và song song với một đường thẳng cho trước bằng thước và êke hoặc thước đo góc.',
+    'Vẽ được đường thẳng đi qua một điểm và song song với một đường thẳng cho trước bằng thước và ê ke hoặc thước đo góc.',
   ],
   sections: [
     {
@@ -89,14 +89,14 @@ export default {
           ordered: true,
           items: [
             'Vẽ đường thẳng $c$ đi qua $M$ và cắt $a$ tại $N$.',
-            'Dùng thước đo góc (hoặc êke có góc $60^\\circ$) xác định góc tạo bởi $c$ và $a$ tại $N$.',
+            'Dùng thước đo góc (hoặc ê ke có góc $60^\\circ$) xác định góc tạo bởi $c$ và $a$ tại $N$.',
             'Tại $M$, vẽ tia tạo với $c$ một góc bằng góc đó, ở vị trí đồng vị (hoặc so le trong) với nó.',
             'Kẻ đường thẳng $b$ chứa tia vừa vẽ. Hai góc đồng vị bằng nhau nên $b \\parallel a$.',
           ],
         },
         {
           type: 'p',
-          text: 'Cách nhanh với êke: đặt êke sao cho một cạnh góc vuông nằm trên $a$, kẻ đường thẳng $c$ qua $M$ vuông góc với $a$; rồi kẻ đường thẳng $b$ qua $M$ vuông góc với $c$. Khi đó $a$ và $b$ cùng vuông góc với $c$ nên $b \\parallel a$.',
+          text: 'Cách nhanh với ê ke: đặt ê ke sao cho một cạnh góc vuông nằm trên $a$, kẻ đường thẳng $c$ qua $M$ vuông góc với $a$; rồi kẻ đường thẳng $b$ qua $M$ vuông góc với $c$. Khi đó $a$ và $b$ cùng vuông góc với $c$ nên $b \\parallel a$.',
         },
       ],
     },

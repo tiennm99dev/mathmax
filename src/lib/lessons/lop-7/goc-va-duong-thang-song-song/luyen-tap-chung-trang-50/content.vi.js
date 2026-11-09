@@ -211,7 +211,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Muốn vẽ đường thẳng $b$ đi qua điểm $M$ và song song với đường thẳng $a$ (điểm $M$ không thuộc $a$) bằng êke, cách nào đúng?',
+        'Muốn vẽ đường thẳng $b$ đi qua điểm $M$ và song song với đường thẳng $a$ (điểm $M$ không thuộc $a$) bằng ê ke, cách nào đúng?',
       options: [
         'Kẻ đường thẳng $c$ qua $M$ vuông góc với $a$, rồi kẻ đường thẳng $b$ qua $M$ vuông góc với $c$.',
         'Kẻ hai đường thẳng qua $M$ vuông góc với $a$.',

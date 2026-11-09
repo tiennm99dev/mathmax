@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Nhận biết hình tam giác đều, hình vuông, hình lục giác đều qua cạnh, góc, đường chéo; vẽ tam giác đều bằng thước và compa, vẽ hình vuông bằng thước và êke, ghép sáu tam giác đều thành lục giác đều.',
+    'Nhận biết hình tam giác đều, hình vuông, hình lục giác đều qua cạnh, góc, đường chéo; vẽ tam giác đều bằng thước và compa, vẽ hình vuông bằng thước và ê ke, ghép sáu tam giác đều thành lục giác đều.',
   intro:
     'Biển báo giao thông hình tam giác, viên gạch lát nền hình vuông, ô tổ ong hình lục giác: những hình đẹp và cân đối này có mặt ở khắp nơi quanh em. Chúng có chung một điều: mọi cạnh đều bằng nhau và mọi góc đều bằng nhau. Trong bài này em sẽ nhận biết, vẽ và ghép các hình đó.',
   objectives: [
     'Nhận biết cạnh, góc, đường chéo của hình tam giác đều, hình vuông, hình lục giác đều.',
-    'Vẽ tam giác đều bằng thước và compa, vẽ hình vuông bằng thước và êke.',
+    'Vẽ tam giác đều bằng thước và compa, vẽ hình vuông bằng thước và ê ke.',
     'Ghép sáu tam giác đều thành một hình lục giác đều và tính độ dài liên quan.',
   ],
   sections: [
@@ -67,7 +67,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Vẽ hình vuông $ABCD$ có cạnh $4$ cm bằng thước và êke:',
+          text: 'Vẽ hình vuông $ABCD$ có cạnh $4$ cm bằng thước và ê ke:',
         },
         {
           type: 'list',
@@ -122,7 +122,7 @@ export default {
   explore: {
     title: 'Bảng vẽ thước và compa',
     instruction:
-      'Chọn một hình. Với tam giác đều, kéo điểm $C$ (hoặc dùng phím mũi tên) tới chỗ hai cung compa cắt nhau; kéo $B$ để đổi độ dài cạnh. Với hình vuông, bấm "Bước tiếp" để vẽ bằng êke. Với lục giác đều, ghép lần lượt sáu tam giác đều quanh $O$.',
+      'Chọn một hình. Với tam giác đều, kéo điểm $C$ (hoặc dùng phím mũi tên) tới chỗ hai cung compa cắt nhau; kéo $B$ để đổi độ dài cạnh. Với hình vuông, bấm "Bước tiếp" để vẽ bằng ê ke. Với lục giác đều, ghép lần lượt sáu tam giác đều quanh $O$.',
   },
   examples: [
     {
@@ -255,7 +255,7 @@ export default {
   ],
   takeaways: [
     'Tam giác đều: ba cạnh bằng nhau, ba góc bằng nhau; vẽ bằng thước và compa mở bằng độ dài cạnh.',
-    'Hình vuông: bốn cạnh bằng nhau, cạnh đối song song, bốn góc vuông, hai đường chéo bằng nhau; vẽ bằng thước và êke.',
+    'Hình vuông: bốn cạnh bằng nhau, cạnh đối song song, bốn góc vuông, hai đường chéo bằng nhau; vẽ bằng thước và ê ke.',
     'Lục giác đều: sáu cạnh bằng nhau, sáu góc bằng nhau, ba đường chéo chính bằng nhau và dài gấp đôi cạnh.',
     'Sáu tam giác đều bằng nhau có chung một đỉnh ghép thành một hình lục giác đều.',
   ],

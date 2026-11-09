@@ -75,7 +75,7 @@ export default {
           type: 'list',
           ordered: true,
           items: [
-            'Dùng giác kế (đặt nằm ngang) hoặc êke dựng đường thẳng $Ax$ vuông góc với $AB$ tại $A$, dọc theo bờ.',
+            'Dùng giác kế (đặt nằm ngang) hoặc ê ke dựng đường thẳng $Ax$ vuông góc với $AB$ tại $A$, dọc theo bờ.',
             'Trên $Ax$ lấy điểm $C$, đo $AC$ bằng thước dây.',
             'Đặt giác kế nằm ngang tại $C$, đo góc $ACB$.',
           ],
