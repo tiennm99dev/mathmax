@@ -125,7 +125,7 @@ export default {
         [2, 2],
         [3, 3],
       ],
-      hints: ['Hàng đơn vị là 1, 2, 3, 4 thì tròn xuống; 5, 6, 7, 8, 9 thì tròn lên.'],
+      hints: ['Hàng đơn vị là 0, 1, 2, 3, 4 thì tròn xuống; 5, 6, 7, 8, 9 thì tròn lên.'],
       solution: '1 234 → 1 230. 1 238 → 1 240. 1 245 → 1 250. 1 256 → 1 260.',
     },
     {

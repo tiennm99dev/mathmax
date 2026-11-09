@@ -169,9 +169,9 @@ export function compareWhy4(a, b) {
   const q = y[place.key];
   const same = places
     .slice(0, i)
-    .map((earlier) => earlier.unit)
+    .map((earlier) => `hàng ${earlier.unit}`)
     .join(', ');
-  const lead = i === 0 ? '' : `Hàng ${same} giống nhau. `;
+  const lead = i === 0 ? '' : `${same.charAt(0).toUpperCase()}${same.slice(1)} giống nhau. `;
   return `${lead}Ở hàng ${place.unit}: ${p} ${SIGN_WORDS[compareSign(p, q)]} ${q}. ${result}`;
 }
 

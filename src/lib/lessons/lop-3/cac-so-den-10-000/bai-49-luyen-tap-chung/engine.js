@@ -299,7 +299,8 @@ export function extremeQuestion(rand) {
 }
 
 /**
- * Roman numerals written the wrong way that children make: IIII for 4.
+ * Wrong Roman numerals for `n` that children write: IIII for 4, the
+ * letters turned round, or a neighbouring number.
  * @param {number} n
  * @returns {string[]}
  */
@@ -310,6 +311,7 @@ function romanSlips(n) {
     roman.replace('IV', 'IIII').replace('IX', 'VIIII'),
     toRoman(n + 1),
     toRoman(n - 1),
+    toRoman(n + 2),
   ];
   return [...new Set(out)].filter((s) => s !== '' && s !== roman);
 }

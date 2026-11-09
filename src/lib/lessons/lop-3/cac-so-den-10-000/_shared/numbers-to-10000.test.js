@@ -65,7 +65,7 @@ describe('comparing', () => {
     expect(compareWhy4(999, 1000)).toContain('ít chữ số hơn');
     expect(compareWhy4(999, 1000)).toContain(`999 < ${fmt(1000)}`);
     expect(compareWhy4(3456, 3465)).toContain(
-      'Hàng nghìn, trăm giống nhau. Ở hàng chục: 5 bé hơn 6.',
+      'Hàng nghìn, hàng trăm giống nhau. Ở hàng chục: 5 bé hơn 6.',
     );
     expect(compareWhy4(7812, 2999)).toContain('Ở hàng nghìn: 7 lớn hơn 2.');
     expect(compareWhy4(2468, 2468)).toContain('=');

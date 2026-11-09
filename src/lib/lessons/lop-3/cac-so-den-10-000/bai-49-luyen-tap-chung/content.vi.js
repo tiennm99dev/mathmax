@@ -159,10 +159,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Từ bốn thẻ số 2, 0, 0, 4, em lập số bé nhất có bốn chữ số.',
-      answer: 2004,
+      prompt: 'Từ bốn thẻ số 5, 0, 3, 0, em lập số bé nhất có bốn chữ số.',
+      answer: 3005,
       hints: ['Hàng nghìn không được là chữ số 0.', 'Chọn chữ số bé nhất khác 0 ở hàng nghìn.'],
-      solution: 'Hàng nghìn là 2, rồi xếp 0, 0, 4: số bé nhất là 2 004.',
+      solution:
+        'Hàng nghìn là 3, chữ số bé nhất khác 0. Các chữ số còn lại 0, 0, 5 xếp tăng dần: số bé nhất là 3 005.',
     },
   ],
   takeaways: [

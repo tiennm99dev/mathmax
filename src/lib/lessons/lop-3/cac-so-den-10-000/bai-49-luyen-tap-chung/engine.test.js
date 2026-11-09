@@ -137,6 +137,16 @@ describe('the mixed round', () => {
     expect(bad).toEqual([]);
   });
 
+  it('offers at least three Roman numerals or numbers to choose from', () => {
+    const bad = [];
+    for (const seed of SEEDS) {
+      for (const q of buildRound(seed)) {
+        if (q.kind === 'la-ma' && q.options.length < 3) bad.push(q.prompt);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('starts the same for every visitor', () => {
     expect(buildRound(1).map((q) => q.prompt)).toEqual(buildRound(1).map((q) => q.prompt));
   });
