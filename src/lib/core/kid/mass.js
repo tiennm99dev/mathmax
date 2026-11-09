@@ -31,20 +31,33 @@ export const WEIGHTS = /** @type {const} */ ([1, 2, 5]);
 /** At most this many weights fit on a pan. */
 export const MAX_WEIGHTS = 6;
 
-/** Size of a weight on the pan, by its kilograms. */
+/**
+ * Size of a weight on the pan, by its kilograms, wide enough for its label
+ * ("5 kg") at a size a child reads on a 390 px phone.
+ */
 const WEIGHT_SIZE = /** @type {Record<number, [number, number]>} */ ({
-  1: [28, 24],
-  2: [32, 28],
-  5: [38, 34],
+  1: [40, 26],
+  2: [44, 30],
+  5: [50, 36],
+});
+
+/** Size of a gram weight on the pan, by its grams; others take the middle size. */
+const GRAM_WEIGHT_SIZE = /** @type {Record<number, [number, number]>} */ ({
+  100: [50, 26],
+  200: [54, 30],
+  500: [58, 36],
 });
 
 /**
  * One thing on a pan: a drawn thing of a known mass (`id`), a labelled box of a
- * known mass for anything else (`name`), or a weight.
+ * known mass for anything else (`name`), or a weight. A weight with
+ * `unit: 'g'` is a gram weight (quả cân 100 g): its `kg` field then holds
+ * grams, and every load on that balance is in grams too, since the pans
+ * compare the numbers as they are.
  * @typedef {(
  *   | { kind: 'thing', id: ThingId, kg: number }
  *   | { kind: 'thing', name: string, kg: number }
- *   | { kind: 'weight', kg: number }
+ *   | { kind: 'weight', kg: number, unit?: 'kg' | 'g' }
  * )} Load
  */
 
@@ -60,7 +73,7 @@ export function massThing(id) {
 }
 
 /** Size on a pan of a labelled box (a thing given by `name`). */
-const NAMED_BOX = /** @type {[number, number]} */ ([86, 36]);
+const NAMED_BOX = /** @type {[number, number]} */ ([92, 34]);
 
 /**
  * The size of one load on a pan.
@@ -68,18 +81,31 @@ const NAMED_BOX = /** @type {[number, number]} */ ([86, 36]);
  * @returns {[number, number]} width and height in SVG units
  */
 function sizeOnPan(load) {
-  if (load.kind === 'weight') return WEIGHT_SIZE[load.kg] ?? WEIGHT_SIZE[1];
+  if (load.kind === 'weight') {
+    return load.unit === 'g'
+      ? (GRAM_WEIGHT_SIZE[load.kg] ?? GRAM_WEIGHT_SIZE[200])
+      : (WEIGHT_SIZE[load.kg] ?? WEIGHT_SIZE[1]);
+  }
   if ('name' in load) return NAMED_BOX;
   const { w, h } = massThing(load.id);
   return [w, h];
 }
 
 /**
- * The name of a load: 'quả dưa hấu', the name it was given, or 'quả cân 2 kg'.
+ * The label printed on a weight: '2 kg' or '100 g'.
+ * @param {{ kg: number, unit?: 'kg' | 'g' }} weight
+ */
+export function weightLabel(weight) {
+  return `${weight.kg} ${weight.unit ?? 'kg'}`;
+}
+
+/**
+ * The name of a load: 'quả dưa hấu', the name it was given, 'quả cân 2 kg' or
+ * 'quả cân 100 g'.
  * @param {Load} load
  */
 export function loadName(load) {
-  if (load.kind === 'weight') return `quả cân ${load.kg} kg`;
+  if (load.kind === 'weight') return `quả cân ${weightLabel(load)}`;
   return 'name' in load ? load.name : massThing(load.id).name;
 }
 

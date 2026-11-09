@@ -1,5 +1,5 @@
 <script>
-  import { balanceText, heavierSide, panLayout, totalKg } from './mass.js';
+  import { balanceText, heavierSide, panLayout, totalKg, weightLabel } from './mass.js';
 
   /**
    * A pan balance (cân đĩa) drawn in SVG. The heavier pan goes down and the
@@ -7,6 +7,8 @@
    * Things are drawn without their mass, so the child has to read the
    * balance: a known thing (`id`) as its picture, anything else (`name`) as a
    * labelled box. A drawing only: the widget around it holds the controls.
+   * Labels stay readable on a 390 px phone, and a pan holds three rows of
+   * loads under the beam.
    *
    * - `left`, `right`: the loads on each pan (`Load` in `mass.js`).
    * - `label`: what a screen reader hears, by default both pans and the lower
@@ -28,7 +30,7 @@
 
   const PIVOT = { x: 170, y: 64 };
   const ARM = 118;
-  const HANG = 84;
+  const HANG = 140;
   const PAN = 104;
   const TILT = 9;
 
@@ -58,11 +60,11 @@
         />
         <text
           x={x + it.w / 2}
-          y={y + it.h / 2 + 5}
+          y={y + it.h / 2 + 6}
           text-anchor="middle"
-          font-size="13"
+          font-size="16"
           font-weight="700"
-          fill="#fff">{it.load.kg} kg</text
+          fill="#fff">{weightLabel(it.load)}</text
         >
       </g>
     {:else if 'name' in it.load}
@@ -78,9 +80,9 @@
       />
       <text
         x={x + it.w / 2}
-        y={y + it.h / 2 + 4}
+        y={y + it.h / 2 + 6}
         text-anchor="middle"
-        font-size="13"
+        font-size="16"
         font-weight="700"
         fill="#1e293b">{it.load.name}</text
       >
@@ -201,14 +203,14 @@
 {/snippet}
 
 <svg
-  viewBox="0 0 340 240"
+  viewBox="0 0 340 296"
   class="mx-auto block w-full max-w-md"
   role="img"
   aria-label={label ?? balanceText(left, right)}
 >
-  <rect x="120" y="222" width="100" height="12" rx="4" fill="#64748b" />
+  <rect x="120" y="278" width="100" height="12" rx="4" fill="#64748b" />
   <path
-    d="M{PIVOT.x - 10} 222 L{PIVOT.x - 4} {PIVOT.y} H{PIVOT.x + 4} L{PIVOT.x + 10} 222 Z"
+    d="M{PIVOT.x - 10} 278 L{PIVOT.x - 4} {PIVOT.y} H{PIVOT.x + 4} L{PIVOT.x + 10} 278 Z"
     fill="#94a3b8"
   />
   <g

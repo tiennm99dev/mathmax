@@ -11,6 +11,7 @@ import {
   newWeighTask,
   panLayout,
   weighMessage,
+  weightLabel,
   weightsText,
 } from './mass.js';
 
@@ -29,7 +30,38 @@ describe('balanceText', () => {
 
   it('gives a labelled box its own size on the pan', () => {
     const [box] = panLayout([{ kind: 'thing', name: 'Túi A', kg: 3 }], 104);
-    expect([box.w, box.h]).toEqual([86, 36]);
+    expect([box.w, box.h]).toEqual([92, 34]);
+  });
+});
+
+describe('gram weights', () => {
+  it('are named and labelled in grams', () => {
+    expect(weightLabel({ kg: 100, unit: 'g' })).toBe('100 g');
+    expect(weightLabel({ kg: 2 })).toBe('2 kg');
+    expect(
+      balanceText(
+        [{ kind: 'thing', name: 'Túi A', kg: 300 }],
+        [
+          { kind: 'weight', kg: 200, unit: 'g' },
+          { kind: 'weight', kg: 100, unit: 'g' },
+        ],
+      ),
+    ).toBe(
+      'Cân đĩa. Đĩa bên trái: Túi A. Đĩa bên phải: quả cân 200 g, quả cân 100 g. Cân thăng bằng.',
+    );
+  });
+
+  it('stack three labelled loads in three rows inside the pan', () => {
+    const items = panLayout(
+      [
+        { kind: 'weight', kg: 500, unit: 'g' },
+        { kind: 'weight', kg: 200, unit: 'g' },
+        { kind: 'thing', name: 'Túi B', kg: 300 },
+      ],
+      104,
+    );
+    expect(items.every((it) => it.x >= -52 && it.x + it.w <= 52)).toBe(true);
+    expect(new Set(items.map((it) => it.y)).size).toBe(3);
   });
 });
 

@@ -52,30 +52,18 @@ export const brokenLines = {
 };
 
 /**
- * A weight on a pan, drawn as a labelled box since the drawn weights are in kg.
+ * A gram weight on a pan (quả cân 100 g).
  * @param {number} g
  * @returns {Load}
  */
-const weight = (g) => ({ kind: 'thing', name: `${g} g`, kg: g });
+const weight = (g) => ({ kind: 'weight', kg: g, unit: 'g' });
 
 /**
- * The weights on a pan, drawn as boxes. Only two rows of boxes fit under the
- * beam, so the first two of three weights share the bottom box.
+ * The weights on a pan, one per weight: a pan holds three rows of them.
  * @param {number[]} grams
  * @returns {Load[]}
  */
-function panWeights(grams) {
-  if (grams.length <= 2) return grams.map(weight);
-  const [first, second, ...rest] = grams;
-  return [
-    {
-      kind: 'thing',
-      name: first === second ? `2 quả ${first} g` : `${first} g, ${second} g`,
-      kg: first + second,
-    },
-    ...rest.map(weight),
-  ];
-}
+const panWeights = (grams) => grams.map(weight);
 
 /**
  * What a thing weighs on a level balance. Its mass goes in the `kg` field the

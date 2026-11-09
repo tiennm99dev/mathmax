@@ -21,6 +21,14 @@
     left={[{ kind: 'thing', name: 'Túi cam', kg: 3 }]}
     right={[{ kind: 'thing', name: 'Túi táo', kg: 3 }]}
   />
+  <BalanceScale
+    left={[{ kind: 'thing', name: 'Túi kẹo', kg: 800 }]}
+    right={[
+      { kind: 'weight', kg: 500, unit: 'g' },
+      { kind: 'weight', kg: 200, unit: 'g' },
+      { kind: 'weight', kg: 100, unit: 'g' },
+    ]}
+  />
   <div class="flex flex-wrap items-end gap-3">
     {#each VESSELS as v, i (v.id)}
       <Vessel id={v.id} fill={(i + 1) / VESSELS.length} label={v.name} caption={v.name} size={80} />

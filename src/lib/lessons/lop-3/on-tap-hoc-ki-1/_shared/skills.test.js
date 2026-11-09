@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { optionText } from '#lib/core/kid/quiz.js';
+import { panLayout } from '#lib/core/kid/mass.js';
 import {
   ARITH_SKILLS,
   busStory,
@@ -312,7 +313,7 @@ describe('measures', () => {
     expect(chosen(boxesStory(20, 3))).toBe(80);
   });
 
-  it('keeps every balance level, with its boxes under the beam', () => {
+  it('keeps every balance level, with its loads in the three rows under the beam', () => {
     const bad = [];
     const balances = MEASURE_SKILLS.find((s) => s.id === 'can-gam');
     if (!balances) throw new Error('no balance skill');
@@ -321,7 +322,9 @@ describe('measures', () => {
       if (visual?.type !== 'balance') throw new Error('no drawing');
       const sum = (/** @type {{ kg: number }[]} */ loads) => loads.reduce((s, l) => s + l.kg, 0);
       if (sum(visual.left) !== sum(visual.right)) bad.push(seed);
-      if (visual.left.length > 2 || visual.right.length > 2) bad.push(seed);
+      for (const loads of [visual.left, visual.right]) {
+        if (new Set(panLayout(loads, 104).map((it) => it.y)).size > 3) bad.push(seed);
+      }
     }
     expect(bad).toEqual([]);
   });

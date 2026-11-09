@@ -84,11 +84,11 @@ const onScale = (max, slips) => slips.filter((v) => v > 0 && v <= max);
 const box = (name, g) => ({ kind: 'thing', name, kg: g });
 
 /**
- * A weight on a pan, drawn as a labelled box since the drawn weights are in kg.
+ * A gram weight on a pan (quả cân 100 g).
  * @param {number} g
  * @returns {Load}
  */
-const weight = (g) => box(gramText(g), g);
+const weight = (g) => ({ kind: 'weight', kg: g, unit: 'g' });
 
 const FITTING = [
   {
