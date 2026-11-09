@@ -7,7 +7,9 @@
    * option buttons and the feedback line. A wrong first tap shows the hint
    * and a second try; a second miss shows the answer. The parent keeps the
    * state (`tapOption` in `quiz.js` moves it on) and calls `focus()` to move
-   * keyboard focus to the prompt of a new question. Used by
+   * keyboard focus to the prompt of a new question. Once a question settles
+   * its options leave the tab order, so Tab from the tapped option reaches the
+   * next button. Used by
    * `choice-round.svelte` and `adaptive-quiz.svelte`.
    *
    * - `q`: the question (`KidQuestion` in `quiz.js`).
@@ -58,7 +60,9 @@
         : long
           ? 'min-h-16 min-w-16 px-4 text-xl'
           : 'min-h-16 min-w-16 px-3 text-3xl tabular-nums';
-    const base = `${shape} rounded-2xl border-4 font-bold transition ${focusRing}`;
+    // Once settled the colours change at once: a fading answer reads as not
+    // yet marked beside the "Đáp án" line.
+    const base = `${shape} rounded-2xl border-4 font-bold ${settled ? '' : 'transition'} ${focusRing}`;
     if (settled && i === q.answer) {
       return picture
         ? `${base} border-emerald-600 bg-emerald-100 text-emerald-900`
@@ -88,6 +92,7 @@
       class={optionClass(i)}
       aria-label={optionName(q, i)}
       aria-disabled={settled || wrong.includes(i)}
+      tabindex={settled ? -1 : undefined}
       onclick={() => onchoose(i)}
     >
       {#if option}{@render option(opt, i)}{:else}{optionText(opt)}{/if}
