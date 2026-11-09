@@ -148,7 +148,7 @@ Exercises all have `prompt`, `hints` (one or more, revealed one at a time) and
 | `text` | `accept: string[]` | ignores case, diacritics, extra spaces, final `.` |
 | `order` | `items`, `answer` (item indices in correct order) | drag to sort |
 | `match` | `left`, `right` (at least as many), `pairs: [[l, r]]` | each left once; the page shows `right` in a seeded order, so list it in any order and never scramble it by hand |
-| `count` | `picture`, `answer` 0-100, `choices?` (must include it) | kids count and tap |
+| `count` | `picture`, `answer` 0-100, `choices?` (must include it), `groups?` | kids count and tap; `groups` (2 or more, dividing `answer`) draws the items in that many framed groups, so "3 đĩa, mỗi đĩa 6 quả" is `answer: 18, groups: 3`; leave it out when the story pours them together |
 
 `picture` names come from `src/lib/core/kid/pictures/index.js` (apple, banana,
 orange, strawberry, grapes, fish, cat, chick, rabbit, butterfly, star, flower,
@@ -176,8 +176,10 @@ The page picks the layout from the grade; there is no flag to set.
   font. Write short sentences a child can hear read aloud, addressed to "em".
   Keep each block to one idea, prefer `p`, `callout` and small `table` blocks,
   and keep TeX out except plain numbers and signs. A `callout` of tone `theorem`
-  is headed "Ghi nhớ" here, never "Định lí": set the tone as usual, with no
-  per-lesson override. Exercises favour `count`,
+  is headed "Ghi nhớ" here, never "Định lí", and one of tone `definition` is
+  headed "Em cần biết", never "Định nghĩa": set the tone as usual, with no
+  per-lesson override, and never title a block "Ghi nhớ" by hand (a fact to
+  remember is a `theorem`). Tables get a "Nghe" button too, read row by row. Exercises favour `count`,
   `choice`, `match` and `order`; use pictures, not long word problems. Widgets
   use large buttons and kid pictures (`#lib/core/kid/picture.svelte`), and
   the kid building blocks in `#lib/core/kid/` (section 6). In a how-many
@@ -210,8 +212,8 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `fraction-bars` | fraction strips, numerators draggable |
 | `area-grid` | unit-square grid with a draggable rectangle |
 | `bar-chart`, `line-chart`, `pie-chart` | charts, optionally editable by drag or keys; `bar-chart` `showValues={false}` hides the values for read-the-chart tasks, `axisStart` starts its value axis above 0 (a cut axis, marked with a zigzag) |
-| `pictograph` | picture chart (biểu đồ tranh): one row of icons per category, a remainder as part of an icon |
-| `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories |
+| `pictograph` | picture chart (biểu đồ tranh): one row of icons per category, a remainder as part of an icon; `item` draws a kid picture (`'apple'`) or a `'dot'` instead of the green circle |
+| `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories; `format` writes the values (default `formatNumber`) |
 | `data-table` | statistics table with tally marks and percentages |
 | `probability-spinner` | spinner with running frequency table |
 | `unit-converter` | length, mass, capacity, time and VND money |
@@ -265,8 +267,11 @@ Other shared pieces:
 - `#lib/core/number-format.js`: Vietnamese number writing for every number a
   widget shows, in text, `aria-label`s and live TeX. Never print a raw number
   with a decimal point or call `toFixed`: `formatNumber(52.94, 1)` gives
-  `52,9`, `formatFixed(5, 1)` gives `5,0` (decimals kept), `texNumber(text)`
-  braces the comma for TeX (`3{,}5`). For natural numbers the way the book
+  `52,9`, `formatFixed(5, 1)` gives `5,0` (decimals kept), and both group
+  thousands the book's way, by a narrow space (`1 000`, `12 345,5`), never a
+  dot. `texNumber(text)` braces the comma for TeX (`3{,}5`) and turns the
+  group space into `\,`; live and prerendered TeX also accept the narrow space
+  as it is. For natural numbers the way the book
   prints them: `fmt(2345)` gives `2 345` (narrow space), `sup`, `powText`
   (`2⁵`) and `readNatural` for typed input. Integers: `MINUS` (the book's
   `−`), `intText` (`−1 234`), `operand` (`(−5)`) and `readInteger`.
@@ -335,7 +340,9 @@ Other shared pieces:
   the `stop` it returns may be called from inside the callback),
   `reducedMotion()` and `wrap` for animated widgets.
 - `#lib/core/tex-text.js`: `texText` turns TeX into the words screen readers
-  hear (`căn bậc hai của 144`, `x mũ 2`, `nhỏ hơn hoặc bằng`, `trừ 1`, `3/4`);
+  hear (`căn bậc hai của 144`, `x mũ 2`, `nhỏ hơn hoặc bằng`, `trừ 1`, `3/4`,
+  `K C` for `K_C`, a bond `\mathrm{O{-}H}` as `O–H`, never "trừ");
+  `richText` does the same for rich text with `$...$`;
   prerendered content and `tex.svelte` already use it, so TeX in options, labels
   and buttons keeps a distinct accessible name. `htmlText` reads rendered rich
   text back as plain text for an `aria-label`. KaTeX stays `output: 'html'` with
@@ -346,7 +353,9 @@ Other shared pieces:
   (`{ id, label, bin, why }`) into bins by tap, keyboard or drag, checked per
   move, with take-back and "Gỡ thẻ sai". `shuffled(cards, seed)` mixes the deck
   the same way for every visitor; a `face` snippet draws picture cards;
-  `hintOnWrong` shows `why` as a hint after a wrong move.
+  `hintOnWrong` shows `why` as a hint after a wrong move. Labels, bin names and
+  `why` are rich text: write `$K_C$`, and the card, its hint and its spoken
+  name show and read it as math.
 - `#lib/components/tex.svelte`: live KaTeX. Import it only when the TeX changes
   with interaction; static TeX belongs in `content.vi.js`, which is prerendered.
   `#lib/components/live-rich-text.svelte` shows run-time text with inline
@@ -404,7 +413,9 @@ Other shared pieces:
     `dayAfter`, `dayTitle`, `dialHour`, `hourOptions`, `monthRows` and
     `weekdayOf`/`weekdayFrom`. `clock-face` (section 6) is the draggable one.
   - `mass.js` with `balance-scale.svelte` (a pan balance; `Load` is a drawn
-    thing, a labelled box or a weight), and `capacity.js` with `vessel.svelte`
+    thing, a labelled box or a weight; a gram weight is `{ kind: 'weight',
+    kg: 100, unit: 'g' }`, labelled `100 g` and read "quả cân 100 g", with
+    every load on that balance in grams; a pan holds three rows), and `capacity.js` with `vessel.svelte`
     and `cup.svelte` (the 1 l mug).
   Kid tap targets are at least 48 px at 390 px wide; a grid too wide for
   that (the 1-100 board) scrolls sideways inside its card.
@@ -461,9 +472,8 @@ into a list checked by one `expect` instead of calling `expect` per case.
 
 - **Accurate and KNTT-aligned.** Follow the KNTT book's order, terminology,
   notation and scope for that grade (for example "định lí", "số hữu tỉ",
-  "phân số tối giản"; decimal comma `3,5` in text). Cover every `keyIdeas` entry;
-  do not teach content from a later grade. Write natural Vietnamese with full
-  diacritics, no machine-translation phrasing.
+  "phân số tối giản"; decimal comma `3,5` in text). Spell the drawing tools
+  "compa" and "ê ke" (two words, never "êke").
 - **Correct.** Every formula, number, unit, chemical equation, physical law or
   biological fact must be right. Work each example and exercise out yourself and
   check each answer twice; a wrong answer key is the worst defect a lesson can have.
