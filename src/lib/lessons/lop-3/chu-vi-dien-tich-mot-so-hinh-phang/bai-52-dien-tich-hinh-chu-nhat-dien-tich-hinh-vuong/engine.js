@@ -34,7 +34,7 @@ export function areaText(cols, rows) {
   if (length === width) {
     return `Hình vuông cạnh ${length} cm. Diện tích: ${squareAreaLine(length)}.`;
   }
-  return `Hình chữ nhật dài ${length} cm, rộng ${width} cm. Có ${width} hàng, mỗi hàng ${length} ô vuông 1 cm². Diện tích: ${rectAreaLine(length, width)}.`;
+  return `Hình chữ nhật dài ${length} cm, rộng ${width} cm. Có ${rows} hàng, mỗi hàng ${cols} ô vuông 1 cm². Diện tích: ${rectAreaLine(length, width)}.`;
 }
 
 /**

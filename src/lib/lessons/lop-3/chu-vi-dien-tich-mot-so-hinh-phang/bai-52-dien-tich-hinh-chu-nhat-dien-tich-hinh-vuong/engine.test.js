@@ -18,6 +18,9 @@ describe('the rectangle on the grid', () => {
 
   it('works out the area the book way', () => {
     expect(areaText(4, 3)).toContain('4 × 3 = 12 (cm²)');
+    expect(areaText(4, 3)).toContain('Có 3 hàng, mỗi hàng 4 ô');
+    expect(areaText(2, 5)).toContain('Có 5 hàng, mỗi hàng 2 ô');
+    expect(areaText(2, 5)).toContain('5 × 2 = 10 (cm²)');
     expect(areaText(3, 3)).toBe('Hình vuông cạnh 3 cm. Diện tích: 3 × 3 = 9 (cm²).');
   });
 });

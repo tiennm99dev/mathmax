@@ -201,8 +201,8 @@
   <div class="flex flex-wrap justify-center gap-2">
     <button
       type="button"
-      class="min-h-12 text-lg {button.primary}"
-      disabled={done || crawling}
+      class="min-h-12 text-lg aria-disabled:opacity-50 {button.primary}"
+      aria-disabled={done || crawling}
       onclick={crawl}>Bò tiếp</button
     >
     <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={restart}>Bò lại</button>

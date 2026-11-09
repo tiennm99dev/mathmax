@@ -121,7 +121,7 @@ export default {
       answer: 0,
       hints: ['Diện tích hình vuông: cạnh nhân với cạnh.', 'Diện tích đo bằng cm², không phải cm.'],
       solution:
-        'Diện tích hình vuông là: 8 × 8 = 64 (cm²). 32 cm là chu vi (8 × 4), không phải diện tích.',
+        'Diện tích hình vuông là: 8 × 8 = 64 (cm²). Còn 8 × 4 = 32 (cm) là chu vi, không phải diện tích.',
     },
     {
       type: 'choice',

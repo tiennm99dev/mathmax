@@ -106,14 +106,14 @@
     >
     <button
       type="button"
-      class="min-h-12 text-lg {button.secondary}"
-      disabled={covered}
+      class="min-h-12 text-lg aria-disabled:opacity-50 {button.secondary}"
+      aria-disabled={covered}
       onclick={fillAll}>Lát kín giúp em</button
     >
     <button
       type="button"
-      class="min-h-12 text-lg {button.quiet}"
-      disabled={placed.size === 0}
+      class="min-h-12 text-lg aria-disabled:opacity-50 {button.quiet}"
+      aria-disabled={placed.size === 0}
       onclick={clearTiles}>Gỡ hết</button
     >
   </div>
