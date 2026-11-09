@@ -1,7 +1,7 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { PLACES, placesOf } from '../_shared/place-value.js';
+  import { PLACES, placesOf } from '#lib/core/kid/place-value.js';
   import { ROUNDS, decidingPlace, tapCard } from './engine.js';
 
   let round = $state(0);

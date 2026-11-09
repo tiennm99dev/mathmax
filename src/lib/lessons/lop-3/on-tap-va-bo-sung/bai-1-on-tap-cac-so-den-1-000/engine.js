@@ -15,7 +15,7 @@ import {
   readTo1000,
   sumParts,
   sumText,
-} from '../_shared/place.js';
+} from '#lib/core/kid/place-value.js';
 
 /**
  * What a question shows above its options.

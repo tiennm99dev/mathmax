@@ -3,8 +3,8 @@
   import { SIGNS, SIGN_WORDS, compareSign } from '#lib/core/kid/numbers.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import BlockPile from '../_shared/block-pile.svelte';
-  import CountStepper from '../_shared/count-stepper.svelte';
+  import BlockPile from '#lib/core/kid/block-pile.svelte';
+  import CountStepper from '#lib/core/kid/count-stepper.svelte';
   import { FIRST_PAIR, freshPair, signNote, valueOf } from './engine.js';
 
   /** @type {import('./engine.js').Mode} */

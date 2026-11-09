@@ -4,7 +4,7 @@
  * and DOM-free.
  */
 import { compareSign, freshInt } from '#lib/core/kid/numbers.js';
-import { compareWhy } from '../_shared/place-value.js';
+import { compareWhy } from '#lib/core/kid/place-value.js';
 
 /** @typedef {'tram' | 'chuc'} Mode */
 /** @typedef {{ hundreds: number, tens: number }} Side */

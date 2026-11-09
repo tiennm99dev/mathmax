@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { readTo1000, valueOf } from '../_shared/place.js';
+import { readTo1000, valueOf } from '#lib/core/kid/place-value.js';
 import { SKILLS, buildMessage, nextPair, nextTarget } from './engine.js';
 
 const SEEDS = Array.from({ length: 200 }, (_, i) => i + 1);

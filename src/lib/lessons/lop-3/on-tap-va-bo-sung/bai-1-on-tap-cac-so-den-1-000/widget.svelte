@@ -5,7 +5,13 @@
   import { optionText } from '#lib/core/kid/quiz.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import { compareWhy, decidingPlace, placesOf, readTo1000, valueOf } from '../_shared/place.js';
+  import {
+    compareWhy,
+    decidingPlace,
+    placesOf,
+    readTo1000,
+    valueOf,
+  } from '#lib/core/kid/place-value.js';
   import { SKILLS, buildMessage, nextPair, nextTarget } from './engine.js';
   import PlaceChart from './place-chart.svelte';
   import Visual from './visual.svelte';

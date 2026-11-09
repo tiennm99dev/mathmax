@@ -3,9 +3,9 @@
  * digit tapped opens its part of the sum. A zero digit has no part. Pure and
  * DOM-free.
  */
-import { PLACES, placesOf, sumParts } from '../_shared/place-value.js';
+import { PLACES, placesOf, sumParts } from '#lib/core/kid/place-value.js';
 
-/** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
+/** @typedef {import('#lib/core/kid/place-value.js').PlaceKey} PlaceKey */
 
 /** The numbers to split, in order: the zero digits come early. */
 export const NUMBERS = /** @type {const} */ ([345, 408, 840, 139, 607, 814, 360, 992]);

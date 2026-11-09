@@ -22,7 +22,7 @@ import {
   placesText,
   readTo1000,
   sumParts,
-} from '../_shared/place-value.js';
+} from '#lib/core/kid/place-value.js';
 
 /** @typedef {{ type: 'pile', hundreds: number, tens: number, ones: number }} Pile */
 /** @typedef {{ type: 'line', start: number, step: number, count: number, hidden: number }} Line */

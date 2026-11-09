@@ -2,7 +2,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
-  import { readTo1000 } from '../_shared/place-value.js';
+  import { readTo1000 } from '#lib/core/kid/place-value.js';
   import { TARGETS, WHOLE, hop, lineOf, targetNote, zoomIn, zoomOut } from './engine.js';
 
   /** @type {import('./engine.js').View} */

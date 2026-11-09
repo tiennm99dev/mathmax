@@ -3,7 +3,7 @@
  * from 0 to 1000 shows the round hundreds; zooming into one hundred shows its
  * round tens. Pure and DOM-free.
  */
-import { readTo1000 } from '../_shared/place-value.js';
+import { readTo1000 } from '#lib/core/kid/place-value.js';
 
 /** @typedef {{ start: number | null, value: number }} View `start` is the zoomed hundred, or null for the whole line. */
 

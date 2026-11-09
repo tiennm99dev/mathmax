@@ -9,7 +9,7 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { capitalize, mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 import { nearOptions } from './options.js';
-import { compareWhy, placesOf, readTo1000, sumParts } from './place.js';
+import { compareWhy, placesOf, readTo1000, sumParts } from '#lib/core/kid/place-value.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
 
@@ -138,7 +138,7 @@ export const compareSkill = {
       prompt: `Chọn dấu đúng: ${x} ... ${y}`,
       ...signOptions(compareSign(x, y)),
       hint: 'Em so sánh hàng trăm trước. Hàng trăm bằng nhau thì so sánh hàng chục, rồi đến hàng đơn vị.',
-      solution: compareWhy(x, y),
+      solution: compareWhy(x, y, { byDigits: true }),
     };
   },
 };

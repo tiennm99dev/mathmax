@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sumParts } from '../_shared/place-value.js';
+import { sumParts } from '#lib/core/kid/place-value.js';
 import { NUMBERS, allOpen, digitText, doneText, sumSoFar, tapNote } from './engine.js';
 
 describe('tapping the digits', () => {

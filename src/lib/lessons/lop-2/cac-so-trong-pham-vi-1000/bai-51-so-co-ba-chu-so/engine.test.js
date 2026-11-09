@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readTo1000 } from '../_shared/place-value.js';
+import { readTo1000 } from '#lib/core/kid/place-value.js';
 import {
   CHALLENGES,
   COLUMN_MAX,

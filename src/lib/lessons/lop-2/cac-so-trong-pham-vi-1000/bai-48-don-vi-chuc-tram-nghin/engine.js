@@ -8,7 +8,7 @@
 
 /**
  * The four places from small to big.
- * @type {ReadonlyArray<{ kind: import('../_shared/place-value.js').BlockKind, name: string, value: number, cell: number }>}
+ * @type {ReadonlyArray<{ kind: import('#lib/core/kid/place-value.js').BlockKind, name: string, value: number, cell: number }>}
  */
 export const LEVELS = [
   { kind: 'don-vi', name: 'đơn vị', value: 1, cell: 22 },

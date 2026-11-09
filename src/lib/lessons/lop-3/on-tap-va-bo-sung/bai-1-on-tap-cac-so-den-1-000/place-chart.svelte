@@ -1,5 +1,5 @@
 <script>
-  import { PLACES, valueOf } from '../_shared/place.js';
+  import { PLACES, valueOf } from '#lib/core/kid/place-value.js';
   import PlaceBlock from '../_shared/place-block.svelte';
   import { button } from '#lib/core/ui.js';
 
@@ -15,7 +15,7 @@
    * @type {{
    *   counts: { hundreds: number, tens: number, ones: number };
    *   name: string;
-   *   mark?: import('../_shared/place.js').PlaceKey | null;
+   *   mark?: import('#lib/core/kid/place-value.js').PlaceKey | null;
    *   onchange: (counts: { hundreds: number, tens: number, ones: number }) => void;
    * }}
    */
@@ -24,7 +24,7 @@
   const CELL = { hundreds: 3, tens: 4, ones: 8 };
 
   /**
-   * @param {import('../_shared/place.js').PlaceKey} key
+   * @param {import('#lib/core/kid/place-value.js').PlaceKey} key
    * @param {number} delta
    */
   function change(key, delta) {

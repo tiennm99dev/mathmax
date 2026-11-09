@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { optionText, questionKey } from '#lib/core/kid/quiz.js';
-import { readTo1000 } from '../_shared/place-value.js';
+import { readTo1000 } from '#lib/core/kid/place-value.js';
 import {
   KINDS,
   KIND_LABELS,

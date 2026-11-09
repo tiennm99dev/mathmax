@@ -1,7 +1,7 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
-  import Block from '../_shared/block.svelte';
+  import Block from '#lib/core/kid/block.svelte';
   import {
     LEVELS,
     START,

@@ -4,7 +4,7 @@
    * ten cells, a flat of ten by ten and a thousand cube. Decorative; the widget
    * says the count in words.
    * @type {{
-   *   kind: import('./place-value.js').BlockKind;
+   *   kind: import('#lib/core/kid/place-value.js').BlockKind;
    *   cell?: number;
    * }}
    */

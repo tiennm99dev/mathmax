@@ -3,9 +3,9 @@
  * the smallest to the largest, and each tap is explained by comparing two
  * numbers place by place from the hundreds. Pure and DOM-free.
  */
-import { PLACES, compareWhy, placesOf } from '../_shared/place-value.js';
+import { PLACES, compareWhy, placesOf } from '#lib/core/kid/place-value.js';
 
-/** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
+/** @typedef {import('#lib/core/kid/place-value.js').PlaceKey} PlaceKey */
 /** @typedef {{ a: number, b: number }} Compared */
 /**
  * @typedef {object} Tap

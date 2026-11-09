@@ -1,7 +1,7 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
-  import BlockPile from '../_shared/block-pile.svelte';
+  import BlockPile from '#lib/core/kid/block-pile.svelte';
   import { KIND_LABELS, buildRound, lineLabel, pileLabel, tickText } from './engine.js';
 </script>
 

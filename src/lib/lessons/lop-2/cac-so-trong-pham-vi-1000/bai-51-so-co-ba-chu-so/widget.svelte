@@ -1,12 +1,12 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import BlockPile from '../_shared/block-pile.svelte';
-  import Block from '../_shared/block.svelte';
-  import { PLACES, readTo1000 } from '../_shared/place-value.js';
+  import BlockPile from '#lib/core/kid/block-pile.svelte';
+  import Block from '#lib/core/kid/block.svelte';
+  import { PLACES, readTo1000 } from '#lib/core/kid/place-value.js';
   import { CHALLENGES, EMPTY, challengeNote, drop, numberOf, reading, takeOut } from './engine.js';
 
-  /** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
+  /** @typedef {import('#lib/core/kid/place-value.js').PlaceKey} PlaceKey */
 
   /** Drawn sizes in a column, chosen so nine blocks of a place fit at 390 px. */
   const CELLS = { hundreds: 2.5, tens: 5, ones: 12 };
@@ -17,7 +17,7 @@
   let round = $state(0);
   let refused = $state('');
 
-  /** @type {{ key: PlaceKey, kind: import('../_shared/place-value.js').BlockKind, x: number, y: number, startX: number, startY: number, moved: boolean } | null} */
+  /** @type {{ key: PlaceKey, kind: import('#lib/core/kid/place-value.js').BlockKind, x: number, y: number, startX: number, startY: number, moved: boolean } | null} */
   let dragging = $state(null);
   /** The click that ends a drag must not also place a block. */
   let dragEnded = false;

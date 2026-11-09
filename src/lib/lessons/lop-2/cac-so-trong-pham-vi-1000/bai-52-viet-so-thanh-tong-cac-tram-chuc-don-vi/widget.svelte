@@ -1,11 +1,11 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import BlockPile from '../_shared/block-pile.svelte';
-  import { PLACES, placesOf } from '../_shared/place-value.js';
+  import BlockPile from '#lib/core/kid/block-pile.svelte';
+  import { PLACES, placesOf } from '#lib/core/kid/place-value.js';
   import { NUMBERS, allOpen, sumSoFar, tapNote } from './engine.js';
 
-  /** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
+  /** @typedef {import('#lib/core/kid/place-value.js').PlaceKey} PlaceKey */
 
   /** Drawn sizes in a column, chosen so nine blocks of a place fit at 390 px. */
   const CELLS = { hundreds: 2.5, tens: 5, ones: 12 };

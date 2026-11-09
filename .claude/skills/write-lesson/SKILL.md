@@ -416,6 +416,12 @@ Other shared pieces:
     `month-sheet.svelte`: `WEEKDAYS`, `DAY_PARTS`, `namesOf`, `handsText`,
     `dayAfter`, `dayTitle`, `dialHour`, `hourOptions`, `monthRows` and
     `weekdayOf`/`weekdayFrom`. `clock-face` (section 6) is the draggable one.
+  - `place-value.js` with `block.svelte`, `block-pile.svelte` and
+    `count-stepper.svelte`: numbers to 1 000 (`PLACES`, `readTo1000` "hai
+    trăm linh năm", `placesOf`, `valueOf`, `sumParts`, `sumText`,
+    `placesText`, `decidingPlace`, `compareWhy(a, b, { byDigits })`), the
+    unit, ten, hundred and thousand blocks drawn to scale, a pile of them and a
+    big − / + pair for one place.
   - `mass.js` with `balance-scale.svelte` (a pan balance; `Load` is a drawn
     thing, a labelled box or a weight; a gram weight is `{ kind: 'weight',
     kg: 100, unit: 'g' }`, labelled `100 g` and read "quả cân 100 g", with
@@ -441,7 +447,8 @@ Other shared pieces:
   `materials.js` (the book's density table, `material`, `qty` for quantities
   written the book's way), `xy-plot` (a small graph from the origin) with
   `ticks.js` (`ticksUpTo`), `force-arrow`, `push-motion.js` (`pushState`),
-  `scatter.js` (seeded measuring noise), `galvanometer` (centre-zero, drawn inside
+  `scatter.js` (seeded measuring noise), `circular.js` (a point going round a
+  circle: `pointAt`, `tangentAt`, `arcPath`, `slicePath`), `galvanometer` (centre-zero, drawn inside
   an SVG) and `current-trace` (current against time, with `pushSample`); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
   `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
   book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
@@ -450,12 +457,13 @@ Other shared pieces:
   `elements.js` (`electronConfiguration`, `outerElectrons`,
   `unpairedElectrons`, `configTex`), `main-group.js` (radius and ionisation
   energy), `compounds.js` (highest oxides and hydroxides), `bond-energy.js`
-  (`BOND_ENERGY`, the book's values) and `test-tube`; BioMax has
+  (`BOND_ENERGY`, the book's values), `test-tube` and `curve-plot` (a curve
+  against time or volume with dashed series and a shaded band); BioMax has
   `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
   opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`,
   `pea` (a garden-pea seed, flower or plant picture for Mendel's traits),
   `frames.js` with `cell-scene` and `phase-player` (mitosis and meiosis stage by
-  stage). Use
+  stage), `trace-chart` (a day-by-day line against a dashed level). Use
   what `ls src/lib/domain/` actually shows; each component has a
   `<name>.gallery.svelte` demo that `/_gallery/` lists. When two chapters need
   the same subject helper, it belongs in `src/lib/domain/`, not in two

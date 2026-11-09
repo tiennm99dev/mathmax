@@ -3,9 +3,9 @@
  * chục and đơn vị columns make a number, which is written and read. Pure and
  * DOM-free.
  */
-import { PLACES, placesOf, readTo1000 } from '../_shared/place-value.js';
+import { PLACES, placesOf, readTo1000 } from '#lib/core/kid/place-value.js';
 
-/** @typedef {import('../_shared/place-value.js').PlaceKey} PlaceKey */
+/** @typedef {import('#lib/core/kid/place-value.js').PlaceKey} PlaceKey */
 /** @typedef {Record<PlaceKey, number>} Table */
 
 /** The empty table. */

@@ -7,7 +7,7 @@ import { carryCount, columnWords, forgotCarry } from './columns.js';
 import { GEOMETRY_SKILLS, fourPoints } from './geometry-skills.js';
 import { MUL_DIV_SKILLS } from './mul-div-skills.js';
 import { NUMBER_SKILLS, cardNumbers } from './number-skills.js';
-import { compareWhy, readTo1000, sumParts } from './place.js';
+import { compareWhy, readTo1000, sumParts } from '#lib/core/kid/place-value.js';
 import { SOLID_NAMES, THINGS } from './solids.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<import('./visual.js').Visual>} Question */
@@ -402,7 +402,9 @@ describe('numbers to 1000', () => {
 
   it('explains a comparison place by place', () => {
     expect(compareWhy(438, 483)).toBe('Hàng trăm bằng nhau. 3 chục bé hơn 8 chục. Vậy 438 < 483.');
-    expect(compareWhy(178, 99)).toBe('178 có ba chữ số, 99 có hai chữ số. Vậy 178 > 99.');
+    expect(compareWhy(178, 99, { byDigits: true })).toBe(
+      '178 có ba chữ số, 99 có hai chữ số. Vậy 178 > 99.',
+    );
     expect(compareWhy(308, 300)).toBe(
       'Hàng trăm, chục bằng nhau. 8 đơn vị lớn hơn 0 đơn vị. Vậy 308 > 300.',
     );

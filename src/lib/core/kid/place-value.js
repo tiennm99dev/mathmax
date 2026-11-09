@@ -1,7 +1,7 @@
 /**
- * Numbers to 1000 as grade 2 meets them: how a number is read aloud, its
- * hundreds, tens and ones, its sum of places and how two numbers compare. Pure
- * and DOM-free.
+ * Numbers to 1 000 as grades 2 and 3 meet them: how a number is read aloud,
+ * its hundreds, tens and ones with the blocks that stand for them, its sum of
+ * places and how two numbers compare. Pure and DOM-free.
  */
 import { DIGIT_WORDS, SIGN_WORDS, compareSign, readNumber } from '#lib/core/kid/numbers.js';
 
@@ -86,26 +86,61 @@ export function placesText(n) {
 }
 
 /**
- * Why `a ? b` holds, the book's way: the hundreds first, and only when they
- * are equal the tens, then the ones.
+ * The value of some hundreds, tens and ones.
+ * @param {{ hundreds: number, tens: number, ones: number }} counts
+ */
+export function valueOf({ hundreds, tens, ones }) {
+  return hundreds * 100 + tens * 10 + ones;
+}
+
+/**
+ * A number as the book writes it in hundreds, tens and ones: "307 = 300 + 7".
+ * A number with one part only stays as it is: "300".
+ * @param {number} n
+ */
+export function sumText(n) {
+  const parts = sumParts(n);
+  return parts.length > 1 ? `${n} = ${parts.join(' + ')}` : String(n);
+}
+
+/**
+ * The first place from the left where two numbers differ, or null when they
+ * are equal.
  * @param {number} a
  * @param {number} b
- * @returns {string}
+ * @returns {PlaceKey | null}
  */
-export function compareWhy(a, b) {
+export function decidingPlace(a, b) {
   const x = placesOf(a);
   const y = placesOf(b);
+  return PLACES.find((p) => x[p.key] !== y[p.key])?.key ?? null;
+}
+
+/**
+ * Why `a ? b` holds, the book's way: the hundreds first, and only when they
+ * are equal the tens, then the ones. With `byDigits`, a three-digit number
+ * against a two-digit one is settled by the count of digits first, as the
+ * year-end review of grade 2 explains it.
+ * @param {number} a
+ * @param {number} b
+ * @param {{ byDigits?: boolean }} [options]
+ * @returns {string}
+ */
+export function compareWhy(a, b, { byDigits = false } = {}) {
   const result = `Vậy ${a} ${compareSign(a, b)} ${b}.`;
-  if (a === b) return `Hai số giống nhau ở mọi hàng. ${result}`;
-  for (const [i, place] of PLACES.entries()) {
-    const p = x[place.key];
-    const q = y[place.key];
-    if (p === q) continue;
-    const same = PLACES.slice(0, i)
-      .map((earlier) => earlier.unit)
-      .join(', ');
-    const lead = i === 0 ? '' : `Hàng ${same} bằng nhau. `;
-    return `${lead}${p} ${place.unit} ${SIGN_WORDS[compareSign(p, q)]} ${q} ${place.unit}. ${result}`;
+  const key = decidingPlace(a, b);
+  if (key === null) return `Hai số giống nhau ở mọi hàng. ${result}`;
+  if (byDigits && a < 100 !== b < 100) {
+    const [long, short] = a > b ? [a, b] : [b, a];
+    return `${long} có ba chữ số, ${short} có hai chữ số. ${result}`;
   }
-  return result;
+  const i = PLACES.findIndex((p) => p.key === key);
+  const place = PLACES[i];
+  const p = placesOf(a)[key];
+  const q = placesOf(b)[key];
+  const same = PLACES.slice(0, i)
+    .map((earlier) => earlier.unit)
+    .join(', ');
+  const lead = i === 0 ? '' : `Hàng ${same} bằng nhau. `;
+  return `${lead}${p} ${place.unit} ${SIGN_WORDS[compareSign(p, q)]} ${q} ${place.unit}. ${result}`;
 }
