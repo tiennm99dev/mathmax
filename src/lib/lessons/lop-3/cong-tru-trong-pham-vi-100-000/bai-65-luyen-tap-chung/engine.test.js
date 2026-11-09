@@ -53,7 +53,7 @@ describe('the round', () => {
 
   it('stores the answers that the numbers of the prompt give', () => {
     const bad = [];
-    for (let seed = 1; seed <= 80; seed++) {
+    for (let seed = 1; seed <= 400; seed++) {
       for (const q of buildRound(seed)) {
         const opts = q.options.map(optionText);
         const right = optionText(q.options[q.answer]);
@@ -75,6 +75,7 @@ describe('the round', () => {
         if (kind === 'bai-hai-buoc' && (value !== x - y - z || value <= 0)) bad.push(q.prompt);
         if (kind !== 'thu-lai' && (value > 100000 || value <= 0)) bad.push(q.prompt);
         if (numbersIn(q.prompt).some((n) => n > 100000)) bad.push(q.prompt);
+        if (opts.some((o) => numbersIn(o).some((n) => n > 100000 || n === 0))) bad.push(q.prompt);
       }
     }
     expect(bad).toEqual([]);

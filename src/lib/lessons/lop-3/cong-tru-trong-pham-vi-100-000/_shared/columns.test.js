@@ -146,4 +146,17 @@ describe('options', () => {
     expect(plain(options[answer])).toBe('74 122');
     expect(plain(equation(23285, 12967, '-'))).toBe('23 285 − 12 967 = 10 318');
   });
+
+  it('keeps every option between 1 and 100 000', () => {
+    for (const [right, slips] of /** @type {const} */ ([
+      [100000, [10000, 90000, 110000]],
+      [10000, [0, 1000, 20000]],
+    ])) {
+      const { options, answer } = slipOptions(right, [...slips]);
+      const values = options.map((o) => Number(plain(o).replaceAll(' ', '')));
+      expect(new Set(values).size).toBe(4);
+      expect(values[answer]).toBe(right);
+      expect(values.every((v) => v > 0 && v <= 100000)).toBe(true);
+    }
+  });
 });

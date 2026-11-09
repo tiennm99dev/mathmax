@@ -23,6 +23,9 @@ export const PLACE_NAMES = /** @type {const} */ (['đơn vị', 'chục', 'trăm
 /** How many columns the board has: the results stay within 99 999. */
 export const COLUMNS = 5;
 
+/** The largest number an answer option may show: the top of the chapter's range. */
+const MAX_OPTION = 100000;
+
 /** The largest result a drawn task may have. */
 export const LIMIT = 99999;
 
@@ -407,17 +410,18 @@ export function drawColumn(rand, op, kind, not) {
 
 /**
  * Up to four number options in increasing order: the right one and the slips
- * that are whole numbers and not the right value, then its neighbours, so a
- * question always has four different choices. Written the way the book
+ * that are whole numbers from 1 to 100 000 and not the right value, then its
+ * neighbours, so a question always has four different choices and none of
+ * them leaves the range the chapter works in. Written the way the book
  * groups digits.
  * @param {number} right
  * @param {number[]} slips
  * @returns {{ options: string[], answer: number }}
  */
 export function slipOptions(right, slips) {
-  const near = [right + 1, right + 10, right + 2];
+  const near = [right + 1, right + 10, right + 2, right - 1, right - 10, right - 2];
   const others = [...new Set([...slips, ...near])].filter(
-    (v) => v !== right && v >= 0 && Number.isInteger(v),
+    (v) => v !== right && v > 0 && v <= MAX_OPTION && Number.isInteger(v),
   );
   const values = [right, ...others.slice(0, 3)].sort((x, y) => x - y);
   return { options: values.map(fmt), answer: values.indexOf(right) };
