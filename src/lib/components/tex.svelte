@@ -1,6 +1,6 @@
 <script>
   import katex from 'katex';
-  import { texOptions } from '#lib/core/katex-options.js';
+  import { texOptions, texSource } from '#lib/core/katex-options.js';
   import { texHtml } from '#lib/core/tex-text.js';
 
   /**
@@ -15,7 +15,9 @@
    */
   let { math, display = false, ariaLabel } = $props();
 
-  const html = $derived(texHtml(katex.renderToString(math, texOptions(display)), math, ariaLabel));
+  const html = $derived(
+    texHtml(katex.renderToString(texSource(math), texOptions(display)), math, ariaLabel),
+  );
 </script>
 
 <!-- KaTeX escapes its input and runs with `trust: false`, and the accessible text is escaped, so the markup is safe to inject. -->

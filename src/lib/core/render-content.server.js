@@ -6,7 +6,7 @@
 
 import katex from 'katex';
 import { richParts } from './rich-parts.js';
-import { texOptions } from './katex-options.js';
+import { texOptions, texSource } from './katex-options.js';
 import { texHtml } from './tex-text.js';
 
 /** @typedef {import('./content-schema.js').LessonContent} LessonContent */
@@ -31,7 +31,7 @@ export function escapeHtml(s) {
  * @param {boolean} display
  */
 export function renderTex(tex, display) {
-  return texHtml(katex.renderToString(tex, texOptions(display)), tex);
+  return texHtml(katex.renderToString(texSource(tex), texOptions(display)), tex);
 }
 
 /**

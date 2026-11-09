@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { htmlText, texHtml, texText } from './tex-text.js';
+import { htmlText, richText, texHtml, texText } from './tex-text.js';
 import { renderRichText } from './render-content.server.js';
 
 describe('texText', () => {
@@ -21,7 +21,13 @@ describe('texText', () => {
     ['H_2O', 'H₂O'],
     ['90^\\circ', '90°'],
     ['3{,}5', '3,5'],
-    ['1\\,234', '1 234'],
+    ['1\\,234', '1234'],
+    ['1\u202f000\\text{ J}', '1000 J'],
+    ['x \\, y', 'x y'],
+    ['K_C', 'K C'],
+    ['K_C = \\frac{1}{2}', 'K C =1/2'],
+    ['\\mathrm{O{-}H}', 'O–H'],
+    ['\\mathrm{CH_3{-}CH_2{-}OH}', 'CH₃–CH₂–OH'],
     ['5\\text{ cm}', '5 cm'],
     ['\\widehat{ABC} = 60^\\circ', 'góc ABC=60°'],
     ['x \\in \\mathbb{N}', 'x∈ℕ'],
@@ -82,5 +88,15 @@ describe('htmlText', () => {
     expect(htmlText('a <span aria-hidden="true"><span>b</span>c</span> d &lt;e&gt;')).toBe(
       'a d <e>',
     );
+  });
+});
+
+describe('richText', () => {
+  it('speaks the formulas of rich text and keeps its words', () => {
+    expect(richText('Hằng số $K_C$ chỉ phụ thuộc nhiệt độ.')).toBe(
+      'Hằng số K C chỉ phụ thuộc nhiệt độ.',
+    );
+    expect(richText('Liên kết $\\mathrm{O{-}H}$ phân cực')).toBe('Liên kết O–H phân cực');
+    expect(richText('Không có công thức')).toBe('Không có công thức');
   });
 });

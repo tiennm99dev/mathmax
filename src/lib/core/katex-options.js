@@ -39,3 +39,14 @@ export function texOptions(display) {
     strict: texStrict,
   });
 }
+
+/**
+ * TeX source ready for KaTeX: a narrow space grouping digits, as
+ * `formatNumber` writes it (1 000), becomes the thin space `\\,` that KaTeX
+ * accepts, so a widget number placed straight into a formula keeps the
+ * book's grouping.
+ * @param {string} tex
+ */
+export function texSource(tex) {
+  return tex.replaceAll('\u202f', '\\,');
+}

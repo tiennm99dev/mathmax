@@ -20,8 +20,8 @@ import {
 describe('formatNumber', () => {
   it('groups thousands with dots and uses a decimal comma', () => {
     expect(formatNumber(52.9)).toBe('52,9');
-    expect(formatNumber(12_345.5)).toBe('12.345,5');
-    expect(formatNumber(1_000_000)).toBe('1.000.000');
+    expect(formatNumber(12_345.5)).toBe('12\u202f345,5');
+    expect(formatNumber(1_000_000)).toBe('1\u202f000\u202f000');
     expect(formatNumber(-0.25)).toBe('−0,25');
     expect(formatNumber(2 / 3, 2)).toBe('0,67');
     expect(formatNumber(-0.001, 2)).toBe('0');
@@ -32,7 +32,7 @@ describe('formatFixed', () => {
   it('keeps exactly the asked decimals', () => {
     expect(formatFixed(52.94, 1)).toBe('52,9');
     expect(formatFixed(5, 1)).toBe('5,0');
-    expect(formatFixed(22_500, 1)).toBe('22.500,0');
+    expect(formatFixed(22_500, 1)).toBe('22\u202f500,0');
     expect(formatFixed(-1.5, 2)).toBe('−1,50');
     expect(formatFixed(3.4, 0)).toBe('3');
   });
@@ -41,7 +41,7 @@ describe('formatFixed', () => {
 describe('texNumber', () => {
   it('braces the decimal comma for TeX', () => {
     expect(texNumber('3,5')).toBe('3{,}5');
-    expect(texNumber('22.500,0')).toBe('22.500{,}0');
+    expect(texNumber('22\u202f500,0')).toBe('22\\,500{,}0');
     expect(texNumber('7')).toBe('7');
   });
 });

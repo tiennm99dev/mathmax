@@ -10,9 +10,11 @@
  * and stock NVDA have no MathML speech.
  *
  * `texText` turns TeX source into that text; `texHtml` wraps KaTeX markup
- * with it; `htmlText` reads the text back out of rendered rich text, for an
+ * with it; `richText` speaks rich text with `$...$` formulas; `htmlText` reads the text back out of rendered rich text, for an
  * `aria-label` that has to name an item.
  */
+
+import { richParts } from './rich-parts.js';
 
 /** @type {Record<string, string>} */
 const SYMBOLS = {
@@ -316,6 +318,9 @@ function mapAll(s, table) {
   return out;
 }
 
+/** The narrow no-break space that groups digits in widget numbers (1 000). */
+const GROUP_SPACE = '\u202f';
+
 /** A small recursive reader over TeX source. */
 class Reader {
   /** @param {string} src */
@@ -382,7 +387,9 @@ class Reader {
       if (ch === '\\') {
         out += this.command();
       } else if (ch === '{') {
-        out += this.arg();
+        const raw = this.rawArg();
+        // `{-}` is a bond or hyphen (\mathrm{O{-}H}), never a minus sign.
+        out += raw.trim() === '-' ? '–' : linearText(raw);
       } else if (ch === '}') {
         this.i++;
       } else if (ch === '^') {
@@ -397,6 +404,9 @@ class Reader {
       } else if (ch === '~') {
         this.i++;
         out += ' ';
+      } else if (ch === GROUP_SPACE) {
+        this.i++;
+        if (!(/\d/.test(s[this.i - 2] ?? '') && /\d/.test(s[this.i] ?? ''))) out += ' ';
       } else if (/\s/.test(ch)) {
         this.i++;
       } else if (ch === '-') {
@@ -423,7 +433,9 @@ class Reader {
     if (up && /^′+$/.test(body)) return body;
     const mapped = mapAll(body, up ? SUPER : SUB);
     if (mapped !== null) return mapped;
-    return `${up ? '^' : '_'}${atom(body)}`;
+    // A subscript with no Unicode form is a label (K_C, v_{tb}): read it after
+    // its base, never as an underscore.
+    return up ? `^${atom(body)}` : ` ${atom(body)} `;
   }
 
   command() {
@@ -435,6 +447,14 @@ class Reader {
     this.i += m[0].length;
     const name = m[1];
     if (name === '\\') return '; ';
+    // A thin space between digits groups a number (1\,000): read it whole.
+    if (
+      name === ',' &&
+      /\d$/.test(this.src.slice(0, this.i - 2)) &&
+      /^\d/.test(this.src.slice(this.i))
+    ) {
+      return '';
+    }
     if (TEXT_ARG.has(name)) return this.rawArg().replace(/\\([%$#&_{}])/g, '$1');
     if (KEEP_ARG.has(name)) return this.arg();
     if (name === 'not') {
@@ -573,6 +593,21 @@ function spokenWords(linear) {
  */
 export function texText(tex) {
   return spokenWords(linearText(tex));
+}
+
+/**
+ * The spoken form of rich text (plain text with `$...$` TeX): each formula
+ * becomes its `texText`, so an `aria-label` built from a card or hint reads
+ * `K C` rather than raw `K_C`.
+ * @param {string} text
+ * @returns {string}
+ */
+export function richText(text) {
+  return richParts(text)
+    .map((p) => (p.kind === 'tex' ? texText(p.tex) : p.text))
+    .join('')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 /** @type {Record<string, string>} */

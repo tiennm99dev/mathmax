@@ -4,6 +4,7 @@
  * `expect`, so a large sample stays fast when the suite runs under load.
  */
 import katex from 'katex';
+import { texSource } from './katex-options.js';
 
 /**
  * Every `$...$` span of a rich text.
@@ -23,7 +24,7 @@ export function strictTexFailures(texts) {
   const failures = [];
   for (const tex of new Set(texts.flatMap(texSpans))) {
     try {
-      katex.renderToString(tex, { strict: 'error', throwOnError: true });
+      katex.renderToString(texSource(tex), { strict: 'error', throwOnError: true });
     } catch (e) {
       failures.push(`${tex}: ${/** @type {Error} */ (e).message}`);
     }

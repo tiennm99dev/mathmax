@@ -3,11 +3,11 @@
  * decimal mark is always a comma (52,9, never 52.9). Written by hand rather
  * than with Intl so the output never depends on the ICU data a runtime ships.
  *
- * - `formatNumber`: '.' groups thousands, trailing decimal zeros dropped
- *   (12345.5 → '12.345,5').
+ * - `formatNumber`: a narrow space groups thousands the book's way, trailing
+ *   decimal zeros dropped (12345.5 → '12 345,5').
  * - `formatFixed`: a fixed number of decimals, zeros kept (5 → '5,0').
- * - `texNumber`: a formatted number made safe for TeX (`3{,}5`), so KaTeX does
- *   not put a space after the decimal comma.
+ * - `texNumber`: a formatted number made safe for TeX (`3{,}5`, `1\,000`), so
+ *   KaTeX does not put a space after the decimal comma and groups by a thin space.
  * - `numTex`: a number as TeX source the book's way, digits grouped by a thin
  *   space (`12\,345{,}5`).
  * - `hoursText`: a time in hours as rich text, '$1$ giờ $12$ phút'.
@@ -22,7 +22,10 @@
 
 const SUPERSCRIPT = '⁰¹²³⁴⁵⁶⁷⁸⁹';
 
-/** Narrow no-break space used between groups of three digits by `fmt`. */
+/**
+ * Narrow no-break space used between groups of three digits, the thin space
+ * the books print (1 000); TeX writes it `\,`.
+ */
 export const GROUP = '\u202f';
 
 /**
@@ -33,15 +36,16 @@ export const GROUP = '\u202f';
 function write(value, decimals, keepZeros) {
   const fixed = Math.abs(value).toFixed(decimals);
   const [int, frac = ''] = fixed.split('.');
-  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, GROUP);
   const digits = keepZeros ? frac : frac.replace(/0+$/, '');
   const sign = value < 0 && Number(fixed) !== 0 ? '−' : '';
   return digits ? `${sign}${grouped},${digits}` : `${sign}${grouped}`;
 }
 
 /**
- * A number with '.' grouping thousands and ',' as the decimal mark, rounded to
- * at most `maxDecimals` places: 12345.5 → '12.345,5', -0.25 → '−0,25'.
+ * A number with a narrow space (`GROUP`) grouping thousands and ',' as the
+ * decimal mark, rounded to at most `maxDecimals` places: 12345.5 → '12 345,5',
+ * -0.25 → '−0,25'.
  * @param {number} value
  * @param {number} [maxDecimals]
  */
@@ -51,7 +55,7 @@ export function formatNumber(value, maxDecimals = 6) {
 
 /**
  * Like `formatNumber` with exactly `decimals` places, the Vietnamese
- * `toFixed`: (52.94, 1) → '52,9', (5, 1) → '5,0'.
+ * `toFixed`: (52.94, 1) → '52,9', (5, 1) → '5,0', (22500, 1) → '22 500,0'.
  * @param {number} value
  * @param {number} decimals
  */
@@ -60,12 +64,13 @@ export function formatFixed(value, decimals) {
 }
 
 /**
- * A formatted number for TeX source: '3,5' → '3{,}5'. KaTeX spaces a bare
- * comma as punctuation, which reads as a list rather than a decimal.
+ * A formatted number for TeX source: '3,5' → '3{,}5', '1 000' → '1\,000'.
+ * KaTeX spaces a bare comma as punctuation, which reads as a list rather than
+ * a decimal, and refuses the narrow space in strict mode.
  * @param {string} text
  */
 export function texNumber(text) {
-  return text.replace(/,/g, '{,}');
+  return text.replace(/,/g, '{,}').replaceAll(GROUP, '\\,');
 }
 
 /**
@@ -87,7 +92,7 @@ export function tidy(value, places = 9) {
  * @param {number} [maxDecimals]
  */
 export function numTex(value, maxDecimals = 6) {
-  return texNumber(formatNumber(value, maxDecimals)).replace(/\./g, '\\,').replace(MINUS, '-');
+  return texNumber(formatNumber(value, maxDecimals)).replace(MINUS, '-');
 }
 
 /**

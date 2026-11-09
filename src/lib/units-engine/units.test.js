@@ -183,12 +183,13 @@ describe('clock', () => {
 });
 
 describe('number format', () => {
-  it('groups thousands with dots and uses a decimal comma', () => {
-    expect(formatNumber(12_345.5)).toBe('12.345,5');
-    expect(formatNumber(1_000_000)).toBe('1.000.000');
+  it('groups thousands with a narrow space and uses a decimal comma', () => {
+    expect(formatNumber(12_345.5)).toBe('12\u202f345,5');
+    expect(formatNumber(1_000_000)).toBe('1\u202f000\u202f000');
     expect(formatNumber(-0.25)).toBe('−0,25');
     expect(formatNumber(2 / 3, 2)).toBe('0,67');
-    expect(formatVnd(50_000)).toBe('50.000 đồng');
+    expect(formatVnd(50_000)).toBe('50\u202f000 đồng');
+    expect(parseNumber(formatNumber(12_345.5))).toBe(12_345.5);
   });
 
   it('parses Vietnamese and English input', () => {
