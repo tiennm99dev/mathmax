@@ -98,6 +98,14 @@ export default {
   ],
   practice: [
     {
+      type: 'number',
+      prompt: 'Số gồm 6 chục nghìn, 3 nghìn, 0 trăm, 5 chục và 2 đơn vị viết là:',
+      answer: 63052,
+      hints: ['Em viết lần lượt chữ số hàng chục nghìn, nghìn, trăm, chục, đơn vị.'],
+      solution:
+        'Viết lần lượt 6, 3, 0, 5, 2: số đó là 63 052, đọc là sáu mươi ba nghìn không trăm năm mươi hai.',
+    },
+    {
       type: 'choice',
       prompt: 'Số lớn nhất trong các số 53 460; 54 360; 46 530; 53 640 là:',
       options: ['54 360', '53 640', '53 460', '46 530'],
