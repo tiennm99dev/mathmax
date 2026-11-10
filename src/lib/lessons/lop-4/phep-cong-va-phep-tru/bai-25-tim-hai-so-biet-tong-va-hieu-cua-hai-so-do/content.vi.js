@@ -85,10 +85,10 @@ export default {
   practice: [
     {
       type: 'number',
-      prompt: 'Tổng của hai số là 70, hiệu của hai số là 10. Số lớn là số nào?',
-      answer: 40,
+      prompt: 'Tổng của hai số là 84, hiệu của hai số là 16. Số lớn là số nào?',
+      answer: 50,
       hints: ['Số lớn = (Tổng + Hiệu) : 2.'],
-      solution: 'Số lớn là: (70 + 10) : 2 = 40.',
+      solution: 'Số lớn là: (84 + 16) : 2 = 100 : 2 = 50. Số bé là 50 − 16 = 34.',
     },
     {
       type: 'number',

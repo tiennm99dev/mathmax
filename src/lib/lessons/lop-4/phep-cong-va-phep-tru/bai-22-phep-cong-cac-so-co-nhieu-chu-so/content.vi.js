@@ -121,13 +121,14 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Đặt tính rồi tính: 47 282 + 2 514 = ?',
-      answer: 49796,
+      prompt: 'Đặt tính rồi tính: 63 528 + 9 475 = ?',
+      answer: 73003,
       hints: [
-        'Viết 2 514 thẳng cột từ hàng đơn vị, dưới 47 282.',
-        'Ở hàng chục nghìn chỉ có chữ số 4, em hạ 4.',
+        'Viết 9 475 thẳng cột từ hàng đơn vị, dưới 63 528.',
+        'Phép cộng này có nhớ ở bốn hàng: đơn vị, chục, trăm và nghìn.',
       ],
-      solution: '2 + 4 = 6; 8 + 1 = 9; 2 + 5 = 7; 7 + 2 = 9; hạ 4. Vậy 47 282 + 2 514 = 49 796.',
+      solution:
+        '8 + 5 = 13, viết 3, nhớ 1; 2 + 7 = 9, thêm 1 bằng 10, viết 0, nhớ 1; 5 + 4 = 9, thêm 1 bằng 10, viết 0, nhớ 1; 3 + 9 = 12, thêm 1 bằng 13, viết 3, nhớ 1; 6 thêm 1 bằng 7, viết 7. Vậy 63 528 + 9 475 = 73 003.',
     },
     {
       type: 'choice',

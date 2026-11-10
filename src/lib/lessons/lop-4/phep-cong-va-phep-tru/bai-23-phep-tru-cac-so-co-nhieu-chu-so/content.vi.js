@@ -93,22 +93,22 @@ export default {
   practice: [
     {
       type: 'number',
-      prompt: 'Đặt tính rồi tính: 865 279 − 450 237 = ?',
-      answer: 415042,
-      hints: ['Trừ từ hàng đơn vị: 9 trừ 7 bằng 2.', 'Phép trừ này không có nhớ.'],
+      prompt: 'Đặt tính rồi tính: 796 485 − 352 162 = ?',
+      answer: 444323,
+      hints: ['Trừ từ hàng đơn vị: 5 trừ 2 bằng 3.', 'Phép trừ này không có nhớ.'],
       solution:
-        '9 − 7 = 2; 7 − 3 = 4; 2 − 2 = 0; 5 − 0 = 5; 6 − 5 = 1; 8 − 4 = 4. Vậy 865 279 − 450 237 = 415 042.',
+        '5 − 2 = 3; 8 − 6 = 2; 4 − 1 = 3; 6 − 2 = 4; 9 − 5 = 4; 7 − 3 = 4. Vậy 796 485 − 352 162 = 444 323.',
     },
     {
       type: 'number',
-      prompt: 'Đặt tính rồi tính: 92 714 − 3 948 = ?',
-      answer: 88766,
+      prompt: 'Đặt tính rồi tính: 81 305 − 6 728 = ?',
+      answer: 74577,
       hints: [
-        'Viết 3 948 thẳng cột từ hàng đơn vị.',
-        '4 không trừ được 8, em lấy 14 trừ 8, nhớ 1.',
+        'Viết 6 728 thẳng cột từ hàng đơn vị.',
+        '5 không trừ được 8, em lấy 15 trừ 8, nhớ 1.',
       ],
       solution:
-        '14 − 8 = 6, nhớ 1; 11 − 5 = 6, nhớ 1; 17 − 10 = 7, nhớ 1; 12 − 4 = 8, nhớ 1; 9 − 1 = 8. Vậy 92 714 − 3 948 = 88 766.',
+        '15 − 8 = 7, nhớ 1; 2 thêm 1 bằng 3, 10 − 3 = 7, nhớ 1; 7 thêm 1 bằng 8, 13 − 8 = 5, nhớ 1; 6 thêm 1 bằng 7, 11 − 7 = 4, nhớ 1; 8 − 1 = 7. Vậy 81 305 − 6 728 = 74 577.',
     },
     {
       type: 'choice',
@@ -171,11 +171,14 @@ export default {
     {
       type: 'number',
       prompt:
-        'Kho có 245 680 kg thóc. Người ta đã chuyển đi 87 450 kg thóc. Hỏi trong kho còn lại bao nhiêu ki-lô-gam thóc?',
-      answer: 158230,
-      unit: 'kg',
-      hints: ['Chuyển đi thì còn lại ít hơn: em làm phép trừ.'],
-      solution: '245 680 − 87 450 = 158 230 (kg). Trong kho còn lại 158 230 kg thóc.',
+        'Nhà máy có 120 000 chai nước. Nhà máy đã bán 64 750 chai nước. Hỏi nhà máy còn lại bao nhiêu chai nước?',
+      answer: 55250,
+      unit: 'chai',
+      hints: [
+        'Đã bán thì còn lại ít hơn: em làm phép trừ.',
+        'Đặt tính 120 000 − 64 750. Hàng chục: 0 không trừ được 5, lấy 10 trừ 5, nhớ 1.',
+      ],
+      solution: '120 000 − 64 750 = 55 250 (chai). Nhà máy còn lại 55 250 chai nước.',
     },
   ],
   takeaways: [

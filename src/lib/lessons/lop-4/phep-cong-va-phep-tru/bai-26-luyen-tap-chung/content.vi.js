@@ -67,11 +67,11 @@ export default {
   practice: [
     {
       type: 'choice',
-      prompt: '305 148 + 267 395 = ?',
-      options: ['572 543', '562 433', '572 533', '573 543'],
+      prompt: '418 276 + 293 548 = ?',
+      options: ['711 824', '601 174', '711 814', '701 824'],
       answer: 0,
-      hints: ['Cộng từ hàng đơn vị: 8 cộng 5 bằng 13, viết 3, nhớ 1.'],
-      solution: '305 148 + 267 395 = 572 543. Số 562 433 là kết quả khi quên số nhớ.',
+      hints: ['Cộng từ hàng đơn vị: 6 cộng 8 bằng 14, viết 4, nhớ 1.'],
+      solution: '418 276 + 293 548 = 711 824. Số 601 174 là kết quả khi quên số nhớ.',
     },
     {
       type: 'choice',
@@ -139,11 +139,11 @@ export default {
     {
       type: 'number',
       prompt:
-        'Hai thùng có 1 500 l nước. Thùng thứ nhất có nhiều hơn thùng thứ hai 300 l. Hỏi thùng thứ nhất có bao nhiêu lít nước?',
-      answer: 900,
-      unit: 'l',
-      hints: ['Thùng thứ nhất nhiều hơn, là số lớn.', 'Số lớn = (Tổng + Hiệu) : 2.'],
-      solution: 'Thùng thứ nhất có: (1 500 + 300) : 2 = 900 (l).',
+        'Hai bạn An và Bình sưu tầm được 1 240 con tem. An có ít hơn Bình 180 con tem. Hỏi An có bao nhiêu con tem?',
+      answer: 530,
+      unit: 'con tem',
+      hints: ['An có ít hơn, là số bé.', 'Số bé = (Tổng − Hiệu) : 2.'],
+      solution: 'An có: (1 240 − 180) : 2 = 530 (con tem). Bình có: 530 + 180 = 710 (con tem).',
     },
     {
       type: 'choice',
