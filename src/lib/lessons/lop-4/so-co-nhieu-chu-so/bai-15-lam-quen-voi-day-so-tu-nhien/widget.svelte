@@ -6,6 +6,7 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import {
     JUMPS,
+    LIMIT,
     TASKS,
     checkTask,
     describe,
@@ -27,7 +28,10 @@
 
   /** @param {number} n */
   function choose(n) {
-    edgeNote = '';
+    edgeNote =
+      n > LIMIT
+        ? `Tia số ở đây chỉ vẽ đến ${fmt(LIMIT)}, nhưng dãy số tự nhiên không dừng lại: số nào cũng có số liền sau.`
+        : '';
     chosen = onRay(n);
   }
 
