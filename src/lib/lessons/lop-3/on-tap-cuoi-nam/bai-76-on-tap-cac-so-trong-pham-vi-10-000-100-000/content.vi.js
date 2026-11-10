@@ -1,11 +1,11 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Ôn tập các số trong phạm vi 10 000, 100 000: đọc, viết số, viết số thành tổng, so sánh và sắp xếp, làm tròn số, số liền trước, số liền sau và chữ số La Mã.',
+    'Ôn tập các số trong phạm vi 10 000, 100 000: đọc, viết số, viết số thành tổng, so sánh và sắp xếp, làm tròn số, số liền trước, số liền sau và chữ số La Mã.',
   intro:
-    'Bốn xưởng may làm được 42 000, 37 000, 28 000 và 50 000 chiếc khẩu trang trong một ngày. Xưởng nào làm được nhiều nhất? Hôm nay em ôn lại các số đến 100 000. Bài ôn tập sẽ cho em biết phần nào đã vững nhé!',
+    'Bốn xưởng may làm được 42 000, 37 000, 28 000 và 50 000 chiếc khẩu trang trong một ngày. Xưởng nào làm được nhiều nhất? Hôm nay em ôn lại các số đến 100 000. Bài ôn tập sẽ cho em biết phần nào đã vững nhé!',
   objectives: [
-    'Đọc, viết các số trong phạm vi 100 000.',
+    'Đọc, viết các số trong phạm vi 100 000.',
     'Viết một số thành tổng các chục nghìn, nghìn, trăm, chục, đơn vị.',
     'So sánh, sắp xếp các số; tìm số lớn nhất, số bé nhất.',
     'Làm tròn số đến hàng nghìn, hàng chục nghìn.',
@@ -24,9 +24,9 @@ export default {
           type: 'table',
           head: ['Số', 'Đọc là'],
           rows: [
-            ['9 084', 'chín nghìn không trăm tám mươi tư'],
-            ['61 409', 'sáu mươi mốt nghìn bốn trăm linh chín'],
-            ['95 027', 'chín mươi lăm nghìn không trăm hai mươi bảy'],
+            ['9 084', 'chín nghìn không trăm tám mươi tư'],
+            ['61 409', 'sáu mươi mốt nghìn bốn trăm linh chín'],
+            ['95 027', 'chín mươi lăm nghìn không trăm hai mươi bảy'],
           ],
         },
         {
@@ -48,9 +48,9 @@ export default {
           type: 'table',
           head: ['Số', 'Viết thành tổng'],
           rows: [
-            ['8 327', '8 000 + 300 + 20 + 7'],
-            ['25 468', '20 000 + 5 000 + 400 + 60 + 8'],
-            ['46 109', '40 000 + 6 000 + 100 + 9'],
+            ['8 327', '8 000 + 300 + 20 + 7'],
+            ['25 468', '20 000 + 5 000 + 400 + 60 + 8'],
+            ['46 109', '40 000 + 6 000 + 100 + 9'],
           ],
         },
         {
@@ -71,8 +71,8 @@ export default {
         {
           type: 'list',
           items: [
-            '9 999 < 10 001, vì 9 999 chỉ có bốn chữ số.',
-            '90 537 > 90 357, vì hàng chục nghìn và hàng nghìn giống nhau, ở hàng trăm 5 > 3.',
+            '9 999 < 10 001, vì 9 999 chỉ có bốn chữ số.',
+            '90 537 > 90 357, vì hàng chục nghìn và hàng nghìn giống nhau, ở hàng trăm 5 > 3.',
           ],
         },
       ],
@@ -89,8 +89,8 @@ export default {
           type: 'table',
           head: ['Số', 'Làm tròn đến hàng nghìn', 'Làm tròn đến hàng chục nghìn'],
           rows: [
-            ['48 620', '49 000', '50 000'],
-            ['74 385', '74 000', '70 000'],
+            ['48 620', '49 000', '50 000'],
+            ['74 385', '74 000', '70 000'],
           ],
         },
       ],
@@ -119,12 +119,12 @@ export default {
   examples: [
     {
       problem:
-        'Bốn xưởng may làm được 42 000, 37 000, 28 000 và 50 000 chiếc khẩu trang trong một ngày. Xếp các số đó theo thứ tự từ lớn đến bé.',
+        'Bốn xưởng may làm được 42 000, 37 000, 28 000 và 50 000 chiếc khẩu trang trong một ngày. Xếp các số đó theo thứ tự từ lớn đến bé.',
       steps: [
         'Bốn số đều có năm chữ số. Em so sánh hàng chục nghìn: 5 > 4 > 3 > 2.',
-        'Vậy 50 000 > 42 000 > 37 000 > 28 000.',
+        'Vậy 50 000 > 42 000 > 37 000 > 28 000.',
       ],
-      answer: 'Từ lớn đến bé: 50 000; 42 000; 37 000; 28 000.',
+      answer: 'Từ lớn đến bé: 50 000; 42 000; 37 000; 28 000.',
     },
     {
       problem: 'Tìm số tròn chục lớn nhất có bốn chữ số khác nhau.',
@@ -133,13 +133,13 @@ export default {
         'Hàng nghìn em chọn chữ số lớn nhất là 9.',
         'Hàng trăm chọn 8, hàng chục chọn 7, để các chữ số khác nhau.',
       ],
-      answer: 'Số đó là 9 870.',
+      answer: 'Số đó là 9 870.',
     },
   ],
   practice: [
     {
       type: 'choice',
-      prompt: 'Số 61 409 đọc là:',
+      prompt: 'Số 61 409 đọc là:',
       options: [
         'sáu mươi mốt nghìn bốn trăm linh chín',
         'sáu mươi mốt nghìn bốn trăm chín mươi',
@@ -148,57 +148,57 @@ export default {
       ],
       answer: 0,
       hints: ['Em đọc 61 nghìn trước, rồi đọc 409.'],
-      solution: '61 409 đọc là: sáu mươi mốt nghìn bốn trăm linh chín.',
+      solution: '61 409 đọc là: sáu mươi mốt nghìn bốn trăm linh chín.',
     },
     {
       type: 'number',
       prompt: 'Viết số: năm mươi nghìn bảy trăm linh một.',
       answer: 50701,
       hints: ['Hàng nghìn và hàng chục không được đọc tên, em viết chữ số 0.'],
-      solution: 'Năm mươi nghìn bảy trăm linh một viết là 50 701.',
+      solution: 'Năm mươi nghìn bảy trăm linh một viết là 50 701.',
     },
     {
       type: 'number',
-      prompt: 'Số nào thích hợp thay cho dấu ?: 35 780; 35 790; ?; 35 810.',
+      prompt: 'Số nào thích hợp thay cho dấu ?: 35 780; 35 790; ?; 35 810.',
       answer: 35800,
       hints: ['Hai số liền nhau trong dãy hơn kém nhau 10.'],
-      solution: '35 790 + 10 = 35 800. Số cần điền là 35 800.',
+      solution: '35 790 + 10 = 35 800. Số cần điền là 35 800.',
     },
     {
       type: 'choice',
-      prompt: 'Chọn dấu thích hợp: 9 999 ? 10 001',
+      prompt: 'Chọn dấu thích hợp: 9 999 ? 10 001',
       options: ['<', '>', '='],
       answer: 0,
       hints: ['Em đếm số chữ số của mỗi số.'],
-      solution: '9 999 có bốn chữ số, 10 001 có năm chữ số. Vậy 9 999 < 10 001.',
+      solution: '9 999 có bốn chữ số, 10 001 có năm chữ số. Vậy 9 999 < 10 001.',
     },
     {
       type: 'choice',
-      prompt: 'Chọn dấu thích hợp: 90 537 ? 90 357',
+      prompt: 'Chọn dấu thích hợp: 90 537 ? 90 357',
       options: ['>', '<', '='],
       answer: 0,
       hints: ['Hai số có cùng số chữ số. Em so sánh từng hàng từ trái sang phải.'],
       solution:
-        'Hàng chục nghìn và hàng nghìn giống nhau. Ở hàng trăm: 5 > 3. Vậy 90 537 > 90 357.',
+        'Hàng chục nghìn và hàng nghìn giống nhau. Ở hàng trăm: 5 > 3. Vậy 90 537 > 90 357.',
     },
     {
       type: 'order',
       prompt: 'Xếp các số theo thứ tự từ bé đến lớn.',
-      items: ['42 000', '37 000', '28 000', '50 000'],
+      items: ['42 000', '37 000', '28 000', '50 000'],
       answer: [2, 1, 0, 3],
       hints: ['Em so sánh chữ số hàng chục nghìn của các số.'],
-      solution: 'Từ bé đến lớn: 28 000; 37 000; 42 000; 50 000.',
+      solution: 'Từ bé đến lớn: 28 000; 37 000; 42 000; 50 000.',
     },
     {
       type: 'match',
       prompt: 'Nối mỗi tổng với số của nó.',
       left: [
-        '30 000 + 4 000 + 500',
-        '80 000 + 800 + 10 + 9',
-        '7 000 + 600 + 20 + 3',
-        '90 000 + 500 + 2',
+        '30 000 + 4 000 + 500',
+        '80 000 + 800 + 10 + 9',
+        '7 000 + 600 + 20 + 3',
+        '90 000 + 500 + 2',
       ],
-      right: ['34 500', '80 819', '7 623', '90 502', '90 520'],
+      right: ['34 500', '80 819', '7 623', '90 502', '90 520'],
       pairs: [
         [0, 0],
         [1, 1],
@@ -207,36 +207,36 @@ export default {
       ],
       hints: ['Hàng nào không có trong tổng thì em viết chữ số 0.'],
       solution:
-        '30 000 + 4 000 + 500 = 34 500. 80 000 + 800 + 10 + 9 = 80 819. 7 000 + 600 + 20 + 3 = 7 623. 90 000 + 500 + 2 = 90 502.',
+        '30 000 + 4 000 + 500 = 34 500. 80 000 + 800 + 10 + 9 = 80 819. 7 000 + 600 + 20 + 3 = 7 623. 90 000 + 500 + 2 = 90 502.',
     },
     {
       type: 'number',
-      prompt: 'Số nào thích hợp thay cho dấu ?: 48 620 = 40 000 + 8 000 + 600 + ?',
+      prompt: 'Số nào thích hợp thay cho dấu ?: 48 620 = 40 000 + 8 000 + 600 + ?',
       answer: 20,
-      hints: ['Hàng chục của 48 620 có chữ số 2.'],
-      solution: '48 620 = 40 000 + 8 000 + 600 + 20. Số cần điền là 20.',
+      hints: ['Hàng chục của 48 620 có chữ số 2.'],
+      solution: '48 620 = 40 000 + 8 000 + 600 + 20. Số cần điền là 20.',
     },
     {
       type: 'number',
-      prompt: 'Làm tròn số 48 620 đến hàng nghìn ta được số nào?',
+      prompt: 'Làm tròn số 48 620 đến hàng nghìn ta được số nào?',
       answer: 49000,
-      hints: ['Em nhìn chữ số hàng trăm của 48 620.'],
-      solution: 'Chữ số hàng trăm là 6, 6 ≥ 5 nên làm tròn lên. Ta được 49 000.',
+      hints: ['Em nhìn chữ số hàng trăm của 48 620.'],
+      solution: 'Chữ số hàng trăm là 6, 6 ≥ 5 nên làm tròn lên. Ta được 49 000.',
     },
     {
       type: 'choice',
-      prompt: 'Làm tròn số 74 385 đến hàng chục nghìn ta được số nào?',
-      options: ['70 000', '74 000', '80 000', '75 000'],
+      prompt: 'Làm tròn số 74 385 đến hàng chục nghìn ta được số nào?',
+      options: ['70 000', '74 000', '80 000', '75 000'],
       answer: 0,
-      hints: ['Em nhìn chữ số hàng nghìn của 74 385.'],
-      solution: 'Chữ số hàng nghìn là 4, 4 < 5 nên làm tròn xuống. Ta được 70 000.',
+      hints: ['Em nhìn chữ số hàng nghìn của 74 385.'],
+      solution: 'Chữ số hàng nghìn là 4, 4 < 5 nên làm tròn xuống. Ta được 70 000.',
     },
     {
       type: 'number',
-      prompt: 'Số liền sau của 9 999 là số nào?',
+      prompt: 'Số liền sau của 9 999 là số nào?',
       answer: 10000,
       hints: ['Số liền sau hơn số đã cho 1 đơn vị.'],
-      solution: '9 999 + 1 = 10 000.',
+      solution: '9 999 + 1 = 10 000.',
     },
     {
       type: 'match',
@@ -258,7 +258,7 @@ export default {
       answer: 1230,
       hints: ['Số tròn chục có hàng đơn vị là 0. Hàng nghìn không thể là 0.'],
       solution:
-        'Hàng đơn vị là 0. Hàng nghìn bé nhất là 1, hàng trăm là 2, hàng chục là 3. Số đó là 1 230.',
+        'Hàng đơn vị là 0. Hàng nghìn bé nhất là 1, hàng trăm là 2, hàng chục là 3. Số đó là 1 230.',
     },
   ],
   takeaways: [

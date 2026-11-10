@@ -61,14 +61,14 @@ export default {
           type: 'table',
           head: ['Đại lượng', 'Đổi đơn vị'],
           rows: [
-            ['Độ dài', '1 cm = 10 mm; 1 dm = 10 cm; 1 m = 100 cm = 1 000 mm; 1 km = 1 000 m'],
-            ['Khối lượng', '1 kg = 1 000 g'],
-            ['Dung tích', '1 l = 1 000 ml'],
+            ['Độ dài', '1 cm = 10 mm; 1 dm = 10 cm; 1 m = 100 cm = 1 000 mm; 1 km = 1 000 m'],
+            ['Khối lượng', '1 kg = 1 000 g'],
+            ['Dung tích', '1 l = 1 000 ml'],
           ],
         },
         {
           type: 'p',
-          text: 'Tính với số đo: em tính như với số, rồi viết đơn vị vào kết quả. Ví dụ: 200 g × 5 = 1 000 g.',
+          text: 'Tính với số đo: em tính như với số, rồi viết đơn vị vào kết quả. Ví dụ: 200 g × 5 = 1 000 g.',
         },
       ],
     },
@@ -161,7 +161,7 @@ export default {
       type: 'match',
       prompt: 'Nối hai số đo bằng nhau.',
       left: ['1 m', '1 dm', '1 cm', '1 km'],
-      right: ['100 cm', '10 cm', '10 mm', '1 000 m', '1 000 cm'],
+      right: ['100 cm', '10 cm', '10 mm', '1 000 m', '1 000 cm'],
       pairs: [
         [0, 0],
         [1, 1],
@@ -169,23 +169,23 @@ export default {
         [3, 3],
       ],
       hints: ['Em nhớ: 1 m = 10 dm, 1 dm = 10 cm, 1 cm = 10 mm.'],
-      solution: '1 m = 100 cm. 1 dm = 10 cm. 1 cm = 10 mm. 1 km = 1 000 m.',
+      solution: '1 m = 100 cm. 1 dm = 10 cm. 1 cm = 10 mm. 1 km = 1 000 m.',
     },
     {
       type: 'number',
       prompt: '4 m = ? mm',
       answer: 4000,
       unit: 'mm',
-      hints: ['1 m = 1 000 mm.'],
-      solution: '4 m = 4 × 1 000 mm = 4 000 mm.',
+      hints: ['1 m = 1 000 mm.'],
+      solution: '4 m = 4 × 1 000 mm = 4 000 mm.',
     },
     {
       type: 'number',
       prompt: '2 kg = ? g',
       answer: 2000,
       unit: 'g',
-      hints: ['1 kg = 1 000 g.'],
-      solution: '2 kg = 2 × 1 000 g = 2 000 g.',
+      hints: ['1 kg = 1 000 g.'],
+      solution: '2 kg = 2 × 1 000 g = 2 000 g.',
     },
     {
       type: 'number',
@@ -223,18 +223,18 @@ export default {
     {
       type: 'number',
       prompt:
-        'Mai mua 5 quyển vở, mỗi quyển giá 7 000 đồng, và một hộp bút chì màu giá 60 000 đồng. Mai phải trả tất cả bao nhiêu tiền?',
+        'Mai mua 5 quyển vở, mỗi quyển giá 7 000 đồng, và một hộp bút chì màu giá 60 000 đồng. Mai phải trả tất cả bao nhiêu tiền?',
       answer: 95000,
       unit: 'đồng',
       hints: ['Em tính tiền 5 quyển vở trước.'],
       solution:
-        'Tiền 5 quyển vở: 7 000 × 5 = 35 000 (đồng). Mai phải trả: 35 000 + 60 000 = 95 000 (đồng).',
+        'Tiền 5 quyển vở: 7 000 × 5 = 35 000 (đồng). Mai phải trả: 35 000 + 60 000 = 95 000 (đồng).',
     },
   ],
   takeaways: [
     'Chu vi hình chữ nhật = (dài + rộng) × 2; chu vi hình vuông = cạnh × 4.',
     'Diện tích hình chữ nhật = dài × rộng; diện tích hình vuông = cạnh × cạnh.',
     'Đường kính dài gấp 2 lần bán kính.',
-    '1 m = 100 cm = 1 000 mm; 1 kg = 1 000 g; 1 l = 1 000 ml.',
+    '1 m = 100 cm = 1 000 mm; 1 kg = 1 000 g; 1 l = 1 000 ml.',
   ],
 };

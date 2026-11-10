@@ -85,6 +85,19 @@ describe('every review question', () => {
     expect(bad).toEqual([]);
   });
 
+  it('keeps every number within 100 000, the limit of grade 3', () => {
+    const bad = [];
+    for (const skill of ALL) {
+      for (let seed = 1; seed <= 400; seed++) {
+        const q = skill.make(rng(seed));
+        const all = `${q.prompt} ${q.solution} ${rightText(q)}`.replace(/\u202f/g, '');
+        const over = (all.match(/\d+/g) ?? []).map(Number).filter((n) => n > 100000);
+        if (over.length > 0) bad.push([skill.id, over]);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('keeps each review a short set with distinct parts', () => {
     for (const skills of SETS) {
       expect(skills.length).toBeLessThanOrEqual(12);

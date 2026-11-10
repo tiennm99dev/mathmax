@@ -274,7 +274,7 @@ export const clockSkill = {
         timeText(nextHour * 60 + m),
         swapped,
         timeText(h * 60 + ((m + 5) % 60 || 5)),
-        timeText(h * 60 + Math.max(1, m - 5)),
+        timeText(h * 60 + (m > 5 ? m - 5 : m + 10)),
       ].filter((w) => w !== right);
       return {
         prompt: 'Đồng hồ chỉ mấy giờ?',
@@ -312,11 +312,13 @@ export const calendarSkill = {
     const slipLength = length === 31 ? 30 : 31;
     return {
       prompt: `Ngày ${date} tháng ${month} là ${WEEKDAYS[day]}. Ngày ${k} tháng ${month + 1} là thứ mấy?`,
-      ...mixOptions(rand, dayTitle(right), [
-        dayTitle(dayAfter(right, slipLength - length)),
-        dayTitle(dayAfter(right, 1)),
-        dayTitle(dayAfter(right, -2)),
-      ]),
+      ...mixOptions(
+        rand,
+        dayTitle(right),
+        [...new Set([slipLength - length, 1, -1, -2])]
+          .slice(0, 3)
+          .map((k) => dayTitle(dayAfter(right, k))),
+      ),
       hint: `Tháng ${month} có ${length} ngày. Em đếm tiếp từng ngày sang tháng ${month + 1}.`,
       solution: `Tháng ${month} có ${length} ngày. Ngày ${k} tháng ${month + 1} đến sau ngày ${date} tháng ${month} đúng ${gap} ngày. Đếm tiếp ${gap} ngày từ ${WEEKDAYS[day]}, ta được ${WEEKDAYS[right]}.`,
     };
@@ -346,7 +348,7 @@ export const moneySkill = {
   id: 'tien-viet-nam',
   label: 'Tiền Việt Nam',
   make(rand) {
-    return shoppingStory(int(rand, 2, 6), int(rand, 4, 9) * 1000, int(rand, 20, 60) * 1000);
+    return shoppingStory(int(rand, 2, 6), int(rand, 4, 9) * 1000, int(rand, 20, 45) * 1000);
   },
 };
 

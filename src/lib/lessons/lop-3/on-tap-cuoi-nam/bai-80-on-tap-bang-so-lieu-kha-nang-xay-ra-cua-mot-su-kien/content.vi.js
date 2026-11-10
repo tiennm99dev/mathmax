@@ -128,30 +128,30 @@ export default {
     {
       type: 'number',
       prompt:
-        'Trong tuần, Việt tiết kiệm được 2 tờ 5 000 đồng và 1 tờ 10 000 đồng. Việt tiết kiệm được bao nhiêu tiền?',
+        'Trong tuần, Việt tiết kiệm được 2 tờ 5 000 đồng và 1 tờ 10 000 đồng. Việt tiết kiệm được bao nhiêu tiền?',
       answer: 20000,
       unit: 'đồng',
-      hints: ['Em tính tiền 2 tờ 5 000 đồng trước.'],
-      solution: '5 000 × 2 + 10 000 = 20 000 (đồng).',
+      hints: ['Em tính tiền 2 tờ 5 000 đồng trước.'],
+      solution: '5 000 × 2 + 10 000 = 20 000 (đồng).',
     },
     {
       type: 'number',
       prompt:
-        'Trong tuần, Mai tiết kiệm được 5 tờ 1 000 đồng và 5 tờ 2 000 đồng. Mai tiết kiệm được bao nhiêu tiền?',
+        'Trong tuần, Mai tiết kiệm được 5 tờ 1 000 đồng và 5 tờ 2 000 đồng. Mai tiết kiệm được bao nhiêu tiền?',
       answer: 15000,
       unit: 'đồng',
       hints: ['Em tính tiền mỗi loại tờ tiền, rồi cộng lại.'],
-      solution: '1 000 × 5 + 2 000 × 5 = 5 000 + 10 000 = 15 000 (đồng).',
+      solution: '1 000 × 5 + 2 000 × 5 = 5 000 + 10 000 = 15 000 (đồng).',
     },
     {
       type: 'choice',
       prompt:
-        'Nam tiết kiệm được 10 000 đồng, Việt 20 000 đồng, Mai 15 000 đồng. Bạn nào chưa đủ tiền mua quyển truyện giá 13 000 đồng?',
+        'Nam tiết kiệm được 10 000 đồng, Việt 20 000 đồng, Mai 15 000 đồng. Bạn nào chưa đủ tiền mua quyển truyện giá 13 000 đồng?',
       options: ['Nam', 'Việt', 'Mai'],
       answer: 0,
-      hints: ['Em so sánh số tiền của mỗi bạn với 13 000 đồng.'],
+      hints: ['Em so sánh số tiền của mỗi bạn với 13 000 đồng.'],
       solution:
-        '10 000 < 13 000, nên Nam chưa đủ tiền. Việt (20 000 đồng) và Mai (15 000 đồng) đều đủ tiền.',
+        '10 000 < 13 000, nên Nam chưa đủ tiền. Việt (20 000 đồng) và Mai (15 000 đồng) đều đủ tiền.',
     },
     {
       type: 'choice',
