@@ -6,7 +6,7 @@
  * Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { placeTitle, readBig, sumText } from '../_shared/big-numbers.js';
+import { PLACE_NAMES, placeTitle, readBig, sumText } from '../_shared/big-numbers.js';
 
 /** One digit per column, or null while the column is empty. @typedef {(number | null)[]} Slots */
 
@@ -97,7 +97,10 @@ export function challengeNote(slots, target) {
   }
   const off = slots.findIndex((d, i) => d !== null && d !== want[i]);
   if (off >= 0) {
-    return { tone: 'info', text: `Thẻ ở cột ${COLUMNS[off]} chưa đúng. Em nghe lại tên số nhé.` };
+    return {
+      tone: 'info',
+      text: `Thẻ ở cột ${PLACE_NAMES[5 - off]} chưa đúng. Em nghe lại tên số nhé.`,
+    };
   }
   return { tone: 'info', text: 'Các thẻ đã đặt đều đúng. Em đặt tiếp vào cột còn trống.' };
 }

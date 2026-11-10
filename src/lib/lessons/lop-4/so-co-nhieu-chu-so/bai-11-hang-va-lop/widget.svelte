@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
@@ -28,9 +29,14 @@
     if (tapNote(round, exp).tone === 'warn') split = true;
   }
 
-  function next() {
+  /** The digits of the number, focused again when a new round starts. */
+  let digits = $state(/** @type {HTMLElement | null} */ (null));
+
+  async function next() {
     index += 1;
     tapped = null;
+    await tick();
+    digits?.querySelector('button')?.focus();
   }
 </script>
 
@@ -43,6 +49,7 @@
     class="flex flex-wrap items-start justify-center {split ? 'gap-2' : 'gap-0'}"
     role="group"
     aria-label="Số {fmt(round.n)}"
+    bind:this={digits}
   >
     {#each parts as part (part.cls)}
       <div class="flex flex-col items-center gap-1">

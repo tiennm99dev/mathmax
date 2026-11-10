@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
@@ -37,17 +38,33 @@
     return 'bg-white text-slate-900';
   }
 
+  /** The sign buttons, and the button that moves on once the pair is solved. */
+  let signs = $state(/** @type {HTMLElement | null} */ (null));
+  let nextButton = $state(/** @type {HTMLButtonElement | null} */ (null));
+
   /** @param {'>' | '<' | '='} sign */
-  function pick(sign) {
+  async function pick(sign) {
     if (solved) return;
     result = checkSign(a, b, sign);
-    if (result.ok) shown = steps.length;
+    if (!result.ok) return;
+    shown = steps.length;
+    await tick();
+    nextButton?.focus();
   }
 
-  function next() {
+  async function showStep() {
+    shown += 1;
+    if (shown < steps.length) return;
+    await tick();
+    signs?.querySelector('button')?.focus();
+  }
+
+  async function next() {
     index += 1;
     shown = 0;
     result = null;
+    await tick();
+    signs?.querySelector('button')?.focus();
   }
 </script>
 
@@ -93,7 +110,7 @@
       type="button"
       class="min-h-12 text-lg {button.quiet}"
       disabled={shown >= steps.length}
-      onclick={() => (shown += 1)}>Xem hàng tiếp</button
+      onclick={showStep}>Xem hàng tiếp</button
     >
   </div>
 
@@ -101,7 +118,7 @@
     {fmt(a)} <span class="text-indigo-700">?</span>
     {fmt(b)}
   </p>
-  <div class="grid grid-cols-3 gap-2" role="group" aria-label="Chọn dấu">
+  <div class="grid grid-cols-3 gap-2" role="group" aria-label="Chọn dấu" bind:this={signs}>
     {#each SIGNS as sign (sign)}
       <button
         type="button"
@@ -120,7 +137,12 @@
 
   {#if solved}
     <div class="flex justify-center">
-      <button type="button" class="min-h-12 text-lg {button.primary}" onclick={next}>
+      <button
+        type="button"
+        class="min-h-12 text-lg {button.primary}"
+        bind:this={nextButton}
+        onclick={next}
+      >
         Cặp số khác
       </button>
     </div>

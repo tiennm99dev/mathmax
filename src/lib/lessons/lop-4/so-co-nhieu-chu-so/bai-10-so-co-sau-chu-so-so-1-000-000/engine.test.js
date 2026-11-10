@@ -54,7 +54,7 @@ describe('the six-column table', () => {
     expect(bad).toEqual([]);
     const off = place(EMPTY, 1, 9);
     expect(challengeNote(off, 432516).text).toBe(
-      'Thẻ ở cột Chục nghìn chưa đúng. Em nghe lại tên số nhé.',
+      'Thẻ ở cột chục nghìn chưa đúng. Em nghe lại tên số nhé.',
     );
     expect(challengeNote(place(EMPTY, 0, 4), 432516).text).toContain('đều đúng');
   });

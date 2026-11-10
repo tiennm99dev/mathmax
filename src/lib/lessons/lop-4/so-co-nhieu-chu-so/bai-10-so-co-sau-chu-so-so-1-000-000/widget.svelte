@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import { readBig } from '../_shared/big-numbers.js';
@@ -40,10 +41,24 @@
     }
   }
 
-  function next() {
+  /** The digit cards, focused again when a new number starts. */
+  let cards = $state(/** @type {HTMLElement | null} */ (null));
+  /** The reset button of the counter, focused when the add button is used up. */
+  let restart = $state(/** @type {HTMLButtonElement | null} */ (null));
+
+  async function next() {
     round += 1;
     slots = EMPTY;
     picked = null;
+    await tick();
+    cards?.querySelector('button')?.focus();
+  }
+
+  async function addHundredThousand() {
+    count += 1;
+    if (count < 10) return;
+    await tick();
+    restart?.focus();
   }
 </script>
 
@@ -85,7 +100,7 @@
     </p>
   {/if}
 
-  <div class="grid grid-cols-5 gap-2" role="group" aria-label="Thẻ chữ số">
+  <div class="grid grid-cols-5 gap-2" role="group" aria-label="Thẻ chữ số" bind:this={cards}>
     {#each DIGITS as digit (digit)}
       <button
         type="button"
@@ -132,11 +147,12 @@
         type="button"
         class="min-h-12 text-lg {button.primary}"
         disabled={count >= 10}
-        onclick={() => (count += 1)}>Thêm 100 000</button
+        onclick={addHundredThousand}>Thêm 100 000</button
       >
       <button
         type="button"
         class="min-h-12 text-lg {button.quiet}"
+        bind:this={restart}
         disabled={count === 0}
         onclick={() => (count = 0)}>Đếm lại</button
       >

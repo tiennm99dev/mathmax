@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
@@ -51,9 +52,14 @@
     result = checkPick(quizN, pick);
   }
 
-  function nextQuiz() {
+  /** The two mark buttons, focused again when a new number is asked. */
+  let choices = $state(/** @type {HTMLElement | null} */ (null));
+
+  async function nextQuiz() {
     quizIndex += 1;
     result = null;
+    await tick();
+    choices?.querySelector('button')?.focus();
   }
 </script>
 
@@ -119,7 +125,7 @@
     <p class="text-center text-lg text-slate-700">
       Làm tròn {fmt(quizN)} đến hàng trăm nghìn được số nào?
     </p>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-2 gap-2" role="group" aria-label="Chọn mốc" bind:this={choices}>
       <button
         type="button"
         class="min-h-14 text-xl tabular-nums {button.quiet}"

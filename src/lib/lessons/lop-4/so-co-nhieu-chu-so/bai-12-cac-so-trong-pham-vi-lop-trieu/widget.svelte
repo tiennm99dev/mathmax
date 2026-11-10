@@ -1,4 +1,5 @@
 <script>
+  import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import { NUMBERS, builtReading, classesOf, tapClass } from './engine.js';
@@ -31,6 +32,16 @@
     note = { tone: result.tone, text: result.text };
   }
 
+  /** The class buttons, focused again when the reading starts over. */
+  let classes = $state(/** @type {HTMLElement | null} */ (null));
+
+  async function restart() {
+    read = [];
+    note = { tone: 'info', text: 'Em chạm vào lớp bên trái trước.' };
+    await tick();
+    classes?.querySelector('button')?.focus();
+  }
+
   function next() {
     index += 1;
     read = [];
@@ -43,7 +54,12 @@
     Em đọc số theo từng lớp, từ trái sang phải.
   </p>
 
-  <div class="flex justify-center gap-1.5" role="group" aria-label="Các lớp của số">
+  <div
+    class="flex justify-center gap-1.5"
+    role="group"
+    aria-label="Các lớp của số"
+    bind:this={classes}
+  >
     {#each parts as part (part.cls)}
       <button
         type="button"
@@ -69,13 +85,8 @@
 
   <div class="flex flex-wrap justify-center gap-2">
     {#if read.length > 0 && !done}
-      <button
-        type="button"
-        class="min-h-12 text-lg {button.quiet}"
-        onclick={() => {
-          read = [];
-          note = { tone: 'info', text: 'Em chạm vào lớp bên trái trước.' };
-        }}>Đọc lại</button
+      <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={restart}
+        >Đọc lại</button
       >
     {/if}
     <button
