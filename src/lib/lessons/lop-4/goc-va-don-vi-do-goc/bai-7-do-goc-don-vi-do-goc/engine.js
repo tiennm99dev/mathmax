@@ -34,8 +34,7 @@ export function targetMessage(m, target) {
 
 /** What each part of the reading round practises. */
 export const KIND_LABELS = /** @type {const} */ ({
-  'thuoc-phai': 'Đọc thước khi cạnh OA ở bên phải',
-  'thuoc-trai': 'Đọc thước khi cạnh OA ở bên trái',
+  'doc-thuoc': 'Đọc thước đo góc',
   'dong-ho': 'Góc tạo bởi hai kim đồng hồ',
   'don-vi': 'Đơn vị đo góc',
 });
@@ -91,10 +90,10 @@ export function buildRound(seed) {
   const l2 = drawMeasure(rand, l1);
   /** @type {Question[]} */
   const round = [
-    { ...readingQuestion(rand, 'phai', r1), kind: 'thuoc-phai' },
-    { ...readingQuestion(rand, 'phai', r2), kind: 'thuoc-phai' },
-    { ...readingQuestion(rand, 'trai', l1), kind: 'thuoc-trai' },
-    { ...readingQuestion(rand, 'trai', l2), kind: 'thuoc-trai' },
+    { ...readingQuestion(rand, 'phai', r1), kind: 'doc-thuoc' },
+    { ...readingQuestion(rand, 'phai', r2), kind: 'doc-thuoc' },
+    { ...readingQuestion(rand, 'trai', l1), kind: 'doc-thuoc' },
+    { ...readingQuestion(rand, 'trai', l2), kind: 'doc-thuoc' },
     { ...clockQuestion(rand), kind: 'dong-ho' },
     { ...unitQuestion(rand), kind: 'don-vi' },
   ];

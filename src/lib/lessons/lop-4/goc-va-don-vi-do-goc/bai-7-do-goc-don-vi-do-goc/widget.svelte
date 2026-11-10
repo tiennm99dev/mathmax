@@ -65,7 +65,10 @@
       m = measureAt(directionTo(O, handle), side);
     },
     /** @param {-1 | 0 | 1} dx @param {-1 | 0 | 1} dy @param {boolean} big */
-    onKeyMove: (dx, dy, big) => setMeasure(m + (dx > 0 || dy < 0 ? 1 : -1) * (big ? 30 : STEP)),
+    onKeyMove: (dx, dy, big) => {
+      const opens = dy < 0 || (side === 'phai' ? dx < 0 : dx > 0);
+      setMeasure(m + (opens ? 1 : -1) * (big ? 30 : STEP));
+    },
   });
 </script>
 

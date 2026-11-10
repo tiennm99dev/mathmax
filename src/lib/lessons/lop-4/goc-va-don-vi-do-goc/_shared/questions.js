@@ -42,7 +42,7 @@ export function readingQuestion(rand, side, m) {
   return {
     prompt: `Thước đo góc đặt lên ${angleName(o, p, q)}. Góc này có số đo bao nhiêu độ?`,
     ...degreeOptions(m),
-    hint: `Cạnh ${o}${p} nằm ở ${where}. Em đọc trên vòng số có vạch 0 nằm trên cạnh ${o}${p} (các số tô đỏ).`,
+    hint: `Cạnh ${o}${p} nằm ở ${where}. Em tìm vạch 0 nằm trên cạnh ${o}${p}: đó là vạch 0 của vòng số ${ring}. Em đọc số trên vòng số ${ring}.`,
     solution: `Vạch 0 của vòng số ${ring} nằm trên cạnh ${o}${p}. Cạnh ${o}${q} đi qua vạch ${m} của vòng số đó. Vậy ${angleName(o, p, q)} bằng ${m}°.`,
     visual: { type: 'figure', figure: protractorFigure(m, side, names) },
   };

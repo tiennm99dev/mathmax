@@ -103,6 +103,7 @@ export default {
       prompt:
         'Góc đỉnh O; cạnh OM, ON bằng 60°. Góc đỉnh O; cạnh ON, OP bằng 90°. Hai góc chung cạnh ON. Góc đỉnh O; cạnh OM, OP bằng bao nhiêu độ? (Em viết số.)',
       answer: 150,
+      unit: '°',
       hints: ['Góc lớn gồm hai góc nhỏ ghép lại.'],
       solution: '60° + 90° = 150°.',
     },
@@ -111,6 +112,7 @@ export default {
       prompt:
         'Góc đỉnh O; cạnh OM, ON bằng 40°. Góc đỉnh O; cạnh ON, OP bằng 50°. Hai góc chung cạnh ON. Góc đỉnh O; cạnh OM, OP bằng bao nhiêu độ? (Em viết số.)',
       answer: 90,
+      unit: '°',
       hints: ['Em cộng số đo hai góc nhỏ.'],
       solution: '40° + 50° = 90°. Góc đỉnh O; cạnh OM, OP là góc vuông.',
     },
@@ -151,6 +153,7 @@ export default {
       type: 'number',
       prompt: 'Lúc 6 giờ, hai kim đồng hồ tạo thành góc bao nhiêu độ? (Em viết số.)',
       answer: 180,
+      unit: '°',
       hints: ['Lúc 6 giờ, hai kim nằm trên một đường thẳng.'],
       solution: 'Hai kim nằm trên một đường thẳng, tạo thành góc bẹt: 180°.',
     },

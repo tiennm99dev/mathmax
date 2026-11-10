@@ -145,6 +145,7 @@ export default {
       prompt:
         'Cạnh OA đi qua vạch 0 của vòng số ngoài. Cạnh OB đi qua vạch 45 ở vòng ngoài và vạch 135 ở vòng trong. Góc đỉnh O; cạnh OA, OB bằng bao nhiêu độ? (Em viết số.)',
       answer: 45,
+      unit: '°',
       hints: ['Vạch 0 nằm trên cạnh OA thuộc vòng số nào?'],
       solution: 'Vạch 0 của vòng ngoài nằm trên cạnh OA, nên em đọc vòng ngoài: góc bằng 45°.',
     },

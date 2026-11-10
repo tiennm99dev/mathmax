@@ -20,6 +20,7 @@ describe('naming by comparing with 90°', () => {
     expect(bad).toEqual([]);
     expect(goalMessage(120, 'nhon').text).toContain('lại gần');
     expect(goalMessage(40, 'tu').text).toContain('qua vạch nét đứt');
+    expect(goalMessage(90, 'tu').text).toContain('qua vạch nét đứt');
     expect(goalMessage(175, 'tu').text).toContain('góc tù');
   });
 });

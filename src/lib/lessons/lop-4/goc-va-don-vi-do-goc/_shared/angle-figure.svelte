@@ -30,7 +30,7 @@
   aria-label={figure.label}
 >
   {#if figure.protractor}
-    <Protractor o={lay.o} r={PROTRACTOR_R} side={figure.protractor} font={10} />
+    <Protractor o={lay.o} r={PROTRACTOR_R} side={settled ? figure.protractor : null} font={10} />
   {/if}
   {#each lay.arcs as arc, i (i)}
     {@const shown = settled || !arc.late}

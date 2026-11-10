@@ -44,7 +44,7 @@ export function goalMessage(m, goal) {
       return {
         done: false,
         text:
-          m < 90
+          m <= 90
             ? `${now} Góc tù lớn hơn góc vuông: em xoay cạnh OB qua vạch nét đứt.`
             : `${now} Góc tù bé hơn góc bẹt: em xoay cạnh OB lại một chút.`,
       };

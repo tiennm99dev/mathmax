@@ -23,7 +23,9 @@ describe('reading round', () => {
       if (
         round.length !== 6 ||
         !kinds.every((k) => k in KIND_LABELS) ||
-        kinds.filter((k) => k === 'thuoc-trai').length !== 2 ||
+        kinds.filter((k) => k === 'doc-thuoc').length !== 4 ||
+        round.filter((q) => q.visual?.type === 'figure' && q.visual.figure.protractor === 'trai')
+          .length !== 2 ||
         round.some((q) => q.answer < 0 || q.answer >= q.options.length)
       )
         bad.push(seed);

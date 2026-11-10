@@ -178,6 +178,7 @@ export default {
       type: 'number',
       prompt: 'Góc bẹt có số đo bao nhiêu độ? (Em viết số.)',
       answer: 180,
+      unit: '°',
       hints: ['Góc bẹt bằng hai góc vuông, mỗi góc vuông 90°.'],
       solution: 'Góc bẹt bằng hai góc vuông: 90° + 90° = 180°.',
     },
