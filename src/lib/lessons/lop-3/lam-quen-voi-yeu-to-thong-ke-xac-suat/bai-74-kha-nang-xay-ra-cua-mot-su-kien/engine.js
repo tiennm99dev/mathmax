@@ -89,7 +89,7 @@ export function outcomes(cells) {
  */
 export function outcomesText(cells) {
   const names = outcomes(cells).map((id) => `ô ${colorOf(id).name}`);
-  if (names.length === 1) return `Kim chỉ có thể dừng ở ${names[0]}.`;
+  if (names.length === 1) return `Kim chắc chắn dừng ở ${names[0]}.`;
   return `Kim có thể dừng ở ${names.slice(0, -1).join(', ')} hoặc ${names[names.length - 1]}.`;
 }
 

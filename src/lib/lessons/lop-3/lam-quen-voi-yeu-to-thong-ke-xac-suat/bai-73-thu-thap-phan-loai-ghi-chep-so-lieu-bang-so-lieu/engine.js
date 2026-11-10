@@ -30,7 +30,7 @@ export const THEMES = [
     title: 'Mâm quả ngày hội',
     head: 'Loại quả',
     all: 'quả',
-    kinds: ['strawberry', 'grapes', 'banana'],
+    kinds: ['strawberry', 'apple', 'banana'],
   },
 ];
 
@@ -157,7 +157,7 @@ export function questionsOf(scene, seed) {
       prompt: `Số ${top.noun} nhiều hơn số ${low.noun} là bao nhiêu?`,
       ...numberOptions(rand, max - min, 0, 10),
       hint: 'Muốn biết nhiều hơn bao nhiêu, em lấy số lớn trừ số bé.',
-      solution: `${max} − ${min} = ${max - min}. Số ${top.noun} nhiều hơn ${max - min}.`,
+      solution: `${max} − ${min} = ${max - min}. Số ${top.noun} nhiều hơn số ${low.noun} là ${max - min}.`,
     },
     {
       prompt: `Có tất cả bao nhiêu ${theme.all}?`,

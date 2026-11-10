@@ -65,7 +65,10 @@
               class="h-12 w-16 rounded-xl border-2 border-slate-300 text-center text-2xl font-bold tabular-nums {focusRing}"
               aria-label="Số bạn chọn {row.label}"
               value={row.count}
-              onchange={(e) => change(i, e.currentTarget.value)}
+              onchange={(e) => {
+                change(i, e.currentTarget.value);
+                e.currentTarget.value = String(countsBy[surveyId][i]);
+              }}
             />
             <button
               type="button"

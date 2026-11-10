@@ -21,7 +21,7 @@ describe('the lucky wheel', () => {
 
   it('lists the colours the arrow can stop on', () => {
     expect(outcomes(['xanh', 'do', 'xanh'])).toEqual(['do', 'xanh']);
-    expect(outcomesText(['do', 'do'])).toBe('Kim chỉ có thể dừng ở ô đỏ.');
+    expect(outcomesText(['do', 'do'])).toBe('Kim chắc chắn dừng ở ô đỏ.');
     expect(outcomesText(PRESETS[2].cells)).toBe('Kim có thể dừng ở ô đỏ, ô xanh hoặc ô vàng.');
   });
 
