@@ -141,7 +141,7 @@ function sayStep(step, d) {
   if (kind === 'rest') {
     return `${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
   }
-  return `Hạ ${answer}, được ${rest * 10 + answer}.`;
+  return rest > 0 ? `Hạ ${answer}, được ${rest * 10 + answer}.` : `Hạ ${answer}.`;
 }
 
 /**

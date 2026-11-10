@@ -78,7 +78,7 @@ describe('dividing in columns', () => {
   it('reads the book divisions', () => {
     expect(plain(divText(21437, 3))).toBe('21 437 : 3 = 7 145 (dư 2)');
     expect(plain(divWords(16025, 5))).toBe(
-      '16 chia 5 được 3, viết 3; 3 nhân 5 bằng 15; 16 trừ 15 bằng 1. Hạ 0, được 10. 10 chia 5 được 2, viết 2; 2 nhân 5 bằng 10; 10 trừ 10 bằng 0. Hạ 2, được 2. 2 chia 5 được 0, viết 0; 0 nhân 5 bằng 0; 2 trừ 0 bằng 2. Hạ 5, được 25. 25 chia 5 được 5, viết 5; 5 nhân 5 bằng 25; 25 trừ 25 bằng 0. Vậy 16 025 : 5 = 3 205.',
+      '16 chia 5 được 3, viết 3; 3 nhân 5 bằng 15; 16 trừ 15 bằng 1. Hạ 0, được 10. 10 chia 5 được 2, viết 2; 2 nhân 5 bằng 10; 10 trừ 10 bằng 0. Hạ 2. 2 chia 5 được 0, viết 0; 0 nhân 5 bằng 0; 2 trừ 0 bằng 2. Hạ 5, được 25. 25 chia 5 được 5, viết 5; 5 nhân 5 bằng 25; 25 trừ 25 bằng 0. Vậy 16 025 : 5 = 3 205.',
     );
     expect(plain(checkText(36095, 8))).toBe('Thử lại: 4 511 × 8 = 36 088, 36 088 + 7 = 36 095.');
   });

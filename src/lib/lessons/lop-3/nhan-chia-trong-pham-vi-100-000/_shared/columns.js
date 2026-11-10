@@ -226,7 +226,8 @@ export const divText = (n, d) => `${fmt(n)} : ${d} = ${withRest(Math.floor(n / d
 export function divWords(n, d) {
   const digits = String(n);
   const rounds = numberDivide(n, d).rounds.map(({ digit, partial, product, rest, end }, i) => {
-    const down = i > 0 ? `Hạ ${digits[end]}, được ${partial}. ` : '';
+    const reach = partial >= 10 ? `, được ${partial}` : '';
+    const down = i > 0 ? `Hạ ${digits[end]}${reach}. ` : '';
     return `${down}${partial} chia ${d} được ${digit}, viết ${digit}; ${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
   });
   return `${rounds.join(' ')} Vậy ${divText(n, d)}.`;
