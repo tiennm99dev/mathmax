@@ -1,6 +1,6 @@
 /**
  * The mixed practice of the grade 4 review chapter: reading and comparing
- * numbers to 100 000, rounding, even and odd numbers, the four operations in
+ * numbers to 100 000, rounding to tens, thousands and ten thousands, even and odd numbers, the four operations in
  * columns, checking a division with a remainder, expressions with letters and
  * word problems in two and three steps. One question of each part in a
  * shuffled order. Pure and DOM-free.
@@ -123,27 +123,26 @@ const MAKERS = {
   },
   'lam-tron': (rand) => {
     const unit = /** @type {import('../_shared/numbers.js').RoundUnit} */ (
-      pick(rand, [1000, 10000])
+      pick(rand, [10, 1000, 10000])
     );
     let n = int(rand, 10001, 98999);
-    if (n % (unit / 10) === 0) n += int(rand, 1, 9) * (unit / 100);
+    if (unit === 10 && n % 10 === 0) n += int(rand, 1, 9);
+    if (unit > 10 && n % (unit / 10) === 0) n += int(rand, 1, 9) * (unit / 100);
     const right = roundTo(n, unit);
     const low = Math.floor(n / unit) * unit;
     const other = right === low ? low + unit : low;
-    const place = unit === 1000 ? 'hàng nghìn' : 'hàng chục nghìn';
+    const place = { 10: 'hàng chục', 1000: 'hàng nghìn', 10000: 'hàng chục nghìn' }[unit];
+    const look = { 10: 'hàng đơn vị', 1000: 'hàng trăm', 10000: 'hàng nghìn' }[unit];
     return {
       prompt: `Làm tròn số ${fmt(n)} đến ${place} được số nào?`,
       ...slipOptions(right, [
         other,
         roundTo(n, unit === 1000 ? 10000 : 1000),
         Math.round(n / 100) * 100,
-        Math.floor(n / (unit / 10)) * (unit / 10),
+        unit === 10 ? n + 10 : Math.floor(n / (unit / 10)) * (unit / 10),
         low - unit,
       ]),
-      hint:
-        unit === 1000
-          ? 'Em nhìn chữ số hàng trăm: bé hơn 5 thì làm tròn xuống, từ 5 trở lên thì làm tròn lên.'
-          : 'Em nhìn chữ số hàng nghìn: bé hơn 5 thì làm tròn xuống, từ 5 trở lên thì làm tròn lên.',
+      hint: `Em nhìn chữ số ${look}: bé hơn 5 thì làm tròn xuống, từ 5 trở lên thì làm tròn lên.`,
       solution: roundWhy(n, unit),
     };
   },

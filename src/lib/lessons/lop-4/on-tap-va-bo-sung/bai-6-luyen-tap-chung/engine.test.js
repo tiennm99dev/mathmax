@@ -105,7 +105,11 @@ describe('the round', () => {
           if (value !== want) fail();
         }
         if (kind === 'lam-tron') {
-          const unit = q.prompt.includes('chục nghìn') ? 10000 : 1000;
+          const unit = q.prompt.includes('chục nghìn')
+            ? 10000
+            : q.prompt.includes('hàng nghìn')
+              ? 1000
+              : 10;
           const n = nums[0];
           const low = Math.floor(n / unit) * unit;
           if (value !== (n % unit >= unit / 2 ? low + unit : low)) fail();

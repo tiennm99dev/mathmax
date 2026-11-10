@@ -59,11 +59,11 @@ export function sumText(n) {
   return parts.length > 1 ? `${fmt(n)} = ${parts.map(fmt).join(' + ')}` : fmt(n);
 }
 
-/** @typedef {1000 | 10000} RoundUnit */
+/** @typedef {10 | 1000 | 10000} RoundUnit */
 
 /**
- * A number rounded to thousands (1000) or ten thousands (10000) the book's
- * way: a deciding digit below 5 rounds down, 5 to 9 rounds up.
+ * A number rounded to tens (10), thousands (1000) or ten thousands (10000)
+ * the book's way: a deciding digit below 5 rounds down, 5 to 9 rounds up.
  * @param {number} n
  * @param {RoundUnit} unit
  */
@@ -78,8 +78,8 @@ export function roundTo(n, unit) {
  * @param {RoundUnit} unit
  */
 export function roundWhy(n, unit) {
-  const look = unit === 1000 ? 'hàng trăm' : 'hàng nghìn';
-  const target = unit === 1000 ? 'hàng nghìn' : 'hàng chục nghìn';
+  const look = { 10: 'hàng đơn vị', 1000: 'hàng trăm', 10000: 'hàng nghìn' }[unit];
+  const target = { 10: 'hàng chục', 1000: 'hàng nghìn', 10000: 'hàng chục nghìn' }[unit];
   const digit = Math.floor(n / (unit / 10)) % 10;
   const way = digit < 5 ? `${digit} < 5 nên làm tròn xuống` : `${digit} ≥ 5 nên làm tròn lên`;
   return `Chữ số ${look} là ${digit}, ${way}: làm tròn đến ${target} được ${fmt(roundTo(n, unit))}.`;

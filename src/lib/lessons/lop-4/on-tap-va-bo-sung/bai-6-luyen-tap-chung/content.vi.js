@@ -26,14 +26,19 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Làm tròn đến hàng nghìn: em nhìn chữ số hàng trăm. Bé hơn 5 thì làm tròn xuống, từ 5 trở lên thì làm tròn lên.',
+          text: 'Làm tròn đến hàng chục: em nhìn chữ số hàng đơn vị. Làm tròn đến hàng nghìn: em nhìn chữ số hàng trăm. Chữ số đó bé hơn 5 thì làm tròn xuống, từ 5 trở lên thì làm tròn lên.',
         },
         {
           type: 'table',
-          head: ['Số', 'Làm tròn đến hàng nghìn', 'Làm tròn đến hàng chục nghìn'],
+          head: [
+            'Số',
+            'Làm tròn đến hàng chục',
+            'Làm tròn đến hàng nghìn',
+            'Làm tròn đến hàng chục nghìn',
+          ],
           rows: [
-            ['59 872', '60 000', '60 000'],
-            ['66 053', '66 000', '70 000'],
+            ['59 872', '59 870', '60 000', '60 000'],
+            ['66 053', '66 050', '66 000', '70 000'],
           ],
         },
       ],
@@ -134,38 +139,47 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Làm tròn số 66 053 đến hàng chục nghìn được số nào?',
+      prompt:
+        'Làm tròn số lớn nhất trong các số 65 237; 63 794; 66 053; 59 872 đến hàng chục nghìn được số nào?',
       options: ['70 000', '60 000', '66 000'],
       answer: 0,
-      hints: ['Em nhìn chữ số hàng nghìn của 66 053.', 'Chữ số đó bé hơn 5 hay từ 5 trở lên?'],
+      hints: [
+        'Số lớn nhất là 66 053. Em nhìn chữ số hàng nghìn của nó.',
+        'Chữ số đó bé hơn 5 hay từ 5 trở lên?',
+      ],
       solution:
-        'Chữ số hàng nghìn là 6, mà 6 ≥ 5 nên làm tròn lên. Làm tròn 66 053 đến hàng chục nghìn được 70 000.',
+        'Số lớn nhất là 66 053. Chữ số hàng nghìn là 6, mà 6 ≥ 5 nên làm tròn lên. Làm tròn 66 053 đến hàng chục nghìn được 70 000.',
     },
     {
       type: 'number',
-      prompt: 'Làm tròn số 59 872 đến hàng nghìn, em được số nào?',
-      answer: 60000,
-      hints: ['Em nhìn chữ số hàng trăm của 59 872.', 'Chữ số hàng trăm là 8, lớn hơn 5.'],
+      prompt:
+        'Làm tròn số bé nhất trong các số 65 237; 63 794; 66 053; 59 872 đến hàng chục, em được số nào?',
+      answer: 59870,
+      hints: [
+        'Số bé nhất là 59 872. Em nhìn chữ số hàng đơn vị của nó.',
+        'Chữ số hàng đơn vị là 2, bé hơn 5.',
+      ],
       solution:
-        'Chữ số hàng trăm là 8, mà 8 ≥ 5 nên làm tròn lên: 59 nghìn thành 60 nghìn. Làm tròn 59 872 đến hàng nghìn được 60 000.',
+        'Số bé nhất là 59 872. Chữ số hàng đơn vị là 2, mà 2 < 5 nên làm tròn xuống. Làm tròn 59 872 đến hàng chục được 59 870.',
     },
     {
       type: 'match',
       prompt: 'Đặt tính rồi tính. Nối mỗi phép tính với kết quả của nó.',
-      left: ['63 758 − 5 364', '37 429 + 49 235', '8 107 × 9', '43 652 : 7'],
-      right: ['58 394', '86 664', '72 963', '6 236'],
+      left: ['63 758 − 5 364', '37 429 + 49 235', '8 107 × 9', '43 652 : 7', '8 413 × 7'],
+      right: ['58 394', '86 664', '72 963', '6 236', '58 891'],
       pairs: [
         [0, 0],
         [1, 1],
         [2, 2],
         [3, 3],
+        [4, 4],
       ],
       hints: [
         'Em đặt tính thẳng hàng, rồi tính từ hàng đơn vị (phép chia thì tính từ hàng cao nhất).',
         'Em có thể thử lại: 6 236 × 7 có bằng 43 652 không?',
       ],
       solution:
-        '63 758 − 5 364 = 58 394. 37 429 + 49 235 = 86 664. 8 107 × 9 = 72 963. 43 652 : 7 = 6 236.',
+        '63 758 − 5 364 = 58 394. 37 429 + 49 235 = 86 664. 8 107 × 9 = 72 963. 43 652 : 7 = 6 236. 8 413 × 7 = 58 891.',
     },
     {
       type: 'choice',
@@ -238,14 +252,16 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Số lẻ bé nhất có hai chữ số là số nào?',
+      prompt:
+        'Việt hỏi chị Hoa: "Chị bao nhiêu tuổi?". Chị Hoa đáp: "Tuổi của chị là số lẻ bé nhất có hai chữ số". Chị Hoa bao nhiêu tuổi?',
       options: ['11', '10', '13', '99'],
       answer: 0,
       hints: [
         'Số bé nhất có hai chữ số là 10. Số 10 là số chẵn hay số lẻ?',
         'Em tìm số lẻ ngay sau 10.',
       ],
-      solution: 'Số bé nhất có hai chữ số là 10, nhưng 10 là số chẵn. Số lẻ liền sau 10 là 11.',
+      solution:
+        'Số bé nhất có hai chữ số là 10, nhưng 10 là số chẵn. Số lẻ liền sau 10 là 11. Chị Hoa 11 tuổi.',
     },
   ],
   takeaways: [
