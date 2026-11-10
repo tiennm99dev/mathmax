@@ -45,11 +45,11 @@ export const BANKS = {
       solution: 'Con lợn nặng khoảng 1 tạ, tức là 100 kg.',
     },
     {
-      prompt: 'Bao gạo nặng 5 … Em chọn đơn vị phù hợp.',
+      prompt: 'Bao xi măng nặng 5 … Em chọn đơn vị phù hợp.',
       right: 'yến',
       wrong: ['tấn', 'tạ', 'kg'],
-      hint: 'Một người lớn khiêng được bao gạo, nặng vài chục ki-lô-gam.',
-      solution: 'Bao gạo nặng 5 yến, tức là 50 kg.',
+      hint: 'Một người lớn vác được bao xi măng, nặng vài chục ki-lô-gam.',
+      solution: 'Bao xi măng nặng 5 yến, tức là 50 kg.',
     },
     {
       prompt: 'Quả dưa hấu nặng khoảng 3 … Em chọn đơn vị phù hợp.',

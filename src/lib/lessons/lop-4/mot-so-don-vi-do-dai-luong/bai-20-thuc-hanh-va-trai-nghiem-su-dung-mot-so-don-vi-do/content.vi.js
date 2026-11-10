@@ -54,7 +54,7 @@ export default {
           ordered: true,
           items: [
             'Nhờ người lớn đục vài lỗ nhỏ trên nắp chai, rồi úp ngược chai, nhét bông vào cổ chai.',
-            'Đổ lần lượt vào chai: 3 thìa cát mịn, 3 thìa cát hạt to, 1 thìa than hoạt tính, 1 thìa sỏi.',
+            'Đổ lần lượt vào chai, từ cổ chai lên: 1 thìa than hoạt tính, 3 thìa cát mịn, 3 thìa cát hạt to, 1 thìa sỏi.',
             'Rót 100 ml nước đục vào chai. Bấm đồng hồ khi bắt đầu rót, bấm dừng khi nước ngừng chảy.',
             'Ghi thời gian vào bảng theo giây, rồi đổi ra phút và giây.',
           ],
@@ -133,11 +133,12 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Lọc 500 ml nước: chai A hết 250 giây, chai B hết 4 phút, chai C hết 3 phút 50 giây. Chai nào lọc nhanh nhất?',
+        'Lọc 100 ml nước: chai A hết 3 phút 5 giây, chai B hết 190 giây, chai C hết 3 phút. Chai nào lọc chậm nhất?',
       options: ['Chai A', 'Chai B', 'Chai C'],
-      answer: 2,
-      hints: ['Em đổi tất cả ra giây.', '4 phút = 240 giây.'],
-      solution: 'Chai A 250 giây, chai B 240 giây, chai C 230 giây. Chai C lọc nhanh nhất.',
+      answer: 1,
+      hints: ['Em đổi tất cả ra giây.', '3 phút = 180 giây.'],
+      solution:
+        'Chai A: 3 phút 5 giây = 185 giây. Chai B: 190 giây. Chai C: 3 phút = 180 giây. 190 > 185 > 180, nên chai B lọc chậm nhất.',
     },
     {
       type: 'number',

@@ -13,6 +13,8 @@
   let running = $state(false);
   let message = $state('Em bấm "Bắt đầu" rồi đếm nhẩm theo đồng hồ.');
   let stop = () => {};
+  /** When the running stopwatch was started, from `performance.now()`. */
+  let startedAt = 0;
 
   const reading = $derived(stopwatchReading(elapsed));
   const hidden = $derived(mode === 'doan' && running);
@@ -24,13 +26,17 @@
       mode === 'doan'
         ? `Đồng hồ đang chạy nhưng bị che. Em đếm nhẩm, đủ ${TARGET} giây thì bấm "Dừng".`
         : 'Đồng hồ đang chạy. Cứ 60 giây là 1 phút.';
-    stop = frameLoop((dt) => {
-      elapsed += dt;
+    // Read the real clock each frame: frames pause in a background tab and
+    // the loop caps each step, so adding up frame steps would lose time.
+    startedAt = performance.now();
+    stop = frameLoop(() => {
+      elapsed = (performance.now() - startedAt) / 1000;
     });
   }
 
   function halt() {
     stop();
+    elapsed = (performance.now() - startedAt) / 1000;
     running = false;
     message =
       mode === 'doan'
@@ -81,15 +87,12 @@
   {/if}
 
   <div class="flex justify-center">
-    {#if running}
-      <button type="button" class="min-h-14 min-w-40 text-xl {button.primary}" onclick={halt}
-        >Dừng</button
-      >
-    {:else}
-      <button type="button" class="min-h-14 min-w-40 text-xl {button.primary}" onclick={start}
-        >Bắt đầu</button
-      >
-    {/if}
+    <!-- One button whose label changes, so keyboard focus stays on it. -->
+    <button
+      type="button"
+      class="min-h-14 min-w-40 text-xl {button.primary}"
+      onclick={running ? halt : start}>{running ? 'Dừng' : 'Bắt đầu'}</button
+    >
   </div>
 
   <FeedbackNote tone={!running && elapsed > 0 ? 'ok' : 'info'} text={message} />
