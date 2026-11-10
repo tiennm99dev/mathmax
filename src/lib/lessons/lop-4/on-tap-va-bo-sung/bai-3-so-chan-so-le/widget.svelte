@@ -76,11 +76,13 @@
     {/if}
   </div>
 
-  {#if paired}
-    <p class="text-center text-lg text-slate-700" aria-live="polite">
-      {pairingText(count, kind.name)}
-    </p>
-  {/if}
+  <div aria-live="polite">
+    {#if paired}
+      <p class="text-center text-lg text-slate-700">
+        {pairingText(count, kind.name)}
+      </p>
+    {/if}
+  </div>
 
   <div class="flex flex-wrap justify-center gap-2">
     <button
@@ -114,16 +116,17 @@
     {/each}
   </div>
 
-  {#if answer}
-    <p
-      class="rounded-2xl px-4 py-3 text-xl font-semibold {answer.tone === 'ok'
-        ? 'bg-emerald-100 text-emerald-900'
-        : 'bg-amber-100 text-amber-900'}"
-      aria-live="polite"
-    >
-      {#if solved}<span aria-hidden="true">⭐ </span>{/if}{answer.text}
-    </p>
-  {/if}
+  <div aria-live="polite">
+    {#if answer}
+      <p
+        class="rounded-2xl px-4 py-3 text-xl font-semibold {answer.tone === 'ok'
+          ? 'bg-emerald-100 text-emerald-900'
+          : 'bg-amber-100 text-amber-900'}"
+      >
+        {#if solved}<span aria-hidden="true">⭐ </span>{/if}{answer.text}
+      </p>
+    {/if}
+  </div>
 
   {#if solved}
     <div class="flex justify-center">

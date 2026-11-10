@@ -147,16 +147,17 @@
     </div>
   {/if}
 
-  {#if note || !step}
-    <p
-      class="rounded-2xl px-4 py-3 text-xl font-semibold {!step || note?.tone === 'ok'
-        ? 'bg-emerald-100 text-emerald-900'
-        : 'bg-amber-100 text-amber-900'}"
-      aria-live="polite"
-    >
-      {#if !step}<span aria-hidden="true">⭐ </span>{problem.answer}{:else}{note?.text}{/if}
-    </p>
-  {/if}
+  <div aria-live="polite">
+    {#if note || !step}
+      <p
+        class="rounded-2xl px-4 py-3 text-xl font-semibold {!step || note?.tone === 'ok'
+          ? 'bg-emerald-100 text-emerald-900'
+          : 'bg-amber-100 text-amber-900'}"
+      >
+        {#if !step}<span aria-hidden="true">⭐ </span>{problem.answer}{:else}{note?.text}{/if}
+      </p>
+    {/if}
+  </div>
 
   {#if !step}
     <div bind:this={choices}>

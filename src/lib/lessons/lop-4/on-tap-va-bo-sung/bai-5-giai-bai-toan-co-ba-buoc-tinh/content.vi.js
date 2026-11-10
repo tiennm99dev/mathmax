@@ -115,7 +115,7 @@ export default {
       prompt:
         'Thứ Sáu bán 12 máy tính. Thứ Bảy bán nhiều hơn Thứ Sáu 5 máy. Chủ nhật bán nhiều hơn Thứ Bảy 10 máy. Cả ba ngày bán được bao nhiêu máy tính?',
       answer: 56,
-      unit: 'máy',
+      unit: 'máy tính',
       hints: [
         'Bước 1: tìm số máy bán Thứ Bảy.',
         'Bước 2: tìm số máy bán Chủ nhật, rồi cộng cả ba ngày.',
