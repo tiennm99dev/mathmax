@@ -161,7 +161,7 @@ export const MAKERS = {
       ...mixOptions(
         rand,
         durationText(right),
-        [b, right + 5, right - 5, right + 10]
+        [...new Set([b, right + 5, right - 5, right + 10, right + 15])]
           .filter((v) => v > 0 && v !== right)
           .slice(0, 3)
           .map(durationText),

@@ -96,7 +96,7 @@ describe('the question makers', () => {
         const texts = q.options.map(optionText);
         if (
           q.kind !== kind ||
-          texts.length < 2 ||
+          texts.length !== (kind === 'month' ? 3 : 4) ||
           new Set(texts).size !== texts.length ||
           q.answer < 0 ||
           q.answer >= texts.length ||

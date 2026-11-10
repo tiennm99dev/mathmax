@@ -37,7 +37,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Giờ kém',
-          text: 'Khi kim dài đã qua số 6, em có thể đọc giờ kém. 8 giờ 55 phút còn 5 phút nữa là 9 giờ, nên còn đọc là 9 giờ kém 5 phút.',
+          text: 'Khi kim dài chỉ từ số 7 trở đi (từ 35 phút), em có thể đọc giờ kém. 8 giờ 55 phút còn 5 phút nữa là 9 giờ, nên còn đọc là 9 giờ kém 5 phút.',
         },
         {
           type: 'p',
@@ -66,7 +66,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Mẹo nắm tay',
-          text: 'Em nắm tay trái lại. Đếm tháng 1 ở khớp ngón trỏ, tháng 2 ở chỗ lõm, tháng 3 ở khớp tiếp theo, … Tháng ở khớp có 31 ngày. Tháng ở chỗ lõm có 30 ngày, riêng tháng 2 có 28 hoặc 29 ngày.',
+          text: 'Em nắm tay trái lại. Đếm tháng 1 ở khớp ngón trỏ, tháng 2 ở chỗ lõm, tháng 3 ở khớp tiếp theo, … Đến tháng 7 ở khớp ngón út, em quay lại khớp ngón trỏ để đếm tháng 8. Tháng ở khớp có 31 ngày. Tháng ở chỗ lõm có 30 ngày, riêng tháng 2 có 28 hoặc 29 ngày.',
         },
         {
           type: 'p',
